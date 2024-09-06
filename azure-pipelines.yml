@@ -1,0 +1,83 @@
+trigger:
+- dev
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  buildConfiguration: 'Release'
+  DOCKER_BUILDKIT: 1
+  PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
+
+stages:
+- stage: DockerBuild
+  condition: eq(variables['build.sourceBranch'], 'refs/heads/dev')
+  jobs:
+  - job: edx_e2e_tests
+    displayName: "e2e tests"
+    steps:
+      - task: NodeTool@0
+        displayName: "Install nodejs"
+        inputs:
+           versionSpec: "16.x"
+
+      - bash: npm ci
+        displayName: "Install dependencies"
+
+      - bash: |
+          cp $(System.DefaultWorkingDirectory)/config.e2e.json $(System.DefaultWorkingDirectory)/config.json
+          npm exec playwright install --with-deps chromium
+          npm run build
+          npm run tests
+          rm $(System.DefaultWorkingDirectory)/config.json
+        displayName: "Execute playwright e2e tests"
+
+      - task: PublishTestResults@2
+        displayName: 'Publish e2e test results'
+        condition: succeededOrFailed()
+        inputs:
+          testResultsFiles: 'e2e/junit-e2e.xml'
+          searchFolder: '$(System.DefaultWorkingDirectory)/test-results'
+          testRunTitle: 'E2E Tests'
+          failTaskOnFailedTests: false
+
+      - task: PublishPipelineArtifact@1
+        condition: succeededOrFailed()
+        inputs:
+          targetPath: '$(System.DefaultWorkingDirectory)/test-results'
+          artifact: playwright-report
+          publishLocation: 'pipeline'
+
+
+  - job: edx_adminconsole_web
+    dependsOn: edx_e2e_tests
+    steps:
+      - task: Docker@2
+        displayName: Login to ACR
+        inputs:
+          command: login
+          containerRegistry: 'teecontainerscus'
+      - task: Docker@2
+        inputs:
+          containerRegistry: 'teecontainerscus'
+          repository: 'tee/ui-adminconsole'
+          command: 'build'
+          Dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
+          buildContext: '$(Build.SourcesDirectory)/'
+          arguments: --build-arg GITHUB_TOKEN=$(GITHUB_TOKEN)
+          tags: |
+            $(Build.BuildNumber)
+            latest
+      - task: Docker@2
+        inputs:
+          containerRegistry: 'teecontainerscus'
+          repository: 'tee/ui-adminconsole'
+          command: 'push'
+          tags: |
+            $(Build.BuildNumber)
+            latest
+      - task: Docker@2
+        displayName: Logout of ACR
+        inputs:
+          command: logout
+          containerRegistry: teecontainerscus
