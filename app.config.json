@@ -1,0 +1,40 @@
+{
+  "api": {
+    "baseUri": "https://api.txedexchange.dev/tenant",
+    "edxApiUri": "https://api.edgraph.dev/tee/tenant",
+    "dataHealthApiUri": "http://localhost:5099"
+  },
+  "app": {
+    "name": "The Exchange",
+    "subtitle": "Tech Console",
+    "basePath": "",
+    "showDataHealth": true,
+    "showAdvancedTabs": false,
+    "showCompositeUrls": false,
+    "allowDebug": true,
+    "edfiUrl": "https://api.edgraph.dev/edfi/v6.1/saas/core-districtspecific",
+    "notificationsApplicationId": "z2WFYMjyRNEI",
+    "analytics": {
+      "managerUrl": "https://matomo.txedexchange.dev",
+      "containerId": "pzs8KNrX"
+    },
+    "helpLinkUrl": "https://apps.txedexchange.dev/community/help",
+    "showUserDelete": true,
+    "showEdfiPartnerDelete": false,
+    "showEdfiApplicationDelete": false,
+    "showEdOrgsTab": true,
+    "useDataHealthWithSchoolYear": true 
+  },
+  "auth": {
+    "authority": "https://login.txedexchange.dev",
+    "clientId": "SxDI3FClBpP40YekHTVUQBctOTJxeNHh",
+    "redirectUri": "https://apps.txedexchange.dev/adminconsole/callback",
+    "silentRedirectUri": "https://apps.txedexchange.dev/adminconsole/silent-renew",
+    "postLogoutRedirectUri": "https://apps.txedexchange.dev/adminconsole",
+    "scope": "openid profile offline_access email phone https://api.edgraph.com/auth/tenant",
+    "responseType": "code",
+    "loadUserInfo": false,
+    "automaticSilentRenew": true,
+    "automaticSilentSignin": true
+  }
+}

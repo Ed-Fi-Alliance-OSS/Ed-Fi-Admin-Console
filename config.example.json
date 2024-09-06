@@ -1,0 +1,14 @@
+{
+    "appName": "App Name",
+    "title": "App Title",
+    "authority": "https://login.app.com",
+    "clientId": "clientId", 
+    "redirectUri":  "http://localhost:3000/callback", 
+    "silentRedirectUri": "http://localhost:3000/silent-renew", 
+    "postLogoutRedirectUri": "http://localhost:3000", 
+    "scope": "scope",
+    "responseType": "code",
+    "loadUserInfo": false,
+    "automaticSilentRenew": true,
+    "automaticSilentSignin": true
+}
