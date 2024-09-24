@@ -20,7 +20,7 @@ const SelectedInstancesTableModal = ({ selectedInstance, settingAsDefault, showC
             header="Are you sure this is the school year you'd like to work with?"
             content={<Flex flexDir='column' mt='12px'>
                 <Text>
-                    By continuing you'll be allowing The Exchange to load data into the following school year
+                    By continuing you'll be allowing Acme Service Center to load data into the following school year
                     for the Data Warehouse, User Sync, and potential future apps:
                 </Text>
                 <Text color='blue.700' fontWeight='bold' mt='32px'>

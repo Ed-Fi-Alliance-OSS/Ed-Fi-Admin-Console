@@ -43,7 +43,7 @@ const OnBoardingWizardBanner = ({ currentStepStatus, currentStepName, currentSte
                         fontWeight='700'
                         fontSize='32px'
                         lineHeight='42px'>
-                            { showStepsProgress()? 'Let’s finish your setup.' : 'Welcome to The Exchange! Let’s get set up.'}
+                            { showStepsProgress()? 'Let’s finish your setup.' : 'Welcome to Acme Service Center! Let’s get set up.'}
                     </Heading>
                     {showStepsProgress() && <Flex alignItems='center' mt='16px'>
                         <Text

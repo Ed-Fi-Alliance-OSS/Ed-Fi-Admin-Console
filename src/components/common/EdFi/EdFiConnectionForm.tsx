@@ -30,7 +30,7 @@ const EdFiConnectionForm = ({ formData, errors, mode, inOnboarding, verification
                     fontFamily='Open sans'
                     fontWeight='400'
                     w='500px'>
-                        Note: These credentials will be used for both Data Health Check and Data Warehouse as base applications for The Exchange. 
+                        Note: These credentials will be used for both Data Health Check and Data Warehouse as base applications for Acme Service Center. 
                         You will be able to connect other applications within the Tech Console later. When setting up your credentials, 
                         be sure to use the "Read Only (All Resources)" claim set.
                 </Text> 

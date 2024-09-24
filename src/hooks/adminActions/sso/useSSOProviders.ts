@@ -7,7 +7,7 @@ import useTenantService from "../../../services/AdminActions/Tenant/TenantServic
 import { UpdateTenantRequest } from "../../../services/AdminActions/Tenant/TenantService.requests"
 
 const ssoMethodsList: SSOMethod[] = [
-    { name: 'The Exchange', descriptor: 'Local', consentStatus: 'Required', selected: true },
+    { name: 'Acme Service Center', descriptor: 'Local', consentStatus: 'Required', selected: true },
     { name: 'Microsoft', descriptor: 'Aad', consentStatus: 'Not Selected', selected: false },
     { name: 'Google', descriptor: 'Google', consentStatus: 'Not Selected', selected: false }
 ]
