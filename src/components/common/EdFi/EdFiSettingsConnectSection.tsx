@@ -26,7 +26,7 @@ const EdFiSettingsConnectSection = ({ onConnect }: EdFiSettingsConnectSectionPro
                     fontFamily='Open sans'
                     fontWeight='400'
                     mt='6px'>
-                        Applications within the Exchange will not function properly until a connection has been made.
+                        Applications within Acme Service Center will not function properly until a connection has been made.
                 </Text>
                 <Button
                     onClick={() => onConnect()}

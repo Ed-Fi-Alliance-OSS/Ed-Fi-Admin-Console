@@ -2,7 +2,7 @@ import { Flex, Text } from "@chakra-ui/react"
 import { CustomSwitch } from "@edwire/edx-portal-shared"
 
 const identityOptions = [
-    'The Exchange',
+    'Acme Service Center',
     'Classlink',
     'Clever',
     'Microsoft',

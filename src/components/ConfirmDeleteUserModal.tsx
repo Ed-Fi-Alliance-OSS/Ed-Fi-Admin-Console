@@ -26,7 +26,7 @@ const ConfirmDeleteUserModal = ({ user, show, isDeletingUser, onDeleteUser, onCl
                         {`${user.firstName} ${user.lastName}`}
                 </Text>
                 <Text mt='32px'>
-                    Their account will be deleted and they will no longer have access to The Exchange. 
+                    Their account will be deleted and they will no longer have access to Acme Service Center. 
                     Are you sure you want to continue?
                 </Text>
             </Flex>}

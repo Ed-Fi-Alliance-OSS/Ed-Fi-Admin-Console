@@ -64,6 +64,8 @@ const useOdsInstanceTable = () => {
     } = useEDXToast(7000)
 
     const filterInstancesWithoutYear = (instancesList: ODSInstance[]): ODSInstance[] => {
+        console.log("instanceList")
+        console.log(instancesList)
         return instancesList.filter(instance => {
             if (!instance.schoolYears)
                 return false

@@ -30,7 +30,7 @@ const SSOMethodTableRows = ({ ssoMethodsList, showOnlySelected, onToggleSSOMetho
                     {!showOnlySelected? <Td>
                         <CustomSwitch
                             id={ssoMethod.name}
-                            isDisabled={ssoMethod.name === 'The Exchange'}  
+                            isDisabled={ssoMethod.name === 'Acme Service Center'}  
                             isChecked={ssoMethod.selected}
                             onCheck={() => onToggleSSOMethod(ssoMethod.name)} />
                     </Td> : <Td padding='0' w='0px'></Td>}

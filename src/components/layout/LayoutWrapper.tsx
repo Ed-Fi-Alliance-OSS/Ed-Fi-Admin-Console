@@ -39,24 +39,24 @@ const LayoutWrapper = () => {
     }
 
     const currentLoadingStateMessage = () => {
-        if (loadingState !== 'finished') 
-            return stateMessage
+        // if (loadingState !== 'finished') 
+        //     return stateMessage
 
-        if (onBoardingWizardData === null)
-            return "Loading Tech Console..."
+        // if (onBoardingWizardData === null)
+        //     return "Loading Tech Console..."
 
-        if (!finishedCheckedPermissions)
-            return "Checking permissions..."
+        // if (!finishedCheckedPermissions)
+        //     return "Checking permissions..."
 
         return "Finished loading..."
     }
 
     const currentLoadingState = () => {
-        if (window.location.pathname.includes(routes.unauthorized.url))
-            return false
+        // if (window.location.pathname.includes(routes.unauthorized.url))
+        //     return false
 
-        if (loadingState !== 'finished' || onBoardingWizardData === null || !finishedCheckedPermissions)
-            return true
+        // if (loadingState !== 'finished' || onBoardingWizardData === null || !finishedCheckedPermissions)
+        //     return true
 
         return false
     }
@@ -74,7 +74,7 @@ const LayoutWrapper = () => {
                     delay={1} 
                     loading={currentLoadingState()} />
                 <Helmet>
-                    <title>The Exchange | {stateMessage}</title>
+                    <title>Acme Service Center | {stateMessage}</title>
                 </Helmet>
                 <SessionInactiveModal
                     show={showInactiveModal}
@@ -85,7 +85,7 @@ const LayoutWrapper = () => {
                         auth={auth as AuthContextProps}
                         edxAppConfig={edxAppConfig as EdxAppConfig}
                         content={<AppRouter />}
-                        notificationBarMessage='The Exchange Online Community is now live! Learn more.'
+                        notificationBarMessage='Acme Service Center Online Community is now live! Learn more.'
                         simpleLayoutRouteList={simpleLayoutRoutes}
                         isClosingSession={isClosingSession} 
                         onLogout={onLogout} />}

@@ -11,7 +11,7 @@ const SetUpWizardStartLeft = ({ hasStarted }: SetUpWizardStartLeftProps) => {
                 fontFamily='Poppins'
                 fontWeight='700'
                 fontSize='24px'>
-                    It’s time to connect a new school year’s data to The Exchange!
+                    It’s time to connect a new school year’s data to Acme Service Center!
             </Text>
             <Flex flexDir='column' mt='32px'>
                 <Text
