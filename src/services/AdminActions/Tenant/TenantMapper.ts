@@ -22,14 +22,21 @@ const mapToTenant = (response: GetTenantResponse): Tenant => {
         onBoarding: {...response.onBoarding},
         organizations: response.organizations,
         subscriptionsMigrated: response.subscriptionsMigrated,
-        settings: response.settings.map(setting => ({...setting}))
+        settings: [
+            {
+                "code": "setting1",
+                "value": "value1",
+                "dataType": "string"
+            }
+        ]
+        //response.settings.map(setting => ({...setting}))
     }
 
     return tenant
 }
 
 const mapProviders = (identityProviders: number[]): SSOMethodDescriptor[] => {
-    const providers: SSOMethodDescriptor[] = identityProviders.map(provider => {
+    const providers: SSOMethodDescriptor[] = identityProviders ? identityProviders.map(provider => {
         if (provider === 1)
             return "Local"
 
@@ -37,7 +44,7 @@ const mapProviders = (identityProviders: number[]): SSOMethodDescriptor[] => {
             return 'Aad'
     
         return 'Google'
-    })
+    }) : ["Local"]
 
     return providers
 }
@@ -93,6 +100,17 @@ const getDomainStatus = (status: number): DomainStatus => {
 }
 
 const mapDomains = (domainsList: IntTenantDomain[]): TenantDomain[] => {
+    domainsList = [
+        {
+            "domainStatus": 1,
+            "tenantId": "abc123",
+            "domainName": "mockdomain.com",
+            "createdBy": "user123",
+            "createdDateTime": "2022-01-01T10:00:00",
+            "lastModifiedBy": "user123",
+            "lastModifiedDateTime": "2022-01-01T10:00:00"
+        }
+    ]
     const tenantDomains = domainsList.map(item => {
         const domainData: TenantDomain = {
             domainStatus: getDomainStatus(item.domainStatus),
