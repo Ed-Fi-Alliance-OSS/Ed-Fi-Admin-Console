@@ -19,8 +19,8 @@ const useOdsInstanceService = () => {
         if (request.orderBy)
             queryParams = `${queryParams}&orderBy=${request.orderBy}`
         
-        const url = `${baseUrl}/${odsInstancesActionRoutes.getInstancesList(actionParams.tenantId)}?${queryParams}`
-    
+        // const url = `${baseUrl}/${odsInstancesActionRoutes.getInstancesList(actionParams.tenantId)}?${queryParams}`
+        const url = '/data-odsinstances.json'
         const result = await getAsync<GetOdsInstancesListResponse>({
             url,
             access_token: actionParams.token,

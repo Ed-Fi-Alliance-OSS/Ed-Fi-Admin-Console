@@ -3,7 +3,8 @@ import { OnBoardingWizardData } from "../../core/onBoardingWizard/onBoardingWiza
 import { AddStepProps, AddStepRequestData, FetchOnBoardingWizardData, UpdateOnBoardingWizardDataProps, UpdateOnBoardingWizardDataRequest } from "./onBoardingWizardService.types"
 
 const fetchOnBoardingWizardData = async ({ apiUrl, tenantId, token }: FetchOnBoardingWizardData) => {
-    const currentTenantUrl = `${apiUrl}/tenants/${tenantId}`
+    // const currentTenantUrl = `${apiUrl}/tenants/${tenantId}`
+    const currentTenantUrl = `data-tenant.json`
 
     try {
         if (token) {
@@ -79,7 +80,8 @@ const fetchOnBoardingWizardData = async ({ apiUrl, tenantId, token }: FetchOnBoa
 }
 
 const updateOnBoardingWizardStep = async ({ apiUrl, tenantId, token, stepStatus, stepNumber }: UpdateOnBoardingWizardDataProps) => {
-    const updateOnBoardingWizardDataUrl = `${apiUrl}/tenants/${tenantId}/onboardingsteps/${stepNumber}`
+    // const updateOnBoardingWizardDataUrl = `${apiUrl}/tenants/${tenantId}/onboardingsteps/${stepNumber}`
+    const updateOnBoardingWizardDataUrl = `data-step.json`
 
     // console.log('update on boarding wizard step (service): stepNumber', stepNumber)
     // console.log('update on boarding wizard step (service): url', updateOnBoardingWizardDataUrl)
@@ -118,7 +120,7 @@ const updateOnBoardingWizardStep = async ({ apiUrl, tenantId, token, stepStatus,
 const createOnBoardingWizardStep = async ({ apiUrl, tenantId, token, number, status, description }: AddStepProps) => {
     // console.log('create onboarding wizard step')
 
-    const createStepUrl = `${apiUrl}/tenants/${tenantId}/onboardingsteps`
+    const createStepUrl = `data-steps.json`
 
     try {
         const requestData: AddStepRequestData = {
