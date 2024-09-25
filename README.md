@@ -14,7 +14,7 @@ The frameworks and libraries used are the following:
 ## Installation
 te-startup requires [Node.js](https://nodejs.org/) v16+ to run. (v18.12.1 used for development).
 
-- You have to have an IdP running, use keykcloak using the following command:
+- You have to have an IdP running, use Keycloak using the following command:
   ```docker run -p 8080:8080 -e KEYCLOAK_ADMIN=admin -e KEYCLOAK_ADMIN_PASSWORD=admin quay.io/keycloak/keycloak:25.0.6 start-dev``` <br> And follow the steps to create a realm, client and user: https://www.keycloak.org/getting-started/getting-started-docker
   - Realm: myrealm
   - Client: ac
