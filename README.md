@@ -13,27 +13,31 @@ The frameworks and libraries used are the following:
 
 ## Installation
 te-startup requires [Node.js](https://nodejs.org/) v16+ to run. (v18.12.1 used for development).
-First, clone the repository from: https://github.com/EdWire/TEE-UI-Prototype
 
-- Clone both project (Admin Console and SDK) in the same folder
-- Install the pnpm ```npm i -g pnpm```
-- Install dependencies in the EDX SDK using the command ```pnpm install```
-- Move to the AC folder and link the sdk
+- You have to have an IdP running, use keykcloak using the following command:
+  ```docker run -p 8080:8080 -e KEYCLOAK_ADMIN=admin -e KEYCLOAK_ADMIN_PASSWORD=admin quay.io/keycloak/keycloak:25.0.6 start-dev```
+  And follow the steps to create a realm, client and user: https://www.keycloak.org/getting-started/getting-started-docker
+  Realm: myrealm
+  Client: ac
+  Valid redirect uri: http://localhost:8598/callback
+  Web origin: http://localhost:8598/
+- Clone both project (Admin Console and SDK) in the same folder. Example: C:/dev/ed-fi/Admin-Console
+- Install the pnpm globally
+  ```npm i -g pnpm```
+- Move to the SDK folder and install dependencies in the EDX SDK using the command
+  ```pnpm install```
+- Build the SDK using the command
+  ```pnpm run build``` 
+  (any change in the SDK has to be built using this command)
+- Move to the Admin Console folder and link the SDK using the following command:
   ```pnpm link ../EdX-Admin-Console-Shared-SDK```
-  check package.json Example: "@edwire/edx-portal-shared": "link:C:/dev/ed-fi/Admin-Console/EdX-Admin-Console-Shared-SDK"
-- Install the dependencies ```pnpm install```
-- Run the app using ```pnpm run dev```
+  Check the package.json of the Admin Console to validate the linked library. The linked library should be look like this: "@edwire/edx-portal-shared": "link:C:/dev/ed-fi/Admin-Console/EdX-Admin-Console-Shared-SDK" (Depends on your folder path)
+- Install the Admin Console dependencies using the command
+  ```pnpm install```
+- Verify you have the config.json file. You can use the config.example.json as example.
+- Run the Admin Console using
+  ```pnpm run dev```
   
-Then, run the app for development: 
-
-```sh
-npm run dev
-```
-
-or build: 
-```sh
-npm run build
-```
 
 ## Folder Structure
 - te-startup project
