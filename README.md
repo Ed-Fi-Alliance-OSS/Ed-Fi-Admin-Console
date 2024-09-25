@@ -12,22 +12,27 @@ The frameworks and libraries used are the following:
 - Chakra UI
 
 ## Installation
-te-startup requires [Node.js](https://nodejs.org/) v16+ to run. (v18.12.1 used for development).
-
-- You have to have an IdP running, use Keycloak using the following command:
+### Requirements
+- Clone both project (Admin Console and SDK) in the same folder. Example: C:/dev/ed-fi/Admin-Console
+- [Node.js](https://nodejs.org/) v16+ to run. (v18.12.1 used for development).
+- Install the pnpm globally <br>
+  ```npm i -g pnpm```
+- IdP (Keycloak, Azure B2C, Amazon Cognito, etc) <br>
+  Use Keycloak in docker using the following command:
   ```docker run -p 8080:8080 -e KEYCLOAK_ADMIN=admin -e KEYCLOAK_ADMIN_PASSWORD=admin quay.io/keycloak/keycloak:25.0.6 start-dev``` <br> And follow the steps to create a realm, client and user: https://www.keycloak.org/getting-started/getting-started-docker
   - Realm: myrealm
   - Client: ac
   - Valid redirect uri: http://localhost:8598/callback
   - Web origin: http://localhost:8598/
-- Clone both project (Admin Console and SDK) in the same folder. Example: C:/dev/ed-fi/Admin-Console
-- Install the pnpm globally <br>
-  ```npm i -g pnpm```
+- ODS/API 
+
+### Steps
+
 - Move to the SDK folder and install dependencies in the EDX SDK using the following command: <br>
   ```pnpm install```
 - Build the SDK using the command <br>
   ```pnpm run build``` 
-  (any change in the SDK has to be built using this command)
+  (any change in the SDK has to be built it again using this command)
 - Move to the Admin Console folder and link the SDK using the following command: <br>
   ```pnpm link ../EdX-Admin-Console-Shared-SDK``` <br>
   Check the package.json of the Admin Console to validate the linked library. The linked library should be look like this:<br>```"@edwire/edx-portal-shared": "link:C:/dev/ed-fi/Admin-Console/EdX-Admin-Console-Shared-SDK" ``` (Depends on your folder path)
