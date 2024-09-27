@@ -9,7 +9,8 @@ const useDataHealthService = () => {
     
     const getDataHealthInfo = async (actionParams: ActionParams): GetDataHealthDistrictDetailsResult => {
         const baseUrl = actionParams.edxApiUrl
-        const url = `${baseUrl}/${tenantActionRoutes.getHealthCheckDistrictDetails(actionParams.tenantId)}`
+        // const url = `${baseUrl}/${tenantActionRoutes.getHealthCheckDistrictDetails(actionParams.tenantId)}`
+        const url = `/data-healthcheck.json`
     
         const result = await getSimpleAsync<GetDataHealthDistrictDetailsResponse>({
             url,
@@ -22,8 +23,8 @@ const useDataHealthService = () => {
 
     const getOdsInstanceDataHealthInfo = async (actionParams: ActionParams, year: number): GetDataHealthDistrictDetailsResult => {
         const baseUrl = actionParams.edxApiUrl
-        const url = `${baseUrl}/${tenantActionRoutes.getOdsInstanceHealthCheckDistrictDetails(actionParams.tenantId, year)}`
-    
+        // const url = `${baseUrl}/${tenantActionRoutes.getOdsInstanceHealthCheckDistrictDetails(actionParams.tenantId, year)}`
+        const url = '/data-healthcheck.json'
         const result = await getSimpleAsync<GetDataHealthDistrictDetailsResponse>({
             url,
             actionName: 'Get School Year Data Health Info',
