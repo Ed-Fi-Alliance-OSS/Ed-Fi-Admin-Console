@@ -12,18 +12,17 @@
       "authenticationUrl": "https://localhost/api/oauth/token",
       "resourcesUrl": "https://localhost/api",
       "schoolYears": [
-        2022,
-        2023,
-        2024
+        2019,
+        2020
       ],
       "isDefault": true,
       "verificationStatus": {
-        "status": "InProgress",
-        "progressPercentage": 50,
-        "totalSteps": 5,
-        "lastCompletedStep": 2,
+        "status": "Completed",
+        "progressPercentage": 100,
+        "totalSteps": 3,
+        "lastCompletedStep": 3,
         "startedAt": "2022-01-15T08:00:00Z",
-        "completedAt": null,
+        "completedAt": "2022-01-15T08:00:00Z",
         "steps": [
           {
             "number": 1,
@@ -62,7 +61,6 @@
       "authenticationUrl": "https://localhost/api/oauth/token",
       "resourcesUrl": "https://localhost/api",
       "schoolYears": [
-        2023,
         2024,
         2025
       ],
