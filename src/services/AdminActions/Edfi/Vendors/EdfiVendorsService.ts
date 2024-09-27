@@ -12,7 +12,8 @@ const useEdfiVendorsService = () => {
 
     const getVendorsList = async (actionParams: EdfiActionParams): GetVendorsListResult => {
         const baseUrl = actionParams.edxApiUrl
-        const url = `${baseUrl}/${edfiActionRoutes.getVendorsList(actionParams.tenantId)}`
+        // const url = `${baseUrl}/${edfiActionRoutes.getVendorsList(actionParams.tenantId)}`
+        const url = 'data-vendors.json'
     
         const result = await getAsync<EdfiVendor[]>({
             url,
@@ -66,8 +67,9 @@ const useEdfiVendorsService = () => {
     // Ed-Fi Admin By School Year
     const getVendorsListForSchoolYear = async (actionParams: EdfiActionParams, year: number): GetVendorsListResult => {
         const baseUrl = actionParams.edxApiUrl
-        const url = `${baseUrl}/${edfiActionRoutes.getVendorsListForSchoolYear(actionParams.tenantId, year)}`
-    
+        // const url = `${baseUrl}/${edfiActionRoutes.getVendorsListForSchoolYear(actionParams.tenantId, year)}`
+        const url = "/data-vendors.json"
+
         const result = await getAsync<EdfiVendor[]>({
             url,
             actionName: 'Get Vendors List',
