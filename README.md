@@ -1,6 +1,4 @@
-# TE - Tech Console
-[TE - TEXAS EXCHANGE](https://github.com/EdWire/TEE-UI-Prototype/blob/main/exchange.svg?raw=true)
-
+# Ed-Fi Admin Console
 This is the startup app that works as the base project template. Created
 from the Vite react-ts template. 
 
