@@ -11,7 +11,6 @@ The frameworks and libraries used are the following:
 
 ## Installation
 te-startup requires [Node.js](https://nodejs.org/) v16+ to run. (v18.12.1 used for development).
-First, clone the repository from: https://github.com/EdWire/TEE-UI-Prototype
 
 Then, run the app for development: 
 
