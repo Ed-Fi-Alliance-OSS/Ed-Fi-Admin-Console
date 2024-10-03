@@ -1,4 +1,4 @@
-import { TEEAuthDataContext, UserProfileContext } from "@edwire/edx-portal-shared";
+import { TEEAuthDataContext, UserProfileContext } from "@edfi/admin-console-shared-sdk";
 import { createContext, useContext, useEffect, useState } from "react";
 import useTenantService from "../services/AdminActions/Tenant/TenantService";
 

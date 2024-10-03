@@ -1,4 +1,4 @@
-import { TablePagination } from "@edwire/edx-portal-shared"
+import { TablePagination } from "@edfi/admin-console-shared-sdk"
 import useControlTableSorting from "../../../hooks/controlTable/useControlTableSorting"
 import ControlTable from "../ControlTable"
 import ControlTableHeader from "../ControlTableHeader"

@@ -1,5 +1,5 @@
 import { Flex, Text } from "@chakra-ui/react"
-import { CustomSelect, CustomSwitch } from "@edwire/edx-portal-shared"
+import { CustomSelect, CustomSwitch } from "@edfi/admin-console-shared-sdk"
 
 const subscriptions = [
     'Data Sync',

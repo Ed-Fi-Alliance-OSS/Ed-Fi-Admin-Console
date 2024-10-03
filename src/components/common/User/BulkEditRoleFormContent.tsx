@@ -1,7 +1,7 @@
 import { Flex, FormControl, List, ListItem, Text } from "@chakra-ui/react"
 import { ChangeEvent } from 'react'
 import { AppUser } from "../../../core/AppUser.types"
-import { CustomFormLabel, CustomSelect } from "@edwire/edx-portal-shared"
+import { CustomFormLabel, CustomSelect } from "@edfi/admin-console-shared-sdk"
 
 interface BulkEditRoleFormContentProps {
     selectedUsersList: AppUser[]

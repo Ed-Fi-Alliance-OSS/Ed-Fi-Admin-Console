@@ -9,7 +9,7 @@ import {
     Flex,
   } from '@chakra-ui/react'
 import { ChangeEvent } from "react"
-import { CustomFormLabel, CustomSelect, CustomInput } from "@edwire/edx-portal-shared"
+import { CustomFormLabel, CustomSelect, CustomInput } from "@edfi/admin-console-shared-sdk"
 
 interface ODSInstanceManagementTableFilterPopoverProps {
     textFilter: string

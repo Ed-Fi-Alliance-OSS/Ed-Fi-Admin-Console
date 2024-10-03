@@ -36,7 +36,7 @@ The frameworks and libraries used are the following:
   (any change in the SDK has to be built it again using this command)
 - Move to the Admin Console folder and link the SDK using the following command: <br>
   ```pnpm link ../EdX-Admin-Console-Shared-SDK``` <br>
-  Check the package.json of the Admin Console to validate the linked library. The linked library should be look like this:<br>```"@edwire/edx-portal-shared": "link:C:/dev/ed-fi/Admin-Console/EdX-Admin-Console-Shared-SDK" ``` (Depends on your folder path)
+  Check the package.json of the Admin Console to validate the linked library. The linked library should be look like this:<br>```"@edfi/admin-console-shared-sdk": "link:C:/dev/ed-fi/Admin-Console/EdX-Admin-Console-Shared-SDK" ``` (Depends on your folder path)
 - Install the Admin Console dependencies using the command <br>
   ```pnpm install```
 - Verify you have the config.json file. You can use the config.example.json as example.

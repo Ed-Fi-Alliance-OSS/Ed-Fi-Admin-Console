@@ -1,5 +1,5 @@
 import { Button, Flex, FormControl, Select } from "@chakra-ui/react"
-import { CustomErrorField, CustomFormLabel } from "@edwire/edx-portal-shared"
+import { CustomErrorField, CustomFormLabel } from "@edfi/admin-console-shared-sdk"
 import { ChangeEvent } from "react"
 import { Organization, StaffClassification } from "../../../core/Tenant.types"
 import { EdOrgViewItem } from "../../../hooks/adminActions/users/useUserEducationOrganizations.types"

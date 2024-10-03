@@ -11,7 +11,7 @@ import {
     useIdleSession,
     TEEAuthDataContext,
     AuthContextProps, 
-     } from "@edwire/edx-portal-shared" 
+     } from "@edfi/admin-console-shared-sdk" 
 import { Helmet } from "react-helmet-async"
 import Layout from "./Layout"
 import simpleLayoutRoutes from "../../core/layoutRoutes"

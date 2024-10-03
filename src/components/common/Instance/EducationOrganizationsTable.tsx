@@ -1,5 +1,5 @@
 import { Flex } from "@chakra-ui/react"
-import { TablePagination } from "@edwire/edx-portal-shared"
+import { TablePagination } from "@edfi/admin-console-shared-sdk"
 import useEducationsOrganizations from "../../../hooks/adminActions/ods/useEducationOrganizations"
 import useControlTablePagination from "../../../hooks/controlTable/useControlTablePagination"
 import useControlTableSorting from "../../../hooks/controlTable/useControlTableSorting"

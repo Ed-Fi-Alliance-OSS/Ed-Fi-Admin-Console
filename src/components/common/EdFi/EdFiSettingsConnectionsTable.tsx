@@ -1,5 +1,5 @@
 import { Flex } from '@chakra-ui/react'
-import { TablePagination } from '@edwire/edx-portal-shared'
+import { TablePagination } from '@edfi/admin-console-shared-sdk'
 import useEdFiSettingsConnectionsTable from '../../../hooks/adminActions/externalods/useEdFiSettingsConnectionsTable'
 import ConsoleModal from '../ConsoleModal'
 import ControlTableHeader from '../ControlTableHeader'

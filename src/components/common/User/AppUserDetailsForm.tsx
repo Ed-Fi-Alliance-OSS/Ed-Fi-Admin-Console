@@ -2,7 +2,7 @@ import { Flex, FormControl, FormLabel, Text } from "@chakra-ui/react"
 import { ChangeEvent } from "react"
 import { FormDataErrors } from "../../../core/validation/FormValidations.types"
 import { CreateUserFormData, RoleOption, UserFormMode } from "../../../hooks/adminActions/users/useCreateUserForm.types"
-import { CustomFormLabel, CustomSelect, CustomInput, CustomCheckbox } from "@edwire/edx-portal-shared"
+import { CustomFormLabel, CustomSelect, CustomInput, CustomCheckbox } from "@edfi/admin-console-shared-sdk"
 
 interface AppUserDetailsFormProps {
     mode: UserFormMode

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { EdxAppConfig } from "@edwire/edx-portal-shared"
+import { EdxAppConfig } from "@edfi/admin-console-shared-sdk"
 
 interface UseFetchAppAuthConfig {
     env: string | undefined

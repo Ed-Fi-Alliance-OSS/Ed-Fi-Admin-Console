@@ -1,4 +1,4 @@
-import { TEEAuthDataContext } from '@edwire/edx-portal-shared'
+import { TEEAuthDataContext } from '@edfi/admin-console-shared-sdk'
 import { useState, useEffect, useContext, ChangeEvent } from 'react'
 import { AdminConsoleConfig, adminConsoleContext } from '../../../context/adminConsoleContext'
 import { EdfiApplicationAuthData } from '../../../core/Edfi/EdfiApplications'

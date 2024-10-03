@@ -1,6 +1,6 @@
 import { Flex, FormControl } from "@chakra-ui/react"
 import usePartnerForm from "../../../hooks/adminActions/edfi/usePartnerForm"
-import { CustomFormLabel, CompleteFormErrorMessage, CustomInput } from "@edwire/edx-portal-shared"
+import { CustomFormLabel, CompleteFormErrorMessage, CustomInput } from "@edfi/admin-console-shared-sdk"
 import EdFiModalForm from "./EdFiModalForm"
 
 interface PartnerFormProps {

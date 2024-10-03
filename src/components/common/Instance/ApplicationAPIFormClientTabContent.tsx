@@ -1,5 +1,5 @@
 import { Alert, AlertIcon, Flex, FormControl, Text } from "@chakra-ui/react"
-import { CopyTextBtn, CustomFormLabel, CustomInput } from "@edwire/edx-portal-shared"
+import { CopyTextBtn, CustomFormLabel, CustomInput } from "@edfi/admin-console-shared-sdk"
 import { EdfiApplicationAuthData } from "../../../core/Edfi/EdfiApplications"
 import RefreshBtn from "../RefreshBtn"
 

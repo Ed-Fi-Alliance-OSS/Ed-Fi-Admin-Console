@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import { AuthContextProps } from "react-oidc-context"
-import { AppsMenuMoreOption, EdxAppConfig, Content, DefaultLayout, ExternalAppsContext, Footer, NotificationBar, TopBar, TopBarLeft, TopBarRight, useAuthActions, useNotificationsBar, UserProfileContext, TEEAuthDataContext } from "@edwire/edx-portal-shared"
+import { AppsMenuMoreOption, EdxAppConfig, Content, DefaultLayout, ExternalAppsContext, Footer, NotificationBar, TopBar, TopBarLeft, TopBarRight, useAuthActions, useNotificationsBar, UserProfileContext, TEEAuthDataContext } from "@edfi/admin-console-shared-sdk"
 import { useNavigate } from 'react-router-dom'
 import { Flex } from '@chakra-ui/react'
 

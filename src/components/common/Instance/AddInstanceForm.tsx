@@ -1,6 +1,6 @@
 import { ChangeEvent } from 'react'
 import { Button, Flex, FormControl } from "@chakra-ui/react"
-import { CustomFormLabel, CustomSelect, CustomFormHeader, CustomInput } from "@edwire/edx-portal-shared"
+import { CustomFormLabel, CustomSelect, CustomFormHeader, CustomInput } from "@edfi/admin-console-shared-sdk"
 
 interface AddInstanceFormProps {
     instanceName: string 
