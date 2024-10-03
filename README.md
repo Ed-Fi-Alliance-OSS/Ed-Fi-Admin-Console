@@ -19,9 +19,10 @@ The frameworks and libraries used are the following:
   ```npm i -g pnpm```
 - IdP (Keycloak, Azure B2C, Amazon Cognito, etc) <br>
   Use Keycloak in docker using the following command:
-  ```docker run -p 8080:8080 -e KEYCLOAK_ADMIN=admin -e KEYCLOAK_ADMIN_PASSWORD=admin quay.io/keycloak/keycloak:25.0.6 start-dev``` <br> And follow the steps to create a realm, client and user: https://www.keycloak.org/getting-started/getting-started-docker
+  ```docker run -p 28080:8080 -e KEYCLOAK_ADMIN=admin -e KEYCLOAK_ADMIN_PASSWORD=admin quay.io/keycloak/keycloak:25.0.6 start-dev``` <br> And follow the steps to create a realm, client and user: https://www.keycloak.org/getting-started/getting-started-docker
   - Realm: myrealm
   - Client: ac
+  - Root url: http://localhost:8598/
   - Valid redirect uri: http://localhost:8598/callback
   - Web origin: http://localhost:8598/
 - ODS/API 
