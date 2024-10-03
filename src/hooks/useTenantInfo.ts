@@ -1,4 +1,4 @@
-import { Tenant, UserProfileContext } from "@edwire/edx-portal-shared"
+import { Tenant, UserProfileContext } from "@edfi/admin-console-shared-sdk"
 import { useContext } from "react"
 
 const useTenantInfo = () => {

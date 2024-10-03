@@ -10,7 +10,7 @@ import SetUpInstanceBtn from "./SetUpInstanceBtn"
 import { ExtendedODSInstance } from "../../../core/ODSInstance.types"
 import { UpdatingIsDefaultStatus } from "../../../hooks/odsInstances/useOdsInstanceTable.types"
 import { ODSInstanceTableMode } from "./ODSInstanceTable.types"
-import { CustomRadio } from "@edwire/edx-portal-shared"
+import { CustomRadio } from "@edfi/admin-console-shared-sdk"
 import { useEffect } from "react"
 
 interface ODSInstanceManagementTableRowItemProps {

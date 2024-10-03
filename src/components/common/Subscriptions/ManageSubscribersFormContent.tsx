@@ -1,5 +1,5 @@
 import { Flex, FormControl, Text } from "@chakra-ui/react"
-import { CustomFormLabel, CustomSelect, CustomInput, CustomSwitch } from "@edwire/edx-portal-shared"
+import { CustomFormLabel, CustomSelect, CustomInput, CustomSwitch } from "@edfi/admin-console-shared-sdk"
 import { Subscription } from "../../../core/Subscription.types"
 import { UserSubscriber } from "../../../hooks/adminActions/subscriptions/useManageSubscribersForm.types"
 import { ChangeEvent } from "react"

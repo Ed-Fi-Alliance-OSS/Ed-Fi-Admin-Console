@@ -1,4 +1,4 @@
-import { EdxAppConfig, TEEAuthDataContext, UserProfileContext } from "@edwire/edx-portal-shared"
+import { EdxAppConfig, TEEAuthDataContext, UserProfileContext } from "@edfi/admin-console-shared-sdk"
 import { ChangeEvent, useState, useEffect, useContext } from "react"
 import { adminConsoleContext } from "../../../context/adminConsoleContext"
 import { Subscription } from "../../../core/Subscription.types"

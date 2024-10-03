@@ -2,7 +2,7 @@ import { Flex, Td, Text } from "@chakra-ui/react"
 import { ChangeEvent } from "react"
 import { AvailableInstance } from "../../../core/ODSInstance.types"
 import ControlTableRow from "../ControlTableRow"
-import { CustomCheckbox } from "@edwire/edx-portal-shared"
+import { CustomCheckbox } from "@edfi/admin-console-shared-sdk"
 import ODSInstanceEdFiStatus from "../ODS/ODSInstanceEdFiStatus"
 
 interface SelectInstancesTableRowsProps {

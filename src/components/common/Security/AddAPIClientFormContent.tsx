@@ -1,5 +1,5 @@
 import { Flex, FormControl } from "@chakra-ui/react"
-import { CustomFormLabel, CustomSelect, CustomInput } from "@edwire/edx-portal-shared"
+import { CustomFormLabel, CustomSelect, CustomInput } from "@edfi/admin-console-shared-sdk"
 import APIClientSubscriptionsForm from "./APIClientSubscriptionsForm"
 
 const AddAPIClientFormContent = () => {

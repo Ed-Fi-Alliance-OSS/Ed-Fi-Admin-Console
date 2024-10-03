@@ -1,7 +1,7 @@
 import { Flex } from "@chakra-ui/react"
 import { AuthContextProps } from "react-oidc-context"
 import { useLocation } from "react-router-dom"
-import { EdxAppConfig, useRouteLayoutSelector } from "@edwire/edx-portal-shared"
+import { EdxAppConfig, useRouteLayoutSelector } from "@edfi/admin-console-shared-sdk"
 import useScrollTop from "../../hooks/useScrollTop"
 import DefaultLayoutWrapper from "./DefaultLayoutWrapper"
 import useCheckPermissions from "../../hooks/useCheckPermissions"

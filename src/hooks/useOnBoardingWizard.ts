@@ -1,4 +1,4 @@
-import { UserProfileContext, TEEAuthDataContext } from "@edwire/edx-portal-shared"
+import { UserProfileContext, TEEAuthDataContext } from "@edfi/admin-console-shared-sdk"
 import { useContext, useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { adminConsoleContext } from "../context/adminConsoleContext"

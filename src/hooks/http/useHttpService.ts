@@ -1,4 +1,4 @@
-import { TEEAuthDataContext } from "@edwire/edx-portal-shared"
+import { TEEAuthDataContext } from "@edfi/admin-console-shared-sdk"
 import { useContext } from "react"
 import { useNavigate } from "react-router-dom"
 import { HttpServiceContext } from "../../context/httpServiceContext"

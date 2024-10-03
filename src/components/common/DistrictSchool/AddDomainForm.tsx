@@ -1,7 +1,7 @@
 import { Button, Flex, Text, FormControl } from "@chakra-ui/react"
 import { Tenant } from "../../../core/Tenant.types"
 import useAddDomainForm from "../../../hooks/adminActions/districtSchools/useAddDomainForm"
-import { CustomFormLabel, CustomFormHeader, CompleteFormErrorMessage, CustomInput } from "@edwire/edx-portal-shared"
+import { CustomFormLabel, CustomFormHeader, CompleteFormErrorMessage, CustomInput } from "@edfi/admin-console-shared-sdk"
 import VerifyDomainTable from "../OnBoarding/VerifyDomainTable"
 import { CloseIcon } from "@chakra-ui/icons"
 

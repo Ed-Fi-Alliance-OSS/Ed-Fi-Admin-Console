@@ -1,5 +1,5 @@
 import { Flex, Text } from "@chakra-ui/react"
-import { CustomFormLabel } from "@edwire/edx-portal-shared"
+import { CustomFormLabel } from "@edfi/admin-console-shared-sdk"
 import { EdfiApplicationAuthData } from "../../../core/Edfi/EdfiApplications"
 import { SISProviderConnectionState } from "../../../core/sisProviders/SISProviders.types"
 import { SISProvidersOption } from "../../../hooks/adminActions/edfi/useSISProvidersForm.types"

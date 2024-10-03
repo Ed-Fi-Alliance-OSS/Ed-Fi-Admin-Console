@@ -1,7 +1,7 @@
 import { Td, Text } from "@chakra-ui/react"
 import { SSOMethod } from "../../../core/ssoMethods/SSOMethods.types"
 import ControlTableRow from "../ControlTableRow"
-import { CustomSwitch } from "@edwire/edx-portal-shared"
+import { CustomSwitch } from "@edfi/admin-console-shared-sdk"
 import SSOConsentStatus from "./SSOConsentStatus"
 
 interface SSOMethodTableRowsProps {

@@ -1,4 +1,4 @@
-import { UserProfileContext } from "@edwire/edx-portal-shared"
+import { UserProfileContext } from "@edfi/admin-console-shared-sdk"
 import { useContext, useEffect, useState } from "react"
 import { adminConsoleContext } from "../context/adminConsoleContext"
 import usePermissionsService from "../services/AdminActions/Permissions/PermissionsService"

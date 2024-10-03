@@ -1,5 +1,5 @@
 import { Flex, Text } from "@chakra-ui/react"
-import { CustomSwitch } from "@edwire/edx-portal-shared"
+import { CustomSwitch } from "@edfi/admin-console-shared-sdk"
 import { ChangeEvent } from "react"
 
 interface LocalEducationAgenciesFormSectionProps {
