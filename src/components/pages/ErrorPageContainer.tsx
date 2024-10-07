@@ -12,12 +12,7 @@ const ErrorPageContainer = ({ status }: ErrorPageContainerProps) => {
             overflow='hidden'
             height='100vh'
             width='100vw'>
-                <EDXErrorPage 
-                    errorStatus={status}
-                    height="100vh"
-                    minHeight="100vh"
-                    minWidth="100vw"
-                    width="100vw" />
+
         </Flex>
     )
 }
