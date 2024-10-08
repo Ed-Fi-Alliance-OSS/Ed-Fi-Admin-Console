@@ -1,4 +1,4 @@
-import { HttpServiceRequestError, HttpServiceResponse } from "@edwire/edx-portal-shared/dist/services/HttpService/HttpService.response.types"
+import { HttpServiceRequestError, HttpServiceResponse } from "@edfi/admin-console-shared-sdk/dist/services/HttpService/HttpService.response.types"
 import { ChangeEvent, useContext, useEffect, useState } from "react"
 import { adminConsoleContext } from "../../../context/adminConsoleContext"
 import { AppUser, AppUserLicense, AppUserLicenseRole } from "../../../core/AppUser.types"

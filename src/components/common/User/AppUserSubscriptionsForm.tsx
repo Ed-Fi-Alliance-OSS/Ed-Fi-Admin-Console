@@ -1,6 +1,6 @@
 import { Flex, Spinner, Text } from "@chakra-ui/react"
 import { SubscriptionOption } from "../../../hooks/adminActions/users/useCreateUserForm.types"
-import { CustomFormLabel, CustomSelect, CustomSwitch } from "@edwire/edx-portal-shared"
+import { CustomFormLabel, CustomSelect, CustomSwitch } from "@edfi/admin-console-shared-sdk"
 
 interface AppUserSubscriptionsFormProps {
     subscriptionsList: SubscriptionOption[]

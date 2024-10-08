@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Flex } from "@chakra-ui/react"
-import { TablePagination } from "@edwire/edx-portal-shared"
+import { TablePagination } from "@edfi/admin-console-shared-sdk"
 import ConsoleModal from "../ConsoleModal"
 import ManageSubscriptionsTabHeader from './ManageSubscriptionsTabHeader'
 import ManageSubscriptionsTable from './ManageSubscriptionsTable'

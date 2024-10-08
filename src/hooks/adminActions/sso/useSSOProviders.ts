@@ -1,4 +1,4 @@
-import { TEEAuthDataContext, UserProfileContext } from "@edwire/edx-portal-shared"
+import { TEEAuthDataContext, UserProfileContext } from "@edfi/admin-console-shared-sdk"
 import { useContext, useEffect, useState } from "react"
 import { adminConsoleContext } from "../../../context/adminConsoleContext"
 import { SSOMethod } from "../../../core/ssoMethods/SSOMethods.types"
@@ -7,7 +7,7 @@ import useTenantService from "../../../services/AdminActions/Tenant/TenantServic
 import { UpdateTenantRequest } from "../../../services/AdminActions/Tenant/TenantService.requests"
 
 const ssoMethodsList: SSOMethod[] = [
-    { name: 'The Exchange', descriptor: 'Local', consentStatus: 'Required', selected: true },
+    { name: 'Acme Service Center', descriptor: 'Local', consentStatus: 'Required', selected: true },
     { name: 'Microsoft', descriptor: 'Aad', consentStatus: 'Not Selected', selected: false },
     { name: 'Google', descriptor: 'Google', consentStatus: 'Not Selected', selected: false }
 ]

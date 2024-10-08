@@ -1,5 +1,5 @@
 import { Flex } from "@chakra-ui/react"
-import { TablePagination } from "@edwire/edx-portal-shared"
+import { TablePagination } from "@edfi/admin-console-shared-sdk"
 import { ControlTableSortType, SortByParams } from "../../../core/controlTable"
 import { JobExecutionLogEntry } from "../../../core/UserSync/UserSync.types"
 import ControlTableHeader from "../ControlTableHeader"

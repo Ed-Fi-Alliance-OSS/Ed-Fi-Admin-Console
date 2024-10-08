@@ -1,4 +1,4 @@
-import { EdxAppConfig } from "@edwire/edx-portal-shared"
+import { EdxAppConfig } from "@edfi/admin-console-shared-sdk"
 
 export interface ActionParams {
     tenantId: string 

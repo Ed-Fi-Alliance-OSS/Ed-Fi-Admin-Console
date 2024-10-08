@@ -1,4 +1,4 @@
-import { Route } from "@edwire/edx-portal-shared"
+import { Route } from "@edfi/admin-console-shared-sdk"
 
 interface AppRoute {
     home: Route

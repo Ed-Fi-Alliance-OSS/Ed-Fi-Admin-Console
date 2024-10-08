@@ -26,7 +26,7 @@ const DeactivateUserModal = ({ user, isDeactivatingUser, show, onDeactivateUser,
                         {`${user.firstName} ${user.lastName}`}
                 </Text>
                 <Text mt='32px'>
-                    They will lose access to The Exchange. Are you sure you want to continue?
+                    They will lose access to Acme Service Center. Are you sure you want to continue?
                 </Text>
             </Flex>}
             footer={<Flex alignItems='flex-start' w='full'>

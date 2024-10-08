@@ -1,6 +1,6 @@
 import { ChangeEvent } from 'react'
 import { Button, Flex, FormControl } from "@chakra-ui/react"
-import { CustomFormLabel, CopyTextBtn, CustomInput } from "@edwire/edx-portal-shared"
+import { CustomFormLabel, CopyTextBtn, CustomInput } from "@edfi/admin-console-shared-sdk"
 
 interface SISCredentialsFieldProps {
     credentialsKey: string 

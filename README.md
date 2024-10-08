@@ -1,6 +1,4 @@
-# TE - Tech Console
-[TE - TEXAS EXCHANGE](https://github.com/EdWire/TEE-UI-Prototype/blob/main/exchange.svg?raw=true)
-
+# Ed-Fi Admin Console
 This is the startup app that works as the base project template. Created
 from the Vite react-ts template. 
 
@@ -12,19 +10,32 @@ The frameworks and libraries used are the following:
 - Chakra UI
 
 ## Installation
-te-startup requires [Node.js](https://nodejs.org/) v16+ to run. (v18.12.1 used for development).
-First, clone the repository from: https://github.com/EdWire/TEE-UI-Prototype
+### Requirements
+- Clone both project (Admin Console and SDK) in the same folder. Example: C:/dev/ed-fi/Admin-Console
+- [Node.js](https://nodejs.org/) v16+ to run. (v18.12.1 used for development).
+- IdP (Keycloak, Azure B2C, Amazon Cognito, etc) <br>
+  Use Keycloak in docker using the following command:
+  ```docker run -p 28080:8080 -e KEYCLOAK_ADMIN=admin -e KEYCLOAK_ADMIN_PASSWORD=admin quay.io/keycloak/keycloak:25.0.6 start-dev``` <br> And follow the steps to create a realm, client and user: https://www.keycloak.org/getting-started/getting-started-docker
+  - Realm: myrealm
+  - Client: ac
+  - Root url: http://localhost:8598/
+  - Valid redirect uri: http://localhost:8598/callback
+  - Web origin: http://localhost:8598/
+- ODS/API 
 
-Then, run the app for development: 
+### Steps
 
-```sh
-npm run dev
-```
-
-or build: 
-```sh
-npm run build
-```
+- Move to the SDK folder and install dependencies in the EDX SDK using the following command: <br>
+  ```npm install```
+- Build the SDK using the command <br>
+  ```npm run build``` 
+  (any change in the SDK has to be built it again using this command)
+- Install the Admin Console dependencies using the command <br>
+  ```npm install```
+- Verify you have the config.json file. You can use the config.example.json as example.
+- Run the Admin Console using <br>
+  ```npm run dev```
+  
 
 ## Folder Structure
 - te-startup project

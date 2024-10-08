@@ -1,4 +1,4 @@
-import { TEEAuthDataContext } from '@edwire/edx-portal-shared'
+import { TEEAuthDataContext } from '@edfi/admin-console-shared-sdk'
 import { useState, useEffect, useContext } from 'react'
 import { adminConsoleContext } from '../../../context/adminConsoleContext'
 import useODSService from '../../../services/AdminActions/Ods/ODSService'

@@ -5,9 +5,10 @@
     "dataHealthApiUri": "http://localhost:5099"
   },
   "app": {
-    "name": "The Exchange",
-    "subtitle": "Tech Console",
+    "name": "Acme Service Center",
+    "subtitle": "Admin Console",
     "basePath": "",
+    "baseImagesUrl": "",
     "showDataHealth": true,
     "showAdvancedTabs": false,
     "showCompositeUrls": false,

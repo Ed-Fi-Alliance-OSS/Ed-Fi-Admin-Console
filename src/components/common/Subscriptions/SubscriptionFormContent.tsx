@@ -1,5 +1,5 @@
 import { Flex, FormControl} from "@chakra-ui/react"
-import { CustomFormLabel, CustomSelect, CustomErrorField, CompleteFormErrorMessage, CustomSwitch, CustomNumberInput, SelectDateFromTo } from "@edwire/edx-portal-shared"
+import { CustomFormLabel, CustomSelect, CustomErrorField, CompleteFormErrorMessage, CustomSwitch, CustomNumberInput, SelectDateFromTo } from "@edfi/admin-console-shared-sdk"
 import { Mode, SubscriptionApplicationOption, SubscriptionFormData } from "../../../hooks/adminActions/subscriptions/useSubscriptionsForm.types"
 import { ChangeEvent } from "react"
 import { FormDataErrors } from "../../../core/validation/FormValidations.types"

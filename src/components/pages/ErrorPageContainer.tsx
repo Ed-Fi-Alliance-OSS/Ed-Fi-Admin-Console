@@ -1,5 +1,5 @@
 import { Flex } from "@chakra-ui/react"
-import { EDXErrorPage } from "@edwire/edx-portal-shared"
+import { EDXErrorPage } from "@edfi/admin-console-shared-sdk"
 
 interface ErrorPageContainerProps {
     status: '404' | '403' | '500'
