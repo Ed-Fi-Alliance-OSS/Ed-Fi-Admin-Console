@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import axios, { AxiosError } from "axios"
 import { OnBoardingStepStatus } from "../../core/onBoardingWizard/onBoardingWizard.types"
-import { TEEAuthDataContext, UserProfileContext } from '@edwire/edx-portal-shared'
+import { TEEAuthDataContext, UserProfileContext } from '@edfi/admin-console-shared-sdk'
 import { fetchOnBoardingWizardData } from '../OnBoardingWizard/onBoardingWizardService'
 
 

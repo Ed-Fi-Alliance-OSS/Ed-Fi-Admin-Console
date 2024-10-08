@@ -11,7 +11,7 @@ const OnBoardingWizardStartLeft = ({ hasStarted }: OnBoardingWizardStartLeftProp
                 fontFamily='Poppins'
                 fontWeight='700'
                 fontSize='24px'>
-                    {!hasStarted? 'Welcome to the Tech Console for The Exchange!' : 'Welcome back! Here’s where you’re at:'}
+                    {!hasStarted? 'Welcome to the Tech Console for Acme Service Center!' : 'Welcome back! Here’s where you’re at:'}
             </Text>
             {!hasStarted && 
                 <Flex flexDir='column' mt='32px'>

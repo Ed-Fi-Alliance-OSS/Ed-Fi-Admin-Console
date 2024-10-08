@@ -1,4 +1,4 @@
-import { UserProfileContext, TEEAuthDataContext } from "@edwire/edx-portal-shared"
+import { UserProfileContext, TEEAuthDataContext } from "@edfi/admin-console-shared-sdk"
 import { useContext, useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { adminConsoleContext } from "../context/adminConsoleContext"
@@ -63,9 +63,9 @@ const useOnBoardingWizard = () => {
     const { externalODS } = useExternalODSData()
     const [lastStep, setLastStep] = useState(selectLastStepValue(externalODS.isExternalODS))
     
-    // console.log("has connected sis", allStepsProgressData.hasConnectedSIS)
-    // console.log("Onboarding wizard data", onBoardingWizardData)
-    // console.log("progress data", allStepsProgressData)
+    console.log("has connected sis", allStepsProgressData.hasConnectedSIS)
+    console.log("Onboarding wizard data", onBoardingWizardData)
+    console.log("progress data", allStepsProgressData)
 
     const getCompletedSteps = () : number => {
         if (onBoardingWizardData)
@@ -97,31 +97,31 @@ const useOnBoardingWizard = () => {
     }
 
     const validateCanNext = (currentStepIndex: number) => {
-        if (currentStepIndex === 0)
-            return allStepsProgressData.hasInvitedUsers
-        else if (currentStepIndex === 1)
-            return allStepsProgressData.hasCompletedTraining
-        else if (currentStepIndex === 2)
-            return allStepsProgressData.hasVerifiedDomain
-        else if (currentStepIndex === 3 && externalODS.isExternalODS)
-            return allStepsProgressData.hasEdFiConnection
-        else if (currentStepIndex === 4 && !externalODS.isExternalODS)
-            return allStepsProgressData.hasConnectedSIS
+        // if (currentStepIndex === 0)
+            // return allStepsProgressData.hasInvitedUsers
+        // else if (currentStepIndex === 1)
+            // return allStepsProgressData.hasCompletedTraining
+        // else if (currentStepIndex === 2)
+            // return allStepsProgressData.hasVerifiedDomain
+        // else if (currentStepIndex === 3 && externalODS.isExternalODS)
+            // return allStepsProgressData.hasEdFiConnection
+        // else if (currentStepIndex === 4 && !externalODS.isExternalODS)
+            // return allStepsProgressData.hasConnectedSIS
 
         return true
     }
 
     const onCompletedStep = (stepIndex: number) => {
         const nallStepsProgressData = {...allStepsProgressData}
-        if (stepIndex === 0)
+        // if (stepIndex === 0)
             nallStepsProgressData.hasInvitedUsers = true
-        else if (stepIndex === 1)
+        // else if (stepIndex === 1)
             nallStepsProgressData.hasCompletedTraining = true
-        else if (stepIndex === 2)
+        // else if (stepIndex === 2)
             nallStepsProgressData.hasVerifiedDomain = true
-        else if (stepIndex === 3 && externalODS.isExternalODS)
+        // else if (stepIndex === 3 && externalODS.isExternalODS)
             nallStepsProgressData.hasEdFiConnection = true
-        else if (stepIndex === 4)
+        // else if (stepIndex === 4)
             nallStepsProgressData.hasConnectedSIS = true
 
         setAllStepsProgressData(nallStepsProgressData)
@@ -129,16 +129,16 @@ const useOnBoardingWizard = () => {
 
     const onIncompletedStep = (stepIndex: number) => {
         const nallStepsProgressData = {...allStepsProgressData}
-        if (stepIndex === 0)
-            nallStepsProgressData.hasInvitedUsers = false
-        else if (stepIndex === 1)
-            nallStepsProgressData.hasCompletedTraining = false
-        else if (stepIndex === 2)
-            nallStepsProgressData.hasVerifiedDomain = false
-        else if (stepIndex === 3 && externalODS.isExternalODS)
-            nallStepsProgressData.hasEdFiConnection = false
-        else if (stepIndex === 4)
-            nallStepsProgressData.hasConnectedSIS = false
+        // if (stepIndex === 0)
+            nallStepsProgressData.hasInvitedUsers = true
+        // else if (stepIndex === 1)
+            nallStepsProgressData.hasCompletedTraining = true
+        // else if (stepIndex === 2)
+            nallStepsProgressData.hasVerifiedDomain = true
+        // else if (stepIndex === 3 && externalODS.isExternalODS)
+            nallStepsProgressData.hasEdFiConnection = true
+        // else if (stepIndex === 4)
+            nallStepsProgressData.hasConnectedSIS = true
 
         setAllStepsProgressData(nallStepsProgressData)
     }

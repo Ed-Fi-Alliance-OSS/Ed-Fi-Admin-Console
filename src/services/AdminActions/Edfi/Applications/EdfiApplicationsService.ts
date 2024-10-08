@@ -11,7 +11,8 @@ const useEdfiApplicationsService = () => {
 
     const getEdfiApplicationsList = async (actionParams: EdfiActionParams): GetEdfiApplicationsListResult => {
         const baseUrl = actionParams.edxApiUrl
-        const url = `${baseUrl}/${edfiActionRoutes.getApplicationsList(actionParams.tenantId)}`
+        // const url = `${baseUrl}/${edfiActionRoutes.getApplicationsList(actionParams.tenantId)}`
+        const url = 'data-applications.json'
     
         const result = await getAsync<EdfiApplication[]>({
             url,
@@ -28,7 +29,7 @@ const useEdfiApplicationsService = () => {
     
         const result = await postAsync<EdfiApplicationAuthData, CreateEdfiApplicationRequest>({
             url,
-            actionName: 'Get Edfi Applications List',
+            actionName: 'Create Edfi Applications List',
             data,
             access_token: actionParams.token
         })
@@ -70,7 +71,7 @@ const useEdfiApplicationsService = () => {
         const result = await putAsync<EdfiApplicationAuthData, ResetEdfiApplicationCredentialsRequest>({
             url,
             data,
-            actionName: 'Get Edfi Applications List',
+            actionName: 'Reset Edfi Applications List',
             access_token: actionParams.token
         })
     
@@ -80,8 +81,8 @@ const useEdfiApplicationsService = () => {
     // Ed-Fi Admin By School Year
     const getEdfiApplicationsListForSchoolYear = async (actionParams: EdfiActionParams, year: number): GetEdfiApplicationsListResult => {
         const baseUrl = actionParams.edxApiUrl
-        const url = `${baseUrl}/${edfiActionRoutes.getApplicationsListForSchoolyear(actionParams.tenantId, year)}`
-    
+        // const url = `${baseUrl}/${edfiActionRoutes.getApplicationsListForSchoolyear(actionParams.tenantId, year)}`
+        const url = "/data-applications.json"
         const result = await getAsync<EdfiApplication[]>({
             url,
             actionName: 'Get Edfi Applications List',

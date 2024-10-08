@@ -1,7 +1,7 @@
 import { Flex } from "@chakra-ui/react"
 import { EdfiApplication } from "../../../core/Edfi/EdfiApplications"
 import useApplicationForm from "../../../hooks/adminActions/edfi/useApplicationForm"
-import { CompleteFormErrorMessage, UserProfile, UserProfileContext } from "@edwire/edx-portal-shared"
+import { CompleteFormErrorMessage, UserProfile, UserProfileContext } from "@edfi/admin-console-shared-sdk"
 import ApplicationAPIFormSection from "./ApplicationAPIFormSection"
 import ApplicationDetailsFormSection from "./ApplicationDetailsFormSection"
 import LocalEducationAgenciesFormSection from "./LocalEducationAgenciesFormSection"

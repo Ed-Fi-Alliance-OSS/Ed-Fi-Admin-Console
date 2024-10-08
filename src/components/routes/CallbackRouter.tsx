@@ -1,5 +1,5 @@
 import { Navigate } from "react-router-dom"
-import { useAuth, useInitialRoute } from "@edwire/edx-portal-shared"
+import { useAuth, useInitialRoute } from "@edfi/admin-console-shared-sdk"
 import routes from "../../core/routes"
 
 const CallbackRouter = () => {

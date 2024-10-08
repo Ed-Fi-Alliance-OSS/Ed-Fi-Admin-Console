@@ -3,7 +3,7 @@ import AppUserDetailsForm from './AppUserDetailsForm'
 import AppUserSubscriptionsForm from './AppUserSubscriptionsForm'
 import { ChangeEvent } from "react"
 import { CreateUserFormData, RoleOption, SubscriptionOption, UserFormMode } from "../../../hooks/adminActions/users/useCreateUserForm.types"
-import { CompleteFormErrorMessage } from "@edwire/edx-portal-shared"
+import { CompleteFormErrorMessage } from "@edfi/admin-console-shared-sdk"
 import { FormDataErrors } from "../../../core/validation/FormValidations.types"
 
 interface AddAppUserFormContentProps {

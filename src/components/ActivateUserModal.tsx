@@ -26,7 +26,7 @@ const ActivateUserModal = ({ user, isActivatingUser, show, onActivateUser, onClo
                         {`${user.firstName} ${user.lastName}`}
                 </Text>
                 <Text mt='32px'>
-                    They will once again have access to their existing account on The Exchange. 
+                    They will once again have access to their existing account on Acme Service Center. 
                     Are you sure you want to continue?
                 </Text>
             </Flex>}

@@ -1,4 +1,4 @@
-import { UserProfileContext } from '@edwire/edx-portal-shared'
+import { UserProfileContext } from '@edfi/admin-console-shared-sdk'
 import { useContext } from 'react'
 import { AppUser } from '../../../core/AppUser.types'
 import { ActionParams } from "../../../services/AdminActions/adminAction.types"

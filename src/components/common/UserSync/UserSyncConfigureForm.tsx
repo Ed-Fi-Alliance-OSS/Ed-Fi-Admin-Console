@@ -1,5 +1,5 @@
 import { Flex, FormControl, Text } from "@chakra-ui/react"
-import { CustomFormLabel, CustomSwitch } from "@edwire/edx-portal-shared"
+import { CustomFormLabel, CustomSwitch } from "@edfi/admin-console-shared-sdk"
 
 interface UserSyncConfigureFormProps {
     isSaving: boolean 

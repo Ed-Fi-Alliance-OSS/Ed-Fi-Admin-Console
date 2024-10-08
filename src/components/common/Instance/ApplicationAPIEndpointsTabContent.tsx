@@ -1,5 +1,5 @@
 import { Flex, FormControl, Text } from "@chakra-ui/react"
-import { CustomFormLabel, CopyTextBtn, CustomInput } from "@edwire/edx-portal-shared"
+import { CustomFormLabel, CopyTextBtn, CustomInput } from "@edfi/admin-console-shared-sdk"
 import { useContext } from "react"
 import { adminConsoleContext } from "../../../context/adminConsoleContext"
 import useEdfiUrls from "../../../hooks/useEdfiUrls"

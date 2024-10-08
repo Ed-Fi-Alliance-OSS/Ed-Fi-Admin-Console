@@ -1,8 +1,8 @@
 import { Button, Flex, FormControl } from "@chakra-ui/react"
-import { UserProfileContext } from "@edwire/edx-portal-shared"
+import { UserProfileContext } from "@edfi/admin-console-shared-sdk"
 import { useContext } from "react"
 import { ODSInstance } from "../../../core/ODSInstance.types"
-import { CustomFormLabel, CustomSelect, CustomFormHeader, CustomInput } from "@edwire/edx-portal-shared"
+import { CustomFormLabel, CustomSelect, CustomFormHeader, CustomInput } from "@edfi/admin-console-shared-sdk"
 
 interface InstanceDetailsFormProps {
     mode: 'edit' | 'add'

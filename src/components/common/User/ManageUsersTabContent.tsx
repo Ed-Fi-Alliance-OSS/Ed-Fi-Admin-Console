@@ -1,6 +1,6 @@
 import { useState, ChangeEvent, useContext } from "react"
 import { Button, Flex } from "@chakra-ui/react"
-import { TablePagination, UserProfileContext } from "@edwire/edx-portal-shared"
+import { TablePagination, UserProfileContext } from "@edfi/admin-console-shared-sdk"
 import AddAppUserForm from "./AddAppUserForm"
 import ConsoleModal from "../ConsoleModal"
 import EditAppUserForm from "./EditAppUserForm"

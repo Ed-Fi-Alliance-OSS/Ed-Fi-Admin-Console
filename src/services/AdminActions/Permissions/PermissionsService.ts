@@ -6,8 +6,8 @@ const usePermissionsService = () => {
     const { getAsync } = useHttpService()
 
     const checkPermissions = async (actionParams: ActionParams) : GetPermissionsResult => {
-        const url = `${actionParams.edxApiUrl}/verifypermission`
-
+        //const url = `${actionParams.edxApiUrl}/verifypermission`
+        const url = "/data-permissions.json"
         const result = await getAsync<GetPermissionsResult>({
             url,
             actionName: 'Verify Permissions',

@@ -1,14 +1,41 @@
 {
-    "appName": "App Name",
-    "title": "App Title",
-    "authority": "https://login.app.com",
-    "clientId": "clientId", 
-    "redirectUri":  "http://localhost:3000/callback", 
-    "silentRedirectUri": "http://localhost:3000/silent-renew", 
-    "postLogoutRedirectUri": "http://localhost:3000", 
-    "scope": "scope",
+  "api": {
+    "baseUri": "",
+    "edxApiUri": "",
+    "dataHealthApiUri": ""
+  },
+  "app": {
+    "name": "Acme Service Center",
+    "subtitle": "Admin Console",
+    "basePath": "",
+    "baseImagesUrl": "",
+    "showDataHealth": true,
+    "showAdvancedTabs": false,
+    "showCompositeUrls": false,
+    "allowDebug": true,
+    "edfiUrl": "https://localhost/api",
+    "notificationsApplicationId": "z2WFYMjyRNEI",
+    "analytics": {
+      "managerUrl": "https://matomo.txedexchange.dev",
+      "containerId": "pzs8KNrX"
+    },
+    "helpLinkUrl": "https://apps.txedexchange.dev/community/help",
+    "showUserDelete": false,
+    "showEdfiPartnerDelete": false,
+    "showEdfiApplicationDelete": false,
+    "showEdOrgsTab": false,
+    "useDataHealthWithSchoolYear": false 
+  },
+  "auth": {
+    "authority": "http://localhost:28080/realms/myrealm/",
+    "clientId": "ac",
+    "redirectUri": "http://localhost:8598/callback",
+    "silentRedirectUri": "http://localhost:8598/silent-renew",
+    "postLogoutRedirectUri": "http://localhost:8598",
+    "scope": "openid",
     "responseType": "code",
     "loadUserInfo": false,
     "automaticSilentRenew": true,
     "automaticSilentSignin": true
+  }
 }

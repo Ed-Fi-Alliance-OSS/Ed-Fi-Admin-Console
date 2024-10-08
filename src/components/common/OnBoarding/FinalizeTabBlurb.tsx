@@ -18,7 +18,7 @@ const FinalizeTabBlurb = () => {
                     fontFamily='Open sans'
                     fontSize='12px'
                     mt='16px'>
-                        If all the information above looks correct, click “Finalize” below to complete the Onboarding Wizard. Note: by clicking “Finalize”, you are granting The Texas Education Exchange (The Exchange) permission to access data related to users, roles, and campuses. Read our 
+                        If all the information above looks correct, click “Finalize” below to complete the Onboarding Wizard. Note: by clicking “Finalize”, you are granting The Texas Education Exchange (Acme Service Center) permission to access data related to users, roles, and campuses. Read our 
                         <Link 
                             href="https://txedexchange.net/terms-privacy"
                             target="_blank"

@@ -9,7 +9,8 @@ const useEdfiClaimsetsService = () => {
 
     const getClaimsetsList = async (actionParams: EdfiActionParams): GetClaimsetsListResult => {
         const baseUrl = actionParams.edxApiUrl
-        const url = `${baseUrl}/${edfiActionRoutes.getClaimsetsList(actionParams.tenantId)}`
+        // const url = `${baseUrl}/${edfiActionRoutes.getClaimsetsList(actionParams.tenantId)}`
+        const url = '/data-claimsets.json'
     
         const result = await getAsync<EdfiClaimSet[]>({
             url,
@@ -22,7 +23,8 @@ const useEdfiClaimsetsService = () => {
 
     const getClaimsetsListForSchoolYear = async (actionParams: EdfiActionParams, year: number): GetClaimsetsListResult => {
         const baseUrl = actionParams.edxApiUrl
-        const url = `${baseUrl}/${edfiActionRoutes.getClaimsetsListForSchoolyear(actionParams.tenantId, year)}`
+        // const url = `${baseUrl}/${edfiActionRoutes.getClaimsetsListForSchoolyear(actionParams.tenantId, year)}`
+        const url = '/data-claimsets.json'
     
         const result = await getAsync<EdfiClaimSet[]>({
             url,
