@@ -1,6 +1,6 @@
 import { Flex, FormControl } from "@chakra-ui/react"
 import { ChangeEvent } from "react"
-import { CustomFormLabel, CustomSelect } from "@edwire/edx-portal-shared"
+import { CustomFormLabel, CustomSelect } from "@edfi/admin-console-shared-sdk"
 
 interface APIDocumentationFormProps {
     documentationOptions: string[]

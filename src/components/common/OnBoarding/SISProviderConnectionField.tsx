@@ -1,7 +1,7 @@
 import { ChangeEvent } from 'react'
 import { CloseIcon } from "@chakra-ui/icons"
 import { Button, Flex, FormControl, Text } from "@chakra-ui/react"
-import { CustomSelect } from "@edwire/edx-portal-shared"
+import { CustomSelect } from "@edfi/admin-console-shared-sdk"
 import RefreshBtn from "../RefreshBtn"
 import SISProviderConnectionTag from "./SISProviderConnectionTag"
 

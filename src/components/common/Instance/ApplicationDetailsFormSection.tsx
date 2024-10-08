@@ -4,7 +4,7 @@ import { EdfiClaimSet } from "../../../core/Edfi/EdfiClaimsets"
 import { EdfiVendor } from "../../../core/Edfi/EdfiVendors"
 import { FormDataErrors } from "../../../core/validation/FormValidations.types"
 import { CreateEdfiApplicationRequest } from "../../../services/AdminActions/Edfi/Applications/EdfiApplicationService.requests"
-import { CustomFormLabel, CustomSelect, CustomInput } from "@edwire/edx-portal-shared"
+import { CustomFormLabel, CustomSelect, CustomInput } from "@edfi/admin-console-shared-sdk"
 
 interface ApplicationDetailsFormSectionProps {
     applicationData: CreateEdfiApplicationRequest

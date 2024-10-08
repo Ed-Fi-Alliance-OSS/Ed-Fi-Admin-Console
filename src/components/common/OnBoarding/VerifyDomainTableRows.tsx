@@ -2,8 +2,8 @@ import { ChangeEvent, useContext } from 'react'
 import { Td, Text } from "@chakra-ui/react"
 import { VerifyDomain } from "../../../core/verifyDomain/VerifyDomain.types"
 import ControlTableRow from "../ControlTableRow"
-import { CopyTextBtn } from "@edwire/edx-portal-shared"
-import { UserProfileContext } from '@edwire/edx-portal-shared'
+import { CopyTextBtn } from "@edfi/admin-console-shared-sdk"
+import { UserProfileContext } from '@edfi/admin-console-shared-sdk'
 
 interface VerifyDomainTableRowsProps {
     verifyDomainList: VerifyDomain[]

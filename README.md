@@ -15,8 +15,6 @@ The frameworks and libraries used are the following:
 ### Requirements
 - Clone both project (Admin Console and SDK) in the same folder. Example: C:/dev/ed-fi/Admin-Console
 - [Node.js](https://nodejs.org/) v16+ to run. (v18.12.1 used for development).
-- Install the pnpm globally <br>
-  ```npm i -g pnpm```
 - IdP (Keycloak, Azure B2C, Amazon Cognito, etc) <br>
   Use Keycloak in docker using the following command:
   ```docker run -p 28080:8080 -e KEYCLOAK_ADMIN=admin -e KEYCLOAK_ADMIN_PASSWORD=admin quay.io/keycloak/keycloak:25.0.6 start-dev``` <br> And follow the steps to create a realm, client and user: https://www.keycloak.org/getting-started/getting-started-docker
@@ -30,18 +28,15 @@ The frameworks and libraries used are the following:
 ### Steps
 
 - Move to the SDK folder and install dependencies in the EDX SDK using the following command: <br>
-  ```pnpm install```
+  ```npm install```
 - Build the SDK using the command <br>
-  ```pnpm run build``` 
+  ```npm run build``` 
   (any change in the SDK has to be built it again using this command)
-- Move to the Admin Console folder and link the SDK using the following command: <br>
-  ```pnpm link ../EdX-Admin-Console-Shared-SDK``` <br>
-  Check the package.json of the Admin Console to validate the linked library. The linked library should be look like this:<br>```"@edwire/edx-portal-shared": "link:C:/dev/ed-fi/Admin-Console/EdX-Admin-Console-Shared-SDK" ``` (Depends on your folder path)
 - Install the Admin Console dependencies using the command <br>
-  ```pnpm install```
+  ```npm install```
 - Verify you have the config.json file. You can use the config.example.json as example.
 - Run the Admin Console using <br>
-  ```pnpm run dev```
+  ```npm run dev```
   
 
 ## Folder Structure

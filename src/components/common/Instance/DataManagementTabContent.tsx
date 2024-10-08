@@ -4,7 +4,7 @@ import TabHeading from "../TabHeading"
 import DescriptorsTable from "./DescriptorsTable"
 import EducationOrganizationsTable from "./EducationOrganizationsTable"
 import PermissionsAccordion from "./PermissionsAccordion"
-import { CustomFormLabel, CustomSelect } from "@edwire/edx-portal-shared"
+import { CustomFormLabel, CustomSelect } from "@edfi/admin-console-shared-sdk"
 
 const dataSourceOptions = [
     'Select',

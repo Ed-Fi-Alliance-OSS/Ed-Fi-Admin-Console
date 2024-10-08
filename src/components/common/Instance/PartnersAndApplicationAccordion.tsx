@@ -17,7 +17,7 @@ import PartnersAndApplicationAccordionHeader from './PartnersAndApplicationAccor
 import { DeletingState } from '../../../core/deletingState.types'
 import { useContext } from 'react'
 import { adminConsoleContext } from '../../../context/adminConsoleContext'
-import { TablePagination } from '@edwire/edx-portal-shared'
+import { TablePagination } from '@edfi/admin-console-shared-sdk'
 import useControlTableSorting from '../../../hooks/controlTable/useControlTableSorting'
 import useControlTablePagination from '../../../hooks/controlTable/useControlTablePagination'
 

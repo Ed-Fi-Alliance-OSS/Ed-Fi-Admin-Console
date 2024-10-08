@@ -1,5 +1,5 @@
 import { Button, Flex, FormControl, Text } from "@chakra-ui/react"
-import { CustomFormLabel, CustomSelect } from "@edwire/edx-portal-shared"
+import { CustomFormLabel, CustomSelect } from "@edfi/admin-console-shared-sdk"
 import { ChangeEvent } from "react"
 import { OnBoardingStepStatus } from "../../../core/onBoardingWizard/onBoardingWizard.types"
 

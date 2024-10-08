@@ -1,6 +1,6 @@
 import { Button, Flex, FormControl, FormLabel } from "@chakra-ui/react"
 import { ChangeEvent } from "react"
-import { CustomFormLabel, CustomInput } from "@edwire/edx-portal-shared"
+import { CustomFormLabel, CustomInput } from "@edfi/admin-console-shared-sdk"
 import { FormDataErrors } from "../../../core/validation/FormValidations.types"
 
 interface AddDomainFormProps {

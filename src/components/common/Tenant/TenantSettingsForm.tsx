@@ -1,5 +1,5 @@
 import { Button, Flex, FormControl } from "@chakra-ui/react"
-import { CustomFormLabel, CustomSwitch, CustomInput } from "@edwire/edx-portal-shared"
+import { CustomFormLabel, CustomSwitch, CustomInput } from "@edfi/admin-console-shared-sdk"
 import DomainSelect from "./DomainSelect"
 
 const domains = [

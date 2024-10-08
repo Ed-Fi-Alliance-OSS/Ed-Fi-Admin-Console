@@ -1,5 +1,5 @@
 import { Button, Flex, FormControl, Popover, PopoverBody, PopoverContent, PopoverTrigger,  } from "@chakra-ui/react"
-import { CustomFormLabel, CustomInput, CustomSelect } from "@edwire/edx-portal-shared"
+import { CustomFormLabel, CustomInput, CustomSelect } from "@edfi/admin-console-shared-sdk"
 import { ChangeEvent } from "react"
 import { MdFilterList } from "react-icons/md"
 import { LogFilterTypeOption, LogFilterValues } from "./LogsInnerTable.types"

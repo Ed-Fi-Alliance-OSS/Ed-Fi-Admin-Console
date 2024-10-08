@@ -1,6 +1,6 @@
 import { ChakraProvider, ColorModeScript } from '@chakra-ui/react'
 import { HelmetProvider } from 'react-helmet-async'
-import { baseTheme, LoadingScreen, TEEAuthContextProvider, useSaveInitialRoute } from '@edwire/edx-portal-shared'
+import { baseTheme, LoadingScreen, TEEAuthContextProvider, useSaveInitialRoute } from '@edfi/admin-console-shared-sdk'
 import OnBoardingWizardProvider from './context/onBoardingWizardContext'
 import LayoutWrapper from './components/layout/LayoutWrapper'
 import routes from './core/routes'
