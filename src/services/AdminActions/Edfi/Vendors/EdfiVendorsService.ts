@@ -68,7 +68,7 @@ const useEdfiVendorsService = () => {
     const getVendorsListForSchoolYear = async (actionParams: EdfiActionParams, year: number): GetVendorsListResult => {
         const baseUrl = actionParams.edxApiUrl
         // const url = `${baseUrl}/${edfiActionRoutes.getVendorsListForSchoolYear(actionParams.tenantId, year)}`
-        const url = "/data-vendors.json"
+        const url = "/mockdata/data-vendors.json"
 
         const result = await getAsync<EdfiVendor[]>({
             url,

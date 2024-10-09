@@ -9,7 +9,7 @@ const useODSService = () => {
     const getEducationOrganizations = async (actionParams: EdfiActionParams): GetEducationOrganizationsResult => {
         const baseUrl = actionParams.edxApiUrl
         // const url = `${baseUrl}/${odsActionsList.getEducationOrganizationsList()}?pageIndex=0&pageSize=10`
-        const url = "/data-applications.json"
+        const url = "/mockdata/data-applications.json"
     
         const result = await getAsync<EducationOrganization[]>({
             url,
@@ -23,7 +23,7 @@ const useODSService = () => {
     const getDescriptors = async (actionParams: EdfiActionParams): GetDescriptorsResult => {
         const baseUrl = actionParams.edxApiUrl
         // const url = `${baseUrl}/${odsActionsList.getDescriptorsList()}?pageIndex=0&pageSize=100`
-        const url = "/data-applications.json"
+        const url = "/mockdata/data-applications.json"
     
         const result = await getAsync<Descriptor[]>({
             url,

@@ -4,7 +4,7 @@ import { AddStepProps, AddStepRequestData, FetchOnBoardingWizardData, UpdateOnBo
 
 const fetchOnBoardingWizardData = async ({ apiUrl, tenantId, token }: FetchOnBoardingWizardData) => {
     // const currentTenantUrl = `${apiUrl}/tenants/${tenantId}`
-    const currentTenantUrl = `/data-tenant.json`
+    const currentTenantUrl = `/mockdata/data-tenant.json`
 
     try {
         if (token) {

@@ -14,7 +14,7 @@ const useTenantService = () => {
     const getTenant = async (actionParams: ActionParams): GetTenantResult => {
         const baseUrl = actionParams.edxApiUrl
         // const url = `${baseUrl}/${adminActionRoutes.getTenant(actionParams.tenantId)}`
-        const url = '/data-tenants.json'
+        const url = '/mockdata/data-tenants.json'
     
         const result = await getAsync<GetTenantResponse>({
             url,
