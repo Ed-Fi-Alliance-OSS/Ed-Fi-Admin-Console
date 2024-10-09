@@ -82,7 +82,7 @@ const useEdfiApplicationsService = () => {
     const getEdfiApplicationsListForSchoolYear = async (actionParams: EdfiActionParams, year: number): GetEdfiApplicationsListResult => {
         const baseUrl = actionParams.edxApiUrl
         // const url = `${baseUrl}/${edfiActionRoutes.getApplicationsListForSchoolyear(actionParams.tenantId, year)}`
-        const url = "/data-applications.json"
+        const url = "/mockdata/data-applications.json"
         const result = await getAsync<EdfiApplication[]>({
             url,
             actionName: 'Get Edfi Applications List',
