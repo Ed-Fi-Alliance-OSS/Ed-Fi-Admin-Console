@@ -10,7 +10,7 @@
     "basePath": "",
     "baseImagesUrl": "",
     "showDataHealth": true,
-    "showAdvancedTabs": false,
+    "showAdvancedTabs": true,
     "showCompositeUrls": false,
     "allowDebug": true,
     "edfiUrl": "https://api.edgraph.dev/edfi/v6.1/saas/core-districtspecific",
