@@ -4,7 +4,7 @@
 # See the LICENSE and NOTICES files in the project root for more information.
 
 FROM node:18-alpine AS build
-ENV EG_app__basePath=/adminconsole
+# ENV EG_app__basePath=/
 
 WORKDIR /app
 COPY ../. /app
@@ -12,6 +12,8 @@ COPY ../. /app
 # Install all the dependecies
 RUN npm install
 RUN npm run build
+
+RUN rm -f .npmrc
 
 EXPOSE 8598
 

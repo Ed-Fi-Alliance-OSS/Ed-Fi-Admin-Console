@@ -1,8 +1,8 @@
 {
   "api": {
-    "baseUri": "https://api.txedexchange.dev/tenant",
-    "edxApiUri": "https://api.edgraph.dev/tee/tenant",
-    "dataHealthApiUri": "http://localhost:5099"
+    "baseUri": "",
+    "edxApiUri": "",
+    "dataHealthApiUri": ""
   },
   "app": {
     "name": "Acme Service Center",
@@ -10,7 +10,7 @@
     "basePath": "",
     "baseImagesUrl": "",
     "showDataHealth": true,
-    "showAdvancedTabs": false,
+    "showAdvancedTabs": true,
     "showCompositeUrls": false,
     "allowDebug": true,
     "odsApiInstance": "https://api.edgraph.dev/edfi/v6.1/saas/core-districtspecific",
@@ -23,16 +23,16 @@
     "showUserDelete": true,
     "showEdfiPartnerDelete": false,
     "showEdfiApplicationDelete": false,
-    "showEdOrgsTab": true,
-    "useDataHealthWithSchoolYear": true 
+    "showEdOrgsTab": false,
+    "useDataHealthWithSchoolYear": false 
   },
   "auth": {
-    "authority": "https://login.txedexchange.dev",
-    "clientId": "SxDI3FClBpP40YekHTVUQBctOTJxeNHh",
-    "redirectUri": "https://apps.txedexchange.dev/adminconsole/callback",
-    "silentRedirectUri": "https://apps.txedexchange.dev/adminconsole/silent-renew",
-    "postLogoutRedirectUri": "https://apps.txedexchange.dev/adminconsole",
-    "scope": "openid profile offline_access email phone https://api.edgraph.com/auth/tenant",
+    "authority": "http://localhost:28080/realms/myrealm/",
+    "clientId": "ac",
+    "redirectUri": "http://localhost:8598/callback",
+    "silentRedirectUri": "http://localhost:8598/silent-renew",
+    "postLogoutRedirectUri": "http://localhost:8598",
+    "scope": "openid",
     "responseType": "code",
     "loadUserInfo": false,
     "automaticSilentRenew": true,
