@@ -13,13 +13,13 @@
     "showAdvancedTabs": false,
     "showCompositeUrls": false,
     "allowDebug": true,
-    "edfiUrl": "https://api.edgraph.dev/edfi/v6.1/saas/core-districtspecific",
+    "odsApiInstance": "https://api.edgraph.dev/edfi/v6.1/saas/core-districtspecific",
     "notificationsApplicationId": "z2WFYMjyRNEI",
-    "analytics": {
-      "managerUrl": "https://matomo.txedexchange.dev",
-      "containerId": "pzs8KNrX"
+    "webAnalytics": {
+      "enableWebAnalytics": false
     },
-    "helpLinkUrl": "https://apps.txedexchange.dev/community/help",
+    "enableHelpDeskLink": false,
+    "helpLinkUrl": "https://community.ed-fi.org/s/",
     "showUserDelete": true,
     "showEdfiPartnerDelete": false,
     "showEdfiApplicationDelete": false,
