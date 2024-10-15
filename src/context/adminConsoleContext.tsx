@@ -54,7 +54,7 @@ const AdminConsoleConfigProvider = ({ children, config }: AdminConsoleConfigProv
         return null
     }
 
-    const getEdfiUrl = () => config.app.edfiUrl ?? ""
+    const getEdfiUrl = () => config.app.odsApiInstance ?? ""
     const getShowCompositeUrls = () => config.app.showCompositeUrls? config.app.showCompositeUrls : false
     const getShowDataHealth = () => config.app.showDataHealth? config.app.showDataHealth : false
     const getShowAdvancedTabs = () => config.app.showAdvancedTabs? config.app.showAdvancedTabs : false
