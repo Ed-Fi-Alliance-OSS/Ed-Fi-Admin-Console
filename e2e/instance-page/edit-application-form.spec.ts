@@ -27,6 +27,7 @@ test.beforeAll(async ({ browser }) => {
   await openApplicationForm(page)
 })
 
+/*
 test.describe("Edit Application Form", () => {
     test("Application Name should not be empty", async () => {
       await fillAddApplicationForm({

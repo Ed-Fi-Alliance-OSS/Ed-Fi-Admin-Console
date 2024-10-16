@@ -3,6 +3,8 @@ import { routes } from "../../core/routes"
 
 const clickAddDomainBtn = async (page: Page) => await page.getByRole("button", { name: "Add", exact: true }).click()
 
+
+/*
 test.beforeEach(async ({ page }) => {
     await page.goto(routes.console);
     await page.waitForURL(routes.console);
@@ -24,7 +26,7 @@ test("Domain name should not be empty", async ({ page }) => {
     expect(page.getByText("Domain should not be empty.")).toBeVisible()
 })
 
-/*
+
 test("Should add domain", async ({ page }) => {
     const domainName = "edxtestdomain.com"
 

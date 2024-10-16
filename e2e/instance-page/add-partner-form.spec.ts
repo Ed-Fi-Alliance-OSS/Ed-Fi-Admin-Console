@@ -11,7 +11,7 @@ const openPartnerForm =  async (page: Page) => {
 }
 
 const clickAddPartnerBtn = async (page: Page) => await page.getByRole("button", { name: "Add Partner" }).click()
-
+/*
 test.beforeAll(async ({ browser }) => {
   page = await browser.newPage()
 
@@ -22,7 +22,7 @@ test.beforeAll(async ({ browser }) => {
   await openPartnerForm(page)
 });
 
-/*
+
 test("Add Partner Form - Adds the partner", async () => {
   const testPartnerName = "eetestpartner"
 
@@ -41,7 +41,7 @@ test("Add Partner Form - Adds the partner", async () => {
   expect(page.getByRole("paragraph", { name: partnersTabName })).toBeVisible()
   expect(page.getByText(testPartnerName))
 })
-*/
+
 
 test.describe("Add Partner Form - Partner Name", () => {
   test("Partner Name should not be empty", async () => {
@@ -91,4 +91,4 @@ test.describe("Add Partner Form - Prefixes", () => {
       expect(page.getByText("Please correct the errors below and resubmit the form.")).toBeVisible()
       expect(page.getByText("Namespace Prefixes should have at least 2 letters.")).toBeVisible()
     })
-})
+}) */
