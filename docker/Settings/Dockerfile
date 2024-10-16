@@ -7,8 +7,6 @@
 FROM nginx@sha256:da9c94bec1da829ebd52431a84502ec471c8e548ffb2cedbf36260fd9bd1d4d3
 LABEL maintainer="Ed-Fi Alliance, LLC and Contributors <techsupport@ed-fi.org>"
 
-ENV ADMIN_API_VIRTUAL_NAME=${ADMIN_API_VIRTUAL_NAME:-adminapi}
-
 COPY ./default.conf.template /etc/nginx/templates/
 
-EXPOSE 443
+EXPOSE 80

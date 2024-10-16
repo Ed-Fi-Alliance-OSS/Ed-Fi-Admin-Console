@@ -13,6 +13,12 @@ COPY ../. /app
 RUN npm install
 RUN npm run build
 
+RUN cp -a mockdata/. dist/mockdata/
+
+RUN cp -a public/. dist/
+
+RUN mv acme.jpg Ed-Fi-Logo.png ed-fi.jfif dist/
+
 RUN rm -f .npmrc
 
 EXPOSE 8598

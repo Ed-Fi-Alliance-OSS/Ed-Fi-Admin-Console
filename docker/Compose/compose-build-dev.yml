@@ -6,12 +6,25 @@
 version: '3.7'
 
 services:
+  # nginx:
+  #   build:
+  #     context: ../Settings/gateway/
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - "80:80"
+  #   container_name: ed-fi-gateway-adminconsole
+  #   restart: always
+  #   hostname: nginx
+  #   depends_on:
+  #     - adminconsole
+
   adminconsole:
     build:
       context: ../../
       dockerfile: ./docker/Dockerfile
     restart: always
-    container_name: ac
+    container_name: adminconsole
+    # command: npm run dev
     ports:
       # - "443:443"
       # - "80:80"
@@ -25,8 +38,8 @@ services:
       POSTGRES_DB: ${POSTGRES_DB:-keycloak_db}
       POSTGRES_USER: ${POSTGRES_USER:-edfi}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-P@55w0rd}
-    networks:
-      - ac_network
+    # networks:
+    #   - ac_network
 
   keycloak:
     build:
@@ -51,13 +64,13 @@ services:
     restart: always
     depends_on:
       - postgres
-    networks:
-      - ac_network
+    # networks:
+    #   - ac_network
 
 volumes:
   postgres_data:
     driver: local
 
-networks:
-  ac_network:
-    driver: bridge
+# networks:
+#   ac_network:
+#     driver: bridge
