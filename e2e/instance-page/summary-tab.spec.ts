@@ -8,12 +8,14 @@ test.beforeEach(async ({ page }) => {
     await page.waitForLoadState('networkidle')
 })
 
+
 test("Should show instance data if Onboarding Wizard has been finished", async ({ page }) => {
     await page.getByRole("tab", { name: "Summary" }).click()
-    await expect(page.getByText("Instance Summary")).toBeVisible()
 
-    expect(page.getByText("Description"))
-    expect(page.getByText("Connection"))
-    expect(page.getByText("Ed-Fi Version"))
-    expect(page.getByText("Ed-Fi Status"))
+    await expect(page.getByText("Ed-Fi Base URL")).toBeVisible({ timeout: 15000 })
+    await expect(page.getByText("Ed-Fi Version")).toBeVisible()
+    await expect(page.getByText("TSDS Version")).toBeVisible()
+    await expect(page.getByText("Ed-Fi Status")).toBeVisible()
+    await expect(page.getByText("Hosting")).toBeVisible()
 })
+    

@@ -8,7 +8,7 @@ const openManageSubscriptionsForm = async (page: Page) => {
     expect(page.waitForLoadState("networkidle"))
     expect(page.getByText("Manage Subscriptions")).toBeVisible()
 }
-
+/*
 test.beforeEach(async ({ page }) => {
     await page.goto(routes.console)
     await page.waitForURL(routes.console)
@@ -17,7 +17,7 @@ test.beforeEach(async ({ page }) => {
     await page.getByText("Manage Subscriptions").click()
 })
 
-/*
+
 
 test("Shows the list of subscriptions", async ({  page }) => {
     await expect(page.getByRole("table")).toBeVisible()

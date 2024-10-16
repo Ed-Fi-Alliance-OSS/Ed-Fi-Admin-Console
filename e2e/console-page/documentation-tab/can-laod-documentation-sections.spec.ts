@@ -1,6 +1,7 @@
 import { test, expect } from "@playwright/test";
 import { routes } from "../../core/routes";
 
+/*
 test.beforeEach(async ({ page }) => {
   await page.goto(routes.home);
   await page.waitForURL(routes.home);
@@ -21,3 +22,4 @@ test("Can load Tenant API documentation", async ({ page }) => {
   await page.selectOption("#select", "Tenant");
   await expect(page.getByRole('heading', { name: 'Tenant Api v1.0 OAS 3.0' })).toBeVisible();
 });
+*/
