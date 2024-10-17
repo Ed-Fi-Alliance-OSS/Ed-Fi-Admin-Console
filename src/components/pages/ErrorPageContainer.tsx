@@ -17,7 +17,9 @@ const ErrorPageContainer = ({ status }: ErrorPageContainerProps) => {
                     height="100vh"
                     minHeight="100vh"
                     minWidth="100vw"
-                    width="100vw" />
+                    width="100vw"
+                    primaryButtonBackUrl=""
+                    primaryButtonLabel="" />
         </Flex>
     )
 }
