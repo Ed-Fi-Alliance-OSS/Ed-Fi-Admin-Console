@@ -14,7 +14,7 @@ const closeEditSubscriptionForm = async (page: Page) => {
 
 let page: Page
 const applicationName = "Test App"
-
+/*
 test.beforeAll(async ({ browser }) => {
     page = await browser.newPage()
 
@@ -28,7 +28,7 @@ test.beforeAll(async ({ browser }) => {
     await page.waitForLoadState("networkidle")
 })
 
-/*
+
 
 test.describe("Edit Subscription Form - Subscription Duration", () => {
   test.beforeEach(async () => await openEditSubscriptionForm(page))

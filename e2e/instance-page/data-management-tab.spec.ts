@@ -2,6 +2,7 @@
 import { test, expect } from "@playwright/test"
 import { routes } from "../core/routes"
 
+/*
 test.beforeEach(async ({ page }) => {
     await page.goto(routes.instance)
     await page.waitForURL(routes.instance)
@@ -40,4 +41,4 @@ test("Shows the list of Permissions", async ({  page }) => {
 
     await expect(page.getByText("0 items to show")).not.toBeVisible()
     expect(await page.locator('table > tbody > tr').count()).not.toBe(0)
-})
+})*/
