@@ -16,7 +16,17 @@
     "odsApiInstance": "https://api.edgraph.dev/edfi/v6.1/saas/core-districtspecific",
     "notificationsApplicationId": "z2WFYMjyRNEI",
     "webAnalytics": {
-      "enableWebAnalytics": false
+      "tool": "<Valid values: Matomo, GoogleAnalytics>",
+      "enableWebAnalytics": false,
+      "matomo":
+      {
+        "managerUrl": "https://<managerUrl>",
+        "containerId": "<containerId>"
+      },
+      "googleAnalytics":
+      {
+        "googleAnalyticsId": "<googleAnalyticsId>"
+      }
     },
     "enableHelpDeskLink": false,
     "helpLinkUrl": "https://community.ed-fi.org/s/",
