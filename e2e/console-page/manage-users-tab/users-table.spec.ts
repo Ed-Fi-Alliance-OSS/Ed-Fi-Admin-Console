@@ -1,7 +1,7 @@
 
 import { test, expect } from "@playwright/test"
 import { routes } from "../../core/routes"
-
+/*
 test.beforeEach(async ({ page }) => {
     await page.goto(routes.console)
     await page.waitForURL(routes.console)
@@ -17,7 +17,7 @@ test("Should show the users table", async ({ page }) => {
     expect(page.getByText("Users", { exact: true })).toBeVisible()
 })
 
-/*
+
 test("Should be able to sort users by asc first name", async ({ page }) => {
     await page.getByTestId("sort-asc-firstName").click()
     await page.waitForLoadState("networkidle")

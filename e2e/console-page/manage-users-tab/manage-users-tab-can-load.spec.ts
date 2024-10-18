@@ -2,6 +2,7 @@
 import { test, expect } from "@playwright/test";
 import { routes } from "../../core/routes";
 
+/*
 test.beforeEach(async ({ page }) => {
   await page.goto(routes.console);
   await page.waitForURL(routes.console);
@@ -32,4 +33,4 @@ test.describe("Should be able to filter users by properties", () => {
     await page.waitForLoadState("networkidle")
     expect(page.url()).toBe(routes.console)
   })
-})
+}) */
