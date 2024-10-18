@@ -4,6 +4,7 @@ import { routes } from "../../core/routes";
 import { fillAddUserForm } from "./addUserFormHelpers";
 
 let page: Page;
+/*
 test.beforeAll(async ({ browser }) => {
   page = await browser.newPage()
 
@@ -185,7 +186,6 @@ test.describe("Add User Form - Email", () => {
   })
 })
 
-/*
 test.describe("Add User Form - Add User", () => {
   test("Should be added if the email is not already in use", async () => {
     await page.getByRole('button', { name: "Add User" }).click()

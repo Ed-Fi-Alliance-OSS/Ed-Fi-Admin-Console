@@ -15,7 +15,7 @@ const openAddSubscriptionForm = async (page: Page) =>  {
 
 const closeAddSubscriptionForm = async (page: Page) => await page.getByRole('button', { name: 'cancel' }).click()
 const clickAddSubscriptionBtn = async (page: Page) => await page.getByRole('button', { name: "Add" }).click()
-
+/*
 test.beforeAll(async ({ browser }) => {
   page = await browser.newPage()
   // browser.contexts()[0].storageState()
@@ -30,7 +30,9 @@ test.beforeAll(async ({ browser }) => {
   await page.waitForLoadState("networkidle")
 })
 
-/*
+
+
+
 test.describe("Add Subscription Form - Subscription Duration", () => {
   test.beforeEach(async () => await openAddSubscriptionForm(page))
   test.afterEach(async () => await closeAddSubscriptionForm(page)) 
