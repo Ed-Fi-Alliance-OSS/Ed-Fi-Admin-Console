@@ -18,9 +18,9 @@ on:
   workflow_dispatch:
 
 env:
-  DOCKER_USERNAME: "{{ vars.DOCKER_USERNAME }}"
+  DOCKER_USERNAME: ${{ vars.DOCKER_USERNAME }}
   DOCKER_HUB_TOKEN: ${{ secrets.DOCKER_HUB_TOKEN }}
-  IMAGE_NAME: "{{ vars.IMAGE_NAME }}"
+  IMAGE_NAME: ${{ vars.IMAGE_NAME }}
 permissions: read-all
 
 jobs:
