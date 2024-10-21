@@ -37,21 +37,13 @@ export default defineConfig({
   projects: [
     {
       name: "setup",
-      testMatch: /.*\.setup\.ts/,
-      use: {
-        launchOptions: {
-          args: ['--ignore-certificate-errors']
-        }
-      }
+      testMatch: /.*\.setup\.ts/
     },
     {
       name: "chromium",
       use: {
         ...devices["Desktop Chrome"],
         storageState: "playwright/.auth/user.json",
-        launchOptions: {
-          args: ['--ignore-certificate-errors']
-        }
       },
       dependencies: ["setup"],
     },
