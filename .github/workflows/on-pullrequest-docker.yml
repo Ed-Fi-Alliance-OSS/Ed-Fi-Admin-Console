@@ -96,7 +96,7 @@ jobs:
          with:
            context: "{{defaultContext}}:/"
            file: docker/Dockerfile
-           tags: ${{ env.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:pre
+           tags: ${{ env.IMAGE_NAME }}:pre
            push: true
  
        - name: Extract metadata (tags, labels) for admin console image
