@@ -1,0 +1,12 @@
+[
+    {
+        "tenantId": "abc123",
+        "tenantIdentifier": "org123",
+        "tenantName": "Mock Organization"
+    },
+    {
+        "tenantId": "def456",
+        "tenantIdentifier": "org456",
+        "tenantName": "Mock Company"
+    }
+]
