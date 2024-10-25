@@ -7,8 +7,8 @@ const usePermissionsService = () => {
 
     const checkPermissions = async (actionParams: ActionParams) : GetPermissionsResult => {
         //const url = `${actionParams.edxApiUrl}/verifypermission`
-        const url = "/mockdata/data-permissions.json"
-        //const url = `${baseUrl}/adminconsole/permissions`;
+        //const url = "/mockdata/data-permissions.json"
+        const url = `${actionParams?.config?.api?.baseUri ?? ''}/adminconsole/permissions`;
         const result = await getAsync<GetPermissionsResult>({
             url,
             actionName: 'Verify Permissions',
