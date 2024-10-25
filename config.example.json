@@ -2,7 +2,10 @@
   "api": {
     "baseUri": "",
     "edxApiUri": "",
-    "dataHealthApiUri": ""
+    "dataHealthApiUri": "",
+    "useAdminApiAuthentication": true,
+    "apiKey": "",
+    "apiSecret": ""
   },
   "app": {
     "name": "Acme Service Center",

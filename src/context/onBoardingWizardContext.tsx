@@ -31,7 +31,8 @@ const OnBoardingWizardProvider = ({ children }: OnBoardingWizardProviderProps) =
             const data = await fetchOnBoardingWizardData({
                 apiUrl: edxAppConfig.api.baseUri as string,
                 tenantId: userProfile.tenantId,
-                token: auth.user.access_token
+                token: auth.user.access_token,
+                apiConfig: edxAppConfig.api
             })
 
             // console.log('received onboarding data: ', data)
@@ -44,7 +45,8 @@ const OnBoardingWizardProvider = ({ children }: OnBoardingWizardProviderProps) =
                     const initialOBData = await fetchOnBoardingWizardData({
                         apiUrl: edxAppConfig.api.baseUri as string,
                         tenantId: userProfile.tenantId,
-                        token: auth.user.access_token
+                        token: auth.user.access_token,
+                        apiConfig: edxAppConfig.api
                     })
                     
                     if (initialOBData) {
@@ -63,7 +65,8 @@ const OnBoardingWizardProvider = ({ children }: OnBoardingWizardProviderProps) =
                 const initialOBData = await fetchOnBoardingWizardData({
                     apiUrl: edxAppConfig.api.baseUri as string,
                     tenantId: userProfile.tenantId,
-                    token: auth.user.access_token
+                    token: auth.user.access_token,
+                    apiConfig:  edxAppConfig.api
                 })
                 
                 if (initialOBData) {
@@ -95,6 +98,7 @@ const OnBoardingWizardProvider = ({ children }: OnBoardingWizardProviderProps) =
                     description: step.name,
                     number: step.index + 1,
                     status: 'Pending',
+                    apiConfig: edxAppConfig?.api,
                 })
             }
         }

@@ -15,7 +15,8 @@ const useEdfiClaimsetsService = () => {
         const result = await getAsync<EdfiClaimSet[]>({
             url,
             actionName: 'Get Claimset List',
-            access_token: actionParams.token
+            access_token: actionParams.token,
+            apiConfig: actionParams.config.api
         })
     
         return result
@@ -29,7 +30,8 @@ const useEdfiClaimsetsService = () => {
         const result = await getAsync<EdfiClaimSet[]>({
             url,
             actionName: 'Get Claimset List',
-            access_token: actionParams.token
+            access_token: actionParams.token,
+            apiConfig: actionParams.config.api
         })
     
         return result

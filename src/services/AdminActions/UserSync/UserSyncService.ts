@@ -15,9 +15,10 @@ const useUserSyncService = () => {
         const url = `${baseUrl}/${edfiSyncActionRoutes.getEdFiSync(actionParams.tenantId)}`
     
         const result = await getSimpleAsync<JobListResponse>({ 
-            actionName: "Get Ed-Fi Sync Job",  
+            actionName: "Get Ed-Fi Sync Job",
             access_token: actionParams.token,
-            url
+            url,
+            apiConfig: actionParams.config.api
         })
     
         return result
@@ -28,9 +29,10 @@ const useUserSyncService = () => {
         const url = `${baseUrl}/${edfiSyncActionRoutes.getEdFiSyncById(actionParams.tenantId, request.jobId)}`
     
         const result = await getSimpleAsync<JobProfile>({ 
-            actionName: "Get Ed-Fi Sync Job By Id",  
+            actionName: "Get Ed-Fi Sync Job By Id",
             access_token: actionParams.token,
-            url
+            url,
+            apiConfig: actionParams.config.api
         })
     
         return result
@@ -50,9 +52,10 @@ const useUserSyncService = () => {
         const url = `${baseUrl}/${edfiSyncActionRoutes.getEdFiSyncExecutions(actionParams.tenantId, request.jobId)}?${queryParams}`
     
         const result = await getSimpleAsync<PaginatedItemsViewModel<JobExecutionListResponse>>({ 
-            actionName: "Get Ed-Fi Sync Job Executions",  
+            actionName: "Get Ed-Fi Sync Job Executions",
             access_token: actionParams.token,
-            url
+            url,
+            apiConfig: actionParams.config.api
         })
     
         return result
@@ -72,7 +75,8 @@ const useUserSyncService = () => {
         const result = await getSimpleAsync<PaginatedItemsViewModel<JobExecutionLogEntry>>({ 
             actionName: "Get Ed-Fi Sync Job Execution Logs",  
             access_token: actionParams.token,
-            url
+            url,
+            apiConfig: actionParams.config.api
         })
     
         return result
@@ -86,7 +90,8 @@ const useUserSyncService = () => {
             actionName: "Execute Ed-Fi Sync",  
             access_token: actionParams.token,
             data: undefined,
-            url
+            url,
+            apiConfig: actionParams.config.api
         })
     
         return result
@@ -97,10 +102,11 @@ const useUserSyncService = () => {
         const url = `${baseUrl}/${edfiSyncActionRoutes.postEdFiSync(actionParams.tenantId)}`
     
         const result = await postAsync<EdFiSyncProfileResponse, any>({ 
-            actionName: "Post Ed-Fi Sync",  
+            actionName: "Post Ed-Fi Sync",
             access_token: actionParams.token,
             data: undefined,
-            url
+            url,
+            apiConfig: actionParams.config.api
         })
     
         return result
@@ -111,10 +117,11 @@ const useUserSyncService = () => {
         const url = `${baseUrl}/${edfiSyncActionRoutes.putEdFiSync(actionParams.tenantId, request.jobId)}`
     
         const result = await putAsync<EdFiSyncUpdatedResponse, UpdateEdFiSyncRequest>({ 
-            actionName: "Put Ed-Fi Sync",  
+            actionName: "Put Ed-Fi Sync",
             access_token: actionParams.token,
             data: request,
-            url
+            url,
+            apiConfig: actionParams.config.api
         })
     
         return result
