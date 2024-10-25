@@ -3,6 +3,7 @@ import { ActionParams } from "../adminAction.types"
 import adminActionRoutes from "../tenantActionRoutes"
 import { GetTenantApplicationsResponse } from "./ApplicationsService.responses"
 import { GetApplicationsResult } from "./ApplicationsService.results"
+import { includeAuthorization } from "@edfi/admin-console-shared-sdk"
 
 const getApplicationsList = async (actionParams: ActionParams): GetApplicationsResult => {
     const baseUrl = actionParams.edxApiUrl
@@ -11,13 +12,9 @@ const getApplicationsList = async (actionParams: ActionParams): GetApplicationsR
     const endpointUrl = `${baseUrl}/${adminActionRoutes.getApplicationsList(actionParams.tenantId)}?${queryParams}`
 
     console.log('get tenants applications list request to: ', endpointUrl)
-
+    const authorizationToken = await includeAuthorization(actionParams.token, actionParams.config.api);
     try {
-        const res = await axios.get(endpointUrl, {
-            headers: {
-                Authorization: `Bearer ${actionParams.token}`,
-            }
-        })
+        const res = await axios.get(endpointUrl, authorizationToken);
 
         const applicationsList: GetTenantApplicationsResponse = res.data
 

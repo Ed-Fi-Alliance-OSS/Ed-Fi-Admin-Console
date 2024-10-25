@@ -18,7 +18,8 @@ const useDomainsService = () => {
             url,
             data,
             access_token: actionParams.token,
-            actionName: 'Post Domain'
+            actionName: 'Post Domain',
+            apiConfig: actionParams.config.api
         })
     
         return result
@@ -32,7 +33,8 @@ const useDomainsService = () => {
             url,
             data,
             access_token: actionParams.token,
-            actionName: 'Verify Domain'
+            actionName: 'Verify Domain',
+            apiConfig: actionParams.config.api
         })
 
         if (result.type === 'Response') {
@@ -58,7 +60,8 @@ const useDomainsService = () => {
         const result = await deleteAsync<DeleteDomainResponse>({
             url,
             actionName: "Delete Domain",
-            access_token: actionParams.token
+            access_token: actionParams.token,
+            apiConfig: actionParams.config.api
         })
 
         return result 

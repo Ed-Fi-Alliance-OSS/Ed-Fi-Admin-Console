@@ -1,6 +1,7 @@
 import axios, { AxiosError } from "axios"
 import { HttpServiceRequestError, HttpServiceResponse } from "./HttpService.response.types"
 import { HttpService, HttpServiceDeleteRequest, HttpServiceGetRequest, HttpServiceMethod, HttpServicePostRequest, HttpServicePutRequest } from "./HttpService.types"
+import { includeAuthorization } from "@edfi/admin-console-shared-sdk" 
 
 axios.interceptors.request.use(function (config) {
     return config
@@ -13,13 +14,6 @@ axios.interceptors.response.use(function (response) {
   }, function (error) {
     return Promise.reject(error);
 })
-
-const includeAuthorization = (access_token) => {
-    if (access_token)
-        return { headers: { Authorization: `Bearer ${access_token}` } }
-
-    return undefined
-}
 
 const createDefaultError = (method: HttpServiceMethod, actionName: string) => {
     const actionMessage = `Error for ${method}: ${actionName}`
@@ -45,11 +39,14 @@ const handleAxiosError = (error: AxiosError, requestError: HttpServiceRequestErr
 }
 
 const httpService: HttpService = {
-    async get<TResponse>({ url, access_token, actionName }: HttpServiceGetRequest) {
+    async get<TResponse>({ url, access_token, actionName, apiConfig }: HttpServiceGetRequest) {
         console.log(`Get request ${actionName} to ${url}`)
-
+        const authorizationToken = await includeAuthorization(
+            access_token, 
+            apiConfig
+        );
         try {
-            const res = await axios.get(url, includeAuthorization(access_token))
+            const res = await axios.get(url, authorizationToken);
         
             const response: HttpServiceResponse<TResponse> = {
                 data: res.data,
@@ -70,11 +67,11 @@ const httpService: HttpService = {
             }
         }
     },
-    async post<TResponse, TData>({ url, data, access_token, actionName }: HttpServicePostRequest<TData>) {
+    async post<TResponse, TData>({ url, data, access_token, actionName, apiConfig }: HttpServicePostRequest<TData>) {
         console.log(`Post request ${actionName} to ${url}`)
-
+        const authorizationToken = await includeAuthorization(access_token, apiConfig);
         try {
-            const res = await axios.post(url, data, includeAuthorization(access_token))
+            const res = await axios.post(url, data, authorizationToken)
         
             const response: HttpServiceResponse<TResponse> = {
                 data: res.data,
@@ -95,11 +92,11 @@ const httpService: HttpService = {
             }
         }
     },
-    async put<TResponse, TData>({ url, data, access_token, actionName }: HttpServicePutRequest<TData>) {
+    async put<TResponse, TData>({ url, data, access_token, actionName, apiConfig }: HttpServicePutRequest<TData>) {
         console.log(`Put request ${actionName} to ${url}`)
-
+        const authorizationToken = await includeAuthorization(access_token, apiConfig);
         try {
-            const res = await axios.put(url, data, includeAuthorization(access_token))
+            const res = await axios.put(url, data, authorizationToken)
         
             const response: HttpServiceResponse<TResponse> = {
                 data: res.data,
@@ -120,11 +117,11 @@ const httpService: HttpService = {
             }
         }
     },
-    async delete<TResponse>({ url, access_token, actionName }: HttpServiceDeleteRequest) {
+    async delete<TResponse>({ url, access_token, actionName, apiConfig }: HttpServiceDeleteRequest) {
         console.log(`Delete request ${actionName} to ${url}`)
-
+        const authorizationToken = await includeAuthorization(access_token, apiConfig);
         try {
-            const res = await axios.delete(url, includeAuthorization(access_token))
+            const res = await axios.delete(url, authorizationToken);
         
             const response: HttpServiceResponse<TResponse> = {
                 data: res.data,

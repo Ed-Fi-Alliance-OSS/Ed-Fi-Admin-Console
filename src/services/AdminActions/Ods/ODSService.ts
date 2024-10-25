@@ -14,7 +14,8 @@ const useODSService = () => {
         const result = await getAsync<EducationOrganization[]>({
             url,
             actionName: 'Get Edfi Applications List',
-            access_token: actionParams.token
+            access_token: actionParams.token,
+            apiConfig: actionParams.config.api
         })
     
         return result
@@ -28,7 +29,8 @@ const useODSService = () => {
         const result = await getAsync<Descriptor[]>({
             url,
             actionName: 'Get Edfi Applications List',
-            access_token: actionParams.token
+            access_token: actionParams.token,
+            apiConfig: actionParams.config.api
         })
     
         return result

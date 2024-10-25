@@ -14,12 +14,14 @@ const useTenantService = () => {
     const getTenant = async (actionParams: ActionParams): GetTenantResult => {
         const baseUrl = actionParams.edxApiUrl
         // const url = `${baseUrl}/${adminActionRoutes.getTenant(actionParams.tenantId)}`
-        const url = '/mockdata/data-tenants.json'
+        //const url = '/mockdata/data-tenants.json'
+        const url = `${baseUrl}/adminconsole/tenants`
     
         const result = await getAsync<GetTenantResponse>({
             url,
+            actionName: 'Get Tenant',
             access_token: actionParams.token,
-            actionName: 'Get Tenant'
+            apiConfig: actionParams.config.api
         })
     
         if (result.type === 'Response') {
@@ -42,7 +44,8 @@ const useTenantService = () => {
             url,
             actionName: 'Update Tenant',
             access_token: actionParams.token,
-            data
+            data,
+            apiConfig: actionParams.config.api
         })
     
         return result

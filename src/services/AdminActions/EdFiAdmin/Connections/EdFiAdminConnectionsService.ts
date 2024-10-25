@@ -20,7 +20,8 @@ const useEdFiAdminConnectionsService = () => {
         const result = await getAsync<GetAllEdFiAdminConnectionsResponse>({
             url,
             actionName: 'Get Connections List',
-            access_token: actionParams.token
+            access_token: actionParams.token,
+            apiConfig: actionParams.config.api
         })
     
         return result
@@ -34,7 +35,8 @@ const useEdFiAdminConnectionsService = () => {
             url,
             actionName: 'Create Ed-Fi Admin Connection',
             data,
-            access_token: actionParams.token
+            access_token: actionParams.token,
+            apiConfig: actionParams.config.api
         })
     
         return result
@@ -48,7 +50,8 @@ const useEdFiAdminConnectionsService = () => {
             url,
             actionName: 'Update Ed-Fi Admin Connection',
             data,
-            access_token: actionParams.token
+            access_token: actionParams.token,
+            apiConfig: actionParams.config.api
         })
     
         return result
@@ -62,7 +65,8 @@ const useEdFiAdminConnectionsService = () => {
             url,
             actionName: 'Verify Ed-Fi Admin Connection',
             data,
-            access_token: actionParams.token
+            access_token: actionParams.token,
+            apiConfig: actionParams.config.api
         })
     
         return result

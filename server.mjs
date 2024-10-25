@@ -8,10 +8,12 @@ import {
 import defaultConfig from './app.config.json' assert { type: 'json' }
 
 const app = express()
-
+const cors = require('cors');
 const originalConfig = mergeEnvVars(defaultConfig)
 let config = cloneDeep(originalConfig)
 const staticFileMiddleware = express.static('dist')
+
+app.use(cors({ credentials: true }))
 
 app.use(`${config.app.basePath}/config.json`, (_, res) => {
   res.json(config)

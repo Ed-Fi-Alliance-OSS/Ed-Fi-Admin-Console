@@ -1,4 +1,5 @@
-const odsInstancePrefix = (tenantId: string) =>  `tenants/${tenantId}/edfiadmin/odsinstances`
+// const odsInstancePrefix = (tenantId: string) =>  `tenants/${tenantId}/edfiadmin/odsinstances`
+ const odsInstancePrefix = (tenantId: string) =>  `adminconsole/odsinstances`
 
 const odsInstancesActionRoutes = {
     getInstancesList: (tenantId: string) => `${odsInstancePrefix(tenantId)}`,

@@ -1,7 +1,10 @@
 {
     "api": {
         "baseUri": "https://api.txedexchange.dev/tenant",
-        "edxApiUri": "https://api.edgraph.dev/tee/tenant"
+        "edxApiUri": "https://api.edgraph.dev/tee/tenant",
+        "useAdminApiAuthentication": true,
+        "apiKey": "",
+        "apiSecret": ""
     },
     "app": {
       "name": "The Exchange",
