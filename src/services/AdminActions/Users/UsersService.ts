@@ -31,9 +31,10 @@ const useUserService = () => {
         const url = `${baseUrl}/${adminActionRoutes.getUsersList(actionParams.tenantId)}?${queryParams}`
     
         const result = await getAsync<GetUsersListResponse>({ 
-            actionName: "Get Users List",  
+            actionName: "Get Users List",
             access_token: actionParams.token,
-            url
+            url,
+            apiConfig: actionParams.config.api
         })
     
         if (result.type === 'Response') {
@@ -55,7 +56,8 @@ const useUserService = () => {
         const result = await getAsync<AppUserProfile>({
             url,
             access_token: actionParams.token,
-            actionName: 'Get User By Id'
+            actionName: 'Get User By Id',
+            apiConfig: actionParams.config.api
         })
     
         return result
@@ -69,7 +71,8 @@ const useUserService = () => {
             actionName: 'Add User',
             access_token: actionParams.token,
             data,
-            url
+            url,
+            apiConfig: actionParams.config.api
         })
     
         return result
@@ -83,7 +86,8 @@ const useUserService = () => {
             actionName: 'Activate User',
             access_token: actionParams.token,
             data,
-            url
+            url,
+            apiConfig: actionParams.config.api
         })
     
         return result
@@ -97,7 +101,8 @@ const useUserService = () => {
             actionName: 'Deactivate User',
             access_token: actionParams.token,
             data,
-            url
+            url,
+            apiConfig: actionParams.config.api
         })
     
         return result
@@ -110,7 +115,8 @@ const useUserService = () => {
         const result = await deleteAsync<DeleteUserResponse>({
             actionName: 'Delete User',
             access_token: actionParams.token,
-            url
+            url,
+            apiConfig: actionParams.config.api
         })
 
         return result
@@ -122,9 +128,9 @@ const useUserService = () => {
     
         const result = await putAsync<EditUserResponse, UpdateUserRequest>({
             actionName: 'Update User',
-            access_token: actionParams.token,
             data,
-            url
+            url,
+            apiConfig: actionParams.config.api
         })
     
         return result
@@ -136,8 +142,8 @@ const useUserService = () => {
 
         const result = await getAsync<CheckUserEmailResponse>({
             actionName: 'Check email status',
-            access_token: actionParams.token,
-            url
+            url,
+            apiConfig: actionParams.config.api
         })
 
         return result
@@ -149,9 +155,9 @@ const useUserService = () => {
     
         const result = await postAsync<InviteUserResponse, InviteUserRequest>({ 
             actionName: 'Invite User',
-            access_token: actionParams.token,
             data,
-            url
+            url,
+            apiConfig: actionParams.config.api
         })
     
         return result
@@ -170,8 +176,8 @@ const useUserService = () => {
         
         const result = await getAsync<GetInvitationsListResponse>({ 
             actionName: "Get Invitations List",  
-            access_token: actionParams.token,
-            url
+            url,
+            apiConfig: actionParams.config.api
         })
     
         if (result.type === 'Response') {
@@ -192,8 +198,8 @@ const useUserService = () => {
 
         const result = await deleteAsync<void>({
             actionName: 'Delete Invitation',
-            access_token: actionParams.token,
-            url
+            url,
+            apiConfig: actionParams.config.api
         })
 
         return result
@@ -205,9 +211,9 @@ const useUserService = () => {
     
         const result = await putAsync<AssignLicenseResponse, AssignLicenseRequest>({
             actionName: 'Assign License',
-            access_token: actionParams.token,
             data,
-            url
+            url,
+            apiConfig: actionParams.config.api
         })
     
         return result
@@ -219,9 +225,9 @@ const useUserService = () => {
     
         const result = await putAsync<RevokeLicenseResponse, RevokeLicenseRequest>({
             actionName: 'Revoke License',
-            access_token: actionParams.token,
             data,
-            url
+            url,
+            apiConfig: actionParams.config.api
         })
     
         return result
@@ -233,9 +239,9 @@ const useUserService = () => {
     
         const result = await putAsync<AssignBulkLicensesResponse, AssignBulkLicensesResponse>({
             actionName: 'Assign Bulk Licenses',
-            access_token: actionParams.token,
             data,
-            url
+            url,
+            apiConfig: actionParams.config.api
         })
     
         return result
@@ -247,9 +253,9 @@ const useUserService = () => {
     
         const result = await putAsync<RevokeBulkLicensesResponse, RevokeBulkLicensesRequest>({
             actionName: 'Update User',
-            access_token: actionParams.token,
             data,
-            url
+            url,
+            apiConfig: actionParams.config.api
         })
     
         return result
@@ -271,8 +277,8 @@ const useUserService = () => {
     
         const result = await getAsync<GetOrganizationsResponse>({ 
             actionName: "Get Organizations List",  
-            access_token: actionParams.token,
-            url
+            url,
+            apiConfig: actionParams.config.api
         })
     
         return result
@@ -294,8 +300,8 @@ const useUserService = () => {
     
         const result = await getAsync<GetStaffClassificationsResponse>({ 
             actionName: "Get Staff Classifications List",  
-            access_token: actionParams.token,
-            url
+            url,
+            apiConfig: actionParams.config.api
         })
     
         return result
@@ -307,8 +313,8 @@ const useUserService = () => {
     
         const result = await getAsync<UserEducationOrganization>({ 
             actionName: "Get User Education Organization",  
-            access_token: actionParams.token,
-            url
+            url,
+            apiConfig: actionParams.config.api
         })
 
         console.log('result user education organizations', result)
@@ -322,9 +328,9 @@ const useUserService = () => {
     
         const result = await postAsync<CreateUserEducationOrganizationsResponse, CreateUserEducationOrganizationsRequest>({ 
             actionName: 'Create User Education Organization',
-            access_token: actionParams.token,
             data,
-            url
+            url,
+            apiConfig: actionParams.config.api
         })
     
         return result
@@ -336,9 +342,9 @@ const useUserService = () => {
     
         const result = await putAsync<UpdateUserEducationOrganizationResponse, UpdateUserEducationOrganizationsRequest>({
             actionName: 'Update User Education Organization',
-            access_token: actionParams.token,
             data,
-            url
+            url,
+            apiConfig: actionParams.config.api
         })
     
         return result
@@ -350,8 +356,8 @@ const useUserService = () => {
 
         const result = await deleteAsync<DeleteUserEducationOrganizationResponse>({
             actionName: 'Delete User Education Organization',
-            access_token: actionParams.token,
-            url
+            url,
+            apiConfig: actionParams.config.api
         })
 
         return result
