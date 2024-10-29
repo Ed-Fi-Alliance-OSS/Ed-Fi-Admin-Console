@@ -16,7 +16,8 @@ const useDataSyncService = () => {
             actionName: 'Create Connection',
             access_token: actionParams.token,
             data,
-            url
+            url,
+            apiConfig: actionParams.config.api
         })
     
         return result

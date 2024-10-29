@@ -17,7 +17,8 @@ const useEdfiApplicationsService = () => {
         const result = await getAsync<EdfiApplication[]>({
             url,
             actionName: 'Get Edfi Applications List',
-            access_token: actionParams.token
+            access_token: actionParams.token,
+            apiConfig: actionParams.config.api
         })
     
         return result
@@ -31,7 +32,8 @@ const useEdfiApplicationsService = () => {
             url,
             actionName: 'Create Edfi Applications List',
             data,
-            access_token: actionParams.token
+            access_token: actionParams.token,
+            apiConfig: actionParams.config.api
         })
     
         return result
@@ -44,7 +46,8 @@ const useEdfiApplicationsService = () => {
         const result = await deleteAsync<DeleteEdfiApplicationResponse>({
             url,
             actionName: "Delete Edfi Application",
-            access_token: actionParams.token
+            access_token: actionParams.token,
+            apiConfig: actionParams.config.api
         })
 
         return result
@@ -58,7 +61,8 @@ const useEdfiApplicationsService = () => {
             url,
             data,
             actionName: 'Put Edfi application',
-            access_token: actionParams.token
+            access_token: actionParams.token,
+            apiConfig: actionParams.config.api
         })
     
         return result
@@ -72,7 +76,8 @@ const useEdfiApplicationsService = () => {
             url,
             data,
             actionName: 'Reset Edfi Applications List',
-            access_token: actionParams.token
+            access_token: actionParams.token,
+            apiConfig: actionParams.config.api
         })
     
         return result
@@ -83,10 +88,15 @@ const useEdfiApplicationsService = () => {
         const baseUrl = actionParams.edxApiUrl
         // const url = `${baseUrl}/${edfiActionRoutes.getApplicationsListForSchoolyear(actionParams.tenantId, year)}`
         const url = "/mockdata/data-applications.json"
+        // TODO: Adapt to use the structure returned by adminapi
+        //const url = apiConfig?.useLocalMockData ?? true
+        //    ? "/mockdata/data-applications.json"
+        //    : `${baseUrl}/v2/applications`
         const result = await getAsync<EdfiApplication[]>({
             url,
             actionName: 'Get Edfi Applications List',
-            access_token: actionParams.token
+            access_token: actionParams.token,
+            apiConfig: actionParams.config.api
         })
     
         return result
@@ -100,7 +110,8 @@ const useEdfiApplicationsService = () => {
             url,
             actionName: 'Create Ed-Fi Application',
             data,
-            access_token: actionParams.token
+            access_token: actionParams.token,
+            apiConfig: actionParams.config.api
         })
     
         return result
@@ -114,7 +125,8 @@ const useEdfiApplicationsService = () => {
         const result = await deleteAsync<DeleteEdfiApplicationResponse>({
             url,
             actionName: "Delete Edfi Application",
-            access_token: actionParams.token
+            access_token: actionParams.token,
+            apiConfig: actionParams.config.api
         })
 
         return result
@@ -128,7 +140,8 @@ const useEdfiApplicationsService = () => {
             url,
             data,
             actionName: 'Put Edfi application',
-            access_token: actionParams.token
+            access_token: actionParams.token,
+            apiConfig: actionParams.config.api
         })
     
         return result
@@ -142,7 +155,8 @@ const useEdfiApplicationsService = () => {
             url,
             data,
             actionName: 'Reset Credentials For Ed-Fi Application',
-            access_token: actionParams.token
+            access_token: actionParams.token,
+            apiConfig: actionParams.config.api
         })
     
         return result

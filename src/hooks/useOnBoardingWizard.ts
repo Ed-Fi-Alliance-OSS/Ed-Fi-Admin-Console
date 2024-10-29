@@ -336,7 +336,8 @@ const useOnBoardingWizard = () => {
             token,
             tenantId,
             stepNumber,
-            stepStatus
+            stepStatus,
+            apiConfig: edxAppConfig?.api
         })
 
         if (result.tenantId === userProfile?.tenantId)

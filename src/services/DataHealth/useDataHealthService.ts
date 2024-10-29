@@ -15,7 +15,8 @@ const useDataHealthService = () => {
         const result = await getSimpleAsync<GetDataHealthDistrictDetailsResponse>({
             url,
             actionName: 'Get Data Health Info',
-            access_token: actionParams.token
+            access_token: actionParams.token,
+            apiConfig: actionParams.config.api
         })
     
         return result
@@ -28,7 +29,8 @@ const useDataHealthService = () => {
         const result = await getSimpleAsync<GetDataHealthDistrictDetailsResponse>({
             url,
             actionName: 'Get School Year Data Health Info',
-            access_token: actionParams.token
+            access_token: actionParams.token,
+            apiConfig: actionParams.config.api
         })
     
         return result

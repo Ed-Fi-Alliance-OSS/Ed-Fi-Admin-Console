@@ -20,11 +20,15 @@ const useOdsInstanceService = () => {
             queryParams = `${queryParams}&orderBy=${request.orderBy}`
         
         // const url = `${baseUrl}/${odsInstancesActionRoutes.getInstancesList(actionParams.tenantId)}?${queryParams}`
-        const url = '/mockdata/data-odsinstances.json'
+        // const url = '/mockdata/data-odsinstances.json'
+        const url = actionParams.config.api?.useLocalMockData ?? true
+            ? '/mockdata/data-odsinstances.json'
+            : `${baseUrl}/adminconsole/odsinstances`;
         const result = await getAsync<GetOdsInstancesListResponse>({
             url,
             access_token: actionParams.token,
-            actionName: 'Get Instances List'
+            actionName: 'Get Instances List',
+            apiConfig: actionParams.config.api
         })
     
         return result
@@ -43,7 +47,8 @@ const useOdsInstanceService = () => {
         const result = await getAsync<GetOdsInstancesListResponse>({
             url,
             access_token: actionParams.token,
-            actionName: 'Get Instance By Id'
+            actionName: 'Get Instance By Id',
+            apiConfig: actionParams.config.api
         })
     
         return result
@@ -57,7 +62,8 @@ const useOdsInstanceService = () => {
             url,
             actionName: 'Update Is Default Instance',
             access_token: actionParams.token,
-            data
+            data,
+            apiConfig: actionParams.config.api
         })
     
         return result
@@ -71,7 +77,8 @@ const useOdsInstanceService = () => {
             url,
             actionName: "Create Instance Onboarding Step",
             access_token: actionParams.token,
-            data
+            data,
+            apiConfig: actionParams.config.api
         })
 
         return result
@@ -85,7 +92,8 @@ const useOdsInstanceService = () => {
             url,
             actionName: "Update Instance Onboarding Step",
             access_token: actionParams.token,
-            data
+            data,
+            apiConfig: actionParams.config.api
         })
 
         return result
