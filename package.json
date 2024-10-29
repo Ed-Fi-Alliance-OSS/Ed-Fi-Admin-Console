@@ -12,7 +12,7 @@
   "dependencies": {
     "@chakra-ui/icons": "2.1.1",
     "@chakra-ui/react": "2.8.2",
-    "@edfi/admin-console-shared-sdk": "2.2.6-alpha.0.3",
+    "@edfi/admin-console-shared-sdk": "2.2.6-alpha.0.4",
     "@emotion/react": "11.11.3",
     "@emotion/styled": "11.11.0",
     "@fontsource/archivo-narrow": "4.5.12",

@@ -10,7 +10,10 @@ const useODSService = () => {
         const baseUrl = actionParams.edxApiUrl
         // const url = `${baseUrl}/${odsActionsList.getEducationOrganizationsList()}?pageIndex=0&pageSize=10`
         const url = "/mockdata/data-applications.json"
-    
+        // TODO: Adapt to use the structure returned by adminapi
+        //const url = apiConfig?.useLocalMockData ?? false
+        //    ? "/mockdata/data-applications.json"
+        //    : `${baseUrl}/v2/applications`
         const result = await getAsync<EducationOrganization[]>({
             url,
             actionName: 'Get Edfi Applications List',
@@ -25,7 +28,10 @@ const useODSService = () => {
         const baseUrl = actionParams.edxApiUrl
         // const url = `${baseUrl}/${odsActionsList.getDescriptorsList()}?pageIndex=0&pageSize=100`
         const url = "/mockdata/data-applications.json"
-    
+        // TODO: Adapt to use the structure returned by adminapi
+        //const url = apiConfig?.useLocalMockData ?? false
+        //    ? "/mockdata/data-applications.json"
+        //    : `${baseUrl}/v2/applications`
         const result = await getAsync<Descriptor[]>({
             url,
             actionName: 'Get Edfi Applications List',

@@ -3,6 +3,7 @@
     "baseUri": "",
     "edxApiUri": "",
     "dataHealthApiUri": "",
+    "useLocalMockData": false,
     "useAdminApiAuthentication": true,
     "apiKey": "",
     "apiSecret": ""
@@ -37,7 +38,7 @@
     "showEdfiPartnerDelete": false,
     "showEdfiApplicationDelete": false,
     "showEdOrgsTab": false,
-    "useDataHealthWithSchoolYear": false 
+    "useDataHealthWithSchoolYear": false,
   },
   "auth": {
     "authority": "http://localhost:28080/realms/myrealm/",

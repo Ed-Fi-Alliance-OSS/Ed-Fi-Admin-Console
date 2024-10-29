@@ -11,7 +11,9 @@ const useEdfiClaimsetsService = () => {
         const baseUrl = actionParams.edxApiUrl
         // const url = `${baseUrl}/${edfiActionRoutes.getClaimsetsList(actionParams.tenantId)}`
         // const url = '/mockdata/data-claimsets.json'
-        const url = `${baseUrl}/v2/claimSets`
+        const url = actionParams.config.api?.useLocalMockData ?? false
+            ? '/mockdata/data-claimsets.json'
+            : `${baseUrl}/v2/claimSets`
     
         const result = await getAsync<EdfiClaimSet[]>({
             url,

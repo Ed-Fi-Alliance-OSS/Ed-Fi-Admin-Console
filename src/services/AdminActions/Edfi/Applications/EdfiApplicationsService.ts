@@ -88,6 +88,10 @@ const useEdfiApplicationsService = () => {
         const baseUrl = actionParams.edxApiUrl
         // const url = `${baseUrl}/${edfiActionRoutes.getApplicationsListForSchoolyear(actionParams.tenantId, year)}`
         const url = "/mockdata/data-applications.json"
+        // TODO: Adapt to use the structure returned by adminapi
+        //const url = apiConfig?.useLocalMockData ?? false
+        //    ? "/mockdata/data-applications.json"
+        //    : `${baseUrl}/v2/applications`
         const result = await getAsync<EdfiApplication[]>({
             url,
             actionName: 'Get Edfi Applications List',

@@ -2,7 +2,8 @@
   "api": {
       "baseUri": "https://api.txedexchange.dev/tenant",
       "edxApiUri": "https://api.edgraph.dev/tee/tenant",
-      "useAdminApiAuthentication": true,
+      "useLocalMockData": true,
+      "useAdminApiAuthentication": false,
       "apiKey": "",
       "apiSecret": ""
   },

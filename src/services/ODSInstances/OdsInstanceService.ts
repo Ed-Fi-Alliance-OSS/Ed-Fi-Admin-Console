@@ -21,7 +21,9 @@ const useOdsInstanceService = () => {
         
         // const url = `${baseUrl}/${odsInstancesActionRoutes.getInstancesList(actionParams.tenantId)}?${queryParams}`
         // const url = '/mockdata/data-odsinstances.json'
-        const url = `${baseUrl}/adminconsole/odsinstances`;
+        const url = actionParams.config.api?.useLocalMockData ?? false
+            ? '/mockdata/data-odsinstances.json'
+            : `${baseUrl}/adminconsole/odsinstances`;
         const result = await getAsync<GetOdsInstancesListResponse>({
             url,
             access_token: actionParams.token,

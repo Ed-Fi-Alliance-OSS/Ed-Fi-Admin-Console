@@ -73,7 +73,9 @@ const useEdfiVendorsService = () => {
         const baseUrl = actionParams.edxApiUrl
         // const url = `${baseUrl}/${edfiActionRoutes.getVendorsListForSchoolYear(actionParams.tenantId, year)}`
         // const url = "/mockdata/data-vendors.json"
-        const url = `${baseUrl}/v2/vendors`
+        const url = actionParams.config.api?.useLocalMockData ?? false
+            ? "/mockdata/data-vendors.json"
+            : `${baseUrl}/v2/vendors`
 
         const result = await getAsync<EdfiVendor[]>({
             url,

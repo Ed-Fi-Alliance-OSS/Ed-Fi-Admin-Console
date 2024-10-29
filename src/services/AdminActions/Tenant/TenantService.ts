@@ -15,7 +15,9 @@ const useTenantService = () => {
         const baseUrl = actionParams.edxApiUrl
         // const url = `${baseUrl}/${adminActionRoutes.getTenant(actionParams.tenantId)}`
         //const url = '/mockdata/data-tenants.json'
-        const url = `${baseUrl}/adminconsole/tenants`
+        const url = actionParams.config.api?.useLocalMockData ?? false
+            ? '/mockdata/data-tenants.json'
+            : `${baseUrl}/adminconsole/tenants`
     
         const result = await getAsync<GetTenantResponse>({
             url,
