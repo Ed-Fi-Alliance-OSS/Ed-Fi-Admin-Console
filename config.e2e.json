@@ -1,30 +1,30 @@
 {
-    "api": {
-        "baseUri": "https://api.txedexchange.dev/tenant",
-        "edxApiUri": "https://api.edgraph.dev/tee/tenant",
-        "useAdminApiAuthentication": true,
-        "apiKey": "",
-        "apiSecret": ""
-    },
-    "app": {
-      "name": "The Exchange",
-      "subtitle": "Tech Console",
-      "basePath": "",
-      "showDataHealth": false,
-      "showAdvancedTabs": true,
-      "allowDebug": true,
-      "notificationsApplicationId": "z2WFYMjyRNEI"
-    },
-    "auth": {
-      "authority": "https://login.txedexchange.dev",
-      "clientId": "ekj1TKCkptr9BRHNh1EBIBykE7sYFQul",
-      "redirectUri": "http://localhost:8598/callback",
-      "silentRedirectUri": "http://localhost:8598/silent-renew",
-      "postLogoutRedirectUri": "http://localhost:8598",
-      "scope": "openid profile offline_access email phone https://api.edgraph.com/auth/tenant",
-      "responseType": "code",
-      "loadUserInfo": false,
-      "automaticSilentRenew": true,
-      "automaticSilentSignin": true
-    }
+  "api": {
+      "baseUri": "https://api.txedexchange.dev/tenant",
+      "edxApiUri": "https://api.edgraph.dev/tee/tenant",
+      "useAdminApiAuthentication": true,
+      "apiKey": "",
+      "apiSecret": ""
+  },
+  "app": {
+    "name": "The Exchange",
+    "subtitle": "Tech Console",
+    "basePath": "",
+    "showDataHealth": false,
+    "showAdvancedTabs": true,
+    "allowDebug": true,
+    "notificationsApplicationId": "z2WFYMjyRNEI"
+  },
+  "auth": {
+    "authority": "https://login.txedexchange.dev",
+    "clientId": "ekj1TKCkptr9BRHNh1EBIBykE7sYFQul",
+    "redirectUri": "http://localhost:8598/callback",
+    "silentRedirectUri": "http://localhost:8598/silent-renew",
+    "postLogoutRedirectUri": "http://localhost:8598",
+    "scope": "openid profile offline_access email phone https://api.edgraph.com/auth/tenant",
+    "responseType": "code",
+    "loadUserInfo": false,
+    "automaticSilentRenew": true,
+    "automaticSilentSignin": true
+  }
 }
