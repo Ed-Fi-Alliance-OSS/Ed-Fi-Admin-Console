@@ -2,7 +2,11 @@
   "api": {
     "baseUri": "",
     "edxApiUri": "",
-    "dataHealthApiUri": ""
+    "dataHealthApiUri": "",
+    "useLocalMockData": false,
+    "useAdminApiAuthentication": true,
+    "apiKey": "",
+    "apiSecret": ""
   },
   "app": {
     "name": "Acme Service Center",
@@ -34,7 +38,7 @@
     "showEdfiPartnerDelete": false,
     "showEdfiApplicationDelete": false,
     "showEdOrgsTab": false,
-    "useDataHealthWithSchoolYear": false 
+    "useDataHealthWithSchoolYear": false,
   },
   "auth": {
     "authority": "http://localhost:28080/realms/myrealm/",
