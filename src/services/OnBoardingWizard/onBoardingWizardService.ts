@@ -7,7 +7,7 @@ import { Api } from "@edfi/admin-console-shared-sdk/dist/core/EdxApp.types"
 const fetchOnBoardingWizardData = async ({ apiUrl, tenantId, token, apiConfig }: FetchOnBoardingWizardData) => {
     // const currentTenantUrl = `${apiUrl}/tenants/${tenantId}`
     //const currentTenantUrl = `/mockdata/data-tenant.json`
-    const currentTenantUrl = apiConfig?.useLocalMockData ?? false
+    const currentTenantUrl = apiConfig?.useLocalMockData ?? true
         ? `/mockdata/data-tenant.json`
         : `${apiConfig?.baseUri ?? ''}/adminconsole/tenant?id=1`;
     const authorizationToken = await includeAuthorization(token, apiConfig);

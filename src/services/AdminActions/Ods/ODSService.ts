@@ -11,7 +11,7 @@ const useODSService = () => {
         // const url = `${baseUrl}/${odsActionsList.getEducationOrganizationsList()}?pageIndex=0&pageSize=10`
         const url = "/mockdata/data-applications.json"
         // TODO: Adapt to use the structure returned by adminapi
-        //const url = apiConfig?.useLocalMockData ?? false
+        //const url = apiConfig?.useLocalMockData ?? true
         //    ? "/mockdata/data-applications.json"
         //    : `${baseUrl}/v2/applications`
         const result = await getAsync<EducationOrganization[]>({
@@ -29,7 +29,7 @@ const useODSService = () => {
         // const url = `${baseUrl}/${odsActionsList.getDescriptorsList()}?pageIndex=0&pageSize=100`
         const url = "/mockdata/data-applications.json"
         // TODO: Adapt to use the structure returned by adminapi
-        //const url = apiConfig?.useLocalMockData ?? false
+        //const url = apiConfig?.useLocalMockData ?? true
         //    ? "/mockdata/data-applications.json"
         //    : `${baseUrl}/v2/applications`
         const result = await getAsync<Descriptor[]>({
