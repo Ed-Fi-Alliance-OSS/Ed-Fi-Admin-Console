@@ -1,5 +1,5 @@
-import { Api } from '@edfi/admin-console-shared-sdk/dist/core/EdxApp.types'
-import { OnBoardingStepStatus } from '../../core/onBoardingWizard/onBoardingWizard.types'
+import { Api } from "@edfi/admin-console-shared-sdk/dist/core/EdxApp.types"
+import { OnBoardingStepStatus } from "../../core/onBoardingWizard/onBoardingWizard.types"
 
 export interface FetchOnBoardingWizardData {
     token: string 

@@ -1,6 +1,6 @@
-import { Api } from '@edfi/admin-console-shared-sdk/dist/core/EdxApp.types'
+import { Api } from "@edfi/admin-console-shared-sdk/dist/core/EdxApp.types"
 
-export type OnBoardingStepStatus = 'Pending' | 'Completed' | 'InProgress'
+export type OnBoardingStepStatus = "Pending" | "Completed" | "InProgress"
 
 export interface StepData {
     index: number 
