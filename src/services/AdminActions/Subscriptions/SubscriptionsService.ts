@@ -28,7 +28,8 @@ const useSubscriptionsService = () => {
         const result = await getAsync<GetSubscriptionsListResponse>({ 
             access_token: actionParams.token,
             actionName: ' Get Subscriptions List', 
-            url
+            url,
+            apiConfig: actionParams.config.api
         })
     
         if (result.type === 'Response') {
@@ -51,7 +52,8 @@ const useSubscriptionsService = () => {
             access_token: actionParams.token,
             actionName: ' Get Subscriptions List', 
             data,
-            url
+            url,
+            apiConfig: actionParams.config.api
         })
     
         return result
@@ -65,7 +67,8 @@ const useSubscriptionsService = () => {
             access_token: actionParams.token,
             actionName: "Update Subscription",
             data,
-            url
+            url,
+            apiConfig: actionParams.config.api
         })
     
         return result
