@@ -7,11 +7,15 @@ const usePermissionsService = () => {
 
     const checkPermissions = async (actionParams: ActionParams) : GetPermissionsResult => {
         //const url = `${actionParams.edxApiUrl}/verifypermission`
-        const url = "/mockdata/data-permissions.json"
+        //const url = "/mockdata/data-permissions.json"
+        const url = actionParams.config.api?.useLocalMockData ?? true
+            ? "/mockdata/data-permissions.json"
+            : `${actionParams?.config?.api?.baseUri ?? ''}/adminconsole/permissions`;
         const result = await getAsync<GetPermissionsResult>({
             url,
             actionName: 'Verify Permissions',
-            access_token: actionParams.token
+            access_token: actionParams.token,
+            apiConfig: actionParams.config.api
         })
 
         return result

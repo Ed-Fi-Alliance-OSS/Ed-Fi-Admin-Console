@@ -18,7 +18,8 @@ const useEdfiVendorsService = () => {
         const result = await getAsync<EdfiVendor[]>({
             url,
             actionName: 'Get Vendors List',
-            access_token: actionParams.token
+            access_token: actionParams.token,
+            apiConfig: actionParams.config.api
         })
     
         return result
@@ -31,7 +32,8 @@ const useEdfiVendorsService = () => {
         const result = await getAsync<EdfiApplication[]>({
             url,
             actionName: 'Get Vendor Applications List',
-            access_token: actionParams.token
+            access_token: actionParams.token,
+            apiConfig: actionParams.config.api
         })
     
         return result
@@ -45,7 +47,8 @@ const useEdfiVendorsService = () => {
             url,
             actionName: 'Create Vendor',
             data,
-            access_token: actionParams.token
+            access_token: actionParams.token,
+            apiConfig: actionParams.config.api
         })
     
         return result
@@ -58,7 +61,8 @@ const useEdfiVendorsService = () => {
         const result = await deleteAsync<DeleteEdfiVendorResponse>({
             url,
             actionName: "Delete Vendor",
-            access_token: actionParams.token
+            access_token: actionParams.token,
+            apiConfig: actionParams.config.api
         })
 
         return result
@@ -68,12 +72,16 @@ const useEdfiVendorsService = () => {
     const getVendorsListForSchoolYear = async (actionParams: EdfiActionParams, year: number): GetVendorsListResult => {
         const baseUrl = actionParams.edxApiUrl
         // const url = `${baseUrl}/${edfiActionRoutes.getVendorsListForSchoolYear(actionParams.tenantId, year)}`
-        const url = "/mockdata/data-vendors.json"
+        // const url = "/mockdata/data-vendors.json"
+        const url = actionParams.config.api?.useLocalMockData ?? true
+            ? "/mockdata/data-vendors.json"
+            : `${baseUrl}/v2/vendors`
 
         const result = await getAsync<EdfiVendor[]>({
             url,
             actionName: 'Get Vendors List',
-            access_token: actionParams.token
+            access_token: actionParams.token,
+            apiConfig: actionParams.config.api
         })
     
         return result
@@ -86,7 +94,8 @@ const useEdfiVendorsService = () => {
         const result = await getAsync<EdfiApplication[]>({
             url,
             actionName: 'Get Vendor Applications List',
-            access_token: actionParams.token
+            access_token: actionParams.token,
+            apiConfig: actionParams.config.api
         })
     
         return result
@@ -100,7 +109,8 @@ const useEdfiVendorsService = () => {
             url,
             actionName: 'Create Vendor',
             data,
-            access_token: actionParams.token
+            access_token: actionParams.token,
+            apiConfig: actionParams.config.api
         })
     
         return result
@@ -113,7 +123,8 @@ const useEdfiVendorsService = () => {
         const result = await deleteAsync<DeleteEdfiVendorResponse>({
             url,
             actionName: "Delete Vendor",
-            access_token: actionParams.token
+            access_token: actionParams.token,
+            apiConfig: actionParams.config.api
         })
 
         return result

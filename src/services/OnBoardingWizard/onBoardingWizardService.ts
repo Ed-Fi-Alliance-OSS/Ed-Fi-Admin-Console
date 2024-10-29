@@ -1,22 +1,21 @@
 import axios, { AxiosError } from "axios"
 import { OnBoardingWizardData } from "../../core/onBoardingWizard/onBoardingWizard.types"
 import { AddStepProps, AddStepRequestData, FetchOnBoardingWizardData, UpdateOnBoardingWizardDataProps, UpdateOnBoardingWizardDataRequest } from "./onBoardingWizardService.types"
+import { includeAuthorization } from "@edfi/admin-console-shared-sdk" 
+import { Api } from "@edfi/admin-console-shared-sdk/dist/core/EdxApp.types"
 
-const fetchOnBoardingWizardData = async ({ apiUrl, tenantId, token }: FetchOnBoardingWizardData) => {
+const fetchOnBoardingWizardData = async ({ apiUrl, tenantId, token, apiConfig }: FetchOnBoardingWizardData) => {
     // const currentTenantUrl = `${apiUrl}/tenants/${tenantId}`
-    const currentTenantUrl = `/mockdata/data-tenant.json`
-
+    //const currentTenantUrl = `/mockdata/data-tenant.json`
+    const currentTenantUrl = apiConfig?.useLocalMockData ?? true
+        ? `/mockdata/data-tenant.json`
+        : `${apiConfig?.baseUri ?? ''}/adminconsole/tenant?id=1`;
+    const authorizationToken = await includeAuthorization(token, apiConfig);
     try {
-        if (token) {
-            const response = await axios.get(currentTenantUrl, {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            })
-            
+        if(authorizationToken) {
+            const response = await axios.get(currentTenantUrl, authorizationToken)
             return response.data["onboarding"] as OnBoardingWizardData
         }
-
         return null
     }
     catch(e) {
@@ -79,30 +78,25 @@ const fetchOnBoardingWizardData = async ({ apiUrl, tenantId, token }: FetchOnBoa
     }
 }
 
-const updateOnBoardingWizardStep = async ({ apiUrl, tenantId, token, stepStatus, stepNumber }: UpdateOnBoardingWizardDataProps) => {
+const updateOnBoardingWizardStep = async ({ apiUrl, tenantId, token, stepStatus, stepNumber, apiConfig }: UpdateOnBoardingWizardDataProps) => {
     // const updateOnBoardingWizardDataUrl = `${apiUrl}/tenants/${tenantId}/onboardingsteps/${stepNumber}`
-    const updateOnBoardingWizardDataUrl = `data-step.json`
+    // const updateOnBoardingWizardDataUrl = `data-step.json`
+    const updateOnBoardingWizardDataUrl = `${apiConfig?.baseUri ?? ''}/adminconsole/step`
 
     // console.log('update on boarding wizard step (service): stepNumber', stepNumber)
     // console.log('update on boarding wizard step (service): url', updateOnBoardingWizardDataUrl)
-
+    const authorizationToken = await includeAuthorization(token, apiConfig);
     try {
-        if (token) {
+        if(authorizationToken) {
             const data: UpdateOnBoardingWizardDataRequest = {
                 tenantId,
                 number: stepNumber,
                 status: stepStatus
             }
-
-            const response = await axios.put(updateOnBoardingWizardDataUrl, data ,{
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            })
+            const response = await axios.put(updateOnBoardingWizardDataUrl, data, authorizationToken)
             
             return response.data
         }
-
         return null
     }
     catch(e) {
@@ -117,30 +111,30 @@ const updateOnBoardingWizardStep = async ({ apiUrl, tenantId, token, stepStatus,
     }
 }
 
-const createOnBoardingWizardStep = async ({ apiUrl, tenantId, token, number, status, description }: AddStepProps) => {
+const createOnBoardingWizardStep = async ({ apiUrl, tenantId, token, number, status, description, apiConfig }: AddStepProps) => {
     // console.log('create onboarding wizard step')
 
-    const createStepUrl = `data-steps.json`
-
+    // const createStepUrl = `data-steps.json`
+    const createStepUrl = `${apiConfig?.baseUri ?? ''}/adminconsole/steps`
+    const authorizationToken = await includeAuthorization(token, apiConfig);
     try {
-        const requestData: AddStepRequestData = {
-            tenantId,
-            number,
-            status,
-            description
-        }
-
-        // console.log("request create step data", requestData)
-
-        const result = await axios.post(createStepUrl, requestData, {
-            headers: {
-                Authorization: `Bearer ${token}`
+        if(authorizationToken){
+            const requestData: AddStepRequestData = {
+                tenantId,
+                number,
+                status,
+                description
             }
-        })
 
-        // console.log("created step result", result.data)
+            // console.log("request create step data", requestData)
+            
+            const result = await axios.post(createStepUrl, requestData, authorizationToken)
 
-        return true
+            // console.log("created step result", result.data)
+
+            return true
+        }
+        return null;
     }
     catch(ex) {
         if (ex instanceof AxiosError) {

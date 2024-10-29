@@ -1,3 +1,4 @@
+import { Api } from "@edfi/admin-console-shared-sdk/dist/core/EdxApp.types";
 import { HttpServiceRequestError, HttpServiceResponse } from "./HttpService.response.types";
 
 export type HttpServiceMethod = 'Get' | 'Post' | 'Put'
@@ -7,6 +8,7 @@ export interface HttpServiceRequest {
     access_token?: string 
     actionName: string 
     options?: object
+    apiConfig?: Api
 }
 
 export interface HttpServiceGetRequest extends HttpServiceRequest {}

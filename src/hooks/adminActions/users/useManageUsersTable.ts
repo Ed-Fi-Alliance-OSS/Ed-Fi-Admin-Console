@@ -78,9 +78,10 @@ const useManageUsersTable = () => {
         const url = `${baseUrl}/${adminActionRoutes.getInvitationsList(actionParams.tenantId)}?${queryParams}`
         
         const result = await getAsync<GetInvitationsListResponse>({ 
-            actionName: "Get Invitations List",  
+            actionName: "Get Invitations List",
             access_token: actionParams.token,
-            url
+            url,
+            apiConfig: actionParams.config.api
         })
     
         return result

@@ -12,9 +12,10 @@ const useEdfiVersionService = () => {
         const url = `${baseUrl}/${edfiActionRoutes.getVersion(actionParams.tenantId)}`
     
         const result = await getAsync<GetEdfiVersionResponse>({ 
-            actionName: "Get Edfi API Version",  
+            actionName: "Get Edfi API Version",
+            url,
             access_token: actionParams.token,
-            url
+            apiConfig: actionParams.config.api
         })
     
         return result
