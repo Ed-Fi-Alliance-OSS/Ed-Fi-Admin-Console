@@ -36,6 +36,7 @@
     "showEdOrgsTab": false,
     "useDataHealthWithSchoolYear": false 
   },
+  "plugins": [],
   "auth": {
     "authority": "http://localhost:28080/realms/myrealm/",
     "clientId": "ac",
