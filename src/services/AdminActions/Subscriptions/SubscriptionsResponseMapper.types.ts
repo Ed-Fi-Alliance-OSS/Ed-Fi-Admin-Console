@@ -1,4 +1,4 @@
-import { Subscription } from "../../../core/Subscription.types"
+import { Subscription } from '../../../core/Subscription.types'
 
 export interface SubscriptionsListData {
     count: number 

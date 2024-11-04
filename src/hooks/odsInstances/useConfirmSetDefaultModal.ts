@@ -1,16 +1,16 @@
-import { useState } from "react"
+import { useState } from 'react'
 
 const useConfirmSetDefaultModal = () => {
-    const [showConfirmSetDefaultModal, setShowConfirmSetDefaultModal] = useState(false)
+  const [showConfirmSetDefaultModal, setShowConfirmSetDefaultModal] = useState(false)
 
-    const onShowConfirmSetDefaultModal = () => setShowConfirmSetDefaultModal(true)
-    const onCloseConfirmSetDefaultModal = () => setShowConfirmSetDefaultModal(false)
+  const onShowConfirmSetDefaultModal = () => setShowConfirmSetDefaultModal(true)
+  const onCloseConfirmSetDefaultModal = () => setShowConfirmSetDefaultModal(false)
 
-    return {
-        showConfirmSetDefaultModal,
-        onShowConfirmSetDefaultModal,
-        onCloseConfirmSetDefaultModal
-    }
+  return {
+    showConfirmSetDefaultModal,
+    onShowConfirmSetDefaultModal,
+    onCloseConfirmSetDefaultModal
+  }
 }
 
 export default useConfirmSetDefaultModal

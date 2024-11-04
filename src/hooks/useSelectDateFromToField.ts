@@ -1,27 +1,27 @@
-import { useState } from "react"
+import { useState } from 'react'
 
 const useSelectDateFromToField = () => {
-    const [startDate, setStartDate] = useState<Date | null>(null)
-    const [endDate, setEndDate] = useState<Date | null>(null)
+  const [startDate, setStartDate] = useState<Date | null>(null)
+  const [endDate, setEndDate] = useState<Date | null>(null)
 
-    const handleUpdateStartDate = (date: Date) => {
-        setStartDate(date)
+  const handleUpdateStartDate = (date: Date) => {
+    setStartDate(date)
 
-        return null
-    }
+    return null
+  }
 
-    const handleUpdateEndDate = (date: Date) => {
-        setEndDate(date)
+  const handleUpdateEndDate = (date: Date) => {
+    setEndDate(date)
 
-        return null
-    }
+    return null
+  }
 
-    return {
-        startDate,
-        endDate,
-        handleUpdateStartDate,
-        handleUpdateEndDate
-    }
+  return {
+    startDate,
+    endDate,
+    handleUpdateStartDate,
+    handleUpdateEndDate
+  }
 }
 
 export default useSelectDateFromToField

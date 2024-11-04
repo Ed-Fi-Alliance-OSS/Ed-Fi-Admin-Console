@@ -1,6 +1,6 @@
-import { OnBoardingWizardData } from "../../../core/onBoardingWizard/onBoardingWizard.types"
-import { Subscription } from "../../../core/Subscription.types"
-import { Organization, TenantSetting } from "../../../core/Tenant.types"
+import { OnBoardingWizardData } from '../../../core/onBoardingWizard/onBoardingWizard.types'
+import { Subscription } from '../../../core/Subscription.types'
+import { Organization, TenantSetting } from '../../../core/Tenant.types'
 
 export interface IntTenantDomain {
     domainStatus: number

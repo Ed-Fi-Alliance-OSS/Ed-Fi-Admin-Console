@@ -1,4 +1,4 @@
-import { EdFiConnectionVerificationStatus } from "../../edfi/useEdFiConnectionForm.types"
+import { EdFiConnectionVerificationStatus } from '../../edfi/useEdFiConnectionForm.types'
 
 export interface EdFiSettingsConnectionsTableItem {
     connectionId: string 

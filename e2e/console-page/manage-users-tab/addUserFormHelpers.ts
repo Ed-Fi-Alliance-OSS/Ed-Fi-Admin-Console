@@ -1,4 +1,4 @@
-import { Page } from "@playwright/test"
+import { Page } from '@playwright/test'
 
 interface FillAddUserFormParams {
     page: Page
@@ -9,16 +9,16 @@ interface FillAddUserFormParams {
 }
 
 const fillAddUserForm = async ({ page, firstName, lastName, email, role }: FillAddUserFormParams) => {
-    if (firstName)
-        await page.getByLabel("First Name").fill(firstName)
-    if (lastName)
-        await page.getByLabel("Last Name").fill(lastName)
-    if (email)
-        await page.getByLabel("Email").fill(email)
-    if (role === 'admin')
-        await page.getByLabel("Role").selectOption("Tenant.Admin")
+  if (firstName)
+    await page.getByLabel('First Name').fill(firstName)
+  if (lastName)
+    await page.getByLabel('Last Name').fill(lastName)
+  if (email)
+    await page.getByLabel('Email').fill(email)
+  if (role === 'admin')
+    await page.getByLabel('Role').selectOption('Tenant.Admin')
 }
 
 export {
-    fillAddUserForm
+  fillAddUserForm
 }

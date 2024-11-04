@@ -1,10 +1,10 @@
-import { CreateEdfiVendorRequest } from "../../../services/AdminActions/Edfi/Vendors/EdfiVendorsService.requests"
+import { CreateEdfiVendorRequest } from '../../../services/AdminActions/Edfi/Vendors/EdfiVendorsService.requests'
 
 const initialPartnerData: CreateEdfiVendorRequest = {
-    company: '',
-    contactName: '',
-    contactEmailAddress: '',
-    namespacePrefixes: ''
+  company: '',
+  contactName: '',
+  contactEmailAddress: '',
+  namespacePrefixes: ''
 }
 
 export default initialPartnerData

@@ -1,18 +1,18 @@
-import { EdxAppConfig } from "@edfi/admin-console-shared-sdk"
-import { AdminActionsAPISource } from "../sourceEndpoint"
+import { EdxAppConfig } from '@edfi/admin-console-shared-sdk'
+import { AdminActionsAPISource } from '../sourceEndpoint'
 
 const getCurrentEnv = (config: EdxAppConfig): AdminActionsAPISource => {
-    if (config.auth.postLogoutRedirectUri) {
-        if (config.auth.postLogoutRedirectUri.includes("localhost"))
-            return 'local'
+  if (config.auth.postLogoutRedirectUri) {
+    if (config.auth.postLogoutRedirectUri.includes('localhost'))
+      return 'local'
     
-        if (config.auth.postLogoutRedirectUri.includes("dev"))
-            return 'dev'
+    if (config.auth.postLogoutRedirectUri.includes('dev'))
+      return 'dev'
 
-        return 'prod'
-    }
+    return 'prod'
+  }
 
-    return 'local'
+  return 'local'
 }
 
 export default getCurrentEnv

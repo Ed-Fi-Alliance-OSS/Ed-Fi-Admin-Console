@@ -1,7 +1,7 @@
-const verifyDomainPrefix = "verifydomain"
+const verifyDomainPrefix = 'verifydomain'
 
 const dnsActionRoutes = {
-    checkDomain: () => `${verifyDomainPrefix}`,
+  checkDomain: () => `${verifyDomainPrefix}`,
 }
 
 export default dnsActionRoutes
