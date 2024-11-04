@@ -1,27 +1,27 @@
-import { Flex, Heading } from "@chakra-ui/react"
-import { useContext } from "react"
-import { adminConsoleContext } from "../../../context/adminConsoleContext"
-import { ODSInstance } from "../../../core/ODSInstance.types"
-import useOdsInstanceDisplayYear from "../../../hooks/odsInstances/useOdsInstanceYearName"
-import useExternalODSData from "../../../hooks/useExternalODSData"
-import AdminConsoleTabsMenu from "../AdminConsoleTabsMenu"
-import EdFiSettingsTabContent from "../EdFi/EdFiSettingsTabContent"
-import ConfirmSetDefaultInstanceModal from "../ODS/ConfirmSetDefaultInstanceModal"
-import ODSInstanceDynamicIsDefaultBtn from "../ODS/ODSInstanceDynamicIsDefaultBtn"
-import TabContentWrapper from "../TabContentWrapper"
-import DataManagementTabContent from "./DataManagementTabContent"
-import InstanceLoadingContent from "./InstanceLoadingContent"
-import InstanceSummaryTabContent from "./InstanceSummaryTabContent"
-import PartnersAndApplicationTabContent from "./PartnersAndApplicationTabContent"
-import SetUpInstanceModal from "../ODS/SetUpInstanceModal"
-import useOdsInstanceDescription from "../../../hooks/odsInstances/useOdsInstanceDescription"
-import useOdsInstanceEdFiStatus from "../../../hooks/odsInstances/useOdsInstanceEdFiStatus"
-import useOdsInstanceYear from "../../../hooks/odsInstances/useOdsInstanceYear"
+import { Flex, Heading } from '@chakra-ui/react'
+import { useContext } from 'react'
+import { adminConsoleContext } from '../../../context/adminConsoleContext'
+import { ODSInstance } from '../../../core/ODSInstance.types'
+import useOdsInstanceDisplayYear from '../../../hooks/odsInstances/useOdsInstanceYearName'
+import useExternalODSData from '../../../hooks/useExternalODSData'
+import AdminConsoleTabsMenu from '../AdminConsoleTabsMenu'
+import EdFiSettingsTabContent from '../EdFi/EdFiSettingsTabContent'
+import ConfirmSetDefaultInstanceModal from '../ODS/ConfirmSetDefaultInstanceModal'
+import ODSInstanceDynamicIsDefaultBtn from '../ODS/ODSInstanceDynamicIsDefaultBtn'
+import TabContentWrapper from '../TabContentWrapper'
+import DataManagementTabContent from './DataManagementTabContent'
+import InstanceLoadingContent from './InstanceLoadingContent'
+import InstanceSummaryTabContent from './InstanceSummaryTabContent'
+import PartnersAndApplicationTabContent from './PartnersAndApplicationTabContent'
+import SetUpInstanceModal from '../ODS/SetUpInstanceModal'
+import useOdsInstanceDescription from '../../../hooks/odsInstances/useOdsInstanceDescription'
+import useOdsInstanceEdFiStatus from '../../../hooks/odsInstances/useOdsInstanceEdFiStatus'
+import useOdsInstanceYear from '../../../hooks/odsInstances/useOdsInstanceYear'
 
 const tabsList = [
-    'Summary',
-    'Partners & Applications',
-    'Data Management (Advanced)'
+  'Summary',
+  'Partners & Applications',
+  'Data Management (Advanced)'
 ]
 
 interface InstanceTabsMenuProps {
@@ -38,120 +38,120 @@ interface InstanceTabsMenuProps {
 }
 
 const InstanceTabsMenu = ({ instance, showConfirmSetDefaultModal, showSetUpWizardModal, canSetAsDefault, updatingInstance, onSetIsDefault, onCloseSetUpWizardModal, onShowSetUpWizardModal, onShowConfirmSetDefaultModal, onCloseConfirmSetDefaultModal }: InstanceTabsMenuProps) => {
-    const adminConfig = useContext(adminConsoleContext)
-    const { getDisplayYear } = useOdsInstanceDisplayYear()
-    const { getInstanceYear } = useOdsInstanceYear()
-    const { externalODS } = useExternalODSData()
+  const adminConfig = useContext(adminConsoleContext)
+  const { getDisplayYear } = useOdsInstanceDisplayYear()
+  const { getInstanceYear } = useOdsInstanceYear()
+  const { externalODS } = useExternalODSData()
 
-    const { 
-        instanceOdsMetadata 
-    } = useOdsInstanceDescription({ instance })
+  const { 
+    instanceOdsMetadata 
+  } = useOdsInstanceDescription({ instance })
 
-    const { getOdsInstanceEdFiStatus } = useOdsInstanceEdFiStatus({
-        instance,
-        edFiMetadata: instanceOdsMetadata
-    })
+  const { getOdsInstanceEdFiStatus } = useOdsInstanceEdFiStatus({
+    instance,
+    edFiMetadata: instanceOdsMetadata
+  })
 
-    const selectTabs = (tabName: string) => {
-        if (tabName === 'Data Management (Advanced)') {
-            if (adminConfig && adminConfig.showAdvancedTabs)
-                return true
-
-            return false
-        }
-
-        if (tabName == 'Partners & Applications')
-            return showPartnersTab()
-
+  const selectTabs = (tabName: string) => {
+    if (tabName === 'Data Management (Advanced)') {
+      if (adminConfig && adminConfig.showAdvancedTabs)
         return true
+
+      return false
     }
 
-    const updateTabs = (tabName: string, index: number) => {
-        if (externalODS.isExternalODS && index === 1)
-            return "Applications"
+    if (tabName == 'Partners & Applications')
+      return showPartnersTab()
 
-        return tabName
-    }
+    return true
+  }
 
-    const showPartnersTab = (): boolean => {
-        const odsInstanceEdFiStatus = getOdsInstanceEdFiStatus()
+  const updateTabs = (tabName: string, index: number) => {
+    if (externalODS.isExternalODS && index === 1)
+      return 'Applications'
 
-        console.log("show partners tab", odsInstanceEdFiStatus)
+    return tabName
+  }
 
-        if (odsInstanceEdFiStatus.onboardingStatus == 'Empty')
-            return false
+  const showPartnersTab = (): boolean => {
+    const odsInstanceEdFiStatus = getOdsInstanceEdFiStatus()
 
-        if (odsInstanceEdFiStatus.operationStatus == 'Outage')
-            return false
+    console.log('show partners tab', odsInstanceEdFiStatus)
 
-        return true
-    }
+    if (odsInstanceEdFiStatus.onboardingStatus == 'Empty')
+      return false
 
-    const getSchoolYear = () => {
-        if (!instance)
-            return 0 
+    if (odsInstanceEdFiStatus.operationStatus == 'Outage')
+      return false
 
-        const year = getInstanceYear(instance)
+    return true
+  }
 
-        if (!year)
-            return 0
+  const getSchoolYear = () => {
+    if (!instance)
+      return 0 
 
-        return year
-    }
+    const year = getInstanceYear(instance)
 
-    return (
-        <Flex flexDir='column' w='full'>
-            { instance && <ConfirmSetDefaultInstanceModal
-                show={showConfirmSetDefaultModal}
-                instance={instance}
-                updatingInstance={updatingInstance}
-                onSetIsDefault={onSetIsDefault}
-                onClose={onCloseConfirmSetDefaultModal} />}
+    if (!year)
+      return 0
 
-            { instance && <SetUpInstanceModal 
-                instance={instance} 
-                show={showSetUpWizardModal} 
-                onClose={onCloseSetUpWizardModal} /> }
+    return year
+  }
+
+  return (
+    <Flex flexDir='column' w='full'>
+      { instance && <ConfirmSetDefaultInstanceModal
+        show={showConfirmSetDefaultModal}
+        instance={instance}
+        updatingInstance={updatingInstance}
+        onSetIsDefault={onSetIsDefault}
+        onClose={onCloseConfirmSetDefaultModal} />}
+
+      { instance && <SetUpInstanceModal 
+        instance={instance} 
+        show={showSetUpWizardModal} 
+        onClose={onCloseSetUpWizardModal} /> }
                 
-            <Heading
-                size='lg'
-                mt='5px'>
-                    { instance? getDisplayYear(instance) : "Loading..."}
-            </Heading>
-            <Flex mt='24px' w='full'>
-                    <Flex className="spaec" position='relative' alignItems='flex-start' justifyContent='space-between' w='full'>
-                        <AdminConsoleTabsMenu 
-                            includeWrapper={false}
-                            tabsList={tabsList.filter(tab => selectTabs(tab)).map((tab, index) => updateTabs(tab, index))}
-                            initialIndex={0}
-                            actionControl={<>
-                                { instance && <ODSInstanceDynamicIsDefaultBtn
-                                    instance={instance}
-                                    canSetDefault={canSetAsDefault}
-                                    onOpenIsDefaultModal={onShowConfirmSetDefaultModal} 
-                                    onShowSetUpWizardModal={onShowSetUpWizardModal} /> }
-                            </>}>
-                                <TabContentWrapper>
-                                    { instance? <InstanceSummaryTabContent 
-                                        instance={instance} /> 
-                                        : 
-                                        <InstanceLoadingContent /> }
-                                </TabContentWrapper>
-                                <TabContentWrapper>
-                                    { externalODS.isExternalODS? 
-                                        <EdFiSettingsTabContent /> : 
-                                        <PartnersAndApplicationTabContent
-                                            instance={instance}
-                                            schoolYear={getSchoolYear()} /> }
-                                </TabContentWrapper>
-                                <TabContentWrapper>
-                                    <DataManagementTabContent />
-                                </TabContentWrapper>
-                        </AdminConsoleTabsMenu>
-                    </Flex>
-                </Flex>
+      <Heading
+        size='lg'
+        mt='5px'>
+        { instance? getDisplayYear(instance) : 'Loading...'}
+      </Heading>
+      <Flex mt='24px' w='full'>
+        <Flex className="spaec" position='relative' alignItems='flex-start' justifyContent='space-between' w='full'>
+          <AdminConsoleTabsMenu 
+            includeWrapper={false}
+            tabsList={tabsList.filter(tab => selectTabs(tab)).map((tab, index) => updateTabs(tab, index))}
+            initialIndex={0}
+            actionControl={<>
+              { instance && <ODSInstanceDynamicIsDefaultBtn
+                instance={instance}
+                canSetDefault={canSetAsDefault}
+                onOpenIsDefaultModal={onShowConfirmSetDefaultModal} 
+                onShowSetUpWizardModal={onShowSetUpWizardModal} /> }
+            </>}>
+            <TabContentWrapper>
+              { instance? <InstanceSummaryTabContent 
+                instance={instance} /> 
+                : 
+                <InstanceLoadingContent /> }
+            </TabContentWrapper>
+            <TabContentWrapper>
+              { externalODS.isExternalODS? 
+                <EdFiSettingsTabContent /> : 
+                <PartnersAndApplicationTabContent
+                  instance={instance}
+                  schoolYear={getSchoolYear()} /> }
+            </TabContentWrapper>
+            <TabContentWrapper>
+              <DataManagementTabContent />
+            </TabContentWrapper>
+          </AdminConsoleTabsMenu>
         </Flex>
-    )
+      </Flex>
+    </Flex>
+  )
 }
 
 export default InstanceTabsMenu

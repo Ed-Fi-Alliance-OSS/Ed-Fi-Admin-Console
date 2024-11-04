@@ -18,87 +18,87 @@ interface UseVerifyDomainProps {
 }
 
 const generateDomainDataList = (tenantDomains: TenantDomain[], userProfile: UserProfile | null) => {
-    if (tenantDomains.length > 0 && userProfile) {
-        const domansDataList: DomainData[] = tenantDomains.map(domain => ({ 
-            name: domain.domainName, 
-            validationValue: userProfile? userProfile.tenantId : "",
-            checked: false,
-            state: domain.domainStatus
-        }))
+  if (tenantDomains.length > 0 && userProfile) {
+    const domansDataList: DomainData[] = tenantDomains.map(domain => ({ 
+      name: domain.domainName, 
+      validationValue: userProfile? userProfile.tenantId : '',
+      checked: false,
+      state: domain.domainStatus
+    }))
         
-        return domansDataList
-    }
+    return domansDataList
+  }
 
-    return []
+  return []
 }
 
 const useVerifyDomain = ({ tenantDomains }: UseVerifyDomainProps) => {
-    const { edxAppConfig, auth } = useContext(TEEAuthDataContext)
-    const { userProfile } = useContext(UserProfileContext)
-    const adminConfig = useContext(adminConsoleContext)
-    const [domainsList, setDomainsList] = useState<DomainData[]>([])
-    const [isCheckingDomainStatus, setIsCheckingDomainStatus] = useState(false)
-    const { verifyDomain } = useDomainsService()
+  const { edxAppConfig, auth } = useContext(TEEAuthDataContext)
+  const { userProfile } = useContext(UserProfileContext)
+  const adminConfig = useContext(adminConsoleContext)
+  const [domainsList, setDomainsList] = useState<DomainData[]>([])
+  const [isCheckingDomainStatus, setIsCheckingDomainStatus] = useState(false)
+  const { verifyDomain } = useDomainsService()
 
-    const assignDomainStatus = (domain: DomainData, verficationResult: VerifyDomainResponse) => {
-        const ndomainlist = domainsList.map(domain => ({...domain}))
-        const index = ndomainlist.findIndex(item => item.name === domain.name)
+  const assignDomainStatus = (domain: DomainData, verficationResult: VerifyDomainResponse) => {
+    const ndomainlist = domainsList.map(domain => ({...domain}))
+    const index = ndomainlist.findIndex(item => item.name === domain.name)
 
-        if (index !== -1) {
-            ndomainlist[index].state = verficationResult.domainStatus
-            setDomainsList(ndomainlist)
-        }
+    if (index !== -1) {
+      ndomainlist[index].state = verficationResult.domainStatus
+      setDomainsList(ndomainlist)
     }
+  }
 
-    const fetchAllDomainStates = async (domainsDataList: DomainData[]) => {
-        if (edxAppConfig && auth && auth.user && adminConfig && userProfile) {
+  const fetchAllDomainStates = async (domainsDataList: DomainData[]) => {
+    if (edxAppConfig && auth && auth.user && adminConfig && userProfile) {
             
-            setDomainsList(domainsDataList)
-        }
+      setDomainsList(domainsDataList)
     }
+  }
 
-    const fetchDomainState = async (domainData: DomainData) => {
-        if (edxAppConfig && auth && auth.user && adminConfig && userProfile) {
-            setIsCheckingDomainStatus(true)
-            const request: VerifyDomainRequest = {
-                tenantId: userProfile.tenantId,
-                domainName: domainData.name
-            }
+  const fetchDomainState = async (domainData: DomainData) => {
+    if (edxAppConfig && auth && auth.user && adminConfig && userProfile) {
+      setIsCheckingDomainStatus(true)
+      const request: VerifyDomainRequest = {
+        tenantId: userProfile.tenantId,
+        domainName: domainData.name
+      }
 
-            const result = await verifyDomain(adminConfig.actionParams, request)
-            setIsCheckingDomainStatus(false)
+      const result = await verifyDomain(adminConfig.actionParams, request)
+      setIsCheckingDomainStatus(false)
 
-            console.log('verify domain result', result)
+      console.log('verify domain result', result)
 
-            if (result.type === 'Response') {
-                assignDomainStatus(domainData, result.data)
-            }
-            else {
-                assignDomainStatus(domainData, {
-                    tenantId: userProfile.tenantId,
-                    domainName: domainData.name,
-                    domainStatus: "Error"
-                })
-            }
-        }
+      if (result.type === 'Response') {
+        assignDomainStatus(domainData, result.data)
+      }
+      else {
+        assignDomainStatus(domainData, {
+          tenantId: userProfile.tenantId,
+          domainName: domainData.name,
+          domainStatus: 'Error'
+        })
+      }
     }
+  }
 
-    const onVerifyDomain = async (domainData: DomainData) => await fetchDomainState(domainData)
+  const onVerifyDomain = async (domainData: DomainData) => await fetchDomainState(domainData)
 
-    useEffect(() => {
-        if (tenantDomains) {
-            // console.log('tenant domains', tenantDomains)
-            const domainsDataList = generateDomainDataList(tenantDomains, userProfile)
+  useEffect(() => {
+    if (tenantDomains) {
+      // console.log('tenant domains', tenantDomains)
+      const domainsDataList = generateDomainDataList(tenantDomains, userProfile)
 
-            fetchAllDomainStates(domainsDataList)
-        }
-    }, [ tenantDomains ])
-
-    return {
-        domainsList,
-        onVerifyDomain,
-        isCheckingDomainStatus
+      fetchAllDomainStates(domainsDataList)
     }
+  }, [ tenantDomains ])
+
+  return {
+    domainsList,
+    onVerifyDomain,
+    isCheckingDomainStatus
+  }
 }
 
 export default useVerifyDomain

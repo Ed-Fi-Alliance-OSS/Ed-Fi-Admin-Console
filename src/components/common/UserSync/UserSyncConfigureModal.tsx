@@ -1,6 +1,6 @@
-import ModalForm from "../ModalForm"
-import UserSyncConfigureForm from "./UserSyncConfigureForm"
-import UserSyncConfigureModalHeader from "./UserSyncConfigureModalHeader"
+import ModalForm from '../ModalForm'
+import UserSyncConfigureForm from './UserSyncConfigureForm'
+import UserSyncConfigureModalHeader from './UserSyncConfigureModalHeader'
 
 interface UserSynConfigureModalProps {
     isSaving: boolean 
@@ -11,19 +11,19 @@ interface UserSynConfigureModalProps {
 }
 
 const UserSynConfigureModal = ({ enabledNightlySync, isSaving, onClose, onSave, onToggleNightlySync }: UserSynConfigureModalProps) => {
-    return (
-        <ModalForm
-            header={<UserSyncConfigureModalHeader 
-                isSaving={isSaving}
-                onAction={onSave}
-                onClose={onClose} />}
-            content={<UserSyncConfigureForm
-                enabledNightlySync={enabledNightlySync}
-                isSaving={isSaving}
-                onToggleNightlySync={onToggleNightlySync} />}
-            height='auto'
-            width="512px" />
-    )
+  return (
+    <ModalForm
+      header={<UserSyncConfigureModalHeader 
+        isSaving={isSaving}
+        onAction={onSave}
+        onClose={onClose} />}
+      content={<UserSyncConfigureForm
+        enabledNightlySync={enabledNightlySync}
+        isSaving={isSaving}
+        onToggleNightlySync={onToggleNightlySync} />}
+      height='auto'
+      width="512px" />
+  )
 }
 
 export default UserSynConfigureModal

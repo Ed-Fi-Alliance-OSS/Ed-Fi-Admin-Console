@@ -1,7 +1,7 @@
-import { ODSInstanceTableMode } from "../ODS/ODSInstanceTable.types"
-import ODSInstanceTableWrapper from "../ODS/ODSInstanceTableWrapper"
-import { ExtendedODSInstance } from "../../../core/ODSInstance.types"
-import SelectedInstancesTableModal from "./SelectedInstancesTableModal"
+import { ODSInstanceTableMode } from '../ODS/ODSInstanceTable.types'
+import ODSInstanceTableWrapper from '../ODS/ODSInstanceTableWrapper'
+import { ExtendedODSInstance } from '../../../core/ODSInstance.types'
+import SelectedInstancesTableModal from './SelectedInstancesTableModal'
 
 interface SelectedInstancesTableProps {
     tableMode: ODSInstanceTableMode
@@ -15,21 +15,21 @@ interface SelectedInstancesTableProps {
 }
 
 const SelectedInstancesTable = ({ tableMode, selectedInstance, settingAsDefault, showConfirmInstanceModal, onSelectInstance, onUpdateInstancesCount, onContinue, onClose }: SelectedInstancesTableProps) => {
-    return (
-        <>
-            <SelectedInstancesTableModal
-                selectedInstance={selectedInstance}
-                settingAsDefault={settingAsDefault}
-                showConfirmInstanceModal={showConfirmInstanceModal}
-                onContinue={onContinue}
-                onClose={onClose} />
-            <ODSInstanceTableWrapper
-                pickedInstance={selectedInstance}
-                tableMode={tableMode}
-                onSelectInstance={onSelectInstance}
-                onUpdateInstancesCount={onUpdateInstancesCount} />
-        </>
-    )
+  return (
+    <>
+      <SelectedInstancesTableModal
+        selectedInstance={selectedInstance}
+        settingAsDefault={settingAsDefault}
+        showConfirmInstanceModal={showConfirmInstanceModal}
+        onContinue={onContinue}
+        onClose={onClose} />
+      <ODSInstanceTableWrapper
+        pickedInstance={selectedInstance}
+        tableMode={tableMode}
+        onSelectInstance={onSelectInstance}
+        onUpdateInstancesCount={onUpdateInstancesCount} />
+    </>
+  )
 }
 
 export default SelectedInstancesTable

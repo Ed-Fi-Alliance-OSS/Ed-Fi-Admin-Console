@@ -1,4 +1,4 @@
-import ModalFormHeader from "../ModalFormHeader"
+import ModalFormHeader from '../ModalFormHeader'
 
 interface EditInvitationFormHeaderProps {
     isSaving: boolean
@@ -7,15 +7,15 @@ interface EditInvitationFormHeaderProps {
 }
 
 const EditInvitationFormHeader = ({ isSaving, onAction, onClose }: EditInvitationFormHeaderProps) => {
-    return (
-        <ModalFormHeader
-            actionText="Update"
-            headerText="Edit Invitation"
-            alignCenter={true}
-            isSaving={isSaving}
-            onAction={onAction}
-            onClose={onClose} />
-    )
+  return (
+    <ModalFormHeader
+      actionText="Update"
+      headerText="Edit Invitation"
+      alignCenter={true}
+      isSaving={isSaving}
+      onAction={onAction}
+      onClose={onClose} />
+  )
 }
 
 export default EditInvitationFormHeader

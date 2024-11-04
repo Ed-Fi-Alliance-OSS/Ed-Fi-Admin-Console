@@ -1,1 +1,1 @@
-export type ODSInstanceTableMode = "Select" | "Show Selected" | "Display"
+export type ODSInstanceTableMode = 'Select' | 'Show Selected' | 'Display'

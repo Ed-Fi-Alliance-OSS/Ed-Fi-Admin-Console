@@ -1,12 +1,12 @@
-import { useContext } from "react"
-import { externalODSContext } from "../context/externalODSContext"
+import { useContext } from 'react'
+import { externalODSContext } from '../context/externalODSContext'
 
 const useExternalODSData = () => {
-    const externalODS = useContext(externalODSContext)
+  const externalODS = useContext(externalODSContext)
 
-    return {
-        externalODS
-    }
+  return {
+    externalODS
+  }
 }
 
 export default useExternalODSData

@@ -1,5 +1,5 @@
-import { test, expect } from "@playwright/test";
-import { routes } from "../../core/routes";
+import { test, expect } from '@playwright/test'
+import { routes } from '../../core/routes'
 
 /*
 test.beforeEach(async ({ page }) => {

@@ -1,4 +1,4 @@
-import { LicenseType, SubscriptionStatus } from "../../../core/Subscription.types"
+import { LicenseType, SubscriptionStatus } from '../../../core/Subscription.types'
 
 export interface GetSubscriptionsListRequest {
     pageIndex: number 

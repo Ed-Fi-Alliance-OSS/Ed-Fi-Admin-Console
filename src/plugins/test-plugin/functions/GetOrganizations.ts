@@ -1,4 +1,4 @@
 export function GetOrganisations(a, b) {
-  console.debug(a, b);
-  return ["Organisation"];
+  console.debug(a, b)
+  return ['Organisation']
 }

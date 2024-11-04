@@ -1,7 +1,7 @@
-import { ToastId } from "@chakra-ui/toast"
-import { DeletingState } from "../../../core/deletingState.types"
-import { Organization, StaffClassification } from "../../../core/Tenant.types"
-import { UserEducationOrganizationData } from "../../../core/userEducationOrganizations/UserEducationOrganizations.types"
+import { ToastId } from '@chakra-ui/toast'
+import { DeletingState } from '../../../core/deletingState.types'
+import { Organization, StaffClassification } from '../../../core/Tenant.types'
+import { UserEducationOrganizationData } from '../../../core/userEducationOrganizations/UserEducationOrganizations.types'
 
 export interface UpdateState {
     updating: boolean 

@@ -1,28 +1,28 @@
-import { ODSInstance } from "../../core/ODSInstance.types"
-import useOdsInstanceYear from "./useOdsInstanceYear"
+import { ODSInstance } from '../../core/ODSInstance.types'
+import useOdsInstanceYear from './useOdsInstanceYear'
 
 const useOdsInstanceDisplayYear = () => {
-    const { getInstanceYear } = useOdsInstanceYear()
+  const { getInstanceYear } = useOdsInstanceYear()
 
-    const getDisplayYear = (instance: ODSInstance) => {
-        const instanceYear = getInstanceYear(instance)
+  const getDisplayYear = (instance: ODSInstance) => {
+    const instanceYear = getInstanceYear(instance)
 
-        if (!instanceYear)
-            return "Empty"
+    if (!instanceYear)
+      return 'Empty'
 
-        return `${instanceYear - 1} - ${instanceYear}`
-    }
+    return `${instanceYear - 1} - ${instanceYear}`
+  }
 
-    const getDisplayYearFromString = (year: string) => {
-        const intYear = parseInt(year)
+  const getDisplayYearFromString = (year: string) => {
+    const intYear = parseInt(year)
 
-        return `${intYear - 1} - ${intYear}`
-    }
+    return `${intYear - 1} - ${intYear}`
+  }
 
-    return {
-        getDisplayYear,
-        getDisplayYearFromString
-    }
+  return {
+    getDisplayYear,
+    getDisplayYearFromString
+  }
 }
 
 export default useOdsInstanceDisplayYear

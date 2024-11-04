@@ -6,6 +6,6 @@ export interface EdFiConnectionFormData {
     secret: string
 }
 
-export type EdFiConnectionFormMode = "Add" | "Edit"
+export type EdFiConnectionFormMode = 'Add' | 'Edit'
 
-export type EdFiConnectionVerificationStatus = "Connected" | "Not Connected" | "Authentication Failed" | "URL Error" | "Credential Error" | "Unknown"
+export type EdFiConnectionVerificationStatus = 'Connected' | 'Not Connected' | 'Authentication Failed' | 'URL Error' | 'Credential Error' | 'Unknown'

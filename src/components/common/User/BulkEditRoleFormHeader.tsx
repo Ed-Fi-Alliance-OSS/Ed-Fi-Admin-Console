@@ -1,4 +1,4 @@
-import ModalFormHeader from "../ModalFormHeader"
+import ModalFormHeader from '../ModalFormHeader'
 
 interface BulkEditRoleFormHeaderProps {
     onAction: () => void
@@ -6,14 +6,14 @@ interface BulkEditRoleFormHeaderProps {
 }
 
 const BulkEditRoleFormHeader = ({ onAction, onClose }: BulkEditRoleFormHeaderProps) => {
-    return (
-        <ModalFormHeader 
-            actionText="Change Role"
-            headerText="Bulk Edit Roles"
-            isSaving={false}
-            onAction={onAction}
-            onClose={onClose} />
-    )
+  return (
+    <ModalFormHeader 
+      actionText="Change Role"
+      headerText="Bulk Edit Roles"
+      isSaving={false}
+      onAction={onAction}
+      onClose={onClose} />
+  )
 }
 
 export default BulkEditRoleFormHeader

@@ -1,12 +1,12 @@
-import React, {createContext, ReactNode, useContext, useEffect, useState} from "react";
-import {BasePluginComponentNames, BasePluginComponent, EmptyComponents} from "./BasePluginComponent";
-import {defaultsDeep, hasIn, get, cloneDeep} from "lodash-es"
-import {BasePluginFunctionNames, BasePluginFunction} from "./BasePluginFunction";
-import {BasePluginStrings, BasePluginStringsKeys, StringsShape} from "./BasePluginStrings"
+import { defaultsDeep, get, hasIn } from 'lodash-es'
+import React, { createContext, ReactNode, useContext, useEffect, useState } from 'react'
+import { BasePluginComponent, BasePluginComponentNames, EmptyComponents } from './BasePluginComponent'
+import { BasePluginFunction, BasePluginFunctionNames } from './BasePluginFunction'
+import { BasePluginStrings, BasePluginStringsKeys, StringsShape } from './BasePluginStrings'
 // Load all plugins inside the plugins folder
 export function loadPlugins() {
-  const plugins = import.meta.glob('./*/plugin.tsx', {eager: true});
-  return Object.values(plugins).map((module: any) => module.default as BasePlugin);
+  const plugins = import.meta.glob('./*/plugin.tsx', {eager: true})
+  return Object.values(plugins).map((module: any) => module.default as BasePlugin)
 }
 
 type componentType = { [K in BasePluginComponentNames]: React.FC<typeof BasePluginComponent[K]> }
@@ -28,35 +28,35 @@ export interface RegistryState {
   ) => void;
 }
 
-const PluginContext = createContext<RegistryState | undefined>(undefined);
+const PluginContext = createContext<RegistryState | undefined>(undefined)
 
 export const PluginProvider: React.FC<{ children: ReactNode }> = ({children}) => {
-  const [components, setComponents] = useState<componentType>(EmptyComponents as componentType);
-  const [functionalities, setFunctionalities] = useState<functionType>({});
-  const [strings, setStrings] = useState({});
+  const [components, setComponents] = useState<componentType>(EmptyComponents as componentType)
+  const [functionalities, setFunctionalities] = useState<functionType>({})
+  const [strings, setStrings] = useState({})
 
-  const registerComponent: RegistryState["registerComponent"] = (name, component) => {
+  const registerComponent: RegistryState['registerComponent'] = (name, component) => {
     setComponents((prev) => ({...prev, [name]: (props: typeof BasePluginComponent[typeof name]) => {
-        const Component = component;
-        const defaultProps = BasePluginComponent[name];
-        return <Component {...defaultProps} {...props} />
-    }}));
-  };
+      const Component = component
+      const defaultProps = BasePluginComponent[name]
+      return <Component {...defaultProps} {...props} />
+    }}))
+  }
 
   // Register a functionality with the specific function signature
-  const registerFunctionality: RegistryState["registerFunctionality"] = (name, functionality) => {
-    setFunctionalities((prev) => ({...prev, [name]: functionality}));
-  };
+  const registerFunctionality: RegistryState['registerFunctionality'] = (name, functionality) => {
+    setFunctionalities((prev) => ({...prev, [name]: functionality}))
+  }
 
   const registerStrings = (pluginStrings: StringsShape) => {
-    setStrings((prev) => defaultsDeep(pluginStrings, prev));
+    setStrings((prev) => defaultsDeep(pluginStrings, prev))
   }
 
   const getString = (key: BasePluginStringsKeys) => {
     if(hasIn(strings, key)) {
       return get(strings, key).toString()
     }
-    return "-UNDEFINED-"
+    return '-UNDEFINED-'
   }
 
   const registry: RegistryState = {
@@ -67,22 +67,22 @@ export const PluginProvider: React.FC<{ children: ReactNode }> = ({children}) =>
     registerStrings,
     registerComponent,
     registerFunctionality
-  };
+  }
 
   return (
     <PluginContext.Provider value={registry}>
       {children}
     </PluginContext.Provider>
-  );
-};
+  )
+}
 
 export const usePluginContext = () => {
-  const context = useContext(PluginContext);
+  const context = useContext(PluginContext)
   if (!context) {
-    throw new Error("usePluginContext must be used within a PluginProvider");
+    throw new Error('usePluginContext must be used within a PluginProvider')
   }
-  return context;
-};
+  return context
+}
 
 
 export interface BasePlugin {
@@ -98,31 +98,34 @@ interface PluginLoaderProps {
 
 export const PluginLoader: React.FC<PluginLoaderProps> = ({plugins, enabled}) => {
 
-  const registry = usePluginContext();
+  const registry = usePluginContext()
 
   useEffect(() => {
-    console.debug("Loading Base Strings");
-    registry.registerStrings(BasePluginStrings);
-  }, [BasePluginStrings]);
+    console.debug('Loading Base Strings')
+    registry.registerStrings(BasePluginStrings)
+  }, [BasePluginStrings])
 
   useEffect(() => {
-    console.debug("Loading plugins");
-    console.debug("Detected Plugins:", plugins.map(p => p.name));
+    console.debug('Loading plugins')
+    console.debug('Detected Plugins:', plugins.map(p => p.name))
 
     const toRegister = plugins.filter((plugin) => enabled.includes(plugin.name))
 
-    console.debug("Registered Plugins:", toRegister.map(p => p.name));
+    console.debug('Registered Plugins:', toRegister.map(p => p.name))
     toRegister.forEach((plugin) => {
-      plugin.register(registry);
+      plugin.register(registry)
       if(plugin.strings) {
-        console.debug("Registering String", plugin.strings)
-        registry.registerStrings(plugin.strings);
+        console.debug('Registering String', plugin.strings)
+        registry.registerStrings(plugin.strings)
       }
     })
 
-    console.error("Plugins Not Found:", enabled.filter((plugin) => !plugins.map(p => p.name).includes(plugin)));
+    const notFound = enabled.filter((plugin) => !plugins.map(p => p.name).includes(plugin))
+    if(notFound.length > 0) {
+      console.error('Plugins Not Found:', notFound)
+    }
 
-  }, [enabled, plugins]);
+  }, [enabled, plugins])
 
-  return null;
-};
+  return null
+}

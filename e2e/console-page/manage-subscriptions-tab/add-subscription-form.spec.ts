@@ -1,20 +1,20 @@
 
-import { test, expect, Page } from "@playwright/test"
-import { routes } from "../../core/routes"
+import { test, expect, Page } from '@playwright/test'
+import { routes } from '../../core/routes'
 import { fillSubscriptionForm } from './addSubscriptionFormHelpers'
 
 let page: Page
 
-const applicationName = "test"
+const applicationName = 'test'
 
 const openAddSubscriptionForm = async (page: Page) =>  {
-  await page.getByRole("button", { name: "Add Subscription" }).click()
+  await page.getByRole('button', { name: 'Add Subscription' }).click()
 
-  await page.waitForLoadState("networkidle")
+  await page.waitForLoadState('networkidle')
 }
 
 const closeAddSubscriptionForm = async (page: Page) => await page.getByRole('button', { name: 'cancel' }).click()
-const clickAddSubscriptionBtn = async (page: Page) => await page.getByRole('button', { name: "Add" }).click()
+const clickAddSubscriptionBtn = async (page: Page) => await page.getByRole('button', { name: 'Add' }).click()
 /*
 test.beforeAll(async ({ browser }) => {
   page = await browser.newPage()

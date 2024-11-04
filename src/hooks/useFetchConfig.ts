@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react"
-import { EdxAppConfig } from "@edfi/admin-console-shared-sdk"
+import { useEffect, useState } from 'react'
+import { EdxAppConfig } from '@edfi/admin-console-shared-sdk'
 
 interface UseFetchAppAuthConfig {
     env: string | undefined
@@ -14,54 +14,54 @@ interface FetchConfigParams {
 }
 
 const fetchConfig = async ({ env, serverMode }: FetchConfigParams) => {
-    const serveMode = serverMode && serverMode[serverMode.length - 1] === ""? serverMode.substring(0, serverMode.length - 1) : serverMode
+  const serveMode = serverMode && serverMode[serverMode.length - 1] === ''? serverMode.substring(0, serverMode.length - 1) : serverMode
 
-    let uri = ''
+  let uri = ''
 
-    if (env) {
-        if (serveMode === 'node') 
-            uri = configUri
-        else 
-            uri = '/local.config.json'
-    }
-    else {
-        uri = configUri
-    }
+  if (env) {
+    if (serveMode === 'node') 
+      uri = configUri
+    else 
+      uri = '/local.config.json'
+  }
+  else {
+    uri = configUri
+  }
 
-    const configData = await fetch(uri)
-    const config = await configData.json()
+  const configData = await fetch(uri)
+  const config = await configData.json()
 
-    return config
+  return config
 }
 
 export const mapEdxToAppConfig = (edxConfig): EdxAppConfig => {
-    const authConfig: EdxAppConfig = {
-        title: edxConfig.app.subtitle,
-        appName: edxConfig.app.subtitle,
-        api: edxConfig.api.baseUri,
-        basePath: edxConfig.app.basePath,
-        ...edxConfig.auth
-    }
+  const authConfig: EdxAppConfig = {
+    title: edxConfig.app.subtitle,
+    appName: edxConfig.app.subtitle,
+    api: edxConfig.api.baseUri,
+    basePath: edxConfig.app.basePath,
+    ...edxConfig.auth
+  }
 
-    return authConfig
+  return authConfig
 }
 
 const useFetchConfig = ({ env, serverMode }: UseFetchAppAuthConfig) => {
-    const [appConfig, setAppConfig] = useState<EdxAppConfig | null>(null)
+  const [appConfig, setAppConfig] = useState<EdxAppConfig | null>(null)
 
-    const fetchAppConfig = async () => {
-        const edxConfig = await fetchConfig({ env, serverMode })
+  const fetchAppConfig = async () => {
+    const edxConfig = await fetchConfig({ env, serverMode })
 
-        setAppConfig(mapEdxToAppConfig(edxConfig))
-    }
+    setAppConfig(mapEdxToAppConfig(edxConfig))
+  }
 
-    useEffect(() => {
-        fetchAppConfig()
-    }, [])
+  useEffect(() => {
+    fetchAppConfig()
+  }, [])
 
-    return {
-        appConfig
-    }
+  return {
+    appConfig
+  }
 }
 
 export default useFetchConfig

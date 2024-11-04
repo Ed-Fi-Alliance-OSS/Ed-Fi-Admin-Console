@@ -1,4 +1,4 @@
-import { DomainStatus } from "../../../core/Tenant.types"
+import { DomainStatus } from '../../../core/Tenant.types'
 
 export interface PostDomainResponse {
     tenantId: string

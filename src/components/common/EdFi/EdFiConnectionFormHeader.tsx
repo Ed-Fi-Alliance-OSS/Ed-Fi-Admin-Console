@@ -1,4 +1,4 @@
-import ModalFormHeader from "../ModalFormHeader"
+import ModalFormHeader from '../ModalFormHeader'
 
 interface EdFiEditConnectionFormHeaderProps {
     isSaving: boolean 
@@ -8,16 +8,16 @@ interface EdFiEditConnectionFormHeaderProps {
 }
 
 const EdFiEditConnectionFormHeader = ({ isSaving, isDisabled, onAction, onClose }: EdFiEditConnectionFormHeaderProps) => {
-    return (
-        <ModalFormHeader
-            actionText="Save"
-            headerText="Edit Application"
-            headerWidth="200px"
-            isDisabled={isDisabled}
-            isSaving={isSaving}
-            onAction={onAction}
-            onClose={onClose} />
-    )
+  return (
+    <ModalFormHeader
+      actionText="Save"
+      headerText="Edit Application"
+      headerWidth="200px"
+      isDisabled={isDisabled}
+      isSaving={isSaving}
+      onAction={onAction}
+      onClose={onClose} />
+  )
 }
 
 export default EdFiEditConnectionFormHeader

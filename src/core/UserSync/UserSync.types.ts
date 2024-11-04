@@ -55,7 +55,7 @@ export interface JobProfile {
 	lastModifiedDateTime: string
 }
 
-export type JobStatus = "Unknown" | "Active" | "Deactivated" | "QUEUED_FOR_DELETE" | "QUEUED_FOR_SCHEDULE_RESTART"
+export type JobStatus = 'Unknown' | 'Active' | 'Deactivated' | 'QUEUED_FOR_DELETE' | 'QUEUED_FOR_SCHEDULE_RESTART'
 
 export interface JobExecutionListResponse {
     tenantId: string 
@@ -69,7 +69,7 @@ export interface JobExecutionListResponse {
     metrics: Metric[]
 }
 
-export type JobExecutionStatus = "Unknown" | "Queued" | "Running" | "Completed" | "Completed with errors" | "Cancelled" | "Error"
+export type JobExecutionStatus = 'Unknown' | 'Queued' | 'Running' | 'Completed' | 'Completed with errors' | 'Cancelled' | 'Error'
 
 export interface ChildJob {
 	jobId: string
@@ -108,7 +108,7 @@ export interface Schedule {
 	timeZone: string 
 }
 
-export type DataRefreshType = 'Unknown' | "Full" | "Deltasincelastjobexecution" | "Deltasincespecificdatetime"
+export type DataRefreshType = 'Unknown' | 'Full' | 'Deltasincelastjobexecution' | 'Deltasincespecificdatetime'
 
 export interface JobExecutionLogEntry {
     tenantId: string 
@@ -120,7 +120,7 @@ export interface JobExecutionLogEntry {
     errorCode?: string 
 }
 
-export type MessageType = "Information" | "Warning" | "Sync Error" | "Fatal Error"
+export type MessageType = 'Information' | 'Warning' | 'Sync Error' | 'Fatal Error'
 
 export interface ProviderListResponse {
     providerId: string

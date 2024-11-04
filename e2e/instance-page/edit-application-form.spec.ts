@@ -1,18 +1,18 @@
 
-import { test, Page, expect } from "@playwright/test"
+import { test, Page, expect } from '@playwright/test'
 import { routes } from '../core/routes'
-import { fillAddApplicationForm } from "./addApplicationFormHelpers"
+import { fillAddApplicationForm } from './addApplicationFormHelpers'
 
 let page: Page
 
 const openApplicationForm =  async (page: Page) => {
-  await page.getByText("Texas Exchange").click()
-  await page.getByRole("table").locator("tbody > tr").nth(2).getByRole("button", { name: "Edit" }).click()
+  await page.getByText('Texas Exchange').click()
+  await page.getByRole('table').locator('tbody > tr').nth(2).getByRole('button', { name: 'Edit' }).click()
 
-  expect(page.getByText("Edit Application")).toBeVisible()
+  expect(page.getByText('Edit Application')).toBeVisible()
 }
 
-const clickSendBtn = async (page: Page) => await page.getByRole("button", { name: 'Save Edits' }).click()
+const clickSendBtn = async (page: Page) => await page.getByRole('button', { name: 'Save Edits' }).click()
 
 test.beforeAll(async ({ browser }) => {
   page = await browser.newPage()
@@ -21,8 +21,8 @@ test.beforeAll(async ({ browser }) => {
   await page.waitForURL(routes.instance)
   await page.waitForLoadState('networkidle')
 
-  await page.getByText("Partners & Applications").click()
-  await page.waitForLoadState("networkidle")
+  await page.getByText('Partners & Applications').click()
+  await page.waitForLoadState('networkidle')
 
   await openApplicationForm(page)
 })

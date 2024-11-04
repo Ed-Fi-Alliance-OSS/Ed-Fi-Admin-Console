@@ -1,4 +1,4 @@
 export const userinfo = {
-    "username": "myuser",
-    "password": "admin"
+  'username': 'myuser',
+  'password': 'admin'
 } 

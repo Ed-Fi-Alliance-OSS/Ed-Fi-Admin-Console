@@ -1,8 +1,8 @@
 export const BasePluginComponent = {
-  "HeaderRight": {
-    headerBg: "white" as string | undefined
+  'HeaderRight': {
+    headerBg: 'white' as string | undefined
   },
-  "FooterLeft": {
+  'FooterLeft': {
     marginTop: 5,
     marginBottom: 5
   },

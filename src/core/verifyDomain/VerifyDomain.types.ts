@@ -1,4 +1,4 @@
-import { DomainStatus } from "../Tenant.types"
+import { DomainStatus } from '../Tenant.types'
 
 export interface VerifyDomain {
     type: string 

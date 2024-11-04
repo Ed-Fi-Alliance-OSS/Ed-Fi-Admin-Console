@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { OnBoardingStepStatus } from "../../core/onBoardingWizard/onBoardingWizard.types"
+import { OnBoardingStepStatus } from '../../core/onBoardingWizard/onBoardingWizard.types'
 import { ODSInstance } from '../../core/ODSInstance.types'
 import { adminConsoleContext } from '../../context/adminConsoleContext'
 import { CreateOdsInstanceOnboardingStepRequest, UpdateOdsInstanceOnboardingStepRequest } from '../../services/ODSInstances/OdsInstanceService.requests'
@@ -21,59 +21,59 @@ interface UseDebugSetupWizardActionsProps {
 }
 
 const useDebugSetupWizardActions = ({ instance }: UseDebugSetupWizardActionsProps) => {
-    const adminConfig = useContext(adminConsoleContext)
+  const adminConfig = useContext(adminConsoleContext)
     
-    const {
-        createInstanceOnboardingStep,
-        updateInstanceOnboardingStep
-    } = useOdsInstanceService()
+  const {
+    createInstanceOnboardingStep,
+    updateInstanceOnboardingStep
+  } = useOdsInstanceService()
 
-    const handleAddStep = async ({ number, status, description }: AddStepProps) => {
-        console.log('handle add step')
-        if (!adminConfig || !instance)
-            return 
+  const handleAddStep = async ({ number, status, description }: AddStepProps) => {
+    console.log('handle add step')
+    if (!adminConfig || !instance)
+      return 
 
-        const request: CreateOdsInstanceOnboardingStepRequest = {
-            instanceId: instance.instanceId,
-            tenantId: adminConfig.actionParams.tenantId,
-            number,
-            description,
-            status
-        }
-
-        const result = await createInstanceOnboardingStep(adminConfig.actionParams, request)        
-
-        if (result.type == 'Error')
-            return false
-
-        return true
+    const request: CreateOdsInstanceOnboardingStepRequest = {
+      instanceId: instance.instanceId,
+      tenantId: adminConfig.actionParams.tenantId,
+      number,
+      description,
+      status
     }
 
-    const handleUpdateStep = async ({ number, status }: UpdateStepProps) => {
-        console.log("update step", number)
+    const result = await createInstanceOnboardingStep(adminConfig.actionParams, request)        
 
-        if (!adminConfig || !instance)
-            return 
+    if (result.type == 'Error')
+      return false
 
-        const request: UpdateOdsInstanceOnboardingStepRequest = {
-            instanceId: instance.instanceId,
-            tenantId: adminConfig.actionParams.tenantId,
-            number,
-            status
-        }
+    return true
+  }
 
-        const result = await updateInstanceOnboardingStep(adminConfig.actionParams, request)
+  const handleUpdateStep = async ({ number, status }: UpdateStepProps) => {
+    console.log('update step', number)
 
-        if (result.type == 'Error')
-            return false 
+    if (!adminConfig || !instance)
+      return 
 
-        return true
+    const request: UpdateOdsInstanceOnboardingStepRequest = {
+      instanceId: instance.instanceId,
+      tenantId: adminConfig.actionParams.tenantId,
+      number,
+      status
     }
 
-    return {
-        handleAddStep,
-        handleUpdateStep
-    }
+    const result = await updateInstanceOnboardingStep(adminConfig.actionParams, request)
+
+    if (result.type == 'Error')
+      return false 
+
+    return true
+  }
+
+  return {
+    handleAddStep,
+    handleUpdateStep
+  }
 }
 
 export default useDebugSetupWizardActions

@@ -1,8 +1,8 @@
-import { TenantStatus } from "./Tenant.types"
+import { TenantStatus } from './Tenant.types'
 
 export type AppUserStatus = 'Active' | 'Inactive' | 'Unknown'
 export type AppUserRole = 'Tenant.User' | 'Tenant.Admin'
-export type AppUserSource = 'Manual' | "Ed-Fi Sync"
+export type AppUserSource = 'Manual' | 'Ed-Fi Sync'
 
 export interface AppUserLicenseRole {
     role: string 

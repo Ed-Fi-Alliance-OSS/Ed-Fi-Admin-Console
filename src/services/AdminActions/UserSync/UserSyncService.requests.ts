@@ -1,4 +1,4 @@
-import { DataRefreshType, JobMetadata, Schedule } from "../../../core/UserSync/UserSync.types"
+import { DataRefreshType, JobMetadata, Schedule } from '../../../core/UserSync/UserSync.types'
 
 export interface GetEdFiSyncExecutionsRequest {
     jobId: string

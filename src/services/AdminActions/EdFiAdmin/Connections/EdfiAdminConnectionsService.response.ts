@@ -1,4 +1,4 @@
-import { EdFiAdminConnection } from "../../../../core/EdFiAdmin/EdFiAdmin.types"
+import { EdFiAdminConnection } from '../../../../core/EdFiAdmin/EdFiAdmin.types'
 
 export interface GetAllEdFiAdminConnectionsResponse {
     pageIndex: number 

@@ -1,4 +1,4 @@
-import { OnBoardingStepStatus } from "../../core/onBoardingWizard/onBoardingWizard.types"
+import { OnBoardingStepStatus } from '../../core/onBoardingWizard/onBoardingWizard.types'
 
 export interface GetOdsInstancesListRequest {
     pageIndex: number 

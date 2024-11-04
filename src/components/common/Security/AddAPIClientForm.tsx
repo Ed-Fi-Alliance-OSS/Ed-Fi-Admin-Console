@@ -1,4 +1,4 @@
-import ModalForm from "../ModalForm"
+import ModalForm from '../ModalForm'
 
 interface AddAPIClientFormProps {
     header: JSX.Element
@@ -6,13 +6,13 @@ interface AddAPIClientFormProps {
 }
 
 const AddAPIClientForm = ({ header, content }: AddAPIClientFormProps) => {
-    return (
-        <ModalForm
-            header={header}
-            content={content}
-            height='auto'
-            width="512px" />
-    )
+  return (
+    <ModalForm
+      header={header}
+      content={content}
+      height='auto'
+      width="512px" />
+  )
 }
 
 export default AddAPIClientForm

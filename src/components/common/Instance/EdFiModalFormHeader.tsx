@@ -1,4 +1,4 @@
-import ModalFormHeader from "../ModalFormHeader"
+import ModalFormHeader from '../ModalFormHeader'
 
 interface EdFiModalFormHeaderProps {
     actionText: string 
@@ -10,16 +10,16 @@ interface EdFiModalFormHeaderProps {
 }
 
 const EdFiModalFormHeader = ({ actionText, headerText, isSaving, isDisabled, onAction, onClose }: EdFiModalFormHeaderProps) => {
-    return (
-        <ModalFormHeader
-            actionText={actionText}
-            headerText={headerText}
-            headerWidth="200px"
-            isDisabled={isDisabled}
-            isSaving={isSaving}
-            onAction={onAction}
-            onClose={onClose} />
-    )
+  return (
+    <ModalFormHeader
+      actionText={actionText}
+      headerText={headerText}
+      headerWidth="200px"
+      isDisabled={isDisabled}
+      isSaving={isSaving}
+      onAction={onAction}
+      onClose={onClose} />
+  )
 }
 
 export default EdFiModalFormHeader

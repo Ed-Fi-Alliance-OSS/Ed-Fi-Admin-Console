@@ -1,4 +1,4 @@
-import { ODSInstance } from "../../core/ODSInstance.types"
+import { ODSInstance } from '../../core/ODSInstance.types'
 
 export interface GetOdsInstancesListResponse {
     pageIndex: number 

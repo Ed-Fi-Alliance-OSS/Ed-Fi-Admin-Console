@@ -8,16 +8,16 @@ interface PageWrapperProps {
 }
 
 const PageWrapper = ({ children,  pageName }: PageWrapperProps) => {
-    const { edxAppConfig } = useContext(TEEAuthDataContext)
-    const { userProfile } = useContext(UserProfileContext)
+  const { edxAppConfig } = useContext(TEEAuthDataContext)
+  const { userProfile } = useContext(UserProfileContext)
 
-    return (
-        <Page 
-            appName={edxAppConfig? edxAppConfig.app.subtitle as string : ''}
-            title={userProfile? pageName : `Loading ${pageName}...`}>
-                {children}
-        </Page>
-    )
+  return (
+    <Page 
+      appName={edxAppConfig? edxAppConfig.app.subtitle as string : ''}
+      title={userProfile? pageName : `Loading ${pageName}...`}>
+      {children}
+    </Page>
+  )
 }
 
 export default PageWrapper

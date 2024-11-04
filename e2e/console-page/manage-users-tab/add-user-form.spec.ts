@@ -1,9 +1,9 @@
 
-import { test, expect, Page } from "@playwright/test";
-import { routes } from "../../core/routes";
-import { fillAddUserForm } from "./addUserFormHelpers";
+import { test, expect, Page } from '@playwright/test'
+import { routes } from '../../core/routes'
+import { fillAddUserForm } from './addUserFormHelpers'
 
-let page: Page;
+let page: Page
 /*
 test.beforeAll(async ({ browser }) => {
   page = await browser.newPage()

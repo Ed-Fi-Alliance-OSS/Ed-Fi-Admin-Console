@@ -1,12 +1,12 @@
-import { ChangeEvent, useContext, useEffect, useState } from "react"
-import { adminConsoleContext } from "../../context/adminConsoleContext"
-import useEdFiAdminConnectionsService from "../../services/AdminActions/EdFiAdmin/Connections/EdFiAdminConnectionsService"
-import { CreateEdfiAdminConnectionRequest, UpdateEdfiAdminConnectionRequest, VerifyEdFiAdminConnectionRequest } from "../../services/AdminActions/EdFiAdmin/Connections/EdfiAdminConnectionsService.requests"
-import { UpdatedEdFiAdminConnectionResponse } from "../../services/AdminActions/EdFiAdmin/Connections/EdfiAdminConnectionsService.response"
-import useEDXToast from "../common/useEDXToast"
-import { getInitialConnectionFormData } from "./edFiConnection.helper"
-import { EdFiConnectionFormData, EdFiConnectionFormMode, EdFiConnectionVerificationStatus } from "./useEdFiConnectionForm.types"
-import useEdFiConnectionFormValidation from "./useEdFiConnectionFormValidation"
+import { ChangeEvent, useContext, useEffect, useState } from 'react'
+import { adminConsoleContext } from '../../context/adminConsoleContext'
+import useEdFiAdminConnectionsService from '../../services/AdminActions/EdFiAdmin/Connections/EdFiAdminConnectionsService'
+import { CreateEdfiAdminConnectionRequest, UpdateEdfiAdminConnectionRequest, VerifyEdFiAdminConnectionRequest } from '../../services/AdminActions/EdFiAdmin/Connections/EdfiAdminConnectionsService.requests'
+import { UpdatedEdFiAdminConnectionResponse } from '../../services/AdminActions/EdFiAdmin/Connections/EdfiAdminConnectionsService.response'
+import useEDXToast from '../common/useEDXToast'
+import { getInitialConnectionFormData } from './edFiConnection.helper'
+import { EdFiConnectionFormData, EdFiConnectionFormMode, EdFiConnectionVerificationStatus } from './useEdFiConnectionForm.types'
+import useEdFiConnectionFormValidation from './useEdFiConnectionFormValidation'
 
 interface UseEdFiConnectionFormProps {
     initialData?: EdFiConnectionFormData
@@ -16,272 +16,272 @@ interface UseEdFiConnectionFormProps {
 }
 
 const useEdFiConnectionForm = ({ initialData, inOnboarding, mode, onAfterSave }: UseEdFiConnectionFormProps) => {
-    const adminConfig = useContext(adminConsoleContext)
-    const [formData, setFormData] = useState<EdFiConnectionFormData>(getInitialConnectionFormData(initialData))
-    const [isSaving, setIsSaving] = useState(false)
-    const [isVerifying, setIsverifying] = useState(false)
-    const {
-        errors,
-        validateInputChange,
-        validFormData,
-        isValidFormData
-    } =  useEdFiConnectionFormValidation()
-    const [ hasTriedSubmit, setHasTriedSubmit ] = useState(false)
-    const [ verificationStatus, setVerificationStatus ] = useState<EdFiConnectionVerificationStatus>("Not Connected")
-    const { successToast, errorToast } = useEDXToast()
-    const { createConnection, updateConnection, verifyConnection } = useEdFiAdminConnectionsService()
+  const adminConfig = useContext(adminConsoleContext)
+  const [formData, setFormData] = useState<EdFiConnectionFormData>(getInitialConnectionFormData(initialData))
+  const [isSaving, setIsSaving] = useState(false)
+  const [isVerifying, setIsverifying] = useState(false)
+  const {
+    errors,
+    validateInputChange,
+    validFormData,
+    isValidFormData
+  } =  useEdFiConnectionFormValidation()
+  const [ hasTriedSubmit, setHasTriedSubmit ] = useState(false)
+  const [ verificationStatus, setVerificationStatus ] = useState<EdFiConnectionVerificationStatus>('Not Connected')
+  const { successToast, errorToast } = useEDXToast()
+  const { createConnection, updateConnection, verifyConnection } = useEdFiAdminConnectionsService()
 
-    const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-        const nConnectionData = {...formData}
+  const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const nConnectionData = {...formData}
 
-        if (e.target.id === 'key') {
-            nConnectionData.key = e.target.value
+    if (e.target.id === 'key') {
+      nConnectionData.key = e.target.value
 
-            validateInputChange('key', nConnectionData)
-        }
-        else if (e.target.id === 'secret') {
-            nConnectionData.secret = e.target.value
+      validateInputChange('key', nConnectionData)
+    }
+    else if (e.target.id === 'secret') {
+      nConnectionData.secret = e.target.value
 
-            validateInputChange('secret', nConnectionData)
-        }
-        else if (e.target.id === 'baseUrl') {
-            console.log('target value', e.target.value)
-            nConnectionData.baseUrl = e.target.value
+      validateInputChange('secret', nConnectionData)
+    }
+    else if (e.target.id === 'baseUrl') {
+      console.log('target value', e.target.value)
+      nConnectionData.baseUrl = e.target.value
 
-            validateInputChange('baseUrl', nConnectionData)
-        }
-
-        if (initialData)
-            if (nConnectionData.key !== initialData.key || nConnectionData.secret !== initialData.secret)
-                setVerificationStatus("Unknown")
-
-        return setFormData(nConnectionData)
+      validateInputChange('baseUrl', nConnectionData)
     }
 
-    const createEdFiAdminConnection = async (connectionName: string): Promise<UpdatedEdFiAdminConnectionResponse | null> => {
-        console.log('create edfi admin connection')
-        if (!adminConfig)   
-            return null
+    if (initialData)
+      if (nConnectionData.key !== initialData.key || nConnectionData.secret !== initialData.secret)
+        setVerificationStatus('Unknown')
 
-        const createConnectionRequest: CreateEdfiAdminConnectionRequest = {
-            tenantId: adminConfig.actionParams.tenantId,
-            connectionName,
-            connectionType: "",
-            edFiExtension: "",
-            edFiVersion: "",
-            metadataUrl: formData.baseUrl,
-            clientId: formData.key,
-            clientSecret: formData.secret,
-        }
+    return setFormData(nConnectionData)
+  }
 
-        const createConnectionResponse = await createConnection(adminConfig.actionParams, createConnectionRequest)
+  const createEdFiAdminConnection = async (connectionName: string): Promise<UpdatedEdFiAdminConnectionResponse | null> => {
+    console.log('create edfi admin connection')
+    if (!adminConfig)   
+      return null
 
-        if (createConnectionResponse.type === "Error") {
-            errorToast("Request failed")
-            return null
-        }
-
-        return createConnectionResponse.data
+    const createConnectionRequest: CreateEdfiAdminConnectionRequest = {
+      tenantId: adminConfig.actionParams.tenantId,
+      connectionName,
+      connectionType: '',
+      edFiExtension: '',
+      edFiVersion: '',
+      metadataUrl: formData.baseUrl,
+      clientId: formData.key,
+      clientSecret: formData.secret,
     }
 
-    const updateEdFiAdminConnection = async (connectionId: string): Promise<UpdatedEdFiAdminConnectionResponse | null> => {
-        console.log('update edfi admin connection')
-        if (!adminConfig)   
-            return null
+    const createConnectionResponse = await createConnection(adminConfig.actionParams, createConnectionRequest)
 
-        const request: UpdateEdfiAdminConnectionRequest = {
-            connectionId,
-            tenantId: adminConfig.actionParams.tenantId,
-            connectionName: formData.connectionName ?? "Connection Name",
-            connectionType: "",
-            edFiExtension: "",
-            edFiVersion: "",
-            metadataUrl: formData.baseUrl,
-            clientId: formData.key,
-            clientSecret: formData.secret,
-            tokenUrl: ""
-        }
-
-        console.log('update connection request', request)
-
-        const updateResponse = await updateConnection(adminConfig.actionParams, request)
-
-        if (updateResponse.type === "Error") {
-            errorToast("Request failed")
-            return null
-        }
-
-        return updateResponse.data
+    if (createConnectionResponse.type === 'Error') {
+      errorToast('Request failed')
+      return null
     }
 
-    const saveConnection = async () => {
-        console.log('save connection')
-        if (mode === 'Add') {
-            const createDataHealthConnection = await createEdFiAdminConnection("Data Health Check")
-            const createDataWarehouseConnection = await createEdFiAdminConnection("Data Warehouse")
+    return createConnectionResponse.data
+  }
 
-            return 
-        }
+  const updateEdFiAdminConnection = async (connectionId: string): Promise<UpdatedEdFiAdminConnectionResponse | null> => {
+    console.log('update edfi admin connection')
+    if (!adminConfig)   
+      return null
 
-        if (formData.connectionId)
-           return await updateEdFiAdminConnection(formData.connectionId)
+    const request: UpdateEdfiAdminConnectionRequest = {
+      connectionId,
+      tenantId: adminConfig.actionParams.tenantId,
+      connectionName: formData.connectionName ?? 'Connection Name',
+      connectionType: '',
+      edFiExtension: '',
+      edFiVersion: '',
+      metadataUrl: formData.baseUrl,
+      clientId: formData.key,
+      clientSecret: formData.secret,
+      tokenUrl: ''
     }
 
-    const scrollToErrorSection = () => {
-        if (inOnboarding) {
-            document
-                .getElementById("connectionVerificationStatus")
-                ?.scrollIntoView({ behavior: "smooth" })
-        }
+    console.log('update connection request', request)
+
+    const updateResponse = await updateConnection(adminConfig.actionParams, request)
+
+    if (updateResponse.type === 'Error') {
+      errorToast('Request failed')
+      return null
     }
 
-    const createTestConnection = async () => {
-        if (!adminConfig)
-            return 
+    return updateResponse.data
+  }
 
-        if (formData.key == initialData?.key && formData.secret == initialData.secret) {
-            return {
-                tenantId: adminConfig.actionParams.tenantId,
-                connectionId: initialData.connectionId as string 
-            }
-        }
+  const saveConnection = async () => {
+    console.log('save connection')
+    if (mode === 'Add') {
+      const createDataHealthConnection = await createEdFiAdminConnection('Data Health Check')
+      const createDataWarehouseConnection = await createEdFiAdminConnection('Data Warehouse')
 
-        return await createEdFiAdminConnection("Test Connection")
+      return 
     }
 
-    const onVerifyConnection = async () => {
-        console.log('on verify connection')
-        if (!adminConfig)
-            return 
+    if (formData.connectionId)
+      return await updateEdFiAdminConnection(formData.connectionId)
+  }
 
-        setIsverifying(true)
+  const scrollToErrorSection = () => {
+    if (inOnboarding) {
+      document
+        .getElementById('connectionVerificationStatus')
+        ?.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
 
-        const connection = await createTestConnection()
+  const createTestConnection = async () => {
+    if (!adminConfig)
+      return 
 
-        if (!connection) {
-            setIsverifying(false)
-            return 
-        }
+    if (formData.key == initialData?.key && formData.secret == initialData.secret) {
+      return {
+        tenantId: adminConfig.actionParams.tenantId,
+        connectionId: initialData.connectionId as string 
+      }
+    }
 
-        const verifyConnectionRequest: VerifyEdFiAdminConnectionRequest = {
-            tenantId: adminConfig.actionParams.tenantId,
-            connectionId: connection.connectionId,
-            deleteConnection: connection.connectionId == initialData?.connectionId? false : true
-        }
+    return await createEdFiAdminConnection('Test Connection')
+  }
 
-        const verifyConnectionResponse = await verifyConnection(adminConfig.actionParams, verifyConnectionRequest)
+  const onVerifyConnection = async () => {
+    console.log('on verify connection')
+    if (!adminConfig)
+      return 
 
-        setIsverifying(false)
-        if (verifyConnectionResponse.type === "Error") {
-            setVerificationStatus("URL Error")
+    setIsverifying(true)
 
-            scrollToErrorSection()
+    const connection = await createTestConnection()
 
-            return errorToast("Failed to verify connection")
-        }
+    if (!connection) {
+      setIsverifying(false)
+      return 
+    }
 
-        if (verifyConnectionResponse.data.status === "failure") {
-            setVerificationStatus("Credential Error")
+    const verifyConnectionRequest: VerifyEdFiAdminConnectionRequest = {
+      tenantId: adminConfig.actionParams.tenantId,
+      connectionId: connection.connectionId,
+      deleteConnection: connection.connectionId == initialData?.connectionId? false : true
+    }
 
-            scrollToErrorSection()
+    const verifyConnectionResponse = await verifyConnection(adminConfig.actionParams, verifyConnectionRequest)
+
+    setIsverifying(false)
+    if (verifyConnectionResponse.type === 'Error') {
+      setVerificationStatus('URL Error')
+
+      scrollToErrorSection()
+
+      return errorToast('Failed to verify connection')
+    }
+
+    if (verifyConnectionResponse.data.status === 'failure') {
+      setVerificationStatus('Credential Error')
+
+      scrollToErrorSection()
             
-            return errorToast("Failed to verify connection")
-        }
-
-        if (verifyConnectionResponse.data.status === "success") {
-            setVerificationStatus("Connected")
-
-            successToast("Successfully verified connection")
-        }
+      return errorToast('Failed to verify connection')
     }
 
-    const onSimpleVerifyConnection = async () => {
-        if (!adminConfig)
-            return 
+    if (verifyConnectionResponse.data.status === 'success') {
+      setVerificationStatus('Connected')
 
-        if (!initialData || !initialData.connectionId)
-            return 
+      successToast('Successfully verified connection')
+    }
+  }
 
-        setIsverifying(true)
-        console.log("connection id to check", initialData.connectionId)
+  const onSimpleVerifyConnection = async () => {
+    if (!adminConfig)
+      return 
 
-        const verifyConnectionRequest: VerifyEdFiAdminConnectionRequest = {
-            tenantId: adminConfig.actionParams.tenantId,
-            connectionId: initialData.connectionId,
-            deleteConnection: false
-        }
+    if (!initialData || !initialData.connectionId)
+      return 
 
-        const verifyConnectionResponse = await verifyConnection(adminConfig.actionParams, verifyConnectionRequest)
+    setIsverifying(true)
+    console.log('connection id to check', initialData.connectionId)
 
-        setIsverifying(false)
-        if (verifyConnectionResponse.type === "Error") {
-            setVerificationStatus("URL Error")
+    const verifyConnectionRequest: VerifyEdFiAdminConnectionRequest = {
+      tenantId: adminConfig.actionParams.tenantId,
+      connectionId: initialData.connectionId,
+      deleteConnection: false
+    }
 
-            scrollToErrorSection()
+    const verifyConnectionResponse = await verifyConnection(adminConfig.actionParams, verifyConnectionRequest)
 
-            return errorToast("Failed to verify connection")
-        }
+    setIsverifying(false)
+    if (verifyConnectionResponse.type === 'Error') {
+      setVerificationStatus('URL Error')
 
-        if (verifyConnectionResponse.data.status === "failure") {
-            setVerificationStatus("Credential Error")
+      scrollToErrorSection()
 
-            scrollToErrorSection()
+      return errorToast('Failed to verify connection')
+    }
+
+    if (verifyConnectionResponse.data.status === 'failure') {
+      setVerificationStatus('Credential Error')
+
+      scrollToErrorSection()
             
-            return errorToast("Failed to verify connection")
-        }
-
-        if (verifyConnectionResponse.data.status === "success") {
-            setVerificationStatus("Connected")
-
-            successToast("Successfully verified connection")
-        }
+      return errorToast('Failed to verify connection')
     }
 
-    const isDisabledVerification = () => isValidFormData(formData)
+    if (verifyConnectionResponse.data.status === 'success') {
+      setVerificationStatus('Connected')
 
-    const isDisabledSave = () => {
-        if (verificationStatus !== "Connected")
-            return true
+      successToast('Successfully verified connection')
+    }
+  }
 
-        if (mode == 'Edit' && initialData)
-            if (formData.key == initialData.key && formData.secret == initialData.secret) 
-                return true
+  const isDisabledVerification = () => isValidFormData(formData)
 
-        return false
+  const isDisabledSave = () => {
+    if (verificationStatus !== 'Connected')
+      return true
+
+    if (mode == 'Edit' && initialData)
+      if (formData.key == initialData.key && formData.secret == initialData.secret) 
+        return true
+
+    return false
+  }
+
+  const onSave = async () => {
+    if (!validFormData(formData)) {
+      setHasTriedSubmit(true)
+      return 
     }
 
-    const onSave = async () => {
-        if (!validFormData(formData)) {
-            setHasTriedSubmit(true)
-            return 
-        }
+    await saveConnection()
 
-        await saveConnection()
+    if (onAfterSave)
+      onAfterSave()
+  }
 
-        if (onAfterSave)
-            onAfterSave()
+  useEffect(() => {
+    if (mode === 'Edit') {
+      onSimpleVerifyConnection()
     }
+  }, [ mode ])
 
-    useEffect(() => {
-        if (mode === 'Edit') {
-            onSimpleVerifyConnection()
-        }
-    }, [ mode ])
-
-    return {
-        formData,
-        isSaving,
-        errors,
-        validFormData,
-        hasTriedSubmit,
-        verificationStatus,
-        isVerifying,
-        isDisabledVerification,
-        isDisabledSave,
-        onInputChange,
-        onVerifyConnection,
-        onSave
-    }
+  return {
+    formData,
+    isSaving,
+    errors,
+    validFormData,
+    hasTriedSubmit,
+    verificationStatus,
+    isVerifying,
+    isDisabledVerification,
+    isDisabledSave,
+    onInputChange,
+    onVerifyConnection,
+    onSave
+  }
 }
 
 export default useEdFiConnectionForm

@@ -1,4 +1,4 @@
-import { HttpServiceRequestError, HttpServiceResponse } from "../../HttpService/HttpService.response.types"
+import { HttpServiceRequestError, HttpServiceResponse } from '../../HttpService/HttpService.response.types'
 
 export interface Descriptor {
     namespace: string

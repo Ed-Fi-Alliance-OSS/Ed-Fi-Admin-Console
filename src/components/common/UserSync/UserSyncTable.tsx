@@ -1,4 +1,4 @@
-import ControlTable from "../ControlTable"
+import ControlTable from '../ControlTable'
 
 interface UserSyncTableProps {
     headers: JSX.Element[]
@@ -9,15 +9,15 @@ interface UserSyncTableProps {
 }
 
 const UserSyncTable = ({ headers, itemsCount, rows, loading, pagination }: UserSyncTableProps) => {
-    return (
-        <ControlTable 
-            headers={headers}
-            itemsCount={itemsCount}
-            rows={rows}
-            thPadding="16px"
-            loading={loading}
-            pagination={pagination} />
-    )
+  return (
+    <ControlTable 
+      headers={headers}
+      itemsCount={itemsCount}
+      rows={rows}
+      thPadding="16px"
+      loading={loading}
+      pagination={pagination} />
+  )
 }
 
 export default UserSyncTable

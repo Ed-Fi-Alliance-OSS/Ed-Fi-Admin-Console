@@ -1,22 +1,22 @@
-import { ExtendedODSInstance, ODSInstance } from "../../core/ODSInstance.types"
+import { ExtendedODSInstance, ODSInstance } from '../../core/ODSInstance.types'
 
 const useOdsInstanceHostingType = () => {
-    const getHostingType = (instance: ExtendedODSInstance | ODSInstance | null) => {
-        if (!instance)
-            return "Unknown"
+  const getHostingType = (instance: ExtendedODSInstance | ODSInstance | null) => {
+    if (!instance)
+      return 'Unknown'
 
-        if (instance.provider == "TexasEducationExchange")
-            return "Exchange"
+    if (instance.provider == 'TexasEducationExchange')
+      return 'Exchange'
 
-        if (instance.provider == "External")
-            return "External"
+    if (instance.provider == 'External')
+      return 'External'
 
-        return "EdGraph"
-    }
+    return 'EdGraph'
+  }
 
-    return {
-        getHostingType
-    }
+  return {
+    getHostingType
+  }
 }
 
 export default useOdsInstanceHostingType

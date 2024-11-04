@@ -1,4 +1,4 @@
-import { AppUserRole } from "../../../core/AppUser.types"
+import { AppUserRole } from '../../../core/AppUser.types'
 
 export interface GetUsersListRequest {
     pageIndex: number  

@@ -1,6 +1,6 @@
-import { createContext } from "react";
-import httpService from "../services/HttpService/HttpService";
-import { HttpService } from "../services/HttpService/HttpService.types";
+import { createContext } from 'react'
+import httpService from '../services/HttpService/HttpService'
+import { HttpService } from '../services/HttpService/HttpService.types'
 
 interface IHttpServiceContext {
     redirectOnError: boolean
@@ -8,8 +8,8 @@ interface IHttpServiceContext {
 }
 
 const HttpServiceContext = createContext<IHttpServiceContext>({
-    httpService,
-    redirectOnError: false
+  httpService,
+  redirectOnError: false
 })
 
 interface HttpServiceContextProviderProps {
@@ -18,14 +18,14 @@ interface HttpServiceContextProviderProps {
 }
 
 const HttpServiceContextProvider = ({ children, redirectOnError }: HttpServiceContextProviderProps) => {
-    return (
-        <HttpServiceContext.Provider value={{ httpService, redirectOnError }}>
-            { children }           
-        </HttpServiceContext.Provider>
-    )
+  return (
+    <HttpServiceContext.Provider value={{ httpService, redirectOnError }}>
+      { children }           
+    </HttpServiceContext.Provider>
+  )
 }
 
 export {
-    HttpServiceContext,
-    HttpServiceContextProvider
+  HttpServiceContext,
+  HttpServiceContextProvider
 }
