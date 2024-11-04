@@ -1,5 +1,5 @@
-import { Flex, Text } from "@chakra-ui/react"
-import { CustomSwitch } from "@edfi/admin-console-shared-sdk"
+import { Flex, Text } from '@chakra-ui/react'
+import { CustomSwitch } from '@edfi/admin-console-shared-sdk'
 
 
 interface AdvancedModeSwitchProps {
@@ -7,20 +7,20 @@ interface AdvancedModeSwitchProps {
 }
 
 const AdvancedModeSwitch = ({ checked }: AdvancedModeSwitchProps) => {
-    return (
-        <Flex alignItems='center' justifyContent='flex-end'>
-            <CustomSwitch
-                id="advancedMode"
-                isChecked={checked} />
-            <Text 
-                fontFamily='Open sans'
-                fontWeight='700'
-                size='2m'
-                ml='15px'>
+  return (
+    <Flex alignItems='center' justifyContent='flex-end'>
+      <CustomSwitch
+        id="advancedMode"
+        isChecked={checked} />
+      <Text 
+        fontFamily='Open sans'
+        fontWeight='700'
+        size='2m'
+        ml='15px'>
                     Advanced Mode
-            </Text>
-        </Flex>
-    )
+      </Text>
+    </Flex>
+  )
 }
 
 export default AdvancedModeSwitch

@@ -3,7 +3,7 @@ interface EditSubscriptionFormProps {
 }
 
 const EditSubscriptionForm = ({ onClose }: EditSubscriptionFormProps) => {
-    return null
+  return null
 }
 
 export default EditSubscriptionForm

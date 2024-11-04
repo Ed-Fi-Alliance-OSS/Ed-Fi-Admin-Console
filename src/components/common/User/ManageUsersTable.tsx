@@ -1,4 +1,4 @@
-import ControlTable from "../ControlTable"
+import ControlTable from '../ControlTable'
 
 interface ManageUsersTableProps {
     headers: JSX.Element[]
@@ -9,15 +9,15 @@ interface ManageUsersTableProps {
 }
 
 const ManageUsersTable = ({ headers, itemsCount, rows, loading, pagination }: ManageUsersTableProps) => {
-    return (
-        <ControlTable 
-            headers={headers}
-            rows={rows}
-            itemsCount={itemsCount}
-            thPadding="16px"
-            loading={loading}
-            pagination={pagination} />
-    )
+  return (
+    <ControlTable 
+      headers={headers}
+      rows={rows}
+      itemsCount={itemsCount}
+      thPadding="16px"
+      loading={loading}
+      pagination={pagination} />
+  )
 }
 
 export default ManageUsersTable

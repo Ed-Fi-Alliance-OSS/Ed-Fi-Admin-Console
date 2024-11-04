@@ -1,6 +1,6 @@
 import { useContext } from 'react'
-import { AuthContextProps } from "react-oidc-context"
-import { AppsMenuMoreOption, EdxAppConfig, Content, DefaultLayout, ExternalAppsContext, Footer, NotificationBar, TopBar, TopBarLeft, TopBarRight, useAuthActions, useNotificationsBar, UserProfileContext, TEEAuthDataContext } from "@edfi/admin-console-shared-sdk"
+import { AuthContextProps } from 'react-oidc-context'
+import { AppsMenuMoreOption, EdxAppConfig, Content, DefaultLayout, ExternalAppsContext, Footer, NotificationBar, TopBar, TopBarLeft, TopBarRight, useAuthActions, useNotificationsBar, UserProfileContext, TEEAuthDataContext } from '@edfi/admin-console-shared-sdk'
 import { useNavigate } from 'react-router-dom'
 import { Flex } from '@chakra-ui/react'
 
@@ -18,28 +18,30 @@ const DefaultLayoutWrapper = ({ content, notificationBarMessage, isClosingSessio
     const { userProfile } = useContext(UserProfileContext)
     const { externalApps } = useContext(ExternalAppsContext)
     const { handleLogIn, handleChangeTenantId } = useAuthActions()
-    const { showNotificationsBar, onCloseNotificationsBar } = useNotificationsBar({ show: true })
-    const navigate = useNavigate()
+  const { showNotificationsBar, onCloseNotificationsBar } = useNotificationsBar({ show: true })
+  const navigate = useNavigate()
 
-    const moreOptions: AppsMenuMoreOption[] = [
-        { name: 'Account Info', url: null },
-        { name: "Online Community", url: null },
-        { name: "Help", url: null }
-    ]
+  const moreOptions: AppsMenuMoreOption[] = [
+    { name: 'Account Info', url: null },
+    { name: 'Online Community', url: null },
+    { name: 'Help', url: null }
+  ]
 
-    const handleLogoClick = () => {
-        navigate('/', { replace: true })
-    }
+  const handleLogoClick = () => {
+    console.log('Logo clicked')
+    console.log('edxAppConfig', edxAppConfig)
+    // navigate('/', { replace: true })
+  }
 
-    // console.log('external apps', externalApps)
+  // console.log('external apps', externalApps)
 
     return (
         <DefaultLayout
             topBar={<TopBar 
                 leftComponent={<TopBarLeft 
-                    list={externalApps} 
-                    menuOptions={moreOptions} />} 
-                rightComponent={<TopBarRight 
+                    list={externalApps}
+                    menuOptions={moreOptions} />}
+                rightComponent={<TopBarRight
                    profileData={userProfile}
                    isClosingSession={isClosingSession}
                    onLogin={handleLogIn}

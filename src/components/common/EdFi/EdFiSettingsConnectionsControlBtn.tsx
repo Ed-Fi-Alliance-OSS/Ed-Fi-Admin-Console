@@ -1,6 +1,6 @@
-import { Button, Flex } from "@chakra-ui/react"
-import { DeletingState } from "../../../core/deletingState.types"
-import EdFiConnectionControlPopover from "./EdFiConnectionControlPopover"
+import { Button, Flex } from '@chakra-ui/react'
+import { DeletingState } from '../../../core/deletingState.types'
+import EdFiConnectionControlPopover from './EdFiConnectionControlPopover'
 
 interface EdFiSettingsConnectionsControlBtnProps {
     connectionId: string
@@ -10,24 +10,24 @@ interface EdFiSettingsConnectionsControlBtnProps {
 }
 
 const EdFiSettingsConnectionsControlBtn = ({ connectionId, isDeleting, isDisabled, onEdit }: EdFiSettingsConnectionsControlBtnProps) => {
-    return (
-        <Flex justifyContent='flex-end' w='auto'>
-            <Button 
-                onClick={() => onEdit(connectionId)}
-                isDisabled={isDisabled}
-                size='xs'
-                borderRadius='4px'
-                variant='primaryBlue600'
-                minW='39px'>
+  return (
+    <Flex justifyContent='flex-end' w='auto'>
+      <Button 
+        onClick={() => onEdit(connectionId)}
+        isDisabled={isDisabled}
+        size='xs'
+        borderRadius='4px'
+        variant='primaryBlue600'
+        minW='39px'>
                     Edit
-            </Button>
-            { false && <EdFiConnectionControlPopover 
-                connectionId={connectionId} 
-                isDisabled={false} 
-                isDeleting={isDeleting} 
-                onDelete={() => null} /> }
-        </Flex>
-    )
+      </Button>
+      { false && <EdFiConnectionControlPopover 
+        connectionId={connectionId} 
+        isDisabled={false} 
+        isDeleting={isDeleting} 
+        onDelete={() => null} /> }
+    </Flex>
+  )
 }
 
 export default EdFiSettingsConnectionsControlBtn

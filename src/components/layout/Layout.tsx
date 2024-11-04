@@ -1,10 +1,10 @@
-import { Flex } from "@chakra-ui/react"
-import { AuthContextProps } from "react-oidc-context"
-import { useLocation } from "react-router-dom"
-import { EdxAppConfig, useRouteLayoutSelector } from "@edfi/admin-console-shared-sdk"
-import useScrollTop from "../../hooks/useScrollTop"
-import DefaultLayoutWrapper from "./DefaultLayoutWrapper"
-import useCheckPermissions from "../../hooks/useCheckPermissions"
+import { Flex } from '@chakra-ui/react'
+import { AuthContextProps } from 'react-oidc-context'
+import { useLocation } from 'react-router-dom'
+import { EdxAppConfig, useRouteLayoutSelector } from '@edfi/admin-console-shared-sdk'
+import useScrollTop from '../../hooks/useScrollTop'
+import DefaultLayoutWrapper from './DefaultLayoutWrapper'
+import useCheckPermissions from '../../hooks/useCheckPermissions'
 
 interface LayoutProps {
     auth: AuthContextProps
@@ -17,27 +17,27 @@ interface LayoutProps {
 }
 
 const Layout = ({ auth, edxAppConfig, content, notificationBarMessage, simpleLayoutRouteList, isClosingSession, onLogout }: LayoutProps) => {
-    const location = useLocation()
-    useScrollTop()
+  const location = useLocation()
+  useScrollTop()
 
-    const { routeHasDefaultLayout } = useRouteLayoutSelector()
+  const { routeHasDefaultLayout } = useRouteLayoutSelector()
 
-    return (
-        <Flex w="full" minH='100vh' position='relative'>
-            <Flex className="one" w='full' flexDirection='column' justifyContent='center'>
-                {routeHasDefaultLayout(simpleLayoutRouteList, location.pathname)?  
-                    <DefaultLayoutWrapper 
-                        auth={auth}
-                        edxAppConfig={edxAppConfig}
-                        content={content}
-                        notificationBarMessage={notificationBarMessage}
-                        isClosingSession={isClosingSession}
-                        onLogout={onLogout} />
-                    :
-                    content}
-            </Flex>
-        </Flex>
-    )
+  return (
+    <Flex w="full" minH='100vh' position='relative'>
+      <Flex className="one" w='full' flexDirection='column' justifyContent='center'>
+        {routeHasDefaultLayout(simpleLayoutRouteList, location.pathname)?  
+          <DefaultLayoutWrapper 
+            auth={auth}
+            edxAppConfig={edxAppConfig}
+            content={content}
+            notificationBarMessage={notificationBarMessage}
+            isClosingSession={isClosingSession}
+            onLogout={onLogout} />
+          :
+          content}
+      </Flex>
+    </Flex>
+  )
 }
 
 export default Layout

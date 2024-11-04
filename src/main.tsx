@@ -15,4 +15,4 @@ fetch(`${import.meta.env.BASE_URL || './'}config.json`).then(resp => resp.json()
     <BrowserRouter basename={config.app.basePath}>
       <App appConfig={config} />
     </BrowserRouter>)
-}).catch(err => console.log("The config file fetching failed: ", err))
+}).catch(err => console.log('The config file fetching failed: ', err))

@@ -1,12 +1,12 @@
 
-import { test, expect, Page } from "@playwright/test"
-import { routes } from "../../core/routes"
+import { test, expect, Page } from '@playwright/test'
+import { routes } from '../../core/routes'
 
 const openManageSubscriptionsForm = async (page: Page) => {
-    await page.getByTestId("manage-Test App-btn").click()
+  await page.getByTestId('manage-Test App-btn').click()
 
-    expect(page.waitForLoadState("networkidle"))
-    expect(page.getByText("Manage Subscriptions")).toBeVisible()
+  expect(page.waitForLoadState('networkidle'))
+  expect(page.getByText('Manage Subscriptions')).toBeVisible()
 }
 /*
 test.beforeEach(async ({ page }) => {

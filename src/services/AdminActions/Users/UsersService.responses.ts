@@ -1,5 +1,5 @@
-import { AppUserLicenseRole, AppUserTenant } from "../../../core/AppUser.types"
-import { Organization, StaffClassification } from "../../../core/Tenant.types"
+import { AppUserLicenseRole, AppUserTenant } from '../../../core/AppUser.types'
+import { Organization, StaffClassification } from '../../../core/Tenant.types'
 
 export interface ApiResponseApplicationRole {
     role: string 
@@ -130,7 +130,7 @@ export interface ApiInvitation {
     assignLicenseRequests: ApiAssignLicenseRequests[]
 }
 
-type UserEmailStatus = "Unregistered" | "Registered" | "RegisteredInCurrentTenant"
+type UserEmailStatus = 'Unregistered' | 'Registered' | 'RegisteredInCurrentTenant'
 
 export interface CheckUserEmailResponse {
     email: string 

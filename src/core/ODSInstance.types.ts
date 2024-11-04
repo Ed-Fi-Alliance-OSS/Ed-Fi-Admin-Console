@@ -1,4 +1,4 @@
-import { OnBoardingWizardData } from "./onBoardingWizard/onBoardingWizard.types"
+import { OnBoardingWizardData } from './onBoardingWizard/onBoardingWizard.types'
 
 export interface InstanceEdfiStatus {
   operationStatus: InstanceOperationStatus

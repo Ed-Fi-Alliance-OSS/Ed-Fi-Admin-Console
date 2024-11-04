@@ -1,5 +1,5 @@
-import { OnBoardingWizardData } from "./onBoardingWizard/onBoardingWizard.types"
-import { Subscription } from "./Subscription.types"
+import { OnBoardingWizardData } from './onBoardingWizard/onBoardingWizard.types'
+import { Subscription } from './Subscription.types'
 
 export interface Organization {
     identifierType: string 
@@ -70,7 +70,7 @@ const enum IdentityProviderEnum {
     Adfs = 4
 }
 
-export type DomainStatus = "Unknown" | "Unverified" | "Verified" | "Rejected" | "Error"
+export type DomainStatus = 'Unknown' | 'Unverified' | 'Verified' | 'Rejected' | 'Error'
 
 export const enum DomainStatusEnum {
     Unknown = 1,
