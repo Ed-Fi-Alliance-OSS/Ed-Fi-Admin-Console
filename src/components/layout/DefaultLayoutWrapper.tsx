@@ -17,6 +17,7 @@ const DefaultLayoutWrapper = ({ content, notificationBarMessage, isClosingSessio
     const { edxAppConfig } = useContext(TEEAuthDataContext)
     const { userProfile } = useContext(UserProfileContext)
     const { externalApps } = useContext(ExternalAppsContext)
+    // const {} = useContext(edxAppConfig)
     const { handleLogIn, handleChangeTenantId } = useAuthActions()
     const { showNotificationsBar, onCloseNotificationsBar } = useNotificationsBar({ show: true })
     const navigate = useNavigate()
@@ -28,7 +29,9 @@ const DefaultLayoutWrapper = ({ content, notificationBarMessage, isClosingSessio
     ]
 
     const handleLogoClick = () => {
-        navigate('/', { replace: true })
+      console.log("Logo clicked")
+      console.log('edxAppConfig', edxAppConfig)
+        // navigate('/', { replace: true })
     }
 
     // console.log('external apps', externalApps)
@@ -37,14 +40,16 @@ const DefaultLayoutWrapper = ({ content, notificationBarMessage, isClosingSessio
         <DefaultLayout
             topBar={<TopBar 
                 leftComponent={<TopBarLeft 
+                    onClick={handleLogoClick}
+                    imageUrl={edxAppConfig?.app.logo ?? ''}
                     list={externalApps} 
                     menuOptions={moreOptions} />} 
                 rightComponent={<TopBarRight 
-                   profileData={userProfile}
-                   isClosingSession={isClosingSession}
-                   onLogin={handleLogIn}
-                   onLogout={onLogout}
-                   onChangeTenantId={handleChangeTenantId} />} />}
+                    profileData={userProfile}
+                    isClosingSession={isClosingSession}
+                    onLogin={handleLogIn}
+                    onLogout={onLogout}
+                    onChangeTenantId={handleChangeTenantId} />} />}
             notificationBar={
                 <Flex mt='-10px' w='full'>
                     <NotificationBar 
