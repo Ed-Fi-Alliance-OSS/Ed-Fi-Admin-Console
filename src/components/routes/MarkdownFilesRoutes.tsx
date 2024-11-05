@@ -1,7 +1,6 @@
 import React from 'react'
 import { MarkdownPage } from '../pages/MarkdownPage'
 
-
 // Use Vite's import.meta.glob to import all markdown files dynamically
 const markdownFiles = import.meta.glob('/src/docs/**/*.md')
 
@@ -10,9 +9,6 @@ export const markdownRoutes = Object.keys(markdownFiles).map((filePath) => {
   const pathName = filePath
     .replace('/src/docs/', '')
     .replace('.md', '')
-  markdownFiles[filePath]().then((data: any) => {
-    console.log(data)
-  })
 
   return {
     path: `/docs/${pathName}`,

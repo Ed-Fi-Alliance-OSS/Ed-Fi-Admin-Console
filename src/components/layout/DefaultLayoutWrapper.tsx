@@ -28,18 +28,17 @@ const DefaultLayoutWrapper = ({ content, notificationBarMessage, isClosingSessio
     { name: 'Help', url: null }
   ]
 
-    const handleLogoClick = () => {
-      console.log("Logo clicked")
-      console.log('edxAppConfig', edxAppConfig)
-        // navigate('/', { replace: true })
-    }
+  const handleLogoClick = () => {
+    console.log('Logo clicked', 'edxAppConfig', edxAppConfig)
+    navigate('/', { replace: true })
+  }
 
   // console.log('external apps', externalApps)
 
     return (
         <DefaultLayout
-            topBar={<TopBar 
-                leftComponent={<TopBarLeft 
+            topBar={<TopBar
+                leftComponent={<TopBarLeft
                     onClick={handleLogoClick}
                     imageUrl={edxAppConfig?.app.logo ?? ''}
                     list={externalApps}
@@ -52,12 +51,12 @@ const DefaultLayoutWrapper = ({ content, notificationBarMessage, isClosingSessio
                     onChangeTenantId={handleChangeTenantId} />} />}
             notificationBar={
                 <Flex mt='-10px' w='full'>
-                    <NotificationBar 
+                    <NotificationBar
                         show={false}
-                        onClose={onCloseNotificationsBar} 
+                        onClose={onCloseNotificationsBar}
                         content={notificationBarMessage} />
                 </Flex>}
-            content={<Content 
+            content={<Content
                 marginTop='60px'
                 maxW="1400px">
                     { content }
