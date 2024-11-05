@@ -29,9 +29,8 @@ const DefaultLayoutWrapper = ({ content, notificationBarMessage, isClosingSessio
   ]
 
   const handleLogoClick = () => {
-    console.log('Logo clicked')
-    console.log('edxAppConfig', edxAppConfig)
-    // navigate('/', { replace: true })
+    console.log('Logo clicked', 'edxAppConfig', edxAppConfig)
+    navigate('/', { replace: true })
   }
 
   // console.log('external apps', externalApps)
