@@ -5,11 +5,8 @@ import { GetOrganisations } from './functions/GetOrganizations'
 export default {
   name: 'test-plugin',
   strings: {
-    'api': {
-      edfi: 'https://ed-fi.org'
-    },
     'app': {
-      HEADER_TITLE: 'Test EDFI Plugins',
+      'ODS_INSTANCES': 'ODS Instances',
     }
   },
   register: (registry) => {

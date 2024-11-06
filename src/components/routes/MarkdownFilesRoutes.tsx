@@ -18,7 +18,7 @@ export const markdownRoutes = Object.keys(markdownFiles).map((filePath) => {
     path: `/docs/${pathName}`,
     component: React.lazy(async () => {
       try {
-        const { default: MarkdownFileContent } = await markdownFiles[filePath]() as { default: React.JSX.Element }
+        const { default: MarkdownFileContent } = await markdownFiles[filePath]() as { default: React.FC }
         return {
           default: () => (<MarkdownPage>
             <MarkdownFileContent />

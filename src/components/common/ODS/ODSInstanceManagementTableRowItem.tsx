@@ -28,7 +28,7 @@ const ODSInstanceManagementTableRowItem = ({ tableMode, selectedInstance, instan
   const showSetupBtn = () => {
     const edFiStatus = instance.edFiStatus
 
-    if (edFiStatus.onboardingStatus == 'Populated')  
+    if (edFiStatus.operationStatus == 'Offline')  
       return false
             
     return true
@@ -38,6 +38,7 @@ const ODSInstanceManagementTableRowItem = ({ tableMode, selectedInstance, instan
     if (instance.isDefault) {
       onSelectInstance(instance)
     }
+    console.log('instance', instance)
   }, [])
 
   return (
@@ -68,15 +69,7 @@ const ODSInstanceManagementTableRowItem = ({ tableMode, selectedInstance, instan
         <ODSInstanceEdFiStatus 
           status={instance.edFiStatus} />
       </Td>
-      <Td w='200px'>
-        <ODSInstanceHostingType
-          instance={instance} />
-      </Td>
       { tableMode == 'Display' && <>
-        <Td w='100px'>
-          <ODSInstanceIsDefaultMark
-            isDefault={instance.isDefault} />
-        </Td>
         <Td>
           {showSetupBtn()?  
             <SetUpInstanceBtn

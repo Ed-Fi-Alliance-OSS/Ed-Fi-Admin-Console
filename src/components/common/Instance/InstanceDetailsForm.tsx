@@ -3,6 +3,7 @@ import { UserProfileContext } from '@edfi/admin-console-shared-sdk'
 import { useContext } from 'react'
 import { ODSInstance } from '../../../core/ODSInstance.types'
 import { CustomFormLabel, CustomSelect, CustomFormHeader, CustomInput } from '@edfi/admin-console-shared-sdk'
+import { usePluginContext } from '../../../plugins/BasePlugin'
 
 interface InstanceDetailsFormProps {
     mode: 'edit' | 'add'
@@ -17,6 +18,7 @@ const getInstanceName = (tenants: any[], currentTenantId: string) => {
 
   return 'Instance'
 }
+const {getString} = usePluginContext()
 
 const InstanceDetailsForm = ({ mode, instance }: InstanceDetailsFormProps) => {
   const {userProfile} = useContext(UserProfileContext)
@@ -49,7 +51,7 @@ const InstanceDetailsForm = ({ mode, instance }: InstanceDetailsFormProps) => {
       </Flex>
 
       <Flex mt='52px' w='full'>
-        <CustomFormHeader text="School Years" />
+        <CustomFormHeader text={getString('app.ODS_INSTANCES')} />
       </Flex>
       <Flex paddingLeft='16px'>
         <FormControl mt='16px'>
