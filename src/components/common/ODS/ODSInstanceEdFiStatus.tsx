@@ -6,21 +6,21 @@ interface ODSInstanceEdFiStatusProps {
 }
 
 const selectBorderColor = (status: InstanceEdfiStatus) => {
-  if (status.operationStatus === 'Operational' && status.onboardingStatus == 'Populated')
+  if (status.operationStatus === 'Operational')
     return 'green.400'
     
   return 'orange.400'
 }
 
 const selectTextColor = (status: InstanceEdfiStatus) => {
-  if (status.operationStatus === 'Operational' && status.onboardingStatus == 'Populated')
+  if (status.operationStatus === 'Operational')
     return 'green.800'
     
   return 'orange.800'
 }
 
 const selectSize = (status: InstanceEdfiStatus) => {
-  if (status.operationStatus === 'Operational' && status.onboardingStatus == 'Populated')
+  if (status.operationStatus === 'Operational')
     return '150px'
 
   return '150px'
@@ -42,7 +42,7 @@ const ODSInstanceEdFiStatus = ({ status }: ODSInstanceEdFiStatusProps) => {
           fontFamily='Archivo Narrow'
           fontWeight='400'
           size='md'>
-          { `${status.operationStatus}, ${status.onboardingStatus}` }
+          { status.operationStatus }
         </Text>
       </Flex> 
         : 

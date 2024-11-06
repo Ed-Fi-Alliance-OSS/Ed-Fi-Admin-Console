@@ -34,8 +34,8 @@ test.describe('Home Page Tests', () => {
     await expect(ssoAction).toBeEnabled()
   })
 
-  test('Home page should show School Years Title', async () => {
-    await expect(page.getByText('School Years')).toBeVisible({ timeout: 15000 })
+  test('Home page should show ODS Instances Title', async () => {
+    await expect(page.getByText('ODS Instances')).toBeVisible({ timeout: 15000 })
   })
 
   //Sorting by year works

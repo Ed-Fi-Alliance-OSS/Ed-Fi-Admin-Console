@@ -8,7 +8,7 @@
       "connectionType": "Type X",
       "clientId": "CLIENT789",
       "clientSecret": "SECRET123",
-      "baseUrl": "https://localhost/api",
+      "baseUrl": "https://999999.preprod-2024-2.edfi.pre.txedexchange.net",
       "authenticationUrl": "https://localhost/api/oauth/token",
       "resourcesUrl": "https://localhost/api",
       "schoolYears": [
@@ -57,7 +57,7 @@
       "connectionType": "Type Y",
       "clientId": "CLIENT321",
       "clientSecret": "SECRET456",
-      "baseUrl": "https://localhost/api",
+      "baseUrl": "https://TEA-9999999.preprod-2025.edfi.pre.txedexchange.net/preprod",
       "authenticationUrl": "https://localhost/api/oauth/token",
       "resourcesUrl": "https://localhost/api",
       "schoolYears": [

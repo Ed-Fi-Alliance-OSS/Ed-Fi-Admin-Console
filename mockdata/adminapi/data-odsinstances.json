@@ -15,7 +15,6 @@
         2019,
         2020
       ],
-      "isDefault": true,
       "verificationStatus": {
         "status": "Completed",
         "progressPercentage": 100,
@@ -46,8 +45,7 @@
             "status": "Pending"
           }
         ]
-      },
-      "provider": "Local"
+      }
     },
     {
       "instanceId": "DEF456",
@@ -64,9 +62,7 @@
         2024,
         2025
       ],
-      "isDefault": false,
-      "verificationStatus": null,
-      "provider": "Local"
+      "verificationStatus": null
     }
   ]
 }

@@ -11,7 +11,7 @@ const useExtendedOdsInstanceMapping = () => {
     getTSDSVersionFromMetadata
   } = useOdsVersions()
 
-  const { getOdsInstanceEdFiStatusFromInstance } = useOdsInstanceEdFiStatus({
+  const { getOdsInstanceEdFiStatusFromMetadata } = useOdsInstanceEdFiStatus({
     instance: null,
     edFiMetadata: null
   })
@@ -48,7 +48,7 @@ const useExtendedOdsInstanceMapping = () => {
       isDefault: instance.isDefault,
       edFiVersion: getEdFiVersionFromMetadata(edFiMetadata),
       tsdsVersion: getTSDSVersionFromMetadata(edFiMetadata),
-      edFiStatus: getOdsInstanceEdFiStatusFromInstance(instance, edFiMetadata),
+      edFiStatus: getOdsInstanceEdFiStatusFromMetadata(edFiMetadata),
       schoolYears: instance.schoolYears.map(sy => sy),
       verificationStatus: instance.verificationStatus,
       provider: instance.provider

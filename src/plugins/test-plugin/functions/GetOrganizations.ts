@@ -1,4 +1,4 @@
-export function GetOrganisations(a, b) {
-  console.debug(a, b)
+export function GetOrganisations(a) {
+  console.debug(a)
   return ['Organisation']
 }

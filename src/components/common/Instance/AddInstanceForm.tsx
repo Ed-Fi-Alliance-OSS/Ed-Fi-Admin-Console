@@ -1,6 +1,7 @@
 import { ChangeEvent } from 'react'
 import { Button, Flex, FormControl } from '@chakra-ui/react'
 import { CustomFormLabel, CustomSelect, CustomFormHeader, CustomInput } from '@edfi/admin-console-shared-sdk'
+import { usePluginContext } from '../../../plugins/BasePlugin'
 
 interface AddInstanceFormProps {
     instanceName: string 
@@ -12,7 +13,9 @@ interface AddInstanceFormProps {
     onSaveChanges: () => void
 }
 
+
 const AddInstanceForm = ({ instanceName, instanceDescription, schoolYear, schoolYearOptions, onInputChange, onSelectChange, onSaveChanges }: AddInstanceFormProps) => {
+  const {getString} = usePluginContext()
   return (
     <Flex flexDir='column' w='full'>
       <CustomFormHeader text="Instance Details" />
@@ -38,7 +41,7 @@ const AddInstanceForm = ({ instanceName, instanceDescription, schoolYear, school
       </Flex>
 
       <Flex flexDir='column' mt='48px'>
-        <CustomFormHeader text="School Years" />
+        <CustomFormHeader text={getString('app.ODS_INSTANCES')} />
         <Flex flexDir='column' mt='16px' ml='10px' w='full'>
           <FormControl>
             <CustomFormLabel 

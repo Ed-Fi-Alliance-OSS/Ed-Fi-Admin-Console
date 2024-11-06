@@ -19,7 +19,7 @@ interface InstanceHealth {
 const instanceList: InstanceHealth[] = [
   { 
     name: 'Grand Bend 2023-24',
-    status: { onboardingStatus: 'Empty', operationStatus: 'Outage' },
+    status: { operationStatus: 'Offline' },
     healthList: [
       {
         name: 'Administration',
@@ -49,7 +49,7 @@ const instanceList: InstanceHealth[] = [
   },
   { 
     name: 'Grand Bend 2023-24',
-    status: { onboardingStatus: 'Empty', operationStatus: 'Outage' },
+    status: { operationStatus: 'Offline' },
     healthList: [
       {
         name: 'Administration',
@@ -61,7 +61,7 @@ const instanceList: InstanceHealth[] = [
   },
   { 
     name: 'Grand Bend 2023-24',
-    status: { onboardingStatus: 'Empty', operationStatus: 'Outage' },
+    status: { operationStatus: 'Offline' },
     healthList: [
       {
         name: 'Administration',
@@ -73,7 +73,7 @@ const instanceList: InstanceHealth[] = [
   },
   { 
     name: 'Grand Bend 2023-24',
-    status: { onboardingStatus: 'Empty', operationStatus: 'Outage' },
+    status: { operationStatus: 'Offline' },
     healthList: [
       {
         name: 'Administration',

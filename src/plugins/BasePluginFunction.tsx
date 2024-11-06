@@ -1,6 +1,5 @@
 export interface BasePluginFunction {
-  'CustomA': [string, number],
-  'CustomB': [number, number]
+  'GetOrganisations': [string],
 }
 
 export type BasePluginFunctionNames = keyof BasePluginFunction

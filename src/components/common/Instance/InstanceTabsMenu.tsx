@@ -78,10 +78,7 @@ const InstanceTabsMenu = ({ instance, showConfirmSetDefaultModal, showSetUpWizar
 
     console.log('show partners tab', odsInstanceEdFiStatus)
 
-    if (odsInstanceEdFiStatus.onboardingStatus == 'Empty')
-      return false
-
-    if (odsInstanceEdFiStatus.operationStatus == 'Outage')
+    if (odsInstanceEdFiStatus.operationStatus == 'Offline')
       return false
 
     return true
