@@ -1,4 +1,4 @@
-import { AppUserLicenseRole, AppUserTenant } from "../../../core/AppUser.types"
+import { AppUserLicenseRole, AppUserSource, AppUserTenant } from "../../../core/AppUser.types"
 import { Organization, StaffClassification } from "../../../core/Tenant.types"
 
 export interface ApiResponseApplicationRole {
@@ -31,7 +31,7 @@ export interface ApiResponseUser {
     tenantCount: number 
     tenants: AppUserTenant[]
     licenses: ApiResponseUserLicense[]
-    source: 'Manual' | 'Ed-Fi Sync' | null
+    source: AppUserSource | null
     createdBy: string 
     createdDateTime: string 
     lastModifiedBy: string 

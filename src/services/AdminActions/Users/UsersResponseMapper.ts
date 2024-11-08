@@ -7,7 +7,7 @@ import { GetInvitationsListResponse, GetUsersListResponse } from "./UsersService
 class UsersResponseMapper {
     public static mapToUsersList(response: GetUsersListResponse, tenantId: string): AppUserListData {
         const usersList: AppUser[] = response.data.map(apiUser => {
-            const tenantData = apiUser.tenants.find(tenant => tenant.tenantId === tenantId)
+            const tenantData = apiUser.tenants.find(tenant => tenant.tenantId === "tenant1")
 
             const appUser: AppUser = {
                 userId: apiUser.userId,

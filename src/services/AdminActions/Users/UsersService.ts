@@ -28,8 +28,8 @@ const useUserService = () => {
         if (orderBy)
             queryParams = `${queryParams}&orderBy=${orderBy}`
 
-        const url = `${baseUrl}/${adminActionRoutes.getUsersList(actionParams.tenantId)}?${queryParams}`
-    
+        //const url = `${baseUrl}/${adminActionRoutes.getUsersList(actionParams.tenantId)}?${queryParams}`
+        const url = "/mockdata/data-users.json"
         const result = await getAsync<GetUsersListResponse>({ 
             actionName: "Get Users List",
             access_token: actionParams.token,
