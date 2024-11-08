@@ -6,12 +6,12 @@
 name: Admin Console E2E Tests
 
 on:
-  push:
-    branches: [main]
+  # push:
+  #  branches: [main]
   workflow_dispatch:
-  pull_request:
-    branches:
-      - main
+  # pull_request:
+  # branches:
+  #    - main
 
 permissions: read-all
 
