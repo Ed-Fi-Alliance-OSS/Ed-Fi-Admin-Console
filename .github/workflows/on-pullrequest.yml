@@ -1,0 +1,52 @@
+# SPDX-License-Identifier: Apache-2.0
+# Licensed to the Ed-Fi Alliance under one or more agreements.
+# The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
+# See the LICENSE and NOTICES files in the project root for more information.
+
+name: On Pull Request
+
+on:
+  pull_request:
+    branches:
+      - main
+      - adminconsole10-rc.*
+    paths:
+      - "**/*.ts"
+  workflow_dispatch:
+
+permissions: read-all
+
+jobs:
+  scan-actions-bidi:
+    name: Scan Actions, scan all files for BIDI Trojan Attacks
+    uses: ed-fi-alliance-oss/ed-fi-actions/.github/workflows/repository-scanner.yml@main
+    with:
+      config-file-path: ./.github/workflows/bidi-config.json
+  run-eslint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+        with:
+          path: main
+
+      - name: Setup node
+        uses: actions/setup-node@64ed1c7eab4cce3362f8c340dee64e5eaeef8f7c # v3.6.0
+        with:
+          node-version: "20"
+
+      - name: Intall project dependencies
+        run: npm install
+        working-directory: ./main/
+
+      - name: Run lint
+        run: npm run lint
+        working-directory: ./main/
+#   event_file:
+#     name: "Event File"
+#     runs-on: ubuntu-latest
+#     steps:
+#     - name: Upload
+#       uses: actions/upload-artifact@26f96dfa697d77e81fd5907df203aa23a56210a8 # v4.3.0
+#       with:
+#         name: Event File
+#         path: ${{ github.event_path }}

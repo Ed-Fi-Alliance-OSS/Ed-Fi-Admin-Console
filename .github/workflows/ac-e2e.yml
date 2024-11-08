@@ -27,7 +27,7 @@ jobs:
         run: mv .env.example .env
         working-directory: ./main/docker/Compose/
 
-      - name: Run Admin Console 
+      - name: Run Admin Console
         run: |
           docker compose -f docker/Compose/compose-build-dev.yml --env-file docker/Compose/.env up -d
         working-directory: ./main/
@@ -36,7 +36,7 @@ jobs:
         uses: actions/setup-node@64ed1c7eab4cce3362f8c340dee64e5eaeef8f7c # v3.6.0
         with:
           node-version: "20"
-          
+
       - name: Intall project dependencies
         run: npm install
         working-directory: ./main/
