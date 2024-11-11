@@ -17,3 +17,4 @@ Makefile
 README.md
 local.config.json
 frontend.config.json
+config.json

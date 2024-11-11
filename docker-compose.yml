@@ -1,0 +1,13 @@
+name: edf-adminconsole-local
+
+services:
+  adminconsole:
+      build:
+        context: .
+        dockerfile: ./Dockerfile
+      restart: always
+      container_name: edf-adminconsole-local
+      environment:
+        - EG_app__basePath=/edficonsole/v2.3/v7.2/ds4/saas/tx
+      ports:
+        - "8598:8598"

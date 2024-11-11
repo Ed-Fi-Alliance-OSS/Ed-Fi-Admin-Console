@@ -7,7 +7,7 @@ import App from './App'
   </React.StrictMode>
 
 */
-
+console.log(`basePath is ${import.meta.env.BASE_URL }`)
 fetch(`${import.meta.env.BASE_URL || './'}config.json`).then(resp => resp.json()).then(config => {
   // console.log(`basePath is ${config.app.basePath}`)
 

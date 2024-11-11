@@ -3,9 +3,11 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
+  "homepage": "http://localhost:8598/adminconsole",
   "scripts": {
-    "dev": "set VITE_ENV=local && vite",
-    "build": "tsc && vite build",
+    "dev": "set VITE_ENV=local && vite --open",
+    "build": "vite build --mode development",
+    "build:prod": "vite build --mode production",
     "preview": "vite preview",
     "tests": "playwright test",
     "lint": "eslint . --quiet"

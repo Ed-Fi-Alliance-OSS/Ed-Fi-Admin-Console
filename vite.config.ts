@@ -1,4 +1,5 @@
 import { defineConfig } from 'vite'
+import 'dotenv/config'
 import react from '@vitejs/plugin-react-swc'
 import defaultConfig from './app.config.json' assert { type: 'json' }
 import { mergeEnvVars } from './merge-env-vars.mjs'
@@ -8,8 +9,9 @@ import mdx from '@mdx-js/rollup'
 export default defineConfig(({ mode }) => {
   const isProd = mode === 'production'
   const envConfig = mergeEnvVars(defaultConfig)
+  console.log('🚗 envConfig', envConfig)
   return {
-    base: (isProd && envConfig.app.basePath) ? `${envConfig.app.basePath}/` : './',
+    base: (isProd && envConfig.app.basePath) ? `${envConfig.app.basePath}/` : '/',
     server: {
       port: +(process.env.PORT || 8598)
     },
