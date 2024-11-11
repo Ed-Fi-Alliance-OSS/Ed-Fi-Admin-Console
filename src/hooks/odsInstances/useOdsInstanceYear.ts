@@ -1,19 +1,19 @@
-import { ODSInstance } from "../../core/ODSInstance.types"
+import { ODSInstance } from '../../core/ODSInstance.types'
 
 const useOdsInstanceYear = () => {
-    const getInstanceYear = (instance: ODSInstance) => {
-        if (!instance)
-            return null
+  const getInstanceYear = (instance: ODSInstance) => {
+    if (!instance)
+      return null
 
-        if (instance.schoolYears.length == 0)
-            return null
+    if (instance.schoolYears.length == 0)
+      return null
         
-        return instance.schoolYears[0]
-    }
+    return instance.schoolYears[0]
+  }
 
-    return {
-        getInstanceYear
-    }
+  return {
+    getInstanceYear
+  }
 }
 
 export default useOdsInstanceYear

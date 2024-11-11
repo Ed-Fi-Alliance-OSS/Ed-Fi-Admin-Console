@@ -1,15 +1,15 @@
 
-import { test, Page, expect } from "@playwright/test";
+import { test, Page, expect } from '@playwright/test'
 import { routes } from '../core/routes'
-import { fillAddApplicationForm } from "./addApplicationFormHelpers";
+import { fillAddApplicationForm } from './addApplicationFormHelpers'
 
-let page: Page;
+let page: Page
 
 const openApplicationForm =  async (page: Page) => {
-  await page.getByText("Texas Exchange").click()
-  await page.getByRole('button', { name: "Add Application" }).click()
+  await page.getByText('Texas Exchange').click()
+  await page.getByRole('button', { name: 'Add Application' }).click()
 
-  expect(page.getByRole("button", { name: "Add Application" })).toBeVisible()
+  expect(page.getByRole('button', { name: 'Add Application' })).toBeVisible()
 }
 
 test.beforeAll(async ({ browser }) => {
@@ -19,11 +19,11 @@ test.beforeAll(async ({ browser }) => {
   await page.waitForURL(routes.instance)
   await page.waitForLoadState('networkidle')
 
-  await page.getByText("Partners & Applications").click()
-  await page.waitForLoadState("networkidle")
+  await page.getByText('Partners & Applications').click()
+  await page.waitForLoadState('networkidle')
 
   await openApplicationForm(page)
-});
+})
 
 /*
 test.describe("Add Application Form - Application Name", () => {

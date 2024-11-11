@@ -7,6 +7,7 @@
   "app": {
     "name": "Acme Service Center",
     "subtitle": "Admin Console",
+    "logo": "/acme.jpg",
     "basePath": "",
     "baseImagesUrl": "",
     "showDataHealth": true,
@@ -36,6 +37,7 @@
     "showEdOrgsTab": false,
     "useDataHealthWithSchoolYear": false 
   },
+  "plugins": [],
   "auth": {
     "authority": "http://localhost:28080/realms/myrealm/",
     "clientId": "ac",

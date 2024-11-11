@@ -1,4 +1,4 @@
-export type ControlTableSortType = "asc" | "desc"
+export type ControlTableSortType = 'asc' | 'desc'
 
 export interface SortByParams {
     field: string 

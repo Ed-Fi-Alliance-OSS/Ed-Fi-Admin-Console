@@ -1,12 +1,12 @@
-import PageWrapper from "./PageWrapper"
-import StatusSummaryPageContent from "./StatusSummaryPageContent"
+import PageWrapper from './PageWrapper'
+import StatusSummaryPageContent from './StatusSummaryPageContent'
 
 const StatusSummaryPage = () => {
-    return (
-        <PageWrapper pageName="Instances Summary">
-            <StatusSummaryPageContent />
-        </PageWrapper>
-    )
+  return (
+    <PageWrapper pageName="Instances Summary">
+      <StatusSummaryPageContent />
+    </PageWrapper>
+  )
 }
 
 export default StatusSummaryPage

@@ -1,9 +1,9 @@
-import { TEEAuthDataContext, UserProfileContext } from "@edfi/admin-console-shared-sdk"
-import { useContext, useEffect, useState } from "react"
-import { adminConsoleContext } from "../../../context/adminConsoleContext"
-import { Subscription } from "../../../core/Subscription.types"
-import useSubscriptionsService from "../../../services/AdminActions/Subscriptions/SubscriptionsService"
-import { GetSubscriptionsListRequest } from "../../../services/AdminActions/Subscriptions/SubscriptionsService.requests"
+import { TEEAuthDataContext, UserProfileContext } from '@edfi/admin-console-shared-sdk'
+import { useContext, useEffect, useState } from 'react'
+import { adminConsoleContext } from '../../../context/adminConsoleContext'
+import { Subscription } from '../../../core/Subscription.types'
+import useSubscriptionsService from '../../../services/AdminActions/Subscriptions/SubscriptionsService'
+import { GetSubscriptionsListRequest } from '../../../services/AdminActions/Subscriptions/SubscriptionsService.requests'
 
 interface TablePaginationData {
     count: number 
@@ -12,54 +12,54 @@ interface TablePaginationData {
 }
 
 const useSubscriptionsList = () => {
-    const { getSubscriptionsList } = useSubscriptionsService()
-    const [subscriptionsList, setSubscriptionsList] = useState<Subscription[]>([])
-    const { edxAppConfig, auth } = useContext(TEEAuthDataContext)
-    const adminConfig = useContext(adminConsoleContext)
-    const { userProfile } = useContext(UserProfileContext)
-    const [isFetchingSubscriptions, setIsFetchingSubscriptions] = useState(false)
-    const [ paginationData, setPaginationData ] = useState<TablePaginationData>({
-        count: 0,
-        pageIndex: 0,
-        pageSize: 100
-    })
+  const { getSubscriptionsList } = useSubscriptionsService()
+  const [subscriptionsList, setSubscriptionsList] = useState<Subscription[]>([])
+  const { edxAppConfig, auth } = useContext(TEEAuthDataContext)
+  const adminConfig = useContext(adminConsoleContext)
+  const { userProfile } = useContext(UserProfileContext)
+  const [isFetchingSubscriptions, setIsFetchingSubscriptions] = useState(false)
+  const [ paginationData, setPaginationData ] = useState<TablePaginationData>({
+    count: 0,
+    pageIndex: 0,
+    pageSize: 100
+  })
 
-    const fetchSubscriptionsList = async () => {
-        if (userProfile && auth && auth.user && edxAppConfig && adminConfig) {
-            setIsFetchingSubscriptions(true)
+  const fetchSubscriptionsList = async () => {
+    if (userProfile && auth && auth.user && edxAppConfig && adminConfig) {
+      setIsFetchingSubscriptions(true)
 
-            const requestData: GetSubscriptionsListRequest = {
-                pageIndex: paginationData.pageIndex,
-                pageSize: paginationData.pageSize
-            }
+      const requestData: GetSubscriptionsListRequest = {
+        pageIndex: paginationData.pageIndex,
+        pageSize: paginationData.pageSize
+      }
 
-            const result = await getSubscriptionsList(adminConfig.actionParams, requestData)
-            setIsFetchingSubscriptions(false)
+      const result = await getSubscriptionsList(adminConfig.actionParams, requestData)
+      setIsFetchingSubscriptions(false)
 
-            console.log('subscriptions data', result)
+      console.log('subscriptions data', result)
 
-            if (result.type === 'Response') {
-                setSubscriptionsList([...result.data.data])
-                setPaginationData({
-                    ...paginationData, 
-                    pageSize: result.data.pageSize,
-                    count: result.data.count
-                })
-            }
-        }
+      if (result.type === 'Response') {
+        setSubscriptionsList([...result.data.data])
+        setPaginationData({
+          ...paginationData, 
+          pageSize: result.data.pageSize,
+          count: result.data.count
+        })
+      }
     }
+  }
 
-    const onRefreshSubscriptionsList = async () => await fetchSubscriptionsList()
+  const onRefreshSubscriptionsList = async () => await fetchSubscriptionsList()
 
-    useEffect(() => {
-        fetchSubscriptionsList()
-    }, [])
+  useEffect(() => {
+    fetchSubscriptionsList()
+  }, [])
 
-    return {
-        subscriptionsList,
-        onRefreshSubscriptionsList,
-        isFetchingSubscriptions
-    }
+  return {
+    subscriptionsList,
+    onRefreshSubscriptionsList,
+    isFetchingSubscriptions
+  }
 }
 
 export default useSubscriptionsList

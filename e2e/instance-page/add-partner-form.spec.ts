@@ -1,16 +1,16 @@
-import { test, expect, Page } from "@playwright/test"
-import { fillAddPartnerForm } from "./addPartnerFormHelpers"
+import { test, expect, Page } from '@playwright/test'
+import { fillAddPartnerForm } from './addPartnerFormHelpers'
 import { routes } from '../core/routes'
 
 let page: Page
 
-const partnersTabName = "Partners & Applications"
+const partnersTabName = 'Partners & Applications'
 
 const openPartnerForm =  async (page: Page) => {
-    await page.getByRole('button', { name: "Add Partner" }).click()
+  await page.getByRole('button', { name: 'Add Partner' }).click()
 }
 
-const clickAddPartnerBtn = async (page: Page) => await page.getByRole("button", { name: "Add Partner" }).click()
+const clickAddPartnerBtn = async (page: Page) => await page.getByRole('button', { name: 'Add Partner' }).click()
 /*
 test.beforeAll(async ({ browser }) => {
   page = await browser.newPage()

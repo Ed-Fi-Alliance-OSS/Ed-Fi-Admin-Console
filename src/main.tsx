@@ -7,7 +7,7 @@ import App from './App'
   </React.StrictMode>
 
 */
-
+console.log(`basePath is ${import.meta.env.BASE_URL }`)
 fetch(`${import.meta.env.BASE_URL || './'}config.json`).then(resp => resp.json()).then(config => {
   // console.log(`basePath is ${config.app.basePath}`)
 
@@ -15,4 +15,4 @@ fetch(`${import.meta.env.BASE_URL || './'}config.json`).then(resp => resp.json()
     <BrowserRouter basename={config.app.basePath}>
       <App appConfig={config} />
     </BrowserRouter>)
-}).catch(err => console.log("The config file fetching failed: ", err))
+}).catch(err => console.log('The config file fetching failed: ', err))

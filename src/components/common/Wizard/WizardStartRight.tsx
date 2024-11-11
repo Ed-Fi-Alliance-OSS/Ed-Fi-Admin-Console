@@ -1,6 +1,6 @@
-import { Flex } from "@chakra-ui/react"
-import { StepData } from "../../../core/onBoardingWizard/onBoardingWizard.types"
-import WizardStepButton from "./WizardStepButton"
+import { Flex } from '@chakra-ui/react'
+import { StepData } from '../../../core/onBoardingWizard/onBoardingWizard.types'
+import WizardStepButton from './WizardStepButton'
 
 interface WizardStartRightProps {
     completedSteps: number
@@ -12,36 +12,36 @@ interface WizardStartRightProps {
 }
 
 const WizardStartRight = ({ currentStepIndex, lastInProgress, completedSteps, stepsList, h, onGoToStep }: WizardStartRightProps) => {
-    const isCurrent = (index: number) => {
-        return index === lastInProgress
-    }
+  const isCurrent = (index: number) => {
+    return index === lastInProgress
+  }
 
-    const isDisabled = (index: number) => {
-        if (index === currentStepIndex || index === lastInProgress)
-            return false
+  const isDisabled = (index: number) => {
+    if (index === currentStepIndex || index === lastInProgress)
+      return false
 
-        if (index > completedSteps - 1)
-            return true
+    if (index > completedSteps - 1)
+      return true
 
-        return false
-    }   
+    return false
+  }   
 
-    return (
-        <Flex 
-            flexDir='column'
-            padding='0 32px'
-            h={ h ?? '720px'}
-            w='48%'>
-                {stepsList.map((step, index) => 
-                    <WizardStepButton 
-                        isCurrent={isCurrent(index)}
-                        isDisabled={isDisabled(index)}
-                        key={index}
-                        stepData={step}
-                        onClick={onGoToStep} />
-                )}
-        </Flex>
-    )
+  return (
+    <Flex 
+      flexDir='column'
+      padding='0 32px'
+      h={ h ?? '720px'}
+      w='48%'>
+      {stepsList.map((step, index) => 
+        <WizardStepButton 
+          isCurrent={isCurrent(index)}
+          isDisabled={isDisabled(index)}
+          key={index}
+          stepData={step}
+          onClick={onGoToStep} />
+      )}
+    </Flex>
+  )
 }
 
 export default WizardStartRight

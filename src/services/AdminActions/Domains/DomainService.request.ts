@@ -1,7 +1,7 @@
 export interface PostDomainRequest {
     tenantId: string
     domainName: string 
-    domainStatus: "Unknown"
+    domainStatus: 'Unknown'
 }
 
 export interface VerifyDomainRequest {

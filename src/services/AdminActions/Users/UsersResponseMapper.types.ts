@@ -1,4 +1,4 @@
-import { AppUser } from "../../../core/AppUser.types"
+import { AppUser } from '../../../core/AppUser.types'
 
 export interface AppUserListData {
     count: number 

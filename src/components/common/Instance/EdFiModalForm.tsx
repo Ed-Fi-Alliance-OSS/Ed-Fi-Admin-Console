@@ -1,6 +1,6 @@
-import { EdFiConnectionFormData } from "../../../hooks/edfi/useEdFiConnectionForm.types"
-import ModalForm from "../ModalForm"
-import EdFiModalFormHeader from "./EdFiModalFormHeader"
+import { EdFiConnectionFormData } from '../../../hooks/edfi/useEdFiConnectionForm.types'
+import ModalForm from '../ModalForm'
+import EdFiModalFormHeader from './EdFiModalFormHeader'
 
 interface EdFiModalFormProps {
     actionText: string 
@@ -13,19 +13,19 @@ interface EdFiModalFormProps {
 }
 
 const EdFiModalForm  = ({ actionText, headerText, content, isSaving, onSave, onClose }: EdFiModalFormProps) => {
-    return (
-        <ModalForm
-            header={<EdFiModalFormHeader
-                actionText={actionText}
-                headerText={headerText}
-                isSaving={isSaving}
-                onAction={onSave}
-                isDisabled={false}
-                onClose={onClose} />}
-            content={content}
-            height='auto'
-            width="512px" />
-    )
+  return (
+    <ModalForm
+      header={<EdFiModalFormHeader
+        actionText={actionText}
+        headerText={headerText}
+        isSaving={isSaving}
+        onAction={onSave}
+        isDisabled={false}
+        onClose={onClose} />}
+      content={content}
+      height='auto'
+      width="512px" />
+  )
 }
 
 export default EdFiModalForm

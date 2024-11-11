@@ -1,37 +1,37 @@
-import { useEffect, useState } from "react"
-import useValidateSetAsDefault from "./useValidateSetAsDefault"
-import { ODSInstance } from "../../core/ODSInstance.types"
+import { useEffect, useState } from 'react'
+import useValidateSetAsDefault from './useValidateSetAsDefault'
+import { ODSInstance } from '../../core/ODSInstance.types'
 
 interface UseOdsInstancePageContentProps {
     instance: ODSInstance | null
 }
 
 const useOdsInstancePageContent = ({ instance }: UseOdsInstancePageContentProps) => {
-    const [availableSetDefault, setAvailableSetDefault] = useState(false)
+  const [availableSetDefault, setAvailableSetDefault] = useState(false)
 
-    const {
-        canSetAsDefaultAsync
-    } = useValidateSetAsDefault()
+  const {
+    canSetAsDefaultAsync
+  } = useValidateSetAsDefault()
 
-    const checkIfCanSetAsDefault = async () => {
-        if (!instance)
-            return 
+  const checkIfCanSetAsDefault = async () => {
+    if (!instance)
+      return 
 
-        const result = await canSetAsDefaultAsync(instance)
+    const result = await canSetAsDefaultAsync(instance)
 
-        setAvailableSetDefault(result)
-    }
+    setAvailableSetDefault(result)
+  }
 
-    useEffect(() => {
-        if (!instance)
-            return 
+  useEffect(() => {
+    if (!instance)
+      return 
 
-        checkIfCanSetAsDefault()
-    }, [ instance ])
+    checkIfCanSetAsDefault()
+  }, [ instance ])
 
-    return {
-        availableSetDefault
-    }
+  return {
+    availableSetDefault
+  }
 }
 
 export default useOdsInstancePageContent
