@@ -7,12 +7,14 @@ FROM node:18-alpine AS build
 # ENV EG_app__basePath=/
 
 WORKDIR /app
-COPY ../. /app
+COPY ./package.json /app/package.json
+COPY ./package-lock.json /app/package-lock.json
 
 # Install all the dependecies
 RUN npm install
-RUN npm run build
+RUN npm run build:prod
 
+COPY ../. /app
 RUN cp -a mockdata/. dist/mockdata/
 
 RUN cp -a public/. dist/
