@@ -1,7 +1,7 @@
 import { CreateEdfiVendorRequest } from '../../../services/AdminActions/Edfi/Vendors/EdfiVendorsService.requests'
 import { FieldError, FormDataErrors, ValidateFieldParams } from '../FormValidations.types'
-import partnerNameSchema from '../schemas/Partners/nameSchema'
-import namespacePrefixesSchema from '../schemas/Partners/namespacePrefixesSchema'
+import partnerNameSchema from '../schemas/Vendors/nameSchema'
+import namespacePrefixesSchema from '../schemas/Vendors/namespacePrefixesSchema'
 import ValidationErrorsMapper from './ValidationErrorsMapper'
 
 export type PartnerValidatorFields = 'partnerName' | 'namespacePrefixes'

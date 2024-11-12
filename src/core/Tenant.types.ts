@@ -38,7 +38,7 @@ export type TenantType =
     'State' | 
     'Collaborative' | 
     'District' | 
-    'Partner' |
+    'Vendor' |
     'Teacher' | 
     'Student'
 
@@ -48,7 +48,7 @@ const enum TenantTypeEnum {
     State = 3,
     Collaborative = 4,
     District = 5,
-    Partner = 6,
+    Vendor = 6,
     Teacher = 7,
     Student = 8
 }

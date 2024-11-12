@@ -22,7 +22,7 @@ const PartnersAndApplicationControls = ({ onAddPartner }: PartnersAndApplication
           p='0 25px'
           minW='5px'
           ml='8px'>
-                        Add Partner
+                        Add Vendor
         </Button>
       </Flex>
     </Flex>

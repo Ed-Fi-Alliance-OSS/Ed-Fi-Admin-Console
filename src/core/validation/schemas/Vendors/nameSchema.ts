@@ -2,7 +2,7 @@ import Joi from 'joi'
 import ErrorMessagesGenerator from '../../ErrorMessagesGenerator'
 import { personalDataRules } from '../../rules/personalDetails.rules'
 
-const partnerNameField = 'Partner Name'
+const partnerNameField = 'Vendor Name'
 const partnerNameSchema = Joi
   .string()
   .required()

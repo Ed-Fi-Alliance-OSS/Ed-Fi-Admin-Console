@@ -75,7 +75,7 @@ const mapTenantType = (type: number): TenantType => {
     return 'District'
 
   if (type === 6)
-    return 'Partner'
+    return 'Vendor'
 
   if (type === 7)
     return 'Teacher'

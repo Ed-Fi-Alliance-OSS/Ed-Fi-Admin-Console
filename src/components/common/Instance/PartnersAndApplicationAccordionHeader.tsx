@@ -45,7 +45,7 @@ const PartnersAndApplicationAccordionHeader = ({ sortByPartnerDesc, sortByPartne
         fontFamily='Open sans'
         fontWeight='700'
         w='250px'>
-                        Partner
+                        Vendor
       </Text>
       <Text 
         fontFamily='Open sans'

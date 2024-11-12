@@ -85,7 +85,8 @@ const  PartnersAndApplicationTabContent = ({ instance, schoolYear }: PartnersAnd
     console.log('return to accordion')
     setElementToShow('accordion')
 
-    await onRefreshVendorsWithApplications()
+    // TODO enable this line when actual API calls are implemented
+    // await onRefreshVendorsWithApplications()
   }
 
   return (
