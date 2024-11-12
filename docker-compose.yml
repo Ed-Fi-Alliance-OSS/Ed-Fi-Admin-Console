@@ -2,9 +2,12 @@ name: edf-adminconsole-local
 
 services:
   adminconsole:
+      tty: true
+      pull_policy: always
+      # image: edfialliance/admin-console-web:pre-alpha
       build:
         context: .
-        dockerfile: ./Dockerfile
+        dockerfile: ./docker/Dockerfile
       restart: always
       container_name: edf-adminconsole-local
       environment:
