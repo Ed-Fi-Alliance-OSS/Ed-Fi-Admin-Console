@@ -1,3 +1,4 @@
+import { TEEAuthDataContext, useConfig } from '@edfi/admin-console-shared-sdk'
 import { EdfiApplication, EdfiApplicationAuthData } from '../../../../core/Edfi/EdfiApplications'
 import useHttpService from '../../../../hooks/http/useHttpService'
 import { EdfiActionParams } from '../../adminAction.types'
@@ -5,14 +6,18 @@ import edfiActionRoutes from '../../edfiActionRoutes'
 import { CreateEdfiApplicationRequest, DeleteEdfiApplicationRequest, ResetEdfiApplicationCredentialsRequest, UpdateEdfiApplicationRequest } from './EdfiApplicationService.requests'
 import { DeleteEdfiApplicationResponse } from './EdfiApplicationService.responses'
 import { CreateEdfiApplicationResult, DeleteEdfiApplicationResult, GetEdfiApplicationsListResult, ResetEdfiApplicationCredentialsResult, UpdateEdfiApplicationResult } from './EdfiApplicationService.results'
+import { useContext } from 'react'
+
 
 const useEdfiApplicationsService = () => {
   const { getAsync, postAsync, putAsync, deleteAsync } = useHttpService()
+  const {config} = useConfig()
 
   const getEdfiApplicationsList = async (actionParams: EdfiActionParams): GetEdfiApplicationsListResult => {
+    const {config} = useConfig()
     const baseUrl = actionParams.edxApiUrl
     // const url = `${baseUrl}/${edfiActionRoutes.getApplicationsList(actionParams.tenantId)}`
-    const url = 'data-applications.json'
+    const url = `${config?.app.basePath}/mockdata/data-applications.json`
     
     const result = await getAsync<EdfiApplication[]>({
       url,
@@ -87,10 +92,10 @@ const useEdfiApplicationsService = () => {
   const getEdfiApplicationsListForSchoolYear = async (actionParams: EdfiActionParams, year: number): GetEdfiApplicationsListResult => {
     const baseUrl = actionParams.edxApiUrl
     // const url = `${baseUrl}/${edfiActionRoutes.getApplicationsListForSchoolyear(actionParams.tenantId, year)}`
-    const url = '/mockdata/data-applications.json'
+    const url = `${config?.app.basePath}/mockdata/data-applications.json`
     // TODO: Adapt to use the structure returned by adminapi
     //const url = apiConfig?.useLocalMockData ?? true
-    //    ? "/mockdata/data-applications.json"
+    //    ? "/data-applications.json"
     //    : `${baseUrl}/v2/applications`
     const result = await getAsync<EdfiApplication[]>({
       url,

@@ -1,15 +1,29 @@
-import { Navigate } from 'react-router-dom'
-import { useAuth, useInitialRoute } from '@edfi/admin-console-shared-sdk'
+import { useNavigate } from 'react-router-dom'
+import { useAuth, useConfig, useInitialRoute } from '@edfi/admin-console-shared-sdk'
 import routes from '../../core/routes'
+import { useEffect } from 'react'
 
 const CallbackRouter = () => {
   const auth = useAuth()
   const { getInitialPath } = useInitialRoute()
+  const navigate = useNavigate()
+  const {config} = useConfig()
 
   const selectRedirect = () => getInitialPath() ?? routes.home.url
-    
-  if (auth.isAuthenticated) 
-    return <Navigate to={selectRedirect()} replace={true} />
+  useEffect(() => {
+    if (auth.isAuthenticated) {
+      // if the auth is authenticated, redirect to the initial path
+      try {
+        navigate(selectRedirect(), {replace: true})
+      } catch(e) {
+        console.error(e)
+        // If we can't navigate, just log the error
+        navigate(config.auth.postLogoutRedirectUri, {replace: true})
+      }
+    }
+
+  }, [auth])
+  // return <Navigate to={selectRedirect()} replace={true} />
 
   return null
 }

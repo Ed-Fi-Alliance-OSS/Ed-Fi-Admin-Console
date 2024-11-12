@@ -2,18 +2,17 @@ import axios, { AxiosError } from 'axios'
 import { OnBoardingWizardData } from '../../core/onBoardingWizard/onBoardingWizard.types'
 import { AddStepProps, AddStepRequestData, FetchOnBoardingWizardData, UpdateOnBoardingWizardDataProps, UpdateOnBoardingWizardDataRequest } from './onBoardingWizardService.types'
 import { includeAuthorization } from '@edfi/admin-console-shared-sdk' 
-import { Api } from '@edfi/admin-console-shared-sdk/dist/core/EdxApp.types'
 
 const fetchOnBoardingWizardData = async ({ apiUrl, tenantId, token, apiConfig }: FetchOnBoardingWizardData) => {
   // const currentTenantUrl = `${apiUrl}/tenants/${tenantId}`
-  //const currentTenantUrl = `/mockdata/data-tenant.json`
-  const currentTenantUrl = apiConfig?.useLocalMockData ?? true
-    ? '/mockdata/data-tenant.json'
-    : `${apiConfig?.baseUri ?? ''}/adminconsole/tenant?id=1`
+  //const currentTenantUrl = `/data-tenant.json`
+  // const currentTenantUrl = apiConfig?.useLocalMockData ?? true
+  //   ? `/data-tenant.json`
+  //   : `${apiConfig?.baseUri ?? ''}/adminconsole/tenant?id=1`
   const authorizationToken = await includeAuthorization(token, apiConfig)
   try {
     if(authorizationToken) {
-      const response = await axios.get(currentTenantUrl, authorizationToken)
+      const response = await axios.get(apiUrl, authorizationToken)
       return response.data['onboarding'] as OnBoardingWizardData
     }
     return null

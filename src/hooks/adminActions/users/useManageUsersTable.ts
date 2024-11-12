@@ -14,6 +14,8 @@ import useEDXToast from '../../common/useEDXToast'
 import useControlTable from '../../controlTable/useControlTable' 
 import useHttpService from '../../http/useHttpService'
 import useDebounce from '../../useDebounce'
+import httpService from '../../../services/HttpService/HttpService'
+import { useAuth } from '@edfi/admin-console-shared-sdk'
 
 export type UsersTableMode = 'users' | 'invitations'
 
@@ -274,10 +276,17 @@ const useManageUsersTable = () => {
 
   }
 
+  const {user} = useAuth()
+
   const fetchUsersList = async ({ pageIndex, pageSize, orderBy, filterBy }: DataFetchParams<UserDataFilters>) => {
     if (adminConfig) {
       setIsFetchingData(true)
-
+      const users = await httpService.get({
+        url: 'http://localhost:28080/admin/realms/myrealm/users',
+        actionName: 'Get Users List',
+        access_token: user?.access_token
+      })
+      console.log('users', users)
       const requestData: GetUsersListRequest = {
         pageIndex,
         pageSize,

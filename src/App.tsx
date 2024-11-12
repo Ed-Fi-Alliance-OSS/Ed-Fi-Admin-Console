@@ -1,6 +1,6 @@
 import {ChakraProvider, ColorModeScript} from '@chakra-ui/react'
 import {HelmetProvider} from 'react-helmet-async'
-import {baseTheme, LoadingScreen, TEEAuthContextProvider, useSaveInitialRoute} from '@edfi/admin-console-shared-sdk'
+import {baseTheme, EdxConfigProvider, LoadingScreen, TEEAuthContextProvider, useSaveInitialRoute} from '@edfi/admin-console-shared-sdk'
 import OnBoardingWizardProvider from './context/onBoardingWizardContext'
 import LayoutWrapper from './components/layout/LayoutWrapper'
 import routes from './core/routes'
@@ -20,7 +20,6 @@ import AdminConsoleConfigProvider from './context/adminConsoleContext'
 import {HttpServiceContextProvider} from './context/httpServiceContext'
 import ExternalODSProvider from './context/externalODSContext'
 
-
 interface AppProps {
   appConfig: any
 }
@@ -37,6 +36,7 @@ function App({appConfig}: AppProps) {
 
   return (
     <div className="App">
+      
       <ColorModeScript initialColorMode={baseTheme.config.initialColorMode}/>
       <ChakraProvider theme={baseTheme}>
 
@@ -44,6 +44,7 @@ function App({appConfig}: AppProps) {
         <HelmetProvider>
           <LoadingScreen loading={!appConfig ? true : false} state='loading...' delay={0.5}/>
           {appConfig &&
+            <EdxConfigProvider config={appConfig}>
               <PluginProvider>
                 <PluginLoader plugins={loadPlugins()} enabled={appConfig.plugins || []}/>
                 <TEEAuthContextProvider edxAppConfig={appConfig}>
@@ -57,7 +58,8 @@ function App({appConfig}: AppProps) {
                     </OnBoardingWizardProvider>
                   </ExternalODSProvider>
                 </TEEAuthContextProvider>
-              </PluginProvider>}
+              </PluginProvider>
+            </EdxConfigProvider>}
         </HelmetProvider>
       </ChakraProvider>
     </div>
