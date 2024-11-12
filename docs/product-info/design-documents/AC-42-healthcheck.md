@@ -18,5 +18,5 @@ When the Health Check Microservice is complete, Admin Console will have near rea
 
 Below is a process diagram to show the various workflow states between the Health Check Microservice, Admin API and ODS / API instances.
 
-![Admin Console - Health Check Process Diagram](img/Admin Console - Health Check Process Diagram.png)
+![Admin Console - Health Check Process Diagram]("img/Admin Console - Health Check Process Diagram.png")
 
