@@ -14,11 +14,14 @@ const CallbackRouter = () => {
     if (auth.isAuthenticated) {
       // if the auth is authenticated, redirect to the initial path
       try {
-        navigate(selectRedirect(), {replace: true})
+        const redirect = selectRedirect()
+        console.log('🚁 Redirecting from Callback to', redirect)
+        navigate(redirect)
       } catch(e) {
         console.error(e)
         // If we can't navigate, just log the error
-        navigate(config.auth.postLogoutRedirectUri, {replace: true})
+        window.location.assign(config.app.basePath)
+        // navigate(config.auth.postLogoutRedirectUri, {replace: true})
       }
     }
 
