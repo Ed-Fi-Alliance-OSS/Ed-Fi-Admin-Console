@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom'
+// import { useNavigate } from 'react-router-dom'
 import { useAuth, useConfig, useInitialRoute } from '@edfi/admin-console-shared-sdk'
 import routes from '../../core/routes'
 import { useEffect } from 'react'
@@ -6,7 +6,7 @@ import { useEffect } from 'react'
 const CallbackRouter = () => {
   const auth = useAuth()
   const { getInitialPath } = useInitialRoute()
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
   const {config} = useConfig()
 
   const selectRedirect = () => getInitialPath() ?? routes.home.url
@@ -16,7 +16,12 @@ const CallbackRouter = () => {
       try {
         const redirect = selectRedirect()
         console.log('🚁 Redirecting from Callback to', redirect)
-        navigate(redirect)
+        if(redirect.charAt(0) === '/') { 
+          window.location.assign(redirect)
+        }
+        else {
+          window.location.replace(config.app.basePath)
+        }
       } catch(e) {
         console.error(e)
         // If we can't navigate, just log the error
