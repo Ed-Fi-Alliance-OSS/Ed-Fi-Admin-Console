@@ -4,17 +4,18 @@ import { useContext } from 'react'
 import { adminConsoleContext } from '../../context/adminConsoleContext'
 import { ActionNavigationItem } from '../../core/actionNavigation'
 import ActionNavigationCard from './ActionNavigationCard'
+import { useConfig } from '@edfi/admin-console-shared-sdk'
 
-const actionNavigationList: ActionNavigationItem[] = [
-  { icon: 'people-icon.svg', name: 'Manage Users' },
-  // { icon: 'list-icon.svg', name: 'Manage Licenses' },
-  { icon: <RepeatIcon color="#1c3daa" fontSize='32px' /> , name: 'User Sync' },
-  { icon: 'settings-icon.svg', name: 'District/Charter School Settings' },
-  { icon: 'unlock-icon.svg', name: 'SSO' },
-  { icon: 'code-icon.svg', name: 'Documentation (Advanced)' }
-]
 
 const ActionNavigationList = () => {
+  const {config} = useConfig()
+  const actionNavigationList: ActionNavigationItem[] = [
+    { icon: `${config.app.basePath}/assets/people-icon.svg`, name: 'Manage Users' },
+    { icon: <RepeatIcon color="#1c3daa" fontSize='32px' /> , name: 'User Sync' },
+    { icon: `${config.app.basePath}/assets/settings-icon.svg`, name: 'District/Charter School Settings' },
+    { icon: `${config.app.basePath}/assets/unlock-icon.svg`, name: 'SSO' },
+    { icon: `${config.app.basePath}/assets/code-icon.svg`, name: 'Documentation (Advanced)' }
+  ]
   const adminConfig = useContext(adminConsoleContext)
 
   const selectItems = (item: ActionNavigationItem) => {

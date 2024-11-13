@@ -11,6 +11,7 @@ const CallbackRouter = () => {
 
   const selectRedirect = () => getInitialPath() ?? routes.home.url
   useEffect(() => {
+    console.log('🚁 CallbackRouter', auth.isAuthenticated)
     if (auth.isAuthenticated) {
       // if the auth is authenticated, redirect to the initial path
       try {
@@ -20,20 +21,25 @@ const CallbackRouter = () => {
           window.location.assign(redirect)
         }
         else {
-          window.location.replace(config.app.basePath)
+          window.location.replace(config.app.basePath || '/')
         }
       } catch(e) {
         console.error(e)
         // If we can't navigate, just log the error
-        window.location.assign(config.app.basePath)
+        window.location.assign(config.app.basePath || '/')
         // navigate(config.auth.postLogoutRedirectUri, {replace: true})
       }
     }
+    else {
+      // If the auth is not authenticated, redirect to the login page
+      console.log('🚁 Redirecting from Callback to Login')
+      window.location.replace(config.app.basePath + '/401')
+    }
 
-  }, [auth])
+  }, [])
   // return <Navigate to={selectRedirect()} replace={true} />
 
-  return null
+  return <div>aaa</div>
 }
 
 export default CallbackRouter

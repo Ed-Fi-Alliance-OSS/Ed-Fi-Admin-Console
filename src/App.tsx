@@ -41,8 +41,8 @@ function App({appConfig}: AppProps) {
       <ChakraProvider theme={baseTheme}>
 
 
+        <LoadingScreen loading={!appConfig ? true : false} state='loading...' delay={0.5}/>
         <HelmetProvider>
-          <LoadingScreen loading={!appConfig ? true : false} state='loading...' delay={0.5}/>
           {appConfig &&
             <EdxConfigProvider config={appConfig}>
               <PluginProvider>

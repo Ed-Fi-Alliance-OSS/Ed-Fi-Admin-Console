@@ -4,6 +4,7 @@ import { ActionNavigationItem } from '../../core/actionNavigation'
 import routes from '../../core/routes'
 import { Link as RouterLink } from 'react-router-dom'
 import getAppScope from '../../helpers/getAppScope'
+import { useConfig } from '@edfi/admin-console-shared-sdk'
 
 interface ActionNavigationCardProps {
     data: ActionNavigationItem
@@ -11,6 +12,7 @@ interface ActionNavigationCardProps {
 }
 
 const ActionNavigationCard = ({ data, index }: ActionNavigationCardProps) => {
+  const {config} = useConfig()
   return (
     <Link 
       to={routes.console.url}
@@ -30,7 +32,7 @@ const ActionNavigationCard = ({ data, index }: ActionNavigationCardProps) => {
       style={{ textDecoration: 'none' }}>
       {typeof(data.icon) === 'string'? 
         <Img 
-          src={`${getAppScope()}/assets/${data.icon}`} 
+          src={data.icon}
           h='32px' 
           w='32px'
           alt={data.name} /> : 
