@@ -40,8 +40,8 @@ The Ed-Fi Admin Console offers the following features:
 
 ## Release Plan & Estimates
 
-* Admin Console 1.0 - targeting December 13, 2024
-* Admin Console 1.1 - targeting February 27, 2025
+* Admin Console 1.0 - targeting December 2024
+* Admin Console 1.1 - targeting February 2025
 
 ## Information
 

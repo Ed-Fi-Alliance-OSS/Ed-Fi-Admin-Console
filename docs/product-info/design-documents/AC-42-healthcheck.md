@@ -7,6 +7,10 @@ information needed to provide instance status.
 
 When the Health Check Microservice is complete, Admin Console will have near real-time health and instance status information populated in the instance pages of the application.
 
+## Use Case Examples
+
+* An educational service center (ESC) IT administrator would like to understand operational service of Ed-Fi instances, such as online and offline.  The administrator would also like to have basic summary count information for major elements as a measure of database populated status to understand the health of its operations.
+
 ## Requirements
 
 * The Health Check Microservice must run in the environments are community demands - Windows Server and Docker/Linux platforms.
@@ -19,5 +23,4 @@ When the Health Check Microservice is complete, Admin Console will have near rea
 Below is a process diagram to show the various workflow states between the Health Check Microservice, Admin API and ODS / API instances.
 
 ![Admin Console - Health Check Process Diagram](img/Admin%20Console%20-%20Health%20Check%20Process%20Diagram.png)
-
 
