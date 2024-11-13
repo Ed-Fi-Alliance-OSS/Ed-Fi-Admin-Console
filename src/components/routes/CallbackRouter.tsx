@@ -15,13 +15,13 @@ const CallbackRouter = () => {
     if (auth.isAuthenticated) {
       // if the auth is authenticated, redirect to the initial path
       try {
-        const redirect = selectRedirect()
+        const redirect = selectRedirect().toString().replace(/\/\//ig, '/')
         console.log('🚁 Redirecting from Callback to', redirect)
         if(redirect.charAt(0) === '/') { 
           window.location.assign(redirect)
         }
         else {
-          window.location.replace(config.app.basePath || '/')
+          window.location.replace('/' + config.app.basePath)
         }
       } catch(e) {
         console.error(e)
