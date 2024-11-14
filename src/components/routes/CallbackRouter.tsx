@@ -39,7 +39,7 @@ const CallbackRouter = () => {
   }, [])
   // return <Navigate to={selectRedirect()} replace={true} />
 
-  return <div>aaa</div>
+  return null
 }
 
 export default CallbackRouter
