@@ -1,5 +1,5 @@
 import { TEEAuthDataContext } from '@edfi/admin-console-shared-sdk'
-import { useState, useContext, useEffect } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { adminConsoleContext } from '../../../context/adminConsoleContext'
 import { EdfiApplication } from '../../../core/Edfi/EdfiApplications'
 import { EdfiVendor } from '../../../core/Edfi/EdfiVendors'
@@ -61,7 +61,7 @@ const usePartnersAndApplicationsAccordion = ({ schoolYear }: UsePartnersAndAppli
   const onRefreshVendorsWithApplications = async () => {
     setVendorsWithApplicationsList([])
 
-    await fetchVendorsWithApplicationsList()
+    await fetchVendorsWithApplications()
   }
 
   const mergeVendorsAndApplications = (vendorList: EdfiVendor[], applicationList: EdfiApplication[]): EdfiVendorWithApplications[] => {
@@ -90,8 +90,10 @@ const usePartnersAndApplicationsAccordion = ({ schoolYear }: UsePartnersAndAppli
 
     const vendorsListResult = await getVendorsListForSchoolYear(adminConfig.actionParams, schoolYear)
 
-    if (vendorsListResult.type === 'Response')
+    if (vendorsListResult.type === 'Response') {
+      console.log('Hammad', vendorsListResult.data)
       return vendorsListResult.data
+    }
   }
 
   const fetchAllApplications = async (): Promise<EdfiApplication[] | undefined> => {
@@ -122,6 +124,7 @@ const usePartnersAndApplicationsAccordion = ({ schoolYear }: UsePartnersAndAppli
 
   return {
     vendorsWithApplicationsList,
+    fetchVendorsWithApplications,
     selectedPartnerId,
     onSelectPartner,
     onRefreshVendorsWithApplications

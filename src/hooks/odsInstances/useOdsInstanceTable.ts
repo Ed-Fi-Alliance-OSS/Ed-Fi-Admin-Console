@@ -1,19 +1,20 @@
 import { useContext, useEffect, useState } from 'react'
 import { adminConsoleContext } from '../../context/adminConsoleContext'
+import { useMockData } from '../../context/mockDataContext'
 import { ExtendedODSInstance, ODSInstance } from '../../core/ODSInstance.types'
 import useOdsInstanceService from '../../services/ODSInstances/OdsInstanceService'
 import { GetOdsInstancesListRequest, UpdateOdsInstanceIsDefaultRequest } from '../../services/ODSInstances/OdsInstanceService.requests'
+import useEDXToast from '../common/useEDXToast'
 import useControlTable from '../controlTable/useControlTable'
 import useConfirmSetDefaultModal from './useConfirmSetDefaultModal'
+import useExtendedOdsInstanceMapping from './useExtendedOdsInstanceMapping'
 import { UpdatingIsDefaultStatus } from './useOdsInstanceTable.types'
 import useSetUpWizardModal from './useSetUpWizardModal'
-import useExtendedOdsInstanceMapping from './useExtendedOdsInstanceMapping'
 import useValidateSetAsDefault from './useValidateSetAsDefault'
-import useEDXToast from '../common/useEDXToast'
 
 const useOdsInstanceTable = () => {
   const adminConfig = useContext(adminConsoleContext)
-
+  const mock = useMockData()
   const {
     paginatedData,
     setPaginatedData,
@@ -102,12 +103,15 @@ const useOdsInstanceTable = () => {
       ))
         
     setIsFetchingData(false)
-    setPaginatedData({
-      pageIndex: response.data.pageIndex,
-      pageSize: response.data.pageSize,
-      count: response.data.count,
-      data: mappedInstances
-    })
+    console.log(mock.get('Instances'))
+    if(mappedInstances.length > 0) {
+      setPaginatedData({
+        pageIndex: response.data.pageIndex,
+        pageSize: response.data.pageSize,
+        count: response.data.count,
+        data: mappedInstances.concat((mock.get('Instances') ?? []).map(a => ({...mappedInstances[0], ...a} as ODSInstance)))
+      })
+    }
   }
 
   const onOpenSetDefaultModal = (instanceId: string) => {

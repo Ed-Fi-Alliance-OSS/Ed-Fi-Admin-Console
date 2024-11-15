@@ -2,7 +2,7 @@ type PossibleValues = string | boolean | number | null | undefined;
 export type StringsShape = Record<string, Record<string, PossibleValues> | PossibleValues>;
 export const BasePluginStrings = {
   app: {
-    'ODS_INSTANCES': 'ODS_INSTANCES',
+    'ODS_INSTANCES': 'ODS Instances',
   },
   api: {
     edfi: 'https://ed-fi.org'
