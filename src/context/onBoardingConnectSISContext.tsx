@@ -1,8 +1,8 @@
-import { createContext } from "react"
-import { EdfiApplicationAuthData } from "../core/Edfi/EdfiApplications"
-import { SISProviderConnectionState } from "../core/sisProviders/SISProviders.types"
-import useSISProvidersForm from "../hooks/adminActions/edfi/useSISProvidersForm"
-import { OptionalProvidersOption, SISProvidersOption } from "../hooks/adminActions/edfi/useSISProvidersForm.types"
+import { createContext } from 'react'
+import { EdfiApplicationAuthData } from '../core/Edfi/EdfiApplications'
+import { SISProviderConnectionState } from '../core/sisProviders/SISProviders.types'
+import useSISProvidersForm from '../hooks/adminActions/edfi/useSISProvidersForm'
+import { OptionalProvidersOption, SISProvidersOption } from '../hooks/adminActions/edfi/useSISProvidersForm.types'
 
 export interface OnBoardigConnectSISContextData {
     sisProvidersOptionList: SISProvidersOption[]
@@ -33,52 +33,52 @@ export interface OnBoardigConnectSISContextData {
 }
 
 export const onBoardingConnectSISContext = createContext<OnBoardigConnectSISContextData>({
-    sisProvidersOptionList: [],
-    selectedProviderId: "",
-    selectedOptionalProviderId: "",
-    connectionState: "Awaiting Connection",
-    optionalConnectionState: "Awaiting Connection",
-    optionaEdfiApplicationAuthData: {
-        applicationId: 0
-    },
-    isLoadingOptionalCredentials: false,
-    hasSelectedProvider: false,
-    hasSelectedOptionalProvider: false,
-    optionalSource: "Select Provider Function",
-    edfiApplicationAuthData: {
-        applicationId: 0
-    },
-    isLoadingCredentials: false,
-    optionalSISSources: [],
-    showOptionalForm: false,
-    onShowOptionalForm: () => null,
-    onChangeOptionalProvider: () => null,
-    onChangeOptionalSource: () => null,
-    handleRegenerateOptionalCredentials: () => Promise.resolve(),
-    handleChangeOptionalCredentials: () => null,
-    handleChangeCredentials: () => null,
-    handleChangeEndpoints: () => null,
-    handleChangeSISprovider: () => Promise.resolve(),
-    handleRegenerateCredentials: () => Promise.resolve(),
-    handleRemoveProvider: () => null,
-    handleRemoveOptionalProvider: () => null
+  sisProvidersOptionList: [],
+  selectedProviderId: '',
+  selectedOptionalProviderId: '',
+  connectionState: 'Awaiting Connection',
+  optionalConnectionState: 'Awaiting Connection',
+  optionaEdfiApplicationAuthData: {
+    applicationId: 0
+  },
+  isLoadingOptionalCredentials: false,
+  hasSelectedProvider: false,
+  hasSelectedOptionalProvider: false,
+  optionalSource: 'Select Provider Function',
+  edfiApplicationAuthData: {
+    applicationId: 0
+  },
+  isLoadingCredentials: false,
+  optionalSISSources: [],
+  showOptionalForm: false,
+  onShowOptionalForm: () => null,
+  onChangeOptionalProvider: () => null,
+  onChangeOptionalSource: () => null,
+  handleRegenerateOptionalCredentials: () => Promise.resolve(),
+  handleChangeOptionalCredentials: () => null,
+  handleChangeCredentials: () => null,
+  handleChangeEndpoints: () => null,
+  handleChangeSISprovider: () => Promise.resolve(),
+  handleRegenerateCredentials: () => Promise.resolve(),
+  handleRemoveProvider: () => null,
+  handleRemoveOptionalProvider: () => null
 })
 
 interface OnBoardigConnectSISContextProps {
     children: JSX.Element
     schoolYear: number | null
     onSelectSISProvider: (sisProvider: string, source: string) => void
-    onUnselectSISProvider: (sisProviderType: "required" | "optional") => void
+    onUnselectSISProvider: (sisProviderType: 'required' | 'optional') => void
 }
 
 const OnBoardingConnectSISContextProvider = ({ children, schoolYear, onSelectSISProvider, onUnselectSISProvider }: OnBoardigConnectSISContextProps) => {
-    const connectSISProvidersForm = useSISProvidersForm({ schoolYear, onSelectSISProvider, onUnselectSISProvider })
+  const connectSISProvidersForm = useSISProvidersForm({ schoolYear, onSelectSISProvider, onUnselectSISProvider })
 
-    return (
-        <onBoardingConnectSISContext.Provider value={connectSISProvidersForm}>
-            {children}
-        </onBoardingConnectSISContext.Provider>
-    )
+  return (
+    <onBoardingConnectSISContext.Provider value={connectSISProvidersForm}>
+      {children}
+    </onBoardingConnectSISContext.Provider>
+  )
 }
 
 export default OnBoardingConnectSISContextProvider

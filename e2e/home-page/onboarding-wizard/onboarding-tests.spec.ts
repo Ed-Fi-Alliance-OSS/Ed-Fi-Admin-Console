@@ -1,10 +1,10 @@
 
-import { test, expect, Page } from "@playwright/test"
-import { routes } from "../../core/routes"
-import { finishOnboardingWizard, resetOnBoardingWizard, updateOnboardingWizardSteps } from "../../helpers/OnboardingWizard.helpers"
+import { test, expect, Page } from '@playwright/test'
+import { routes } from '../../core/routes'
+import { finishOnboardingWizard, resetOnBoardingWizard, updateOnboardingWizardSteps } from '../../helpers/OnboardingWizard.helpers'
 
-const bannerWelcomeText = "Welcome"
-const bannerProgressMessage = "Let’s finish your setup."
+const bannerWelcomeText = 'Welcome'
+const bannerProgressMessage = 'Let’s finish your setup.'
 
 /*
 
@@ -50,7 +50,7 @@ test("Should show instance data if Onboarding Wizard has been finished", async (
 
     await expect(page.getByText("Instance Summary")).toBeVisible()
     await expect(page.getByRole("tab", { name: "Summary" })).toBeVisible()
-    await expect(page.getByText("Partners & Applications")).toBeVisible()
+    await expect(page.getByText("Vendors & Applications")).toBeVisible()
 })
 
 test("Should be able to start Onboarding Wizard", async ({ page }) => {

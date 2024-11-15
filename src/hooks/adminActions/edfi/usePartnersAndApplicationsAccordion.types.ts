@@ -1,4 +1,4 @@
-import { EdfiApplication } from "../../../core/Edfi/EdfiApplications"
+import { EdfiApplication } from '../../../core/Edfi/EdfiApplications'
 
 export interface EdfiVendorWithApplications {
     vendorId?: number

@@ -1,33 +1,33 @@
-import { EdFiMetadata } from "../useEdfiUrls.types"
+import { EdFiMetadata } from '../useEdfiUrls.types'
 
 const useOdsVersions = () => {
-    const getEdFiVersionFromMetadata = (metadata: EdFiMetadata| null): string => {
-        if (!metadata)
-            return "-"
+  const getEdFiVersionFromMetadata = (metadata: EdFiMetadata| null): string => {
+    if (!metadata)
+      return '-'
 
-        return `Suite ${metadata.suite} v${metadata.version}`
-    }
+    return `Suite ${metadata.suite} v${metadata.version}`
+  }
 
-    const getTSDSVersionFromMetadata = (metadata: EdFiMetadata | null): string => {
-        if (!metadata)
-            return "-"
+  const getTSDSVersionFromMetadata = (metadata: EdFiMetadata | null): string => {
+    if (!metadata)
+      return 'Core'
 
-        if (!metadata.dataModels)
-            return "-"
+    if (!metadata.dataModels)
+      return 'Core'
 
-        const txDataModel = metadata.dataModels
-            .find(item => item.name == "TX")
+    const txDataModel = metadata.dataModels
+      .find(item => item.name == 'TX')
 
-        if (!txDataModel)
-            return '-'
+    if (!txDataModel)
+      return 'Core'
 
-        return txDataModel.version
-    }
+    return txDataModel.version
+  }
 
-    return {
-        getEdFiVersionFromMetadata,
-        getTSDSVersionFromMetadata
-    }
+  return {
+    getEdFiVersionFromMetadata,
+    getTSDSVersionFromMetadata
+  }
 }
 
 export default useOdsVersions

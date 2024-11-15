@@ -27,7 +27,7 @@ These are the official release notes for the TX Education Exchange **Tech Consol
 - ### Implemented support for custom values in the standard pagination component.
   - Jira ticket: https://txedexchange.atlassian.net/browse/EXDEV-640
 
-- ### Added additional validations to the Namespace field on the Partners & Applications tab, including the forcing of URI format.
+- ### Added additional validations to the Namespace field on the Vendors & Applications tab, including the forcing of URI format.
   - Jira ticket: https://txedexchange.atlassian.net/browse/EXDEV-597
 
 - ### Fixed an issue where the user.access_token from TEEAuthDataContext provided an old value when the page was reloaded after switching tenants in a different tab.
@@ -39,7 +39,7 @@ These are the official release notes for the TX Education Exchange **Tech Consol
 - ### Added support for "+" characters in user names/emails
   - Jira ticket: https://txedexchange.atlassian.net/browse/EXDEV-672
  
-- ### Fixed a bug where the Tech Console fails to add new Partner/Application record if the active tenant is not in the /me payload (first 10 tenants)
+- ### Fixed a bug where the Tech Console fails to add new Vendor/Application record if the active tenant is not in the /me payload (first 10 tenants)
   - Jira ticket: https://txedexchange.atlassian.net/browse/EXDEV-621
 
 - ### Fixed a bug where users of a specific email domain would receive a “bad request” error when logging in
@@ -90,10 +90,10 @@ These are the official release notes for the TX Education Exchange **Tech Consol
 - ### Fixed an issue where the number of users on the pagination control was inaccurate.
   - Jira ticket: https://txedexchange.atlassian.net/browse/EXDEV-533
 
-- ### Fixed an issue where duplicate Partners could be created.
+- ### Fixed an issue where duplicate Vendors could be created.
   - Jira ticket: https://txedexchange.atlassian.net/browse/EXDEV-493
 
-- ### Fixed an issue where the Partners and Applications page did not support word wrap, causing column data to run into each other.
+- ### Fixed an issue where the Vendors and Applications page did not support word wrap, causing column data to run into each other.
   - Jira ticket: https://txedexchange.atlassian.net/browse/EXDEV-478
 
 - ### Fixed an issue where the User Search did not accurately display results for email addresses containing a "+".
@@ -102,7 +102,7 @@ These are the official release notes for the TX Education Exchange **Tech Consol
 - ### Improved performance of pagination controls.
   - Jira ticket: https://txedexchange.atlassian.net/browse/EXDEV-404
 
-- ### Implemented appropriate front-end validation on the Namespace field when creating a new Partner.
+- ### Implemented appropriate front-end validation on the Namespace field when creating a new Vendor.
   - Jira ticket: https://txedexchange.atlassian.net/browse/EXDEV-494
 
 - ### Fixed an issue where Users were being surfaced in search results on the Invitations page.
@@ -130,18 +130,18 @@ These are the official release notes for the TX Education Exchange **Tech Consol
 
 - ### Fixed an issue where the API SDK Docs page was not accessible in some circumstances.
 
-- ### Fixed an issue where the Partners & Applications page showed incorrect validations in some circumstances.
+- ### Fixed an issue where the Vendors & Applications page showed incorrect validations in some circumstances.
 
 
 ## Version 1.1
 
-- ### Added an “error” message not allowing a user to proceed when adding special characters to the Partner name field in the Partners & Applications screen in the Tech Console.
+- ### Added an “error” message not allowing a user to proceed when adding special characters to the Vendor name field in the Vendors & Applications screen in the Tech Console.
   - Jira ticket: https://txedexchange.atlassian.net/browse/EXDEV-497 
 
-- ### Added an “error” message for when a user leaves the Partner name field blank or only adds empty space to it in the Partners & Applications screen in the Tech Console. 
+- ### Added an “error” message for when a user leaves the Vendor name field blank or only adds empty space to it in the Vendors & Applications screen in the Tech Console. 
   - Jira ticket: https://txedexchange.atlassian.net/browse/EXDEV-495 
 
-- ### Disabled the option to allow an admin to add duplicate partners in the Partners & Applications page of the tech console.  
+- ### Disabled the option to allow an admin to add duplicate partners in the Vendors & Applications page of the tech console.  
   - Jira ticket: https://txedexchange.atlassian.net/browse/EXDEV-493 
 
 - ### Deactivated the “update user” button until a change has been made or saved in the edit user -> organizations tab of the Admin Actions in the Tech Console.  
@@ -348,7 +348,7 @@ These are the official release notes for the TX Education Exchange **Tech Consol
 
 ## Version 0.05
 
-- ### Admin Actions: Added the ability to delete a partner from the Partner & Applications page in the Tech Console.  
+- ### Admin Actions: Added the ability to delete a partner from the Vendor & Applications page in the Tech Console.  
   - Jira ticket: https://txedexchange.atlassian.net/browse/EXDEV-271 
 
 - ### Admin Actions: Added the ability to delete a user from the Manage Users page in the Tech Console. 

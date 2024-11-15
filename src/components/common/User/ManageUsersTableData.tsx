@@ -1,4 +1,4 @@
-import { Td } from "@chakra-ui/react"
+import { Td } from '@chakra-ui/react'
 
 interface ManageUsersTableDataProps {
     children: JSX.Element | JSX.Element[]
@@ -6,15 +6,15 @@ interface ManageUsersTableDataProps {
 }
 
 const ManageUsersTableData = ({ children, width }: ManageUsersTableDataProps) => {
-    return (
-        <Td 
-            paddingLeft='16px' 
-            paddingRight='16px' 
-            minW='50px'
-            w={width}>
-                {children}
-        </Td>
-    )
+  return (
+    <Td 
+      paddingLeft='16px' 
+      paddingRight='16px' 
+      minW='50px'
+      w={width}>
+      {children}
+    </Td>
+  )
 }
 
 export default ManageUsersTableData

@@ -1,4 +1,4 @@
-export type InstanceOnBoardingStepStatus = "Pending" | "Completed" | "InProgress"
+export type InstanceOnBoardingStepStatus = 'Pending' | 'Completed' | 'InProgress'
 
 export interface InstanceOnboardingStepData {
     index: number 

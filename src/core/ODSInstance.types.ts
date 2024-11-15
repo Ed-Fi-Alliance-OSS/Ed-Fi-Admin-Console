@@ -1,12 +1,10 @@
-import { OnBoardingWizardData } from "./onBoardingWizard/onBoardingWizard.types"
+import { OnBoardingWizardData } from './onBoardingWizard/onBoardingWizard.types'
 
 export interface InstanceEdfiStatus {
   operationStatus: InstanceOperationStatus
-  onboardingStatus: InstanceOnboardingStatus
 }
 
-export type InstanceOperationStatus = 'Operational' | 'Outage'
-export type InstanceOnboardingStatus = 'Empty' | 'Populated'
+export type InstanceOperationStatus = 'Operational' | 'Offline'
 
 export interface ODSInstance {
   instanceId: string

@@ -1,13 +1,13 @@
 
-import { test, expect } from "@playwright/test"
-import { routes } from "../core/routes"
+import { test, expect } from '@playwright/test'
+import { routes } from '../core/routes'
 
 test.beforeEach(async ({ page }) => {
-    await page.goto(routes.instance)
-    await page.waitForURL(routes.instance)
+  await page.goto(routes.instance)
+  await page.waitForURL(routes.instance)
 
-    await page.getByText("Partners & Applications").click()
-});
+  await page.getByText('Vendors & Applications').click()
+})
 
 /*
 test("Shows the list of applications table", async ({  page }) => {

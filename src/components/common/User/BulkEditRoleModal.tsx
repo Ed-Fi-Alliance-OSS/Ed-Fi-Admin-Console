@@ -1,7 +1,7 @@
 import { ChangeEvent } from 'react'
-import { AppUser } from "../../../core/AppUser.types"
-import ConsoleModal from "../ConsoleModal"
-import BulkEditRoleForm from "./BulkEditRoleForm"
+import { AppUser } from '../../../core/AppUser.types'
+import ConsoleModal from '../ConsoleModal'
+import BulkEditRoleForm from './BulkEditRoleForm'
 
 interface BulkEditModalProps {
     show: boolean
@@ -12,16 +12,16 @@ interface BulkEditModalProps {
 }
 
 const BulkEditModal = ({ show, selectedUserList, onSelecteUserRole, onChangeRole, onClose }: BulkEditModalProps) => {
-    return (
-        <ConsoleModal 
-            content={<BulkEditRoleForm 
-                selectedUserList={selectedUserList}
-                onSelectUserRole={onSelecteUserRole}
-                onAction={onChangeRole} 
-                onClose={onClose} />}
-            show={show}
-            onClose={onClose} />
-    )
+  return (
+    <ConsoleModal 
+      content={<BulkEditRoleForm 
+        selectedUserList={selectedUserList}
+        onSelectUserRole={onSelecteUserRole}
+        onAction={onChangeRole} 
+        onClose={onClose} />}
+      show={show}
+      onClose={onClose} />
+  )
 }
 
 export default BulkEditModal

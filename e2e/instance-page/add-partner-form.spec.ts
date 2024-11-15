@@ -1,16 +1,16 @@
-import { test, expect, Page } from "@playwright/test"
-import { fillAddPartnerForm } from "./addPartnerFormHelpers"
+import { test, expect, Page } from '@playwright/test'
+import { fillAddPartnerForm } from './addPartnerFormHelpers'
 import { routes } from '../core/routes'
 
 let page: Page
 
-const partnersTabName = "Partners & Applications"
+const partnersTabName = 'Vendors & Applications'
 
 const openPartnerForm =  async (page: Page) => {
-    await page.getByRole('button', { name: "Add Partner" }).click()
+  await page.getByRole('button', { name: 'Add Vendor' }).click()
 }
 
-const clickAddPartnerBtn = async (page: Page) => await page.getByRole("button", { name: "Add Partner" }).click()
+const clickAddPartnerBtn = async (page: Page) => await page.getByRole('button', { name: 'Add Vendor' }).click()
 /*
 test.beforeAll(async ({ browser }) => {
   page = await browser.newPage()
@@ -23,7 +23,7 @@ test.beforeAll(async ({ browser }) => {
 });
 
 
-test("Add Partner Form - Adds the partner", async () => {
+test("Add Vendor Form - Adds the partner", async () => {
   const testPartnerName = "eetestpartner"
 
   await fillAddPartnerForm({
@@ -43,8 +43,8 @@ test("Add Partner Form - Adds the partner", async () => {
 })
 
 
-test.describe("Add Partner Form - Partner Name", () => {
-  test("Partner Name should not be empty", async () => {
+test.describe("Add Vendor Form - Vendor Name", () => {
+  test("Vendor Name should not be empty", async () => {
     await fillAddPartnerForm({
       page,
       nameSpacePrefixes: "prefix"
@@ -52,30 +52,30 @@ test.describe("Add Partner Form - Partner Name", () => {
 
     await clickAddPartnerBtn(page)
     expect(page.getByText("Please correct the errors below and resubmit the form.")).toBeVisible()
-    expect(page.getByText("Partner Name should not be empty.")).toBeVisible()
+    expect(page.getByText("Vendor Name should not be empty.")).toBeVisible()
   })
 
-  test("Partner Name should have at least 2 letters/digits", async () => {
+  test("Vendor Name should have at least 2 letters/digits", async () => {
     await fillAddPartnerForm({
         page,
         partnerName: "a",
         nameSpacePrefixes: "prefix"
     })
 
-    await page.getByRole("button", { name: "Add Partner" }).click()
+    await page.getByRole("button", { name: "Add Vendor" }).click()
     expect(page.getByText("Please correct the errors below and resubmit the form.")).toBeVisible()
-    expect(page.getByText("Partner Name should have at least 2 letters.")).toBeVisible()
+    expect(page.getByText("Vendor Name should have at least 2 letters.")).toBeVisible()
   })
 })
 
-test.describe("Add Partner Form - Prefixes", () => {
+test.describe("Add Vendor Form - Prefixes", () => {
     test("Namespace Prefixes should not be empty", async () => {
       await fillAddPartnerForm({
         page,
         partnerName: "partner"
       })
 
-      await page.getByRole("button", { name: "Add Partner" }).click()
+      await page.getByRole("button", { name: "Add Vendor" }).click()
       expect(page.getByText("Please correct the errors below and resubmit the form.")).toBeVisible()
       expect(page.getByText("Namespace Prefixes should not be empty.")).toBeVisible()
     })
@@ -87,7 +87,7 @@ test.describe("Add Partner Form - Prefixes", () => {
         nameSpacePrefixes: "a"
       })
 
-      await page.getByRole("button", { name: "Add Partner" }).click()
+      await page.getByRole("button", { name: "Add Vendor" }).click()
       expect(page.getByText("Please correct the errors below and resubmit the form.")).toBeVisible()
       expect(page.getByText("Namespace Prefixes should have at least 2 letters.")).toBeVisible()
     })

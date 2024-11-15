@@ -1,20 +1,20 @@
-import useExternalODSData from "../useExternalODSData"
+import useExternalODSData from '../useExternalODSData'
 
-export type InstanceEdFiMetadataSource = "Starting Blocks" | "Instance BaseUrl"
+export type InstanceEdFiMetadataSource = 'Starting Blocks' | 'Instance BaseUrl'
 
 const useOdsInstanceEdFiMetadataSource = () => {
-    const { externalODS } = useExternalODSData()
+  const { externalODS } = useExternalODSData()
 
-    const getEdFiMetadataSource = (): InstanceEdFiMetadataSource => {
-        if (externalODS.isExternalODS)
-            return "Instance BaseUrl"
+  const getEdFiMetadataSource = (): InstanceEdFiMetadataSource => {
+    if (externalODS.isExternalODS)
+      return 'Instance BaseUrl'
 
-        return "Starting Blocks"
-    }
+    return 'Starting Blocks'
+  }
 
-    return {
-        getEdFiMetadataSource
-    }
+  return {
+    getEdFiMetadataSource
+  }
 }
 
 export default useOdsInstanceEdFiMetadataSource

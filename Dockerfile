@@ -2,13 +2,19 @@ FROM node:18-alpine AS build
 
 ARG GITHUB_TOKEN
 
-ENV EG_app__basePath=/adminconsole
+ENV EG_app__basePath=/edficonsole/v2.3/v7.2/ds4/saas/tx
+ENV mode=production
 
 WORKDIR /app
-COPY . /app
 
+COPY ./package.json /app/package.json
+COPY ./package-lock.json /app/package-lock.json
 RUN npm install
-RUN npm run build
+
+COPY . /app
+RUN rm -f config.json
+
+RUN npm run build:prod
 
 RUN rm -f .npmrc
 

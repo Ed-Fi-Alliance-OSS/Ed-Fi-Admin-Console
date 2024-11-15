@@ -1,7 +1,7 @@
-import { test, expect, Page } from "@playwright/test"
-import { routes } from "../../core/routes"
+import { test, expect, Page } from '@playwright/test'
+import { routes } from '../../core/routes'
 
-const clickAddDomainBtn = async (page: Page) => await page.getByRole("button", { name: "Add", exact: true }).click()
+const clickAddDomainBtn = async (page: Page) => await page.getByRole('button', { name: 'Add', exact: true }).click()
 
 
 /*

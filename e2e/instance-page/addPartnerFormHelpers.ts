@@ -1,4 +1,4 @@
-import { Page } from "@playwright/test"
+import { Page } from '@playwright/test'
 
 interface FillAddPartnerFormParams {
     page: Page
@@ -7,12 +7,12 @@ interface FillAddPartnerFormParams {
 }
 
 const fillAddPartnerForm = async ({ page, partnerName, nameSpacePrefixes }: FillAddPartnerFormParams) => {
-    if (partnerName)
-        await page.getByLabel("Partner Name").fill(partnerName)
-    if (nameSpacePrefixes)
-        await page.getByLabel("Namespace Prefixes").fill(nameSpacePrefixes)
+  if (partnerName)
+    await page.getByLabel('Vendor Name').fill(partnerName)
+  if (nameSpacePrefixes)
+    await page.getByLabel('Namespace Prefixes').fill(nameSpacePrefixes)
 }
 
 export {
-    fillAddPartnerForm
+  fillAddPartnerForm
 }

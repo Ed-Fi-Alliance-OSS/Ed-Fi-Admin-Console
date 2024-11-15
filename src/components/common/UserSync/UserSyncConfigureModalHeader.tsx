@@ -1,4 +1,4 @@
-import ModalFormHeader from "../ModalFormHeader"
+import ModalFormHeader from '../ModalFormHeader'
 
 interface UserSyncConfigureModalHeaderProps {
     isSaving: boolean 
@@ -7,14 +7,14 @@ interface UserSyncConfigureModalHeaderProps {
 }
 
 const UserSyncConfigureModalHeader = ({ isSaving, onAction, onClose }: UserSyncConfigureModalHeaderProps) => {
-    return (
-        <ModalFormHeader
-            actionText="Save"
-            headerText="Configure User Sync"
-            isSaving={isSaving}
-            onAction={onAction}
-            onClose={onClose} />
-    )
+  return (
+    <ModalFormHeader
+      actionText="Save"
+      headerText="Configure User Sync"
+      isSaving={isSaving}
+      onAction={onAction}
+      onClose={onClose} />
+  )
 }
 
 export default UserSyncConfigureModalHeader
