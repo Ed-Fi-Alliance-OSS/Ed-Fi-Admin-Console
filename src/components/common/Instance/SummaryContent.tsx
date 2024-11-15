@@ -1,6 +1,5 @@
 import { Flex } from '@chakra-ui/react'
 import { ODSInstance } from '../../../core/ODSInstance.types'
-import InstanceDataPreview from './InstanceDataPreview'
 import InstanceDescription from './InstanceDescription'
 
 interface SummaryContentProps {
@@ -12,10 +11,6 @@ const SummaryContent = ({ instance }: SummaryContentProps) => {
     <>
       <Flex>
         <InstanceDescription 
-          instance={instance} />
-      </Flex>
-      <Flex ml='auto'>
-        <InstanceDataPreview
           instance={instance} />
       </Flex>
     </>

@@ -7,7 +7,6 @@ import useExternalODSData from '../../../hooks/useExternalODSData'
 import AdminConsoleTabsMenu from '../AdminConsoleTabsMenu'
 import EdFiSettingsTabContent from '../EdFi/EdFiSettingsTabContent'
 import ConfirmSetDefaultInstanceModal from '../ODS/ConfirmSetDefaultInstanceModal'
-import ODSInstanceDynamicIsDefaultBtn from '../ODS/ODSInstanceDynamicIsDefaultBtn'
 import TabContentWrapper from '../TabContentWrapper'
 import DataManagementTabContent from './DataManagementTabContent'
 import InstanceLoadingContent from './InstanceLoadingContent'
@@ -20,7 +19,7 @@ import useOdsInstanceYear from '../../../hooks/odsInstances/useOdsInstanceYear'
 
 const tabsList = [
   'Summary',
-  'Partners & Applications',
+  'Vendors & Applications',
   'Data Management (Advanced)'
 ]
 
@@ -60,7 +59,7 @@ const InstanceTabsMenu = ({ instance, showConfirmSetDefaultModal, showSetUpWizar
       return false
     }
 
-    if (tabName == 'Partners & Applications')
+    if (tabName == 'Vendors & Applications')
       return showPartnersTab()
 
     return true
@@ -120,14 +119,7 @@ const InstanceTabsMenu = ({ instance, showConfirmSetDefaultModal, showSetUpWizar
           <AdminConsoleTabsMenu 
             includeWrapper={false}
             tabsList={tabsList.filter(tab => selectTabs(tab)).map((tab, index) => updateTabs(tab, index))}
-            initialIndex={0}
-            actionControl={<>
-              { instance && <ODSInstanceDynamicIsDefaultBtn
-                instance={instance}
-                canSetDefault={canSetAsDefault}
-                onOpenIsDefaultModal={onShowConfirmSetDefaultModal} 
-                onShowSetUpWizardModal={onShowSetUpWizardModal} /> }
-            </>}>
+            initialIndex={0}>
             <TabContentWrapper>
               { instance? <InstanceSummaryTabContent 
                 instance={instance} /> 

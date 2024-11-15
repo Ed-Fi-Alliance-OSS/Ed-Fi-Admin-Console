@@ -10,16 +10,16 @@ const useOdsVersions = () => {
 
   const getTSDSVersionFromMetadata = (metadata: EdFiMetadata | null): string => {
     if (!metadata)
-      return '-'
+      return 'Core'
 
     if (!metadata.dataModels)
-      return '-'
+      return 'Core'
 
     const txDataModel = metadata.dataModels
       .find(item => item.name == 'TX')
 
     if (!txDataModel)
-      return '-'
+      return 'Core'
 
     return txDataModel.version
   }

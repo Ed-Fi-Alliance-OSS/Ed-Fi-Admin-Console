@@ -52,7 +52,7 @@ const usePartnerForm = ({ schoolYear, onFinishSave }: UsePartnerFormProps) => {
         const vendorList = await getVendorsListForSchoolYear(adminConfig.actionParams, schoolYear)
         if(vendorList.type === 'Response' && vendorList.data.some(vendor => 
           vendor.contactName === partnerData.contactName)) {
-          errorToast('A Partner with this name already exists. Please choose a unique name and try again.')
+          errorToast('A Vendor with this name already exists. Please choose a unique name and try again.')
           setIsSaving(false)
           return
         }
@@ -62,9 +62,9 @@ const usePartnerForm = ({ schoolYear, onFinishSave }: UsePartnerFormProps) => {
         setIsSaving(false)
 
         if (result.type === 'Response')
-          successToast('Added Partner')
+          successToast('Added Vendor')
         else 
-          errorToast('Failed to Add Partner')
+          errorToast('Failed to Add Vendor')
 
         onFinishSave()
       }

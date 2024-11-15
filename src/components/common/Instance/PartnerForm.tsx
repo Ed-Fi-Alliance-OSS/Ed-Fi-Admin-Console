@@ -25,7 +25,7 @@ const PartnerForm = ({ schoolYear, mode, onFinishSave }: PartnerFormProps) => {
   return (
     <EdFiModalForm
       actionText="save"
-      headerText={mode === 'add'? 'Add Partner' : 'Edit Partner'}
+      headerText={mode === 'add'? 'Add Vendor' : 'Edit Vendor'}
       isSaving={isSaving}
       onSave={onSave}
       onClose={onFinishSave} 
@@ -35,7 +35,7 @@ const PartnerForm = ({ schoolYear, mode, onFinishSave }: PartnerFormProps) => {
           <Flex flexDir='column' w='full'>
             <FormControl>
               <CustomFormLabel
-                text="Partner Name" 
+                text="Vendor Name" 
                 htmlFor="partnerName"/>
               <CustomInput 
                 id="partnerName"

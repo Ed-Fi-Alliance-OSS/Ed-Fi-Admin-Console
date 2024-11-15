@@ -6,7 +6,7 @@ test.beforeEach(async ({ page }) => {
   await page.goto(routes.instance)
   await page.waitForURL(routes.instance)
 
-  await page.getByText('Partners & Applications').click()
+  await page.getByText('Vendors & Applications').click()
 })
 
 /*

@@ -17,6 +17,20 @@ const ApplicationAPIEndpointsTabContent = ({ instance }: ApplicationAPIEndpoints
     <Flex flexDir='column' w='full'>
       <FormControl>
         <CustomFormLabel 
+          text="Base URL" 
+          htmlFor="baseUrl" />
+        <Flex w='full'>
+          <CustomInput
+            id="baseUrl"
+            value={instance? instance.baseUrl : ''}
+            onChange={() => null} />
+          <Flex ml='8px'>
+            <CopyTextBtn value={instance? instance.baseUrl : ''} />
+          </Flex>
+        </Flex>
+      </FormControl>
+      <FormControl mt={4}>
+        <CustomFormLabel 
           text="Authentication URL" 
           htmlFor="authenticationUrl" />
         <Flex w='full'>

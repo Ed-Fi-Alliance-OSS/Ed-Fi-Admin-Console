@@ -9,7 +9,7 @@ interface PartnersAndApplicationTabHeaderProps {
 const PartnersAndApplicationTabHeader = ({ onAddPartner }: PartnersAndApplicationTabHeaderProps) => {
   return (
     <Flex justifyContent='space-between' w='full'>
-      <TabHeading text='Partners & Applications' />
+      <TabHeading text='Vendors & Applications' />
       <PartnersAndApplicationControls onAddPartner={onAddPartner} />
     </Flex>
   )

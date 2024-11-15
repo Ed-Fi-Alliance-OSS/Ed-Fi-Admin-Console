@@ -47,7 +47,7 @@ const ApplicationDetailsFormSection = ({ applicationData, mode, errors, operatio
         </FormControl>
         <FormControl mt='16px'>
           <CustomFormLabel
-            text="Partner" 
+            text="Vendor" 
             htmlFor="vendor"/>
           <CustomSelect 
             id="vendor"

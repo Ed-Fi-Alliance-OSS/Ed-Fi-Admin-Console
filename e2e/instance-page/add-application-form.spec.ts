@@ -19,7 +19,7 @@ test.beforeAll(async ({ browser }) => {
   await page.waitForURL(routes.instance)
   await page.waitForLoadState('networkidle')
 
-  await page.getByText('Partners & Applications').click()
+  await page.getByText('Vendors & Applications').click()
   await page.waitForLoadState('networkidle')
 
   await openApplicationForm(page)
@@ -96,7 +96,7 @@ test("Add Application Form - Adds the Application", async () => {
   
   await page.waitForLoadState("networkidle")
   expect(page.getByText("Success")).toBeVisible()
-  expect(page.getByRole("paragraph", { name: "Partners & Applications" })).toBeVisible()
+  expect(page.getByRole("paragraph", { name: "Vendors & Applications" })).toBeVisible()
 
   await page.waitForLoadState("networkidle")
   await page.getByText("Texas Exchange").click()
