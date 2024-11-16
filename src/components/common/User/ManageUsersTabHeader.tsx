@@ -1,23 +1,20 @@
 import { Button, Flex, FormControl, Select } from '@chakra-ui/react'
 import { ChangeEvent } from 'react'
-import { UsersTableMode } from '../../../hooks/adminActions/users/useManageUsersTable'
 import ControlTableFilterPopover from '../ControlTableFilterPopover'
 
 interface ManageUsersTabHeaderProps {
     filterValue: string
     filterOptionsList: string[]
-    mode: UsersTableMode
     selectedFilter?: string 
     onChangeFilter: (e: ChangeEvent<HTMLSelectElement>) => void
     onChangeValue: (e: ChangeEvent<HTMLInputElement>) => void
     onFilter: () => void
-    onChangeMode: (e: ChangeEvent<HTMLSelectElement>) => void
     onResetFilter: () => void
     onAddUser: () => void
     onRefreshData: () => void
 }
 
-const ManageUsersTabHeader = ({ mode, filterValue, selectedFilter, filterOptionsList, onAddUser, onRefreshData, onChangeMode, onChangeFilter, onChangeValue, onFilter, onResetFilter }: ManageUsersTabHeaderProps) => {
+const ManageUsersTabHeader = ({  filterValue, selectedFilter, filterOptionsList, onAddUser, onRefreshData,  onChangeFilter, onChangeValue, onFilter, onResetFilter }: ManageUsersTabHeaderProps) => {
   const optionTextList = [
     'First Name',
     'Last Name',
@@ -52,12 +49,9 @@ const ManageUsersTabHeader = ({ mode, filterValue, selectedFilter, filterOptions
               fontWeight='700'
               fontSize='32px'
               lineHeight='42px' 
-              value={mode} 
-              onChange={onChangeMode}
               border='none'
               w='230px'>
               <option key="users" value="users" style={{ fontFamily: 'sans-serif' }}>Users</option>
-              <option key="invitations" value='invitations' style={{ fontFamily: 'sans-serif' }}>Invitations</option>
             </Select>
           </FormControl>
         </Flex>
