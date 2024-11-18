@@ -1,16 +1,16 @@
+import { Flex } from '@chakra-ui/react'
+import { AppsMenuMoreOption, Content, DefaultLayout, EdxAppConfig, ExternalAppsContext, Footer, NotificationBar, TEEAuthDataContext, TopBar, TopBarLeft, TopBarRight, useAuthActions, useConfig, useNotificationsBar, UserProfileContext } from '@edfi/admin-console-shared-sdk'
 import { useContext } from 'react'
 import { AuthContextProps } from 'react-oidc-context'
-import { AppsMenuMoreOption, EdxAppConfig, Content, DefaultLayout, ExternalAppsContext, Footer, NotificationBar, TopBar, TopBarLeft, TopBarRight, useAuthActions, useNotificationsBar, UserProfileContext, TEEAuthDataContext } from '@edfi/admin-console-shared-sdk'
 import { useNavigate } from 'react-router-dom'
-import { Flex } from '@chakra-ui/react'
 
 interface DefaultLayoutContentProps {
-    auth: AuthContextProps
-    edxAppConfig: EdxAppConfig
-    content: JSX.Element
-    notificationBarMessage: string
-    isClosingSession: boolean
-    onLogout: () => Promise<void>
+  auth: AuthContextProps
+  edxAppConfig: EdxAppConfig
+  content: JSX.Element
+  notificationBarMessage: string
+  isClosingSession: boolean
+  onLogout: () => Promise<void>
 }
 
 const DefaultLayoutWrapper = ({ content, notificationBarMessage, isClosingSession, onLogout }: DefaultLayoutContentProps) => {
@@ -34,13 +34,12 @@ const DefaultLayoutWrapper = ({ content, notificationBarMessage, isClosingSessio
   }
 
   // console.log('external apps', externalApps)
-
+  const { config } = useConfig()
   return (
     <DefaultLayout
       topBar={<TopBar
         leftComponent={<TopBarLeft
           onClick={handleLogoClick}
-          imageUrl={edxAppConfig?.app.logo ?? ''}
           list={externalApps}
           menuOptions={moreOptions} />}
         rightComponent={<TopBarRight
@@ -59,9 +58,11 @@ const DefaultLayoutWrapper = ({ content, notificationBarMessage, isClosingSessio
       content={<Content
         marginTop='60px'
         maxW="1400px">
-        { content }
+        {content}
       </Content>}
-      footer={<Footer />} />
+      footer={<Footer 
+        onClick={handleLogoClick}
+        imageUrl={config.app.logo ?? ''} />} />
   )
 }
 

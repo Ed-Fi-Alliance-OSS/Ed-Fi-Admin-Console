@@ -16,28 +16,10 @@ const useOdsInstanceDescription = ({ instance }: UseOdsInstanceDescriptionProps)
     if (!instance)
       return 
 
-    if (!instance.baseUrl)
+    if (!instance.edfiMetadata)
       return 
 
-    setLoadingInstanceOdsMetadata(true)
-    const getEdfiMetadataResult = await getSimpleAsync<EdFiMetadata>({
-      actionName: 'Get Instance Metadata',
-      url: getInstanceBaseUrl()
-    })
-
-    setLoadingInstanceOdsMetadata(false)
-
-    if (getEdfiMetadataResult.type === 'Error')
-      return 
-
-    setInstanceOdsMetadata(getEdfiMetadataResult.data)
-  }
-
-  const getInstanceBaseUrl = () => {
-    if (!instance)
-      return ''
-
-    return instance.baseUrl
+    setInstanceOdsMetadata(instance.edfiMetadata)
   }
 
   useEffect(() => {
@@ -48,7 +30,6 @@ const useOdsInstanceDescription = ({ instance }: UseOdsInstanceDescriptionProps)
   }, [ instance ])
 
   return {
-    getInstanceBaseUrl,
     instanceOdsMetadata,
     loadingInstanceOdsMetadata
   }

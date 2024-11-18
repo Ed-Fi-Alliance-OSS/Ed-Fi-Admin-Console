@@ -3,7 +3,7 @@ import { ControlTableSort, ControlTableSortType } from '../../core/controlTable'
 import { ExtendedODSInstance } from '../../core/ODSInstance.types'
 import useOdsInstanceYear from './useOdsInstanceYear'
 
-type ODSInstanceTableSortingField = 'Year' | 'Status' | 'EdFiVersion' | 'TsdsVersion'
+type ODSInstanceTableSortingField = 'Year' | 'Status' | 'EdFiVersion' | 'EdFiDataModels'
 
 const useOdsInstanceTableSorting = () => {
   const [ orderBy, setOrderBy ] = useState<ControlTableSort>({ 

@@ -1,17 +1,15 @@
 import { RadioGroup, Td } from '@chakra-ui/react'
+import { CustomRadio } from '@edfi/admin-console-shared-sdk'
+import { useEffect } from 'react'
+import { ExtendedODSInstance } from '../../../core/ODSInstance.types'
+import { UpdatingIsDefaultStatus } from '../../../hooks/odsInstances/useOdsInstanceTable.types'
 import ManageInstanceBtn from './ManageInstanceBtn'
 import ODSInstanceEdFiVersion from './ODSInstaceEdFiVersion'
 import ODSInstanceEdFiStatus from './ODSInstanceEdFiStatus'
-import ODSInstanceHostingType from './ODSInstanceHostingType'
-import ODSInstanceIsDefaultMark from './ODSInstanceIsDefaultMark'
-import ODSInstanceTSDSVersion from './ODSInstanceTSDSVersion'
+import { ODSInstanceTableMode } from './ODSInstanceTable.types'
+import ODSInstanceDataModelsLabel from './ODSInstanceTSDSVersion'
 import ODSInstanceYear from './ODSInstanceYear'
 import SetUpInstanceBtn from './SetUpInstanceBtn'
-import { ExtendedODSInstance } from '../../../core/ODSInstance.types'
-import { UpdatingIsDefaultStatus } from '../../../hooks/odsInstances/useOdsInstanceTable.types'
-import { ODSInstanceTableMode } from './ODSInstanceTable.types'
-import { CustomRadio } from '@edfi/admin-console-shared-sdk'
-import { useEffect } from 'react'
 
 interface ODSInstanceManagementTableRowItemProps {
     tableMode: ODSInstanceTableMode
@@ -62,8 +60,8 @@ const ODSInstanceManagementTableRowItem = ({ tableMode, selectedInstance, instan
           version={instance.edFiVersion} /> 
       </Td>
       <Td>
-        <ODSInstanceTSDSVersion 
-          version={instance.tsdsVersion} /> 
+        <ODSInstanceDataModelsLabel 
+          dataModels={instance.edfiMetadata.dataModels} /> 
       </Td>
       <Td>
         <ODSInstanceEdFiStatus 
