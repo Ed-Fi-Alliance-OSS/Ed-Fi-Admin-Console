@@ -1,7 +1,11 @@
 {
   "api": {
     "edfiApiBaseUri": "https://api.dev.edgraph.com/edfi/v7.2/ds4/saas/tx",
-    "edfiAdminApiBaseUri": "https://api.dev.edgraph.com/edfi-admin/v2.3/v7.2/ds4/saas/tx"
+    "edfiAdminApiBaseUri": "https://api.dev.edgraph.com/edfi-admin/v2.3/v7.2/ds4/saas/tx",
+    "useLocalMockData": true,
+    "useAdminApiAuthentication": false,
+    "apiKey": "",
+    "apiSecret": ""
   },
   "app": {  
     "title": "AppName",

@@ -1,8 +1,8 @@
-import { createContext, useState, useEffect, useContext } from 'react'
-import { OnBoardingWizardData } from '../core/onBoardingWizard/onBoardingWizard.types'
-import { createOnBoardingWizardStep, fetchOnBoardingWizardData } from '../services/OnBoardingWizard/onBoardingWizardService'
 import { TEEAuthDataContext, useConfig, UserProfileContext } from '@edfi/admin-console-shared-sdk'
+import { createContext, useContext, useEffect, useState } from 'react'
+import { OnBoardingWizardData } from '../core/onBoardingWizard/onBoardingWizard.types'
 import useOnboardingWizardStepsData from '../hooks/useOnBoardingWizardStepsData'
+import { createOnBoardingWizardStep, fetchOnBoardingWizardData } from '../services/OnBoardingWizard/onBoardingWizardService'
 
 export interface OnBoardingWizardDataWrapper {
     onBoardingWizardData: OnBoardingWizardData | null
@@ -96,7 +96,7 @@ const OnBoardingWizardProvider = ({ children }: OnBoardingWizardProviderProps) =
 
         console.log('creating step', step.index + 1, step.name)
         await createOnBoardingWizardStep({
-          apiUrl: edxAppConfig.api.baseUri as string,
+          apiUrl: edxAppConfig.api.edfiApiBaseUri as string,
           tenantId: userProfile.tenantId,
           token: auth.user.access_token,
           description: step.name,
