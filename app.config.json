@@ -1,43 +1,18 @@
 {
   "api": {
-    "baseUri": "",
-    "edxApiUri": "",
-    "dataHealthApiUri": ""
+    "edfiApiBaseUri": "https://api.dev.edgraph.com/edfi/v7.2/ds4/saas/tx",
+    "edfiAdminApiBaseUri": "https://api.dev.edgraph.com/edfi-admin/v2.3/v7.2/ds4/saas/tx"
   },
-  "app": {
-    "name": "Acme Service Center",
-    "subtitle": "Admin Console",
-    "logo": "",
+  "app": {  
+    "title": "AppName",
+    "subtitle": "Subtitle",
+    "logo": "/assets/logo-test.png",
     "basePath": "",
-    "baseImagesUrl": "",
-    "showDataHealth": true,
-    "showAdvancedTabs": true,
-    "showCompositeUrls": false,
-    "allowDebug": true,
-    "odsApiInstance": "https://api.edgraph.dev/edfi/v6.1/saas/core-districtspecific",
-    "notificationsApplicationId": "z2WFYMjyRNEI",
-    "webAnalytics": {
-      "tool": "<Valid values: Matomo, GoogleAnalytics>",
-      "enableWebAnalytics": false,
-      "matomo":
-      {
-        "managerUrl": "https://<managerUrl>",
-        "containerId": "<containerId>"
-      },
-      "googleAnalytics":
-      {
-        "googleAnalyticsId": "<googleAnalyticsId>"
-      }
-    },
-    "enableHelpDeskLink": false,
-    "helpLinkUrl": "https://community.ed-fi.org/s/",
-    "showUserDelete": true,
-    "showEdfiPartnerDelete": false,
-    "showEdfiApplicationDelete": false,
-    "showEdOrgsTab": false,
-    "useDataHealthWithSchoolYear": false 
+    "helpLinkUrl": "/docs/index"
   },
-  "plugins": [],
+  "plugins": [
+    "test-plugin"
+  ],
   "auth": {
     "authority": "http://localhost:28080/realms/myrealm/",
     "clientId": "ac",
