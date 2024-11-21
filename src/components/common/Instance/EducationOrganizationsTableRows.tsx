@@ -1,4 +1,6 @@
-import { Td, Text } from '@chakra-ui/react'
+import {
+  Td, Text 
+} from '@chakra-ui/react'
 import { EducationOrganization } from '../../../services/AdminActions/Ods/ODSService.results'
 import ControlTableRow from '../ControlTableRow'
 
@@ -28,48 +30,56 @@ const EducationOrganizationsTableRows = ({ organizationsList }: EducationOrganiz
               color='gray.700'
               fontFamily='Open sans'
               fontWeight='400'
-              size='md'>
+              size='md'
+            >
               {organization.id}
             </Text>
           </Td>
+
           <Td>
             <Text
               color='blue.600'
               fontFamily='Open sans'
               fontWeight='700'
-              size='md'>
+              size='md'
+            >
               {organization.nameOfInstitution}
             </Text>
           </Td>
+
           <Td>
             <Text
               color='gray.700'
               fontFamily='Open sans'
               fontWeight='400'
-              size='md'>
+              size='md'
+            >
               {organization.shortNameOfInstitution}
             </Text>
           </Td>
+
           <Td>
             <Text
               color='gray.700'
               fontFamily='Open sans'
               fontWeight='400'
-              size='md'>
+              size='md'
+            >
               {extractCategory(organization.categories[0].educationOrganizationCategoryDescriptor)}
             </Text>
           </Td>
+
           <Td>
             <Text
               color='gray.700'
               fontFamily='Open sans'
               fontWeight='400'
-              size='md'>
+              size='md'
+            >
               {extractLea(organization.localEducationAgencyCategoryDescriptor)}
             </Text>
           </Td>
-        </ControlTableRow>
-      )}
+        </ControlTableRow>)}
     </>
   )
 }

@@ -1,10 +1,13 @@
-import { ExtendedODSInstance, ODSInstance } from '../../core/ODSInstance.types'
+import {
+  ExtendedODSInstance, ODSInstance 
+} from '../../core/ODSInstance.types'
 import useHttpService from '../http/useHttpService'
 import useOdsInstanceEdFiStatus from './useOdsInstanceEdFiStatus'
 import useOdsVersions from './useOdsVersions'
 
 const useExtendedOdsInstanceMapping = () => {
   const { getSimpleAsync } = useHttpService()
+
   const {
     getEdFiVersionFromMetadata,
     getTSDSVersionFromMetadata
@@ -43,9 +46,7 @@ const useExtendedOdsInstanceMapping = () => {
     }
   }
 
-  return {
-    mapToExtendedOdsInstance
-  }
+  return { mapToExtendedOdsInstance }
 }
 
 export default useExtendedOdsInstanceMapping

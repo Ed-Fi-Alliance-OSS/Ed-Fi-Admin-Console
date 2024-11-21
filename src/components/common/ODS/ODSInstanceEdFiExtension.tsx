@@ -9,7 +9,8 @@ const ODSInstanceEdFiExtension = ({ extension }: ODSInstanceEdFiExtensionProps) 
     <Text
       fontFamily='Open sans'
       fontWeight='400'
-      size='md'>
+      size='md'
+    >
       {extension}
     </Text>
   )

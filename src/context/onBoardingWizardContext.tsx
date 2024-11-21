@@ -1,8 +1,14 @@
-import { TEEAuthDataContext, useConfig, UserProfileContext } from '@edfi/admin-console-shared-sdk'
-import { createContext, useContext, useEffect, useState } from 'react'
+import {
+  TEEAuthDataContext, useConfig, UserProfileContext
+} from '@edfi/admin-console-shared-sdk'
+import {
+  createContext, useContext, useEffect, useState
+} from 'react'
 import { OnBoardingWizardData } from '../core/onBoardingWizard/onBoardingWizard.types'
 import useOnboardingWizardStepsData from '../hooks/useOnBoardingWizardStepsData'
-import { createOnBoardingWizardStep, fetchOnBoardingWizardData } from '../services/OnBoardingWizard/onBoardingWizardService'
+import {
+  createOnBoardingWizardStep, fetchOnBoardingWizardData
+} from '../services/OnBoardingWizard/onBoardingWizardService'
 
 export interface OnBoardingWizardDataWrapper {
     onBoardingWizardData: OnBoardingWizardData | null
@@ -23,7 +29,6 @@ const OnBoardingWizardProvider = ({ children }: OnBoardingWizardProviderProps) =
   const [onBoardingWizardData, setOnBoardingWizardData] = useState<OnBoardingWizardData | null>(null)
   const { onboardingStepsData } = useOnboardingWizardStepsData()
   const { config } = useConfig()
-
   // TODO: replace with actual tenant url
   const tenantMockUrl = `${config?.app.basePath}/mockdata/data-tenant.json`
 
@@ -61,8 +66,7 @@ const OnBoardingWizardProvider = ({ children }: OnBoardingWizardProviderProps) =
                     
         setIsFetchingOnBoardingWizard(false)
         setOnBoardingWizardData(data)
-      }
-      else {
+      } else {
         console.log('tenant does not have OB data. Loading steps...')
         await setupInitialOnBoardingState()
                 
@@ -82,8 +86,9 @@ const OnBoardingWizardProvider = ({ children }: OnBoardingWizardProviderProps) =
   }
 
   const hasStartedOB = (data: OnBoardingWizardData) : boolean => {
-    if (data.status === 'Pending') 
-      return false 
+    if (data.status === 'Pending') {
+      return false
+    } 
 
     return true
   }
@@ -115,7 +120,12 @@ const OnBoardingWizardProvider = ({ children }: OnBoardingWizardProviderProps) =
   }, [ userProfile ])
 
   return (
-    <onBoardingWizardContext.Provider value={{ onBoardingWizardData, setOnBoardingWizardData, isFetchingOnBoardingWizard }}>
+    <onBoardingWizardContext.Provider value={{
+      onBoardingWizardData,
+      setOnBoardingWizardData,
+      isFetchingOnBoardingWizard 
+    }}
+    >
       {children}
     </onBoardingWizardContext.Provider>
   )

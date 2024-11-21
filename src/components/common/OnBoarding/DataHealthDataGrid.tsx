@@ -8,43 +8,69 @@ interface DataHealthDataGridParams {
 
 const DataHealthDataGrid = ({ dataHealth }: DataHealthDataGridParams) => {
   return (
-    <Grid templateColumns='repeat(4, 170px)' gap='20px'>
+    <Grid
+      gap='20px'
+      templateColumns='repeat(4, 170px)'
+    >
       <DataHealthDetailsItem
         text="Reporting Periods"
-        value={dataHealth.reportingPeriodExts} />
+        value={dataHealth.reportingPeriodExts}
+      />
+
       <DataHealthDetailsItem
         text="Sections"
-        value={dataHealth.sections} />
+        value={dataHealth.sections}
+      />
+
       <DataHealthDetailsItem
         text="Student School Enrollments"
-        value={dataHealth.studentSchoolAssociations} />
+        value={dataHealth.studentSchoolAssociations}
+      />
+
       <DataHealthDetailsItem
         text="Student Course Enrollments (By Section)"
-        value={dataHealth.studentSectionAssociations} />
+        value={dataHealth.studentSectionAssociations}
+      />
+
       <DataHealthDetailsItem
         text="Student Special Education Program Enrollments"
-        value={dataHealth.studentSpecialEducationProgramAssociations} />
+        value={dataHealth.studentSpecialEducationProgramAssociations}
+      />
+
       <DataHealthDetailsItem
         text="Student Daily Attendance"
-        value={dataHealth.studentSchoolAttendanceEvents} />
+        value={dataHealth.studentSchoolAttendanceEvents}
+      />
+
       <DataHealthDetailsItem
         text="Student Reporting Period Attendance"
-        value={dataHealth.basicReportingPeriodAttendances} />
+        value={dataHealth.basicReportingPeriodAttendances}
+      />
+
       <DataHealthDetailsItem
         text="Student Discipline Incidents"
-        value={dataHealth.studentDisciplineIncidentBehaviorAssociations} />
+        value={dataHealth.studentDisciplineIncidentBehaviorAssociations}
+      />
+
       <DataHealthDetailsItem
         text="Student Course History"
-        value={dataHealth.courseTranscripts} />
+        value={dataHealth.courseTranscripts}
+      />
+
       <DataHealthDetailsItem
         text="Staff Employment"
-        value={dataHealth.staffEducationOrganizationEmploymentAssociations} />
+        value={dataHealth.staffEducationOrganizationEmploymentAssociations}
+      />
+
       <DataHealthDetailsItem
         text="Staff Assignment (By Role)"
-        value={dataHealth.staffEducationOrganizationAssignmentAssociations} />
+        value={dataHealth.staffEducationOrganizationAssignmentAssociations}
+      />
+
       <DataHealthDetailsItem
         text="Staff Teaching Assignment (By Section)"
-        value={dataHealth.staffSectionAssociations} />
+        value={dataHealth.staffSectionAssociations}
+      />
     </Grid>
   )
 }

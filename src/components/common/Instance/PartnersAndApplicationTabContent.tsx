@@ -1,5 +1,7 @@
 import { Flex } from '@chakra-ui/react'
-import { useCallback, useContext, useState } from 'react'
+import {
+  useCallback, useContext, useState 
+} from 'react'
 import { adminConsoleContext } from '../../../context/adminConsoleContext'
 import { DeletingState } from '../../../core/deletingState.types'
 import { EdfiApplication } from '../../../core/Edfi/EdfiApplications'
@@ -24,24 +26,30 @@ const  PartnersAndApplicationTabContent = ({ instance, schoolYear }: PartnersAnd
   const [selectedApplication, setSelectedApplication] = useState<EdfiApplication | undefined>()
   const adminConfig = useContext(adminConsoleContext)
   const { deleteVendorForSchoolYear } = useEdfiVendorsService()
-  const [ isDeletingVendor, setIsDeletingVendor ] = useState<DeletingState>({ deleting: false, id: '' })
-  const { 
-    vendorsWithApplicationsList,
-    onSelectPartner,
-    onRefreshVendorsWithApplications } = usePartnersAndApplicationsAccordion({ 
-    schoolYear 
+
+  const [ isDeletingVendor, setIsDeletingVendor ] = useState<DeletingState>({
+    deleting: false,
+    id: '' 
   })
+
+  const { vendorsWithApplicationsList,
+    onSelectPartner,
+    onRefreshVendorsWithApplications } = usePartnersAndApplicationsAccordion({ schoolYear })
 
   const [, refreshComponent] = useState(Date.now())
   const forceUpdate = useCallback(() => refreshComponent(Date.now() + Math.random()), [])
-    
   const { deleteEdfiApplicationForSchoolYear } = useEdfiApplicationsService()
-  const [isDeletingApplication, setIsDeletingApplication] = useState<DeletingState>({ deleting: false, id: '' })
-  const { successToast, errorToast } = useEDXToast()
 
+  const [isDeletingApplication, setIsDeletingApplication] = useState<DeletingState>({
+    deleting: false,
+    id: '' 
+  })
+
+  const { successToast, errorToast } = useEDXToast()
   const onAddPartner = () => setElementToShow('add partner')
   const onEditPartner = () => setElementToShow('edit partner')
   const onAddApplication = () => setElementToShow('add application')
+
   const onEditApplication = (application: EdfiApplication) => {
     setSelectedApplication(application)
     setElementToShow('edit application')
@@ -51,10 +59,17 @@ const  PartnersAndApplicationTabContent = ({ instance, schoolYear }: PartnersAnd
     if (adminConfig) {
       console.log('vendor id', vendorId)
 
-      setIsDeletingVendor({ deleting: true, id: vendorId })
+      setIsDeletingVendor({
+        deleting: true,
+        id: vendorId 
+      })
 
       const result = await deleteVendorForSchoolYear(adminConfig.edfiActionParams, { vendorId }, schoolYear)
-      setIsDeletingVendor({ deleting: false, id: vendorId })
+
+      setIsDeletingVendor({
+        deleting: false,
+        id: vendorId 
+      })
             
       if (result.type === 'Response') {
         successToast(`Deleted partner of id ${vendorId}.`)
@@ -69,9 +84,17 @@ const  PartnersAndApplicationTabContent = ({ instance, schoolYear }: PartnersAnd
 
   const handleDeleteApplication = async (applicationId: string) => {
     if (adminConfig) {
-      setIsDeletingApplication({ deleting: true, id: applicationId })
+      setIsDeletingApplication({
+        deleting: true,
+        id: applicationId 
+      })
+
       const result = await deleteEdfiApplicationForSchoolYear(adminConfig.edfiActionParams, { applicationId }, schoolYear)
-      setIsDeletingApplication({ deleting: true, id: applicationId })
+
+      setIsDeletingApplication({
+        deleting: true,
+        id: applicationId 
+      })
 
       if (result.type === 'Response') {
         successToast(`Deleted application of id ${applicationId}`)
@@ -90,61 +113,84 @@ const  PartnersAndApplicationTabContent = ({ instance, schoolYear }: PartnersAnd
     forceUpdate()
     setElementToShow('accordion')
   }
+
   console.log('rendering...')
 
 
   return (
-    <Flex flexDir='column' w='full'>
-      <Flex flexDir='column' w='full'>
-        <PartnersAndApplicationTabHeader onAddPartner={onAddPartner} onRefresh={onRefreshVendorsWithApplications} />
-        <Flex mt='16px' w='full'>
+    <Flex
+      flexDir='column'
+      w='full'
+    >
+      <Flex
+        flexDir='column'
+        w='full'
+      >
+        <PartnersAndApplicationTabHeader
+          onAddPartner={onAddPartner}
+          onRefresh={onRefreshVendorsWithApplications}
+        />
+
+        <Flex
+          mt='16px'
+          w='full'
+        >
           <PartnersAndApplicationAccordion 
-            vendorsWithApplicationsList={vendorsWithApplicationsList}
-            isDeletingPartner={isDeletingVendor}
             isDeletingApplication={isDeletingApplication}
-            onSelectPartner={onSelectPartner}
-            onDeletePartner={onDeleteVendor}
-            onDeleteApplication={handleDeleteApplication}
+            isDeletingPartner={isDeletingVendor}
+            vendorsWithApplicationsList={vendorsWithApplicationsList}
             onAddApplication={onAddApplication}
+            onDeleteApplication={handleDeleteApplication}
+            onDeletePartner={onDeleteVendor}
             onEditApplication={onEditApplication}
-            onEditPartner={onEditPartner} />
+            onEditPartner={onEditPartner}
+            onSelectPartner={onSelectPartner}
+          />
         </Flex>
       </Flex> 
             
       <ConsoleModal 
         content={<PartnerForm 
-          schoolYear={schoolYear}
-          mode="add" 
-          onFinishSave={onReturnToAccordion} />}
+          mode="add"
+          schoolYear={schoolYear} 
+          onFinishSave={onReturnToAccordion}
+        />}
         show={elementToShow === 'add partner'} 
-        onClose={onReturnToAccordion} />
+        onClose={onReturnToAccordion}
+      />
 
       <ConsoleModal 
         content={<PartnerForm 
-          schoolYear={schoolYear}
-          mode="edit" 
-          onFinishSave={onReturnToAccordion} />}
+          mode="edit"
+          schoolYear={schoolYear} 
+          onFinishSave={onReturnToAccordion}
+        />}
         show={elementToShow === 'edit partner'} 
-        onClose={onReturnToAccordion} />
+        onClose={onReturnToAccordion}
+      />
 
       <ConsoleModal 
         content={<ApplicationForm 
           instance={instance}
-          schoolYear={schoolYear}
-          mode='add' 
-          onFinishSave={onReturnToAccordion} />}
+          mode='add'
+          schoolYear={schoolYear} 
+          onFinishSave={onReturnToAccordion}
+        />}
         show={elementToShow === 'add application'} 
-        onClose={onReturnToAccordion} />
+        onClose={onReturnToAccordion}
+      />
 
       <ConsoleModal 
         content={<ApplicationForm 
-          instance={instance}
-          schoolYear={schoolYear}
-          mode='edit' 
           editApplicationData={selectedApplication}
-          onFinishSave={onReturnToAccordion} />}
+          instance={instance}
+          mode='edit' 
+          schoolYear={schoolYear}
+          onFinishSave={onReturnToAccordion}
+        />}
         show={elementToShow === 'edit application'} 
-        onClose={onReturnToAccordion} />
+        onClose={onReturnToAccordion}
+      />
     </Flex> 
   )
 }

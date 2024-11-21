@@ -1,5 +1,9 @@
-import { TEEAuthDataContext, UserProfileContext } from '@edfi/admin-console-shared-sdk'
-import { useEffect, useState, useContext } from 'react'
+import {
+  TEEAuthDataContext, UserProfileContext 
+} from '@edfi/admin-console-shared-sdk'
+import {
+  useEffect, useState, useContext 
+} from 'react'
 import { adminConsoleContext } from '../../../context/adminConsoleContext'
 import { Tenant } from '../../../core/Tenant.types'
 import useDomainsService from '../../../services/AdminActions/Domains/DomainsService'

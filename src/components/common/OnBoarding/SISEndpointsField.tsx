@@ -1,6 +1,10 @@
 import { ChangeEvent } from 'react'
-import { Flex, FormControl } from '@chakra-ui/react'
-import { CustomFormLabel, CopyTextBtn, CustomInput } from '@edfi/admin-console-shared-sdk'
+import {
+  Flex, FormControl 
+} from '@chakra-ui/react'
+import {
+  CustomFormLabel, CopyTextBtn, CustomInput 
+} from '@edfi/admin-console-shared-sdk'
 
 interface SISEndpointsFieldProps {
     edfiAuthtenticationUrl: string 
@@ -10,32 +14,50 @@ interface SISEndpointsFieldProps {
 
 const SISEndpointsField = ({ edfiAuthtenticationUrl, edfiResourcesUrl, onChangeEndpoints }: SISEndpointsFieldProps) => {
   return (
-    <Flex flexDir='column' mt='10px'>
+    <Flex
+      flexDir='column'
+      mt='10px'
+    >
       <FormControl>   
         <CustomFormLabel
           htmlFor="authenticationUrl"
-          text="Ed-Fi Authentication URL" />
+          text="Ed-Fi Authentication URL"
+        />
+
         <Flex justifyContent='space-between'>
           <CustomInput
             id="authenticationUrl"
             value={edfiAuthtenticationUrl}
-            onChange={onChangeEndpoints} />
+            onChange={onChangeEndpoints}
+          />
+
           <Flex ml='10px'>
-            <CopyTextBtn withoutBorder={true} value={edfiAuthtenticationUrl} />
+            <CopyTextBtn
+              value={edfiAuthtenticationUrl}
+              withoutBorder={true}
+            />
           </Flex>
         </Flex>
       </FormControl>
+
       <FormControl mt='16px'>
         <CustomFormLabel
           htmlFor="resourcesUrl"
-          text="Ed-Fi Resources URL" />
+          text="Ed-Fi Resources URL"
+        />
+
         <Flex justifyContent='space-between'>
           <CustomInput
             id="resourcesUrl"
             value={edfiResourcesUrl}
-            onChange={onChangeEndpoints} />
+            onChange={onChangeEndpoints}
+          />
+
           <Flex ml='10px'>
-            <CopyTextBtn withoutBorder={true} value={edfiResourcesUrl} />
+            <CopyTextBtn
+              value={edfiResourcesUrl}
+              withoutBorder={true}
+            />
           </Flex>
         </Flex>
       </FormControl>

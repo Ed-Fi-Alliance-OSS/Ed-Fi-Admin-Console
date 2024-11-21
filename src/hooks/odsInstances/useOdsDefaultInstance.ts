@@ -1,4 +1,6 @@
-import { useContext, useEffect, useState } from 'react'
+import {
+  useContext, useEffect, useState 
+} from 'react'
 import { ODSInstance } from '../../core/ODSInstance.types'
 import useOdsInstanceService from '../../services/ODSInstances/OdsInstanceService'
 import { adminConsoleContext } from '../../context/adminConsoleContext'
@@ -18,8 +20,9 @@ const useOdsDefaultInstance = () => {
   } = useEDXToast(7000)
 
   const getDefaultInstance = async () => {
-    if (!adminConfig)
-      return 
+    if (!adminConfig) {
+      return
+    } 
 
     const request: GetOdsInstancesListRequest = {
       pageIndex: 0,
@@ -29,7 +32,8 @@ const useOdsDefaultInstance = () => {
 
     const result = await getOdsInstancesList(
       adminConfig.actionParams, 
-      request)
+      request
+    )
 
     if (result.type === 'Error') {
       errorToast('Failed to fetch default instance')

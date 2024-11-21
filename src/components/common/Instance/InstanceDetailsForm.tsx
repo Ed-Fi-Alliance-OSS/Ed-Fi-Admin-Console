@@ -1,8 +1,12 @@
-import { Button, Flex, FormControl } from '@chakra-ui/react'
+import {
+  Button, Flex, FormControl 
+} from '@chakra-ui/react'
 import { UserProfileContext } from '@edfi/admin-console-shared-sdk'
 import { useContext } from 'react'
 import { ODSInstance } from '../../../core/ODSInstance.types'
-import { CustomFormLabel, CustomSelect, CustomFormHeader, CustomInput } from '@edfi/admin-console-shared-sdk'
+import {
+  CustomFormLabel, CustomSelect, CustomFormHeader, CustomInput 
+} from '@edfi/admin-console-shared-sdk'
 import { usePluginContext } from '../../../plugins/BasePlugin'
 
 interface InstanceDetailsFormProps {
@@ -13,65 +17,95 @@ interface InstanceDetailsFormProps {
 const getInstanceName = (tenants: any[], currentTenantId: string) => {
   const tenant = tenants.find(tenant => tenant.tenantId === currentTenantId)
 
-  if (tenant)
+  if (tenant) {
     return tenant.organizationName
+  }
 
   return 'Instance'
 }
-const {getString} = usePluginContext()
+
+const { getString } = usePluginContext()
 
 const InstanceDetailsForm = ({ mode, instance }: InstanceDetailsFormProps) => {
-  const {userProfile} = useContext(UserProfileContext)
+  const { userProfile } = useContext(UserProfileContext)
 
   return (
-    <Flex flexDir='column' w='full' maxW='750px'>
+    <Flex
+      flexDir='column'
+      maxW='750px'
+      w='full'
+    >
       <CustomFormHeader text="Instance Details" />
-      <Flex flexDir='column' paddingLeft='16px' w='full'>
+
+      <Flex
+        flexDir='column'
+        paddingLeft='16px'
+        w='full'
+      >
         <FormControl mt='16px'>
           <CustomFormLabel 
-            text="Instance Name" 
-            htmlFor="instanceName" />
+            htmlFor="instanceName" 
+            text="Instance Name"
+          />
+
           <CustomInput
-            id='instanceName'
             disabled={true}
+            id='instanceName'
             value={userProfile? `${getInstanceName(userProfile.tenants, userProfile.tenantId)} ${instance?.instanceName}` : `Instance ${instance?.instanceName}`}
-            onChange={() => null} />
+            onChange={() => null}
+          />
         </FormControl>
 
         <FormControl mt='16px'>
           <CustomFormLabel 
-            text="Description" 
-            htmlFor="instanceDescription" />
+            htmlFor="instanceDescription" 
+            text="Description"
+          />
+
           <CustomInput
-            id='instanceDescription'
             disabled={true}
+            id='instanceDescription'
             value=''
-            onChange={() => null} />
+            onChange={() => null}
+          />
         </FormControl>
       </Flex>
 
-      <Flex mt='52px' w='full'>
+      <Flex
+        mt='52px'
+        w='full'
+      >
         <CustomFormHeader text={getString('app.ODS_INSTANCES')} />
       </Flex>
+
       <Flex paddingLeft='16px'>
         <FormControl mt='16px'>
           <CustomFormLabel 
-            text="School Year" 
-            htmlFor="schoolYear" />
+            htmlFor="schoolYear" 
+            text="School Year"
+          />
+
           <CustomSelect 
-            options={[{ value: '2023', text: '2023' }]}
-            value='2023'
+            options={[
+              {
+                value: '2023',
+                text: '2023' 
+              }
+            ]}
             disabled={true}
-            onChange={() => null} />
+            value='2023'
+            onChange={() => null}
+          />
         </FormControl>
       </Flex>
 
       <Button 
-        variant='primaryBlue600'
-        size='lg'
         disabled={true}
         mt='33px'
-        w={mode === 'add'? '242px' : '189px'}>
+        size='lg'
+        variant='primaryBlue600'
+        w={mode === 'add'? '242px' : '189px'}
+      >
         {mode === 'add'? 'Create Instance' : 'Save Edits'}
       </Button>
     </Flex>

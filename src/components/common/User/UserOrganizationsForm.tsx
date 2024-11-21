@@ -1,6 +1,10 @@
-import { Button, Flex } from '@chakra-ui/react'
+import {
+  Button, Flex 
+} from '@chakra-ui/react'
 import { useState } from 'react'
-import { EdOrgViewItem, UserEducationOrganizationsHook } from '../../../hooks/adminActions/users/useUserEducationOrganizations.types'
+import {
+  EdOrgViewItem, UserEducationOrganizationsHook 
+} from '../../../hooks/adminActions/users/useUserEducationOrganizations.types'
 import ConfirmDeleteEdOrgModal from './ConfirmDeleteEdOrgModal'
 import ConfirmEditEdOrgModal from './ConfirmEditEdOrgModal'
 import UserOrganizationsCard from './UserOrganizationsCard'
@@ -73,21 +77,24 @@ const UserOrganizationsForm = ({ formHookData, editMode, onUpdateEditEdOrgMode }
 
   const isValidData = () => {
     const edOrg = formHookData.viewEdOrgsList.find(item => {
-      if (item.educationOrganizationId == formHookData.educationOrganizationName && item.staffClassification === formHookData.staffClassificationDescriptor)
+      if (item.educationOrganizationId == formHookData.educationOrganizationName && item.staffClassification === formHookData.staffClassificationDescriptor) {
         return true
+      }
 
       return false
     })
 
-    if (edOrg)
+    if (edOrg) {
       return false
+    }
 
     return true
   }
 
   const canUseActions = () => {
-    if (formHookData.showAddItem || editMode || formHookData.isUpdatingUserEducationOrganization)
+    if (formHookData.showAddItem || editMode || formHookData.isUpdatingUserEducationOrganization) {
       return false
+    }
 
     return true
   }
@@ -97,95 +104,117 @@ const UserOrganizationsForm = ({ formHookData, editMode, onUpdateEditEdOrgMode }
       return (
         <UserOrganizationsEditFormItem
           key={key}
-          isValidData={isValidData}
+          edOrgToEdit={formHookData.edOrgToEdit}
           educationOrganizationName={formHookData.educationOrganizationName}
+          isUpdatingEducationOrganization={formHookData.isUpdatingUserEducationOrganization}
+          isValidData={isValidData}
+          organizationsList={formHookData.organizationsList} 
           staffClassificationDescriptor={formHookData.staffClassificationDescriptor}
           staffClassificationsList={formHookData.staffClassificationsList}
-          organizationsList={formHookData.organizationsList} 
-          isUpdatingEducationOrganization={formHookData.isUpdatingUserEducationOrganization}
-          onUpdate={onConfirmEdOrgEdits}
-          edOrgToEdit={formHookData.edOrgToEdit}
           onCancel={onCancelEditOrg}
           onSelectEducationOrganizationName={formHookData.onSelectEducationOrganizationName}
-          onSelectStaffClassificationDescriptor={formHookData.onSelectStaffClassificationDescriptor} />
+          onSelectStaffClassificationDescriptor={formHookData.onSelectStaffClassificationDescriptor}
+          onUpdate={onConfirmEdOrgEdits}
+        />
       )
     }
 
     return (
       <UserOrganizationsCard 
         key={key}
-        index={key}
+        canUseActions={canUseActions()}
         educationOrganization={educationOrganization}
+        index={key}
+        isDeleting={formHookData.isDeletingUserEducationOrganization}
         organizationsList={formHookData.organizationsList}
         staffClassificationsList={formHookData.staffClassificationsList}
-        canUseActions={canUseActions()}
-        isDeleting={formHookData.isDeletingUserEducationOrganization}
+        onCancelEdit={onCancelEditOrg}
         onDelete={onConfirmDeleteEdOrg}
         onEdit={onEditOrg}
-        onCancelEdit={onCancelEditOrg} />
+      />
     )
   }
 
   return (
-    <Flex flexDir='column' w='full'>
+    <Flex
+      flexDir='column'
+      w='full'
+    >
       {selectedViewEdOrg && <ConfirmDeleteEdOrgModal
-        show={showConfirmDeleteEdOrg}
         edOrg={selectedViewEdOrg}
         isDeletingEdOrg={formHookData.isDeletingUserEducationOrganization.deleting}
+        show={showConfirmDeleteEdOrg}
+        onClose={() => setShowConfirmDeleteEdOrg(false)}
         onDeleteEdOrg={() => handleDeleteEdOrg(selectedViewEdOrg.educationOrganizationId.toString(), selectedViewEdOrg.staffClassification)}
-        onClose={() => setShowConfirmDeleteEdOrg(false)} />}
+      />}
 
       {selectedViewEdOrg && <ConfirmEditEdOrgModal
-        show={showConfirmEditEdOrg}
         edOrg={selectedViewEdOrg}
         isSavingEdOrg={formHookData.isUpdatingUserEducationOrganization}
+        show={showConfirmEditEdOrg}
+        onClose={() => setShowConfirmEditEdOrg(false)}
         onEditEdOrg={() => handleEditEdOrg(selectedViewEdOrg.educationOrganizationId.toString())}
-        onClose={() => setShowConfirmEditEdOrg(false)} />}
-      <Flex justifyContent='flex-end' w='full'>
+      />}
+
+      <Flex
+        justifyContent='flex-end'
+        w='full'
+      >
         <Button
-          onClick={formHookData.onShowAddItem}
-          variant='primaryBlue600'
-          isDisabled={formHookData.showAddItem || formHookData.isUpdatingUserEducationOrganization || editMode}
           _disabled={{ 
             opacity: 0.6, 
             cursor: 'default',
-            '_hover': { bg: 'blue.900' } }}>
-                        Add New
+            '_hover': { bg: 'blue.900' } 
+          }}
+          isDisabled={formHookData.showAddItem || formHookData.isUpdatingUserEducationOrganization || editMode}
+          variant='primaryBlue600'
+          onClick={formHookData.onShowAddItem}
+        >
+          Add New
         </Button>
       </Flex>
+
       <Flex 
         border='1px'
         borderColor='gray.300'
         borderRadius='4px'
         flexDir='column'
-        mt='16px'>
+        mt='16px'
+      >
         <>  
           {formHookData.viewEdOrgsList.map((educationOrganization, index) => 
-            selectItem(educationOrganization, index)
-          )}
+            selectItem(educationOrganization, index))}
+
           { formHookData.showAddItem && !editMode && <UserOrganizationsFormItem
             educationOrganizationName={formHookData.educationOrganizationName}
-            staffClassificationDescriptor={formHookData.staffClassificationDescriptor}
-            staffClassificationsList={formHookData.staffClassificationsList}
-            isValidData={isValidData}
-            organizationsList={formHookData.organizationsList} 
             isCreatingEducationOrganization={formHookData.isCreatingUserEducationOrganization}
+            isValidData={isValidData}
+            organizationsList={formHookData.organizationsList}
+            staffClassificationDescriptor={formHookData.staffClassificationDescriptor} 
+            staffClassificationsList={formHookData.staffClassificationsList}
+            onCancelAdd={formHookData.onCloseAddItem}
             onCreateUserOrganization={formHookData.onSaveEdOrgs}
             onSelectEducationOrganizationName={formHookData.onSelectEducationOrganizationName}
             onSelectStaffClassificationDescriptor={formHookData.onSelectStaffClassificationDescriptor}
-            onCancelAdd={formHookData.onCloseAddItem} /> }
+          /> }
         </>
       </Flex>
-      <Flex justifyContent="flex-end" mt='16px'>
+
+      <Flex
+        justifyContent="flex-end"
+        mt='16px'
+      >
         <Button
-          onClick={formHookData.onShowAddItem}
-          isDisabled={formHookData.showAddItem || formHookData.isUpdatingUserEducationOrganization || editMode}
-          variant='primaryBlue600'
           _disabled={{ 
             opacity: 0.6, 
             cursor: 'default',
-            '_hover': { bg: 'blue.900' } }}>
-                        Add New
+            '_hover': { bg: 'blue.900' } 
+          }}
+          isDisabled={formHookData.showAddItem || formHookData.isUpdatingUserEducationOrganization || editMode}
+          variant='primaryBlue600'
+          onClick={formHookData.onShowAddItem}
+        >
+          Add New
         </Button>
       </Flex>
     </Flex>

@@ -1,4 +1,6 @@
-import { ChangeEvent, useEffect, useState } from 'react'
+import {
+  ChangeEvent, useEffect, useState 
+} from 'react'
 
 interface UseControlTablePaginationProps {
     data: any[]
@@ -9,33 +11,37 @@ const useControlTablePagination = ({ data }: UseControlTablePaginationProps) => 
   const [pageSize, setPageSize] = useState(10)
   const [minPerPage, setMinPerPage] = useState(1)
   const [maxPerPage, setMaxPerPage] = useState(100)
-    
   const totalPages = Math.ceil(data.length / pageSize)
   const indexOfLastItem = currentPage * pageSize
   const indexOfFirstItem = indexOfLastItem - pageSize
   const paginatedItems= [...data].slice(indexOfFirstItem, indexOfLastItem)
-
   const goToInitialPage = () => setCurrentPage(1)
   const gotToLastPage = () => setCurrentPage(totalPages)
+
   const goToNextPage = () => {
-    if (currentPage < totalPages)
+    if (currentPage < totalPages) {
       setCurrentPage(currentPage + 1)
+    }
   }
+
   const goToPreviousPage = () => {
-    if (currentPage > 1)
+    if (currentPage > 1) {
       setCurrentPage(currentPage - 1)
+    }
   }
 
   const canNextPage = () => {
-    if (currentPage < totalPages)
+    if (currentPage < totalPages) {
       return true
+    }
 
     return false
   }
 
   const canPreviousPage = () => {
-    if (currentPage > 1)
-      return true 
+    if (currentPage > 1) {
+      return true
+    } 
         
     return false
   }
@@ -61,8 +67,9 @@ const useControlTablePagination = ({ data }: UseControlTablePaginationProps) => 
       return 
     }
 
-    if (isNaN(value as any))
-      return 
+    if (isNaN(value as any)) {
+      return
+    } 
 
     const numberValue = parseInt(value)
 
@@ -73,11 +80,13 @@ const useControlTablePagination = ({ data }: UseControlTablePaginationProps) => 
   }
 
   useEffect(() => {
-    if (currentPage > totalPages)
+    if (currentPage > totalPages) {
       return setCurrentPage(totalPages)
+    }
 
-    if (currentPage === 0 && totalPages > 0)
+    if (currentPage === 0 && totalPages > 0) {
       return setCurrentPage(1)
+    }
   }, [ data ])
     
   return {

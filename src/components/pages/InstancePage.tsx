@@ -8,10 +8,8 @@ const InstancePage = () => {
   const { getDisplayYearFromString } = useOdsInstanceDisplayYear()
 
   return (
-    <PageWrapper 
-      pageName={`School Year ${getDisplayYearFromString(getInstanceYearFromPathName())}`}>
-      <InstancePageContent 
-        instanceYear={getInstanceYearFromPathName()} />
+    <PageWrapper pageName={`School Year ${getDisplayYearFromString(getInstanceYearFromPathName())}`}>
+      <InstancePageContent instanceYear={getInstanceYearFromPathName()} />
     </PageWrapper>
   )
 }

@@ -1,6 +1,7 @@
 const getAppScope = () => {
-  if (window.location.href.includes('adminconsole'))
+  if (window.location.href.includes('adminconsole')) {
     return 'adminconsole'
+  }
 
   return ''
 }

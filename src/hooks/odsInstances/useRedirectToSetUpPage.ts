@@ -11,9 +11,7 @@ const useRedirectToSetUpWizard = () => {
     navigate(`${routes.setUpWizard.url}/${getInstanceYear(instance)}`)
   }
 
-  return {
-    onRedirectToSetupWizard
-  }
+  return { onRedirectToSetupWizard }
 }
 
 export default useRedirectToSetUpWizard

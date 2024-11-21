@@ -6,26 +6,34 @@ import useHttpService from '../../../hooks/http/useHttpService'
 import { HttpServiceResponse } from '../../HttpService/HttpService.response.types'
 import { ActionParams } from '../adminAction.types'
 import adminActionRoutes from '../tenantActionRoutes'
-import { ActivateUserResult, AddUserResult, AssignBulkLicensesResult, AssignLicenseResult, CheckUserEmailResult, CreateUserEducationOrganizationResult, DeactivateUserResult, DeleteInvitationResult, DeleteUserEducationOrganizationResult, DeleteUserResult, EditUserResult, GetInvitationsListResult, GetOrganizationsResult, GetStaffClassificationsResult, GetUserEducationOrganizationsResult, GetUserProfileResult, GetUsersListResult, InviteUserResult, RevokeBulkLicensesResult, RevokeLicenseResult, UpdateUserEducationOrganizationResult } from './UserService.results'
+import {
+  ActivateUserResult, AddUserResult, AssignBulkLicensesResult, AssignLicenseResult, CheckUserEmailResult, CreateUserEducationOrganizationResult, DeactivateUserResult, DeleteInvitationResult, DeleteUserEducationOrganizationResult, DeleteUserResult, EditUserResult, GetInvitationsListResult, GetOrganizationsResult, GetStaffClassificationsResult, GetUserEducationOrganizationsResult, GetUserProfileResult, GetUsersListResult, InviteUserResult, RevokeBulkLicensesResult, RevokeLicenseResult, UpdateUserEducationOrganizationResult 
+} from './UserService.results'
 import UsersResponseMapper from './UsersResponseMapper'
 import { AppUserListData } from './UsersResponseMapper.types'
-import { ActivateUserRequest, AddUserRequest, AssignBulkLicensesRequest, AssignLicenseRequest, CheckUserEmailRequest, CreateUserEducationOrganizationsRequest, DeactivateUserRequest, DeleteInvitationRequest, DeleteUserEducationOrganizationsRequest, DeleteUserRequest, GetInvitationsListRequest, GetOrganizationsRequest, GetStaffClassificationsRequest, GetUserEducationOrganizationsRequest, GetUserProfileByIdRequest, GetUsersListRequest, InviteUserRequest, RevokeBulkLicensesRequest, RevokeLicenseRequest, UpdateUserEducationOrganizationsRequest, UpdateUserRequest } from './UsersService.requests'
-import { ActivateUserResponse, AddUserResponse, AssignBulkLicensesResponse, AssignLicenseResponse, CheckUserEmailResponse, CreateUserEducationOrganizationsResponse, DeactivateUserResponse, DeleteUserEducationOrganizationResponse, DeleteUserResponse, EditUserResponse, GetInvitationsListResponse, GetOrganizationsResponse, GetStaffClassificationsResponse, InviteUserResponse, RevokeBulkLicensesResponse, RevokeLicenseResponse, UpdateUserEducationOrganizationResponse } from './UsersService.responses'
+import {
+  ActivateUserRequest, AddUserRequest, AssignBulkLicensesRequest, AssignLicenseRequest, CheckUserEmailRequest, CreateUserEducationOrganizationsRequest, DeactivateUserRequest, DeleteInvitationRequest, DeleteUserEducationOrganizationsRequest, DeleteUserRequest, GetInvitationsListRequest, GetOrganizationsRequest, GetStaffClassificationsRequest, GetUserEducationOrganizationsRequest, GetUserProfileByIdRequest, GetUsersListRequest, InviteUserRequest, RevokeBulkLicensesRequest, RevokeLicenseRequest, UpdateUserEducationOrganizationsRequest, UpdateUserRequest 
+} from './UsersService.requests'
+import {
+  ActivateUserResponse, AddUserResponse, AssignBulkLicensesResponse, AssignLicenseResponse, CheckUserEmailResponse, CreateUserEducationOrganizationsResponse, DeactivateUserResponse, DeleteUserEducationOrganizationResponse, DeleteUserResponse, EditUserResponse, GetInvitationsListResponse, GetOrganizationsResponse, GetStaffClassificationsResponse, InviteUserResponse, RevokeBulkLicensesResponse, RevokeLicenseResponse, UpdateUserEducationOrganizationResponse 
+} from './UsersService.responses'
 
 const useUserService = () => {
   const { getAsync, postAsync, putAsync, deleteAsync } = useHttpService()
-  const {config} = useConfig()
+  const { config } = useConfig()
+
   const getUsersList = async (actionParams: ActionParams, requestData: GetUsersListRequest): GetUsersListResult => {
     const { pageIndex, pageSize, orderBy } = requestData
-    
     const baseUrl = actionParams.edxApiUrl
     let queryParams = `pageIndex=${pageIndex}&pageSize=${pageSize}`
         
-    if (requestData.filter)
+    if (requestData.filter) {
       queryParams = `${queryParams}&filter=${requestData.filter}`
+    }
 
-    if (orderBy)
+    if (orderBy) {
       queryParams = `${queryParams}&orderBy=${orderBy}`
+    }
 
     // const url = `${baseUrl}/${adminActionRoutes.getUsersList(actionParams.tenantId)}?${queryParams}`
     const url = `${config.app.basePath}/mockdata/data-users.json`
@@ -36,6 +44,7 @@ const useUserService = () => {
       url,
       apiConfig: actionParams.config.api
     })
+
     console.log('result', result)
     
     // if (result.type === 'Response') {
@@ -170,12 +179,12 @@ const useUserService = () => {
     
   const getInvitationsList = async (actionParams: ActionParams, data: GetInvitationsListRequest): GetInvitationsListResult => {
     const { pageIndex, pageSize, orderBy, filter } = data
-    
     const baseUrl = actionParams.edxApiUrl
     let queryParams = `pageIndex=${pageIndex}&pageSize=${pageSize}&orderBy=${orderBy}`
     
-    if (filter)
+    if (filter) {
       queryParams = `${queryParams}&filter=${filter}`
+    }
     
     const url = `${baseUrl}/${adminActionRoutes.getInvitationsList(actionParams.tenantId)}?${queryParams}`
         
@@ -268,15 +277,16 @@ const useUserService = () => {
 
   const getOrganizations = async (actionParams: ActionParams, requestData: GetOrganizationsRequest): GetOrganizationsResult => {
     const { pageIndex, pageSize, orderBy } = requestData
-    
     const baseUrl = actionParams.edxApiUrl
     let queryParams = `pageIndex=${pageIndex}&pageSize=${pageSize}`
         
-    if (requestData.filter)
+    if (requestData.filter) {
       queryParams = `${queryParams}&filter=${requestData.filter}`
+    }
 
-    if (orderBy)
+    if (orderBy) {
       queryParams = `${queryParams}&orderBy=${orderBy}`
+    }
 
     const url = `${baseUrl}/${adminActionRoutes.getOrganizations(actionParams.tenantId)}?${queryParams}`
     
@@ -291,15 +301,16 @@ const useUserService = () => {
 
   const getStaffClassifications = async (actionParams: ActionParams, requestData: GetStaffClassificationsRequest): GetStaffClassificationsResult => {
     const { pageIndex, pageSize, orderBy } = requestData
-    
     const baseUrl = actionParams.edxApiUrl
     let queryParams = `pageIndex=${pageIndex}&pageSize=${pageSize}`
         
-    if (requestData.filter)
+    if (requestData.filter) {
       queryParams = `${queryParams}&filter=${requestData.filter}`
+    }
 
-    if (orderBy)
+    if (orderBy) {
       queryParams = `${queryParams}&orderBy=${orderBy}`
+    }
 
     const url = `${baseUrl}/${adminActionRoutes.getStaffClassifications(actionParams.tenantId)}?${queryParams}`
     

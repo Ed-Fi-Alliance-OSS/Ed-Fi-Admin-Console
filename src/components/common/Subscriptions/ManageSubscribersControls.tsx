@@ -1,5 +1,7 @@
 import { ChevronDownIcon } from '@chakra-ui/icons'
-import { Button, Flex } from '@chakra-ui/react'
+import {
+  Button, Flex 
+} from '@chakra-ui/react'
 
 interface ManageSubscribersControlsProps {
     applicationName: string
@@ -10,30 +12,42 @@ interface ManageSubscribersControlsProps {
 
 const ManageSubscribersControls = ({ applicationName, subscriptionId, onManageSubscribers }: ManageSubscribersControlsProps) => {
   return (
-    <Flex justifyContent='flex-end' w='full'>
+    <Flex
+      justifyContent='flex-end'
+      w='full'
+    >
       <Button 
-        onClick={() => onManageSubscribers(subscriptionId)}
-        size='xs'
         borderRadius='4px'
         data-testid={`manage-${applicationName}-btn`}
-        variant='primaryBlue600'
-        minW='39px'>
-                    Manage Licenses
-      </Button>
-      {false && <Button 
-        onClick={() => onManageSubscribers(subscriptionId)}
+        minW='39px'
         size='xs'
-        borderRadius='0px 4px 4px 0px'
         variant='primaryBlue600'
-        ml='1px'
-        minW='24px'
+        onClick={() => onManageSubscribers(subscriptionId)}
+      >
+        Manage Licenses
+      </Button>
+
+      {false && <Button 
+        aria-labelledby={`show-options-${subscriptionId}`}
+        borderRadius='0px 4px 4px 0px'
         maxW='24px'
-        aria-labelledby={`show-options-${subscriptionId}`}>
-        <span id={`show-options-${subscriptionId}`} hidden>{`Show ${applicationName} options`}</span>
+        minW='24px'
+        ml='1px'
+        size='xs'
+        variant='primaryBlue600'
+        onClick={() => onManageSubscribers(subscriptionId)}
+      >
+        <span
+          hidden
+          id={`show-options-${subscriptionId}`}
+        >{`Show ${applicationName} options`}
+        </span>
+
         <ChevronDownIcon 
+          aria-hidden="true"
+          focusable="false" 
           fontSize='18px'
-          aria-hidden="true" 
-          focusable="false"  />
+        />
       </Button>}
     </Flex>
   )

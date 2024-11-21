@@ -1,5 +1,7 @@
 import { hasIn } from 'lodash-es'
-import React, { createContext, ReactNode, useContext, useEffect, useState } from 'react'
+import React, {
+  createContext, ReactNode, useContext, useEffect, useState 
+} from 'react'
 
 export type MockDataType = 'Instances' | 'Tenants' | 'Users' | 'Roles' | 'Permissions' | `Vendors:${string}`;
 
@@ -31,6 +33,7 @@ export const MockDataProvider: React.FC<MockDataProviderProps> = ({ children }) 
 
   function getPrimaryObject(): object {
     const obj = localStorage.getItem('mockData')
+
     try {
       return obj ? JSON.parse(obj) : {}
     } catch(e) {
@@ -44,6 +47,7 @@ export const MockDataProvider: React.FC<MockDataProviderProps> = ({ children }) 
       ...getPrimaryObject(),
       [key]: value,
     }
+
     // localStorage.setItem('mockData', JSON.stringify(ls))
     setData(() => ls)
   }
@@ -62,8 +66,10 @@ export const MockDataProvider: React.FC<MockDataProviderProps> = ({ children }) 
         ...getPrimaryObject(),
         [key]: [value],
       }))
+
       return
     }
+
     setData(() => ({
       ...getPrimaryObject(),
       [key]: [...getPrimaryObject()[key], value],
@@ -97,8 +103,10 @@ export const MockDataProvider: React.FC<MockDataProviderProps> = ({ children }) 
 // Custom hook to use the mock data context
 export const useMockData = (): MockDataContextType => {
   const context = useContext(MockDataContext)
+
   if (!context) {
     throw new Error('useMockData must be used within a MockDataProvider')
   }
+
   return context
 }

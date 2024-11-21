@@ -1,5 +1,7 @@
 import { InfoIcon } from '@chakra-ui/icons'
-import { Flex, Text } from '@chakra-ui/react'
+import {
+  Flex, Text 
+} from '@chakra-ui/react'
 import { ChangeEvent } from 'react'
 import { FormDataErrors } from '../../../../core/validation/FormValidations.types'
 import { CreateUserFormData } from '../../../../hooks/adminActions/users/useCreateUserForm.types'
@@ -16,40 +18,53 @@ const InviteUserFormContent = ({ userData, hasTriedSubmit, errors, onInputChange
   return (
     <Flex flexDir='column'>
       <Flex
-        bg='orange.100' 
-        alignItems='center'
-        padding='16px 12px' 
-        mb='24px'
-        w='full'>
-        <InfoIcon color='orange.500'    
-          aria-hidden="true" 
-          focusable="false"  />
-        <Flex flexDir='column' ml='12px'>
+        alignItems='center' 
+        bg='orange.100'
+        mb='24px' 
+        padding='16px 12px'
+        w='full'
+      >
+        <InfoIcon
+          aria-hidden="true"    
+          color='orange.500' 
+          focusable="false"
+        />
+
+        <Flex
+          flexDir='column'
+          ml='12px'
+        >
           <Text
             fontFamily='Poppins'
+            fontSize='16px'
             fontWeight='600'
-            fontSize='16px'>NOTE</Text>
+          >NOTE
+          </Text>
+
           <Text
             fontFamily='Open sans'
+            fontSize='16px'
             fontWeight='400'
-            fontSize='16px'>
-                            Any users you add here will receive admin privileges for your District/Charter School. Be sure to only invite users who you trust to keep information secure. You’ll be able to invite other users with different levels of access later.
+          >
+            Any users you add here will receive admin privileges for your District/Charter School. Be sure to only invite users who you trust to keep information secure. You’ll be able to invite other users with different levels of access later.
           </Text>
         </Flex>
       </Flex>
+
       <AddAppUserFormContent 
-        userData={userData}
+        errors={errors}
+        hasTriedSubmit={hasTriedSubmit}
         mode='Invite Admin'
         roleOptions={[]}
         subscriptionOptionsList={[]}
-        errors={errors}
-        onToggleIsAdmin={() => null}
-        hasTriedSubmit={hasTriedSubmit}
+        userData={userData}
+        onChangeMode={() => null}
+        onInputChange={onInputChange}
         onRoleSelect={() => null}
         onSelectApplicationRoleForUser={() => null}
         onSubscriptionToggle={() => null}
-        onInputChange={onInputChange}
-        onChangeMode={() => null} />
+        onToggleIsAdmin={() => null}
+      />
     </Flex>
   )
 }

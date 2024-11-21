@@ -5,9 +5,13 @@ import { EdfiVendor } from '../../../../core/Edfi/EdfiVendors'
 import useHttpService from '../../../../hooks/http/useHttpService'
 import { EdfiActionParams } from '../../adminAction.types'
 import edfiActionRoutes from '../../edfiActionRoutes'
-import { CreateEdfiVendorRequest, DeleteEdfiVendorRequest } from './EdfiVendorsService.requests'
+import {
+  CreateEdfiVendorRequest, DeleteEdfiVendorRequest 
+} from './EdfiVendorsService.requests'
 import { DeleteEdfiVendorResponse } from './EdfiVendorsService.response'
-import { CreateEdfiVendorResult, DeleteEdfiVendorResult, GetVendorApplicationsListResult, GetVendorsListResult } from './EdfiVendorsService.results'
+import {
+  CreateEdfiVendorResult, DeleteEdfiVendorResult, GetVendorApplicationsListResult, GetVendorsListResult 
+} from './EdfiVendorsService.results'
 
 const useEdfiVendorsService = () => {
   const { getAsync, postAsync, deleteAsync } = useHttpService()
@@ -70,11 +74,13 @@ const useEdfiVendorsService = () => {
     return result
   }
 
-  const {config} = useConfig()
+  const { config } = useConfig()
   const mock = useMockData()
+
   // Ed-Fi Admin By School Year
   const getVendorsListForSchoolYear = async (actionParams: EdfiActionParams, year: number): GetVendorsListResult => {
     const baseUrl = actionParams.edxApiUrl
+
     // const url = `${baseUrl}/${edfiActionRoutes.getVendorsListForSchoolYear(actionParams.tenantId, year)}`
     // const url = "/data-vendors.json"
     const url = actionParams.config.api?.useLocalMockData ?? true
@@ -91,7 +97,10 @@ const useEdfiVendorsService = () => {
     if(result.type === 'Response') {
       return {
         type: 'Response',
-        data: result.data.concat(mock.get(`Vendors:${year}`) ?? []).map(a => ({...result.data[0], ...a})),
+        data: result.data.concat(mock.get(`Vendors:${year}`) ?? []).map(a => ({
+          ...result.data[0],
+          ...a 
+        })),
       }
     }
 

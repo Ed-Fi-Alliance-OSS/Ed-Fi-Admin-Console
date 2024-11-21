@@ -5,15 +5,15 @@ const useOdsInstanceParamYear = () => {
 
   const getInstanceYearFromPathName = () => {
     const pathnameSplits = location.pathname.split('/')
-    if (pathnameSplits.length > 1)
+
+    if (pathnameSplits.length > 1) {
       return pathnameSplits[2]
+    }
 
     return 'unknown'
   }
 
-  return {
-    getInstanceYearFromPathName
-  }
+  return { getInstanceYearFromPathName }
 }
 
 export default useOdsInstanceParamYear

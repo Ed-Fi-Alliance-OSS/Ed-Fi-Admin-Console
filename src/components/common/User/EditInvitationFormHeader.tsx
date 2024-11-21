@@ -10,11 +10,12 @@ const EditInvitationFormHeader = ({ isSaving, onAction, onClose }: EditInvitatio
   return (
     <ModalFormHeader
       actionText="Update"
-      headerText="Edit Invitation"
       alignCenter={true}
+      headerText="Edit Invitation"
       isSaving={isSaving}
       onAction={onAction}
-      onClose={onClose} />
+      onClose={onClose}
+    />
   )
 }
 

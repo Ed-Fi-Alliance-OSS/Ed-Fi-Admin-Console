@@ -1,5 +1,7 @@
 import { ChevronDownIcon } from '@chakra-ui/icons'
-import { Button, Popover, PopoverBody, PopoverContent, PopoverTrigger } from '@chakra-ui/react'
+import {
+  Button, Popover, PopoverBody, PopoverContent, PopoverTrigger 
+} from '@chakra-ui/react'
 import { ODSInstance } from '../../../core/ODSInstance.types'
 import { UpdatingIsDefaultStatus } from '../../../hooks/odsInstances/useOdsInstanceTable.types'
 
@@ -14,43 +16,54 @@ const SetUpInstanceControlBtnPopover = ({ instance, updatingIsDefault, onOpenSet
     <Popover placement="bottom-end">
       <PopoverTrigger>
         <Button 
-          onClick={() => null}
-          isDisabled={updatingIsDefault.loading}
-          size='xs'
+          aria-labelledby={`show-options-${instance.instanceId}`}
           borderRadius='0px 4px 4px 0px'
-          variant='primaryBlue500'
-          ml='1px'
-          minW='24px'
+          isDisabled={updatingIsDefault.loading}
           maxW='24px'
+          minW='24px'
+          ml='1px'
           padding='0'
-          aria-labelledby={`show-options-${instance.instanceId}`}>
-          <span id={`show-options-${instance.instanceId}`} hidden>
-                            Show Instance Options
+          size='xs'
+          variant='primaryBlue500'
+          onClick={() => null}
+        >
+          <span
+            hidden
+            id={`show-options-${instance.instanceId}`}
+          >
+            Show Instance Options
           </span> 
+
           <ChevronDownIcon 
-            fontSize='18px'    
-            aria-hidden="true" 
-            focusable="false" /> 
+            aria-hidden="true"    
+            focusable="false" 
+            fontSize='18px'
+          /> 
         </Button>
       </PopoverTrigger>
+
       <PopoverContent w='160px'>
-        <PopoverBody padding='0' w='full'>
+        <PopoverBody
+          padding='0'
+          w='full'
+        >
           <Button
-            onClick={() => onOpenSetUpModal(instance.instanceId)}
+            _hover={{ background: 'white' }}
+            bg='white'
+            borderRadius='4px'
+            color='gray.800'
+            display='flex'
+            fontFamily='Open sans'
+            fontWeight='400'
+            h='25px'
             isDisabled={updatingIsDefault.loading}
             isLoading={false}
-            fontFamily='Open sans'
-            display='flex'
-            bg='white'
-            color='gray.800'
-            fontWeight='400'
-            borderRadius='4px'
-            size='xs'
-            h='25px'
-            mx='auto'
             minW='80px'
-            _hover={{ background: 'white' }}>
-                            Set as Default School Year
+            mx='auto'
+            size='xs'
+            onClick={() => onOpenSetUpModal(instance.instanceId)}
+          >
+            Set as Default School Year
           </Button>
         </PopoverBody>
       </PopoverContent>

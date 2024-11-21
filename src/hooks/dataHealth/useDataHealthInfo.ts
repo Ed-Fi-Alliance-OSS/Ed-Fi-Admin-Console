@@ -1,8 +1,12 @@
-import { useContext, useEffect, useState } from 'react'
+import {
+  useContext, useEffect, useState 
+} from 'react'
 import { adminConsoleContext } from '../../context/adminConsoleContext'
 import { DataHealthDetails } from '../../core/dataHealth/DataHealth.types'
 import useDataHealthService from '../../services/DataHealth/useDataHealthService'
-import { HttpServiceRequestError, HttpServiceResponse } from '../../services/HttpService/HttpService.response.types'
+import {
+  HttpServiceRequestError, HttpServiceResponse 
+} from '../../services/HttpService/HttpService.response.types'
 import { ODSInstance } from '../../core/ODSInstance.types'
 import { GetDataHealthDistrictDetailsResponse } from '../../services/DataHealth/DataHealthService.responses'
 import useOdsInstanceYear from '../odsInstances/useOdsInstanceYear'
@@ -34,29 +38,34 @@ interface UseDataHealthInfoProps {
 }
 
 const useDataHealthInfo = ({ instance, usingSchoolYear }: UseDataHealthInfoProps) => {
-  const [dataHealthInfo, setDataHealthInfo] = useState<DataHealthDetails>({...initialDataHealth})
+  const [dataHealthInfo, setDataHealthInfo] = useState<DataHealthDetails>({ ...initialDataHealth })
   const { getDataHealthInfo, getOdsInstanceDataHealthInfo } = useDataHealthService()
   const adminConfig = useContext(adminConsoleContext)
   const [dataHealthFetchError, setDataHealthFetchError] = useState<DataHealthFetchError>()
+
   const {
     getInstanceYear
   } = useOdsInstanceYear()
 
   const fetchDataHealthInfo = async () => {
     if (adminConfig) {
-      if (usingSchoolYear && !instance)
-        return 
+      if (usingSchoolYear && !instance) {
+        return
+      } 
 
       let result: HttpServiceResponse<GetDataHealthDistrictDetailsResponse> | HttpServiceRequestError | null = null
 
-      if (!usingSchoolYear)
+      if (!usingSchoolYear) {
         result = await getDataHealthInfo(adminConfig.actionParams)
+      }
 
-      if (usingSchoolYear && instance)
+      if (usingSchoolYear && instance) {
         result = await fetchDataHealthInfoFromSchoolYear()
+      }
 
-      if (!result)
-        return 
+      if (!result) {
+        return
+      } 
 
       if (result.type === 'Response') {
         setDataHealthFetchError(undefined)
@@ -68,16 +77,19 @@ const useDataHealthInfo = ({ instance, usingSchoolYear }: UseDataHealthInfoProps
   }
 
   const fetchDataHealthInfoFromSchoolYear = async () => {
-    if (!adminConfig)
+    if (!adminConfig) {
       return null
+    }
 
-    if (!instance)
+    if (!instance) {
       return null
+    }
 
     const year = getInstanceYear(instance)
 
-    if (!year)
+    if (!year) {
       return null
+    }
 
     return await getOdsInstanceDataHealthInfo(adminConfig.actionParams, year)
   }
@@ -88,10 +100,11 @@ const useDataHealthInfo = ({ instance, usingSchoolYear }: UseDataHealthInfoProps
     const message = 'Data was unable to be loaded.'
     let errorStatus = 0
 
-    if (error.statusCode === 'unknown')
+    if (error.statusCode === 'unknown') {
       errorStatus = 500
-    else 
+    } else {
       errorStatus = error.statusCode
+    }
 
     return {
       message,

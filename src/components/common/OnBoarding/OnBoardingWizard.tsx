@@ -1,16 +1,31 @@
 import { CheckIcon } from '@chakra-ui/icons'
-import { Flex, Tab, TabList, TabPanel, TabPanels, Tabs } from '@chakra-ui/react'
-import { useContext, useEffect, useState } from 'react'
+import {
+  Flex, Tab, TabList, TabPanel, TabPanels, Tabs
+} from '@chakra-ui/react'
+import {
+  useContext, useEffect, useState
+} from 'react'
+import { adminConsoleContext } from '../../../context/adminConsoleContext'
 import OnBoardingConnectSISContextProvider from '../../../context/onBoardingConnectSISContext'
-import { onBoardingWizardContext, OnBoardingWizardDataWrapper } from '../../../context/onBoardingWizardContext'
+import {
+  onBoardingWizardContext, OnBoardingWizardDataWrapper
+} from '../../../context/onBoardingWizardContext'
+import { ExtendedODSInstance } from '../../../core/ODSInstance.types'
 import { SISProviderInfo } from '../../../core/sisProviders/SISProviders.types'
 import { VerifiedDomainInfo } from '../../../core/verifyDomain/VerifyDomain.types'
 import useVerifyDomain from '../../../hooks/adminActions/dns/useVerifyDomain'
 import useTenant from '../../../hooks/adminActions/tenant/useTenant'
 import useInvitationsList from '../../../hooks/adminActions/users/useInvitationsList'
 import useEdFiConnectionForm from '../../../hooks/edfi/useEdFiConnectionForm'
+import useOdsDefaultInstance from '../../../hooks/odsInstances/useOdsDefaultInstance'
+import useOdsInstanceYear from '../../../hooks/odsInstances/useOdsInstanceYear'
+import useSetUpWizardStepsMetadata from '../../../hooks/setUpWizard/useSetUpWizardStepsMetadata'
 import useExternalODSData from '../../../hooks/useExternalODSData'
 import useOnboardingWizardStepsData from '../../../hooks/useOnBoardingWizardStepsData'
+import useOdsInstanceService from '../../../services/ODSInstances/OdsInstanceService'
+import {
+  CreateOdsInstanceOnboardingStepRequest, UpdateOdsInstanceOnboardingStepRequest
+} from '../../../services/ODSInstances/OdsInstanceService.requests'
 import ConnectEdFiTabContent from './ConnectEdFi/ConnectEdFiTabContent'
 import ConnectSISTabContent from './ConnectSISTabContent'
 import FinalizeTabContent from './FinalizeTabContent'
@@ -21,13 +36,6 @@ import SelectInstancesTabContent from './SelectInstancesTabContent'
 import SelectSSOMethodTabContent from './SelectSSOMethodTabContent'
 import TrainingTabContent from './Training/TrainingTabContent'
 import VerifyDomainTabContent from './VerifyDomainTabContent'
-import useOdsDefaultInstance from '../../../hooks/odsInstances/useOdsDefaultInstance'
-import useOdsInstanceYear from '../../../hooks/odsInstances/useOdsInstanceYear'
-import { ExtendedODSInstance } from '../../../core/ODSInstance.types'
-import useOdsInstanceService from '../../../services/ODSInstances/OdsInstanceService'
-import { adminConsoleContext } from '../../../context/adminConsoleContext'
-import useSetUpWizardStepsMetadata from '../../../hooks/setUpWizard/useSetUpWizardStepsMetadata'
-import { CreateOdsInstanceOnboardingStepRequest, UpdateOdsInstanceOnboardingStepRequest } from '../../../services/ODSInstances/OdsInstanceService.requests'
 
 interface OnBoardingWizardProps {
     completedSteps: number
@@ -49,20 +57,18 @@ const OnBoardingWizard = ({ completedSteps, lastInProgress, currentStepIndex, la
   const [connectedSISProvidersList, setConnectedSISProvidersList] = useState<SISProviderInfo[]>([])
   const [verifiedDomainList, setVerifiedDomainList] = useState<VerifiedDomainInfo[]>([])
   const { tenant, isAddingDomain, isRemovingDomain, onAddDomain, onRemoveDomain } = useTenant()
+
   const {
     domainsList,
     onVerifyDomain,
     isCheckingDomainStatus
-  } = useVerifyDomain({ 
-    tenantDomains: tenant?.domains
-  })
+  } = useVerifyDomain({ tenantDomains: tenant?.domains })
 
   const { invitationsList } = useInvitationsList()
   const { externalODS } = useExternalODSData()
   const { onboardingStepsData } = useOnboardingWizardStepsData()
 
-  const { 
-    formData, 
+  const { formData, 
     isSaving,
     verificationStatus,
     errors,
@@ -88,6 +94,7 @@ const OnBoardingWizard = ({ completedSteps, lastInProgress, currentStepIndex, la
 
   const onSelectSISProvider = (sisprovider: string, source: string) => {
     const nconnectedSISProvidersList = connectedSISProvidersList.map(prov => prov)
+
     const nprovider: SISProviderInfo = { 
       name: sisprovider, 
       source,
@@ -100,16 +107,18 @@ const OnBoardingWizard = ({ completedSteps, lastInProgress, currentStepIndex, la
 
     const includesRequiredProvider = connectedSISProvidersList.find(prov => prov.source === 'SIS')
 
-    if (source === 'SIS' || includesRequiredProvider)
+    if (source === 'SIS' || includesRequiredProvider) {
       onCompletedStep(4)
-    else 
+    } else {
       onIncompletedStep(4)
+    }
   }
 
   const onRemoveOptionalProvider = () => {
     const nconnectedSISProvidersList = connectedSISProvidersList.filter(prov => {
-      if (prov.source !== 'SIS')
+      if (prov.source !== 'SIS') {
         return false
+      }
 
       return true
     })
@@ -119,8 +128,9 @@ const OnBoardingWizard = ({ completedSteps, lastInProgress, currentStepIndex, la
 
   const onRemoveRequiredProvider = () => {
     const nconnectedSISProvidersList = connectedSISProvidersList.filter(prov => {
-      if (prov.source == 'SIS')
+      if (prov.source == 'SIS') {
         return false
+      }
 
       return true
     })
@@ -132,9 +142,9 @@ const OnBoardingWizard = ({ completedSteps, lastInProgress, currentStepIndex, la
     if (sisProviderType === 'required') {
       onRemoveRequiredProvider()
       onIncompletedStep(4)
-    }
-    else 
+    } else {
       onRemoveOptionalProvider()
+    }
   } 
 
   const onSelectedVerifiedDomainInfo = (verifiedDomainsInfo: VerifiedDomainInfo[]) => {
@@ -147,27 +157,28 @@ const OnBoardingWizard = ({ completedSteps, lastInProgress, currentStepIndex, la
   }
 
   const isDisabledTab = (index: number): boolean => {
-    if (currentStepIndex === index)
+    if (currentStepIndex === index) {
       return false
+    }
 
-    if (index === lastInProgress)
+    if (index === lastInProgress) {
       return false
+    }
 
-    if (index > completedSteps - 1)
-      return true 
+    if (index > completedSteps - 1) {
+      return true
+    } 
 
     return false
   }
 
   const [instancesCount, setInstancesCount] = useState(0)
   const onUpdateInstancesCount = (count: number) => setInstancesCount(count)
-
   const [showConfirmInstanceModal, setShowConfirmInstanceModal] = useState(false)
   const onShowConfirmInstanceModal = () => setShowConfirmInstanceModal(true)
   const onClose = () => setShowConfirmInstanceModal(false)
-
   const [selectedInstance, setSelectedInstance] = useState<ExtendedODSInstance | null>(null)
-  const onSelectInstance = (instance: ExtendedODSInstance) => setSelectedInstance({...instance})
+  const onSelectInstance = (instance: ExtendedODSInstance) => setSelectedInstance({ ...instance })
 
   const {
     updateInstanceIsDefault,
@@ -176,9 +187,11 @@ const OnBoardingWizard = ({ completedSteps, lastInProgress, currentStepIndex, la
   } = useOdsInstanceService()
 
   const [settingAsDefault, setSettingAsDefault] = useState(false)
+
   const onSetInstanceAsDefault = async () => {
-    if (!adminConfig || !selectedInstance)
-      return 
+    if (!adminConfig || !selectedInstance) {
+      return
+    } 
 
     const result = await updateInstanceIsDefault(adminConfig.actionParams, {
       tenantId: selectedInstance.tenantId,
@@ -189,11 +202,13 @@ const OnBoardingWizard = ({ completedSteps, lastInProgress, currentStepIndex, la
   }
 
   const { setUpWizardStepsMetadata } = useSetUpWizardStepsMetadata()
+
   const setupInitialOnBoardingState = async (instanceId: string) => {
     console.log('Setting initial setup wizard state...')
 
-    if (!adminConfig)
-      return 
+    if (!adminConfig) {
+      return
+    } 
 
     for (const step of setUpWizardStepsMetadata.stepsData) {
       console.log('creating step', step.index + 1, step.name)
@@ -213,8 +228,9 @@ const OnBoardingWizard = ({ completedSteps, lastInProgress, currentStepIndex, la
   const updateInitialOnBoardingState = async (instanceId: string) => {
     console.log('Updating setup wizard state...')
 
-    if (!adminConfig)
-      return 
+    if (!adminConfig) {
+      return
+    } 
 
     for (const step of setUpWizardStepsMetadata.stepsData) {
       console.log('Updating step', step.index + 1, step.name)
@@ -252,8 +268,9 @@ const OnBoardingWizard = ({ completedSteps, lastInProgress, currentStepIndex, la
       return onNext()
     }
 
-    if (!selectedInstance)
-      return 
+    if (!selectedInstance) {
+      return
+    } 
 
     console.log('selected', selectedInstance)
     console.log('default instance', defaultInstance)
@@ -268,8 +285,9 @@ const OnBoardingWizard = ({ completedSteps, lastInProgress, currentStepIndex, la
   const onNextFromModal = async () => {
     console.log('on next from modal')
 
-    if (!selectedInstance)
-      return 
+    if (!selectedInstance) {
+      return
+    } 
         
     await onContinueFromInstancesStep()
   }
@@ -277,8 +295,7 @@ const OnBoardingWizard = ({ completedSteps, lastInProgress, currentStepIndex, la
   const onFinalize = async () => {
     if (defaultInstance && !defaultInstance.verificationStatus) {
       await setupInitialOnBoardingState(defaultInstance.instanceId)  
-    }
-    else if (defaultInstance && defaultInstance.verificationStatus && defaultInstance.verificationStatus.status != 'Completed') {
+    } else if (defaultInstance && defaultInstance.verificationStatus && defaultInstance.verificationStatus.status != 'Completed') {
       await updateInitialOnBoardingState(defaultInstance.instanceId)
     }
 
@@ -295,10 +312,18 @@ const OnBoardingWizard = ({ completedSteps, lastInProgress, currentStepIndex, la
   useEffect(() => {
     if (domainsList && domainsList.length > 0) {
       onSelectedVerifiedDomainInfo(domainsList.map(domainData => {
+        if (!domainData) {
+          return {
+            lea: tenant?.organizationName as string,
+            domain: 'Unknown',
+            status: 'Unknown'
+          }
+        }
+
         const info: VerifiedDomainInfo = {
           lea: tenant?.organizationName as string,
           domain: domainData.name,
-          status: domainData.state
+          status: domainData?.state ?? 'Unknown'
         }
 
         return info
@@ -307,174 +332,207 @@ const OnBoardingWizard = ({ completedSteps, lastInProgress, currentStepIndex, la
   }, [ domainsList ])
 
   return (
-    <Tabs isLazy index={currentStepIndex} onChange={(index) => onTabChange(index)} variant='enclosed' w='full'>
+    <Tabs
+      isLazy
+      index={currentStepIndex}
+      variant='enclosed'
+      w='full'
+      onChange={(index) => onTabChange(index)}
+    >
       <TabList justifyContent='space-between'>
         {onboardingStepsData.tabsData.map((step, index) => 
           <Tab 
             key={index}
-            fontFamily='Open sans'
+            _selected={{
+              color: 'blue.600',
+              bg: 'white' 
+            }}
             borderRadius='0'
             color='white'
-            isDisabled={isDisabledTab(index)}
-            fontWeight='700'
+            fontFamily='Open sans'
             fontSize='14px'
+            fontWeight='700'
+            h='54px'
+            isDisabled={isDisabledTab(index)}
             lineHeight='28px'
-            _selected={{ color: 'blue.600', bg: 'white' }}
-            padding='8px 8px'
-            h='54px' 
-            w='auto'>
+            padding='8px 8px' 
+            w='auto'
+          >
             {onBoardingWizardData && onBoardingWizardData.steps[index].status === 'Completed' ?
               <Flex alignItems='center'>
                 {step.tabName}
+
                 <CheckIcon 
-                  color='blue.500' 
-                  borderRadius='full'
-                  bg='blue.100'
-                  ml='10px'
-                  padding='2px'
-                  h='14px'
-                  w='14px'
                   aria-hidden="true" 
-                  focusable="false" />
+                  bg='blue.100'
+                  borderRadius='full'
+                  color='blue.500'
+                  focusable="false"
+                  h='14px'
+                  ml='10px'
+                  padding='2px' 
+                  w='14px'
+                />
               </Flex>
               : step.tabName}
-          </Tab>
-        )}
+          </Tab>)}
       </TabList>
+
       <TabPanels padding='0'>
         <TabPanel padding='0'>
           <OnBoardingTabsWrapper
-            stepName={onboardingStepsData.tabsData[0].contentName}
+            canNext={canNext}
+            canPrev={canPrev}
             currentStep={1}
             lastStep={lastStep}
+            stepName={onboardingStepsData.tabsData[0].contentName}
             onNext={onNext}
             onPrev={onPrev}
-            canNext={canNext}
-            canPrev={canPrev}>
+          >
             <InviteUsersTabContent onCompleteStep={onCompletedStep} />
           </OnBoardingTabsWrapper>
         </TabPanel>
+
         <TabPanel padding='0'>
           <OnBoardingTabsWrapper
-            stepName={'Training & Best Practices'}
+            canNext={canNext}
+            canPrev={canPrev}
             currentStep={2}
             lastStep={lastStep}
+            stepName="Training & Best Practices"
             onNext={onNext}
             onPrev={onPrev}
-            canNext={canNext}
-            canPrev={canPrev}>
-            <TrainingTabContent onCompleteStep={onCompletedStep} />
+          >
+            <TrainingTabContent onCompleteStep={onCompletedStep}     />
           </OnBoardingTabsWrapper>
         </TabPanel>
+
         <TabPanel padding='0'>
           <OnBoardingTabsWrapper
-            stepName={onboardingStepsData.tabsData[2].contentName}
+            canNext={canNext}
+            canPrev={canPrev}
             currentStep={3}
             lastStep={lastStep}
+            stepName={onboardingStepsData.tabsData[2].contentName}
             onNext={onNext}
             onPrev={onPrev}
-            canNext={canNext}
-            canPrev={canPrev}>
+          >
             <VerifyDomainTabContent
               domainsList={domainsList}
-              isCheckingDomainStatus={isCheckingDomainStatus}
               isAddingDomain={isAddingDomain}
+              isCheckingDomainStatus={isCheckingDomainStatus}
               isRemovingDomain={isRemovingDomain}
               onAddDomain={onAddDomain}
-              onVerifyDomain={onVerifyDomain} 
-              onRemoveDomain={onRemoveDomain} />
+              onRemoveDomain={onRemoveDomain} 
+              onVerifyDomain={onVerifyDomain}
+            />
           </OnBoardingTabsWrapper>
         </TabPanel>
+
         <TabPanel padding='0'>
           <OnBoardingTabsWrapper
-            stepName={externalODS.isExternalODS? 'Connect Apps to Ed-Fi' : 'Select School Year'}
+            canNext={canNext}
+            canPrev={canPrev}
             currentStep={4}
             lastStep={lastStep}
+            stepName={externalODS.isExternalODS? 'Connect Apps to Ed-Fi' : 'Select School Year'}
             onNext={onVariableStepNext}
             onPrev={onPrev}
-            canNext={canNext}
-            canPrev={canPrev}>
+          >
             { externalODS.isExternalODS? 
               <ConnectEdFiTabContent
+                disabledVerification={!isDisabledVerification()}
+                errors={errors}
                 formData={formData}
                 isSaving={isSaving}
                 isVerifying={isVerifying}
-                disabledVerification={!isDisabledVerification()}
                 mode="Add"
                 verificationStatus={verificationStatus}
-                errors={errors}
                 onInputChange={onInputChange}
-                onVerifyConnection={onVerifyConnection} /> : <SelectInstancesTabContent 
-                tableMode="Select" 
-                showConfirmInstanceModal={showConfirmInstanceModal}
-                settingAsDefault={settingAsDefault}
+                onVerifyConnection={onVerifyConnection}
+              /> : <SelectInstancesTabContent 
                 selectedInstance={selectedInstance} 
+                settingAsDefault={settingAsDefault}
+                showConfirmInstanceModal={showConfirmInstanceModal}
+                tableMode="Select" 
+                onCloseModal={onClose}
+                onContinue={onNextFromModal}
                 onSelectInstance={onSelectInstance}
                 onUpdateInstancesCount={onUpdateInstancesCount}
-                onCloseModal={onClose}
-                onContinue={onNextFromModal} />}
+              />}
           </OnBoardingTabsWrapper>
         </TabPanel>
+
         { !externalODS.isExternalODS && <OnBoardingConnectSISContextProvider
           schoolYear={defaultInstance? getInstanceYear(defaultInstance) : 0}
           onSelectSISProvider={onSelectSISProvider}
-          onUnselectSISProvider={onUnselectSISProvider}>
+          onUnselectSISProvider={onUnselectSISProvider}
+        >
           <TabPanel padding='0'>
             <OnBoardingTabsWrapper
-              stepName={onboardingStepsData.tabsData[4].contentName}
+              canNext={canNext}
+              canPrev={canPrev}
               currentStep={5}
               lastStep={lastStep}
+              stepName={onboardingStepsData.tabsData[4].contentName}
               onNext={onNext}
               onPrev={onPrev}
-              canNext={canNext}
-              canPrev={canPrev}>
+            >
               <ConnectSISTabContent
                 odsAuthenticationUrl={defaultInstance? defaultInstance.authenticationUrl : ''}
-                odsResourcesUrl={defaultInstance? defaultInstance.resourcesUrl : ''} />
+                odsResourcesUrl={defaultInstance? defaultInstance.resourcesUrl : ''}
+              />
             </OnBoardingTabsWrapper>
           </TabPanel>
         </OnBoardingConnectSISContextProvider> }
+
         <TabPanel padding='0'>
           <OnBoardingTabsWrapper
-            stepName={ externalODS.isExternalODS? onboardingStepsData.tabsData[4].contentName : onboardingStepsData.tabsData[5].contentName}
+            canNext={canNext}
+            canPrev={canPrev}
             currentStep={externalODS.isExternalODS? 5 : 6}
             lastStep={lastStep}
+            stepName={externalODS.isExternalODS? onboardingStepsData.tabsData[4].contentName : onboardingStepsData.tabsData[5].contentName}
             onNext={onNext}
             onPrev={onPrev}
-            canNext={canNext}
-            canPrev={canPrev}>
+          >
             <ReviewDataTabContent />
           </OnBoardingTabsWrapper>
         </TabPanel>
+
         <TabPanel padding='0'>
           <OnBoardingTabsWrapper
-            stepName={externalODS.isExternalODS? onboardingStepsData.tabsData[5].contentName : onboardingStepsData.tabsData[6].contentName}
+            canNext={canNext}
+            canPrev={canPrev}
             currentStep={externalODS.isExternalODS? 6 : 7}
             lastStep={lastStep}
+            stepName={externalODS.isExternalODS? onboardingStepsData.tabsData[5].contentName : onboardingStepsData.tabsData[6].contentName}
             onNext={onNext}
             onPrev={onPrev}
-            canNext={canNext}
-            canPrev={canPrev}>
+          >
             <SelectSSOMethodTabContent />
           </OnBoardingTabsWrapper>
         </TabPanel>
+
         <TabPanel padding='0'>
           <OnBoardingTabsWrapper
-            stepName={externalODS.isExternalODS? onboardingStepsData.tabsData[6].contentName : onboardingStepsData.tabsData[7].contentName }
+            canNext={canNext}
+            canPrev={canPrev}
             currentStep={externalODS.isExternalODS? 7 : 8}
             lastStep={lastStep}
+            stepName={externalODS.isExternalODS? onboardingStepsData.tabsData[6].contentName : onboardingStepsData.tabsData[7].contentName}
             onNext={onFinalize}
             onPrev={onPrev}
-            canNext={canNext}
-            canPrev={canPrev}>
+          >
             <FinalizeTabContent
-              selectedInstance={defaultInstance as any} 
-              invitationsList={invitationsList}
+              connectedODS={formData} 
               connectedSISProvidersList={connectedSISProvidersList}
-              connectedODS={formData}
+              invitationsList={invitationsList}
+              selectedInstance={defaultInstance as any}
               verificationStatus={verificationStatus}
               verifiedDomainList={verifiedDomainList}
-              onSelectInstance={onSelectInstance} />
+              onSelectInstance={onSelectInstance}
+            />
           </OnBoardingTabsWrapper>
         </TabPanel>
       </TabPanels>

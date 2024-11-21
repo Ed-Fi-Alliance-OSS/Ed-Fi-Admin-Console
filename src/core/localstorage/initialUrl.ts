@@ -7,8 +7,9 @@ const saveInitialPath = () => {
     const pathName = window.location.pathname
     let destination = pathName.includes('/adminconsole')? pathName.replaceAll('/adminconsole', '') : pathName
 
-    if (destination === '')
+    if (destination === '') {
       destination = routes.home.url
+    }
 
     localStorage.setItem(initialUrlStorageField, destination)
   }

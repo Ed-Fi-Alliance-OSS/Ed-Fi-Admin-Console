@@ -1,5 +1,9 @@
-import { Flex, FormControl } from '@chakra-ui/react'
-import { CompleteFormErrorMessage, CustomFormLabel, CustomInput } from '@edfi/admin-console-shared-sdk'
+import {
+  Flex, FormControl 
+} from '@chakra-ui/react'
+import {
+  CompleteFormErrorMessage, CustomFormLabel, CustomInput 
+} from '@edfi/admin-console-shared-sdk'
 import usePartnerForm from '../../../hooks/adminActions/edfi/usePartnerForm'
 import EdFiModalForm from './EdFiModalForm'
 
@@ -29,40 +33,58 @@ const PartnerForm = ({ schoolYear, mode, onFinishSave }: PartnerFormProps) => {
 
   return (
     <EdFiModalForm
-      actionText="save"
-      headerText={mode === 'add'? 'Add Vendor' : 'Edit Vendor'}
-      isSaving={isSaving}
-      onSave={onPSave}
-      onClose={onFinishSave} 
       content={<Flex w='full'>
-        <Flex flexDir='column' w='full'>
+        <Flex
+          flexDir='column'
+          w='full'
+        >
           { Object.keys(errors).length > 0 && hasTriedSubmit && <CompleteFormErrorMessage /> }
-          <Flex flexDir='column' w='full'>
+
+          <Flex
+            flexDir='column'
+            w='full'
+          >
             <FormControl>
               <CustomFormLabel
-                text="Vendor Name" 
-                htmlFor="partnerName"/>
+                htmlFor="partnerName" 
+                text="Vendor Name"
+              />
+
               <CustomInput 
-                id="partnerName"
                 error={errors && errors['partnerName'] && errors['partnerName'].message}
+                id="partnerName"
                 value={partnerData.company}
-                onChange={onChangeParnerData} />
+                onChange={onChangeParnerData}
+              />
             </FormControl>
+
             <FormControl mt='24px'>
               <CustomFormLabel
-                text="Namespace Prefixes" 
-                htmlFor="namespacePrefixes"/>
-              <Flex flexDir='column' w='full'>
+                htmlFor="namespacePrefixes" 
+                text="Namespace Prefixes"
+              />
+
+              <Flex
+                flexDir='column'
+                w='full'
+              >
                 <CustomInput 
-                  id="namespacePrefixes"
                   error={errors && errors['namespacePrefixes'] && errors['namespacePrefixes'].message}
+                  id="namespacePrefixes"
                   value={partnerData.namespacePrefixes} 
-                  onChange={onChangeParnerData} />
+                  onChange={onChangeParnerData}
+                />
               </Flex>
             </FormControl>
           </Flex>
         </Flex>
-      </Flex>} />
+      </Flex>}
+      actionText="save"
+      headerText={mode === 'add'? 'Add Vendor' : 'Edit Vendor'}
+      isSaving={isSaving}
+      onClose={onFinishSave} 
+      onSave={onPSave}
+    />
   )
 }
 

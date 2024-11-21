@@ -10,15 +10,12 @@ interface InstancePageContentProps {
 }
 
 const InstancePageContent = ({ instanceYear }: InstancePageContentProps) => {
-  const { 
-    instance, 
+  const { instance, 
     updatingInstance,
     onSetIsDefault,
     showConfirmSetDefaultModal,
     onShowConfirmSetDefaultModal,
-    onCloseConfirmSetDefaultModal } = useOdsInstanceData({ 
-    instanceYear: instanceYear
-  })
+    onCloseConfirmSetDefaultModal } = useOdsInstanceData({ instanceYear: instanceYear })
 
   const {
     showSetUpWizardModal,
@@ -28,24 +25,27 @@ const InstancePageContent = ({ instanceYear }: InstancePageContentProps) => {
 
   const {
     availableSetDefault
-  } = useOdsInstancePageContent({
-    instance
-  })
+  } = useOdsInstancePageContent({ instance })
     
   return (
-    <Flex flexDir='column' w='full'>
+    <Flex
+      flexDir='column'
+      w='full'
+    >
       <InstancePageHeader />
+
       <InstanceTabsMenu 
-        instance={instance}
         canSetAsDefault={availableSetDefault}
-        updatingInstance={updatingInstance}
-        onSetIsDefault={onSetIsDefault}
+        instance={instance}
         showConfirmSetDefaultModal={showConfirmSetDefaultModal}
-        onShowConfirmSetDefaultModal={onShowConfirmSetDefaultModal}
-        onCloseConfirmSetDefaultModal={onCloseConfirmSetDefaultModal} 
-        showSetUpWizardModal={showSetUpWizardModal} 
+        showSetUpWizardModal={showSetUpWizardModal}
+        updatingInstance={updatingInstance}
+        onCloseConfirmSetDefaultModal={onCloseConfirmSetDefaultModal}
         onCloseSetUpWizardModal={onCloseSetUpWizardModal} 
-        onShowSetUpWizardModal={onShowSetUpWizardModal} />
+        onSetIsDefault={onSetIsDefault} 
+        onShowConfirmSetDefaultModal={onShowConfirmSetDefaultModal} 
+        onShowSetUpWizardModal={onShowSetUpWizardModal}
+      />
     </Flex>
   )
 }

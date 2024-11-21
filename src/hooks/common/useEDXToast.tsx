@@ -10,14 +10,20 @@ const useEDXToast = (initialDuration?: number) => {
 
   const successToast = (content: EDXToastContent) => {
     return toast({
-      render: () => <EDXToast content={content} type='Success' />
-    })
+ render: () => <EDXToast
+   content={content}
+   type='Success'
+ /> 
+})
   }
 
   const errorToast = (content: EDXToastContent) => {
     return toast({
-      render: () => <EDXToast content={content} type='Error' />
-    })
+ render: () => <EDXToast
+   content={content}
+   type='Error'
+ /> 
+})
   }
 
   return {

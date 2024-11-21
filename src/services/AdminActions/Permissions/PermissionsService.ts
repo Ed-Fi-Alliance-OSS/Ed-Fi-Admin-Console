@@ -5,13 +5,15 @@ import { GetPermissionsResult } from './PermissionsService.result'
 
 const usePermissionsService = () => {
   const { getAsync } = useHttpService()
-  const {config} = useConfig()
+  const { config } = useConfig()
+
   const checkPermissions = async (actionParams: ActionParams) : GetPermissionsResult => {
     //const url = `${actionParams.edxApiUrl}/verifypermission`
     //const url = "/mockdata/data-permissions.json"
     const url = actionParams.config.api?.useLocalMockData ?? true
       ? `${config?.app.basePath}/mockdata/data-permissions.json`
       : `${actionParams?.config?.api?.baseUri ?? ''}/adminconsole/permissions`
+
     const result = await getAsync<GetPermissionsResult>({
       url,
       actionName: 'Verify Permissions',
@@ -22,9 +24,7 @@ const usePermissionsService = () => {
     return result
   }
 
-  return {
-    checkPermissions
-  }
+  return { checkPermissions }
 }
 
 export default usePermissionsService

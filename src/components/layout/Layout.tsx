@@ -1,7 +1,9 @@
 import { Flex } from '@chakra-ui/react'
 import { AuthContextProps } from 'react-oidc-context'
 import { useLocation } from 'react-router-dom'
-import { EdxAppConfig, useRouteLayoutSelector } from '@edfi/admin-console-shared-sdk'
+import {
+  EdxAppConfig, useRouteLayoutSelector 
+} from '@edfi/admin-console-shared-sdk'
 import useScrollTop from '../../hooks/useScrollTop'
 import DefaultLayoutWrapper from './DefaultLayoutWrapper'
 import useCheckPermissions from '../../hooks/useCheckPermissions'
@@ -23,16 +25,26 @@ const Layout = ({ auth, edxAppConfig, content, notificationBarMessage, simpleLay
   const { routeHasDefaultLayout } = useRouteLayoutSelector()
 
   return (
-    <Flex w="full" minH='100vh' position='relative'>
-      <Flex className="one" w='full' flexDirection='column' justifyContent='center'>
+    <Flex
+      minH='100vh'
+      position='relative'
+      w="full"
+    >
+      <Flex
+        className="one"
+        flexDirection='column'
+        justifyContent='center'
+        w='full'
+      >
         {routeHasDefaultLayout(simpleLayoutRouteList, location.pathname)?  
           <DefaultLayoutWrapper 
             auth={auth}
-            edxAppConfig={edxAppConfig}
             content={content}
-            notificationBarMessage={notificationBarMessage}
+            edxAppConfig={edxAppConfig}
             isClosingSession={isClosingSession}
-            onLogout={onLogout} />
+            notificationBarMessage={notificationBarMessage}
+            onLogout={onLogout}
+          />
           :
           content}
       </Flex>

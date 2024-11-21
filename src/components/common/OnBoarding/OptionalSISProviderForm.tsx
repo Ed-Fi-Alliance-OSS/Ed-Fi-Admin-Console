@@ -1,10 +1,14 @@
-import { Button, Flex, FormControl, Text } from '@chakra-ui/react'
+import {
+  Button, Flex, FormControl, Text 
+} from '@chakra-ui/react'
 import SISCredentialsField from './SISCredentialsField'
 import SISEndpointsField from './SISEndpointsField'
 import SISProviderConnectionField from './SISProviderConnectionField'
 import { ChangeEvent } from 'react'
 import { AddIcon } from '@chakra-ui/icons'
-import { CustomFormLabel, CustomSelect } from '@edfi/admin-console-shared-sdk'
+import {
+  CustomFormLabel, CustomSelect 
+} from '@edfi/admin-console-shared-sdk'
 import { SISProviderConnectionState } from '../../../core/sisProviders/SISProviders.types'
 import { EdfiApplicationAuthData } from '../../../core/Edfi/EdfiApplications'
 import { SISProvidersOption } from '../../../hooks/adminActions/edfi/useSISProvidersForm.types'
@@ -30,8 +34,7 @@ interface OptionalSISProviderFormProps {
     handleRemoveProvider: () => void
 }
 
-const OptionalSISProviderForm = ({
-  authenticationUrl, 
+const OptionalSISProviderForm = ({ authenticationUrl, 
   resourcesUrl,
   sisProvidersOptionList,
   connectionState,
@@ -52,89 +55,154 @@ const OptionalSISProviderForm = ({
 
   return (
     <Flex  
-      borderRadius='4px'
-      border='1px' 
+      border='1px'
       borderColor='gray.300' 
+      borderRadius='4px' 
+      flexDir='column'
+      h={showOptionalForm? 'auto' : '160px'} 
       padding='12px'
-      flexDir='column' 
-      h={showOptionalForm? 'auto' : '160px'}
-      w='49%'>
+      w='49%'
+    >
       <Text
         color='blue.500'
-        fontWeight='700'
+        fontFamily='Poppins'
         fontSize='20px'
-        fontFamily='Poppins'>Optional: Another Source Provider</Text>
+        fontWeight='700'
+      >Optional: Another Source Provider
+      </Text>
+
       {!showOptionalForm? <Flex flexDir='column'>
-        <Text fontSize='14px' fontWeight='400' fontFamily='Open sans' mt='8px'>
-                        If your District or Charter School uses another source provider (e.g., HR, Finance, Staff), complete another connection flow.
+        <Text
+          fontFamily='Open sans'
+          fontSize='14px'
+          fontWeight='400'
+          mt='8px'
+        >
+          If your District or Charter School uses another source provider (e.g., HR, Finance, Staff), complete another connection flow.
         </Text>
-        <Button onClick={onShowOptionalForm} variant='primaryBlue600' mt='12px' size='sm' minW='80px' maxW='80px'>
+
+        <Button
+          maxW='80px'
+          minW='80px'
+          mt='12px'
+          size='sm'
+          variant='primaryBlue600'
+          onClick={onShowOptionalForm}
+        >
           <Flex>
             <AddIcon />
           </Flex>
-          <Text color='white' ml='5px'>Add</Text>
+
+          <Text
+            color='white'
+            ml='5px'
+          >Add
+          </Text>
         </Button>
       </Flex> : <>
         <Flex mt='8px'>
           <CustomFormLabel
             htmlFor="selectOptionalProvider"
-            text="Select Provider" />
+            text="Select Provider"
+          />
         </Flex>
+
         <Flex mt='5px'>
           <SISProviderConnectionField
+            connectionState={connectionState}
+            hasSelectedProvider={hasSelectedProvider}
             id="selectOptionalProvider"
             providerFunction={source}
-            sisProviderOptions={sisProvidersOptionList}
             selectedProvider={selectedOptionalProviderId}
-            hasSelectedProvider={hasSelectedProvider}
-            connectionState={connectionState}
+            sisProviderOptions={sisProvidersOptionList}
             onChangeSISProvider={onChangeOptionalProvider}
-            onRemoveProvider={handleRemoveProvider} />
+            onRemoveProvider={handleRemoveProvider}
+          />
         </Flex> 
+
         <Flex mt={!hasSelectedProvider? '12px' : '0'}>
           { !hasSelectedProvider && <FormControl w='300px'>
             <CustomFormLabel 
               htmlFor="providerFunction"
-              text="Source Provider Function" />
+              text="Source Provider Function"
+            />
+
             <CustomSelect
               id="providerFunction"
-              value={source}
               options={optionalSISSources}
-              onChange={onChangeOptionalSource} />
+              value={source}
+              onChange={onChangeOptionalSource}
+            />
           </FormControl> }
         </Flex>
-        <Flex bg='gray.300' my='24px' h='1px' w='full' />
-        <Flex flexDir='column' mt='0px'>
+
+        <Flex
+          bg='gray.300'
+          h='1px'
+          my='24px'
+          w='full'
+        />
+
+        <Flex
+          flexDir='column'
+          mt='0px'
+        >
           <Text
+            fontFamily='Poppins'
             fontSize='18px'
             fontWeight='700'
-            fontFamily='Poppins'>Credentials</Text>
+          >Credentials
+          </Text>
+
           <SISCredentialsField
             credentialsKey={edfiApplicationAuthData.key ?? ''}
             credentialsSecret={edfiApplicationAuthData.secret ?? ''}
             isLoadingCredentials={isLoadingCredentials}
             regenerateCredentialsDisabled={!hasSelectedProvider}
             onChangeCredentials={handleChangeCredentials}
-            onRegenerateCredentials={handleRegenerateCredentials} />
-          <Flex bg='gray.300' my='24px' h='1px' w='full' />
+            onRegenerateCredentials={handleRegenerateCredentials}
+          />
+
+          <Flex
+            bg='gray.300'
+            h='1px'
+            my='24px'
+            w='full'
+          />
+
           <Text
+            fontFamily='Poppins'
             fontSize='18px'
             fontWeight='700'
-            fontFamily='Poppins'>Endpoints</Text>
+          >Endpoints
+          </Text>
+
           <SISEndpointsField
             edfiAuthtenticationUrl={authenticationUrl}
             edfiResourcesUrl={resourcesUrl}
-            onChangeEndpoints={handleChangeEndpoints} />
-          <Flex bg='gray.300' my='24px' h='1px' w='full' />
+            onChangeEndpoints={handleChangeEndpoints}
+          />
+
+          <Flex
+            bg='gray.300'
+            h='1px'
+            my='24px'
+            w='full'
+          />
+
           <Text
+            fontFamily='Poppins'
             fontSize='18px'
             fontWeight='700'
-            fontFamily='Poppins'>Steps to Connect</Text>
+          >Steps to Connect
+          </Text>
+
           <Flex mt='16px'>
             <Text 
               fontFamily='Open sans'
-              size='sm'>
-                               For help connecting, reach out to your source provider's support services or read through their provided documentation.
+              size='sm'
+            >
+              For help connecting, reach out to your source provider's support services or read through their provided documentation.
             </Text>
           </Flex>
         </Flex>

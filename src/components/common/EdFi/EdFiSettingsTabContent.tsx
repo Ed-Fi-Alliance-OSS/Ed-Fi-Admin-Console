@@ -5,10 +5,18 @@ import EdFiSettingsWarningBanner from './EdFiSettingsWarningBanner'
 
 const EdFiSettingsTabContent = () => {
   return (
-    <Flex flexDir='column' w='full'>
+    <Flex
+      flexDir='column'
+      w='full'
+    >
       <EdFiSettingsTabHeader />
+
       <EdFiSettingsWarningBanner />
-      <Flex mt='16px'w="full">
+
+      <Flex
+        mt='16px'
+        w="full"
+      >
         <EdFiSettingsConnectionsTable />
       </Flex>
     </Flex>

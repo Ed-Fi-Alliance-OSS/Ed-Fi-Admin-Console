@@ -1,7 +1,9 @@
 import { useContext } from 'react'
 import axios, { AxiosError } from 'axios'
 import { OnBoardingStepStatus } from '../../core/onBoardingWizard/onBoardingWizard.types'
-import { TEEAuthDataContext, UserProfileContext } from '@edfi/admin-console-shared-sdk'
+import {
+  TEEAuthDataContext, UserProfileContext 
+} from '@edfi/admin-console-shared-sdk'
 import { fetchOnBoardingWizardData } from '../OnBoardingWizard/onBoardingWizardService'
 import { includeAuthorization } from '@edfi/admin-console-shared-sdk'
 import { Api } from '@edfi/admin-console-shared-sdk/dist/core/EdxApp.types'
@@ -41,6 +43,7 @@ const useResetOnBoardingWizardTest = () => {
     const tenantId = userProfile?.tenantId as string
     const createStepUrl = `${edxAppConfig?.api.baseUri}/tenants/${tenantId}/onboardingsteps`
     const authorizationToken = await includeAuthorization(auth?.user?.access_token, edxAppConfig?.api)
+
     try {
       const requestData: AddStepRequestData = {
         tenantId: tenantId,
@@ -65,12 +68,10 @@ const useResetOnBoardingWizardTest = () => {
       console.log('all data after created step', onboardingWizardData)
 
       return true
-    }
-    catch(ex) {
+    } catch(ex) {
       if (ex instanceof AxiosError) {
         console.log('error when updating onboarding wizard step wizard data', ex.message)
-      }
-      else {
+      } else {
         console.log(ex)
       }
 
@@ -83,10 +84,12 @@ const useResetOnBoardingWizardTest = () => {
 
     const tenantId = userProfile?.tenantId as string
     const updateStepUrl = `${edxAppConfig?.api.baseUri}/tenants/${tenantId}/onboardingsteps/${number}`
+
     const authorizationToken = await includeAuthorization(
       auth?.user?.access_token,
       edxAppConfig?.api
     )
+
     try {
       const requestData: UpdateStepRequestData = {
         tenantId: tenantId,
@@ -110,12 +113,10 @@ const useResetOnBoardingWizardTest = () => {
       console.log('all data after updated step', onboardingWizardData)
 
       return true
-    }
-    catch(ex) {
+    } catch(ex) {
       if (ex instanceof AxiosError) {
         console.log('error when updating onboarding wizard step wizard data', ex.message)
-      }
-      else {
+      } else {
         console.log(ex)
       }
 

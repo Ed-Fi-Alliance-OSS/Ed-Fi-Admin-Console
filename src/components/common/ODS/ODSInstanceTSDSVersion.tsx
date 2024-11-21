@@ -8,13 +8,15 @@ interface ODSInstanceTSDSVersionProps {
 const ODSInstanceDataModelsLabel = ({ dataModels }: ODSInstanceTSDSVersionProps) => {
   return dataModels.map(model => <>
     <Tag
-      mb={1}
       colorScheme='blue'
+      mb={1}
       mr={1}
-      size='md'>
+      size='md'
+    >
       {model.name} ({model.version})
     </Tag>
-    <br/>
+
+    <br />
   </>)
 }
 

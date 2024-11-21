@@ -1,4 +1,6 @@
-import { Button, Flex } from '@chakra-ui/react'
+import {
+  Button, Flex 
+} from '@chakra-ui/react'
 import WizardStartRight from '../Wizard/WizardStartRight'
 import WizardContentWrapper from '../Wizard/WizardContentWrapper'
 import SetUpWizardStartLeft from './SetUpWizardStartLeft'
@@ -16,23 +18,33 @@ const SetUpWizardStart = ({ currentStepIndex, lastInProgress, completedSteps, on
 
   return (
     <WizardContentWrapper minH="300px">
-      <Flex justifyContent='space-between' h='full' w='full'>
-        <SetUpWizardStartLeft
-          hasStarted={completedSteps > 0} />
+      <Flex
+        h='full'
+        justifyContent='space-between'
+        w='full'
+      >
+        <SetUpWizardStartLeft hasStarted={completedSteps > 0} />
+
         <WizardStartRight
-          lastInProgress={lastInProgress}
-          currentStepIndex={currentStepIndex}
           completedSteps={completedSteps}
-          stepsList={setUpWizardStepsMetadata.stepsData}
+          currentStepIndex={currentStepIndex}
           h='350px'
-          onGoToStep={onGoToStep} />
+          lastInProgress={lastInProgress}
+          stepsList={setUpWizardStepsMetadata.stepsData}
+          onGoToStep={onGoToStep}
+        />
       </Flex>
-      <Flex justifyContent='flex-end' mt='auto'>
+
+      <Flex
+        justifyContent='flex-end'
+        mt='auto'
+      >
         <Button
-          onClick={() => onGoToStep(completedSteps === 0? 0 : completedSteps)}
-          variant='primaryBlue600'
+          minW='138px'
           size='lg'
-          minW='138px'>
+          variant='primaryBlue600'
+          onClick={() => onGoToStep(completedSteps === 0? 0 : completedSteps)}
+        >
           { completedSteps > 0? 'Continue' : 'Start' }
         </Button>
       </Flex>

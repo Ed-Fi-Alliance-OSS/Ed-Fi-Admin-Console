@@ -7,10 +7,11 @@ import { GetClaimsetsListResult } from './ClaimsetsService.results'
 
 const useEdfiClaimsetsService = () => {
   const { getAsync } = useHttpService()
-  const {config} = useConfig()
+  const { config } = useConfig()
 
   const getClaimsetsList = async (actionParams: EdfiActionParams): GetClaimsetsListResult => {
     const baseUrl = actionParams.edxApiUrl
+
     // const url = `${baseUrl}/${edfiActionRoutes.getClaimsetsList(actionParams.tenantId)}`
     // const url = '/data-claimsets.json'
     const url = actionParams.config.api?.useLocalMockData ?? true

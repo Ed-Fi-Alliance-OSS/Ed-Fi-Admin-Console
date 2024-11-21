@@ -3,9 +3,15 @@ import { HttpServiceResponse } from '../../HttpService/HttpService.response.type
 import { ActionParams } from '../adminAction.types'
 import { getDomainStatus } from '../Tenant/TenantMapper'
 import tenantActionRoutes from '../tenantActionRoutes'
-import { PostDomainRequest, VerifyDomainRequest } from './DomainService.request'
-import { DeleteDomainResponse, PostDomainResponse, VerifyDomainResponse, VerifyDomainResponseInt } from './DomainService.response'
-import { DeleteDomainResult, PostDomainResult, VerifyDomainResult } from './DomainsService.result'
+import {
+  PostDomainRequest, VerifyDomainRequest 
+} from './DomainService.request'
+import {
+  DeleteDomainResponse, PostDomainResponse, VerifyDomainResponse, VerifyDomainResponseInt 
+} from './DomainService.response'
+import {
+  DeleteDomainResult, PostDomainResult, VerifyDomainResult 
+} from './DomainsService.result'
 
 const useDomainsService = () => {
   const { postAsync, putAsync, deleteAsync } = useHttpService()

@@ -1,4 +1,6 @@
-import { test, expect } from '@playwright/test'
+import {
+  test, expect 
+} from '@playwright/test'
 import { baseUrl } from '../core/routes'
 
 test('Displays 404 NotFound When Route Does Not Exist', async ({ page }) => {

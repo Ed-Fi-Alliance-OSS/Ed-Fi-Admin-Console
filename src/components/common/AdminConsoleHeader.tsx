@@ -7,10 +7,14 @@ const AdminConsoleHeader = () => {
     <>
       <BackToLink
         text="Back to Tech Console Home" 
-        url={routes.home.url} />
+        url={routes.home.url}
+      />
+
       <Heading 
+        mt='5px'
         size='lg'
-        mt='5px'>Admin Actions</Heading>
+      >Admin Actions
+      </Heading>
     </>
   )
 }

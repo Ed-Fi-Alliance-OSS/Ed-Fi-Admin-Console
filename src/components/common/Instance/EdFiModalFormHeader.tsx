@@ -18,7 +18,8 @@ const EdFiModalFormHeader = ({ actionText, headerText, isSaving, isDisabled, onA
       isDisabled={isDisabled}
       isSaving={isSaving}
       onAction={onAction}
-      onClose={onClose} />
+      onClose={onClose}
+    />
   )
 }
 

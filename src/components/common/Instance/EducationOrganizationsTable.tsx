@@ -17,6 +17,7 @@ const EducationOrganizationsTable = () => {
     sortedByField,
     sortingType,
   } = useControlTableSorting({ data: educationOrganizationsList })
+
   const {
     paginatedItems,
     pageSize,
@@ -38,34 +39,84 @@ const EducationOrganizationsTable = () => {
   return (
     <ControlTable 
       headers={[
-        <ControlTableHeader headerData={{ text: 'Education Organization ID', fieldName: 'id', showSorting: true, onSortAsc: sortTextAsc, onSortDesc: sortTextDesc, sortingType, sortedByField }} />,
-        <ControlTableHeader headerData={{ text: 'Name of Institution', fieldName: 'name', showSorting: false, onSortAsc: sortTextAsc, onSortDesc: sortTextDesc, sortingType, sortedByField }} />,
-        <ControlTableHeader headerData={{ text: 'Short Name', fieldName: 'shortName', showSorting: false, onSortAsc: sortTextAsc, onSortDesc: sortTextDesc, sortingType, sortedByField }} />,
-        <ControlTableHeader headerData={{ text: 'Ed Org Category', fieldName: 'orgCategory', showSorting: false, onSortAsc: sortTextAsc, onSortDesc: sortTextDesc, sortingType, sortedByField }} />,
-        <ControlTableHeader headerData={{ text: 'LEA Category', fieldName: 'leaCategory', showSorting: false, onSortAsc: sortTextAsc, onSortDesc: sortTextDesc, sortingType, sortedByField }} />,
+        <ControlTableHeader headerData={{
+          text: 'Education Organization ID',
+          fieldName: 'id',
+          showSorting: true,
+          onSortAsc: sortTextAsc,
+          onSortDesc: sortTextDesc,
+          sortingType,
+          sortedByField 
+        }}
+        />,
+        <ControlTableHeader headerData={{
+          text: 'Name of Institution',
+          fieldName: 'name',
+          showSorting: false,
+          onSortAsc: sortTextAsc,
+          onSortDesc: sortTextDesc,
+          sortingType,
+          sortedByField 
+        }}
+        />,
+        <ControlTableHeader headerData={{
+          text: 'Short Name',
+          fieldName: 'shortName',
+          showSorting: false,
+          onSortAsc: sortTextAsc,
+          onSortDesc: sortTextDesc,
+          sortingType,
+          sortedByField 
+        }}
+        />,
+        <ControlTableHeader headerData={{
+          text: 'Ed Org Category',
+          fieldName: 'orgCategory',
+          showSorting: false,
+          onSortAsc: sortTextAsc,
+          onSortDesc: sortTextDesc,
+          sortingType,
+          sortedByField 
+        }}
+        />,
+        <ControlTableHeader headerData={{
+          text: 'LEA Category',
+          fieldName: 'leaCategory',
+          showSorting: false,
+          onSortAsc: sortTextAsc,
+          onSortDesc: sortTextDesc,
+          sortingType,
+          sortedByField 
+        }}
+        />,
       ]}
-      itemsCount={paginatedItems.length}
-      thPadding='auto'
-      loading={isFetchingEducationOrganizations}
-      rows={<EducationOrganizationsTableRows organizationsList={paginatedItems} />}
       pagination={
-        <Flex ml='auto' w='auto'>   
+        <Flex
+          ml='auto'
+          w='auto'
+        >   
           <TablePagination 
+            canNextPage={canNextPage}
+            canPreviousPage={canPreviousPage}
             currentPage={currentPage}
             goToInitialPage={goToInitialPage}
             goToLastPage={gotToLastPage}
             goToNextPage={goToNextPage}
             goToPreviousPage={goToPreviousPage}
-            canNextPage={canNextPage}
-            canPreviousPage={canPreviousPage}
-            pageSize={pageSize}
-            onDecrementPageSize={onDecrementPageSize}
-            onIncrementPageSize={onIncrementPageSize}
-            totalPages={totalPages}
             maxPageSize={maxPerPage}
             minPageSize={minPerPage}
-            onChangePageSize={onChangePageSize} />
-        </Flex>} />
+            pageSize={pageSize}
+            totalPages={totalPages}
+            onChangePageSize={onChangePageSize}
+            onDecrementPageSize={onDecrementPageSize}
+            onIncrementPageSize={onIncrementPageSize}
+          />
+        </Flex>}
+      itemsCount={paginatedItems.length}
+      loading={isFetchingEducationOrganizations}
+      rows={<EducationOrganizationsTableRows organizationsList={paginatedItems} />}
+      thPadding='auto'
+    />
   )
 }
 

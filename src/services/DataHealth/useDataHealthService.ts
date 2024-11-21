@@ -7,7 +7,8 @@ import { GetDataHealthDistrictDetailsResult } from './DataHealthService.results'
 
 const useDataHealthService = () => {
   const { getSimpleAsync } = useHttpService()
-  const {config} = useConfig()
+  const { config } = useConfig()
+
   const getDataHealthInfo = async (actionParams: ActionParams): GetDataHealthDistrictDetailsResult => {
     const baseUrl = actionParams.edxApiUrl
     // const url = `${baseUrl}/${tenantActionRoutes.getHealthCheckDistrictDetails(actionParams.tenantId)}`
@@ -27,6 +28,7 @@ const useDataHealthService = () => {
     const baseUrl = actionParams.edxApiUrl
     // const url = `${baseUrl}/${tenantActionRoutes.getOdsInstanceHealthCheckDistrictDetails(actionParams.tenantId, year)}`
     const url = `${config?.app.basePath}/mockdata/data-healthcheck.json`
+
     const result = await getSimpleAsync<GetDataHealthDistrictDetailsResponse>({
       url,
       actionName: 'Get School Year Data Health Info',

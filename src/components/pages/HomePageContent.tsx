@@ -1,4 +1,6 @@
-import { Flex, Heading } from '@chakra-ui/react'
+import {
+  Flex, Heading 
+} from '@chakra-ui/react'
 import { useLocation } from 'react-router-dom'
 import useDebugOnBoardingWizard from '../../hooks/debug/useDebugOnBoardingWizard'
 import useHelpLinks from '../../hooks/useHelpLinks'
@@ -11,10 +13,10 @@ import ODSInstanceTableWrapper from '../common/ODS/ODSInstanceTableWrapper'
 import OnBoardingWizardBanner from '../common/OnBoarding/OnBoardingWizardBanner'
 
 const HomePageContent = () => {
-  const { 
-    isOBActive, 
+  const { isOBActive, 
     currentStepIndex, 
     getCurrentStepStatus } = useOnBoardingWizard()
+
   const { onboardingStepsData } = useOnboardingWizardStepsData()
   const location = useLocation()
 
@@ -38,41 +40,67 @@ const HomePageContent = () => {
   const { getAdminActionHelpLinks } = useHelpLinks()
 
   return (
-    <Flex position='relative' flexDir='column' w='full'>
+    <Flex
+      flexDir='column'
+      position='relative'
+      w='full'
+    >
       <OnBoardingWizardDebugMenu
+        creatingStep={creatingStep}
         currentResetStep={currentResetStep}
         currentUpdateStep={currentUpdateStep}
+        resetingAllSteps={updatingAllSteps}
+        selectedStatus={selectedStepStatus}
+        selectedStep={selectedStep}
         showTestingButtons={showTestingButtons}
-        creatingStep={creatingStep}
-        updatingStep={updatingStep}
         stepNumber={stepNumber}
         stepStatus={stepStatus}
-        selectedStep={selectedStep}
-        selectedStatus={selectedStepStatus}
-        resetingAllSteps={updatingAllSteps}
+        updatingStep={updatingStep}
         onChangeSelect={handleUpdateSelectedStep}
         onCreateOBStep={handleCreateOBStep}
+        onResetAllOBSteps={handleResetOBSteps}
         onUpdateOBStep={handleUpdateOBStep}
-        onResetAllOBSteps={handleResetOBSteps} />
+      />
+
       {isOBActive() && <>
         <ContentBlocker />
-        <Flex w='full' zIndex='2'>
+
+        <Flex
+          w='full'
+          zIndex='2'
+        >
           <OnBoardingWizardBanner 
-            currentStepStatus={getCurrentStepStatus()}
             currentStepName={currentStepIndex > 0? onboardingStepsData.tabsData[currentStepIndex].tabName : onboardingStepsData.tabsData[0].tabName}
             currentStepNumber={currentStepIndex + 1}
-            totalSteps={onboardingStepsData.stepsData.length} />
+            currentStepStatus={getCurrentStepStatus()}
+            totalSteps={onboardingStepsData.stepsData.length}
+          />
         </Flex>
       </>}
-      <Heading size='lg' mt={isOBActive()? '48px' : '16px'}>Admin Actions</Heading>
+
+      <Heading
+        mt={isOBActive()? '48px' : '16px'}
+        size='lg'
+      >Admin Actions
+      </Heading>
+
       <ActionNavigationList />
-      <Flex flexDir='column' mt='64px'>
-        <Flex flexDir='column' my='32px' w='full'>
+
+      <Flex
+        flexDir='column'
+        mt='64px'
+      >
+        <Flex
+          flexDir='column'
+          my='32px'
+          w='full'
+        >
           <ODSInstanceTableWrapper
             pickedInstance={null}
             tableMode="Display"
             onSelectInstance={() => null}
-            onUpdateInstancesCount={() => null} />
+            onUpdateInstancesCount={() => null}
+          />
         </Flex>
       </Flex>
     </Flex>

@@ -16,7 +16,8 @@ const EdFiEditConnectionFormHeader = ({ isSaving, isDisabled, onAction, onClose 
       isDisabled={isDisabled}
       isSaving={isSaving}
       onAction={onAction}
-      onClose={onClose} />
+      onClose={onClose}
+    />
   )
 }
 

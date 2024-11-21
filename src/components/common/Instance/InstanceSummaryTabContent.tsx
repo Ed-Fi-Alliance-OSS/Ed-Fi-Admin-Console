@@ -9,8 +9,7 @@ interface InstanceSummaryTabContentProps {
 const InstanceSummaryTabContent = ({ instance }: InstanceSummaryTabContentProps) => {
   return (
     <Flex w='full'>
-      <SummaryContent
-        instance={instance} />
+      <SummaryContent instance={instance} />
     </Flex>
   )
 }

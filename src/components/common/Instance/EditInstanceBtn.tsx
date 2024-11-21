@@ -1,5 +1,7 @@
 import { EditIcon } from '@chakra-ui/icons'
-import { Button, Text } from '@chakra-ui/react'
+import {
+  Button, Text 
+} from '@chakra-ui/react'
 
 interface EditInstanceBtnProps {
     onClick: () => void
@@ -8,21 +10,30 @@ interface EditInstanceBtnProps {
 const EditInstanceBtn = ({ onClick }: EditInstanceBtnProps) => {
   return (
     <Button 
-      display='flex'
       alignItems='center'
-      color='blue.600' 
-      onClick={onClick} 
-      padding='0' 
-      minW='auto'
-      maxW='auto'
-      w='170px'>
-      <EditIcon color='blue.600' fontSize='15px' aria-hidden="true" focusable="false" />
+      color='blue.600'
+      display='flex' 
+      maxW='auto' 
+      minW='auto' 
+      padding='0'
+      w='170px'
+      onClick={onClick}
+    >
+      <EditIcon
+        aria-hidden="true"
+        color='blue.600'
+        focusable="false"
+        fontSize='15px'
+      />
+
       <Text
         color='blue.600'
         fontFamily='Open sans'
         fontWeight='400'
+        ml='5px'
         size='md'
-        ml='5px'>Edit Instance Details</Text>
+      >Edit Instance Details
+      </Text>
     </Button>
   )
 }

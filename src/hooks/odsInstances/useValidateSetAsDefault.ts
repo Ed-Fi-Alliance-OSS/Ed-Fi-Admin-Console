@@ -1,5 +1,7 @@
 import { useContext } from 'react'
-import { ExtendedODSInstance, ODSInstance } from '../../core/ODSInstance.types'
+import {
+  ExtendedODSInstance, ODSInstance 
+} from '../../core/ODSInstance.types'
 import useOdsInstanceService from '../../services/ODSInstances/OdsInstanceService'
 import { GetOdsInstancesListRequest } from '../../services/ODSInstances/OdsInstanceService.requests'
 import { adminConsoleContext } from '../../context/adminConsoleContext'
@@ -25,8 +27,9 @@ const useValidateSetAsDefault = () => {
   const canSetAsDefaultAsync = async (instance: ExtendedODSInstance | ODSInstance): Promise<boolean> => {
     const instancesList = await getInstancesList()
 
-    if (!instancesList)
+    if (!instancesList) {
       return false
+    }
 
     const currentDefault = findCurrentDefaultInstance(instancesList)
 
@@ -34,30 +37,36 @@ const useValidateSetAsDefault = () => {
   }
 
   const validateSetAsDefault = (currentDefault: ODSInstance | null, newDefault: ODSInstance | ExtendedODSInstance): boolean => {
-    if (!currentDefault)
+    if (!currentDefault) {
       return true
+    }
 
-    if (currentDefault.instanceId == newDefault.instanceId)
+    if (currentDefault.instanceId == newDefault.instanceId) {
       return false
+    }
 
     const currentDefaultYear = getInstanceYear(currentDefault)
     const newDefaultYear = getInstanceYear(newDefault)
 
-    if (!currentDefaultYear)
+    if (!currentDefaultYear) {
       return true
+    }
 
-    if (!newDefaultYear)
+    if (!newDefaultYear) {
       return false
+    }
 
-    if (currentDefaultYear >= newDefaultYear)
-      return false 
+    if (currentDefaultYear >= newDefaultYear) {
+      return false
+    } 
 
     return true
   }
 
   const getInstancesList = async (): Promise<ODSInstance[] | null> => {
-    if (!adminConfig)
+    if (!adminConfig) {
       return null
+    }
 
     const request: GetOdsInstancesListRequest = {
       pageIndex: 0,
@@ -66,10 +75,12 @@ const useValidateSetAsDefault = () => {
 
     const response = await getOdsInstancesList(
       adminConfig.actionParams, 
-      request)
+      request
+    )
 
-    if (response.type == 'Error')
+    if (response.type == 'Error') {
       return null
+    }
 
     return response.data.data
   }
@@ -78,8 +89,9 @@ const useValidateSetAsDefault = () => {
     const currentDefault = instanceList
       .find(instance => instance.isDefault == true)
 
-    if (!currentDefault)
+    if (!currentDefault) {
       return null
+    }
 
     return currentDefault
   }

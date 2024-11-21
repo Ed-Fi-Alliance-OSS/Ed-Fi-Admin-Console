@@ -1,8 +1,12 @@
 import { ChevronDownIcon } from '@chakra-ui/icons'
-import { Button, Flex, Popover, PopoverBody, PopoverContent, PopoverTrigger } from '@chakra-ui/react'
+import {
+  Button, Flex, Popover, PopoverBody, PopoverContent, PopoverTrigger 
+} from '@chakra-ui/react'
 import { useContext } from 'react'
 import { adminConsoleContext } from '../../../context/adminConsoleContext'
-import { AppUser, AppUserSource, AppUserStatus } from '../../../core/AppUser.types'
+import {
+  AppUser, AppUserSource, AppUserStatus 
+} from '../../../core/AppUser.types'
 import { InvitationStatus } from '../../../core/invitations/Invitation.types'
 
 interface ManageUserControlPopoverProps {
@@ -22,8 +26,9 @@ const ManageUserControlPopover = ({ userId, user, status, isDeleting, isDeleting
   const adminConfig = useContext(adminConsoleContext)
 
   const showDeleteBtn = () => {
-    if ((adminConfig && adminConfig.showUserDelete))
+    if ((adminConfig && adminConfig.showUserDelete)) {
       return true
+    }
 
     return false
   }
@@ -37,8 +42,9 @@ const ManageUserControlPopover = ({ userId, user, status, isDeleting, isDeleting
   }
 
   const isDisabled = (source: AppUserSource | null) => {
-    if (source === 'Manual' || source === null)
+    if (source === 'Manual' || source === null) {
       return false
+    }
 
     return true
   }
@@ -47,82 +53,100 @@ const ManageUserControlPopover = ({ userId, user, status, isDeleting, isDeleting
     <Popover>
       <PopoverTrigger>
         <Button 
-          onClick={() => console.log('manage user control popover')}
-          size='xs'
+          aria-labelledby={`show-options-${userId}`}
           borderRadius={selectBorderRadius()}
-          variant='primaryBlue600'
-          ml='1px'
-          minW='24px'
           maxW='24px'
-          aria-labelledby={`show-options-${userId}`}>
-          <span id={`show-options-${userId}`} hidden>Show Options</span>
+          minW='24px'
+          ml='1px'
+          size='xs'
+          variant='primaryBlue600'
+          onClick={() => console.log('manage user control popover')}
+        >
+          <span
+            hidden
+            id={`show-options-${userId}`}
+          >Show Options
+          </span>
+
           <ChevronDownIcon 
-            fontSize='18px'    
-            aria-hidden="true" 
-            focusable="false"  />
+            aria-hidden="true"    
+            focusable="false" 
+            fontSize='18px'
+          />
         </Button>
       </PopoverTrigger>
+
       <PopoverContent 
-        top='0px'
-        padding='0'
-        w='auto'
         aria-label={`options-${userId}`}
+        padding='0'
+        top='0px'
+        w='auto'
       >
         <PopoverBody padding='10px'>
-          <Flex flexDir='column' w='auto'>
+          <Flex
+            flexDir='column'
+            w='auto'
+          >
             {status === 'Active' && <Button
-              onClick={() => onDeactivate(userId)}
-              display='flex'
-              fontWeight='400'
-              fontFamily='Open sans'
               color='black'
+              display='flex'
+              fontFamily='Open sans'
+              fontWeight='400'
+              justifyContent='start'
               minW='auto'
-              justifyContent='start'
+              padding='0'
               textAlign='start'
-              padding='0'>
-                                Mark as Inactive
+              onClick={() => onDeactivate(userId)}
+            >
+              Mark as Inactive
             </Button>}
+
             {status === 'Inactive' && <Button 
-              onClick={() => onActivate(userId)}
-              display='flex'
-              fontWeight='400'
-              fontFamily='Open sans'
-              justifyContent='start'
               color='black'
-              textAlign='start'
-              padding='0'> 
-                                Mark as Active
-            </Button>}
-            {showEditInvitationBtn() && <Button
-              onClick={() => onEditInvitation(user)}
               display='flex'
-              fontWeight='400'
               fontFamily='Open sans'
-              color="gray.600"
-              size='xs'
+              fontWeight='400'
               justifyContent='start'
+              padding='0'
               textAlign='start'
+              onClick={() => onActivate(userId)}
+            > 
+              Mark as Active
+            </Button>}
+
+            {showEditInvitationBtn() && <Button
+              _disabled={{ opacity: 0.4 }}
+              color="gray.600"
+              display='flex'
+              fontFamily='Open sans'
+              fontWeight='400'
+              justifyContent='start'
               minW='30px'
               padding='0'
-              w='auto'
-              _disabled={{ opacity: 0.4 }}>
-                                Edit
-            </Button>}
-            {showDeleteBtn() && <Button
-              onClick={() => onDelete(userId)}
-              display='flex'
-              fontWeight='400'
-              fontFamily='Open sans'
-              color="red.600"
               size='xs'
+              textAlign='start'
+              w='auto'
+              onClick={() => onEditInvitation(user)}
+            >
+              Edit
+            </Button>}
+
+            {showDeleteBtn() && <Button
+              _disabled={{ opacity: 0.4 }}
+              color="red.600"
+              display='flex'
+              fontFamily='Open sans'
+              fontWeight='400'
               isLoading={isDeleting}
               justifyContent='start'
-              textAlign='start'
               minW='30px'
               padding='0'
+              size='xs'
+              textAlign='start'
               w='auto'
-              _disabled={{ opacity: 0.4 }}>
-                                Delete
+              onClick={() => onDelete(userId)}
+            >
+              Delete
             </Button>}
           </Flex>
         </PopoverBody>

@@ -1,5 +1,9 @@
-import { TEEAuthDataContext, UserProfileContext } from '@edfi/admin-console-shared-sdk'
-import { ChangeEvent, useContext, useState } from 'react'
+import {
+  TEEAuthDataContext, UserProfileContext 
+} from '@edfi/admin-console-shared-sdk'
+import {
+  ChangeEvent, useContext, useState 
+} from 'react'
 import { adminConsoleContext } from '../../../context/adminConsoleContext'
 import { Tenant } from '../../../core/Tenant.types'
 import { FormDataErrors } from '../../../core/validation/FormValidations.types'
@@ -27,34 +31,40 @@ const useAddDomainForm = ({ districtData, onAfterSave }: UseAddDomainFormProps) 
   const [errors, setErrors] = useState<FormDataErrors>({})
 
   const isValidDomainName = (value: string) => {
-    const nerrors = {...errors}
+    const nerrors = { ...errors }
 
-    if (value === '')
+    if (value === '') {
       nerrors['domainName'] = { message: 'Domain should not be empty.' }
+    }
 
-    if (domainName.length > 63)
+    if (domainName.length > 63) {
       nerrors['domainName'] = { message: 'Domain should not have more than 63 characters' }
+    }
             
     const regex = new RegExp(/^(?!-)[A-Za-z0-9-]+([\-\.]{1}[a-z0-9]+)*\.[A-Za-z]{2,6}$/)
-    if (regex.test(domainName) == false)
+
+    if (regex.test(domainName) == false) {
       nerrors['domainName']  = { message: 'Only alpha-numeric characters allowed when adding a domain' }
+    }
         
     setErrors(nerrors)
 
-    if (Object.keys(nerrors).length === 0)    
+    if (Object.keys(nerrors).length === 0) {
       return true
+    }
 
     return false
   }
 
   const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (hasTriedSubmit) {
-      const nerrors = {...errors}
+      const nerrors = { ...errors }
 
       if (e.target.value === '') {
         nerrors['domainName'] = { message: 'Domain should not be empty.' }
-      }else
+      }else {
         delete nerrors['domainName']
+      }
 
       setErrors(nerrors)
     }
@@ -79,16 +89,17 @@ const useAddDomainForm = ({ districtData, onAfterSave }: UseAddDomainFormProps) 
     
         const result = await createDomain(adminConfig.actionParams, request)
     
-        if (result)
+        if (result) {
           successToast('Added Domain')
-        else 
+        } else {
           errorToast('Failed to Add Domain')
+        }
     
         setIsSavingChanges(false)
         onAfterSave()
-      }
-      else
+      } else {
         setHasTriedSubmit(true)
+      }
     }
   }
 

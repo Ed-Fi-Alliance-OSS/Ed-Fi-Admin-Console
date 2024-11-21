@@ -12,13 +12,12 @@ export default defineConfig(({ mode }) => {
   return {
     base: (isProd && envConfig.app.basePath) ? `${envConfig.app.basePath}/` : '/',
     css: { preprocessorOptions: { scss: { api: 'modern' } } },
-    server: {
-      port: +(process.env.PORT || 8598)
-    },
+    server: { port: +(process.env.PORT || 8598) },
     plugins: [
-      {mode: 'pre', ...mdx({
-        include: 'src/docs/**/*.md',
-      })},
+      {
+        mode: 'pre',
+        ...mdx({ include: 'src/docs/**/*.md', }) 
+      },
       react()
     ]
   }

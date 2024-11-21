@@ -1,4 +1,6 @@
-import { Flex, Text } from '@chakra-ui/react'
+import {
+  Flex, Text 
+} from '@chakra-ui/react'
 import { AppUserRole } from '../../../core/AppUser.types'
 
 interface AppUserRolesProps {
@@ -13,10 +15,10 @@ const AppUserRoles = ({ roles }: AppUserRolesProps) => {
           key={index}
           fontFamily='Open sans'
           fontWeight='400'
-          size='md'>
+          size='md'
+        >
           {role === 'Tenant.Admin'? 'District Admin' : 'District User'}
-        </Text>
-      )}
+        </Text>)}
     </Flex>
   )
 }

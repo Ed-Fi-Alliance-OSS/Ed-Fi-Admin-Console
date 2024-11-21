@@ -1,5 +1,7 @@
 import { AppUserLicenseRole } from '../../../core/AppUser.types'
-import { Organization, StaffClassification } from '../../../core/Tenant.types'
+import {
+  Organization, StaffClassification 
+} from '../../../core/Tenant.types'
 
 export interface ApiResponseApplicationRole {
     role: string 

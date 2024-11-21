@@ -2,7 +2,9 @@ import { UserProfileContext } from '@edfi/admin-console-shared-sdk'
 import { useContext } from 'react'
 import { ActionParams } from '../../../services/AdminActions/adminAction.types'
 import useSubscriptionsService from '../../../services/AdminActions/Subscriptions/SubscriptionsService'
-import { AddSubscriptionRequest, UpdateSubscriptionRequest } from '../../../services/AdminActions/Subscriptions/SubscriptionsService.requests'
+import {
+  AddSubscriptionRequest, UpdateSubscriptionRequest 
+} from '../../../services/AdminActions/Subscriptions/SubscriptionsService.requests'
 import useEDXToast from '../../common/useEDXToast'
 import { SubscriptionFormData } from './useSubscriptionsForm.types'
 
@@ -31,10 +33,11 @@ const useSubscriptionsFormActions = () => {
     
       console.log('result of add subscription', result)
     
-      if (result.type === 'Response') 
+      if (result.type === 'Response') {
         successToast('Added Subscription')
-      else 
+      } else {
         errorToast(`${result.actionMessage}`)
+      }
     }
   }
 
@@ -55,10 +58,11 @@ const useSubscriptionsFormActions = () => {
     
       console.log('result of update subscription', result)
 
-      if (result.type === 'Response') 
+      if (result.type === 'Response') {
         successToast('Updated Subscription')
-      else 
+      } else {
         errorToast(`${result.actionMessage}`)
+      }
     }
   }
 

@@ -1,8 +1,12 @@
 import { useAuth } from '@edfi/admin-console-shared-sdk'
-import { useContext, useEffect, useState } from 'react'
+import {
+  useContext, useEffect, useState 
+} from 'react'
 import { adminConsoleContext } from '../../../context/adminConsoleContext'
 import { AppUser } from '../../../core/AppUser.types'
-import { ControlTableFilter, DataFetchParams } from '../../../core/controlTable'
+import {
+  ControlTableFilter, DataFetchParams 
+} from '../../../core/controlTable'
 import useUserService from '../../../services/AdminActions/Users/UsersService'
 import { GetUsersListRequest } from '../../../services/AdminActions/Users/UsersService.requests'
 import { ApiInvitation } from '../../../services/AdminActions/Users/UsersService.responses'
@@ -26,6 +30,7 @@ const filterOptionsList: UserDataFilters[] = [
 const useManageUsersTable = () => {
   const adminConfig = useContext(adminConsoleContext)
   const { getUsersList } = useUserService()
+
   const {
     filterBy,
     setFilterBy,
@@ -52,11 +57,10 @@ const useManageUsersTable = () => {
     goToPreviousPage,
     gotToLastPage
   } = useControlTable<AppUser, UserDataFilters>({ initialOrder: 'firstName' })
-  const { errorToast } = useEDXToast()
 
+  const { errorToast } = useEDXToast()
   const { getAsync } = useHttpService()
   const [invitationsList, setInvitationsList] = useState<ApiInvitation[]>([])
-
   const inputTimeoutMiliseconds = 1000
   const debouncedPaginatedData = useDebounce(paginatedData, inputTimeoutMiliseconds)
 
@@ -105,11 +109,13 @@ const useManageUsersTable = () => {
   }
 
   const selectFilterStringStatus = (value: string) => {
-    if (value === 'active')
+    if (value === 'active') {
       return 'Active'
+    }
         
-    if (value === 'inactive')
+    if (value === 'inactive') {
       return 'Inactive'
+    }
 
     return 'Unknown'
   }
@@ -125,7 +131,7 @@ const useManageUsersTable = () => {
 
   }
 
-  const {user} = useAuth()
+  const { user } = useAuth()
 
   const fetchUsersList = async ({ pageIndex, pageSize, orderBy, filterBy }: DataFetchParams<UserDataFilters>) => {
     if (adminConfig) {
@@ -142,15 +148,16 @@ const useManageUsersTable = () => {
         orderBy: orderBy? `${orderBy.field}+${orderBy.order}` : ''
       }
 
-      if (filterBy)
+      if (filterBy) {
         requestData.filter = generateFilterString(filterBy)
+      }
 
       const result = await getUsersList(adminConfig.actionParams, requestData)
       setIsFetchingData(false)
 
-      if (result.type === 'Error')
+      if (result.type === 'Error') {
         errorToast('Could not filter list. Select a filter and try again.')
-      else {
+      } else {
         console.log('users list received', result.data)
 
         setPaginatedData({
@@ -188,7 +195,9 @@ const useManageUsersTable = () => {
       orderBy,
       filterBy
     })
-  }, [ debouncedPaginatedData.pageIndex, debouncedPaginatedData.pageSize, orderBy ])
+  }, [
+    debouncedPaginatedData.pageIndex, debouncedPaginatedData.pageSize, orderBy 
+  ])
 
   return {
     paginatedData,

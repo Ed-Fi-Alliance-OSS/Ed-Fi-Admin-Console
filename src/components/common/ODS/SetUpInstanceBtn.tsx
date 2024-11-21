@@ -1,4 +1,6 @@
-import { Button, Flex } from '@chakra-ui/react'
+import {
+  Button, Flex 
+} from '@chakra-ui/react'
 import { ODSInstance } from '../../../core/ODSInstance.types'
 import { UpdatingIsDefaultStatus } from '../../../hooks/odsInstances/useOdsInstanceTable.types'
 import useRedirectToSetUpWizard from '../../../hooks/odsInstances/useRedirectToSetUpPage'
@@ -16,18 +18,21 @@ const SetUpInstanceBtn = ({ instance, updatingIsDefault, onOpenSetUpModal }: Set
   return (
     <Flex w='80px'>
       <Button 
-        onClick={() => onRedirectToSetupWizard(instance)}
-        isDisabled={updatingIsDefault.loading}
         borderRadius='4px 0px 0px 4px'
-        variant='primaryBlue500'
+        isDisabled={updatingIsDefault.loading}
         minW='67px'
-        size='xs'>
-                    Set Up
+        size='xs'
+        variant='primaryBlue500'
+        onClick={() => onRedirectToSetupWizard(instance)}
+      >
+        Set Up
       </Button>
+
       <SetUpInstanceControlBtnPopover
         instance={instance}
         updatingIsDefault={updatingIsDefault}
-        onOpenSetUpModal={onOpenSetUpModal} />
+        onOpenSetUpModal={onOpenSetUpModal}
+      />
     </Flex>
   )
 }

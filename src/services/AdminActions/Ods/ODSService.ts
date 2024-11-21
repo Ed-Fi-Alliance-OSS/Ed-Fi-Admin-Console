@@ -1,18 +1,20 @@
 import { EdfiActionParams } from '../adminAction.types'
-import { Descriptor, EducationOrganization, GetDescriptorsResult, GetEducationOrganizationsResult } from './ODSService.results'
+import {
+  Descriptor, EducationOrganization, GetDescriptorsResult, GetEducationOrganizationsResult 
+} from './ODSService.results'
 import odsActionsList from '../odsActionRoutes'
 import useHttpService from '../../../hooks/http/useHttpService'
 import { useConfig } from '@edfi/admin-console-shared-sdk'
 
 const useODSService = () => {
   const { getAsync } = useHttpService()
-  const {config} = useConfig()
+  const { config } = useConfig()
 
   const getEducationOrganizations = async (actionParams: EdfiActionParams): GetEducationOrganizationsResult => {
     const baseUrl = actionParams.edxApiUrl
     // const url = `${baseUrl}/${odsActionsList.getEducationOrganizationsList()}?pageIndex=0&pageSize=10`
-
     const url = `${config?.app.basePath}/mockdata/data-applications.json`
+
     // TODO: Adapt to use the structure returned by adminapi
     //const url = apiConfig?.useLocalMockData ?? true
     //    ? "/data-applications.json"
@@ -31,6 +33,7 @@ const useODSService = () => {
     const baseUrl = actionParams.edxApiUrl
     // const url = `${baseUrl}/${odsActionsList.getDescriptorsList()}?pageIndex=0&pageSize=100`
     const url = `${config?.app.basePath}/mockdata/data-applications.json`
+
     // TODO: Adapt to use the structure returned by adminapi
     //const url = apiConfig?.useLocalMockData ?? true
     //    ? "/data-applications.json"

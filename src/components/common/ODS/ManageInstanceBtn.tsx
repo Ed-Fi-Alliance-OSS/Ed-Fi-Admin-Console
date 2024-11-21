@@ -1,4 +1,6 @@
-import { Button, Flex } from '@chakra-ui/react'
+import {
+  Button, Flex 
+} from '@chakra-ui/react'
 import { useNavigate } from 'react-router-dom'
 import { ODSInstance } from '../../../core/ODSInstance.types'
 import useOdsInstanceLink from '../../../hooks/odsInstances/useOdsInstanceLink'
@@ -19,20 +21,23 @@ const ManageInstanceBtn = ({ instance, canSetAsDefault, updatingIsDefault, onOpe
   return (
     <Flex w='80px'>
       <Button 
-        onClick={() => navigate(getOdsInstanceLink(instance))}
-        isDisabled={updatingIsDefault.loading}
         borderRadius='4px 0px 0px 4px'
-        variant='primaryBlue600'
+        isDisabled={updatingIsDefault.loading}
         minW='67px'
-        size='xs'>
-                    Manage
+        size='xs'
+        variant='primaryBlue600'
+        onClick={() => navigate(getOdsInstanceLink(instance))}
+      >
+        Manage
       </Button>
+
       <ManageInstanceControlBtnPopover
-        instanceId={instance.instanceId}
-        isDefault={instance.isDefault} 
         canSetAsDefault={canSetAsDefault}
+        instanceId={instance.instanceId} 
+        isDefault={instance.isDefault}
         updatingIsDefault={updatingIsDefault}
-        onOpenSetDefaultModal={onOpenSetDefaultModal} />
+        onOpenSetDefaultModal={onOpenSetDefaultModal}
+      />
     </Flex>
   )
 }

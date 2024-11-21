@@ -1,4 +1,6 @@
-import { Button, Flex, Heading } from '@chakra-ui/react'
+import {
+  Button, Flex, Heading 
+} from '@chakra-ui/react'
 
 interface ModalFormHeaderProps {
     headerText: string 
@@ -13,27 +15,39 @@ interface ModalFormHeaderProps {
 
 const ModalFormHeader = ({ actionText, headerText, headerWidth, alignCenter, isDisabled, isSaving, onAction, onClose }: ModalFormHeaderProps) => {
   return (
-    <Flex justifyContent='space-between' alignItems={alignCenter? 'center' : 'start'} w='full'>
+    <Flex
+      alignItems={alignCenter? 'center' : 'start'}
+      justifyContent='space-between'
+      w='full'
+    >
       <Heading
         fontFamily='Poppins'
-        fontWeight='700'
         fontSize='32px'
-        w={headerWidth ?? 'auto'}>{headerText}</Heading>
+        fontWeight='700'
+        w={headerWidth ?? 'auto'}
+      >{headerText}
+      </Heading>
+
       <Flex alignItems='flex-end'>
         <Button
-          onClick={onClose}
-          variant='secondaryBlue600'
-          size='xs'
-          padding='0 25px'>Cancel</Button>
-        <Button
-          onClick={onAction}
-          variant='primaryBlue600'
-          data-testid="add-user-btn"
-          isLoading={isSaving}
-          isDisabled={isSaving || isDisabled}
-          size='xs'
           padding='0 25px'
-          ml='10px'>{actionText}</Button>
+          size='xs'
+          variant='secondaryBlue600'
+          onClick={onClose}
+        >Cancel
+        </Button>
+
+        <Button
+          data-testid="add-user-btn"
+          isDisabled={isSaving || isDisabled}
+          isLoading={isSaving}
+          ml='10px'
+          padding='0 25px'
+          size='xs'
+          variant='primaryBlue600'
+          onClick={onAction}
+        >{actionText}
+        </Button>
       </Flex>
     </Flex>
   )

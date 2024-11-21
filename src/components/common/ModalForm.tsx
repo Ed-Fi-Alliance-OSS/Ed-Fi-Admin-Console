@@ -9,17 +9,27 @@ interface ModalFormProps {
 
 const ModalForm = ({ header, content, height, width }: ModalFormProps) => {
   return (
-    <form style={{ display: 'flex', height, width }}>
+    <form style={{
+      display: 'flex',
+      height,
+      width 
+    }}
+    >
       <Flex 
         bg='white'
-        padding='32px 34px'
         flexDir='column'
         h='full'
-        w='full'>
+        padding='32px 34px'
+        w='full'
+      >
         <Flex w='full'>
           {header}
         </Flex>
-        <Flex mt='32px' w='full'>
+
+        <Flex
+          mt='32px'
+          w='full'
+        >
           {content}
         </Flex>
       </Flex>

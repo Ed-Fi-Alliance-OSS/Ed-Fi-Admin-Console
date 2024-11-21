@@ -1,4 +1,6 @@
-import { RadioGroup, Td } from '@chakra-ui/react'
+import {
+  RadioGroup, Td 
+} from '@chakra-ui/react'
 import { CustomRadio } from '@edfi/admin-console-shared-sdk'
 import { useEffect } from 'react'
 import { ExtendedODSInstance } from '../../../core/ODSInstance.types'
@@ -26,8 +28,9 @@ const ODSInstanceManagementTableRowItem = ({ tableMode, selectedInstance, instan
   const showSetupBtn = () => {
     const edFiStatus = instance.edFiStatus
 
-    if (edFiStatus.operationStatus == 'Offline')  
+    if (edFiStatus.operationStatus == 'Offline') {
       return false
+    }
             
     return true
   }
@@ -36,6 +39,7 @@ const ODSInstanceManagementTableRowItem = ({ tableMode, selectedInstance, instan
     if (instance.isDefault) {
       onSelectInstance(instance)
     }
+
     console.log('instance', instance)
   }, [])
 
@@ -43,42 +47,47 @@ const ODSInstanceManagementTableRowItem = ({ tableMode, selectedInstance, instan
     <>
       { tableMode != 'Display' && <Td w='80px'>
         <RadioGroup 
-          onChange={() => onSelectInstance(instance)} 
-          value={selectedInstance?.instanceId ?? ''}>
+          value={selectedInstance?.instanceId ?? ''} 
+          onChange={() => onSelectInstance(instance)}
+        >
           <CustomRadio 
             isChecked={selectedInstance?.instanceId == instance.instanceId}
             text=""
-            value={instance.instanceId} />
+            value={instance.instanceId}
+          />
         </RadioGroup>
       </Td> }
+
       <Td w='200px'>
-        <ODSInstanceYear 
-          instance={instance} />
+        <ODSInstanceYear instance={instance} />
       </Td>
+
       <Td>
-        <ODSInstanceEdFiVersion 
-          version={instance.edFiVersion} /> 
+        <ODSInstanceEdFiVersion version={instance.edFiVersion} /> 
       </Td>
+
       <Td>
-        <ODSInstanceDataModelsLabel 
-          dataModels={instance.edfiMetadata.dataModels} /> 
+        <ODSInstanceDataModelsLabel dataModels={instance.edfiMetadata.dataModels} /> 
       </Td>
+
       <Td>
-        <ODSInstanceEdFiStatus 
-          status={instance.edFiStatus} />
+        <ODSInstanceEdFiStatus status={instance.edFiStatus} />
       </Td>
+
       { tableMode == 'Display' && <>
         <Td>
           {showSetupBtn()?  
             <SetUpInstanceBtn
               instance={instance}
               updatingIsDefault={updatingIsDefault}
-              onOpenSetUpModal={onOpenSetUpModal} />
+              onOpenSetUpModal={onOpenSetUpModal}
+            />
             : <ManageInstanceBtn 
-              instance={instance}
-              canSetAsDefault={canSetAsDefault}
-              updatingIsDefault={updatingIsDefault}
-              onOpenSetDefaultModal={onOpenSetDefaultModal} /> }
+                canSetAsDefault={canSetAsDefault}
+                instance={instance}
+                updatingIsDefault={updatingIsDefault}
+                onOpenSetDefaultModal={onOpenSetDefaultModal}
+            /> }
         </Td> 
       </>}
     </>

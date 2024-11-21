@@ -1,5 +1,7 @@
 // import { useNavigate } from 'react-router-dom'
-import { useAuth, useConfig, useInitialRoute } from '@edfi/admin-console-shared-sdk'
+import {
+  useAuth, useConfig, useInitialRoute 
+} from '@edfi/admin-console-shared-sdk'
 import routes from '../../core/routes'
 import { useEffect } from 'react'
 
@@ -7,9 +9,9 @@ const CallbackRouter = () => {
   const auth = useAuth()
   const { getInitialPath } = useInitialRoute()
   // const navigate = useNavigate()
-  const {config} = useConfig()
-
+  const { config } = useConfig()
   const selectRedirect = () => getInitialPath() ?? routes.home.url
+
   useEffect(() => {
     console.log('🚁 CallbackRouter', auth.isAuthenticated)
     if (auth.isAuthenticated) {
@@ -19,8 +21,7 @@ const CallbackRouter = () => {
         console.log('🚁 Redirecting from Callback to', redirect)
         if(redirect.charAt(0) === '/') { 
           window.location.assign(redirect)
-        }
-        else {
+        } else {
           window.location.replace('/' + config.app.basePath)
         }
       } catch(e) {
@@ -29,8 +30,7 @@ const CallbackRouter = () => {
         window.location.assign(config.app.basePath || '/')
         // navigate(config.auth.postLogoutRedirectUri, {replace: true})
       }
-    }
-    else {
+    } else {
       // If the auth is not authenticated, redirect to the login page
       console.log('🚁 Redirecting from Callback to Login')
       window.location.replace(config.app.basePath + '/401')

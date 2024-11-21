@@ -8,18 +8,20 @@ interface ErrorPageContainerProps {
 const ErrorPageContainer = ({ status }: ErrorPageContainerProps) => {
   return (
     <Flex 
-      position='relative'
-      overflow='hidden'
       height='100vh'
-      width='100vw'>
+      overflow='hidden'
+      position='relative'
+      width='100vw'
+    >
       <EDXErrorPage 
         errorStatus={status}
         height="100vh"
         minHeight="100vh"
         minWidth="100vw"
-        width="100vw"
         primaryButtonBackUrl=""
-        primaryButtonLabel="" />
+        primaryButtonLabel=""
+        width="100vw"
+      />
     </Flex>
   )
 }

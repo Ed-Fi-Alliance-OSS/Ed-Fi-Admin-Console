@@ -21,8 +21,9 @@ const ConsolePageContent = () => {
 
   const selectTabs = (tabName: string) => {
     if (tabName === 'Documentation (Advanced)') {
-      if (adminConfig && adminConfig.showAdvancedTabs)
+      if (adminConfig && adminConfig.showAdvancedTabs) {
         return true
+      }
 
       return false
     }
@@ -31,21 +32,33 @@ const ConsolePageContent = () => {
   }
 
   return (
-    <Flex flexDir='column' w='full'>
+    <Flex
+      flexDir='column'
+      w='full'
+    >
       <AdminConsoleHeader />
-      <Flex mt='24px' w='full'>
+
+      <Flex
+        mt='24px'
+        w='full'
+      >
         { adminConfig && adminConfig.showAdvancedTabs?  
           <AdminConsoleTabsMenu 
+            initialIndex={location.state? location.state.consoleActionIndex : 0}
             tabsList={tabsList}
-            initialIndex={location.state? location.state.consoleActionIndex : 0} >
+          >
             <ManageUsersTabContent />
+
             <SSOTabContent />
+
             <DevelopersTabContent />
           </AdminConsoleTabsMenu> :
           <AdminConsoleTabsMenu 
+            initialIndex={location.state? location.state.consoleActionIndex : 0}
             tabsList={tabsList.filter(tab => selectTabs(tab))}
-            initialIndex={location.state? location.state.consoleActionIndex : 0} >
+          >
             <ManageUsersTabContent />
+
             <SSOTabContent />
           </AdminConsoleTabsMenu> }
       </Flex>

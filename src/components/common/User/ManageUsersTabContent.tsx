@@ -1,13 +1,21 @@
-import { Button, Flex } from '@chakra-ui/react'
-import { TablePagination, UserProfileContext } from '@edfi/admin-console-shared-sdk'
-import { ChangeEvent, useContext, useEffect, useState } from 'react'
+import {
+  Button, Flex 
+} from '@chakra-ui/react'
+import {
+  TablePagination, UserProfileContext 
+} from '@edfi/admin-console-shared-sdk'
+import {
+  ChangeEvent, useContext, useEffect, useState 
+} from 'react'
 import { adminConsoleContext } from '../../../context/adminConsoleContext'
 import { AppUser } from '../../../core/AppUser.types'
 import useManageUsersTable from '../../../hooks/adminActions/users/useManageUsersTable'
 import useEDXToast from '../../../hooks/common/useEDXToast'
 import useSubscriptionsService from '../../../services/AdminActions/Subscriptions/SubscriptionsService'
 import useUserService from '../../../services/AdminActions/Users/UsersService'
-import { ActivateUserRequest, AssignLicenseRequest, DeactivateUserRequest, DeleteInvitationRequest, DeleteUserRequest, InviteUserRequest } from '../../../services/AdminActions/Users/UsersService.requests'
+import {
+  ActivateUserRequest, AssignLicenseRequest, DeactivateUserRequest, DeleteInvitationRequest, DeleteUserRequest, InviteUserRequest 
+} from '../../../services/AdminActions/Users/UsersService.requests'
 import ActivateUserModal from '../../ActivateUserModal'
 import ConfirmDeleteUserModal from '../../ConfirmDeleteUserModal'
 import DeactivateUserModal from '../../DeactivateUserModal'
@@ -37,8 +45,8 @@ const initialSelectedUser: AppUser = {
 const ManageUsersTabContent = () => {
   const adminConfig = useContext(adminConsoleContext)
   const { userProfile } = useContext(UserProfileContext)
-  const { 
-    paginatedData, 
+
+  const { paginatedData, 
     invitationsList,
     isFetchingData, 
     orderBy, 
@@ -63,31 +71,28 @@ const ManageUsersTabContent = () => {
     gotToLastPage,
     canNextPage,
     canPreviousPage } = useManageUsersTable()
+
   useEffect(() => {
     console.log('paginatedData', paginatedData)
   }, [paginatedData])
-  const [selectedUser, setSelectedUser] = useState<AppUser>({...initialSelectedUser})
+
+  const [selectedUser, setSelectedUser] = useState<AppUser>({ ...initialSelectedUser })
   const [showAddUserModal, setShowAddUserModal] = useState(false)
   const [showEditUserModal, setShowEditUserModal] = useState(false)
   const [showBulkEditRoleModal, setShowBulkEditRoleModal] = useState(false)
   const { successToast, errorToast } = useEDXToast()
   const { deleteUser, activateUser, deactivateUser, deleteInvitation, inviteUser } = useUserService()
   const { getSubscriptionsList } = useSubscriptionsService()
-
   const [isDeletingInvitation, setIsDeletingInvitation] = useState(false)
   const [isResendingInvitation, setIsResendingInvitation] = useState(false)
-
   const [isDeletingUser, setIsDeletingUser] = useState(false)
   const [showConfirmDeleteUserModal, setShowConfirmDeleteUserModal] = useState(false)
-
   const [isActivatingUser, setIsActivatingUser] = useState(false)
   const [showActivateUserModal, setShowActivateUserModal] = useState(false)
-
   const [isDeactivatingUser, setIsDeactivatingUser] = useState(false)
   const [showDeactivateUserModal, setShowDeactivateUserModal] = useState(false)
-
   // Invitations
-  const [selectedInvitation, setSelectedInvitation] = useState<AppUser>({...initialSelectedUser})
+  const [selectedInvitation, setSelectedInvitation] = useState<AppUser>({ ...initialSelectedUser })
   const [showEditInvitationModal, setShowEditInvitationModal] = useState(false)
 
   const handleDeleteUser = async (userId: string) => {
@@ -116,8 +121,9 @@ const ManageUsersTabContent = () => {
         pageSize: 100
       })
 
-      if (subscriptionsListResponse.type === 'Error')
-        return 
+      if (subscriptionsListResponse.type === 'Error') {
+        return
+      } 
 
       const invitationData = invitationsList.find(invitation => invitation.invitationId === invitationId)
 
@@ -186,20 +192,19 @@ const ManageUsersTabContent = () => {
     const user = findCurrentUser(userId)
 
     if (user) {
-      setSelectedUser({...user})
+      setSelectedUser({ ...user })
       setShowConfirmDeleteUserModal(true)
     }
   }
 
   const handleCloseConfirmDeleteUserModal = () => setShowConfirmDeleteUserModal(false)
-
   const findCurrentUser = (userId: string) => paginatedData.data.find(user => user.userId === userId)
 
   const handleShowActivateUserModal = (userId: string) => {
     const user = findCurrentUser(userId)
 
     if (user) {
-      setSelectedUser({...user})
+      setSelectedUser({ ...user })
       setShowActivateUserModal(true)
     }
   }
@@ -224,9 +229,9 @@ const ManageUsersTabContent = () => {
       if (result.type === 'Response') {
         successToast(`Success. Activated user ${userName ?? ''}`)
         await onRefreshUserList()
-      }
-      else
+      } else {
         errorToast(`Failed to activate user ${userName ?? ''}`)
+      }
     }
   }
 
@@ -234,7 +239,7 @@ const ManageUsersTabContent = () => {
     const user = findCurrentUser(userId)
 
     if (user) {
-      setSelectedUser({...user})
+      setSelectedUser({ ...user })
       setShowDeactivateUserModal(true)
     }
   }
@@ -261,14 +266,15 @@ const ManageUsersTabContent = () => {
       if (result.type === 'Response') {
         successToast(`Success. Deactivated user ${userName ?? ''}`)
         await onRefreshUserList()
-      }
-      else
+      } else {
         errorToast(`Failed to deactivate user ${userName ?? ''}`)
+      }
     }
   }
 
   const handleShowAddUserModal = () => setShowAddUserModal(true)
   const handleHideAddUserModal = () => setShowAddUserModal(false)
+
   const handleShowEditUserModal = (userId: string) => {
     const userById = paginatedData.data.find(user => user.userId === userId)
 
@@ -286,9 +292,8 @@ const ManageUsersTabContent = () => {
   }
 
   const handleHideEditInvitationModal = () => setShowEditInvitationModal(false)
-  const handleRestoreEditInvitation = () => setSelectedInvitation({...initialSelectedUser})
-
-  const handleRestoreEdit = () => setSelectedUser({...initialSelectedUser})
+  const handleRestoreEditInvitation = () => setSelectedInvitation({ ...initialSelectedUser })
+  const handleRestoreEdit = () => setSelectedUser({ ...initialSelectedUser })
   const handleHideEditUserModal = () => setShowEditUserModal(false)
 
   const handleAfterAddUser = () => {
@@ -319,110 +324,198 @@ const ManageUsersTabContent = () => {
   }
 
   return (
-    <Flex flexDir='column' w='full'>
+    <Flex
+      flexDir='column'
+      w='full'
+    >
       <ConsoleModal 
         content={<AddAppUserForm 
           onAfterAddUser={handleAfterAddUser}
-          onClose={handleHideAddUserModal} />}
+          onClose={handleHideAddUserModal}
+        />}
         show={showAddUserModal} 
-        onClose={() => setShowAddUserModal(false)} />
+        onClose={() => setShowAddUserModal(false)}
+      />
+
       <ConsoleModal 
         content={<EditAppUserForm
           selectedUserData={selectedUser}
           onAfterEdit={handleAfterEditUser}
-          onClose={handleAfterEditUser} />}
+          onClose={handleAfterEditUser}
+        />}
         show={showEditUserModal} 
-        onClose={handleCloseEditUserModal} />
+        onClose={handleCloseEditUserModal}
+      />
+
       <ConsoleModal 
         content={<EditInvitationForm
           initialEditData={selectedInvitation}
           invitationsList={invitationsList}
           onAfterAddUser={handleAfterEditInvitation}
-          onClose={handleHideEditInvitationModal} />}
+          onClose={handleHideEditInvitationModal}
+        />}
         show={showEditInvitationModal} 
-        onClose={() => setShowEditInvitationModal(false)} />
+        onClose={() => setShowEditInvitationModal(false)}
+      />
+
       <ActivateUserModal
-        user={selectedUser}
-        show={showActivateUserModal}
         isActivatingUser={isActivatingUser}
+        show={showActivateUserModal}
+        user={selectedUser}
         onActivateUser={handleActivateUser}
-        onClose={handleCloseActivateUserModal} />
+        onClose={handleCloseActivateUserModal}
+      />
+
       <DeactivateUserModal
-        user={selectedUser}
-        show={showDeactivateUserModal}
         isDeactivatingUser={isDeactivatingUser}
-        onDeactivateUser={handleDeactivateUser}
-        onClose={handleCloseDeactivateUserModal} />
-      <ConfirmDeleteUserModal
+        show={showDeactivateUserModal}
         user={selectedUser}
+        onClose={handleCloseDeactivateUserModal}
+        onDeactivateUser={handleDeactivateUser}
+      />
+
+      <ConfirmDeleteUserModal
         isDeletingUser={isDeletingUser}
         show={showConfirmDeleteUserModal}
+        user={selectedUser}
+        onClose={handleCloseConfirmDeleteUserModal}
         onDeleteUser={handleDeleteUser}
-        onClose={handleCloseConfirmDeleteUserModal} />
+      />
+
       <ManageUsersTabHeader
+        filterOptionsList={filterOptionsList}
         filterValue={filterBy? filterBy.value : ''}
         selectedFilter={filterBy? filterBy.field : 'Select Filter'}
-        filterOptionsList={filterOptionsList}
-        onFilter={onFilter}
-        onResetFilter={onResetFilter}
+        onAddUser={handleShowAddUserModal}
         onChangeFilter={onSelectFilter}
         onChangeValue={onChangeFilterValue}
-        onAddUser={handleShowAddUserModal}
-        onRefreshData={onRefreshUserList} />
-      <Flex flexDir='column' mt='16px'>
+        onFilter={onFilter}
+        onRefreshData={onRefreshUserList}
+        onResetFilter={onResetFilter}
+      />
+
+      <Flex
+        flexDir='column'
+        mt='16px'
+      >
         <ManageUsersTable
           headers={[
-            <ControlTableHeader headerData={{ text: 'First Name', fieldName: 'firstName', sortedByField: orderBy.field, showSorting: true, sortingType: orderBy.order, onSortAsc, onSortDesc }} />,
-            <ControlTableHeader headerData={{ text: 'Last Name', fieldName: 'lastName', sortedByField: orderBy.field, showSorting: true, sortingType: orderBy.order, onSortAsc, onSortDesc }} />,
-            <ControlTableHeader headerData={{ text: 'Status', fieldName: 'status', sortedByField: orderBy.field, showSorting: false, sortingType: orderBy.order, onSortAsc, onSortDesc }} />,
-            <ControlTableHeader headerData={{ text: 'Email', fieldName: 'email', sortedByField: orderBy.field, showSorting: true, sortingType: orderBy.order, onSortAsc, onSortDesc }} />,
-            <ControlTableHeader headerData={{ text: 'Updated ', fieldName: 'lastModifiedDateTime', sortedByField: orderBy.field, showSorting: true, sortingType: orderBy.order, onSortAsc, onSortDesc }} />,
-            <ControlTableHeader headerData={{ text: '', fieldName: '', sortedByField: orderBy.field, showSorting: false, sortingType: orderBy.order, onSortAsc, onSortDesc }} />,
+            <ControlTableHeader headerData={{
+              text: 'First Name',
+              fieldName: 'firstName',
+              sortedByField: orderBy.field,
+              showSorting: true,
+              sortingType: orderBy.order,
+              onSortAsc,
+              onSortDesc 
+            }}
+            />,
+            <ControlTableHeader headerData={{
+              text: 'Last Name',
+              fieldName: 'lastName',
+              sortedByField: orderBy.field,
+              showSorting: true,
+              sortingType: orderBy.order,
+              onSortAsc,
+              onSortDesc 
+            }}
+            />,
+            <ControlTableHeader headerData={{
+              text: 'Status',
+              fieldName: 'status',
+              sortedByField: orderBy.field,
+              showSorting: false,
+              sortingType: orderBy.order,
+              onSortAsc,
+              onSortDesc 
+            }}
+            />,
+            <ControlTableHeader headerData={{
+              text: 'Email',
+              fieldName: 'email',
+              sortedByField: orderBy.field,
+              showSorting: true,
+              sortingType: orderBy.order,
+              onSortAsc,
+              onSortDesc 
+            }}
+            />,
+            <ControlTableHeader headerData={{
+              text: 'Updated ',
+              fieldName: 'lastModifiedDateTime',
+              sortedByField: orderBy.field,
+              showSorting: true,
+              sortingType: orderBy.order,
+              onSortAsc,
+              onSortDesc 
+            }}
+            />,
+            <ControlTableHeader headerData={{
+              text: '',
+              fieldName: '',
+              sortedByField: orderBy.field,
+              showSorting: false,
+              sortingType: orderBy.order,
+              onSortAsc,
+              onSortDesc 
+            }}
+            />,
           ]}
-          itemsCount={(paginatedData.data || []).length}
-          rows={<ManageUsersTableRows
-            isDeleting={isDeletingUser}
-            onActivate={handleShowActivateUserModal}
-            isDeletingInvitation={isDeletingInvitation}
-            isResendingInvitation={isResendingInvitation}
-            onDeleteInvitation={handleDeleteInvitation}
-            onResendInvitation={handleResendInvitation}
-            onDeactivate={handleShowDeactivateUserModal}
-            onEdit={handleShowEditUserModal}
-            onEditInvitation={handleShowEditInvitationModal}
-            onDelete={handleShowConfirmDeleteUserModal}
-            usersList={paginatedData.data} />}
-          loading={isFetchingData}
           pagination={   
-            <Flex justifyContent="flex-end" w='full'>
+            <Flex
+              justifyContent="flex-end"
+              w='full'
+            >
               { false && <Button
-                onClick={handleShowBulkEditRoleModal}
+                size='xs'
                 variant='primaryBlue600'
-                size='xs'>Bulk Edit Role</Button> }
+                onClick={handleShowBulkEditRoleModal}
+              >Bulk Edit Role
+              </Button> }
+
               <BulkEditModal 
                 selectedUserList={paginatedData.data}
                 show={showBulkEditRoleModal}
-                onSelecteUserRole={handleSelectUserRole}
                 onChangeRole={handleChangeRoles}
-                onClose={handleHideBulkEditRoleModal} />
+                onClose={handleHideBulkEditRoleModal}
+                onSelecteUserRole={handleSelectUserRole}
+              />
+
               <Flex w='auto'>
                 <TablePagination 
+                  canNextPage={canNextPage}
+                  canPreviousPage={canPreviousPage}
                   currentPage={paginatedData.pageIndex + 1}
                   goToInitialPage={goToInitialPage}
                   goToLastPage={gotToLastPage}
                   goToNextPage={goToNextPage}
                   goToPreviousPage={goToPreviousPage}
-                  canNextPage={canNextPage}
-                  canPreviousPage={canPreviousPage}
-                  pageSize={paginatedData.pageSize}
-                  onDecrementPageSize={onDecrementPageSize}
-                  onIncrementPageSize={onIncrementPageSize}
-                  totalPages={totalPages}
                   maxPageSize={maxPerPage}
-                  minPageSize={minPerPage} 
-                  onChangePageSize={onChangePageSize} />
+                  minPageSize={minPerPage}
+                  pageSize={paginatedData.pageSize}
+                  totalPages={totalPages}
+                  onChangePageSize={onChangePageSize}
+                  onDecrementPageSize={onDecrementPageSize} 
+                  onIncrementPageSize={onIncrementPageSize}
+                />
               </Flex>
-            </Flex>} />
+            </Flex>}
+          rows={<ManageUsersTableRows
+            isDeleting={isDeletingUser}
+            isDeletingInvitation={isDeletingInvitation}
+            isResendingInvitation={isResendingInvitation}
+            usersList={paginatedData.data}
+            onActivate={handleShowActivateUserModal}
+            onDeactivate={handleShowDeactivateUserModal}
+            onDelete={handleShowConfirmDeleteUserModal}
+            onDeleteInvitation={handleDeleteInvitation}
+            onEdit={handleShowEditUserModal}
+            onEditInvitation={handleShowEditInvitationModal}
+            onResendInvitation={handleResendInvitation}
+          />}
+          itemsCount={(paginatedData.data || []).length}
+          loading={isFetchingData}
+        />
       </Flex>
     </Flex>
   )

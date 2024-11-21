@@ -12,7 +12,8 @@ const BulkEditRoleFormHeader = ({ onAction, onClose }: BulkEditRoleFormHeaderPro
       headerText="Bulk Edit Roles"
       isSaving={false}
       onAction={onAction}
-      onClose={onClose} />
+      onClose={onClose}
+    />
   )
 }
 

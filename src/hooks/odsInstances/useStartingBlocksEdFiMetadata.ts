@@ -1,4 +1,6 @@
-import { useContext, useEffect, useState } from 'react'
+import {
+  useContext, useEffect, useState 
+} from 'react'
 import { HttpServiceGetRequest } from '../../services/HttpService/HttpService.types'
 import useHttpService from '../http/useHttpService'
 import { EdFiMetadata } from '../useEdfiUrls.types'
@@ -17,11 +19,13 @@ const useStartingBlocksEdFiMetadata = ({ fetch }: UseStartingBlocksEdFiMetadataP
   const [loadingStartingBlocksMetadata, setLoadingStartingBlocksMetadata] = useState(false)
 
   const fetchStartingBlocksMetadata = async (): Promise<EdFiMetadata | null> => {
-    if (!adminConfig)
+    if (!adminConfig) {
       return null
+    }
 
-    if (getEdFiMetadataSource() === 'Instance BaseUrl')
+    if (getEdFiMetadataSource() === 'Instance BaseUrl') {
       return null
+    }
 
     const odsStartingBlocksUrl = ''
 
@@ -32,8 +36,9 @@ const useStartingBlocksEdFiMetadata = ({ fetch }: UseStartingBlocksEdFiMetadataP
 
     const result = await getSimpleAsync<EdFiMetadata>(request)
 
-    if (result.type === 'Error')
+    if (result.type === 'Error') {
       return null
+    }
 
     return result.data
   }
@@ -48,8 +53,9 @@ const useStartingBlocksEdFiMetadata = ({ fetch }: UseStartingBlocksEdFiMetadataP
   }
 
   useEffect(() => {
-    if (!fetch)
-      return 
+    if (!fetch) {
+      return
+    } 
 
     fetchAndSetStartingBlocksMetadata()
   }, [ fetch ])

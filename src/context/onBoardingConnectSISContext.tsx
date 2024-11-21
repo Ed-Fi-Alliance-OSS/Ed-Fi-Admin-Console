@@ -2,7 +2,9 @@ import { createContext } from 'react'
 import { EdfiApplicationAuthData } from '../core/Edfi/EdfiApplications'
 import { SISProviderConnectionState } from '../core/sisProviders/SISProviders.types'
 import useSISProvidersForm from '../hooks/adminActions/edfi/useSISProvidersForm'
-import { OptionalProvidersOption, SISProvidersOption } from '../hooks/adminActions/edfi/useSISProvidersForm.types'
+import {
+  OptionalProvidersOption, SISProvidersOption 
+} from '../hooks/adminActions/edfi/useSISProvidersForm.types'
 
 export interface OnBoardigConnectSISContextData {
     sisProvidersOptionList: SISProvidersOption[]
@@ -38,16 +40,12 @@ export const onBoardingConnectSISContext = createContext<OnBoardigConnectSISCont
   selectedOptionalProviderId: '',
   connectionState: 'Awaiting Connection',
   optionalConnectionState: 'Awaiting Connection',
-  optionaEdfiApplicationAuthData: {
-    applicationId: 0
-  },
+  optionaEdfiApplicationAuthData: { applicationId: 0 },
   isLoadingOptionalCredentials: false,
   hasSelectedProvider: false,
   hasSelectedOptionalProvider: false,
   optionalSource: 'Select Provider Function',
-  edfiApplicationAuthData: {
-    applicationId: 0
-  },
+  edfiApplicationAuthData: { applicationId: 0 },
   isLoadingCredentials: false,
   optionalSISSources: [],
   showOptionalForm: false,
@@ -72,7 +70,11 @@ interface OnBoardigConnectSISContextProps {
 }
 
 const OnBoardingConnectSISContextProvider = ({ children, schoolYear, onSelectSISProvider, onUnselectSISProvider }: OnBoardigConnectSISContextProps) => {
-  const connectSISProvidersForm = useSISProvidersForm({ schoolYear, onSelectSISProvider, onUnselectSISProvider })
+  const connectSISProvidersForm = useSISProvidersForm({
+    schoolYear,
+    onSelectSISProvider,
+    onUnselectSISProvider 
+  })
 
   return (
     <onBoardingConnectSISContext.Provider value={connectSISProvidersForm}>

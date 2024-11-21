@@ -1,7 +1,11 @@
-import { useContext, useEffect } from 'react'
+import {
+  useContext, useEffect 
+} from 'react'
 import { adminConsoleContext } from '../../../context/adminConsoleContext'
 import { DataFetchParams } from '../../../core/controlTable'
-import { JobExecutionListResponse, JobExecutionLogEntry, JobListResponse, MessageType } from '../../../core/UserSync/UserSync.types'
+import {
+  JobExecutionListResponse, JobExecutionLogEntry, JobListResponse, MessageType 
+} from '../../../core/UserSync/UserSync.types'
 import useUserSyncService from '../../../services/AdminActions/UserSync/UserSyncService'
 import { GetEdFiSyncExecutionLogsRequest } from '../../../services/AdminActions/UserSync/UserSyncService.requests'
 import useLogMessage from './useLogMessage'
@@ -47,9 +51,9 @@ const useLogsInnerTable = ({ job, jobExecution }: UseLogsInnerTableProps) => {
 
   const inputTimeoutMiliseconds = 1500
   const debouncedPaginatedData = useDebounce(paginatedData, inputTimeoutMiliseconds)
-
   const { mapLogMessageType } = useLogMessage()
   const adminConfig = useContext(adminConsoleContext)
+
   const {
     logFilterValues,
     options,
@@ -57,22 +61,27 @@ const useLogsInnerTable = ({ job, jobExecution }: UseLogsInnerTableProps) => {
     onChangeMessage,
     onResetFilters
   } = useLogsInnerTableFilters()
+
   const {
     getEdFiSyncExecutionLogs,
   } = useUserSyncService()
 
   const converMessageTypeToFilterType = (messageType: MessageType | 'Any'): 'Information' | 'FatalError' | 'SyncError' | 'Warning' | null => {
-    if (messageType === 'Fatal Error')
+    if (messageType === 'Fatal Error') {
       return 'FatalError'
+    }
 
-    if (messageType === 'Information')
+    if (messageType === 'Information') {
       return 'Information'
+    }
 
-    if (messageType === 'Sync Error')
+    if (messageType === 'Sync Error') {
       return 'SyncError'
+    }
 
-    if (messageType === 'Warning')
+    if (messageType === 'Warning') {
       return 'Warning'
+    }
 
     return null
   }
@@ -82,21 +91,25 @@ const useLogsInnerTable = ({ job, jobExecution }: UseLogsInnerTableProps) => {
     const messageType = converMessageTypeToFilterType(logFilterValues.messageType)
     const typeFilter = logFilterValues.messageType !== 'Any'? `messageType eq "${messageType}"` : null
 
-    if (!messageFilter && !typeFilter)
+    if (!messageFilter && !typeFilter) {
       return null
+    }
 
-    if (messageFilter && !typeFilter)
+    if (messageFilter && !typeFilter) {
       return messageFilter
+    }
 
-    if (!messageFilter && typeFilter)
+    if (!messageFilter && typeFilter) {
       return typeFilter
+    }
 
     return `${typeFilter} and ${messageFilter}`
   }
 
   const fetchLogs = async ({ pageIndex, pageSize, orderBy, filterBy }: DataFetchParams<LogDataFilters>) => {
-    if (!adminConfig)
-      return 
+    if (!adminConfig) {
+      return
+    } 
 
     setIsFetchingData(true)
     setPaginatedData({
@@ -116,15 +129,18 @@ const useLogsInnerTable = ({ job, jobExecution }: UseLogsInnerTableProps) => {
 
     if (filterBy) {
       const filter = generateRequestFilter()
-      if (filter)
+
+      if (filter) {
         request.filterBy = filter
+      }
     }
 
     const logsResult = await getEdFiSyncExecutionLogs(adminConfig.actionParams, request)
     setIsFetchingData(false)
         
-    if (logsResult.type !== 'Response')
-      return 
+    if (logsResult.type !== 'Response') {
+      return
+    } 
             
     setPaginatedData({
       pageIndex: logsResult.data.pageIndex,
@@ -150,7 +166,10 @@ const useLogsInnerTable = ({ job, jobExecution }: UseLogsInnerTableProps) => {
       pageIndex: 0, 
       pageSize: paginatedData.pageSize,
       orderBy,
-      filterBy: { field: 'message', value: '' }
+      filterBy: {
+        field: 'message',
+        value: '' 
+      }
     })
   }
 
@@ -183,9 +202,14 @@ const useLogsInnerTable = ({ job, jobExecution }: UseLogsInnerTableProps) => {
       pageIndex: paginatedData.pageIndex,
       pageSize: paginatedData.pageSize,
       orderBy,
-      filterBy: { field: 'message', value: '' }
+      filterBy: {
+        field: 'message',
+        value: '' 
+      }
     })
-  }, [ debouncedPaginatedData.pageIndex, debouncedPaginatedData.pageSize, orderBy ])
+  }, [
+    debouncedPaginatedData.pageIndex, debouncedPaginatedData.pageSize, orderBy 
+  ])
     
   return {
     paginatedData, 

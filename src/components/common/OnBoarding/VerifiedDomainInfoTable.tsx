@@ -20,15 +20,42 @@ const VerifiedDomainInfoTable = ({ verifiedDomainsList }: VerifiedDomainInfoTabl
   return (
     <ControlTable
       headers={[
-        <ControlTableHeader headerData={{ fieldName: 'lea', text: 'LEA', showSorting: true, sortedByField, sortingType, onSortAsc: sortTextAsc, onSortDesc: sortTextDesc }} />,
-        <ControlTableHeader headerData={{ fieldName: 'domain', text: 'Domain', showSorting: true, sortedByField, sortingType, onSortAsc: sortTextAsc, onSortDesc: sortTextDesc }} />,
-        <ControlTableHeader headerData={{ fieldName: 'status', text: 'Status', showSorting: true, sortedByField, sortingType, onSortAsc: sortTextAsc, onSortDesc: sortTextDesc }} />,
+        <ControlTableHeader headerData={{
+          fieldName: 'lea',
+          text: 'LEA',
+          showSorting: true,
+          sortedByField,
+          sortingType,
+          onSortAsc: sortTextAsc,
+          onSortDesc: sortTextDesc 
+        }}
+        />,
+        <ControlTableHeader headerData={{
+          fieldName: 'domain',
+          text: 'Domain',
+          showSorting: true,
+          sortedByField,
+          sortingType,
+          onSortAsc: sortTextAsc,
+          onSortDesc: sortTextDesc 
+        }}
+        />,
+        <ControlTableHeader headerData={{
+          fieldName: 'status',
+          text: 'Status',
+          showSorting: true,
+          sortedByField,
+          sortingType,
+          onSortAsc: sortTextAsc,
+          onSortDesc: sortTextDesc 
+        }}
+        />,
       ]}
       itemsCount={sortedData.length}
       loading={false}
-      rows={<VerifiedDomainTableRows 
-        verifiedDomains={sortedData} />}
-      thPadding='auto' />
+      rows={<VerifiedDomainTableRows verifiedDomains={sortedData} />}
+      thPadding='auto'
+    />
   )
 }
 

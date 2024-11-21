@@ -1,5 +1,9 @@
-import { TEEAuthDataContext, UserProfileContext } from '@edfi/admin-console-shared-sdk'
-import { useContext, useEffect, useState } from 'react'
+import {
+  TEEAuthDataContext, UserProfileContext 
+} from '@edfi/admin-console-shared-sdk'
+import {
+  useContext, useEffect, useState 
+} from 'react'
 import { adminConsoleContext } from '../../../context/adminConsoleContext'
 import { Subscription } from '../../../core/Subscription.types'
 import useSubscriptionsService from '../../../services/AdminActions/Subscriptions/SubscriptionsService'
@@ -18,6 +22,7 @@ const useSubscriptionsList = () => {
   const adminConfig = useContext(adminConsoleContext)
   const { userProfile } = useContext(UserProfileContext)
   const [isFetchingSubscriptions, setIsFetchingSubscriptions] = useState(false)
+
   const [ paginationData, setPaginationData ] = useState<TablePaginationData>({
     count: 0,
     pageIndex: 0,

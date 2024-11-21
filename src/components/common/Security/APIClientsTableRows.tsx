@@ -1,4 +1,6 @@
-import { Flex, Td, Text } from '@chakra-ui/react'
+import {
+  Flex, Td, Text 
+} from '@chakra-ui/react'
 import ControlTableRow from '../ControlTableRow'
 
 interface APIClientsTableRowsProps {
@@ -13,8 +15,7 @@ const APIClientsTableRows = ({ apiClientList }: APIClientsTableRowsProps) => {
           <Td w='917px'>
             {client}
           </Td>
-        </ControlTableRow>
-      )}
+        </ControlTableRow>)}
     </>
   )
 }

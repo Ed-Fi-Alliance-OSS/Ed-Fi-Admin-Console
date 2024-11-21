@@ -1,18 +1,32 @@
 import { TEEAuthDataContext } from '@edfi/admin-console-shared-sdk'
-import { useState, useEffect, useContext, ChangeEvent } from 'react'
-import { AdminConsoleConfig, adminConsoleContext } from '../../../context/adminConsoleContext'
+import {
+  ChangeEvent,
+  useContext,
+  useEffect,
+  useState
+} from 'react'
+import {
+  AdminConsoleConfig, adminConsoleContext
+} from '../../../context/adminConsoleContext'
 import { EdfiApplicationAuthData } from '../../../core/Edfi/EdfiApplications'
 import { SISProviderConnectionState } from '../../../core/sisProviders/SISProviders.types'
 import { EdfiActionParams } from '../../../services/AdminActions/adminAction.types'
-import { CreateEdfiApplicationRequest, ResetEdfiApplicationCredentialsRequest } from '../../../services/AdminActions/Edfi/Applications/EdfiApplicationService.requests'
+import {
+  CreateEdfiApplicationRequest, ResetEdfiApplicationCredentialsRequest
+} from '../../../services/AdminActions/Edfi/Applications/EdfiApplicationService.requests'
 import useEdfiApplicationsService from '../../../services/AdminActions/Edfi/Applications/EdfiApplicationsService'
 import useEdfiVendorsService from '../../../services/AdminActions/Edfi/Vendors/EdfiVendorsService'
 import useEDXToast from '../../common/useEDXToast'
 import useTenantInfo from '../../useTenantInfo'
-import { CheckEdfiApplicationResult, OptionalProvidersOption, SISProvidersOption } from './useSISProvidersForm.types'
+import {
+  CheckEdfiApplicationResult, OptionalProvidersOption, SISProvidersOption
+} from './useSISProvidersForm.types'
 
 const sisProviders: SISProvidersOption[] = [
-  { value: 'empty', text: 'Select Provider' }
+  {
+    value: 'empty',
+    text: 'Select Provider' 
+  }
 ]
 
 interface UseSISProvidersFormProps {
@@ -22,10 +36,22 @@ interface UseSISProvidersFormProps {
 }
 
 const optionalSISSources: OptionalProvidersOption[] = [
-  { value: 'Unknown', text: 'Select Provider Function' },
-  { value: 'HR', text: 'HR' },
-  { value: 'Finance', text: 'Finance' },
-  { value: 'Staff', text: 'Staff' }
+  {
+    value: 'Unknown',
+    text: 'Select Provider Function' 
+  },
+  {
+    value: 'HR',
+    text: 'HR' 
+  },
+  {
+    value: 'Finance',
+    text: 'Finance' 
+  },
+  {
+    value: 'Staff',
+    text: 'Staff' 
+  }
 ]
 
 const useSISProvidersForm = ({ schoolYear, onSelectSISProvider, onUnselectSISProvider }: UseSISProvidersFormProps) => {
@@ -41,31 +67,23 @@ const useSISProvidersForm = ({ schoolYear, onSelectSISProvider, onUnselectSISPro
   const [hasSelectedOptionalProvider, setHasSelectedOptionalProvider] = useState(false)
   const [source, setSource] = useState('SIS')
   const [optionalSource, setOptionalSource] = useState(optionalSISSources[0].value)
-    
   const [connectionState, setConnectionState] = useState<SISProviderConnectionState>('Awaiting Connection')
   const [edfiApplicationAuthData, setEdfiApplicationAuthData] = useState<EdfiApplicationAuthData>({ applicationId: 0 })
   const [isCreatingEdfiApplication, setIsCreatingEdfiApplication] = useState(false)
   const [isLoadingCredentials, setIsLoadingCredentials] = useState(false)
-
   const [optionalConnectionState, setOptionalConnectionState] = useState<SISProviderConnectionState>('Awaiting Connection')
   const [optionaEdfiApplicationAuthData, setOptionalEdfiApplicationAuthData] = useState<EdfiApplicationAuthData>({ applicationId: 0 })
   const [isCreatingOptionalEdfiApplication, setIsCreatingOptionalEdfiApplication] = useState(false)
   const [isLoadingOptionalCredentials, setIsLoadingOptionalCredentials] = useState(false)
-
   const [showOptionalForm, setShowOptionalForm] = useState(false)
-
   const { successToast, errorToast } = useEDXToast()
-
-  // console.log("source in sis hook", source)
-  // console.log("optional source in sis hook", optionalSource)
-
   const onShowOptionalForm = () => setShowOptionalForm(true)
-
   const generateEdfiApplicationNameFromSource = (vendorName: string, organizationName: string, applicationSource: string) => `${vendorName} ${applicationSource} ${organizationName}`
 
   const generateRequiredEdfiApplication = async (adminConfig: AdminConsoleConfig, edfiApplicationName: string, data: CreateEdfiApplicationRequest) => {
-    if (!schoolYear)
-      return 
+    if (!schoolYear) {
+      return
+    } 
 
     setIsCreatingEdfiApplication(true)
     const result = await createEdfiApplicationForSchoolYear(adminConfig.edfiActionParams, data, schoolYear)
@@ -77,17 +95,19 @@ const useSISProvidersForm = ({ schoolYear, onSelectSISProvider, onUnselectSISPro
         key: result.data.key,
         secret: result.data.secret
       })
+
       successToast(`Created ${edfiApplicationName}`)
-    }
-    else 
+    } else {
       errorToast('Unable to generate credentials. Please contact your administrator.')
+    }
 
     setIsCreatingEdfiApplication(false)
   }
 
   const generateOptionalEdfiApplication = async (adminConfig: AdminConsoleConfig, edfiApplicationName: string, data: CreateEdfiApplicationRequest) => {
-    if (!schoolYear)
-      return 
+    if (!schoolYear) {
+      return
+    } 
 
     setIsCreatingOptionalEdfiApplication(true)
     const result = await createEdfiApplicationForSchoolYear(adminConfig.edfiActionParams, data, schoolYear)
@@ -99,10 +119,11 @@ const useSISProvidersForm = ({ schoolYear, onSelectSISProvider, onUnselectSISPro
         key: result.data.key,
         secret: result.data.secret
       })
+
       successToast(`Created ${edfiApplicationName}`)
-    }
-    else 
+    } else {
       errorToast('Unable to generate credentials. Please contact your administrator.')
+    }
 
     setIsCreatingOptionalEdfiApplication(false)
   }
@@ -125,8 +146,9 @@ const useSISProvidersForm = ({ schoolYear, onSelectSISProvider, onUnselectSISPro
 
       console.log('edfi application data', data)
 
-      if (formType === 'required')
+      if (formType === 'required') {
         return await generateRequiredEdfiApplication(adminConfig, edfiApplicationName, data)
+      }
 
       await generateOptionalEdfiApplication(adminConfig, edfiApplicationName, data)
     }
@@ -139,14 +161,21 @@ const useSISProvidersForm = ({ schoolYear, onSelectSISProvider, onUnselectSISPro
       if (vendorApplicationsRequest.type === 'Response') {
         const edfiApplicationsFilteredList = vendorApplicationsRequest.data.filter(app => app.applicationName === edfiApplicationName)
 
-        if (edfiApplicationsFilteredList.length > 0)
-          return { exists: true, applicationId: edfiApplicationsFilteredList[0].applicationId }
+        if (edfiApplicationsFilteredList.length > 0) {
+          return {
+            exists: true,
+            applicationId: edfiApplicationsFilteredList[0].applicationId 
+          }
+        }
 
         return { exists: false }
       }
     }
 
-    return { exists: false, error: true }
+    return {
+      exists: false,
+      error: true 
+    }
   }
 
   const createApplicationFromProvider = async (providerId: string, formType: 'required' | 'optional', applicationSource: string, year: number) => {
@@ -155,8 +184,7 @@ const useSISProvidersForm = ({ schoolYear, onSelectSISProvider, onUnselectSISPro
       if (formType === 'required') {
         setSelectedProviderId(providerId)
         setHasSelectedProvider(true)
-      }
-      else {
+      } else {
         setSelectedOptionalProviderId(providerId)
         setHasSelectedOptionalProvider(true)
       }
@@ -179,9 +207,9 @@ const useSISProvidersForm = ({ schoolYear, onSelectSISProvider, onUnselectSISPro
         const checkResult = await checkIfEdfiApplicationExists(selectedProvider.value, edfiApplicationName, year)
         console.log('check result', checkResult)
 
-        if (!checkResult.exists && !checkResult.error)
+        if (!checkResult.exists && !checkResult.error) {
           await generateEdfiApplication(selectedProvider, edfiApplicationName, formType)
-        else if (checkResult.exists && !checkResult.error && checkResult.applicationId) {
+        } else if (checkResult.exists && !checkResult.error && checkResult.applicationId) {
                     
           if (formType === 'required') {
             setConnectionState('Connected')
@@ -205,23 +233,26 @@ const useSISProvidersForm = ({ schoolYear, onSelectSISProvider, onUnselectSISPro
   }
 
   const handleChangeOptionalProvider = async (providerId: string, applicationSource: string) => {
-    if (!schoolYear)
-      return 
+    if (!schoolYear) {
+      return
+    } 
 
     await createApplicationFromProvider(providerId, 'optional', applicationSource, schoolYear)
   }
 
   const handleChangeSISprovider = async (e: ChangeEvent<HTMLSelectElement>) => {
-    if (!schoolYear)
-      return 
+    if (!schoolYear) {
+      return
+    } 
     // console.log('selected sis provider', e.target.value)
 
     await createApplicationFromProvider(e.target.value, 'required', source, schoolYear)
   }
 
   const hasCompletedSelection = (provider: string, source: string) => {
-    if (source !== 'Unknown' && provider && provider !== sisProvidersOptionList[0].value)
+    if (source !== 'Unknown' && provider && provider !== sisProvidersOptionList[0].value) {
       return true
+    }
         
     return false
   }
@@ -231,8 +262,9 @@ const useSISProvidersForm = ({ schoolYear, onSelectSISProvider, onUnselectSISPro
     // console.log('1: source', optionalSource)
     setSelectedOptionalProviderId(e.target.value)
 
-    if (hasCompletedSelection(e.target.value, optionalSource))
+    if (hasCompletedSelection(e.target.value, optionalSource)) {
       handleChangeOptionalProvider(e.target.value, optionalSource)
+    }
   }
 
   const onChangeOptionalSource = (e: ChangeEvent<HTMLSelectElement>) => {
@@ -241,17 +273,16 @@ const useSISProvidersForm = ({ schoolYear, onSelectSISProvider, onUnselectSISPro
 
     setOptionalSource(e.target.value)
 
-    if (hasCompletedSelection(selectedOptionalProviderId, e.target.value))
+    if (hasCompletedSelection(selectedOptionalProviderId, e.target.value)) {
       handleChangeOptionalProvider(selectedOptionalProviderId, e.target.value)
+    }
   }
 
   const handleRemoveProvider = () => {
     setSelectedProviderId(sisProviders[0].value)
     setHasSelectedProvider(false)
 
-    setEdfiApplicationAuthData({
-      applicationId: 0
-    })
+    setEdfiApplicationAuthData({ applicationId: 0 })
         
     onUnselectSISProvider('required')
   }
@@ -261,9 +292,7 @@ const useSISProvidersForm = ({ schoolYear, onSelectSISProvider, onUnselectSISPro
     setOptionalSource(optionalSISSources[0].value)
     setHasSelectedOptionalProvider(false)
 
-    setOptionalEdfiApplicationAuthData({
-      applicationId: 0
-    })
+    setOptionalEdfiApplicationAuthData({ applicationId: 0 })
         
     onUnselectSISProvider('optional')
   }
@@ -340,8 +369,9 @@ const useSISProvidersForm = ({ schoolYear, onSelectSISProvider, onUnselectSISPro
   }   
 
   const fetchRequiredAuthDetails = async (adminConfig: AdminConsoleConfig, requestData: ResetEdfiApplicationCredentialsRequest) => {
-    if (!schoolYear)
-      return 
+    if (!schoolYear) {
+      return
+    } 
 
     console.log('request data credentials', requestData)
     setIsLoadingCredentials(true)
@@ -355,8 +385,9 @@ const useSISProvidersForm = ({ schoolYear, onSelectSISProvider, onUnselectSISPro
   }
 
   const fetchOptionalAuthDetails = async (adminConfig: AdminConsoleConfig, requestData: ResetEdfiApplicationCredentialsRequest) => {
-    if (!schoolYear)
-      return 
+    if (!schoolYear) {
+      return
+    } 
 
     console.log('request data credentials', requestData)
     setIsLoadingOptionalCredentials(true)
@@ -373,12 +404,11 @@ const useSISProvidersForm = ({ schoolYear, onSelectSISProvider, onUnselectSISPro
     if (edxAppConfig && auth && auth.user && adminConfig) {
       console.log('fetch auth details', selectedProviderId)
     
-      const requestData: ResetEdfiApplicationCredentialsRequest = {
-        applicationId: applicationId
-      }
+      const requestData: ResetEdfiApplicationCredentialsRequest = { applicationId: applicationId }
 
-      if (fetchFor === 'required')
+      if (fetchFor === 'required') {
         return await fetchRequiredAuthDetails(adminConfig, requestData)
+      }
 
       return await fetchOptionalAuthDetails(adminConfig, requestData)
     }
@@ -387,19 +417,25 @@ const useSISProvidersForm = ({ schoolYear, onSelectSISProvider, onUnselectSISPro
   }
 
   const fetchSISProvidersData = async () => {
-    if (!schoolYear)
-      return 
+    if (!schoolYear) {
+      return
+    } 
 
     if (edxAppConfig && auth && auth.user && adminConfig) {
       const result = await fetchVendorsList(adminConfig.actionParams, schoolYear)
             
       if (result.type === 'Response') {
         const nsisoptionsProvidersList = [...sisProvidersOptionList]
-        const availableVendors = ['Ascender', 'Aeries', 'Frontline', 'Power School', 'Skyward']
+
+        const availableVendors = [
+          'Ascender', 'Aeries', 'Frontline', 'Power School', 'Skyward'
+        ]
+
         const filteredVendorsList = result.data.filter(vendor => {
           for (const availableVendorName of availableVendors) {
-            if (vendor.company === availableVendorName)
+            if (vendor.company === availableVendorName) {
               return true
+            }
           }
 
           return false
@@ -420,8 +456,9 @@ const useSISProvidersForm = ({ schoolYear, onSelectSISProvider, onUnselectSISPro
   }
 
   useEffect(() => {
-    if (!schoolYear)
-      return 
+    if (!schoolYear) {
+      return
+    } 
 
     fetchSISProvidersData()
   }, [ schoolYear ])

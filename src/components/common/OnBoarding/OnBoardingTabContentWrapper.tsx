@@ -6,7 +6,10 @@ interface OnBoardingTabContentWrapperProps {
 
 const OnBoardingTabContentWrapper = ({ children }: OnBoardingTabContentWrapperProps) => {
   return (
-    <Flex flexDir='column' w='full'>
+    <Flex
+      flexDir='column'
+      w='full'
+    >
       {children}
     </Flex>
   )

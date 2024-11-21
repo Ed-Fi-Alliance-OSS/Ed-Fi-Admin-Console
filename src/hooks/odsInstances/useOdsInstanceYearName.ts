@@ -7,8 +7,9 @@ const useOdsInstanceDisplayYear = () => {
   const getDisplayYear = (instance: ODSInstance) => {
     const instanceYear = getInstanceYear(instance)
 
-    if (!instanceYear)
+    if (!instanceYear) {
       return 'Empty'
+    }
 
     return `${instanceYear - 1} - ${instanceYear}`
   }

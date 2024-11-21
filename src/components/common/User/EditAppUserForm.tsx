@@ -13,8 +13,7 @@ interface EditAppUserFormProps {
 }
 
 const EditAppUserForm = ({ selectedUserData, onClose, onAfterEdit }: EditAppUserFormProps) => {
-  const { 
-    userData, 
+  const { userData, 
     mode,
     roleOptions,
     subscriptionsOptionList,
@@ -37,39 +36,39 @@ const EditAppUserForm = ({ selectedUserData, onClose, onAfterEdit }: EditAppUser
 
   const edorgsHook = useUserEducationOrganizations({ selectedUser: selectedUserData })
   const [ editMode, setEditMode ] = useState<boolean>(false)
-
   const onChangeEditEdOrgMode = (value: boolean) => setEditMode(value)
-
   const onUpdateUser = async () => await onSaveUserData()
 
   return (
     <ModalForm 
+      content={<EditAppUserFormContent 
+        edOrgEditMode={editMode}
+        edOrgHookData={edorgsHook}
+        errors={errors}
+        isFetchingProfile={isFetchingProfile}
+        isImplicit={isImplicit}
+        mode={mode}
+        roleOptions={roleOptions}
+        subscriptionOptionsList={subscriptionsOptionList}
+        userData={userData}
+        onChangeMode={onChangeMode}
+        onInputChange={onInputChange}
+        onRoleSelect={onRoleSelect}
+        onSelectApplicationRoleForUser={onSelectApplicationRoleForUser}
+        onSubscriptionToggle={onSubscriptionToggle}
+        onToggleIsAdmin={onToggleIsAdmin}
+        onUpdateEditEdOrgMode={onChangeEditEdOrgMode}
+      />}
       header={<EditAppUserFormHeader 
-        isActionDisabled={edorgsHook.showAddItem || editMode}
         isSaving={
           savingChanges || 
                     edorgsHook.isCreatingUserEducationOrganization || 
                     edorgsHook.isUpdatingUserEducationOrganization || 
-                    edorgsHook.isDeletingUserEducationOrganization.deleting }
+                    edorgsHook.isDeletingUserEducationOrganization.deleting}
+        isActionDisabled={edorgsHook.showAddItem || editMode}
+        onClose={onClose}
         onSave={onUpdateUser}
-        onClose={onClose} />}
-      content={<EditAppUserFormContent 
-        userData={userData}
-        edOrgHookData={edorgsHook}
-        mode={mode}
-        isImplicit={isImplicit}
-        isFetchingProfile={isFetchingProfile}
-        errors={errors}
-        roleOptions={roleOptions}
-        subscriptionOptionsList={subscriptionsOptionList}
-        edOrgEditMode={editMode}
-        onUpdateEditEdOrgMode={onChangeEditEdOrgMode}
-        onChangeMode={onChangeMode}
-        onInputChange={onInputChange}
-        onToggleIsAdmin={onToggleIsAdmin}
-        onRoleSelect={onRoleSelect}
-        onSelectApplicationRoleForUser={onSelectApplicationRoleForUser}
-        onSubscriptionToggle={onSubscriptionToggle} />}
+      />}
       height='auto'
       width="512px"
     />

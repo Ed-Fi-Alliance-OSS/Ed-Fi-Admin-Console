@@ -1,5 +1,7 @@
 import { Flex } from '@chakra-ui/react'
-import { AppsMenuMoreOption, Content, DefaultLayout, EdxAppConfig, ExternalAppsContext, Footer, NotificationBar, TEEAuthDataContext, TopBar, TopBarLeft, TopBarRight, useAuthActions, useConfig, useNotificationsBar, UserProfileContext } from '@edfi/admin-console-shared-sdk'
+import {
+  AppsMenuMoreOption, Content, DefaultLayout, EdxAppConfig, ExternalAppsContext, Footer, NotificationBar, TEEAuthDataContext, TopBar, TopBarLeft, TopBarRight, useAuthActions, useConfig, useNotificationsBar, UserProfileContext 
+} from '@edfi/admin-console-shared-sdk'
 import { useContext } from 'react'
 import { AuthContextProps } from 'react-oidc-context'
 import { useNavigate } from 'react-router-dom'
@@ -23,9 +25,18 @@ const DefaultLayoutWrapper = ({ content, notificationBarMessage, isClosingSessio
   const navigate = useNavigate()
 
   const moreOptions: AppsMenuMoreOption[] = [
-    { name: 'Account Info', url: null },
-    { name: 'Online Community', url: null },
-    { name: 'Help', url: null }
+    {
+      name: 'Account Info',
+      url: null 
+    },
+    {
+      name: 'Online Community',
+      url: null 
+    },
+    {
+      name: 'Help',
+      url: null 
+    }
   ]
 
   const handleLogoClick = () => {
@@ -37,32 +48,42 @@ const DefaultLayoutWrapper = ({ content, notificationBarMessage, isClosingSessio
   const { config } = useConfig()
   return (
     <DefaultLayout
-      topBar={<TopBar
-        leftComponent={<TopBarLeft
-          onClick={handleLogoClick}
-          list={externalApps}
-          menuOptions={moreOptions} />}
-        rightComponent={<TopBarRight
-          profileData={userProfile}
-          isClosingSession={isClosingSession}
-          onLogin={handleLogIn}
-          onLogout={onLogout}
-          onChangeTenantId={handleChangeTenantId} />} />}
-      notificationBar={
-        <Flex mt='-10px' w='full'>
-          <NotificationBar
-            show={false}
-            onClose={onCloseNotificationsBar}
-            content={notificationBarMessage} />
-        </Flex>}
       content={<Content
         marginTop='60px'
-        maxW="1400px">
+        maxW="1400px"
+      >
         {content}
       </Content>}
       footer={<Footer 
+        imageUrl={config.app.logo ?? ''}
         onClick={handleLogoClick}
-        imageUrl={config.app.logo ?? ''} />} />
+      />}
+      notificationBar={
+        <Flex
+          mt='-10px'
+          w='full'
+        >
+          <NotificationBar
+            content={notificationBarMessage}
+            show={false}
+            onClose={onCloseNotificationsBar}
+          />
+        </Flex>}
+      topBar={<TopBar
+        leftComponent={<TopBarLeft
+          list={externalApps}
+          menuOptions={moreOptions}
+          onClick={handleLogoClick}
+        />}
+        rightComponent={<TopBarRight
+          isClosingSession={isClosingSession}
+          profileData={userProfile}
+          onChangeTenantId={handleChangeTenantId}
+          onLogin={handleLogIn}
+          onLogout={onLogout}
+        />}
+      />}
+    />
   )
 }
 

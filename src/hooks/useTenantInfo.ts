@@ -1,4 +1,6 @@
-import { Tenant, UserProfileContext } from '@edfi/admin-console-shared-sdk'
+import {
+  Tenant, UserProfileContext 
+} from '@edfi/admin-console-shared-sdk'
 import { useContext } from 'react'
 
 const useTenantInfo = () => {
@@ -12,9 +14,7 @@ const useTenantInfo = () => {
     }
   }
 
-  return {
-    getCurrentTenant
-  }
+  return { getCurrentTenant }
 }
 
 export default useTenantInfo

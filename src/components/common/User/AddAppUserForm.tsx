@@ -9,8 +9,7 @@ interface AddAppUserFormProps {
 }
 
 const AddAppUserForm = ({ onAfterAddUser, onClose }: AddAppUserFormProps) => {
-  const { 
-    userData, 
+  const { userData, 
     mode,
     roleOptions,
     subscriptionsOptionList,
@@ -27,25 +26,28 @@ const AddAppUserForm = ({ onAfterAddUser, onClose }: AddAppUserFormProps) => {
 
   return (
     <ModalForm
-      header={<AddAppUserFormHeader 
-        isSaving={savingChanges}
-        onAction={onSave}
-        onClose={onClose} />}
       content={<AddAppUserFormContent
-        mode={mode}
-        onToggleIsAdmin={onToggleIsAdmin}
-        userData={userData}
-        roleOptions={roleOptions}
-        subscriptionOptionsList={subscriptionsOptionList}
         errors={errors}
         hasTriedSubmit={hasTriedSubmit}
+        mode={mode}
+        roleOptions={roleOptions}
+        subscriptionOptionsList={subscriptionsOptionList}
+        userData={userData}
         onChangeMode={onChangeMode}
         onInputChange={onInputChange}
         onRoleSelect={onRoleSelect}
         onSelectApplicationRoleForUser={onSelectApplicationRoleForUser}
-        onSubscriptionToggle={onSubscriptionToggle} />}
+        onSubscriptionToggle={onSubscriptionToggle}
+        onToggleIsAdmin={onToggleIsAdmin}
+      />}
+      header={<AddAppUserFormHeader 
+        isSaving={savingChanges}
+        onAction={onSave}
+        onClose={onClose}
+      />}
       height='auto'
-      width="512px" />
+      width="512px"
+    />
   )
 }
 

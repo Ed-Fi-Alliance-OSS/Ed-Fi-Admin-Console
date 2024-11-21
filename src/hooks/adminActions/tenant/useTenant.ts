@@ -1,5 +1,9 @@
-import { TEEAuthDataContext, UserProfileContext } from '@edfi/admin-console-shared-sdk'
-import { useState, useEffect, useContext } from 'react'
+import {
+  TEEAuthDataContext, UserProfileContext 
+} from '@edfi/admin-console-shared-sdk'
+import {
+  useState, useEffect, useContext 
+} from 'react'
 import { adminConsoleContext } from '../../../context/adminConsoleContext'
 import { Tenant } from '../../../core/Tenant.types'
 import { PostDomainRequest } from '../../../services/AdminActions/Domains/DomainService.request'
@@ -39,8 +43,9 @@ const useTenant = () => {
       const result = await createDomain(adminConfig.actionParams, request)
       setIsAddingDomain(false)
 
-      if (result.type === 'Response')
+      if (result.type === 'Response') {
         await fetchTenant()
+      }
     }
   }
 

@@ -3,6 +3,7 @@ import ErrorMessagesGenerator from '../../ErrorMessagesGenerator'
 import { personalDataRules } from '../../rules/personalDetails.rules'
 
 const partnerNameField = 'Vendor Name'
+
 const partnerNameSchema = Joi
   .string()
   .required()
@@ -14,6 +15,7 @@ const partnerNameSchema = Joi
     'string.empty': ErrorMessagesGenerator.emptyField(partnerNameField),
     'string.min':  ErrorMessagesGenerator.moreThan(partnerNameField, personalDataRules.name.min, 'letters'),
     'string.max':  ErrorMessagesGenerator.lessThan(partnerNameField, personalDataRules.name.max, 'letters'),
-    'string.pattern.base': 'Field must only contain alpha-numeric characters and/or spaces',})
+    'string.pattern.base': 'Field must only contain alpha-numeric characters and/or spaces', 
+  })
 
 export default partnerNameSchema

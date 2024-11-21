@@ -19,9 +19,7 @@ const InstanceDescription = ({ instance }: InstanceDescriptionProps) => {
   const {
     displayEdFiVersionContent,
     displayTsdsVersionContent
-  } = useDisplayOdsVersions({ 
-    instanceOdsMetadata
-  })
+  } = useDisplayOdsVersions({ instanceOdsMetadata })
 
   const { getOdsInstanceEdFiStatus } = useOdsInstanceEdFiStatus({
     instance,
@@ -36,15 +34,19 @@ const InstanceDescription = ({ instance }: InstanceDescriptionProps) => {
     <Flex>
       <Flex flexDir='column'>
         <InstanceDescriptionField
+          content={displayEdFiVersionContent()}
           title='Ed-Fi Version'
-          content={displayEdFiVersionContent()} />
+        />
+
         <InstanceDescriptionField
+          content={displayTsdsVersionContent()}
           title="Extension"
-          content={displayTsdsVersionContent()} />
+        />
+
         <InstanceDescriptionField 
+          content={<ODSInstanceEdFiStatus status={getOdsInstanceEdFiStatus()} />}
           title="Ed-Fi Status"
-          content={<ODSInstanceEdFiStatus 
-            status={getOdsInstanceEdFiStatus()} />} />
+        />
       </Flex>
     </Flex>
   )

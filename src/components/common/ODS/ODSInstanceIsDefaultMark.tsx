@@ -8,10 +8,14 @@ interface ODSInstanceIsDefaultMarkProps {
 
 const ODSInstanceIsDefaultMark = ({ isDefault, w }: ODSInstanceIsDefaultMarkProps) => {
   return (
-    <Flex justifyContent='center' w={w? w : 'full'}>
+    <Flex
+      justifyContent='center'
+      w={w? w : 'full'}
+    >
       { isDefault && <CheckCircleIcon 
         color='blue.600'
-        fontSize='20px' /> }
+        fontSize='20px'
+      /> }
     </Flex>
   )
 }

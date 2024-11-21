@@ -1,5 +1,7 @@
 import { useState } from 'react'
-import { ControlTableSort, ControlTableSortType } from '../../core/controlTable'
+import {
+  ControlTableSort, ControlTableSortType 
+} from '../../core/controlTable'
 import { ExtendedODSInstance } from '../../core/ODSInstance.types'
 import useOdsInstanceYear from './useOdsInstanceYear'
 
@@ -15,22 +17,26 @@ const useOdsInstanceTableSorting = () => {
 
   const sortByYear = (instances: ExtendedODSInstance[]): ExtendedODSInstance[] => {
     return instances
-      .map(instance => ({...instance}))
+      .map(instance => ({ ...instance }))
       .sort((instancea, instanceb) => {
         const instanceaYear = getInstanceYear(instancea)
         const instancebYear = getInstanceYear(instanceb)
 
-        if (instanceaYear == null || instancebYear == null)
+        if (instanceaYear == null || instancebYear == null) {
           return 0
+        }
 
-        if (instanceaYear == null && instancebYear != null)
+        if (instanceaYear == null && instancebYear != null) {
           return 1
+        }
 
-        if (instanceaYear != null && instancebYear == null)
-          return -1 
+        if (instanceaYear != null && instancebYear == null) {
+          return -1
+        } 
 
-        if (orderBy.order == 'desc')
+        if (orderBy.order == 'desc') {
           return instancebYear - instanceaYear
+        }
 
         return instanceaYear - instancebYear
       })
@@ -38,11 +44,12 @@ const useOdsInstanceTableSorting = () => {
 
   const sortByStatus = (instances: ExtendedODSInstance[]): ExtendedODSInstance[] => {
     return instances
-      .map(instance => ({...instance}))
+      .map(instance => ({ ...instance }))
       .sort((instancea, instanceb) => {
         
-        if (orderBy.order == 'desc')
+        if (orderBy.order == 'desc') {
           return instancea.edFiStatus.operationStatus.localeCompare(instanceb.edFiStatus.operationStatus)
+        }
 
         return instanceb.edFiStatus.operationStatus.localeCompare(instancea.edFiStatus.operationStatus)
       })
@@ -50,10 +57,11 @@ const useOdsInstanceTableSorting = () => {
 
   const sortByEdFiVersion = (instances: ExtendedODSInstance[]): ExtendedODSInstance[] => {
     return instances
-      .map(instance => ({...instance}))
+      .map(instance => ({ ...instance }))
       .sort((instancea, instanceb) => {
-        if (orderBy.order == 'desc')
+        if (orderBy.order == 'desc') {
           return instanceb.edFiVersion.localeCompare(instancea.edFiVersion)
+        }
 
         return instancea.edFiVersion.localeCompare(instanceb.edFiVersion)
       })
@@ -61,27 +69,32 @@ const useOdsInstanceTableSorting = () => {
 
   const sortByTsdsVersion = (instances: ExtendedODSInstance[]): ExtendedODSInstance[] => {
     return instances
-      .map(instance => ({...instance}))
+      .map(instance => ({ ...instance }))
       .sort((instancea, instanceb) => {
-        if (orderBy.order == 'desc')
+        if (orderBy.order == 'desc') {
           return instanceb.tsdsVersion.localeCompare(instancea.tsdsVersion)
+        }
 
         return instancea.tsdsVersion.localeCompare(instanceb.tsdsVersion)
       })
   }
 
   const getSortedInstances = (instances: ExtendedODSInstance[]): ExtendedODSInstance[] => {
-    if (orderBy.field == 'Year')
+    if (orderBy.field == 'Year') {
       return sortByYear(instances)
+    }
 
-    if (orderBy.field == 'Status')
+    if (orderBy.field == 'Status') {
       return sortByStatus(instances)
+    }
 
-    if (orderBy.field == 'EdFiVersion')
+    if (orderBy.field == 'EdFiVersion') {
       return sortByEdFiVersion(instances)
+    }
 
-    if (orderBy.field == 'TsdsVersion')
+    if (orderBy.field == 'TsdsVersion') {
       return sortByTsdsVersion(instances)
+    }
 
     return instances
   }

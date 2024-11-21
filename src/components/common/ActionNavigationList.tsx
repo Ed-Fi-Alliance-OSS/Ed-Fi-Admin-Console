@@ -5,20 +5,31 @@ import ActionNavigationCard from './ActionNavigationCard'
 
 
 const ActionNavigationList = () => {
-  const {config} = useConfig()
+  const { config } = useConfig()
+
   const actionNavigationList: ActionNavigationItem[] = [
-    { icon: `${config.app.basePath}/assets/people-icon.svg`, name: 'Manage Users' },
-    { icon: `${config.app.basePath}/assets/unlock-icon.svg`, name: 'SSO' }
+    {
+      icon: `${config.app.basePath}/assets/people-icon.svg`,
+      name: 'Manage Users' 
+    },
+    {
+      icon: `${config.app.basePath}/assets/unlock-icon.svg`,
+      name: 'SSO' 
+    }
   ]
 
   return (
-    <Flex mt='16px' justifyContent='start' w='full'>
+    <Flex
+      justifyContent='start'
+      mt='16px'
+      w='full'
+    >
       {actionNavigationList.map((item, index) => 
         <ActionNavigationCard 
-          data={item} 
           key={item.name} 
-          index={index} />
-      )}
+          data={item} 
+          index={index}
+        />)}
     </Flex>
   )
 }

@@ -10,7 +10,8 @@
     "build:prod": "vite build --mode production",
     "preview": "vite preview",
     "tests": "playwright test",
-    "lint": "eslint . --quiet"
+    "lint": "eslint . --quiet",
+    "lint:fix": "eslint . --quiet --fix"
   },
   "dependencies": {
     "@chakra-ui/icons": "2.1.1",

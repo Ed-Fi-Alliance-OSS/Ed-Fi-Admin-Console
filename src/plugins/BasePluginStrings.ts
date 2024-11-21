@@ -1,12 +1,8 @@
 type PossibleValues = string | boolean | number | null | undefined;
 export type StringsShape = Record<string, Record<string, PossibleValues> | PossibleValues>;
 export const BasePluginStrings = {
-  app: {
-    'ODS_INSTANCES': 'ODS Instances',
-  },
-  api: {
-    edfi: 'https://ed-fi.org'
-  }
+  app: { 'ODS_INSTANCES': 'ODS Instances', },
+  api: { edfi: 'https://ed-fi.org' }
 } as const
 
 // type NestedKeys<T> = { [K in keyof T]: T[K] extends Record<string, any> ? `${K & string}.${NestedKeys<T[K]> & string}` : `${K & string}`}[keyof T];

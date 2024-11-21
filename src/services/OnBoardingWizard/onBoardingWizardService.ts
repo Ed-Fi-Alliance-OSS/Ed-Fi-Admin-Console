@@ -1,6 +1,8 @@
 import axios, { AxiosError } from 'axios'
 import { OnBoardingWizardData } from '../../core/onBoardingWizard/onBoardingWizard.types'
-import { AddStepProps, AddStepRequestData, FetchOnBoardingWizardData, UpdateOnBoardingWizardDataProps, UpdateOnBoardingWizardDataRequest } from './onBoardingWizardService.types'
+import {
+  AddStepProps, AddStepRequestData, FetchOnBoardingWizardData, UpdateOnBoardingWizardDataProps, UpdateOnBoardingWizardDataRequest 
+} from './onBoardingWizardService.types'
 import { includeAuthorization } from '@edfi/admin-console-shared-sdk' 
 
 const fetchOnBoardingWizardData = async ({ apiUrl, tenantId, token, apiConfig }: FetchOnBoardingWizardData) => {
@@ -10,18 +12,18 @@ const fetchOnBoardingWizardData = async ({ apiUrl, tenantId, token, apiConfig }:
   //   ? `/data-tenant.json`
   //   : `${apiConfig?.baseUri ?? ''}/adminconsole/tenant?id=1`
   const authorizationToken = await includeAuthorization(token, apiConfig)
+
   try {
     if(authorizationToken) {
       const response = await axios.get(apiUrl, authorizationToken)
       return response.data['onboarding'] as OnBoardingWizardData
     }
+
     return null
-  }
-  catch(e) {
+  } catch(e) {
     if (e instanceof AxiosError) {
       console.log('error when fetching onBoarding wizard data', e.message)
-    }
-    else {
+    } else {
       console.log(e)
     }
 
@@ -81,10 +83,10 @@ const updateOnBoardingWizardStep = async ({ apiUrl, tenantId, token, stepStatus,
   // const updateOnBoardingWizardDataUrl = `${apiUrl}/tenants/${tenantId}/onboardingsteps/${stepNumber}`
   // const updateOnBoardingWizardDataUrl = `data-step.json`
   const updateOnBoardingWizardDataUrl = `${apiConfig?.baseUri ?? ''}/adminconsole/step`
-
   // console.log('update on boarding wizard step (service): stepNumber', stepNumber)
   // console.log('update on boarding wizard step (service): url', updateOnBoardingWizardDataUrl)
   const authorizationToken = await includeAuthorization(token, apiConfig)
+
   try {
     if(authorizationToken) {
       const data: UpdateOnBoardingWizardDataRequest = {
@@ -92,17 +94,17 @@ const updateOnBoardingWizardStep = async ({ apiUrl, tenantId, token, stepStatus,
         number: stepNumber,
         status: stepStatus
       }
+
       const response = await axios.put(updateOnBoardingWizardDataUrl, data, authorizationToken)
             
       return response.data
     }
+
     return null
-  }
-  catch(e) {
+  } catch(e) {
     if (e instanceof AxiosError) {
       console.log('error when fetching onBoarding wizard data', e.message)
-    }
-    else {
+    } else {
       console.log(e)
     }
 
@@ -116,6 +118,7 @@ const createOnBoardingWizardStep = async ({ apiUrl, tenantId, token, number, sta
   // const createStepUrl = `data-steps.json`
   const createStepUrl = `${apiConfig?.baseUri ?? ''}/adminconsole/steps`
   const authorizationToken = await includeAuthorization(token, apiConfig)
+
   try {
     if(authorizationToken){
       const requestData: AddStepRequestData = {
@@ -133,13 +136,12 @@ const createOnBoardingWizardStep = async ({ apiUrl, tenantId, token, number, sta
 
       return true
     }
+
     return null
-  }
-  catch(ex) {
+  } catch(ex) {
     if (ex instanceof AxiosError) {
       console.log('error when creating onboarding wizard step wizard data', ex.message)
-    }
-    else {
+    } else {
       console.log(ex)
     }
 

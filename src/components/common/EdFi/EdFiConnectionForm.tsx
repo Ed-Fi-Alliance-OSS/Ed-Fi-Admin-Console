@@ -1,8 +1,14 @@
-import { Button, Flex, FormControl, Text } from '@chakra-ui/react'
-import { CustomFormLabel, CustomInput, CustomSelect } from '@edfi/admin-console-shared-sdk'
+import {
+  Button, Flex, FormControl, Text 
+} from '@chakra-ui/react'
+import {
+  CustomFormLabel, CustomInput, CustomSelect 
+} from '@edfi/admin-console-shared-sdk'
 import { ChangeEvent } from 'react'
 import { FormDataErrors } from '../../../core/validation/FormValidations.types'
-import { EdFiConnectionFormData, EdFiConnectionFormMode, EdFiConnectionVerificationStatus } from '../../../hooks/edfi/useEdFiConnectionForm.types'
+import {
+  EdFiConnectionFormData, EdFiConnectionFormMode, EdFiConnectionVerificationStatus 
+} from '../../../hooks/edfi/useEdFiConnectionForm.types'
 import EdFiConnectionVerification from './EdFiConnectionVerification'
 
 interface EdFiConnectionFormProps {
@@ -20,87 +26,129 @@ interface EdFiConnectionFormProps {
 
 const EdFiConnectionForm = ({ formData, errors, mode, inOnboarding, verificationStatus, isverifying, disabledVerification, isSaving, onInputChange, onVerifyConnection }: EdFiConnectionFormProps) => {  
   return (
-    <Flex flexDir='column' w='full'>
+    <Flex
+      flexDir='column'
+      w='full'
+    >
       { inOnboarding && <Flex flexDir='column'>
         <Text
           fontFamily='Poppins'
+          fontSize='18px'
           fontWeight='700'
-          fontSize='18px'>Credentials</Text>
+        >Credentials
+        </Text>
+
         <Text
           fontFamily='Open sans'
           fontWeight='400'
-          w='500px'>
-                        Note: These credentials will be used for both Data Health Check and Data Warehouse as base applications for Acme Service Center. 
-                        You will be able to connect other applications within the Tech Console later. When setting up your credentials, 
-                        be sure to use the "Read Only (All Resources)" claim set.
+          w='500px'
+        >
+          Note: These credentials will be used for both Data Health Check and Data Warehouse as base applications for Acme Service Center. 
+          You will be able to connect other applications within the Tech Console later. When setting up your credentials, 
+          be sure to use the "Read Only (All Resources)" claim set.
         </Text> 
       </Flex>}
+
       { !inOnboarding && mode === 'Edit' &&  <FormControl mt='16px'>
         <CustomFormLabel 
           htmlFor='applicationName' 
-          text='Application Name' />
+          text='Application Name'
+        />
+
         <CustomSelect
-          id="applicationName"
-          disabled={true}
           options={[
-            { value: 'Data Warehouse', text: 'Data Warehouse' }, 
-            { value: 'Data Health Check', text: 'Data Health Check' }]}
+            {
+              value: 'Data Warehouse',
+              text: 'Data Warehouse' 
+            }, 
+            {
+              value: 'Data Health Check',
+              text: 'Data Health Check' 
+            }
+          ]}
+          disabled={true}
+          id="applicationName"
           value={formData.connectionName ?? ''}
-          onChange={() => console.log('Change application')} />
+          onChange={() => console.log('Change application')}
+        />
       </FormControl> }
+
       <FormControl mt='16px'>
         <CustomFormLabel 
           htmlFor='baseUrl' 
-          text='Ed-Fi Base URL' />
+          text='Ed-Fi Base URL'
+        />
+
         <CustomInput 
-          id='baseUrl' 
-          value={formData.baseUrl}
-          disabled={mode === 'Edit'? true : false}
+          disabled={mode === 'Edit'? true : false} 
           error={errors && errors['baseUrl'] && errors['baseUrl'].message}
-          onChange={onInputChange} />
+          id='baseUrl'
+          value={formData.baseUrl}
+          onChange={onInputChange}
+        />
       </FormControl>
+
       <FormControl mt='16px'>
         <CustomFormLabel 
           htmlFor='key' 
-          text='Key' />
+          text='Key'
+        />
+
         <CustomInput 
-          id='key' 
-          value={formData.key}
+          disabled={isSaving} 
           error={errors && errors['key'] && errors['key'].message}
-          disabled={isSaving}
-          onChange={onInputChange} />
+          id='key'
+          value={formData.key}
+          onChange={onInputChange}
+        />
       </FormControl>
+
       <FormControl mt='16px'>
         <CustomFormLabel 
           htmlFor='secret' 
-          text='Secret' />
+          text='Secret'
+        />
+
         <CustomInput 
-          type='password' 
+          disabled={isSaving} 
+          error={errors && errors['secret'] && errors['secret'].message} 
           id='secret' 
-          value={formData.secret} 
-          error={errors && errors['secret'] && errors['secret'].message}
-          disabled={isSaving}
-          onChange={onInputChange} />
+          type='password'
+          value={formData.secret}
+          onChange={onInputChange}
+        />
       </FormControl>
-      <Flex mt='16px' w='full'>
+
+      <Flex
+        mt='16px'
+        w='full'
+      >
         <Button
-          onClick={onVerifyConnection}
-          isLoading={isSaving || isverifying}
-          isDisabled={disabledVerification}
           alignSelf='flex-end'
-          variant='primaryBlue500'
-          size='xs'
+          isDisabled={disabledVerification}
+          isLoading={isSaving || isverifying}
+          minW='25px'
           paddingX='16px'
+          size='xs'
+          variant='primaryBlue500'
           w='auto'
-          minW='25px'>
-                        Verify Connection
+          onClick={onVerifyConnection}
+        >
+          Verify Connection
         </Button>
       </Flex>
-      <Flex bg='gray.300' h='1px' my='32px' />
+
+      <Flex
+        bg='gray.300'
+        h='1px'
+        my='32px'
+      />
+
       <EdFiConnectionVerification 
-        mode={mode} 
-        inOnboarding={inOnboarding}
-        status={verificationStatus} />
+        inOnboarding={inOnboarding} 
+        mode={mode}
+        status={verificationStatus}
+      />
     </Flex>
   )
 }

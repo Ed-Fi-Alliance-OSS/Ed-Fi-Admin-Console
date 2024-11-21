@@ -15,7 +15,8 @@ const ODSInstanceHostingType = ({ instance }: ODSInstanceHostingTypeProps) => {
     <Text
       fontFamily='Open sans'
       fontWeight='400'
-      size='md'>
+      size='md'
+    >
       { getHostingType(instance) }
     </Text>
   )

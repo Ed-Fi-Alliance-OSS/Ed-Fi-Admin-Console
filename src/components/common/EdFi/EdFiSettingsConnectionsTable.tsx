@@ -44,52 +44,93 @@ const EdFiSettingsConnectionsTable = () => {
     <>
       <ConsoleModal 
         content={<EdFiModalContentConnectionForm 
-          mode={mode}
           initialData={connectionDataToEdit}
+          mode={mode}
           onAfterEdit={() => null}
           onClose={onHideConnectionModal}
-          onConfirmClose={onShowConfirmModal} />}
+          onConfirmClose={onShowConfirmModal}
+        />}
         show={showConnectionModal} 
-        onClose={onHideConnectionModal} />
+        onClose={onHideConnectionModal}
+      />
+
       <EdFiConfirmConnectionActionModal
-        show={showConfirmationModal}
         isSaving={false}
+        show={showConfirmationModal}
         onAction={onConfirmClose}
-        onClose={onHideConfirmationModal} />
-      <Flex flexDir='column' w='full'>
+        onClose={onHideConfirmationModal}
+      />
+
+      <Flex
+        flexDir='column'
+        w='full'
+      >
         <EdFiConnectionsTable
           headers={[
-            <ControlTableHeader headerData={{ text: 'Application', fieldName: 'connectionName', sortedByField: orderBy.field, showSorting: true, sortingType: orderBy.order, onSortAsc, onSortDesc }} />,
-            <ControlTableHeader headerData={{ text: 'Status', fieldName: 'status', sortedByField: orderBy.field, showSorting: false, sortingType: orderBy.order, onSortAsc, onSortDesc }} />,
-            <ControlTableHeader headerData={{ text: '', fieldName: 'controls', sortedByField: orderBy.field, showSorting: false, sortingType: orderBy.order, onSortAsc, onSortDesc }} />
+            <ControlTableHeader headerData={{
+              text: 'Application',
+              fieldName: 'connectionName',
+              sortedByField: orderBy.field,
+              showSorting: true,
+              sortingType: orderBy.order,
+              onSortAsc,
+              onSortDesc 
+            }}
+            />,
+            <ControlTableHeader headerData={{
+              text: 'Status',
+              fieldName: 'status',
+              sortedByField: orderBy.field,
+              showSorting: false,
+              sortingType: orderBy.order,
+              onSortAsc,
+              onSortDesc 
+            }}
+            />,
+            <ControlTableHeader headerData={{
+              text: '',
+              fieldName: 'controls',
+              sortedByField: orderBy.field,
+              showSorting: false,
+              sortingType: orderBy.order,
+              onSortAsc,
+              onSortDesc 
+            }}
+            />
           ]}
-          itemsCount={paginatedData.data.length}
-          loading={isFetchingData}
-          rows={<EdFiSettingsConnectionTableRows
-            connections={paginatedData.data}
-            connectionStatusList={connectionStatusList}
-            isLoadingConnectionStatus={isLoadingConnectionStatus}
-            onShowConnectionModal={onShowConnectionModal} />}
-          pagination={<Flex ml='auto' w='auto'>
+          pagination={<Flex
+            ml='auto'
+            w='auto'
+          >
             <TablePagination 
+              canNextPage={canNextPage}
+              canPreviousPage={canPreviousPage}
               currentPage={paginatedData.pageIndex + 1}
               goToInitialPage={onGoToInitialPage}
               goToLastPage={onGoToLastPage}
               goToNextPage={onGoToNextPage}
               goToPreviousPage={onGoToPreviousPage}
-              canNextPage={canNextPage}
-              canPreviousPage={canPreviousPage}
-              pageSize={paginatedData.pageSize}
-              onDecrementPageSize={onDecrementPageSize}
-              onIncrementPageSize={onIncrementPageSize}
-              totalPages={totalPages}
               maxPageSize={maxPerPage}
-              minPageSize={minPerPage} 
-              onChangePageSize={() => console.log('null')} />
-          </Flex>} />
+              minPageSize={minPerPage}
+              pageSize={paginatedData.pageSize}
+              totalPages={totalPages}
+              onChangePageSize={() => console.log('null')}
+              onDecrementPageSize={onDecrementPageSize} 
+              onIncrementPageSize={onIncrementPageSize}
+            />
+          </Flex>}
+          rows={<EdFiSettingsConnectionTableRows
+            connections={paginatedData.data}
+            connectionStatusList={connectionStatusList}
+            isLoadingConnectionStatus={isLoadingConnectionStatus}
+            onShowConnectionModal={onShowConnectionModal}
+          />}
+          itemsCount={paginatedData.data.length}
+          loading={isFetchingData}
+        />
       </Flex>
-      { false && paginatedData.data.length === 0 && <EdFiSettingsConnectSection 
-        onConnect={onShowConnectionModal} /> }
+
+      { false && paginatedData.data.length === 0 && <EdFiSettingsConnectSection onConnect={onShowConnectionModal} /> }
     </>
   )
 }

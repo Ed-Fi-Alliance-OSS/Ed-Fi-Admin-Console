@@ -12,11 +12,17 @@ const DocumentationRender = ({ documentationUrl, selectedDocumentation }: Docume
   return (
     <>
       {selectedDocumentation !== 'Select Source' && documentationUrl && 
-                <Flex 
-                  className="special-flex"
-                  __css={{ '&': { ml: '0px', width: 'full' } }}>
-                  <SwaggerUI url={documentationUrl} />
-                </Flex>}
+      <Flex 
+        __css={{
+          '&': {
+            ml: '0px',
+            width: 'full' 
+          } 
+        }}
+        className="special-flex"
+      >
+        <SwaggerUI url={documentationUrl} />
+      </Flex>}
     </>
   )
 }

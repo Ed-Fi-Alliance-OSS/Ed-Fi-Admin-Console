@@ -1,5 +1,7 @@
 import { TEEAuthDataContext } from '@edfi/admin-console-shared-sdk'
-import { useContext, useEffect, useState } from 'react'
+import {
+  useContext, useEffect, useState 
+} from 'react'
 import { adminConsoleContext } from '../../../context/adminConsoleContext'
 import { EdfiApplication } from '../../../core/Edfi/EdfiApplications'
 import { EdfiVendor } from '../../../core/Edfi/EdfiVendors'
@@ -52,8 +54,9 @@ const usePartnersAndApplicationsAccordion = ({ schoolYear }: UsePartnersAndAppli
           }
         }
 
-        if (vendorswapplicationsList.length > 0)
+        if (vendorswapplicationsList.length > 0) {
           setVendorsWithApplicationsList(vendorswapplicationsList)
+        }
       }
     }   
   }
@@ -69,6 +72,7 @@ const usePartnersAndApplicationsAccordion = ({ schoolYear }: UsePartnersAndAppli
 
     for (const vendor of vendorList) {
       const vendorApplications = applicationList.filter(application => application.vendorId == vendor.vendorId)
+
       const vendorWithApplications: EdfiVendorWithApplications = {
         vendorId: vendor.vendorId,
         company: vendor.company,
@@ -85,8 +89,9 @@ const usePartnersAndApplicationsAccordion = ({ schoolYear }: UsePartnersAndAppli
   }
 
   const fetchAllVendors = async (): Promise<EdfiVendor[] | undefined> => {
-    if (!adminConfig)
-      return 
+    if (!adminConfig) {
+      return
+    } 
 
     const vendorsListResult = await getVendorsListForSchoolYear(adminConfig.actionParams, schoolYear)
 
@@ -97,21 +102,24 @@ const usePartnersAndApplicationsAccordion = ({ schoolYear }: UsePartnersAndAppli
   }
 
   const fetchAllApplications = async (): Promise<EdfiApplication[] | undefined> => {
-    if (!adminConfig)
-      return 
+    if (!adminConfig) {
+      return
+    } 
         
     const applicationsListResult = await getEdfiApplicationsListForSchoolYear(adminConfig.actionParams, schoolYear)
 
-    if (applicationsListResult.type === 'Response')
+    if (applicationsListResult.type === 'Response') {
       return applicationsListResult.data
+    }
   }
 
   const fetchVendorsWithApplications = async () => {
     const vendorsList = await fetchAllVendors()
     const applicationsList = await fetchAllApplications()
 
-    if (!vendorsList || !applicationsList) 
-      return 
+    if (!vendorsList || !applicationsList) {
+      return
+    } 
 
     const vendorsWithApplications = mergeVendorsAndApplications(vendorsList, applicationsList)
     setVendorsWithApplicationsList(vendorsWithApplications)

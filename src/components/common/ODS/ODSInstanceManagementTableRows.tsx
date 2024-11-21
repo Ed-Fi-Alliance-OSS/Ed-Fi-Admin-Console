@@ -21,8 +21,9 @@ const ODSInstanceManagementTableRows = ({ tableMode, selectedInstance, instanceL
   } = useValidateSetAsDefault()
 
   const filterInstancesFromMode = (instance: ExtendedODSInstance) => {
-    if (tableMode != 'Show Selected')
-      return true 
+    if (tableMode != 'Show Selected') {
+      return true
+    } 
 
     return instance.instanceId == selectedInstance?.instanceId
   }
@@ -33,16 +34,16 @@ const ODSInstanceManagementTableRows = ({ tableMode, selectedInstance, instanceL
         <ControlTableRow key={index}>
           <ODSInstanceManagementTableRowItem
             key={index}
-            tableMode={tableMode}
-            selectedInstance={selectedInstance}
-            instance={instance}
             canSetAsDefault={canSetAsDefault(instance, instanceList)}
+            instance={instance}
+            selectedInstance={selectedInstance}
+            tableMode={tableMode}
             updatingIsDefault={updatingIsDefault}
-            onSelectInstance={onSelectInstance}
             onOpenSetDefaultModal={onOpenSetDefaultModal}
-            onOpenSetUpModal={onOpenSetUpModal} />
-        </ControlTableRow>
-      )}
+            onOpenSetUpModal={onOpenSetUpModal}
+            onSelectInstance={onSelectInstance}
+          />
+        </ControlTableRow>)}
     </>
   )
 }

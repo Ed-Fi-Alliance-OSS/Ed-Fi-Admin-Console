@@ -1,5 +1,7 @@
 import { Subscription } from '../../../core/Subscription.types'
-import { Mode, SubscriptionFormData } from './useSubscriptionsForm.types'
+import {
+  Mode, SubscriptionFormData 
+} from './useSubscriptionsForm.types'
 
 export const initialData: SubscriptionFormData = {
   startDateTime: null,
@@ -12,8 +14,9 @@ export const initialData: SubscriptionFormData = {
 }
 
 export const getInitialData = (mode: Mode, editSubscriptionData?: Subscription) => {
-  if (mode === 'Add')
-    return {...initialData}
+  if (mode === 'Add') {
+    return { ...initialData }
+  }
 
   if (editSubscriptionData && mode === 'Edit') {
     const initialSubscriptionData: SubscriptionFormData = {
@@ -32,5 +35,5 @@ export const getInitialData = (mode: Mode, editSubscriptionData?: Subscription) 
     return initialSubscriptionData
   }
 
-  return {...initialData}
+  return { ...initialData }
 }

@@ -1,4 +1,6 @@
-import { Td, Text } from '@chakra-ui/react'
+import {
+  Td, Text 
+} from '@chakra-ui/react'
 import { Descriptor } from '../../../services/AdminActions/Ods/ODSService.results'
 import ControlTableRow from '../ControlTableRow'
 
@@ -22,39 +24,45 @@ const DescriptorsTableRows = ({ descriptorsList }: DescriptorsTableRowsProps) =>
               color='gray.700'
               fontFamily='Open sans'
               fontWeight='400'
-              size='md'>
+              size='md'
+            >
               {descriptor.namespace}
             </Text>
           </Td>
+
           <Td>
             <Text
               color='blue.600'
               fontFamily='Open sans'
               fontWeight='700'
-              size='md'>
+              size='md'
+            >
               {descriptor.namespace.split('/')[2].length > 15? descriptor.namespace.split('/')[2].slice(0, 15) + '...' : descriptor.namespace.split('/')[2]}
             </Text>
           </Td>
+
           <Td>
             <Text
               color='gray.700'
               fontFamily='Open sans'
               fontWeight='400'
-              size='md'>
+              size='md'
+            >
               {extractDescription(descriptor.namespace.split('/')[2])}
             </Text>
           </Td>
+
           <Td>
             <Text
               color='gray.700'
               fontFamily='Open sans'
               fontWeight='400'
-              size='md'>
+              size='md'
+            >
               { index }
             </Text>
           </Td>
-        </ControlTableRow>
-      )}
+        </ControlTableRow>)}
     </>
   )
 }

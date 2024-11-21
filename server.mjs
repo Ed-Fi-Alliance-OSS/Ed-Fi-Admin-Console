@@ -2,13 +2,10 @@ import express from 'express'
 import history from 'connect-history-api-fallback'
 import 'dotenv/config'
 import { cloneDeep } from 'lodash-es'
-import {
-  mergeEnvVars
-} from './merge-env-vars.mjs'
+import { mergeEnvVars } from './merge-env-vars.mjs'
 import defaultConfig from './app.config.json' assert { type: 'json' }
 
 const app = express()
-
 const originalConfig = mergeEnvVars(defaultConfig)
 let config = cloneDeep(originalConfig)
 const staticFileMiddleware = express.static('dist')

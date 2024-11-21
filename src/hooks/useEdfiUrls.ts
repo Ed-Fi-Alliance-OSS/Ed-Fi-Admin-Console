@@ -1,5 +1,7 @@
 import axios from 'axios'
-import { useState, useEffect, useContext } from 'react'
+import {
+  useState, useEffect, useContext 
+} from 'react'
 import { adminConsoleContext } from '../context/adminConsoleContext'
 import { EdFiMetadata } from './useEdfiUrls.types'
 import useTenantInfo from './useTenantInfo'
@@ -10,8 +12,9 @@ const useEdfiUrls = () => {
   const { getCurrentTenant } = useTenantInfo()
 
   const generateBaseUrlFromTemplate = (edOrgId: string, applicationName: string) => {
-    if (!adminConfig)
+    if (!adminConfig) {
       return ''
+    }
 
     const prefix = `${edOrgId}-${applicationName}`
     const baseUrl = adminConfig?.edfiEndpoint.replace('{Prefix}', prefix)
@@ -20,16 +23,18 @@ const useEdfiUrls = () => {
   }
 
   const getEdFiDetailsSourceUrl = (configUrl: string) => {
-    if (!configUrl.includes('{Prefix}'))
+    if (!configUrl.includes('{Prefix}')) {
       return configUrl
+    }
 
     const currentTenant = getCurrentTenant()
-    if (!currentTenant)
+
+    if (!currentTenant) {
       return configUrl
+    }
             
     const applicationName = 'techconsole'
     const edOrgId = currentTenant.organizationIdentifier && currentTenant.organizationIdentifier.length > 0? currentTenant.organizationIdentifier : '000001'
-
     const url = generateBaseUrlFromTemplate(edOrgId, applicationName)
 
     return url
@@ -42,8 +47,7 @@ const useEdfiUrls = () => {
         const result = await axios.get(edfiUrl)
 
         setEdfiInfo(result.data)
-      }
-      catch(ex) {
+      } catch(ex) {
         console.error('error when trying to fetch edfi info')
       }
     }
@@ -53,9 +57,7 @@ const useEdfiUrls = () => {
     getEdfiInfo()
   }, [])
 
-  return {
-    edfiInfo
-  }
+  return { edfiInfo }
 }
 
 export default useEdfiUrls

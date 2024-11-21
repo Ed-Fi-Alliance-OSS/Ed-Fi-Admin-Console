@@ -1,4 +1,6 @@
-import { useEffect, useState } from 'react'
+import {
+  useEffect, useState 
+} from 'react'
 import { ODSInstance } from '../../core/ODSInstance.types'
 import useHttpService from '../http/useHttpService'
 import { EdFiMetadata } from '../useEdfiUrls.types'
@@ -13,18 +15,21 @@ const useOdsInstanceDescription = ({ instance }: UseOdsInstanceDescriptionProps)
   const [ loadingInstanceOdsMetadata, setLoadingInstanceOdsMetadata ] = useState(false)
 
   const getInstanceEdFiMetadata = async () => {
-    if (!instance)
-      return 
+    if (!instance) {
+      return
+    } 
 
-    if (!instance.edfiMetadata)
-      return 
+    if (!instance.edfiMetadata) {
+      return
+    } 
 
     setInstanceOdsMetadata(instance.edfiMetadata)
   }
 
   useEffect(() => {
-    if (!instance)
-      return 
+    if (!instance) {
+      return
+    } 
 
     getInstanceEdFiMetadata()
   }, [ instance ])

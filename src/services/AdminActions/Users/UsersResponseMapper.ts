@@ -1,8 +1,14 @@
-import { AppUser, AppUserRole, AppUserStatus } from '../../../core/AppUser.types'
-import { Invitation, InvitationStatus } from '../../../core/invitations/Invitation.types'
+import {
+  AppUser, AppUserRole, AppUserStatus 
+} from '../../../core/AppUser.types'
+import {
+  Invitation, InvitationStatus 
+} from '../../../core/invitations/Invitation.types'
 import getTimeAgo from '../../../helpers/getTimeAgo'
 import { AppUserListData } from './UsersResponseMapper.types'
-import { GetInvitationsListResponse, GetUsersListResponse } from './UsersService.responses'
+import {
+  GetInvitationsListResponse, GetUsersListResponse 
+} from './UsersService.responses'
 
 class UsersResponseMapper {
   public static mapToUsersList(response: GetUsersListResponse, tenantId: string): AppUserListData {
@@ -57,27 +63,30 @@ class UsersResponseMapper {
   }
 
   public static mapInvitationStatus(value: string | number): InvitationStatus {
-    if (value === 1)
+    if (value === 1) {
       return 'Sent'
-    if (value === 2)
+    }
+
+    if (value === 2) {
       return 'Accepted'
+    }
         
     return 'Unknown'
   }
 
-  private static mapUserStatus(value: string | number): AppUserStatus
-  {
-    if (value == 1 || value === 'Active')
+  private static mapUserStatus(value: string | number): AppUserStatus {
+    if (value == 1 || value === 'Active') {
       return 'Active'
+    }
         
-    if (value == 2 || value === 'Inactive')
+    if (value == 2 || value === 'Inactive') {
       return 'Inactive'
+    }
 
     return 'Active'
   }
 
-  private static mapUserRoles(rolesList: string[]) 
-  {
+  private static mapUserRoles(rolesList: string[]) {
     const userRoles: AppUserRole[] = rolesList.map(role => {
       const userRole: AppUserRole = role === 'Tenant.User'? 'Tenant.User' : 'Tenant.Admin'
 

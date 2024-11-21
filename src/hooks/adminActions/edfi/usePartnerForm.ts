@@ -1,5 +1,7 @@
 import { TEEAuthDataContext } from '@edfi/admin-console-shared-sdk'
-import { useState, ChangeEvent, useContext } from 'react'
+import {
+  useState, ChangeEvent, useContext 
+} from 'react'
 import { adminConsoleContext } from '../../../context/adminConsoleContext'
 import useEdfiVendorService from '../../../services/AdminActions/Edfi/Vendors/EdfiVendorsService'
 import { CreateEdfiVendorRequest } from '../../../services/AdminActions/Edfi/Vendors/EdfiVendorsService.requests'
@@ -16,14 +18,14 @@ const usePartnerForm = ({ schoolYear, onFinishSave }: UsePartnerFormProps) => {
   const { edxAppConfig, auth } = useContext(TEEAuthDataContext)
   const adminConfig = useContext(adminConsoleContext)
   const { createVendorForSchoolYear, getVendorsListForSchoolYear } = useEdfiVendorService()
-  const [partnerData, setPartnerData] = useState<CreateEdfiVendorRequest>({...initialPartnerData})
+  const [partnerData, setPartnerData] = useState<CreateEdfiVendorRequest>({ ...initialPartnerData })
   const [isSaving, setIsSaving] = useState(false)
   const [hasTriedSubmit, setHasTriedSubmit] = useState(false)
   const { errors, validPartnerData, validateInputChange } = usePartnerFormValidation()
   const { successToast, errorToast } = useEDXToast(7000)
 
   const onChangeParnerData = (e: ChangeEvent<HTMLInputElement>) => {
-    const nparnerData = {...partnerData}
+    const nparnerData = { ...partnerData }
 
     if (e.target.id === 'partnerName') {
       nparnerData.company = e.target.value
@@ -31,14 +33,16 @@ const usePartnerForm = ({ schoolYear, onFinishSave }: UsePartnerFormProps) => {
       nparnerData.contactEmailAddress = `${e.target.value}@gmail.com`
     }
 
-    if (e.target.id === 'namespacePrefixes')
+    if (e.target.id === 'namespacePrefixes') {
       nparnerData.namespacePrefixes = e.target.value
+    }
 
     if (hasTriedSubmit) {
-      if (e.target.id === 'partnerName')
+      if (e.target.id === 'partnerName') {
         validateInputChange('partnerName', nparnerData)
-      else 
+      } else {
         validateInputChange('namespacePrefixes', nparnerData)
+      }
     }
 
     setPartnerData(nparnerData)
@@ -50,6 +54,7 @@ const usePartnerForm = ({ schoolYear, onFinishSave }: UsePartnerFormProps) => {
         setIsSaving(true)
     
         const vendorList = await getVendorsListForSchoolYear(adminConfig.actionParams, schoolYear)
+
         if(vendorList.type === 'Response' && vendorList.data.some(vendor => 
           vendor.contactName === partnerData.contactName)) {
           errorToast('A Vendor with this name already exists. Please choose a unique name and try again.')
@@ -61,15 +66,16 @@ const usePartnerForm = ({ schoolYear, onFinishSave }: UsePartnerFormProps) => {
     
         setIsSaving(false)
 
-        if (result.type === 'Response')
+        if (result.type === 'Response') {
           successToast('Added Vendor')
-        else 
+        } else {
           errorToast('Failed to Add Vendor')
+        }
 
         onFinishSave()
-      }
-      else 
+      } else {
         setHasTriedSubmit(true)
+      }
     }
   }
 

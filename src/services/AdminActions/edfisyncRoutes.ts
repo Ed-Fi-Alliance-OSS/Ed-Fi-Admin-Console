@@ -1,6 +1,5 @@
 const endpointsPrefix = 'tenants'
 const edfiSyncPrefix = 'edfisync'
-
 const getBaseEndpoint = (tenantId: string) => `${endpointsPrefix}/${tenantId}/${edfiSyncPrefix}`
 
 const edfiSyncActionRoutes = {

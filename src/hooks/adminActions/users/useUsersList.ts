@@ -1,5 +1,9 @@
-import { TEEAuthDataContext, UserProfileContext } from '@edfi/admin-console-shared-sdk'
-import { useContext, useEffect, useState } from 'react'
+import {
+  TEEAuthDataContext, UserProfileContext 
+} from '@edfi/admin-console-shared-sdk'
+import {
+  useContext, useEffect, useState 
+} from 'react'
 import { adminConsoleContext } from '../../../context/adminConsoleContext'
 import { AppUser } from '../../../core/AppUser.types'
 import useUsersService from '../../../services/AdminActions/Users/UsersService'
@@ -21,12 +25,14 @@ const useUsersList = () => {
   const [ usersList, setUsersList ] = useState<AppUser[]>([])
   const adminConfig = useContext(adminConsoleContext)
   const [isFetchingUsers, setIsFetchingUsers] = useState(false)
+
   const [ paginationData, setPaginationData ] = useState<TablePaginationData>({
     count: 0,
     pageIndex: 0,
     pageSize: 100,
     orderBy: 'firstName+asc'
   })
+
   const { errorToast } = useEDXToast()
 
   const fetchUsersList = async () => {
@@ -42,9 +48,9 @@ const useUsersList = () => {
       const result = await getUsersList(adminConfig.actionParams, requestData)
       setIsFetchingUsers(false)
 
-      if (result.type === 'Error')
+      if (result.type === 'Error') {
         errorToast(result.actionMessage)
-      else {
+      } else {
         setUsersList([...result.data.data])
         setPaginationData({
           ...paginationData, 

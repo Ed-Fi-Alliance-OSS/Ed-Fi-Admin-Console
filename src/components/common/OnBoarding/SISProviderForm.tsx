@@ -1,4 +1,6 @@
-import { Flex, Text } from '@chakra-ui/react'
+import {
+  Flex, Text 
+} from '@chakra-ui/react'
 import { CustomFormLabel } from '@edfi/admin-console-shared-sdk'
 import { EdfiApplicationAuthData } from '../../../core/Edfi/EdfiApplications'
 import { SISProviderConnectionState } from '../../../core/sisProviders/SISProviders.types'
@@ -28,65 +30,108 @@ const SISProviderForm = ({ sisProvidersOptionList, selectedProviderId, connectio
 
   return (
     <Flex 
-      borderRadius='4px'
-      border='1px' 
+      border='1px'
       borderColor='gray.300' 
+      borderRadius='4px' 
+      flexDir='column'
+      h='730px' 
       padding='12px'
-      flexDir='column' 
-      h='730px'
-      w='49%'>
+      w='49%'
+    >
       <Text
         color='blue.500'
-        fontWeight='700'
+        fontFamily='Poppins'
         fontSize='20px'
-        fontFamily='Poppins'>Required SIS Provider</Text>
+        fontWeight='700'
+      >Required SIS Provider
+      </Text>
+
       <Flex mt='8px'>
         <CustomFormLabel
           htmlFor="selectProvider"
-          text="Select Provider" />
+          text="Select Provider"
+        />
       </Flex>
+
       <Flex mt='5px'>
         <SISProviderConnectionField
-          id="selectProvider"
-          sisProviderOptions={sisProvidersOptionList}
-          selectedProvider={selectedProviderId}
-          hasSelectedProvider={hasSelectedProvider}
           connectionState={connectionState}
+          hasSelectedProvider={hasSelectedProvider}
+          id="selectProvider"
+          selectedProvider={selectedProviderId}
+          sisProviderOptions={sisProvidersOptionList}
           onChangeSISProvider={handleChangeSISprovider}
-          onRemoveProvider={handleRemoveProvider} />
+          onRemoveProvider={handleRemoveProvider}
+        />
       </Flex>
-      <Flex bg='gray.300' my='24px' h='1px' w='full' />
-      <Flex flexDir='column' mt='0px'>
+
+      <Flex
+        bg='gray.300'
+        h='1px'
+        my='24px'
+        w='full'
+      />
+
+      <Flex
+        flexDir='column'
+        mt='0px'
+      >
         <Text
+          fontFamily='Poppins'
           fontSize='18px'
           fontWeight='700'
-          fontFamily='Poppins'>Credentials</Text>
+        >Credentials
+        </Text>
+
         <SISCredentialsField
           credentialsKey={edfiApplicationAuthData.key ?? ''}
           credentialsSecret={edfiApplicationAuthData.secret ?? ''}
           isLoadingCredentials={isLoadingCredentials}
           regenerateCredentialsDisabled={!hasSelectedProvider}
           onChangeCredentials={handleChangeCredentials}
-          onRegenerateCredentials={handleRegenerateCredentials} />
-        <Flex bg='gray.300' my='24px' h='1px' w='full' />
+          onRegenerateCredentials={handleRegenerateCredentials}
+        />
+
+        <Flex
+          bg='gray.300'
+          h='1px'
+          my='24px'
+          w='full'
+        />
+
         <Text
+          fontFamily='Poppins'
           fontSize='18px'
           fontWeight='700'
-          fontFamily='Poppins'>Endpoints</Text>
+        >Endpoints
+        </Text>
+
         <SISEndpointsField
           edfiAuthtenticationUrl={authenticationUrl}
           edfiResourcesUrl={resourcesUrl}
-          onChangeEndpoints={handleChangeEndpoints} />
-        <Flex bg='gray.300' my='24px' h='1px' w='full' />
+          onChangeEndpoints={handleChangeEndpoints}
+        />
+
+        <Flex
+          bg='gray.300'
+          h='1px'
+          my='24px'
+          w='full'
+        />
+
         <Text
+          fontFamily='Poppins'
           fontSize='18px'
           fontWeight='700'
-          fontFamily='Poppins'>Steps to Connect</Text>
+        >Steps to Connect
+        </Text>
+
         <Flex mt='16px'>
           <Text 
             fontFamily='Open sans'
-            size='sm'>
-                                Find your SIS Provider in the Ed-Fi Tech Docs and follow the “Enablement  & Configuration Guide” in the “Notes & Support Resources” column for the full steps to connect.
+            size='sm'
+          >
+            Find your SIS Provider in the Ed-Fi Tech Docs and follow the “Enablement  & Configuration Guide” in the “Notes & Support Resources” column for the full steps to connect.
           </Text>
         </Flex>
       </Flex>

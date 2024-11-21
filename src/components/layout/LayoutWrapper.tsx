@@ -1,4 +1,6 @@
-import { useContext, useState } from 'react'
+import {
+  useContext, useState 
+} from 'react'
 import { Flex } from '@chakra-ui/react'
 import AppRouter from '../routes/AppRouter'
 import { 
@@ -66,29 +68,37 @@ const LayoutWrapper = () => {
   return (
     <Flex 
       flexDirection='column' 
-      position='relative'
       minH='100vh'
-      width='100%'>
+      position='relative'
+      width='100%'
+    >
       <LoadingScreen 
-        state={currentLoadingStateMessage()} 
         delay={1} 
-        loading={currentLoadingState()} />
+        loading={currentLoadingState()} 
+        state={currentLoadingStateMessage()}
+      />
+
       <Helmet>
         <title>Acme Service Center | {stateMessage}</title>
       </Helmet>
+
       <SessionInactiveModal
-        show={showInactiveModal}
         isClosingSession={isClosingSession}
+        show={showInactiveModal}
+        onClose={onCloseInactiveModal}
         onLogout={onLogout}
-        onClose={onCloseInactiveModal} />
+      />
+
       {onBoardingWizardData && <Layout 
         auth={auth as AuthContextProps}
-        edxAppConfig={edxAppConfig as EdxAppConfig}
         content={<AppRouter />}
+        edxAppConfig={edxAppConfig as EdxAppConfig}
+        isClosingSession={isClosingSession}
         notificationBarMessage='Acme Service Center Online Community is now live! Learn more.'
-        simpleLayoutRouteList={simpleLayoutRoutes}
-        isClosingSession={isClosingSession} 
-        onLogout={onLogout} />}
+        simpleLayoutRouteList={simpleLayoutRoutes} 
+        onLogout={onLogout}
+      />}
+
       {window.location.pathname.includes(routes.unauthorized.url) && <ErrorPageContainer status="403" />}
     </Flex>
   )
