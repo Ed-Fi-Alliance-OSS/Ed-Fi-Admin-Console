@@ -1,50 +1,64 @@
+import { useConfig } from '@edfi/admin-console-shared-sdk'
+import { AppUserProfile } from '../../../core/AppUser.types'
+import { Invitation } from '../../../core/invitations/Invitation.types'
+import { UserEducationOrganization } from '../../../core/userEducationOrganizations/UserEducationOrganizations.types'
+import useHttpService from '../../../hooks/http/useHttpService'
+import { HttpServiceResponse } from '../../HttpService/HttpService.response.types'
 import { ActionParams } from '../adminAction.types'
 import adminActionRoutes from '../tenantActionRoutes'
-import { ActivateUserResult, DeactivateUserResult, DeleteInvitationResult, GetUserProfileResult } from './UserService.results'
-import { ActivateUserRequest, AddUserRequest, AssignBulkLicensesRequest, AssignLicenseRequest, CheckUserEmailRequest, DeactivateUserRequest, DeleteInvitationRequest, DeleteUserRequest, GetInvitationsListRequest, GetUserProfileByIdRequest, GetUsersListRequest, InviteUserRequest, RevokeBulkLicensesRequest, RevokeLicenseRequest, UpdateUserRequest } from './UsersService.requests'
-import { ActivateUserResponse, AddUserResponse, AssignBulkLicensesResponse, AssignLicenseResponse, CheckUserEmailResponse, DeactivateUserResponse, DeleteUserResponse, EditUserResponse, GetInvitationsListResponse, GetUsersListResponse, InviteUserResponse, RevokeBulkLicensesResponse, RevokeLicenseResponse, CreateUserEducationOrganizationsResponse, DeleteUserEducationOrganizationResponse, GetOrganizationsResponse, GetStaffClassificationsResponse, UpdateUserEducationOrganizationResponse } from './UsersService.responses'
-import { AddUserResult, AssignBulkLicensesResult, AssignLicenseResult, CheckUserEmailResult, CreateUserEducationOrganizationResult, DeleteUserEducationOrganizationResult, DeleteUserResult, EditUserResult, GetInvitationsListResult, GetOrganizationsResult, GetStaffClassificationsResult, GetUserEducationOrganizationsResult, GetUsersListResult, InviteUserResult, RevokeBulkLicensesResult, RevokeLicenseResult, UpdateUserEducationOrganizationResult } from './UserService.results'
+import {
+  ActivateUserResult, AddUserResult, AssignBulkLicensesResult, AssignLicenseResult, CheckUserEmailResult, CreateUserEducationOrganizationResult, DeactivateUserResult, DeleteInvitationResult, DeleteUserEducationOrganizationResult, DeleteUserResult, EditUserResult, GetInvitationsListResult, GetOrganizationsResult, GetStaffClassificationsResult, GetUserEducationOrganizationsResult, GetUserProfileResult, GetUsersListResult, InviteUserResult, RevokeBulkLicensesResult, RevokeLicenseResult, UpdateUserEducationOrganizationResult 
+} from './UserService.results'
 import UsersResponseMapper from './UsersResponseMapper'
-import { CreateUserEducationOrganizationsRequest, DeleteUserEducationOrganizationsRequest, GetOrganizationsRequest, GetStaffClassificationsRequest, GetUserEducationOrganizationsRequest, UpdateUserEducationOrganizationsRequest } from './UsersService.requests'
-import { HttpServiceResponse } from '../../HttpService/HttpService.response.types'
 import { AppUserListData } from './UsersResponseMapper.types'
-import { Invitation } from '../../../core/invitations/Invitation.types'
-import useHttpService from '../../../hooks/http/useHttpService'
-import { UserEducationOrganization } from '../../../core/userEducationOrganizations/UserEducationOrganizations.types'
-import { AppUserProfile } from '../../../core/AppUser.types'
+import {
+  ActivateUserRequest, AddUserRequest, AssignBulkLicensesRequest, AssignLicenseRequest, CheckUserEmailRequest, CreateUserEducationOrganizationsRequest, DeactivateUserRequest, DeleteInvitationRequest, DeleteUserEducationOrganizationsRequest, DeleteUserRequest, GetInvitationsListRequest, GetOrganizationsRequest, GetStaffClassificationsRequest, GetUserEducationOrganizationsRequest, GetUserProfileByIdRequest, GetUsersListRequest, InviteUserRequest, RevokeBulkLicensesRequest, RevokeLicenseRequest, UpdateUserEducationOrganizationsRequest, UpdateUserRequest 
+} from './UsersService.requests'
+import {
+  ActivateUserResponse, AddUserResponse, AssignBulkLicensesResponse, AssignLicenseResponse, CheckUserEmailResponse, CreateUserEducationOrganizationsResponse, DeactivateUserResponse, DeleteUserEducationOrganizationResponse, DeleteUserResponse, EditUserResponse, GetInvitationsListResponse, GetOrganizationsResponse, GetStaffClassificationsResponse, InviteUserResponse, RevokeBulkLicensesResponse, RevokeLicenseResponse, UpdateUserEducationOrganizationResponse 
+} from './UsersService.responses'
 
 const useUserService = () => {
   const { getAsync, postAsync, putAsync, deleteAsync } = useHttpService()
+  const { config } = useConfig()
 
   const getUsersList = async (actionParams: ActionParams, requestData: GetUsersListRequest): GetUsersListResult => {
     const { pageIndex, pageSize, orderBy } = requestData
-    
     const baseUrl = actionParams.edxApiUrl
     let queryParams = `pageIndex=${pageIndex}&pageSize=${pageSize}`
         
-    if (requestData.filter)
+    if (requestData.filter) {
       queryParams = `${queryParams}&filter=${requestData.filter}`
+    }
 
-    if (orderBy)
+    if (orderBy) {
       queryParams = `${queryParams}&orderBy=${orderBy}`
+    }
 
-    const url = `${baseUrl}/${adminActionRoutes.getUsersList(actionParams.tenantId)}?${queryParams}`
+    // const url = `${baseUrl}/${adminActionRoutes.getUsersList(actionParams.tenantId)}?${queryParams}`
+    const url = `${config.app.basePath}/mockdata/data-users.json`
     
-    const result = await getAsync<GetUsersListResponse>({ 
+    const result = await getAsync<AppUserListData>({ 
       actionName: 'Get Users List',
       access_token: actionParams.token,
       url,
       apiConfig: actionParams.config.api
     })
+
+    console.log('result', result)
     
-    if (result.type === 'Response') {
-      const mappedResult: HttpServiceResponse<AppUserListData> = {
-        data: UsersResponseMapper.mapToUsersList(result.data, actionParams.tenantId),
-        type: 'Response'
-      }
+    // if (result.type === 'Response') {
+    //   //UsersResponseMapper.mapToUsersList(result.data, actionParams.tenantId),
+    //   // const mappedResult: HttpServiceResponse<AppUserListData> = {
+    //   //   data: result.data ?? [],
+    //   //   type: 'Response'
+    //   // }
     
-      return mappedResult
-    }
+    //   return {
+    //     data: result.data,
+    //     type: 'Response'
+    //   }
+    // }
     
     return result
   }
@@ -165,12 +179,12 @@ const useUserService = () => {
     
   const getInvitationsList = async (actionParams: ActionParams, data: GetInvitationsListRequest): GetInvitationsListResult => {
     const { pageIndex, pageSize, orderBy, filter } = data
-    
     const baseUrl = actionParams.edxApiUrl
     let queryParams = `pageIndex=${pageIndex}&pageSize=${pageSize}&orderBy=${orderBy}`
     
-    if (filter)
+    if (filter) {
       queryParams = `${queryParams}&filter=${filter}`
+    }
     
     const url = `${baseUrl}/${adminActionRoutes.getInvitationsList(actionParams.tenantId)}?${queryParams}`
         
@@ -263,15 +277,16 @@ const useUserService = () => {
 
   const getOrganizations = async (actionParams: ActionParams, requestData: GetOrganizationsRequest): GetOrganizationsResult => {
     const { pageIndex, pageSize, orderBy } = requestData
-    
     const baseUrl = actionParams.edxApiUrl
     let queryParams = `pageIndex=${pageIndex}&pageSize=${pageSize}`
         
-    if (requestData.filter)
+    if (requestData.filter) {
       queryParams = `${queryParams}&filter=${requestData.filter}`
+    }
 
-    if (orderBy)
+    if (orderBy) {
       queryParams = `${queryParams}&orderBy=${orderBy}`
+    }
 
     const url = `${baseUrl}/${adminActionRoutes.getOrganizations(actionParams.tenantId)}?${queryParams}`
     
@@ -286,15 +301,16 @@ const useUserService = () => {
 
   const getStaffClassifications = async (actionParams: ActionParams, requestData: GetStaffClassificationsRequest): GetStaffClassificationsResult => {
     const { pageIndex, pageSize, orderBy } = requestData
-    
     const baseUrl = actionParams.edxApiUrl
     let queryParams = `pageIndex=${pageIndex}&pageSize=${pageSize}`
         
-    if (requestData.filter)
+    if (requestData.filter) {
       queryParams = `${queryParams}&filter=${requestData.filter}`
+    }
 
-    if (orderBy)
+    if (orderBy) {
       queryParams = `${queryParams}&orderBy=${orderBy}`
+    }
 
     const url = `${baseUrl}/${adminActionRoutes.getStaffClassifications(actionParams.tenantId)}?${queryParams}`
     

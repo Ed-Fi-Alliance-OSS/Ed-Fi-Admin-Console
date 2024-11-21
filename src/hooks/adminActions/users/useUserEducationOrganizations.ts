@@ -1,13 +1,21 @@
-import { ChangeEvent, useContext, useEffect, useState } from 'react'
+import {
+  ChangeEvent, useContext, useEffect, useState 
+} from 'react'
 import { adminConsoleContext } from '../../../context/adminConsoleContext'
 import { AppUser } from '../../../core/AppUser.types'
 import { DeletingState } from '../../../core/deletingState.types'
-import { Organization, StaffClassification } from '../../../core/Tenant.types'
+import {
+  Organization, StaffClassification 
+} from '../../../core/Tenant.types'
 import { UserEducationOrganizationData } from '../../../core/userEducationOrganizations/UserEducationOrganizations.types'
 import useUserService from '../../../services/AdminActions/Users/UsersService'
-import { CreateUserEducationOrganizationsRequest, DeleteUserEducationOrganizationsRequest, GetOrganizationsRequest, GetStaffClassificationsRequest, GetUserEducationOrganizationsRequest, UpdateUserEducationOrganizationsRequest } from '../../../services/AdminActions/Users/UsersService.requests'
+import {
+  CreateUserEducationOrganizationsRequest, DeleteUserEducationOrganizationsRequest, GetOrganizationsRequest, GetStaffClassificationsRequest, GetUserEducationOrganizationsRequest, UpdateUserEducationOrganizationsRequest 
+} from '../../../services/AdminActions/Users/UsersService.requests'
 import useEDXToast from '../../common/useEDXToast'
-import { EdOrgViewItem, UserEducationOrganizationsHook } from './useUserEducationOrganizations.types'
+import {
+  EdOrgViewItem, UserEducationOrganizationsHook 
+} from './useUserEducationOrganizations.types'
 
 
 interface UseUserEducationOrganizationsParams {
@@ -20,19 +28,25 @@ const useUserEducationOrganizations = ({ selectedUser }: UseUserEducationOrganiz
   const [userEdOrgsList, setUserEdOrgsList] = useState<UserEducationOrganizationData[]>([])
   const [viewEdOrgsList, setViewEdOrgsList] = useState<EdOrgViewItem[]>([])
   const [staffClassificationsList, setStaffClassificationsList] = useState<StaffClassification[]>([])
-  const { 
-    getOrganizations, 
+
+  const { getOrganizations, 
     getStaffClassifications, 
     getUserEducationOrganization, 
     createUserEducationOrganization,
     updateUserEducationOrganization,
     deleteUserEducationOrganization } = useUserService()
+
   const [educationOrganizationName, setEducationOrganizationName] = useState('')
   const [staffClassificationDescriptor, setStaffClassificationDescriptor] = useState('')
   const [edOrgToEdit, setEdOrgToEdit] = useState<EdOrgViewItem | null>(null)
   const [isFetchingData, setIsFetchingData] = useState(false)
-  const [isCreatingUserEducationOrganization, setIsCreatingUserEducationOrganization] = useState(false) 
-  const [isDeletingUserEducationOrganization, setIsDeletingUserEducationOrganization] = useState<DeletingState>({ deleting: false, id: '' }) 
+  const [isCreatingUserEducationOrganization, setIsCreatingUserEducationOrganization] = useState(false)
+ 
+  const [isDeletingUserEducationOrganization, setIsDeletingUserEducationOrganization] = useState<DeletingState>({
+    deleting: false,
+    id: '' 
+  })
+ 
   const [isUpdatingUserEducationOrganization, setIsUpdatingUserEducationOrganization] = useState(false)
   const { successToast, errorToast } = useEDXToast()
   const [showAddItem, setShowAddItem] = useState(false)
@@ -99,8 +113,9 @@ const useUserEducationOrganizations = ({ selectedUser }: UseUserEducationOrganiz
       // console.log("staffclassification value", staffClassificationDescriptor)
 
       const staffClassificationsData: string[] = educationOrgToEdit? educationOrgToEdit.staffClassifications.map(sc => {
-        if (sc !== edOrgToEdit?.staffClassification)
+        if (sc !== edOrgToEdit?.staffClassification) {
           return sc
+        }
                 
         return staffClassificationDescriptor
       }) : []
@@ -118,10 +133,11 @@ const useUserEducationOrganizations = ({ selectedUser }: UseUserEducationOrganiz
       const result = await updateUserEducationOrganization(adminConfig.actionParams, request)
       setIsUpdatingUserEducationOrganization(false)
 
-      if (result.type === 'Response')
+      if (result.type === 'Response') {
         successToast('Updated Education Organization')
-      else 
+      } else {
         errorToast('Failed to edit Education Organization')
+      }
 
       setEdOrgToEdit(null)
       await onRefresh()
@@ -135,14 +151,23 @@ const useUserEducationOrganizations = ({ selectedUser }: UseUserEducationOrganiz
         educationOrganizationId
       }
 
-      setIsDeletingUserEducationOrganization({ deleting: true, id: educationOrganizationId })
-      const result = await deleteUserEducationOrganization(adminConfig.actionParams, request)
-      setIsDeletingUserEducationOrganization({ deleting: false, id: educationOrganizationId })
+      setIsDeletingUserEducationOrganization({
+        deleting: true,
+        id: educationOrganizationId 
+      })
 
-      if (result.type === 'Response')
+      const result = await deleteUserEducationOrganization(adminConfig.actionParams, request)
+
+      setIsDeletingUserEducationOrganization({
+        deleting: false,
+        id: educationOrganizationId 
+      })
+
+      if (result.type === 'Response') {
         successToast('Deleted Education Organization')
-      else 
+      } else {
         errorToast('Failed to delete Education Organization')
+      }
     }
   }
 
@@ -163,10 +188,11 @@ const useUserEducationOrganizations = ({ selectedUser }: UseUserEducationOrganiz
       const result = await updateUserEducationOrganization(adminConfig.actionParams, request)
       setIsCreatingUserEducationOrganization(false)
     
-      if (result.type === 'Response')
+      if (result.type === 'Response') {
         successToast('Removed staff classification')
-      else 
+      } else {
         errorToast('Failed to remove staff classification')
+      }
     }
   }
 
@@ -175,10 +201,11 @@ const useUserEducationOrganizations = ({ selectedUser }: UseUserEducationOrganiz
       const edOrg = userEdOrgsList.find(ueo => ueo.educationOrganizationId == educationOrganizationId)
 
       if (edOrg) {
-        if (edOrg.staffClassifications.length === 1)
+        if (edOrg.staffClassifications.length === 1) {
           await deleteEdOrg(educationOrganizationId)
-        else
+        } else {
           await removeStaffClassificationFromEdOrg(edOrg, staffClassification)
+        }
       }
 
       await onRefresh()
@@ -191,8 +218,9 @@ const useUserEducationOrganizations = ({ selectedUser }: UseUserEducationOrganiz
   }
 
   const createEdOrg = async () => {
-    if (!adminConfig)
-      return 
+    if (!adminConfig) {
+      return
+    } 
 
     const staffClassificationsData: string[] = []
     staffClassificationsData.push(staffClassificationDescriptor)
@@ -209,10 +237,11 @@ const useUserEducationOrganizations = ({ selectedUser }: UseUserEducationOrganiz
     const result = await createUserEducationOrganization(adminConfig.actionParams, request)
     setIsCreatingUserEducationOrganization(false)
 
-    if (result.type === 'Response')
+    if (result.type === 'Response') {
       successToast('Added education organization')
-    else
+    } else {
       errorToast('Failed to create education organization')
+    }
   }
 
   const addStaffClassificationToEdOrg = async (edOrg: UserEducationOrganizationData) => {
@@ -233,10 +262,11 @@ const useUserEducationOrganizations = ({ selectedUser }: UseUserEducationOrganiz
       const result = await updateUserEducationOrganization(adminConfig.actionParams, request)
       setIsCreatingUserEducationOrganization(false)
     
-      if (result.type === 'Response')
+      if (result.type === 'Response') {
         successToast('Added staff classification')
-      else 
+      } else {
         errorToast('Failed to add staff classification')
+      }
     }
   }
 
@@ -256,11 +286,12 @@ const useUserEducationOrganizations = ({ selectedUser }: UseUserEducationOrganiz
 
       const edOrg = edOrgExists(educationOrganizationName)
 
-      if (!edOrg)
+      if (!edOrg) {
         await createEdOrg()
-      else if (edOrg) {
-        if (edOrgHasStaffClassification(edOrg, staffClassificationDescriptor))
+      } else if (edOrg) {
+        if (edOrgHasStaffClassification(edOrg, staffClassificationDescriptor)) {
           return undefined
+        }
         // return errorToast("Education Organization already exists.")
 
         await addStaffClassificationToEdOrg(edOrg)
@@ -276,11 +307,9 @@ const useUserEducationOrganizations = ({ selectedUser }: UseUserEducationOrganiz
 
   const fetchUserOrganizations = async () => {
     if (adminConfig) {
-      const request: GetUserEducationOrganizationsRequest = {
-        userId: selectedUser.userId 
-      }
-
+      const request: GetUserEducationOrganizationsRequest = { userId: selectedUser.userId }
       const result = await getUserEducationOrganization(adminConfig.actionParams, request)
+
       if (result.type === 'Response') {
         // console.log('user organizations list', result.data.data)
         setUserEdOrgsList(result.data.data)
@@ -297,6 +326,7 @@ const useUserEducationOrganizations = ({ selectedUser }: UseUserEducationOrganiz
       }
 
       const result = await getOrganizations(adminConfig.actionParams, request)
+
       if (result.type === 'Response') {
         // console.log('organizations list', result.data.data)
         setOrganizationsList(result.data.data)
@@ -312,6 +342,7 @@ const useUserEducationOrganizations = ({ selectedUser }: UseUserEducationOrganiz
       }
 
       const result = await getStaffClassifications(adminConfig.actionParams, request)
+
       if (result.type === 'Response') {
         // console.log('staff classifications list', result.data.data)
         setStaffClassificationsList(result.data.data)
@@ -346,8 +377,9 @@ const useUserEducationOrganizations = ({ selectedUser }: UseUserEducationOrganiz
 
     for (const item of edOrgsList) {
       if (item.staffClassifications.length >= 1) {
-        for (const staffClassification of item.staffClassifications)
+        for (const staffClassification of item.staffClassifications) {
           viewList.push(convertEdOrgToEdViewItem(item, staffClassification))
+        }
       }
     }
 

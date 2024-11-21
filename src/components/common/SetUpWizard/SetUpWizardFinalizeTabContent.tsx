@@ -1,4 +1,6 @@
-import { Flex, Link, Text } from '@chakra-ui/react'
+import {
+  Flex, Link, Text 
+} from '@chakra-ui/react'
 import { useContext } from 'react'
 import { adminConsoleContext } from '../../../context/adminConsoleContext'
 import { SISProviderInfo } from '../../../core/sisProviders/SISProviders.types'
@@ -22,48 +24,75 @@ const SetUpWizardFinalizeTabContent = ({ connectedSISProvidersList, instance }: 
       <Text
         fontFamily='Open sans'
         fontWeight='400'
-        w='730px'>
-                    You’re almost ready to complete the setup process for { getDisplayYear(instance) }! Review the information below and make sure everything is correct. 
-                    If not, go back and edit or 
+        w='730px'
+      >
+        You’re almost ready to complete the setup process for { getDisplayYear(instance) }! Review the information below and make sure everything is correct. 
+        If not, go back and edit or 
+
         <Link 
+          aria-label="contact support" 
           color='blue.500' 
           href="https://txedexchange.atlassian.net/servicedesk/customer/portals" 
-          target='_blank' 
-          referrerPolicy='no-referrer' 
-          ml='2px'
-          aria-label="contact support">contact support</Link>. Once all the information appears correct, click the “Finalize” button and your Tech Console will be ready to use!
+          ml='2px' 
+          referrerPolicy='no-referrer'
+          target='_blank'
+        >contact support
+        </Link>. Once all the information appears correct, click the “Finalize” button and your Tech Console will be ready to use!
       </Text>
-      <Flex flexDir='column' alignItems='baseline' mt='42px' w='full'>
+
+      <Flex
+        alignItems='baseline'
+        flexDir='column'
+        mt='42px'
+        w='full'
+      >
         <Text
           color='blue.500'
           fontFamily='Poppins'
+          fontSize='20px'
           fontWeight='700'
-          fontSize='20px'>
-                        Connected Source Provider(s)
+        >
+          Connected Source Provider(s)
         </Text>
-        <Flex mt='16px' w='full'>
-          <ConnectedSISProvidersTable 
-            connectedSISProvidersList={connectedSISProvidersList} />
+
+        <Flex
+          mt='16px'
+          w='full'
+        >
+          <ConnectedSISProvidersTable connectedSISProvidersList={connectedSISProvidersList} />
         </Flex> 
       </Flex> 
-      <Flex flexDir='column' alignItems='baseline' mt='42px' w='full'>
+
+      <Flex
+        alignItems='baseline'
+        flexDir='column'
+        mt='42px'
+        w='full'
+      >
         <Text
           color='blue.500'
           fontFamily='Poppins'
+          fontSize='20px'
           fontWeight='700'
-          fontSize='20px'>
-                        Data Preview
+        >
+          Data Preview
         </Text>
-        <Flex mt='16px' w='full'>
+
+        <Flex
+          mt='16px'
+          w='full'
+        >
           { adminConfig && adminConfig.showDataHealth? 
             <DataHealthDetails 
               isReview={true}
-              showReload={true} /> : <Text
+              showReload={true}
+            /> : <Text
               fontFamily='Open sans'
-              fontWeight='600'
               fontSize='24px'
-              w='730px'>
-                        Coming Soon
+              fontWeight='600'
+              w='730px'
+            >
+              Coming Soon
             </Text> }
         </Flex> 
       </Flex>

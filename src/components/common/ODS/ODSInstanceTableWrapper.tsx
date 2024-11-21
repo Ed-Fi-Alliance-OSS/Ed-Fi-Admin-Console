@@ -1,14 +1,17 @@
-import { Flex, Heading } from '@chakra-ui/react'
+import {
+  Button, Flex, Heading 
+} from '@chakra-ui/react'
+import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { ExtendedODSInstance } from '../../../core/ODSInstance.types'
 import useOdsInstanceTable from '../../../hooks/odsInstances/useOdsInstanceTable'
+import useOdsInstanceTableSorting from '../../../hooks/odsInstances/useOdsInstanceTableSorting'
+import { usePluginContext } from '../../../plugins/BasePlugin'
 import ControlTableHeader from '../ControlTableHeader'
 import ConfirmSetDefaultInstanceModal from './ConfirmSetDefaultInstanceModal'
+import { ODSInstanceTableMode } from './ODSInstanceTable.types'
 import ODSInstanceManagementTable from './ODSIntanceManagementTable'
 import SetUpInstanceModal from './SetUpInstanceModal'
-import useOdsInstanceTableSorting from '../../../hooks/odsInstances/useOdsInstanceTableSorting'
-import { ODSInstanceTableMode } from './ODSInstanceTable.types'
-import { ExtendedODSInstance } from '../../../core/ODSInstance.types'
-import { useEffect } from 'react'
-import { usePluginContext } from '../../../plugins/BasePlugin'
 
 interface ODSInstanceTableWrapperProps {
     tableMode: ODSInstanceTableMode
@@ -39,51 +42,135 @@ const ODSInstanceTableWrapper = ({ tableMode, pickedInstance, onSelectInstance, 
   } = useOdsInstanceTableSorting()
 
   const { getString } = usePluginContext()
+  const nav = useNavigate()
 
   useEffect(() => {
     onUpdateInstancesCount(paginatedData.data.length)
   }, [ paginatedData.data ])
 
+  function onAddBtnClick() {
+    nav('/addinstance')
+  }
+
   return (
     <> 
       { selectedInstance && <ConfirmSetDefaultInstanceModal
-        show={showConfirmSetDefaultModal}
         instance={selectedInstance}
+        show={showConfirmSetDefaultModal}
         updatingInstance={updatingIsDefault.loading}
+        onClose={onCloseConfirmSetDefaultModal}
         onSetIsDefault={onSetIsDefault}
-        onClose={onCloseConfirmSetDefaultModal} /> }
+      /> }
 
       { selectedInstance && <SetUpInstanceModal 
         instance={selectedInstance} 
         show={showSetUpWizardModal} 
-        onClose={onCloseSetUpWizardModal} /> }
+        onClose={onCloseSetUpWizardModal}
+      /> }
 
-      { tableMode == 'Display' && <Flex alignItems='center' justifyContent='space-between'>
-        <Flex alignItems='flex-end'>
+      { tableMode == 'Display' && <Flex
+        alignItems='center'
+        justifyContent='space-between'
+      >
+        <Flex
+          alignItems='flex-end'
+          justifyContent='space-between'
+          width='full'
+        >
           <Heading size='lg'>
             {getString('app.ODS_INSTANCES')}
           </Heading>
+
+          <Button
+            border='1px'
+            borderColor='blue.400'
+            color='blue.600'
+            ml='16px'
+            padding='10px'
+            size='sm'
+            onClick={onAddBtnClick}
+          >
+            Add Instance
+          </Button>
         </Flex>
       </Flex> }  
             
-      <Flex mt='16px' w='full'>
+      <Flex
+        mt='16px'
+        w='full'
+      >
         <ODSInstanceManagementTable 
-          tableMode={tableMode}
           tableHeaders={[
-            <ControlTableHeader headerData={{ text: '', fieldName: '', sortedByField: orderBy.field, showSorting: false, sortingType: orderBy.order, onSortAsc: () => onOrderBy('Year', 'asc'), onSortDesc: () => onOrderBy('Year', 'desc') }} />,
-            <ControlTableHeader headerData={{ text: 'Year', fieldName: 'Year', sortedByField: orderBy.field, showSorting: true, sortingType: orderBy.order, onSortAsc: () => onOrderBy('Year', 'asc'), onSortDesc: () => onOrderBy('Year', 'desc') }} />,
-            <ControlTableHeader headerData={{ text: 'Ed-Fi Version', fieldName: 'EdFiVersion', sortedByField: orderBy.field, showSorting: true, sortingType: orderBy.order, onSortAsc: () => onOrderBy('EdFiVersion', 'asc'), onSortDesc: () => onOrderBy('EdFiVersion', 'desc') }} />,
-            <ControlTableHeader headerData={{ text: 'Extension', fieldName: 'TsdsVersion', sortedByField: orderBy.field, showSorting: true, sortingType: orderBy.order, onSortAsc: () => onOrderBy('TsdsVersion', 'asc'), onSortDesc: () => onOrderBy('TsdsVersion', 'desc') }} />,
-            <ControlTableHeader headerData={{ text: 'Ed-Fi Status', fieldName: 'Status', sortedByField: orderBy.field, showSorting: true, sortingType: orderBy.order, onSortAsc: () => onOrderBy('Status', 'asc'), onSortDesc: () => onOrderBy('Status', 'desc') }} />,
-            <ControlTableHeader headerData={{ text: '', fieldName: '', sortedByField: orderBy.field, showSorting: true, sortingType: orderBy.order, onSortAsc: () => onOrderBy('Year', 'asc'), onSortDesc: () => onOrderBy('Year', 'desc') }} />
+            <ControlTableHeader headerData={{
+              text: '',
+              fieldName: '',
+              sortedByField: orderBy.field,
+              showSorting: false,
+              sortingType: orderBy.order,
+              onSortAsc: () => onOrderBy('Year', 'asc'),
+              onSortDesc: () => onOrderBy('Year', 'desc') 
+            }}
+            />,
+            <ControlTableHeader headerData={{
+              text: 'Year',
+              fieldName: 'Year',
+              sortedByField: orderBy.field,
+              showSorting: true,
+              sortingType: orderBy.order,
+              onSortAsc: () => onOrderBy('Year', 'asc'),
+              onSortDesc: () => onOrderBy('Year', 'desc') 
+            }}
+            />,
+            <ControlTableHeader headerData={{
+              text: 'Ed-Fi Version',
+              fieldName: 'EdFiVersion',
+              sortedByField: orderBy.field,
+              showSorting: true,
+              sortingType: orderBy.order,
+              onSortAsc: () => onOrderBy('EdFiVersion', 'asc'),
+              onSortDesc: () => onOrderBy('EdFiVersion', 'desc') 
+            }}
+            />,
+            <ControlTableHeader headerData={{
+              text: 'Ed-Fi Data Models',
+              fieldName: 'EdFiDataModels',
+              sortedByField: orderBy.field,
+              showSorting: true,
+              sortingType: orderBy.order,
+              onSortAsc: () => onOrderBy('EdFiDataModels', 'asc'),
+              onSortDesc: () => onOrderBy('EdFiDataModels', 'desc') 
+            }}
+            />,
+            <ControlTableHeader headerData={{
+              text: 'Ed-Fi Status',
+              fieldName: 'Status',
+              sortedByField: orderBy.field,
+              showSorting: true,
+              sortingType: orderBy.order,
+              onSortAsc: () => onOrderBy('Status', 'asc'),
+              onSortDesc: () => onOrderBy('Status', 'desc') 
+            }}
+            />,
+            <ControlTableHeader headerData={{
+              text: '',
+              fieldName: '',
+              sortedByField: orderBy.field,
+              showSorting: true,
+              sortingType: orderBy.order,
+              onSortAsc: () => onOrderBy('Year', 'asc'),
+              onSortDesc: () => onOrderBy('Year', 'desc') 
+            }}
+            />
           ]}
-          selectedInstance={pickedInstance}
           instanceList={getSortedInstances(paginatedData.data)}
-          loading={isFetchingData} 
-          onSelectInstance={onSelectInstance}
+          loading={isFetchingData}
+          selectedInstance={pickedInstance}
+          tableMode={tableMode} 
+          updatingIsDefault={updatingIsDefault}
           onOpenSetDefaultModal={onOpenSetDefaultModal}
           onOpenSetUpModal={onOpenSetUpModal}
-          updatingIsDefault={updatingIsDefault} />
+          onSelectInstance={onSelectInstance}
+        />
       </Flex>
     </>
   )

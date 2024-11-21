@@ -1,5 +1,9 @@
-import { ChangeEvent, useState } from 'react'
-import { ControlTableFilter, ControlTablePagination, ControlTableSort, ControlTableSortType, SortByParams } from '../../core/controlTable'
+import {
+  ChangeEvent, useState 
+} from 'react'
+import {
+  ControlTableFilter, ControlTablePagination, ControlTableSort, ControlTableSortType, SortByParams 
+} from '../../core/controlTable'
 
 const initialPaginatedData = {
   pageIndex: 0,
@@ -18,14 +22,27 @@ interface UseControlTableParams {
 
 const useControlTable = <TData, TDataFilters>({ initialOrder, initialOrderType, initialMaxPerPage, initialMinPerPage, initialPageSize }: UseControlTableParams) => {
   const [filterBy, setFilterBy] = useState<ControlTableFilter<TDataFilters> | null>(null)
-  const [orderBy, setOrderBy] = useState<ControlTableSort>({ field: initialOrder, order: initialOrderType ?? 'asc' })
-  const [paginatedData, setPaginatedData] = useState<ControlTablePagination<TData>>({...initialPaginatedData, pageSize: initialPageSize ?? 10 })
+
+  const [orderBy, setOrderBy] = useState<ControlTableSort>({
+    field: initialOrder,
+    order: initialOrderType ?? 'asc' 
+  })
+
+  const [paginatedData, setPaginatedData] = useState<ControlTablePagination<TData>>({
+    ...initialPaginatedData,
+    pageSize: initialPageSize ?? 10 
+  })
+
   const [isFetchingData, setIsFetchingData] = useState(false)
   const [minPerPage, setMinPerPage] = useState(initialMinPerPage ?? 1)
   const [maxPerPage, setMaxPerPage] = useState(initialMaxPerPage ?? 100)
   const totalPages = Math.ceil(paginatedData.count / paginatedData.pageSize)
 
-  const onSelectOrderBy = async (field: string, order: ControlTableSortType) => setOrderBy({ field, order })
+  const onSelectOrderBy = async (field: string, order: ControlTableSortType) => setOrderBy({
+    field,
+    order 
+  })
+
   const onSortAsc = async (params: SortByParams) => await onSelectOrderBy(params.field, 'asc')
   const onSortDesc = async (params: SortByParams) => await onSelectOrderBy(params.field, 'desc')
 
@@ -49,41 +66,72 @@ const useControlTable = <TData, TDataFilters>({ initialOrder, initialOrderType, 
     }
   }
 
-  const goToInitialPage = () => setPaginatedData({...paginatedData, pageIndex: 0, data: [] })
+  const goToInitialPage = () => setPaginatedData({
+    ...paginatedData,
+    pageIndex: 0,
+    data: [] 
+  })
 
-  const gotToLastPage = () => setPaginatedData({...paginatedData, pageIndex: totalPages - 1, data: [] })
+  const gotToLastPage = () => setPaginatedData({
+    ...paginatedData,
+    pageIndex: totalPages - 1,
+    data: [] 
+  })
 
   const goToNextPage = () => {
-    if (paginatedData.pageIndex < totalPages)
-      setPaginatedData({...paginatedData, pageIndex: paginatedData.pageIndex + 1, data: [] })
+    if (paginatedData.pageIndex < totalPages) {
+      setPaginatedData({
+        ...paginatedData,
+        pageIndex: paginatedData.pageIndex + 1,
+        data: [] 
+      })
+    }
   }
+
   const goToPreviousPage = () => {
-    if (paginatedData.pageIndex > 0)
-      setPaginatedData({ ...paginatedData, pageIndex: paginatedData.pageIndex - 1, data: [] })
+    if (paginatedData.pageIndex > 0) {
+      setPaginatedData({
+        ...paginatedData,
+        pageIndex: paginatedData.pageIndex - 1,
+        data: [] 
+      })
+    }
   }
 
   const canNextPage = () => {
-    if (paginatedData.pageIndex < totalPages - 1)
+    if (paginatedData.pageIndex < totalPages - 1) {
       return true
+    }
 
     return false
   }
 
   const canPreviousPage = () => {
-    if (paginatedData.pageIndex > 0)
-      return true 
+    if (paginatedData.pageIndex > 0) {
+      return true
+    } 
         
     return false
   }
 
   const onDecrementPageSize = () => {
-    if (paginatedData.pageSize > minPerPage)
-      setPaginatedData({ ...paginatedData, pageSize: paginatedData.pageSize - 1, pageIndex: 0 })
+    if (paginatedData.pageSize > minPerPage) {
+      setPaginatedData({
+        ...paginatedData,
+        pageSize: paginatedData.pageSize - 1,
+        pageIndex: 0 
+      })
+    }
   }
 
   const onIncrementPageSize = () => {
-    if (paginatedData.pageSize < maxPerPage)
-      setPaginatedData({ ...paginatedData, pageSize: paginatedData.pageSize + 1, pageIndex: 0 })
+    if (paginatedData.pageSize < maxPerPage) {
+      setPaginatedData({
+        ...paginatedData,
+        pageSize: paginatedData.pageSize + 1,
+        pageIndex: 0 
+      })
+    }
   }
 
   const onChangePageSize = (value: string | null | undefined) => {
@@ -95,10 +143,12 @@ const useControlTable = <TData, TDataFilters>({ initialOrder, initialOrderType, 
       })
     }
 
-    if (isNaN(value as any))
-      return 
+    if (isNaN(value as any)) {
+      return
+    } 
 
     const numberValue = parseInt(value)
+
     if (numberValue <= maxPerPage) {
       setPaginatedData({ 
         ...paginatedData, 

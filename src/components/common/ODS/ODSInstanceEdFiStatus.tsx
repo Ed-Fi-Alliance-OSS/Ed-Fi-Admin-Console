@@ -1,4 +1,6 @@
-import { Flex, Spinner, Text } from '@chakra-ui/react'
+import {
+  Flex, Spinner, Text 
+} from '@chakra-ui/react'
 import { InstanceEdfiStatus } from '../../../core/ODSInstance.types'
 
 interface ODSInstanceEdFiStatusProps {
@@ -6,22 +8,25 @@ interface ODSInstanceEdFiStatusProps {
 }
 
 const selectBorderColor = (status: InstanceEdfiStatus) => {
-  if (status.operationStatus === 'Operational')
+  if (status.operationStatus === 'Operational') {
     return 'green.400'
+  }
     
   return 'orange.400'
 }
 
 const selectTextColor = (status: InstanceEdfiStatus) => {
-  if (status.operationStatus === 'Operational')
+  if (status.operationStatus === 'Operational') {
     return 'green.800'
+  }
     
   return 'orange.800'
 }
 
 const selectSize = (status: InstanceEdfiStatus) => {
-  if (status.operationStatus === 'Operational')
+  if (status.operationStatus === 'Operational') {
     return '150px'
+  }
 
   return '150px'
 }
@@ -31,26 +36,32 @@ const ODSInstanceEdFiStatus = ({ status }: ODSInstanceEdFiStatusProps) => {
     <>
       {status? <Flex 
         alignItems='center'
-        justifyContent='center'
         border='1px'
-        borderRadius='4px'
         borderColor={selectBorderColor(status)}
+        borderRadius='4px'
         h='32px'
-        w={selectSize(status)}>
+        justifyContent='center'
+        w={selectSize(status)}
+      >
         <Text
           color={selectTextColor(status)}
           fontFamily='Archivo Narrow'
           fontWeight='400'
-          size='md'>
+          size='md'
+        >
           { status.operationStatus }
         </Text>
       </Flex> 
         : 
-        <Flex h='32px' w='150px'>
-          <Spinner 
-            color='gray.500' 
-            size='sm' />
-        </Flex> }
+      <Flex
+        h='32px'
+        w='150px'
+      >
+        <Spinner 
+          color='gray.500' 
+          size='sm'
+        />
+      </Flex> }
     </>
   )
 }

@@ -10,11 +10,17 @@ const getUnitAndValueDate = (secondsElapsed: number) => {
     if (secondsElapsed >= secondsInUnit || unit === 'second') {
       const value = Math.floor(secondsElapsed / secondsInUnit) * -1
 
-      return { value, unit }
+      return {
+        value,
+        unit 
+      }
     }
   }
 
-  return { value: 1, unit: 'second' }
+  return {
+    value: 1,
+    unit: 'second' 
+  }
 }
   
 const getSecondsDiff = (timestamp: number) => {
@@ -24,9 +30,7 @@ const getSecondsDiff = (timestamp: number) => {
 const getTimeAgo = (timestamp: number) => {
   const rtf = new Intl.RelativeTimeFormat('en')
   const secondsElapsed = getSecondsDiff(timestamp)
-   
-  let {value, unit} = getUnitAndValueDate(secondsElapsed)
-
+  let { value, unit } = getUnitAndValueDate(secondsElapsed)
   const timeValue = value * -1 
 
   if (timeValue > 7 && unit === 'day') {

@@ -2,6 +2,7 @@ import Joi from 'joi'
 import ErrorMessagesGenerator from '../../ErrorMessagesGenerator'
 
 const namespacePrefixesField = 'Namespace Prefixes'
+
 const namespacePrefixesSchema = Joi
   .string()
   .allow('')

@@ -1,4 +1,6 @@
-import { Flex, Text } from '@chakra-ui/react'
+import {
+  Flex, Text 
+} from '@chakra-ui/react'
 import { AppUserLicense } from '../../../core/AppUser.types'
 
 interface AppUserLicensesProps {
@@ -17,7 +19,8 @@ const AppUserLicenses = ({ licenses }: AppUserLicensesProps) => {
         fontWeight='400'
         size='md'
         w='auto'
-        whiteSpace='initial'>
+        whiteSpace='initial'
+      >
         {licensesText(licenses)}
       </Text>
     </Flex>

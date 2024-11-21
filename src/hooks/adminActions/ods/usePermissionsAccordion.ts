@@ -1,5 +1,7 @@
 import { TEEAuthDataContext } from '@edfi/admin-console-shared-sdk'
-import { useState, useEffect, useContext } from 'react'
+import {
+  useState, useEffect, useContext 
+} from 'react'
 import { adminConsoleContext } from '../../../context/adminConsoleContext'
 import { EdfiClaimSet } from '../../../core/Edfi/EdfiClaimsets'
 import useClaimsetService from '../../../services/AdminActions/Edfi/ClaimSets/ClaimsetsService'

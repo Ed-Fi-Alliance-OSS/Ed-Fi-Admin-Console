@@ -1,10 +1,16 @@
-import { ChangeEvent, useState } from 'react'
-import { Button, Flex, FormControl, Text } from '@chakra-ui/react'
+import {
+  ChangeEvent, useState 
+} from 'react'
+import {
+  Button, Flex, FormControl, Text 
+} from '@chakra-ui/react'
 import TabHeading from '../TabHeading'
 import DescriptorsTable from './DescriptorsTable'
 import EducationOrganizationsTable from './EducationOrganizationsTable'
 import PermissionsAccordion from './PermissionsAccordion'
-import { CustomFormLabel, CustomSelect } from '@edfi/admin-console-shared-sdk'
+import {
+  CustomFormLabel, CustomSelect 
+} from '@edfi/admin-console-shared-sdk'
 
 const dataSourceOptions = [
   'Select',
@@ -26,53 +32,76 @@ const DataManagementTabContent = () => {
   return (
     <Flex 
       flexDir='column'
-      w='full'>
+      w='full'
+    >
       <Flex w='full'>
         <Flex w='250px'>
           <TabHeading text="Data Management (Advanced)" />
         </Flex>
-        <Flex flexDir='column' ml='50px' w='700px'>
+
+        <Flex
+          flexDir='column'
+          ml='50px'
+          w='700px'
+        >
           <FormControl mt='16px'>
             <CustomFormLabel
+              htmlFor='selectDataSource'
               text='Select Data to Load'
-              htmlFor='selectDataSource' />
+            />
+
             <CustomSelect 
+              options={dataSourceOptions.map(option => ({
+                value: option,
+                text: option 
+              }) )}
               id="selectDataSource"
-              options={dataSourceOptions.map(option => ({ value: option, text: option }) )}
               value={selectedDataSource}
-              onChange={handleDataSourceChange} />
+              onChange={handleDataSourceChange}
+            />
           </FormControl>
+
           {false && <Button
-            onClick={() => setShowLoadedData(true)}
-            variant='primaryBlue600'
-            size='lg'
-            mt='32px'
+            maxW='200px'
             minW='200px'
-            maxW='200px'>
-                                Load Data
+            mt='32px'
+            size='lg'
+            variant='primaryBlue600'
+            onClick={() => setShowLoadedData(true)}
+          >
+            Load Data
           </Button>}
         </Flex>
       </Flex>
 
       {selectedDataSource !== dataSourceOptions[0] &&  <>
-        <Flex alignItems='flex-end' mt='120px'>
+        <Flex
+          alignItems='flex-end'
+          mt='120px'
+        >
           <TabHeading text={selectedDataSource} />
+
           <Text
             color='gray.500'
             fontFamily='Open sans'
-            fontWeight='400'
             fontSize='18px'
+            fontWeight='400'
+            mb='5px'
             ml='15px'
-            mb='5px'>
-                                (Read-Only)
+          >
+            (Read-Only)
           </Text>
         </Flex>
+
         <Flex
-          mt='32px'
           bg='white'
-          w='full'>
+          mt='32px'
+          w='full'
+        >
           {selectedDataSource === dataSourceOptions[1] && <EducationOrganizationsTable />}
+
           {selectedDataSource === dataSourceOptions[2] && <DescriptorsTable />}
+
           {selectedDataSource === dataSourceOptions[3] && <PermissionsAccordion />}
         </Flex>
       </>}

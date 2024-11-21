@@ -1,4 +1,6 @@
-import { useEffect, useState } from 'react'
+import {
+  useEffect, useState 
+} from 'react'
 import { AppUser } from '../../core/AppUser.types'
 import { ControlTableSortType } from '../../core/controlTable'
 

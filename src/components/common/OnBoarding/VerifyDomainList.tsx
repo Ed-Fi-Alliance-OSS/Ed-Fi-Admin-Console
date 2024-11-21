@@ -21,24 +21,30 @@ const VerifyDomainList = ({ domainsList, isCheckingDomainStatus, isRemovingDomai
   return (
     <Flex flexDir='column'>
       {domainsList.map((domain, index) => 
-        <Flex key={index} _notFirst={{ mt: '5px' }}>
+        <Flex
+          key={index}
+          _notFirst={{ mt: '5px' }}
+        >
           <DomainTag domain={domain.name} />
+
           {showDomainStatus && <>
             <Flex ml='10px'>
               <DomainVerificationStatus 
                 domainName={domain.name}
                 isRemovingDomain={isRemovingDomain}
-                status={domain.state}
-                showDeleteOption={true} 
-                onRemoveDomain={onRemoveDomain} />
+                showDeleteOption={true}
+                status={domain.state} 
+                onRemoveDomain={onRemoveDomain}
+              />
             </Flex>
+
             <RefreshBtn
               id={domain.name}
               isRefreshing={isCheckingDomainStatus}
-              onAction={() => onVerifyDomain(domain)} />
+              onAction={() => onVerifyDomain(domain)}
+            />
           </>}
-        </Flex>
-      )}
+        </Flex>)}
     </Flex>
   )
 }

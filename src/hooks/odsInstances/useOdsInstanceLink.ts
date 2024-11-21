@@ -11,9 +11,7 @@ const useOdsInstanceLink = () => {
     return routes.instance.url.replace(':year', year? year.toString() : '0')
   }
 
-  return {
-    getOdsInstanceLink
-  }
+  return { getOdsInstanceLink }
 }
 
 export default useOdsInstanceLink

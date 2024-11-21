@@ -5,15 +5,15 @@ const useOdsInstanceParamId = () => {
 
   const getInstanceIdFromPathName = () => {
     const pathnameSplits = location.pathname.split('/')
-    if (pathnameSplits.length > 1)
+
+    if (pathnameSplits.length > 1) {
       return pathnameSplits[2]
+    }
 
     return 'unknown'
   }
 
-  return {
-    getInstanceIdFromPathName
-  }
+  return { getInstanceIdFromPathName }
 }
 
 export default useOdsInstanceParamId

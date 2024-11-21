@@ -7,10 +7,13 @@ interface FillAddPartnerFormParams {
 }
 
 const fillAddPartnerForm = async ({ page, partnerName, nameSpacePrefixes }: FillAddPartnerFormParams) => {
-  if (partnerName)
+  if (partnerName) {
     await page.getByLabel('Vendor Name').fill(partnerName)
-  if (nameSpacePrefixes)
+  }
+
+  if (nameSpacePrefixes) {
     await page.getByLabel('Namespace Prefixes').fill(nameSpacePrefixes)
+  }
 }
 
 export {

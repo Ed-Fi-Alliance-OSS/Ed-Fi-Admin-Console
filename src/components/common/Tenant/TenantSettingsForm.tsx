@@ -1,5 +1,9 @@
-import { Button, Flex, FormControl } from '@chakra-ui/react'
-import { CustomFormLabel, CustomSwitch, CustomInput } from '@edfi/admin-console-shared-sdk'
+import {
+  Button, Flex, FormControl 
+} from '@chakra-ui/react'
+import {
+  CustomFormLabel, CustomSwitch, CustomInput 
+} from '@edfi/admin-console-shared-sdk'
 import DomainSelect from './DomainSelect'
 
 const domains = [
@@ -9,91 +13,120 @@ const domains = [
 
 const TenantSettingsForm = () => {
   return (
-    <form style={{ display: 'flex', width: '100%' }}>
-      <Flex flexDir='column' w='full'>
+    <form style={{
+      display: 'flex',
+      width: '100%' 
+    }}
+    >
+      <Flex
+        flexDir='column'
+        w='full'
+      >
         <FormControl>
           <CustomFormLabel 
+            htmlFor="organizationName"
             text="Organization Name"
-            htmlFor="organizationName" />
+          />
+
           <CustomInput
             id='organizationName'
             value='Grand Bend ISD'
-            onChange={() => null} />
+            onChange={() => null}
+          />
         </FormControl>
 
         <Flex mt='16px'>
           <FormControl>
             <CustomFormLabel 
+              htmlFor="organizationId"
               text="Organization ID"
-              htmlFor="organizationId" />
+            />
+
             <CustomInput
               id='organizationId'
               value='255901'
-              onChange={() => null} />
+              onChange={() => null}
+            />
           </FormControl>
         </Flex>
 
         <Flex mt='16px'>
           <FormControl>
             <CustomFormLabel 
+              htmlFor="organizationType"
               text="Organization Type"
-              htmlFor="organizationType" />
+            />
+
             <CustomInput
               id='organizationType'
               value='LEA'
-              onChange={() => null} />
+              onChange={() => null}
+            />
           </FormControl>
         </Flex>
 
         <Flex mt='16px'>
           <FormControl>
             <CustomFormLabel 
+              htmlFor="organizationType"
               text="Tenant ID"
-              htmlFor="organizationType" />
+            />
+
             <CustomInput
               id='organizationType'
               value='00000000-0000-0000-0000-000000000001'
-              onChange={() => null} />
+              onChange={() => null}
+            />
           </FormControl>
         </Flex>
 
         <Flex mt='16px'>
           <FormControl>
             <CustomFormLabel 
+              htmlFor="state"
               text="State"
-              htmlFor="state" />
+            />
+
             <CustomInput
               id='state'
               value='Tx'
-              onChange={() => null} />
+              onChange={() => null}
+            />
           </FormControl>
         </Flex>
 
         <Flex mt='16px'>
           <FormControl>
             <CustomFormLabel 
+              htmlFor="isDemo"
               text="Is Demo"
-              htmlFor="isDemo" />
+            />
+
             <CustomSwitch
               id="toggleTenant"
-              isChecked={false} />
+              isChecked={false}
+            />
           </FormControl>
         </Flex>
 
         <Flex mt='16px'>
           <FormControl>
             <CustomFormLabel 
+              htmlFor="domains"
               text="Domains"
-              htmlFor="domains" />
+            />
+
             <DomainSelect domains={domains} />
           </FormControl>
         </Flex>
+
         <Flex mt='32px'>
           <Button 
-            variant='primaryBlue600'
             size='lg'
-            w='189px'>
-                                Save Edits
+            variant='primaryBlue600'
+            w='189px'
+          >
+            Save Edits
           </Button>
         </Flex>
       </Flex>

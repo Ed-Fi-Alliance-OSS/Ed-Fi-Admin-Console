@@ -87,9 +87,16 @@ const instanceList: InstanceHealth[] = [
 
 const StatusSummaryPageContent = () => {
   return (
-    <Flex flexDir='column' w='full'>
+    <Flex
+      flexDir='column'
+      w='full'
+    >
       <StatusSummaryPageHeader />
-      <Flex mt='24px' w='full'>
+
+      <Flex
+        mt='24px'
+        w='full'
+      >
         <StatusSummaryAccordion instanceList={instanceList} />
       </Flex>
     </Flex>

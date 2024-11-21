@@ -12,8 +12,16 @@ const InstanceDetailsContent = ({ mode, instance }: InstanceDetailsContentProps)
   return (
     <Flex w='full'>
       <TabHeading text={mode === 'add'? 'Create Instance' : 'Edit Instance Details'} />
-      <Flex mt='15px' ml='45px' w='full'>
-        <InstanceDetailsForm instance={instance} mode={mode} />
+
+      <Flex
+        ml='45px'
+        mt='15px'
+        w='full'
+      >
+        <InstanceDetailsForm
+          instance={instance}
+          mode={mode}
+        />
       </Flex>
     </Flex>
   )

@@ -1,5 +1,9 @@
-import { ChangeEvent, useState } from 'react'
-import { LogFilterTypeOption, LogFilterValues } from '../../../components/common/UserSync/LogsInnerTable.types'
+import {
+  ChangeEvent, useState 
+} from 'react'
+import {
+  LogFilterTypeOption, LogFilterValues 
+} from '../../../components/common/UserSync/LogsInnerTable.types'
 
 const useLogsInnerTableFilters = () => {
   const [logFilterValues, setLogFilterValues] = useState<LogFilterValues>({
@@ -8,15 +12,30 @@ const useLogsInnerTableFilters = () => {
   })
 
   const [ options, setOptions ] = useState<LogFilterTypeOption[]>([
-    { text: 'Any', value: 'Any' },
-    { text: 'Information', value: 'Information' },
-    { text: 'Warning', value: 'Warning' },
-    { text: 'Sync Error', value: 'Sync Error' },
-    { text: 'Fatal Error', value: 'Fatal Error' }
+    {
+      text: 'Any',
+      value: 'Any' 
+    },
+    {
+      text: 'Information',
+      value: 'Information' 
+    },
+    {
+      text: 'Warning',
+      value: 'Warning' 
+    },
+    {
+      text: 'Sync Error',
+      value: 'Sync Error' 
+    },
+    {
+      text: 'Fatal Error',
+      value: 'Fatal Error' 
+    }
   ])
 
   const onChangeFilterOption = (e: ChangeEvent<HTMLSelectElement>) => {
-    const nlogFilterValues = {...logFilterValues}
+    const nlogFilterValues = { ...logFilterValues }
         
     nlogFilterValues.messageType = e.target.value as any
 
@@ -24,7 +43,7 @@ const useLogsInnerTableFilters = () => {
   }
     
   const onChangeMessage = (e: ChangeEvent<HTMLInputElement>) => {
-    const nlogFilterValues = {...logFilterValues}
+    const nlogFilterValues = { ...logFilterValues }
         
     nlogFilterValues.messageText = e.target.value
       

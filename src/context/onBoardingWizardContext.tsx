@@ -1,8 +1,14 @@
-import { createContext, useState, useEffect, useContext } from 'react'
+import {
+  TEEAuthDataContext, useConfig, UserProfileContext
+} from '@edfi/admin-console-shared-sdk'
+import {
+  createContext, useContext, useEffect, useState
+} from 'react'
 import { OnBoardingWizardData } from '../core/onBoardingWizard/onBoardingWizard.types'
-import { createOnBoardingWizardStep, fetchOnBoardingWizardData } from '../services/OnBoardingWizard/onBoardingWizardService'
-import { TEEAuthDataContext, UserProfileContext } from '@edfi/admin-console-shared-sdk'
 import useOnboardingWizardStepsData from '../hooks/useOnBoardingWizardStepsData'
+import {
+  createOnBoardingWizardStep, fetchOnBoardingWizardData
+} from '../services/OnBoardingWizard/onBoardingWizardService'
 
 export interface OnBoardingWizardDataWrapper {
     onBoardingWizardData: OnBoardingWizardData | null
@@ -22,14 +28,17 @@ const OnBoardingWizardProvider = ({ children }: OnBoardingWizardProviderProps) =
   const [ isFetchingOnBoardingWizard, setIsFetchingOnBoardingWizard ] = useState(true)
   const [onBoardingWizardData, setOnBoardingWizardData] = useState<OnBoardingWizardData | null>(null)
   const { onboardingStepsData } = useOnboardingWizardStepsData()
+  const { config } = useConfig()
+  // TODO: replace with actual tenant url
+  const tenantMockUrl = `${config?.app.basePath}/mockdata/data-tenant.json`
 
   const fetchOnBoardingDetails = async () => {
     if (auth && auth.user && userProfile && edxAppConfig) {
       console.log('started fetching')
       setIsFetchingOnBoardingWizard(true)
-            
+      
       const data = await fetchOnBoardingWizardData({
-        apiUrl: edxAppConfig.api.baseUri as string,
+        apiUrl: tenantMockUrl,
         tenantId: userProfile.tenantId,
         token: auth.user.access_token,
         apiConfig: edxAppConfig.api
@@ -43,7 +52,7 @@ const OnBoardingWizardProvider = ({ children }: OnBoardingWizardProviderProps) =
           await setupInitialOnBoardingState()
                     
           const initialOBData = await fetchOnBoardingWizardData({
-            apiUrl: edxAppConfig.api.baseUri as string,
+            apiUrl: tenantMockUrl,
             tenantId: userProfile.tenantId,
             token: auth.user.access_token,
             apiConfig: edxAppConfig.api
@@ -57,13 +66,12 @@ const OnBoardingWizardProvider = ({ children }: OnBoardingWizardProviderProps) =
                     
         setIsFetchingOnBoardingWizard(false)
         setOnBoardingWizardData(data)
-      }
-      else {
+      } else {
         console.log('tenant does not have OB data. Loading steps...')
         await setupInitialOnBoardingState()
                 
         const initialOBData = await fetchOnBoardingWizardData({
-          apiUrl: edxAppConfig.api.baseUri as string,
+          apiUrl: tenantMockUrl,
           tenantId: userProfile.tenantId,
           token: auth.user.access_token,
           apiConfig:  edxAppConfig.api
@@ -78,8 +86,9 @@ const OnBoardingWizardProvider = ({ children }: OnBoardingWizardProviderProps) =
   }
 
   const hasStartedOB = (data: OnBoardingWizardData) : boolean => {
-    if (data.status === 'Pending') 
-      return false 
+    if (data.status === 'Pending') {
+      return false
+    } 
 
     return true
   }
@@ -92,7 +101,7 @@ const OnBoardingWizardProvider = ({ children }: OnBoardingWizardProviderProps) =
 
         console.log('creating step', step.index + 1, step.name)
         await createOnBoardingWizardStep({
-          apiUrl: edxAppConfig.api.baseUri as string,
+          apiUrl: edxAppConfig.api.edfiApiBaseUri as string,
           tenantId: userProfile.tenantId,
           token: auth.user.access_token,
           description: step.name,
@@ -111,7 +120,12 @@ const OnBoardingWizardProvider = ({ children }: OnBoardingWizardProviderProps) =
   }, [ userProfile ])
 
   return (
-    <onBoardingWizardContext.Provider value={{ onBoardingWizardData, setOnBoardingWizardData, isFetchingOnBoardingWizard }}>
+    <onBoardingWizardContext.Provider value={{
+      onBoardingWizardData,
+      setOnBoardingWizardData,
+      isFetchingOnBoardingWizard 
+    }}
+    >
       {children}
     </onBoardingWizardContext.Provider>
   )

@@ -11,10 +11,12 @@ const InviteUserModal = ({ show, onAfterAction, onClose }: InviteUserModalProps)
   return (
     <ConsoleModal
       content={<InviteUserForm 
+        onAfterAction={onAfterAction}
         onClose={onClose}
-        onAfterAction={onAfterAction} />}
+      />}
       show={show}
-      onClose={onClose} />
+      onClose={onClose}
+    />
   )
 }
 

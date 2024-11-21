@@ -6,8 +6,9 @@ interface AppUserEmailProps {
 
 const AppUserEmail = ({ email }: AppUserEmailProps) => {
   const emailText = () => {
-    if (email.length <= 20)
+    if (email.length <= 20) {
       return email
+    }
         
     return  `${email.slice(0, 20)}...`
   }
@@ -15,8 +16,9 @@ const AppUserEmail = ({ email }: AppUserEmailProps) => {
   return (
     <Text 
       fontFamily='Open sans'
+      fontSize='md'
       fontWeight='400'
-      fontSize='md'>
+    >
       {emailText()}
     </Text>
   )

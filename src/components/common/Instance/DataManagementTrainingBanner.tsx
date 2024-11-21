@@ -1,4 +1,6 @@
-import { Button, Flex, Text } from '@chakra-ui/react'
+import {
+  Button, Flex, Text 
+} from '@chakra-ui/react'
 
 interface DataManagementTrainingBannerProps {
     text: string 
@@ -11,39 +13,48 @@ const DataManagementTrainingBanner = ({ text, onSkipTraining, onLearnMode }: Dat
     <Flex
       bg='blue.500'
       borderRadius='4px'
-      padding='49px 36px'
       h='136px'
-      w='full'>
+      padding='49px 36px'
+      w='full'
+    >
       <Text
         color='white'
         fontFamily='Poppins'
+        fontSize='24px'
         fontWeight='700'
-        fontSize='24px'>
+      >
         {text}
       </Text>
+
       <Flex ml='auto'>
         <Button
-          color='white'
-          onClick={onSkipTraining}
           border='1px'
           borderColor='white'
           borderRadius='4px'
+          color='white'
           size='md'
-          w='186px'>
-                            Skip Training
+          w='186px'
+          onClick={onSkipTraining}
+        >
+          Skip Training
         </Button>
+
         <Button
-          color='blue.900'
+          _hover={{
+            color: 'white',
+            bg: 'transparent' 
+          }}
           bg='white'
-          onClick={onLearnMode}
-          variant='secondaryWhite'
           border='1px'
           borderColor='white'
-          size='md'
+          color='blue.900'
           ml='10px'
+          size='md'
+          variant='secondaryWhite'
           w='170px'
-          _hover={{ color: 'white', bg: 'transparent' }}>
-                            Learn More
+          onClick={onLearnMode}
+        >
+          Learn More
         </Button>
       </Flex>
     </Flex>

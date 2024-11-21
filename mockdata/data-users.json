@@ -1,0 +1,80 @@
+[
+  {
+    "userId": "3bfd5718-e3f8-55f3-826d-97621717e98c",
+    "userName": "alejandro@edfi.org",
+    "email": "alejandro@edfi.org",
+    "status": "Active",
+    "firstName": "Alejandro",
+    "lastName": "Muñoz",
+    "createdBy": null,
+    "createdDateTime": "2024-07-31T17:00:23.982+00:00",
+    "lastModifiedBy": null,
+    "lastModifiedDateTime": "2024-11-15T01:31:47.631+00:00",
+    "lastLoginDateTime": "2024-11-14T22:51:32.314+00:00"
+  },
+  {
+    "userId": "a3c78203-7bc9-5c68-890b-88cbc778028e",
+    "userName": "alex@edfi.org",
+    "email": "alex@edfi.org",
+    "status": "Active",
+    "firstName": "Alex",
+    "lastName": "Blanc",
+    "createdBy": null,
+    "createdDateTime": "2023-09-25T15:02:43.003+00:00",
+    "lastModifiedBy": null,
+    "lastModifiedDateTime": "2024-11-15T17:08:07.843+00:00",
+    "lastLoginDateTime": "2024-11-15T16:36:01.601+00:00"
+  },
+  {
+    "userId": "b6a64a01-a030-5eb8-883b-c9fed5f8c868",
+    "userName": "alexandra@edfi.org",
+    "email": "alexandra@edfi.org",
+    "status": "Active",
+    "firstName": "Alexandra",
+    "lastName": "Blanc",
+    "createdBy": null,
+    "createdDateTime": "2024-10-16T19:29:30.429+00:00",
+    "lastModifiedBy": null,
+    "lastModifiedDateTime": "2024-11-04T21:47:16.082+00:00",
+    "lastLoginDateTime": "2024-11-04T21:47:16.078+00:00"
+  },
+  {
+    "userId": "1d24f4c0-eb25-53f4-81fc-35c87ed25b2c",
+    "userName": "alisacameron@edfi.org",
+    "email": "alisacameron@edfi.org",
+    "status": "Active",
+    "firstName": "Alisa",
+    "lastName": "Cameron",
+    "createdBy": null,
+    "createdDateTime": "2024-02-14T18:35:31.807+00:00",
+    "lastModifiedBy": null,
+    "lastModifiedDateTime": "2024-09-09T16:57:38.224+00:00",
+    "lastLoginDateTime": "0001-01-01T00:00:00.000+00:00"
+  },
+  {
+    "userId": "0e64476d-1d86-5152-9e6f-458cd2ad4832",
+    "userName": "alvinlee@edfi.org",
+    "email": "alvinlee@edfi.org",
+    "status": "Active",
+    "firstName": "Alvin",
+    "lastName": "Lee",
+    "createdBy": null,
+    "createdDateTime": "2024-02-14T18:35:32.107+00:00",
+    "lastModifiedBy": null,
+    "lastModifiedDateTime": "2024-09-09T16:57:38.494+00:00",
+    "lastLoginDateTime": "0001-01-01T00:00:00.000+00:00"
+  },
+  {
+    "userId": "50fa92ea-31f2-5ef1-aa0d-27ab9a8925e5",
+    "userName": "anmol@edfi.org",
+    "email": "anmol@edfi.org",
+    "status": "Active",
+    "firstName": "Anmolpreet",
+    "lastName": "Singh",
+    "createdBy": null,
+    "createdDateTime": "2024-02-01T10:37:25.192+00:00",
+    "lastModifiedBy": null,
+    "lastModifiedDateTime": "2024-11-05T15:25:40.157+00:00",
+    "lastLoginDateTime": "2024-11-05T15:25:40.081+00:00"
+  }
+]

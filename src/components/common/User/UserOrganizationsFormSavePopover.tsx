@@ -1,5 +1,7 @@
 import { ChevronDownIcon } from '@chakra-ui/icons'
-import { Popover, PopoverTrigger, Button, PopoverContent, PopoverBody, Flex } from '@chakra-ui/react'
+import {
+  Popover, PopoverTrigger, Button, PopoverContent, PopoverBody, Flex 
+} from '@chakra-ui/react'
 
 interface UserOrganizationsFormSavePopoverProps {
     onCancelAdd: () => void
@@ -10,44 +12,55 @@ const UserOrganizationsFormSavePopover = ({ onCancelAdd }: UserOrganizationsForm
     <Popover>
       <PopoverTrigger>
         <Button 
-          onClick={() => console.log('User education organizations control popover')}
-          size='xs'
+          aria-labelledby="show-save-option}"
           borderRadius='0px 4px 4px 0px'
-          variant='primaryBlue600'
-          ml='1px'
-          minW='24px'
           maxW='24px'
-          aria-labelledby={'show-save-option}'}>
-          <span id={'show-save-option}'} hidden>Show Options</span>
+          minW='24px'
+          ml='1px'
+          size='xs'
+          variant='primaryBlue600'
+          onClick={() => console.log('User education organizations control popover')}
+        >
+          <span
+            hidden
+            id="show-save-option}"
+          >Show Options
+          </span>
+
           <ChevronDownIcon 
-            fontSize='18px'    
-            aria-hidden="true" 
-            focusable="false" />
+            aria-hidden="true"    
+            focusable="false" 
+            fontSize='18px'
+          />
         </Button>
       </PopoverTrigger>
+
       <PopoverContent 
-        top='0px'
         padding='0'
-        w='100px'>
+        top='0px'
+        w='100px'
+      >
         <PopoverBody padding='0'>
           <Flex 
+            bg='white'
             border='1px'
             borderColor='gray.400'
             borderRadius='4px'
-            bg='white'
-            w='100px'>
+            w='100px'
+          >
             <Button
-              onClick={onCancelAdd}
-              isLoading={false}
-              fontFamily='Open sans'
-              display='flex'
+              _hover={{ background: 'white' }}
               bg='white'
-              color='black'
               borderRadius='4px'
-              size='xs'
+              color='black'
+              display='flex'
+              fontFamily='Open sans'
+              isLoading={false}
               minW='80px'
-              _hover={{ background: 'white' }}>
-                                        Cancel
+              size='xs'
+              onClick={onCancelAdd}
+            >
+              Cancel
             </Button>
           </Flex>
         </PopoverBody>

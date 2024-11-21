@@ -2,6 +2,7 @@ import Joi from 'joi'
 import ErrorMessagesGenerator from '../../ErrorMessagesGenerator'
 
 const gracePeriodFieldName = 'Grace Period'
+
 const gracePeriodSchema = Joi
   .number()
   .required()
@@ -11,7 +12,8 @@ const gracePeriodSchema = Joi
     'number.base': ErrorMessagesGenerator.emptyField(gracePeriodFieldName),
     'number.min':  'Grace Period should be between 0 and 365',
     'number.max':  'Grace Period should be between 0 and 365',
-    'number.empty': ErrorMessagesGenerator.emptyField(gracePeriodFieldName)})
+    'number.empty': ErrorMessagesGenerator.emptyField(gracePeriodFieldName) 
+  })
 
 export {
   gracePeriodSchema

@@ -1,4 +1,6 @@
-import { test, expect, type Page } from '@playwright/test'
+import {
+  test, expect, type Page 
+} from '@playwright/test'
 
 test.beforeEach(async ({ page }) => {
   await page.goto('https://demo.playwright.dev/todomvc')
@@ -20,9 +22,7 @@ test.describe('New Todo', () => {
     await newTodo.press('Enter')
 
     // Make sure the list only has one todo item.
-    await expect(page.getByTestId('todo-title')).toHaveText([
-      TODO_ITEMS[0]
-    ])
+    await expect(page.getByTestId('todo-title')).toHaveText([TODO_ITEMS[0]])
 
     // Create 2nd todo.
     await newTodo.fill(TODO_ITEMS[1])
@@ -84,7 +84,10 @@ test.describe('Mark all as completed', () => {
     await page.getByLabel('Mark all as complete').check()
 
     // Ensure all todos have 'completed' class.
-    await expect(page.getByTestId('todo-item')).toHaveClass(['completed', 'completed', 'completed'])
+    await expect(page.getByTestId('todo-item')).toHaveClass([
+      'completed', 'completed', 'completed'
+    ])
+
     await checkNumberOfCompletedTodosInLocalStorage(page, 3)
   })
 
@@ -95,7 +98,9 @@ test.describe('Mark all as completed', () => {
     await toggleAll.uncheck()
 
     // Should be no completed classes.
-    await expect(page.getByTestId('todo-item')).toHaveClass(['', '', ''])
+    await expect(page.getByTestId('todo-item')).toHaveClass([
+      '', '', ''
+    ])
   })
 
   test('complete all checkbox should update state when items are completed / cleared', async ({ page }) => {
@@ -187,6 +192,7 @@ test.describe('Item', () => {
       'buy some sausages',
       TODO_ITEMS[2]
     ])
+
     await checkTodosInLocalStorage(page, 'buy some sausages')
   })
 })
@@ -201,9 +207,8 @@ test.describe('Editing', () => {
     const todoItem = page.getByTestId('todo-item').nth(1)
     await todoItem.dblclick()
     await expect(todoItem.getByRole('checkbox')).not.toBeVisible()
-    await expect(todoItem.locator('label', {
-      hasText: TODO_ITEMS[1],
-    })).not.toBeVisible()
+    await expect(todoItem.locator('label', { hasText: TODO_ITEMS[1], })).not.toBeVisible()
+
     await checkNumberOfTodosInLocalStorage(page, 3)
   })
 
@@ -218,6 +223,7 @@ test.describe('Editing', () => {
       'buy some sausages',
       TODO_ITEMS[2],
     ])
+
     await checkTodosInLocalStorage(page, 'buy some sausages')
   })
 
@@ -232,6 +238,7 @@ test.describe('Editing', () => {
       'buy some sausages',
       TODO_ITEMS[2],
     ])
+
     await checkTodosInLocalStorage(page, 'buy some sausages')
   })
 
@@ -260,7 +267,6 @@ test.describe('Counter', () => {
   test('should display the current number of todo items', async ({ page }) => {
     // create a new todo locator
     const newTodo = page.getByPlaceholder('What needs to be done?')
-    
     // create a todo count locator
     const todoCount = page.getByTestId('todo-count')
 

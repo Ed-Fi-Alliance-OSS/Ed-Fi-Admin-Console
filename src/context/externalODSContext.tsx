@@ -1,14 +1,16 @@
-import { TEEAuthDataContext, UserProfileContext } from '@edfi/admin-console-shared-sdk'
-import { createContext, useContext, useEffect, useState } from 'react'
+import {
+  TEEAuthDataContext, UserProfileContext 
+} from '@edfi/admin-console-shared-sdk'
+import {
+  createContext, useContext, useEffect, useState 
+} from 'react'
 import useTenantService from '../services/AdminActions/Tenant/TenantService'
 
 export interface ExternalODSInfo {
     isExternalODS: boolean 
 }
 
-export const externalODSContext = createContext<ExternalODSInfo>({
-  isExternalODS: false
-})
+export const externalODSContext = createContext<ExternalODSInfo>({ isExternalODS: false })
 
 interface ExternalODSProviderProps {
     children: JSX.Element
@@ -22,11 +24,13 @@ const ExternalODSProvider = ({ children, config }: ExternalODSProviderProps) => 
   const [isODS, setIsODS] = useState<boolean>(false)
 
   const fetchUseExternalODSSetting = async () => {
-    if (!edxAppConfig || !userProfile || !auth)
-      return 
+    if (!edxAppConfig || !userProfile || !auth) {
+      return
+    } 
 
-    if (!auth.user)
-      return 
+    if (!auth.user) {
+      return
+    } 
 
     const tenant = await getTenant({
       tenantId: userProfile.tenantId,
@@ -36,24 +40,28 @@ const ExternalODSProvider = ({ children, config }: ExternalODSProviderProps) => 
     })
 
     if (tenant.type === 'Response') {
-      if (!tenant.data.settings)
-        return 
+      if (!tenant.data.settings) {
+        return
+      } 
             
       const useExternalODSSetting = tenant.data.settings.find(setting => setting.code === 'useExternalEdFiOds')
         
-      if (!useExternalODSSetting)
+      if (!useExternalODSSetting) {
         return
+      }
 
-      if (useExternalODSSetting.value !== 'true')
-        return 
+      if (useExternalODSSetting.value !== 'true') {
+        return
+      } 
 
       setIsODS(true)
     }
   }
 
   useEffect(() => {
-    if (userProfile)
+    if (userProfile) {
       fetchUseExternalODSSetting()
+    }
   }, [ userProfile ])
 
   return (

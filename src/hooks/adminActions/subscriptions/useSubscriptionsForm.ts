@@ -1,12 +1,18 @@
-import { EdxAppConfig, TEEAuthDataContext, UserProfileContext } from '@edfi/admin-console-shared-sdk'
-import { ChangeEvent, useState, useEffect, useContext } from 'react'
+import {
+  EdxAppConfig, TEEAuthDataContext, UserProfileContext 
+} from '@edfi/admin-console-shared-sdk'
+import {
+  ChangeEvent, useState, useEffect, useContext 
+} from 'react'
 import { adminConsoleContext } from '../../../context/adminConsoleContext'
 import { Subscription } from '../../../core/Subscription.types'
 import { ActionParams } from '../../../services/AdminActions/adminAction.types'
 import { getApplicationsList } from '../../../services/AdminActions/Applications/ApplicationsService'
 import { Application } from '../../../services/AdminActions/Applications/ApplicationsService.responses'
 import { getInitialData } from './SubscriptionsFormInitialData'
-import { Mode, SubscriptionApplicationOption, SubscriptionFormData } from './useSubscriptionsForm.types'
+import {
+  Mode, SubscriptionApplicationOption, SubscriptionFormData 
+} from './useSubscriptionsForm.types'
 import useSubscriptionsFormActions from './useSubscriptionsFormActions'
 import useSubscriptionsFormValidation from './useSubscriptionsFormValidation'
 
@@ -31,11 +37,12 @@ const useSubscriptionsForm = ({ mode, editSubscriptionData, currentSubscriptions
   const onChangeStartDate = (date: Date) => {
     console.log('change start date', date)
 
-    const nsubscriptionData = {...subscriptionData}
+    const nsubscriptionData = { ...subscriptionData }
     nsubscriptionData.startDateTime = date
 
-    if (hasTriedSubmit && nsubscriptionData.endDateTime)
+    if (hasTriedSubmit && nsubscriptionData.endDateTime) {
       validateSubscriptionDuration(nsubscriptionData)
+    }
 
     setSubscriptionData(nsubscriptionData)
 
@@ -45,11 +52,12 @@ const useSubscriptionsForm = ({ mode, editSubscriptionData, currentSubscriptions
   const onChangeEndDate = (date: Date) => {
     console.log('change end date', date)
 
-    const nsubscriptionData = {...subscriptionData}
+    const nsubscriptionData = { ...subscriptionData }
     nsubscriptionData.endDateTime = date
 
-    if (hasTriedSubmit && nsubscriptionData.startDateTime)
+    if (hasTriedSubmit && nsubscriptionData.startDateTime) {
       validateSubscriptionDuration(nsubscriptionData)
+    }
 
     setSubscriptionData(nsubscriptionData)
 
@@ -58,11 +66,13 @@ const useSubscriptionsForm = ({ mode, editSubscriptionData, currentSubscriptions
 
   const onSelectApplication = (e: ChangeEvent<HTMLSelectElement>) => {
     if (e.target.value !== '' && mode === 'Add') {
-      const nsubscriptionData = {...subscriptionData}
+      const nsubscriptionData = { ...subscriptionData }
       nsubscriptionData.applicationId = e.target.value
 
-      if (hasTriedSubmit)
+      if (hasTriedSubmit) {
         validateHasSelectedApplication(nsubscriptionData)
+      }
+
       setSubscriptionData(nsubscriptionData)
     }
   }
@@ -70,7 +80,7 @@ const useSubscriptionsForm = ({ mode, editSubscriptionData, currentSubscriptions
   const onToggleAutoAssign = (e: ChangeEvent<HTMLInputElement>) => {
     console.log('toggle auto assign', e.target.checked)
 
-    const nsubscriptionData = {...subscriptionData}
+    const nsubscriptionData = { ...subscriptionData }
     nsubscriptionData.autoAssign = e.target.checked
         
     setSubscriptionData(nsubscriptionData)
@@ -79,11 +89,12 @@ const useSubscriptionsForm = ({ mode, editSubscriptionData, currentSubscriptions
   const onChangeGracePeriod = (stringValue: string, value: number) => {
     console.log('increase period', stringValue, value)
 
-    const nsubscriptionData = {...subscriptionData}
+    const nsubscriptionData = { ...subscriptionData }
     nsubscriptionData.gracePeriod = value
 
-    if (hasTriedSubmit)
+    if (hasTriedSubmit) {
       validateGracePeriod(nsubscriptionData)
+    }
 
     console.log('updated grace period', nsubscriptionData)
         
@@ -93,14 +104,16 @@ const useSubscriptionsForm = ({ mode, editSubscriptionData, currentSubscriptions
   const onChangeNumberOfLicenses = (stringValue: string, value: number) => {
     console.log('increase license', stringValue, value)
 
-    const nsubscriptionData = {...subscriptionData}
+    const nsubscriptionData = { ...subscriptionData }
     nsubscriptionData.numberOfLicenses = value
 
-    if (value === -1)
+    if (value === -1) {
       nsubscriptionData.unlimitedLicenses = true
+    }
         
-    if (hasTriedSubmit)
+    if (hasTriedSubmit) {
       validateNumberOfLicenses(nsubscriptionData)
+    }
         
     setSubscriptionData(nsubscriptionData)
   }
@@ -108,13 +121,14 @@ const useSubscriptionsForm = ({ mode, editSubscriptionData, currentSubscriptions
   const onToggleLicenseType = (e: ChangeEvent<HTMLInputElement>) => {
     console.log('toggle license', e.target.checked)
 
-    const nsubscriptionData = {...subscriptionData}
+    const nsubscriptionData = { ...subscriptionData }
     nsubscriptionData.unlimitedLicenses = e.target.checked
         
-    if (e.target.checked)
+    if (e.target.checked) {
       nsubscriptionData.numberOfLicenses = -1
-    else 
+    } else {
       nsubscriptionData.numberOfLicenses = 0
+    }
         
     setSubscriptionData(nsubscriptionData)
   }
@@ -137,7 +151,10 @@ const useSubscriptionsForm = ({ mode, editSubscriptionData, currentSubscriptions
       return soption
     })
         
-    options.unshift({ applicationId: '', applicationName: 'Select the application' })
+    options.unshift({
+      applicationId: '',
+      applicationName: 'Select the application' 
+    })
 
     return options
   }
@@ -163,19 +180,22 @@ const useSubscriptionsForm = ({ mode, editSubscriptionData, currentSubscriptions
         if (validFormData(subscriptionData)) {
           await onAddSubscription(adminConfig.actionParams, subscriptionData)
 
-          if (onAfterAction) onAfterAction()
-        }
-        else 
+          if (onAfterAction) {
+            onAfterAction()
+          }
+        } else {
           setHasTriedSubmit(true)
-      }
-      else if (mode === 'Edit') {
+        }
+      } else if (mode === 'Edit') {
         if (validFormData(subscriptionData)) {
           await onEditSubscription(adminConfig.actionParams, subscriptionData)
 
-          if (onAfterAction) onAfterAction()
-        }
-        else 
+          if (onAfterAction) {
+            onAfterAction()
+          }
+        } else {
           setHasTriedSubmit(true)
+        }
       }
 
       setIsSavingChanges(false)

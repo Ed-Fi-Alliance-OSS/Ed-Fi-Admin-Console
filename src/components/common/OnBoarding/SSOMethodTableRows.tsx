@@ -1,4 +1,6 @@
-import { Td, Text } from '@chakra-ui/react'
+import {
+  Td, Text 
+} from '@chakra-ui/react'
 import { SSOMethod } from '../../../core/ssoMethods/SSOMethods.types'
 import ControlTableRow from '../ControlTableRow'
 import { CustomSwitch } from '@edfi/admin-console-shared-sdk'
@@ -20,22 +22,29 @@ const SSOMethodTableRows = ({ ssoMethodsList, showOnlySelected, onToggleSSOMetho
               color='blue.600'
               fontFamily='Open sans'
               fontWeight='700'
-              size='md'>
+              size='md'
+            >
               {ssoMethod.name}
             </Text>
           </Td>
+
           <Td w='50%'>
             <SSOConsentStatus status={ssoMethod.consentStatus} />
           </Td>
+
           {!showOnlySelected? <Td>
             <CustomSwitch
               id={ssoMethod.name}
-              isDisabled={ssoMethod.name === 'Acme Service Center'}  
-              isChecked={ssoMethod.selected}
-              onCheck={() => onToggleSSOMethod(ssoMethod.name)} />
-          </Td> : <Td padding='0' w='0px'></Td>}
-        </ControlTableRow>
-      )}
+              isChecked={ssoMethod.selected}  
+              isDisabled={ssoMethod.name === 'Acme Service Center'}
+              onCheck={() => onToggleSSOMethod(ssoMethod.name)}
+            />
+          </Td> : <Td
+            padding='0'
+            w='0px'
+          >
+          </Td>}
+        </ControlTableRow>)}
     </>
   )
 }

@@ -1,4 +1,6 @@
-import { GridItem, Flex, Text } from '@chakra-ui/react'
+import {
+  GridItem, Flex, Text 
+} from '@chakra-ui/react'
 
 interface DataHealthDetailsItemProps {
     text: string 
@@ -15,21 +17,31 @@ const DataHealthDetailsItem = ({ text, value }: DataHealthDetailsItemProps) => {
       border='1px'
       borderColor={selectColor()}
       borderRadius='4px'
-      padding='10px 10px'
       h='115px'
-      w='full'>
-      <Flex flexDir='column' h='full' w='full'>
+      padding='10px 10px'
+      w='full'
+    >
+      <Flex
+        flexDir='column'
+        h='full'
+        w='full'
+      >
         <Text 
-          fontFamily='Open sans'
           color={selectTextColor()}
+          fontFamily='Open sans'
+          fontSize='14px'
           fontWeight='700'
-          fontSize='14px'>{text}</Text>
+        >{text}
+        </Text>
+
         <Text
           color={selectValueColor()}
-          fontWeight='700'
           fontSize='28px'
+          fontWeight='700'
+          h='30px'
           mt='auto'
-          h='30px'>{value? value : '--'}</Text>
+        >{value? value : '--'}
+        </Text>
       </Flex>
     </GridItem>
   )

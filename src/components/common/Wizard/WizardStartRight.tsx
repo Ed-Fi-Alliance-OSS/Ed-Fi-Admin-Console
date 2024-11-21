@@ -17,11 +17,13 @@ const WizardStartRight = ({ currentStepIndex, lastInProgress, completedSteps, st
   }
 
   const isDisabled = (index: number) => {
-    if (index === currentStepIndex || index === lastInProgress)
+    if (index === currentStepIndex || index === lastInProgress) {
       return false
+    }
 
-    if (index > completedSteps - 1)
+    if (index > completedSteps - 1) {
       return true
+    }
 
     return false
   }   
@@ -29,17 +31,18 @@ const WizardStartRight = ({ currentStepIndex, lastInProgress, completedSteps, st
   return (
     <Flex 
       flexDir='column'
+      h={h ?? '720px'}
       padding='0 32px'
-      h={ h ?? '720px'}
-      w='48%'>
+      w='48%'
+    >
       {stepsList.map((step, index) => 
         <WizardStepButton 
+          key={index}
           isCurrent={isCurrent(index)}
           isDisabled={isDisabled(index)}
-          key={index}
           stepData={step}
-          onClick={onGoToStep} />
-      )}
+          onClick={onGoToStep}
+        />)}
     </Flex>
   )
 }

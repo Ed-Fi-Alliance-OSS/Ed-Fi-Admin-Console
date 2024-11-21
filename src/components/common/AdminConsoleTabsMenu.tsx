@@ -1,5 +1,7 @@
 import { useState } from 'react'
-import { Tabs, TabList, Tab, TabIndicator, TabPanel, TabPanels, Flex } from '@chakra-ui/react'
+import {
+  Tabs, TabList, Tab, TabIndicator, TabPanel, TabPanels, Flex 
+} from '@chakra-ui/react'
 import TabContentWrapper from './TabContentWrapper'
 
 interface AdminConsoleTabsMenuProps {
@@ -18,41 +20,54 @@ const AdminConsoleTabsMenu = ({ children, tabsList, initialIndex, contentMt, inc
     <Tabs 
       isLazy
       index={index}
-      onChange={(nindex) => setIndex(nindex)}
-      position="relative" 
+      position="relative"
       variant="unstyled" 
-      w='full'>
-      <Flex justifyContent='space-between' w='full'>
+      w='full' 
+      onChange={(nindex) => setIndex(nindex)}
+    >
+      <Flex
+        justifyContent='space-between'
+        w='full'
+      >
         <Flex w='full'>
           <TabList>
             {tabsList.map(tab => 
               <Tab 
                 key={tab}
+                _notFirst={{ ml: '32px' }}
+                _selected={{ color: 'blue.600' }}
                 fontFamily='Open sans'
                 fontWeight='bold'
                 padding='0'
-                _selected={{ color: 'blue.600' }}
-                _notFirst={{ ml: '32px' }}>{tab}</Tab>
-            )}
+              >{tab}
+              </Tab>)}
           </TabList>
         </Flex>
+
         { actionControl }
       </Flex>
+
       <TabIndicator
-        mt="5px"
-        height="2px"
         bg="blue.600"
-        borderRadius="1px" />
+        borderRadius="1px"
+        height="2px"
+        mt="5px"
+      />
+
       <TabPanels padding='0'>
         {children.map((child, index) => 
-          <TabPanel mt={contentMt? contentMt : '45px'} padding='0' key={index} w='full'>
+          <TabPanel
+            key={index}
+            mt={contentMt? contentMt : '45px'}
+            padding='0'
+            w='full'
+          >
             {includeWrapper === false? 
               child  : 
               <TabContentWrapper>
                 {child}
               </TabContentWrapper> }
-          </TabPanel>
-        )}
+          </TabPanel>)}
       </TabPanels>
     </Tabs>
   )

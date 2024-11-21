@@ -21,9 +21,7 @@ const useEdfiVersionService = () => {
     return result
   }
     
-  return {
-    getEdfiVersion
-  }
+  return { getEdfiVersion }
 }
 
 export default useEdfiVersionService

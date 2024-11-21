@@ -1,18 +1,26 @@
-import { useContext, useEffect, useState } from 'react'
+import {
+  useContext, useEffect, useState 
+} from 'react'
 import { adminConsoleContext } from '../../context/adminConsoleContext'
-import { ExtendedODSInstance, ODSInstance } from '../../core/ODSInstance.types'
+import { useMockData } from '../../context/mockDataContext'
+import {
+  ExtendedODSInstance, ODSInstance 
+} from '../../core/ODSInstance.types'
 import useOdsInstanceService from '../../services/ODSInstances/OdsInstanceService'
-import { GetOdsInstancesListRequest, UpdateOdsInstanceIsDefaultRequest } from '../../services/ODSInstances/OdsInstanceService.requests'
+import {
+  GetOdsInstancesListRequest, UpdateOdsInstanceIsDefaultRequest 
+} from '../../services/ODSInstances/OdsInstanceService.requests'
+import useEDXToast from '../common/useEDXToast'
 import useControlTable from '../controlTable/useControlTable'
 import useConfirmSetDefaultModal from './useConfirmSetDefaultModal'
+import useExtendedOdsInstanceMapping from './useExtendedOdsInstanceMapping'
 import { UpdatingIsDefaultStatus } from './useOdsInstanceTable.types'
 import useSetUpWizardModal from './useSetUpWizardModal'
-import useExtendedOdsInstanceMapping from './useExtendedOdsInstanceMapping'
 import useValidateSetAsDefault from './useValidateSetAsDefault'
-import useEDXToast from '../common/useEDXToast'
 
 const useOdsInstanceTable = () => {
   const adminConfig = useContext(adminConsoleContext)
+  const mock = useMockData()
 
   const {
     paginatedData,
@@ -67,19 +75,22 @@ const useOdsInstanceTable = () => {
     console.log('instanceList')
     console.log(instancesList)
     return instancesList.filter(instance => {
-      if (!instance.schoolYears)
+      if (!instance.schoolYears) {
         return false
+      }
 
-      if (instance.schoolYears.length == 0)
+      if (instance.schoolYears.length == 0) {
         return false
+      }
 
       return true
     })
   }
 
   const fetchInstancesList = async () => {
-    if (!adminConfig)
-      return 
+    if (!adminConfig) {
+      return
+    } 
 
     const request: GetOdsInstancesListRequest = {
       pageIndex: paginatedData.pageIndex,
@@ -89,32 +100,39 @@ const useOdsInstanceTable = () => {
     setIsFetchingData(true)
     const response = await getOdsInstancesList(
       adminConfig.actionParams, 
-      request)
+      request
+    )
 
-    if (response.type == 'Error')
-      return 
+    if (response.type == 'Error') {
+      return
+    } 
             
     const filteredInstances = filterInstancesWithoutYear(response.data.data)
             
-    const mappedInstances = await Promise.all(
-      filteredInstances.map(async (instance) =>
-        await mapToExtendedOdsInstance(instance)
-      ))
+    const mappedInstances = await Promise.all(filteredInstances.map(async (instance) =>
+      await mapToExtendedOdsInstance(instance)))
         
     setIsFetchingData(false)
-    setPaginatedData({
-      pageIndex: response.data.pageIndex,
-      pageSize: response.data.pageSize,
-      count: response.data.count,
-      data: mappedInstances
-    })
+    console.log(mock.get('Instances'))
+    if(mappedInstances.length > 0) {
+      setPaginatedData({
+        pageIndex: response.data.pageIndex,
+        pageSize: response.data.pageSize,
+        count: response.data.count,
+        data: mappedInstances.concat((mock.get('Instances') ?? []).map(a => ({
+          ...mappedInstances[0],
+          ...a 
+        } as ODSInstance)))
+      })
+    }
   }
 
   const onOpenSetDefaultModal = (instanceId: string) => {
     const instanceById = paginatedData.data.find(i => i.instanceId == instanceId)
 
-    if (!instanceById)
-      return 
+    if (!instanceById) {
+      return
+    } 
    
     setSelectedInstance({ ...instanceById })
     onShowConfirmSetDefaultModal()
@@ -123,26 +141,31 @@ const useOdsInstanceTable = () => {
   const onOpenSetUpModal = (instanceId: string) => {
     const instanceById = paginatedData.data.find(i => i.instanceId == instanceId)
 
-    if (!instanceById)
-      return 
+    if (!instanceById) {
+      return
+    } 
 
     setSelectedInstance({ ...instanceById })
     onShowSetUpWizardModal()
   }
 
   const onSetIsDefault = async (instanceId: string, isDefault: boolean) => {
-    if (!adminConfig)
-      return 
+    if (!adminConfig) {
+      return
+    } 
 
     const instanceById = paginatedData.data
       .find(instance => instance.instanceId == instanceId)
 
-    if (!instanceById)
-      return 
+    if (!instanceById) {
+      return
+    } 
 
     const canSetAsDefaultResult = canSetAsDefault(instanceById, paginatedData.data)
-    if (!canSetAsDefaultResult)
-      return 
+
+    if (!canSetAsDefaultResult) {
+      return
+    } 
 
     const request: UpdateOdsInstanceIsDefaultRequest = {
       tenantId: adminConfig.actionParams.tenantId,
@@ -158,7 +181,8 @@ const useOdsInstanceTable = () => {
 
     const response = await updateInstanceIsDefault(
       adminConfig.actionParams,
-      request)
+      request
+    )
 
     if (response.type == 'Error') {
       setUpdatingIsDefault({

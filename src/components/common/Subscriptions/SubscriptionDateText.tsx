@@ -9,7 +9,8 @@ const SubscriptionDateText = ({ date }: SubscriptionDateTextProps) => {
     <Text
       fontFamily='Open sans'
       fontWeight='400'
-      size='md'>
+      size='md'
+    >
       {date}
     </Text>
   )

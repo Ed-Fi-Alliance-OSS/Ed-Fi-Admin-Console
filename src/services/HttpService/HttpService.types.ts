@@ -1,5 +1,7 @@
 import { Api } from '@edfi/admin-console-shared-sdk/dist/core/EdxApp.types'
-import { HttpServiceRequestError, HttpServiceResponse } from './HttpService.response.types'
+import {
+  HttpServiceRequestError, HttpServiceResponse 
+} from './HttpService.response.types'
 
 export type HttpServiceMethod = 'Get' | 'Post' | 'Put'
 

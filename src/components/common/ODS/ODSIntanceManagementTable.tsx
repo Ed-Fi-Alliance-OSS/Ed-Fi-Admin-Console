@@ -20,8 +20,9 @@ const ODSInstanceManagementTable = ({ tableMode, tableHeaders, selectedInstance,
   const filteredTableHeaders = (headers: JSX.Element[]) => {
     return headers.filter((header, index) => {
       if (tableMode == 'Display') {
-        if (index > 0)
+        if (index > 0) {
           return true
+        }
 
         return false
       }
@@ -32,18 +33,20 @@ const ODSInstanceManagementTable = ({ tableMode, tableHeaders, selectedInstance,
 
   return (
     <ControlTable 
-      headers={filteredTableHeaders(tableHeaders)} 
-      itemsCount={instanceList.length}
-      thPadding='auto'
-      loading={loading}
       rows={<ODSInstanceManagementTableRows 
-        tableMode={tableMode}
-        selectedInstance={selectedInstance}
         instanceList={instanceList}
-        onSelectInstance={onSelectInstance}
+        selectedInstance={selectedInstance}
+        tableMode={tableMode}
         updatingIsDefault={updatingIsDefault}
         onOpenSetDefaultModal={onOpenSetDefaultModal}
-        onOpenSetUpModal={onOpenSetUpModal} />} />
+        onOpenSetUpModal={onOpenSetUpModal}
+        onSelectInstance={onSelectInstance}
+      />} 
+      headers={filteredTableHeaders(tableHeaders)}
+      itemsCount={instanceList.length}
+      loading={loading}
+      thPadding='auto'
+    />
   )
 }
 

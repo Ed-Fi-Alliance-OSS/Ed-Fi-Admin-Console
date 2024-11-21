@@ -1,5 +1,9 @@
-import { TEEAuthDataContext, UserProfileContext } from '@edfi/admin-console-shared-sdk'
-import { useContext, useEffect, useState } from 'react'
+import {
+  TEEAuthDataContext, UserProfileContext 
+} from '@edfi/admin-console-shared-sdk'
+import {
+  useContext, useEffect, useState 
+} from 'react'
 import { adminConsoleContext } from '../../../context/adminConsoleContext'
 import { SSOMethod } from '../../../core/ssoMethods/SSOMethods.types'
 import { IdentityProvider } from '../../../core/Tenant.types'
@@ -7,9 +11,24 @@ import useTenantService from '../../../services/AdminActions/Tenant/TenantServic
 import { UpdateTenantRequest } from '../../../services/AdminActions/Tenant/TenantService.requests'
 
 const ssoMethodsList: SSOMethod[] = [
-  { name: 'Acme Service Center', descriptor: 'Local', consentStatus: 'Required', selected: true },
-  { name: 'Microsoft', descriptor: 'Aad', consentStatus: 'Not Selected', selected: false },
-  { name: 'Google', descriptor: 'Google', consentStatus: 'Not Selected', selected: false }
+  {
+    name: 'Acme Service Center',
+    descriptor: 'Local',
+    consentStatus: 'Required',
+    selected: true 
+  },
+  {
+    name: 'Microsoft',
+    descriptor: 'Aad',
+    consentStatus: 'Not Selected',
+    selected: false 
+  },
+  {
+    name: 'Google',
+    descriptor: 'Google',
+    consentStatus: 'Not Selected',
+    selected: false 
+  }
 ]
 
 const useSSOProviders = () => {
@@ -26,10 +45,11 @@ const useSSOProviders = () => {
 
     if (ssoIndex > -1) {
       nssoMethods[ssoIndex].selected = !nssoMethods[ssoIndex].selected
-      if (nssoMethods[ssoIndex].selected)
+      if (nssoMethods[ssoIndex].selected) {
         nssoMethods[ssoIndex].consentStatus = 'Consented'
-      else 
+      } else {
         nssoMethods[ssoIndex].consentStatus = 'Not Selected'
+      }
     }
 
     setssoProviderOptions(nssoMethods)
@@ -37,14 +57,13 @@ const useSSOProviders = () => {
   }
 
   const extractSSOProviderOptions = (providers: IdentityProvider[]): SSOMethod[] => {
-    const noptions = ssoMethodsList.map(method => ({...method})).map(option => {
-      if (option.descriptor === 'Local') 
+    const noptions = ssoMethodsList.map(method => ({ ...method })).map(option => {
+      if (option.descriptor === 'Local') {
         option.selected = true
-      else if (providers.find(p => p === option.descriptor)) {
+      } else if (providers.find(p => p === option.descriptor)) {
         option.selected = true
         option.consentStatus = 'Consented'
-      }
-      else {
+      } else {
         option.selected = false
       }
 

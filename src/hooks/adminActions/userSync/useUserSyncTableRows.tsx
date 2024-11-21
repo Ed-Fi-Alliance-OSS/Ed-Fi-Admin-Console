@@ -2,7 +2,6 @@ const useUserSyncTableRows = () => {
   const getFormatedDate = (date: string) => {
     function formatDate(dateVal: string) {
       const newDate = new Date(dateVal)
-
       const sMonth = padValue(newDate.getMonth() + 1)
       const sDay = padValue(newDate.getDate())
       const sYear = newDate.getFullYear()
@@ -10,14 +9,12 @@ const useUserSyncTableRows = () => {
       const sMinute = padValue(newDate.getMinutes())
       const sSeconds = padValue(newDate.getSeconds())
       let sAMPM = 'AM'
-
       const iHourCheck = parseInt(sHour)
 
       if (iHourCheck > 12) {
         sAMPM = 'PM'
         sHour = iHourCheck - 12
-      }
-      else if (iHourCheck === 0) {
+      } else if (iHourCheck === 0) {
         sHour = '12'
       }
 

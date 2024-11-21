@@ -1,7 +1,9 @@
 import { Flex } from '@chakra-ui/react'
 import { EdfiApplication } from '../../../core/Edfi/EdfiApplications'
 import useApplicationForm from '../../../hooks/adminActions/edfi/useApplicationForm'
-import { CompleteFormErrorMessage, UserProfile, UserProfileContext } from '@edfi/admin-console-shared-sdk'
+import {
+  CompleteFormErrorMessage, UserProfile, UserProfileContext 
+} from '@edfi/admin-console-shared-sdk'
 import ApplicationAPIFormSection from './ApplicationAPIFormSection'
 import ApplicationDetailsFormSection from './ApplicationDetailsFormSection'
 import LocalEducationAgenciesFormSection from './LocalEducationAgenciesFormSection'
@@ -49,8 +51,9 @@ const ApplicationForm = ({ instance, schoolYear, mode, editApplicationData, onFi
     if (profile) {
       const tenant = getCurrentTenant()
 
-      if (tenant) 
+      if (tenant) {
         return tenant.organizationName
+      }
 
       return 'Loading...'
     }
@@ -63,50 +66,67 @@ const ApplicationForm = ({ instance, schoolYear, mode, editApplicationData, onFi
   const getLocalEducationOrgId = () => {
     const currentTenant = getCurrentTenant()
 
-    if (currentTenant)
+    if (currentTenant) {
       return currentTenant.organizationIdentifier
+    }
 
     return '...'
   }
 
   return (
     <EdFiModalForm
+      content={<Flex w='full'>
+        <Flex
+          flexDir='column'
+          w='full'
+        >
+          { Object.keys(errors).length > 0 && hasTriedSubmit && <CompleteFormErrorMessage /> }
+
+          <ApplicationDetailsFormSection
+            applicationData={applicationData}
+            claimSetOptions={claimsOptionsList}
+            errors={errors}
+            mode={mode}
+            operationalContext={operationalContext}
+            vendorOptions={vendorOptionsList}
+            onInputChange={onChangeInput}
+            onSelectClaimSet={onSelectClaim}
+            onSelectVendor={onSelectVendor}
+          />
+
+          <Flex
+            mt='32px'
+            w='full'
+          >
+            <LocalEducationAgenciesFormSection
+              description={getLocalEducationOrgId()}
+              mode={mode}
+              name={getCurrentTenantOrgName(userProfile)}
+              selected={true}
+              onToggleOrgId={() => onToggleOrgId()}
+            />
+          </Flex>
+
+          <Flex
+            mt={showApplicationAPIData()? '32px' : '0px'}
+            w='full'
+          >
+            <ApplicationAPIFormSection 
+              applicationClientData={applicationAuthData}
+              instance={instance}
+              isRegeneratingCredentials={isRegeneratingCredentials}
+              mode={mode}
+              onRegenerateCredentials={() => onRegenerateCredentials(editApplicationData? editApplicationData.applicationId : 0)}
+            />
+          </Flex>
+        </Flex>
+      </Flex>}
       actionText="save"
       headerText={mode === 'add'? 'Add Application' : 'Edit Application'}
       isSaving={isSaving}
-      onSave={onSave}
       onClose={onFinishSave}
-      content={<Flex w='full'>
-        <Flex flexDir='column' w='full'>
-          { Object.keys(errors).length > 0 && hasTriedSubmit && <CompleteFormErrorMessage /> }
-          <ApplicationDetailsFormSection
-            errors={errors}
-            mode={mode}
-            applicationData={applicationData}
-            operationalContext={operationalContext}
-            vendorOptions={vendorOptionsList}
-            claimSetOptions={claimsOptionsList}
-            onInputChange={onChangeInput}
-            onSelectVendor={onSelectVendor}
-            onSelectClaimSet={onSelectClaim} />
-          <Flex mt='32px' w='full'>
-            <LocalEducationAgenciesFormSection
-              name={getCurrentTenantOrgName(userProfile)}
-              description={getLocalEducationOrgId()}
-              selected={true}
-              mode={mode}
-              onToggleOrgId={() => onToggleOrgId()} />
-          </Flex>
-          <Flex mt={showApplicationAPIData()? '32px' : '0px'} w='full'>
-            <ApplicationAPIFormSection 
-              instance={instance}
-              mode={mode}
-              applicationClientData={applicationAuthData}
-              isRegeneratingCredentials={isRegeneratingCredentials}
-              onRegenerateCredentials={() => onRegenerateCredentials(editApplicationData? editApplicationData.applicationId : 0)} />
-          </Flex>
-        </Flex>
-      </Flex>} />
+      onSave={onSave}
+    />
   )
 }
 

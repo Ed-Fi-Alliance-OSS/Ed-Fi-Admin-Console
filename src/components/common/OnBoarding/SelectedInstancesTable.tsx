@@ -21,13 +21,16 @@ const SelectedInstancesTable = ({ tableMode, selectedInstance, settingAsDefault,
         selectedInstance={selectedInstance}
         settingAsDefault={settingAsDefault}
         showConfirmInstanceModal={showConfirmInstanceModal}
+        onClose={onClose}
         onContinue={onContinue}
-        onClose={onClose} />
+      />
+
       <ODSInstanceTableWrapper
         pickedInstance={selectedInstance}
         tableMode={tableMode}
         onSelectInstance={onSelectInstance}
-        onUpdateInstancesCount={onUpdateInstancesCount} />
+        onUpdateInstancesCount={onUpdateInstancesCount}
+      />
     </>
   )
 }

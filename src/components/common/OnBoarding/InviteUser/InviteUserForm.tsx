@@ -9,27 +9,32 @@ interface InviteUserFormProps {
 }
 
 const InviteUserForm = ({ onAfterAction, onClose }: InviteUserFormProps) => {
-  const { 
-    userData,
+  const { userData,
     onInputChange,
     errors,
     hasTriedSubmit,
     savingChanges,
-    onSave } = useCreateUserForm({ formMode: 'Invite Admin', onAddFinished: onAfterAction })
+    onSave } = useCreateUserForm({
+    formMode: 'Invite Admin',
+    onAddFinished: onAfterAction 
+  })
 
   return (
     <ModalForm
+      content={<InviteUserFormContent
+        errors={errors} 
+        hasTriedSubmit={hasTriedSubmit}
+        userData={userData}
+        onInputChange={onInputChange}
+      />}
       header={<InviteUserFormHeader 
         isSavingChanges={savingChanges}
+        onClose={onClose}
         onSave={onSave}
-        onClose={onClose} />}
-      content={<InviteUserFormContent
-        userData={userData} 
-        errors={errors}
-        hasTriedSubmit={hasTriedSubmit}
-        onInputChange={onInputChange} />}
+      />}
       height='auto'
-      width="512px" />
+      width="512px"
+    />
   )
 }
 

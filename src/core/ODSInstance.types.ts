@@ -1,3 +1,5 @@
+import React from 'react'
+import { EdFiMetadata } from '../hooks/useEdfiUrls.types'
 import { OnBoardingWizardData } from './onBoardingWizard/onBoardingWizard.types'
 
 export interface InstanceEdfiStatus {
@@ -14,7 +16,7 @@ export interface ODSInstance {
   connectionType: string
   clientId: string
   clientSecret: string
-  baseUrl: string 
+  edfiMetadata: EdFiMetadata
   authenticationUrl: string 
   resourcesUrl: string 
   schoolYears: number[]
@@ -24,8 +26,8 @@ export interface ODSInstance {
 }
 
 export interface ExtendedODSInstance extends ODSInstance {
-  edFiVersion: string 
-  tsdsVersion: string 
+  edFiVersion: string | React.JSX.Element
+  tsdsVersion: string | React.JSX.Element
   edFiStatus: InstanceEdfiStatus
 }
 

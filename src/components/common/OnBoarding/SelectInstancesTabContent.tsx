@@ -1,4 +1,6 @@
-import { Flex, Text } from '@chakra-ui/react'
+import {
+  Flex, Text 
+} from '@chakra-ui/react'
 import OnBoardingTabContentWrapper from './OnBoardingTabContentWrapper'
 import SelectedInstancesTable from './SelectedInstancesTable'
 import { ODSInstanceTableMode } from '../ODS/ODSInstanceTable.types'
@@ -22,29 +24,41 @@ const SelectInstancesTabContent = ({ tableMode, selectedInstance, settingAsDefau
         fontFamily='Open sans'
         fontWeight='400'
         textAlign='justify'
-        w='720px'>
-                    Now that your domain is verified, 
-                    we have made the following school years(s) available for your District/Charter School to load data into. 
-                    Select the school year (if you only see one, just click “Next”) you would like to work with, and you’ll be able to continue on in the process.
+        w='720px'
+      >
+        Now that your domain is verified, 
+        we have made the following school years(s) available for your District/Charter School to load data into. 
+        Select the school year (if you only see one, just click “Next”) you would like to work with, and you’ll be able to continue on in the process.
       </Text>
-      <Flex mt='32px' w='full'>
+
+      <Flex
+        mt='32px'
+        w='full'
+      >
         <SelectedInstancesTable 
-          tableMode={tableMode}
-          showConfirmInstanceModal={showConfirmInstanceModal}
-          settingAsDefault={settingAsDefault}
           selectedInstance={selectedInstance}
+          settingAsDefault={settingAsDefault}
+          showConfirmInstanceModal={showConfirmInstanceModal}
+          tableMode={tableMode}
+          onClose={onCloseModal}
+          onContinue={onContinue}
           onSelectInstance={onSelectInstance}
           onUpdateInstancesCount={onUpdateInstancesCount}
-          onClose={onCloseModal}
-          onContinue={onContinue} />
+        />
       </Flex>
-      <Flex justifyContent='space-between' mt='32px' w='full'>
+
+      <Flex
+        justifyContent='space-between'
+        mt='32px'
+        w='full'
+      >
         {false &&  <Text
           color='blue.500'
           fontFamily='Open sans'
           fontWeight='700'
-          size='md'>
-                        Not seeing what you were expecting? Get help here.
+          size='md'
+        >
+          Not seeing what you were expecting? Get help here.
         </Text>}
       </Flex>
     </OnBoardingTabContentWrapper>

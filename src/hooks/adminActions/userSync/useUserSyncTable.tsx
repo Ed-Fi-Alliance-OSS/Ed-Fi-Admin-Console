@@ -1,12 +1,20 @@
-import { useContext, useEffect, useState } from 'react'
+import {
+  useContext, useEffect, useState 
+} from 'react'
 import { adminConsoleContext } from '../../../context/adminConsoleContext'
-import { JobExecutionListResponse, JobListResponse, Schedule } from '../../../core/UserSync/UserSync.types'
+import {
+  JobExecutionListResponse, JobListResponse, Schedule 
+} from '../../../core/UserSync/UserSync.types'
 import useUserSyncService from '../../../services/AdminActions/UserSync/UserSyncService'
-import { ExecuteEdFiSync, UpdateEdFiSyncRequest } from '../../../services/AdminActions/UserSync/UserSyncService.requests'
+import {
+  ExecuteEdFiSync, UpdateEdFiSyncRequest 
+} from '../../../services/AdminActions/UserSync/UserSyncService.requests'
 import useEDXToast from '../../common/useEDXToast'
 import useControlTable from '../../controlTable/useControlTable' 
 import useDebounce from '../../useDebounce'
-import { edfiSyncJobInitialData, executionInitialData } from './UserSyncInitialData'
+import {
+  edfiSyncJobInitialData, executionInitialData 
+} from './UserSyncInitialData'
 
 export type JobExecutionDataFilters = 'firstName' | 'lastName' | 'status' | 'email' | 'select filter'
 export type SelectedUserSyncTable = 'Executions' | 'Logs'
@@ -43,11 +51,12 @@ const useUserSyncTable = () => {
   })
 
   const [selectedTable, setSelectedTable] = useState<SelectedUserSyncTable>('Executions')
-  const [edfiSyncJob, setEdFiSyncJob] = useState<JobListResponse>({...edfiSyncJobInitialData})
-  const [selectedExecution, setSelectedExecution] = useState<JobExecutionListResponse>({...executionInitialData})
+  const [edfiSyncJob, setEdFiSyncJob] = useState<JobListResponse>({ ...edfiSyncJobInitialData })
+  const [selectedExecution, setSelectedExecution] = useState<JobExecutionListResponse>({ ...executionInitialData })
   const [isSaving, setIsSaving] = useState(false)
   const [enabledNightlySync, setEnabledNightlySync] = useState(false)
   const adminConfig = useContext(adminConsoleContext)
+
   const {
     getEdFiSync,
     getEdFiSyncById,
@@ -56,9 +65,9 @@ const useUserSyncTable = () => {
     executeEdFiSync,
     updateEdFiSync
   } = useUserSyncService()
+
   const { successToast, errorToast } = useEDXToast()
   const [showConfigurationModal, setShowConfigurationModal] = useState(false)
-
   const inputTimeoutMiliseconds = 1000
   const debouncedPaginatedData = useDebounce(paginatedData, inputTimeoutMiliseconds)
 
@@ -69,8 +78,9 @@ const useUserSyncTable = () => {
         
     const currentEdFiSync = await fetchEdFiSyncJob()
 
-    if (!currentEdFiSync)
-      return 
+    if (!currentEdFiSync) {
+      return
+    } 
 
     setEnabledNightlySync(currentEdFiSync.schedule.enabled)
   }
@@ -84,43 +94,49 @@ const useUserSyncTable = () => {
     const nexecution = paginatedData.data
       .find(execution => execution.jobExecutionId === executionId)
         
-    if (!nexecution)
-      return 
+    if (!nexecution) {
+      return
+    } 
         
     setSelectedTable('Logs')
-    setSelectedExecution({...nexecution})
+    setSelectedExecution({ ...nexecution })
   }
 
   const onReturn = () => {
-    setSelectedExecution({...executionInitialData})
+    setSelectedExecution({ ...executionInitialData })
     setSelectedTable('Executions')
   }
 
   const fetchEdFiSyncJob = async (): Promise<JobListResponse | null> => {
-    if (!adminConfig)
+    if (!adminConfig) {
       return null
+    }
 
     const edfiSyncResult = await getEdFiSync(adminConfig.actionParams)
 
-    if (edfiSyncResult.type !== 'Response')
+    if (edfiSyncResult.type !== 'Response') {
       return null
+    }
 
     return edfiSyncResult.data
   }
 
   const createTenantEdFiSync = async () => {
-    if (!adminConfig)
-      return 
+    if (!adminConfig) {
+      return
+    } 
 
     const createEdFiSyncResult = await createEdFiSync(adminConfig.actionParams)
 
-    if (createEdFiSyncResult.type !== 'Response')
+    if (createEdFiSyncResult.type !== 'Response') {
       return errorToast('Failed to create sync job')
+    }
 
     const edfiSyncResult = await fetchEdFiSyncJob()
 
-    if (!edfiSyncResult)
+    if (!edfiSyncResult) {
       return setIsFetchingData(false)
+    }
 
     setEdFiSyncJob(edfiSyncResult)
     setEnabledNightlySync(edfiSyncResult.schedule.enabled)
@@ -130,14 +146,16 @@ const useUserSyncTable = () => {
   }
 
   const fetchEdFiSync = async () => {
-    if (!adminConfig)
-      return 
+    if (!adminConfig) {
+      return
+    } 
 
     setIsFetchingData(true)
     const edfiSyncResult = await fetchEdFiSyncJob()
 
-    if (!edfiSyncResult)
+    if (!edfiSyncResult) {
       return await createTenantEdFiSync()
+    }
 
     setEdFiSyncJob(edfiSyncResult)
     setEnabledNightlySync(edfiSyncResult.schedule.enabled)
@@ -148,8 +166,9 @@ const useUserSyncTable = () => {
   }
 
   const fetchExecutions = async (jobId: string) => {
-    if (!adminConfig)
-      return 
+    if (!adminConfig) {
+      return
+    } 
 
     const executionsResult = await getEdFiSyncExecutions(adminConfig.actionParams, {
       jobId,
@@ -158,8 +177,9 @@ const useUserSyncTable = () => {
       orderBy: orderBy? `${orderBy.field}+${orderBy.order}` : ''
     })
 
-    if (executionsResult.type !== 'Response')
-      return 
+    if (executionsResult.type !== 'Response') {
+      return
+    } 
 
     setPaginatedData({
       data: executionsResult.data.data,
@@ -170,17 +190,16 @@ const useUserSyncTable = () => {
   }
 
   const onManualSync = async () => {
-    if (!adminConfig)
-      return 
+    if (!adminConfig) {
+      return
+    } 
 
-    const request: ExecuteEdFiSync = {
-      jobId: edfiSyncJob.jobId
-    }
-
+    const request: ExecuteEdFiSync = { jobId: edfiSyncJob.jobId }
     const executeEdFiSyncResult = await executeEdFiSync(adminConfig.actionParams, request)
 
-    if (executeEdFiSyncResult.type !== 'Response')
+    if (executeEdFiSyncResult.type !== 'Response') {
       return errorToast('Failed to execute User Sync')
+    }
 
     successToast('Executed User Sync')
   }
@@ -188,23 +207,23 @@ const useUserSyncTable = () => {
   const onToggleNightlySync = () => setEnabledNightlySync(!enabledNightlySync)
 
   const onSave = async () => {
-    if (!adminConfig)
-      return 
+    if (!adminConfig) {
+      return
+    } 
 
     setIsSaving(true)
 
-    const edfiSyncJobByIdResult = await getEdFiSyncById(adminConfig.actionParams, {
-      jobId: edfiSyncJob.jobId
-    })
+    const edfiSyncJobByIdResult = await getEdFiSyncById(adminConfig.actionParams, { jobId: edfiSyncJob.jobId })
 
-    if (edfiSyncJobByIdResult.type !== 'Response')
+    if (edfiSyncJobByIdResult.type !== 'Response') {
       return errorToast('Failed to save changes')
+    }
 
     const jobById = edfiSyncJobByIdResult.data
 
     console.log('job by id', jobById)
 
-    const updatedSchedule: Schedule = {...jobById.schedule}
+    const updatedSchedule: Schedule = { ...jobById.schedule }
     updatedSchedule.enabled = enabledNightlySync
 
     const request: UpdateEdFiSyncRequest = {
@@ -219,7 +238,7 @@ const useUserSyncTable = () => {
       dataRefreshType: jobById.dataRefreshType,
       dataRefreshSpecificDate: jobById.dataRefreshSpecificDate,
       maxApiRetry: jobById.maxApiRetry,
-      jobMetadata: jobById.jobMetadata.map(metadata => ({...metadata})),
+      jobMetadata: jobById.jobMetadata.map(metadata => ({ ...metadata })),
       maxApiFailure: jobById.maxApiFailure,
       schedule: updatedSchedule
     }
@@ -239,7 +258,9 @@ const useUserSyncTable = () => {
 
   useEffect(() => {
     fetchEdFiSync()
-  }, [ debouncedPaginatedData.pageIndex, debouncedPaginatedData.pageSize, orderBy ])
+  }, [
+    debouncedPaginatedData.pageIndex, debouncedPaginatedData.pageSize, orderBy 
+  ])
 
   return {
     edfiSyncJob,

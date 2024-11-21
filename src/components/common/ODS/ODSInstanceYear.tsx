@@ -1,4 +1,6 @@
-import { Flex, Link } from '@chakra-ui/react'
+import {
+  Flex, Link 
+} from '@chakra-ui/react'
 import { Link as RouterLink } from 'react-router-dom'
 import { ODSInstance } from '../../../core/ODSInstance.types'
 import useOdsInstanceLink from '../../../hooks/odsInstances/useOdsInstanceLink'
@@ -17,17 +19,19 @@ const ODSInstanceYear = ({ instance }: ODSInstanceYearProps) => {
       flexDir='column'
       flexWrap='wrap'
       h='auto'
-      w='250px'>
+      w='250px'
+    >
       <Link 
         as={RouterLink} 
-        to={getOdsInstanceLink(instance)}
-        state={{ instanceId: instance.instanceId }}
         color='blue.600'
         fontFamily='Open sans'
         fontWeight='700'
-        size='md'
         lineHeight='22px'
-        w="100px">
+        size='md'
+        state={{ instanceId: instance.instanceId }}
+        to={getOdsInstanceLink(instance)}
+        w="100px"
+      >
         { getDisplayYear(instance) }
       </Link>
     </Flex>

@@ -1,18 +1,17 @@
-import { Flex, Text } from '@chakra-ui/react'
-import { AppUser, AppUserLicense } from '../../../core/AppUser.types'
+import {
+  Flex, Text 
+} from '@chakra-ui/react'
+import { AppUser } from '../../../core/AppUser.types'
+import ControlTableRow from '../ControlTableRow'
 import AppUserEmail from './AppUserEmail'
 import AppUserName from './AppUserName'
-import AppUserRoles from './AppUserRoles'
 import AppUserStatus from './AppUserStatus'
-import ControlTableRow from '../ControlTableRow'
 import ManageUserControls from './ManageUserControls'
 import ManageUsersTableData from './ManageUsersTableData'
-import { UsersTableMode } from '../../../hooks/adminActions/users/useManageUsersTable'
 
 interface ManageUsersTableRowsProps {
     usersList: AppUser[]
     isDeleting: boolean 
-    mode: UsersTableMode
     isDeletingInvitation: boolean 
     isResendingInvitation: boolean 
     onResendInvitation: (invitationId: string) => void
@@ -24,20 +23,8 @@ interface ManageUsersTableRowsProps {
     onEditInvitation: (user: AppUser) => void
 }
 
-const ManageUsersTableRows = ({ usersList, mode, isDeleting, isDeletingInvitation, isResendingInvitation, onDeleteInvitation, onResendInvitation, onActivate, onDeactivate, onEdit, onEditInvitation, onDelete }: ManageUsersTableRowsProps) => {
-  const getUserAppsCount = (user: AppUser) => {
-    const table = {}
-    let uniqueLicensesCount = 0
-
-    user.licenses.forEach((license) => {
-      if (!table[license.applicationId] && license.tenantSubscriptionId !== null) {
-        table[license.applicationId] = license.applicationId
-        uniqueLicensesCount++
-      }
-    })
-
-    return uniqueLicensesCount
-  }
+const ManageUsersTableRows = ({ usersList, isDeleting, isDeletingInvitation, isResendingInvitation, onDeleteInvitation, onResendInvitation, onActivate, onDeactivate, onEdit, onEditInvitation, onDelete }: ManageUsersTableRowsProps) => {
+  
 
   return (
     <>
@@ -45,28 +32,32 @@ const ManageUsersTableRows = ({ usersList, mode, isDeleting, isDeletingInvitatio
         <ControlTableRow key={index}>
           <ManageUsersTableData width="120px">
             <AppUserName 
-              mode={mode}
               name={user.firstName}
-              userId={user.userId}
               user={user}
+              userId={user.userId}
+              onClick={onEdit}
               onClickInvitation={onEditInvitation}
-              onClick={onEdit} />
+            />
           </ManageUsersTableData>
+
           <ManageUsersTableData width="120px">
             <AppUserName 
-              mode={mode}
               name={user.lastName}
-              userId={user.userId}
               user={user}
+              userId={user.userId}
               onClick={onEdit}
-              onClickInvitation={onEditInvitation} />
+              onClickInvitation={onEditInvitation}
+            />
           </ManageUsersTableData>
+
           <ManageUsersTableData width="50px">
-            <AppUserStatus status={user.status} mode={mode} />
+            <AppUserStatus status={user.status} />
           </ManageUsersTableData>
+
           <ManageUsersTableData width="220px">
             <AppUserEmail email={user.email} />
           </ManageUsersTableData>
+
           <ManageUsersTableData width="100px">
             <Flex>
               <Text
@@ -74,57 +65,43 @@ const ManageUsersTableRows = ({ usersList, mode, isDeleting, isDeletingInvitatio
                 fontWeight='400'
                 size='md'
                 w='auto'
-                whiteSpace='initial'>
-                { getUserAppsCount(user) }
+                whiteSpace='initial'
+              >
+                1
               </Text>
             </Flex>
           </ManageUsersTableData>
-          <ManageUsersTableData width="80px">
-            <AppUserRoles roles={user.roles} />
-          </ManageUsersTableData>
-          <ManageUsersTableData width="100px">
-            <Flex>
-              <Text
-                color='gray.500'
-                fontFamily='Open sans'
-                fontWeight='400'
-                size='md'
-                w='auto'
-                whiteSpace='initial'>
-                {user.source ?? 'Manual'}
-              </Text>
-            </Flex>
-          </ManageUsersTableData>
+
           <ManageUsersTableData width="50px">
             <Text 
               color='gray.500'
               fontFamily='Open sans'
               fontWeight='400'
               size='md'
-              whiteSpace='initial'>
+              whiteSpace='initial'
+            >
               {user.updated}
             </Text> 
           </ManageUsersTableData>
+
           <ManageUsersTableData width="50px">
             <ManageUserControls 
-              userId={user.userId}
-              user={user}
-              source={user.source}
-              mode={mode}
-              status={user.status}
+              isDeleting={isDeleting}
               isDeletingInvitation={isDeletingInvitation}
               isResendingInvitation={isResendingInvitation}
-              isDeleting={isDeleting}
-              onDeleteInvitation={onDeleteInvitation}
-              onResendInvitation={onResendInvitation}
+              status={user.status}
+              user={user}
+              userId={user.userId}
               onActivate={onActivate}
               onDeactivate={onDeactivate}
               onDelete={onDelete}
+              onDeleteInvitation={onDeleteInvitation}
               onEdit={() => onEdit(user.userId)}
-              onEditInvitation={onEditInvitation} />
+              onEditInvitation={onEditInvitation}
+              onResendInvitation={onResendInvitation}
+            />
           </ManageUsersTableData>
-        </ControlTableRow>
-      )}
+        </ControlTableRow>)}
     </>
   )
 }

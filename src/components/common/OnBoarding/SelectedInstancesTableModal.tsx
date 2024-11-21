@@ -1,4 +1,6 @@
-import { Flex, Text, Button } from '@chakra-ui/react'
+import {
+  Flex, Text, Button 
+} from '@chakra-ui/react'
 import EDXCustomModal from '../EDXCustomModal'
 import useOdsInstanceDisplayYear from '../../../hooks/odsInstances/useOdsInstanceYearName'
 import { ExtendedODSInstance } from '../../../core/ODSInstance.types'
@@ -16,44 +18,52 @@ const SelectedInstancesTableModal = ({ selectedInstance, settingAsDefault, showC
     
   return (
     <EDXCustomModal
-      type="information"
-      header="Are you sure this is the school year you'd like to work with?"
-      content={<Flex flexDir='column' mt='12px'>
+      content={<Flex
+        flexDir='column'
+        mt='12px'
+      >
         <Text>
-                    By continuing you'll be allowing Acme Service Center to load data into the following school year
-                    for the Data Warehouse, User Sync, and potential future apps:
+          By continuing you'll be allowing Acme Service Center to load data into the following school year
+          for the Data Warehouse, User Sync, and potential future apps:
         </Text>
-        <Text color='blue.700' fontWeight='bold' mt='32px'>
+
+        <Text
+          color='blue.700'
+          fontWeight='bold'
+          mt='32px'
+        >
           { selectedInstance? getDisplayYear(selectedInstance) : '0000' }
         </Text>
       </Flex>}
       footer={<Flex w='full'>
         <Button 
-          onClick={onClose} 
-          isDisabled={settingAsDefault}
-          color='gray.800' 
           border='1px' 
           borderColor='gray.300'
-          size='sm'>
-                        No, Go Back
+          color='gray.800' 
+          isDisabled={settingAsDefault} 
+          size='sm'
+          onClick={onClose}
+        >
+          No, Go Back
         </Button>
+
         <Button 
-          onClick={onContinue} 
-          isLoading={settingAsDefault}
+          _hover={{ _loading: { bg: 'gray.800' } }} 
+          bg='gray.800'
           color='white' 
-          bg='gray.800' 
+          isLoading={settingAsDefault} 
           ml='10px'
           size='sm'
-          _hover={{
-            _loading: {
-              bg: 'gray.800'
-            }
-          }}>
-                        Yes, Continue
+          onClick={onContinue}
+        >
+          Yes, Continue
         </Button>
       </Flex>}
+      header="Are you sure this is the school year you'd like to work with?"
       isOpen={showConfirmInstanceModal}
-      onClose={onClose} /> 
+      type="information"
+      onClose={onClose}
+    /> 
   )
 }
 

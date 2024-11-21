@@ -1,7 +1,13 @@
-import { TEEAuthDataContext, UserProfile, UserProfileContext } from '@edfi/admin-console-shared-sdk'
-import { useContext, useEffect, useState } from 'react'
+import {
+  TEEAuthDataContext, UserProfile, UserProfileContext 
+} from '@edfi/admin-console-shared-sdk'
+import {
+  useContext, useEffect, useState 
+} from 'react'
 import { adminConsoleContext } from '../../../context/adminConsoleContext'
-import { DomainStatus, TenantDomain } from '../../../core/Tenant.types'
+import {
+  DomainStatus, TenantDomain 
+} from '../../../core/Tenant.types'
 import { VerifyDomainRequest } from '../../../services/AdminActions/Domains/DomainService.request'
 import { VerifyDomainResponse } from '../../../services/AdminActions/Domains/DomainService.response'
 import useDomainsService from '../../../services/AdminActions/Domains/DomainsService'
@@ -41,7 +47,7 @@ const useVerifyDomain = ({ tenantDomains }: UseVerifyDomainProps) => {
   const { verifyDomain } = useDomainsService()
 
   const assignDomainStatus = (domain: DomainData, verficationResult: VerifyDomainResponse) => {
-    const ndomainlist = domainsList.map(domain => ({...domain}))
+    const ndomainlist = domainsList.map(domain => ({ ...domain }))
     const index = ndomainlist.findIndex(item => item.name === domain.name)
 
     if (index !== -1) {
@@ -72,8 +78,7 @@ const useVerifyDomain = ({ tenantDomains }: UseVerifyDomainProps) => {
 
       if (result.type === 'Response') {
         assignDomainStatus(domainData, result.data)
-      }
-      else {
+      } else {
         assignDomainStatus(domainData, {
           tenantId: userProfile.tenantId,
           domainName: domainData.name,

@@ -12,11 +12,12 @@ const ManageUsersTable = ({ headers, itemsCount, rows, loading, pagination }: Ma
   return (
     <ControlTable 
       headers={headers}
-      rows={rows}
       itemsCount={itemsCount}
-      thPadding="16px"
       loading={loading}
-      pagination={pagination} />
+      pagination={pagination}
+      rows={rows}
+      thPadding="16px"
+    />
   )
 }
 
