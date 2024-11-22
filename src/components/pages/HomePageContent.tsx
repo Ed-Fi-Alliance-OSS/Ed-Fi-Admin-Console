@@ -1,15 +1,14 @@
 import { Flex, Heading } from '@chakra-ui/react'
+import { useLocation } from 'react-router-dom'
+import useDebugOnBoardingWizard from '../../hooks/debug/useDebugOnBoardingWizard'
+import useHelpLinks from '../../hooks/useHelpLinks'
 import useOnBoardingWizard from '../../hooks/useOnBoardingWizard'
+import useOnboardingWizardStepsData from '../../hooks/useOnBoardingWizardStepsData'
 import ActionNavigationList from '../common/ActionNavigationList'
 import ContentBlocker from '../common/ContentBlocker'
+import OnBoardingWizardDebugMenu from '../common/Debug/OnBoardingWizardDebugMenu'
 import ODSInstanceTableWrapper from '../common/ODS/ODSInstanceTableWrapper'
 import OnBoardingWizardBanner from '../common/OnBoarding/OnBoardingWizardBanner'
-import useDebugOnBoardingWizard from '../../hooks/debug/useDebugOnBoardingWizard'
-import { useLocation } from 'react-router-dom'
-import OnBoardingWizardDebugMenu from '../common/Debug/OnBoardingWizardDebugMenu'
-import NeedHelpLinks from '../common/NeedHelpLinks'
-import useHelpLinks from '../../hooks/useHelpLinks'
-import useOnboardingWizardStepsData from '../../hooks/useOnBoardingWizardStepsData'
 
 const HomePageContent = () => {
   const { 
@@ -67,11 +66,6 @@ const HomePageContent = () => {
       </>}
       <Heading size='lg' mt={isOBActive()? '48px' : '16px'}>Admin Actions</Heading>
       <ActionNavigationList />
-      <Flex alignItems='flex-end' mt='16px' w='auto' ml='auto'>
-        <NeedHelpLinks 
-          knowledgeBaseUrl={getAdminActionHelpLinks().knowledgeBaseUrl} 
-          supportUrl={getAdminActionHelpLinks().supportTicketUrl} />
-      </Flex>
       <Flex flexDir='column' mt='64px'>
         <Flex flexDir='column' my='32px' w='full'>
           <ODSInstanceTableWrapper

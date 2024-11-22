@@ -1,14 +1,15 @@
-import { Flex, Heading } from '@chakra-ui/react'
+import { Button, Flex, Heading } from '@chakra-ui/react'
+import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { ExtendedODSInstance } from '../../../core/ODSInstance.types'
 import useOdsInstanceTable from '../../../hooks/odsInstances/useOdsInstanceTable'
+import useOdsInstanceTableSorting from '../../../hooks/odsInstances/useOdsInstanceTableSorting'
+import { usePluginContext } from '../../../plugins/BasePlugin'
 import ControlTableHeader from '../ControlTableHeader'
 import ConfirmSetDefaultInstanceModal from './ConfirmSetDefaultInstanceModal'
+import { ODSInstanceTableMode } from './ODSInstanceTable.types'
 import ODSInstanceManagementTable from './ODSIntanceManagementTable'
 import SetUpInstanceModal from './SetUpInstanceModal'
-import useOdsInstanceTableSorting from '../../../hooks/odsInstances/useOdsInstanceTableSorting'
-import { ODSInstanceTableMode } from './ODSInstanceTable.types'
-import { ExtendedODSInstance } from '../../../core/ODSInstance.types'
-import { useEffect } from 'react'
-import { usePluginContext } from '../../../plugins/BasePlugin'
 
 interface ODSInstanceTableWrapperProps {
     tableMode: ODSInstanceTableMode
@@ -40,9 +41,15 @@ const ODSInstanceTableWrapper = ({ tableMode, pickedInstance, onSelectInstance, 
 
   const { getString } = usePluginContext()
 
+  const nav = useNavigate()
+
   useEffect(() => {
     onUpdateInstancesCount(paginatedData.data.length)
   }, [ paginatedData.data ])
+
+  function onAddBtnClick() {
+    nav('/addinstance')
+  }
 
   return (
     <> 
@@ -59,10 +66,18 @@ const ODSInstanceTableWrapper = ({ tableMode, pickedInstance, onSelectInstance, 
         onClose={onCloseSetUpWizardModal} /> }
 
       { tableMode == 'Display' && <Flex alignItems='center' justifyContent='space-between'>
-        <Flex alignItems='flex-end'>
+        <Flex alignItems='flex-end' justifyContent='space-between' width='full'>
           <Heading size='lg'>
             {getString('app.ODS_INSTANCES')}
           </Heading>
+          <Button color='blue.600'
+            size='sm'
+            border='1px'
+            borderColor='blue.400'
+            padding='10px'
+            ml='16px' onClick={onAddBtnClick}>
+            Add Instance
+          </Button>
         </Flex>
       </Flex> }  
             

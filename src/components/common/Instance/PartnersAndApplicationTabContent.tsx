@@ -1,8 +1,9 @@
 import { Flex } from '@chakra-ui/react'
-import { useContext, useState } from 'react'
+import { useCallback, useContext, useState } from 'react'
 import { adminConsoleContext } from '../../../context/adminConsoleContext'
 import { DeletingState } from '../../../core/deletingState.types'
 import { EdfiApplication } from '../../../core/Edfi/EdfiApplications'
+import { ODSInstance } from '../../../core/ODSInstance.types'
 import usePartnersAndApplicationsAccordion from '../../../hooks/adminActions/edfi/usePartnersAndApplicationsAccordion'
 import useEDXToast from '../../../hooks/common/useEDXToast'
 import useEdfiApplicationsService from '../../../services/AdminActions/Edfi/Applications/EdfiApplicationsService'
@@ -12,7 +13,6 @@ import ApplicationForm from './ApplicationForm'
 import PartnerForm from './PartnerForm'
 import PartnersAndApplicationAccordion from './PartnersAndApplicationAccordion'
 import PartnersAndApplicationTabHeader from './PartnersAndApplicationTabHeader'
-import { ODSInstance } from '../../../core/ODSInstance.types'
 
 interface PartnersAndApplicationTabContentProps {
     instance: ODSInstance | null
@@ -31,6 +31,9 @@ const  PartnersAndApplicationTabContent = ({ instance, schoolYear }: PartnersAnd
     onRefreshVendorsWithApplications } = usePartnersAndApplicationsAccordion({ 
     schoolYear 
   })
+
+  const [, refreshComponent] = useState(Date.now())
+  const forceUpdate = useCallback(() => refreshComponent(Date.now() + Math.random()), [])
     
   const { deleteEdfiApplicationForSchoolYear } = useEdfiApplicationsService()
   const [isDeletingApplication, setIsDeletingApplication] = useState<DeletingState>({ deleting: false, id: '' })
@@ -83,16 +86,17 @@ const  PartnersAndApplicationTabContent = ({ instance, schoolYear }: PartnersAnd
 
   const onReturnToAccordion = async () => {
     console.log('return to accordion')
+    await onRefreshVendorsWithApplications()
+    forceUpdate()
     setElementToShow('accordion')
-
-    // TODO enable this line when actual API calls are implemented
-    // await onRefreshVendorsWithApplications()
   }
+  console.log('rendering...')
+
 
   return (
     <Flex flexDir='column' w='full'>
       <Flex flexDir='column' w='full'>
-        <PartnersAndApplicationTabHeader onAddPartner={onAddPartner} />
+        <PartnersAndApplicationTabHeader onAddPartner={onAddPartner} onRefresh={onRefreshVendorsWithApplications} />
         <Flex mt='16px' w='full'>
           <PartnersAndApplicationAccordion 
             vendorsWithApplicationsList={vendorsWithApplicationsList}

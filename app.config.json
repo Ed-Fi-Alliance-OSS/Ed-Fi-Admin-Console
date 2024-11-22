@@ -7,7 +7,7 @@
   "app": {
     "name": "Acme Service Center",
     "subtitle": "Admin Console",
-    "logo": "/acme.jpg",
+    "logo": "",
     "basePath": "",
     "baseImagesUrl": "",
     "showDataHealth": true,

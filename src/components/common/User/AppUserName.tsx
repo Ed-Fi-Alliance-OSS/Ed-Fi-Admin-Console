@@ -1,9 +1,7 @@
 import { Button } from '@chakra-ui/react'
 import { AppUser } from '../../../core/AppUser.types'
-import { UsersTableMode } from '../../../hooks/adminActions/users/useManageUsersTable'
 
 interface AppUserNameProps {
-    mode: UsersTableMode
     name: string 
     userId: string
     user: AppUser
@@ -11,12 +9,9 @@ interface AppUserNameProps {
     onClickInvitation: (user: AppUser) => void
 }
 
-const AppUserName = ({ name, userId, user, mode, onClick, onClickInvitation }: AppUserNameProps) => {
+const AppUserName = ({ name, userId, user, onClick, onClickInvitation }: AppUserNameProps) => {
   const onBtnClick = () => {
-    if (mode == 'users')
-      return onClick(userId)
-
-    onClickInvitation(user)
+    return onClick(userId)
   }
 
   return (

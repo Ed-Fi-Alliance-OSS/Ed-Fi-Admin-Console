@@ -12,8 +12,7 @@
       "authenticationUrl": "https://localhost/api/oauth/token",
       "resourcesUrl": "https://localhost/api",
       "schoolYears": [
-        2019,
-        2020
+        2023
       ],
       "isDefault": true,
       "verificationStatus": {
@@ -61,8 +60,7 @@
       "authenticationUrl": "https://localhost/api/oauth/token",
       "resourcesUrl": "https://localhost/api",
       "schoolYears": [
-        2024,
-        2025
+        2024
       ],
       "isDefault": false,
       "verificationStatus": null,

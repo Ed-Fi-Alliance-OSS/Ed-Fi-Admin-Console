@@ -14,11 +14,11 @@ interface DefaultLayoutContentProps {
 }
 
 const DefaultLayoutWrapper = ({ content, notificationBarMessage, isClosingSession, onLogout }: DefaultLayoutContentProps) => {
-    const { edxAppConfig } = useContext(TEEAuthDataContext)
-    const { userProfile } = useContext(UserProfileContext)
-    const { externalApps } = useContext(ExternalAppsContext)
-    // const {} = useContext(edxAppConfig)
-    const { handleLogIn, handleChangeTenantId } = useAuthActions()
+  const { edxAppConfig } = useContext(TEEAuthDataContext)
+  const { userProfile } = useContext(UserProfileContext)
+  const { externalApps } = useContext(ExternalAppsContext)
+  // const {} = useContext(edxAppConfig)
+  const { handleLogIn, handleChangeTenantId } = useAuthActions()
   const { showNotificationsBar, onCloseNotificationsBar } = useNotificationsBar({ show: true })
   const navigate = useNavigate()
 
@@ -35,34 +35,34 @@ const DefaultLayoutWrapper = ({ content, notificationBarMessage, isClosingSessio
 
   // console.log('external apps', externalApps)
 
-    return (
-        <DefaultLayout
-            topBar={<TopBar
-                leftComponent={<TopBarLeft
-                    onClick={handleLogoClick}
-                    imageUrl={edxAppConfig?.app.logo ?? ''}
-                    list={externalApps}
-                    menuOptions={moreOptions} />}
-                rightComponent={<TopBarRight
-                    profileData={userProfile}
-                    isClosingSession={isClosingSession}
-                    onLogin={handleLogIn}
-                    onLogout={onLogout}
-                    onChangeTenantId={handleChangeTenantId} />} />}
-            notificationBar={
-                <Flex mt='-10px' w='full'>
-                    <NotificationBar
-                        show={false}
-                        onClose={onCloseNotificationsBar}
-                        content={notificationBarMessage} />
-                </Flex>}
-            content={<Content
-                marginTop='60px'
-                maxW="1400px">
-                    { content }
-                </Content>}
-            footer={<Footer />} />
-    )
+  return (
+    <DefaultLayout
+      topBar={<TopBar
+        leftComponent={<TopBarLeft
+          onClick={handleLogoClick}
+          imageUrl={edxAppConfig?.app.logo ?? ''}
+          list={externalApps}
+          menuOptions={moreOptions} />}
+        rightComponent={<TopBarRight
+          profileData={userProfile}
+          isClosingSession={isClosingSession}
+          onLogin={handleLogIn}
+          onLogout={onLogout}
+          onChangeTenantId={handleChangeTenantId} />} />}
+      notificationBar={
+        <Flex mt='-10px' w='full'>
+          <NotificationBar
+            show={false}
+            onClose={onCloseNotificationsBar}
+            content={notificationBarMessage} />
+        </Flex>}
+      content={<Content
+        marginTop='60px'
+        maxW="1400px">
+        { content }
+      </Content>}
+      footer={<Footer />} />
+  )
 }
 
 export default DefaultLayoutWrapper

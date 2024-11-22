@@ -1,25 +1,25 @@
-import { useState, ChangeEvent, useContext } from 'react'
 import { Button, Flex } from '@chakra-ui/react'
 import { TablePagination, UserProfileContext } from '@edfi/admin-console-shared-sdk'
-import AddAppUserForm from './AddAppUserForm'
+import { ChangeEvent, useContext, useEffect, useState } from 'react'
+import { adminConsoleContext } from '../../../context/adminConsoleContext'
+import { AppUser } from '../../../core/AppUser.types'
+import useManageUsersTable from '../../../hooks/adminActions/users/useManageUsersTable'
+import useEDXToast from '../../../hooks/common/useEDXToast'
+import useSubscriptionsService from '../../../services/AdminActions/Subscriptions/SubscriptionsService'
+import useUserService from '../../../services/AdminActions/Users/UsersService'
+import { ActivateUserRequest, AssignLicenseRequest, DeactivateUserRequest, DeleteInvitationRequest, DeleteUserRequest, InviteUserRequest } from '../../../services/AdminActions/Users/UsersService.requests'
+import ActivateUserModal from '../../ActivateUserModal'
+import ConfirmDeleteUserModal from '../../ConfirmDeleteUserModal'
+import DeactivateUserModal from '../../DeactivateUserModal'
 import ConsoleModal from '../ConsoleModal'
+import ControlTableHeader from '../ControlTableHeader'
+import AddAppUserForm from './AddAppUserForm'
+import BulkEditModal from './BulkEditRoleModal'
 import EditAppUserForm from './EditAppUserForm'
+import EditInvitationForm from './EditInvitationForm'
 import ManageUsersTabHeader from './ManageUsersTabHeader'
 import ManageUsersTable from './ManageUsersTable'
 import ManageUsersTableRows from './ManageUsersTableRows'
-import BulkEditModal from './BulkEditRoleModal'
-import ControlTableHeader from '../ControlTableHeader'
-import { AppUser } from '../../../core/AppUser.types'
-import useManageUsersTable from '../../../hooks/adminActions/users/useManageUsersTable'
-import useUserService from '../../../services/AdminActions/Users/UsersService'
-import { adminConsoleContext } from '../../../context/adminConsoleContext'
-import { ActivateUserRequest, AssignLicenseRequest, DeactivateUserRequest, DeleteInvitationRequest, DeleteUserRequest, InviteUserRequest } from '../../../services/AdminActions/Users/UsersService.requests'
-import useEDXToast from '../../../hooks/common/useEDXToast'
-import DeactivateUserModal from '../../DeactivateUserModal'
-import ActivateUserModal from '../../ActivateUserModal'
-import ConfirmDeleteUserModal from '../../ConfirmDeleteUserModal'
-import useSubscriptionsService from '../../../services/AdminActions/Subscriptions/SubscriptionsService'
-import EditInvitationForm from './EditInvitationForm'
 
 const initialSelectedUser: AppUser = {
   userName: '',
@@ -42,8 +42,6 @@ const ManageUsersTabContent = () => {
     invitationsList,
     isFetchingData, 
     orderBy, 
-    mode,
-    onChangeMode,
     filterOptionsList,
     filterBy, 
     onChangeFilterValue,
@@ -65,7 +63,9 @@ const ManageUsersTabContent = () => {
     gotToLastPage,
     canNextPage,
     canPreviousPage } = useManageUsersTable()
-
+  useEffect(() => {
+    console.log('paginatedData', paginatedData)
+  }, [paginatedData])
   const [selectedUser, setSelectedUser] = useState<AppUser>({...initialSelectedUser})
   const [showAddUserModal, setShowAddUserModal] = useState(false)
   const [showEditUserModal, setShowEditUserModal] = useState(false)
@@ -361,10 +361,8 @@ const ManageUsersTabContent = () => {
         onClose={handleCloseConfirmDeleteUserModal} />
       <ManageUsersTabHeader
         filterValue={filterBy? filterBy.value : ''}
-        mode={mode}
         selectedFilter={filterBy? filterBy.field : 'Select Filter'}
         filterOptionsList={filterOptionsList}
-        onChangeMode={onChangeMode}
         onFilter={onFilter}
         onResetFilter={onResetFilter}
         onChangeFilter={onSelectFilter}
@@ -378,15 +376,11 @@ const ManageUsersTabContent = () => {
             <ControlTableHeader headerData={{ text: 'Last Name', fieldName: 'lastName', sortedByField: orderBy.field, showSorting: true, sortingType: orderBy.order, onSortAsc, onSortDesc }} />,
             <ControlTableHeader headerData={{ text: 'Status', fieldName: 'status', sortedByField: orderBy.field, showSorting: false, sortingType: orderBy.order, onSortAsc, onSortDesc }} />,
             <ControlTableHeader headerData={{ text: 'Email', fieldName: 'email', sortedByField: orderBy.field, showSorting: true, sortingType: orderBy.order, onSortAsc, onSortDesc }} />,
-            <ControlTableHeader headerData={{ text: 'No. of Apps', fieldName: 'appsCount', sortedByField: orderBy.field, showSorting: false, sortingType: orderBy.order, onSortAsc, onSortDesc }} />,
-            <ControlTableHeader headerData={{ text: 'Role', fieldName: 'roles', sortedByField: orderBy.field, showSorting: false, sortingType: orderBy.order, onSortAsc, onSortDesc }} />,
-            <ControlTableHeader headerData={{ text: 'Source', fieldName: 'source', sortedByField: orderBy.field, showSorting: false, sortingType: orderBy.order, onSortAsc, onSortDesc }} />,
             <ControlTableHeader headerData={{ text: 'Updated ', fieldName: 'lastModifiedDateTime', sortedByField: orderBy.field, showSorting: true, sortingType: orderBy.order, onSortAsc, onSortDesc }} />,
             <ControlTableHeader headerData={{ text: '', fieldName: '', sortedByField: orderBy.field, showSorting: false, sortingType: orderBy.order, onSortAsc, onSortDesc }} />,
           ]}
-          itemsCount={paginatedData.data.length}
+          itemsCount={(paginatedData.data || []).length}
           rows={<ManageUsersTableRows
-            mode={mode}
             isDeleting={isDeletingUser}
             onActivate={handleShowActivateUserModal}
             isDeletingInvitation={isDeletingInvitation}

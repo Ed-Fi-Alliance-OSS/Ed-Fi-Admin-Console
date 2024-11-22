@@ -1,3 +1,4 @@
+import { useConfig } from '@edfi/admin-console-shared-sdk'
 import useHttpService from '../../hooks/http/useHttpService'
 import { ActionParams } from '../AdminActions/adminAction.types'
 import odsInstancesActionRoutes from './odsInstancesActionRoutes'
@@ -7,7 +8,7 @@ import { GetOdsInstancesListResult, PostOdsInstanceOnboardingStepResult, PutOdsI
 
 const useOdsInstanceService = () => {
   const { getAsync, postAsync, putAsync } = useHttpService()
-
+  const {config} = useConfig()
   const getOdsInstancesList = async (actionParams: ActionParams, request: GetOdsInstancesListRequest): GetOdsInstancesListResult => {
     const baseUrl = actionParams.edxApiUrl
         
@@ -20,9 +21,9 @@ const useOdsInstanceService = () => {
       queryParams = `${queryParams}&orderBy=${request.orderBy}`
         
     // const url = `${baseUrl}/${odsInstancesActionRoutes.getInstancesList(actionParams.tenantId)}?${queryParams}`
-    // const url = '/mockdata/data-odsinstances.json'
+    // const url = '/data-odsinstances.json'
     const url = actionParams.config.api?.useLocalMockData ?? true
-      ? '/mockdata/data-odsinstances.json'
+      ? `${config?.app.basePath}/mockdata/data-odsinstances.json`
       : `${baseUrl}/adminconsole/odsinstances`
     const result = await getAsync<GetOdsInstancesListResponse>({
       url,

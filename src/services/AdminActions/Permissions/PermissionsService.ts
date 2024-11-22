@@ -1,15 +1,16 @@
+import { useConfig } from '@edfi/admin-console-shared-sdk'
 import useHttpService from '../../../hooks/http/useHttpService'
 import { ActionParams } from '../adminAction.types'
 import { GetPermissionsResult } from './PermissionsService.result'
 
 const usePermissionsService = () => {
   const { getAsync } = useHttpService()
-
+  const {config} = useConfig()
   const checkPermissions = async (actionParams: ActionParams) : GetPermissionsResult => {
     //const url = `${actionParams.edxApiUrl}/verifypermission`
     //const url = "/mockdata/data-permissions.json"
     const url = actionParams.config.api?.useLocalMockData ?? true
-      ? '/mockdata/data-permissions.json'
+      ? `${config?.app.basePath}/mockdata/data-permissions.json`
       : `${actionParams?.config?.api?.baseUri ?? ''}/adminconsole/permissions`
     const result = await getAsync<GetPermissionsResult>({
       url,

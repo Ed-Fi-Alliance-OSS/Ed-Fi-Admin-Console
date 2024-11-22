@@ -1,40 +1,47 @@
-import { ChangeEvent } from 'react'
 import { Button, Flex, FormControl } from '@chakra-ui/react'
-import { CustomFormLabel, CustomSelect, CustomFormHeader, CustomInput } from '@edfi/admin-console-shared-sdk'
+import { CustomFormHeader, CustomFormLabel, CustomInput, CustomSelect, UserProfileContext, useTenantSelectPopover } from '@edfi/admin-console-shared-sdk'
+import { ChangeEvent, useContext } from 'react'
 import { usePluginContext } from '../../../plugins/BasePlugin'
-
 interface AddInstanceFormProps {
-    instanceName: string 
-    instanceDescription: string
-    schoolYear: string 
-    schoolYearOptions: string[]
-    onInputChange: (e: ChangeEvent<HTMLInputElement>) => void
-    onSelectChange: (e: ChangeEvent<HTMLSelectElement>) => void
-    onSaveChanges: () => void
+  instanceName: string
+  instanceDescription: string
+  schoolYear: string
+  schoolYearOptions: string[]
+  onInputChange: (e: ChangeEvent<HTMLInputElement>) => void
+  onSelectChange: (e: ChangeEvent<HTMLSelectElement>) => void
+  onSaveChanges: () => void
 }
 
 
 const AddInstanceForm = ({ instanceName, instanceDescription, schoolYear, schoolYearOptions, onInputChange, onSelectChange, onSaveChanges }: AddInstanceFormProps) => {
-  const {getString} = usePluginContext()
+  const { getString } = usePluginContext()
+  const { userProfile } = useContext(UserProfileContext)
+  const {topItemsList} = useTenantSelectPopover({
+    onChangeTenantId: () => { },
+    userProfile: userProfile,
+  })
+
   return (
     <Flex flexDir='column' w='full'>
       <CustomFormHeader text="Instance Details" />
       <Flex flexDir='column' mt='16px' ml='10px' w='full'>
         <FormControl>
-          <CustomFormLabel 
+          <CustomFormLabel
             text="Instance Name"
             htmlFor="instanceName" />
-          <CustomInput
-            id="instanceName" 
+          <CustomSelect
+            id='instanceName'
             value={instanceName}
-            onChange={onInputChange} />
+            // pass tenants here
+            options={topItemsList.map(tenant => ({ value: tenant.organizationIdentifier, text: tenant.organizationName }))}
+            onChange={onSelectChange} />
         </FormControl>
         <FormControl mt='16px'>
-          <CustomFormLabel 
+          <CustomFormLabel
             text="Description"
             htmlFor="instanceDescription" />
           <CustomInput
-            id="instanceDescription" 
+            id="instanceDescription"
             value={instanceDescription}
             onChange={onInputChange} />
         </FormControl>
@@ -44,22 +51,24 @@ const AddInstanceForm = ({ instanceName, instanceDescription, schoolYear, school
         <CustomFormHeader text={getString('app.ODS_INSTANCES')} />
         <Flex flexDir='column' mt='16px' ml='10px' w='full'>
           <FormControl>
-            <CustomFormLabel 
+            <CustomFormLabel
               text='School Year'
               htmlFor='schoolYear' />
             <CustomSelect
+              id='schoolYear'
               value={schoolYear}
-              options={schoolYearOptions.map(year => ({ value: year, text: year }) )}
+              options={schoolYearOptions.map(year => ({ value: year, text: year }))}
               onChange={onSelectChange} />
           </FormControl>
         </Flex>
       </Flex>
       <Button
+        onClick={onSaveChanges}
         mt='32px'
         variant='primaryBlue600'
         size='lg'
         w='250px'>
-                    Create Instance
+        Create Instance
       </Button>
     </Flex>
   )

@@ -1,7 +1,7 @@
 import { createContext, useState, useEffect, useContext } from 'react'
 import { OnBoardingWizardData } from '../core/onBoardingWizard/onBoardingWizard.types'
 import { createOnBoardingWizardStep, fetchOnBoardingWizardData } from '../services/OnBoardingWizard/onBoardingWizardService'
-import { TEEAuthDataContext, UserProfileContext } from '@edfi/admin-console-shared-sdk'
+import { TEEAuthDataContext, useConfig, UserProfileContext } from '@edfi/admin-console-shared-sdk'
 import useOnboardingWizardStepsData from '../hooks/useOnBoardingWizardStepsData'
 
 export interface OnBoardingWizardDataWrapper {
@@ -22,14 +22,18 @@ const OnBoardingWizardProvider = ({ children }: OnBoardingWizardProviderProps) =
   const [ isFetchingOnBoardingWizard, setIsFetchingOnBoardingWizard ] = useState(true)
   const [onBoardingWizardData, setOnBoardingWizardData] = useState<OnBoardingWizardData | null>(null)
   const { onboardingStepsData } = useOnboardingWizardStepsData()
+  const { config } = useConfig()
+
+  // TODO: replace with actual tenant url
+  const tenantMockUrl = `${config?.app.basePath}/mockdata/data-tenant.json`
 
   const fetchOnBoardingDetails = async () => {
     if (auth && auth.user && userProfile && edxAppConfig) {
       console.log('started fetching')
       setIsFetchingOnBoardingWizard(true)
-            
+      
       const data = await fetchOnBoardingWizardData({
-        apiUrl: edxAppConfig.api.baseUri as string,
+        apiUrl: tenantMockUrl,
         tenantId: userProfile.tenantId,
         token: auth.user.access_token,
         apiConfig: edxAppConfig.api
@@ -43,7 +47,7 @@ const OnBoardingWizardProvider = ({ children }: OnBoardingWizardProviderProps) =
           await setupInitialOnBoardingState()
                     
           const initialOBData = await fetchOnBoardingWizardData({
-            apiUrl: edxAppConfig.api.baseUri as string,
+            apiUrl: tenantMockUrl,
             tenantId: userProfile.tenantId,
             token: auth.user.access_token,
             apiConfig: edxAppConfig.api
@@ -63,7 +67,7 @@ const OnBoardingWizardProvider = ({ children }: OnBoardingWizardProviderProps) =
         await setupInitialOnBoardingState()
                 
         const initialOBData = await fetchOnBoardingWizardData({
-          apiUrl: edxAppConfig.api.baseUri as string,
+          apiUrl: tenantMockUrl,
           tenantId: userProfile.tenantId,
           token: auth.user.access_token,
           apiConfig:  edxAppConfig.api

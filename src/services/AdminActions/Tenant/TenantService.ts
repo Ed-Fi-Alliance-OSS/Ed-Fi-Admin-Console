@@ -7,16 +7,17 @@ import { mapToTenant } from './TenantMapper'
 import { HttpServiceResponse } from '../../HttpService/HttpService.response.types'
 import { Tenant } from '../../../core/Tenant.types'
 import useHttpService from '../../../hooks/http/useHttpService'
+import { useConfig } from '@edfi/admin-console-shared-sdk'
 
 const useTenantService = () => {
   const { getAsync, putAsync } = useHttpService()
-
+  const {config} = useConfig()
   const getTenant = async (actionParams: ActionParams): GetTenantResult => {
     const baseUrl = actionParams.edxApiUrl
     // const url = `${baseUrl}/${adminActionRoutes.getTenant(actionParams.tenantId)}`
-    //const url = '/mockdata/data-tenants.json'
+    //const url = '/data-tenants.json'
     const url = actionParams.config.api?.useLocalMockData ?? true
-      ? '/mockdata/data-tenants.json'
+      ? `${config?.app.basePath}/mockdata/data-tenants.json`
       : `${baseUrl}/adminconsole/tenants`
     
     const result = await getAsync<GetTenantResponse>({

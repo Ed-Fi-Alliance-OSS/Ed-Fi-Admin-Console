@@ -1,9 +1,9 @@
 import { ArrowForwardIcon } from '@chakra-ui/icons'
 import { Flex, Img, Link, Text } from '@chakra-ui/react'
+import { useConfig } from '@edfi/admin-console-shared-sdk'
+import { Link as RouterLink } from 'react-router-dom'
 import { ActionNavigationItem } from '../../core/actionNavigation'
 import routes from '../../core/routes'
-import { Link as RouterLink } from 'react-router-dom'
-import getAppScope from '../../helpers/getAppScope'
 
 interface ActionNavigationCardProps {
     data: ActionNavigationItem
@@ -11,6 +11,7 @@ interface ActionNavigationCardProps {
 }
 
 const ActionNavigationCard = ({ data, index }: ActionNavigationCardProps) => {
+  const {config} = useConfig()
   return (
     <Link 
       to={routes.console.url}
@@ -25,12 +26,13 @@ const ActionNavigationCard = ({ data, index }: ActionNavigationCardProps) => {
       flexDir='column'
       padding='15px 14px 0px 14px'
       h='112px'
-      w='24%'
+      w='20%'
+      mr='16px'
       _hover={{ borderColor: 'blue.600' }}
       style={{ textDecoration: 'none' }}>
       {typeof(data.icon) === 'string'? 
         <Img 
-          src={`${getAppScope()}/assets/${data.icon}`} 
+          src={data.icon}
           h='32px' 
           w='32px'
           alt={data.name} /> : 

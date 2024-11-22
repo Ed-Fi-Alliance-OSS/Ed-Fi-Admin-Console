@@ -2,13 +2,15 @@ import { Button, Flex } from '@chakra-ui/react'
 
 interface PartnersAndApplicationControlsProps {
     onAddPartner: () => void
+    onRefresh: () => void
 }
 
-const PartnersAndApplicationControls = ({ onAddPartner }: PartnersAndApplicationControlsProps) => {
+const PartnersAndApplicationControls = ({ onAddPartner, onRefresh }: PartnersAndApplicationControlsProps) => {
   return (
     <Flex justifyContent='flex-end'>
       <Flex alignItems='center' mt='5px'>
         <Button
+          onClick={onRefresh}
           variant='secondaryBlue600'
           size='xs'
           p='0 25px'

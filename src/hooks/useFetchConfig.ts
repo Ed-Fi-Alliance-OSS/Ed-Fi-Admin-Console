@@ -45,13 +45,19 @@ export const mapEdxToAppConfig = (edxConfig): EdxAppConfig => {
 
   return authConfig
 }
+declare global {
+  export interface Window {
+    config: any
+  }
+}
+
 
 const useFetchConfig = ({ env, serverMode }: UseFetchAppAuthConfig) => {
   const [appConfig, setAppConfig] = useState<EdxAppConfig | null>(null)
 
   const fetchAppConfig = async () => {
     const edxConfig = await fetchConfig({ env, serverMode })
-
+    window.config = edxConfig
     setAppConfig(mapEdxToAppConfig(edxConfig))
   }
 

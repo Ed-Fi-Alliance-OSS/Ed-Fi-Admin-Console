@@ -5,19 +5,12 @@ import { adminConsoleContext } from '../../context/adminConsoleContext'
 import AdminConsoleHeader from '../common/AdminConsoleHeader'
 import AdminConsoleTabsMenu from '../common/AdminConsoleTabsMenu'
 import DevelopersTabContent from '../common/Developers/DevelopersTabContent'
-import DistrictSchoolTabContent from '../common/DistrictSchool/DistrictSchoolTabContent'
 import SSOTabContent from '../common/Security/SSOTabContent'
-import ManageSubscriptionsTabContent from '../common/Subscriptions/ManageSubscriptionsTabContent'
 import ManageUsersTabContent from '../common/User/ManageUsersTabContent'
-import UserSyncTabContent from '../common/UserSync/UserSyncTabContent'
 
 const tabsList = [
   'Manage Users',
-  // 'Manage Licenses',
-  'User Sync',
-  'District/Charter School Settings',
-  'SSO',
-  'Documentation (Advanced)'
+  'SSO'
 ]
 
 const ConsolePageContent = () => {
@@ -46,8 +39,6 @@ const ConsolePageContent = () => {
             tabsList={tabsList}
             initialIndex={location.state? location.state.consoleActionIndex : 0} >
             <ManageUsersTabContent />
-            <UserSyncTabContent />
-            <DistrictSchoolTabContent />
             <SSOTabContent />
             <DevelopersTabContent />
           </AdminConsoleTabsMenu> :
@@ -55,8 +46,6 @@ const ConsolePageContent = () => {
             tabsList={tabsList.filter(tab => selectTabs(tab))}
             initialIndex={location.state? location.state.consoleActionIndex : 0} >
             <ManageUsersTabContent />
-            <UserSyncTabContent />
-            <DistrictSchoolTabContent />
             <SSOTabContent />
           </AdminConsoleTabsMenu> }
       </Flex>

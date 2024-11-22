@@ -1,6 +1,6 @@
 import { Flex, FormControl } from '@chakra-ui/react'
+import { CompleteFormErrorMessage, CustomFormLabel, CustomInput } from '@edfi/admin-console-shared-sdk'
 import usePartnerForm from '../../../hooks/adminActions/edfi/usePartnerForm'
-import { CustomFormLabel, CompleteFormErrorMessage, CustomInput } from '@edfi/admin-console-shared-sdk'
 import EdFiModalForm from './EdFiModalForm'
 
 interface PartnerFormProps {
@@ -22,12 +22,17 @@ const PartnerForm = ({ schoolYear, mode, onFinishSave }: PartnerFormProps) => {
     onFinishSave 
   })
 
+  function onPSave() {
+    onSave()
+    onFinishSave()
+  }
+
   return (
     <EdFiModalForm
       actionText="save"
       headerText={mode === 'add'? 'Add Vendor' : 'Edit Vendor'}
       isSaving={isSaving}
-      onSave={onSave}
+      onSave={onPSave}
       onClose={onFinishSave} 
       content={<Flex w='full'>
         <Flex flexDir='column' w='full'>

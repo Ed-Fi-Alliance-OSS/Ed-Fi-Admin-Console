@@ -1,25 +1,25 @@
-import {ChakraProvider, ColorModeScript} from '@chakra-ui/react'
-import {HelmetProvider} from 'react-helmet-async'
-import {baseTheme, LoadingScreen, TEEAuthContextProvider, useSaveInitialRoute} from '@edfi/admin-console-shared-sdk'
-import OnBoardingWizardProvider from './context/onBoardingWizardContext'
+import { ChakraProvider, ColorModeScript } from '@chakra-ui/react'
+import { baseTheme, EdxConfigProvider, LoadingScreen, TEEAuthContextProvider, useSaveInitialRoute } from '@edfi/admin-console-shared-sdk'
+import { HelmetProvider } from 'react-helmet-async'
 import LayoutWrapper from './components/layout/LayoutWrapper'
+import OnBoardingWizardProvider from './context/onBoardingWizardContext'
 import routes from './core/routes'
-import {PluginProvider, PluginLoader, loadPlugins} from './plugins/BasePlugin'
+import { loadPlugins, PluginLoader, PluginProvider } from './plugins/BasePlugin'
 // Fonts 
-import '@fontsource/poppins/600-italic.css'
-import '@fontsource/poppins/400.css'
-import '@fontsource/poppins/600.css'
-import '@fontsource/poppins/700.css'
-import '@fontsource/poppins/900.css'
+import '@fontsource/archivo-narrow'
 import '@fontsource/open-sans/400-italic.css'
 import '@fontsource/open-sans/400.css'
 import '@fontsource/open-sans/600.css'
 import '@fontsource/open-sans/700.css'
-import '@fontsource/archivo-narrow'
+import '@fontsource/poppins/400.css'
+import '@fontsource/poppins/600-italic.css'
+import '@fontsource/poppins/600.css'
+import '@fontsource/poppins/700.css'
+import '@fontsource/poppins/900.css'
 import AdminConsoleConfigProvider from './context/adminConsoleContext'
-import {HttpServiceContextProvider} from './context/httpServiceContext'
 import ExternalODSProvider from './context/externalODSContext'
-
+import { HttpServiceContextProvider } from './context/httpServiceContext'
+import { MockDataProvider } from './context/mockDataContext'
 
 interface AppProps {
   appConfig: any
@@ -37,27 +37,32 @@ function App({appConfig}: AppProps) {
 
   return (
     <div className="App">
+      
       <ColorModeScript initialColorMode={baseTheme.config.initialColorMode}/>
       <ChakraProvider theme={baseTheme}>
 
 
+        <LoadingScreen loading={!appConfig ? true : false} state='loading...' delay={0.5}/>
         <HelmetProvider>
-          <LoadingScreen loading={!appConfig ? true : false} state='loading...' delay={0.5}/>
           {appConfig &&
-              <PluginProvider>
-                <PluginLoader plugins={loadPlugins()} enabled={appConfig.plugins || []}/>
-                <TEEAuthContextProvider edxAppConfig={appConfig}>
-                  <ExternalODSProvider config={appConfig}>
-                    <OnBoardingWizardProvider>
-                      <AdminConsoleConfigProvider config={appConfig}>
-                        <HttpServiceContextProvider redirectOnError={true}>
-                          <LayoutWrapper/>
-                        </HttpServiceContextProvider>
-                      </AdminConsoleConfigProvider>
-                    </OnBoardingWizardProvider>
-                  </ExternalODSProvider>
-                </TEEAuthContextProvider>
-              </PluginProvider>}
+            <EdxConfigProvider config={appConfig}>
+              <MockDataProvider>
+                <PluginProvider>
+                  <PluginLoader plugins={loadPlugins()} enabled={appConfig.plugins || []}/>
+                  <TEEAuthContextProvider edxAppConfig={appConfig}>
+                    <ExternalODSProvider config={appConfig}>
+                      <OnBoardingWizardProvider>
+                        <AdminConsoleConfigProvider config={appConfig}>
+                          <HttpServiceContextProvider redirectOnError={true}>
+                            <LayoutWrapper/>
+                          </HttpServiceContextProvider>
+                        </AdminConsoleConfigProvider>
+                      </OnBoardingWizardProvider>
+                    </ExternalODSProvider>
+                  </TEEAuthContextProvider>
+                </PluginProvider>
+              </MockDataProvider>
+            </EdxConfigProvider>}
         </HelmetProvider>
       </ChakraProvider>
     </div>
