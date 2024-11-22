@@ -8,11 +8,15 @@ interface ControlTableRowProps {
 const ControlTableRow = ({ children, removeBorders }: ControlTableRowProps) => {
   return (
     <Tr 
-      position='relative'
+      _notLast={{
+        borderBottom: removeBorders? '0px' : '2px',
+        borderBottomColor: 'gray.300' 
+      }}
       borderTop={removeBorders? '0px' : '2px'} 
-      _notLast={{ borderBottom: removeBorders? '0px' : '2px', borderBottomColor: 'gray.300' }}
       borderTopColor='gray.300'
-      w='full'>
+      position='relative'
+      w='full'
+    >
       {children}
     </Tr>
   )

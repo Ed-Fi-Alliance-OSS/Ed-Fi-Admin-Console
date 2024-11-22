@@ -8,10 +8,11 @@ interface AddAPIClientFormProps {
 const AddAPIClientForm = ({ header, content }: AddAPIClientFormProps) => {
   return (
     <ModalForm
-      header={header}
       content={content}
+      header={header}
       height='auto'
-      width="512px" />
+      width="512px"
+    />
   )
 }
 

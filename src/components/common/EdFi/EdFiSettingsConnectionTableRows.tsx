@@ -14,11 +14,13 @@ interface EdFiSettingsConnectionTableRowsProps {
 
 const EdFiSettingsConnectionTableRows = ({ connections, connectionStatusList, isLoadingConnectionStatus, onShowConnectionModal }: EdFiSettingsConnectionTableRowsProps) => {
   const selecteItemsStatus = (index: number, loading: boolean) => {
-    if (loading)
+    if (loading) {
       return 'Loading'
+    }
 
-    if (connectionStatusList.length > 0 && !loading)
+    if (connectionStatusList.length > 0 && !loading) {
       return connectionStatusList[index].status
+    }
 
     return 'Unknown'
   }   
@@ -32,20 +34,26 @@ const EdFiSettingsConnectionTableRows = ({ connections, connectionStatusList, is
             fontFamily='Open sans'
             fontWeight='400'
             pl='15px'
-            w='600px'>{connection.connectionName}</Td>
-          <Td
-            pl='15px'>
+            w='600px'
+          >{connection.connectionName}
+          </Td>
+
+          <Td pl='15px'>
             <EdFiConnectionStatus status={selecteItemsStatus(index, isLoadingConnectionStatus)} />
           </Td>
+
           <Td>
             <EdFiSettingsConnectionsControlBtn
+              isDeleting={{
+                id: '',
+                deleting: false 
+              }}
               connectionId={connection.id}
               isDisabled={false}
-              isDeleting={{ id: '', deleting: false }}
-              onEdit={onShowConnectionModal} />
+              onEdit={onShowConnectionModal}
+            />
           </Td>
-        </ControlTableRow>
-      )}
+        </ControlTableRow>)}
     </>
   )
 }

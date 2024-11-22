@@ -9,6 +9,7 @@ import DescriptorsTableRows from './DescriptorsTableRows'
 
 const DescriptorsTable = () => {
   const { descriptorsList, isFetchingdescriptors } = useDescriptors()
+
   const {
     sortedData,
     sortTextAsc,
@@ -16,6 +17,7 @@ const DescriptorsTable = () => {
     sortedByField,
     sortingType
   } = useControlTableSorting({ data: descriptorsList })
+
   const {
     paginatedItems,
     pageSize,
@@ -37,33 +39,74 @@ const DescriptorsTable = () => {
   return (
     <ControlTable 
       headers={[
-        <ControlTableHeader headerData={{ text: 'Namespace', fieldName: 'namespace', showSorting: true, sortedByField, sortingType, onSortAsc: sortTextAsc, onSortDesc: sortTextDesc }} />,
-        <ControlTableHeader headerData={{ text: 'Code Value', fieldName: 'codeValue', showSorting: false, sortedByField, sortingType, onSortAsc: sortTextAsc, onSortDesc: sortTextDesc }} />,
-        <ControlTableHeader headerData={{ text: 'Description', fieldName: 'description', showSorting: false, sortedByField, sortingType, onSortAsc: sortTextAsc, onSortDesc: sortTextDesc }} />,
-        <ControlTableHeader headerData={{ text: 'Short Description', fieldName: 'shortDescription', showSorting: false, sortedByField, sortingType, onSortAsc: sortTextAsc, onSortDesc: sortTextDesc }} />
+        <ControlTableHeader headerData={{
+          text: 'Namespace',
+          fieldName: 'namespace',
+          showSorting: true,
+          sortedByField,
+          sortingType,
+          onSortAsc: sortTextAsc,
+          onSortDesc: sortTextDesc 
+        }}
+        />,
+        <ControlTableHeader headerData={{
+          text: 'Code Value',
+          fieldName: 'codeValue',
+          showSorting: false,
+          sortedByField,
+          sortingType,
+          onSortAsc: sortTextAsc,
+          onSortDesc: sortTextDesc 
+        }}
+        />,
+        <ControlTableHeader headerData={{
+          text: 'Description',
+          fieldName: 'description',
+          showSorting: false,
+          sortedByField,
+          sortingType,
+          onSortAsc: sortTextAsc,
+          onSortDesc: sortTextDesc 
+        }}
+        />,
+        <ControlTableHeader headerData={{
+          text: 'Short Description',
+          fieldName: 'shortDescription',
+          showSorting: false,
+          sortedByField,
+          sortingType,
+          onSortAsc: sortTextAsc,
+          onSortDesc: sortTextDesc 
+        }}
+        />
       ]}
-      itemsCount={paginatedItems.length}
-      thPadding='auto'
-      rows={<DescriptorsTableRows descriptorsList={paginatedItems} />}
-      loading={isFetchingdescriptors}
       pagination={
-        <Flex ml='auto' w='auto'>
+        <Flex
+          ml='auto'
+          w='auto'
+        >
           <TablePagination 
+            canNextPage={canNextPage}
+            canPreviousPage={canPreviousPage}
             currentPage={currentPage}
             goToInitialPage={goToInitialPage}
             goToLastPage={gotToLastPage}
             goToNextPage={goToNextPage}
             goToPreviousPage={goToPreviousPage}
-            canNextPage={canNextPage}
-            canPreviousPage={canPreviousPage}
-            pageSize={pageSize}
-            onDecrementPageSize={onDecrementPageSize}
-            onIncrementPageSize={onIncrementPageSize}
-            totalPages={totalPages}
             maxPageSize={maxPerPage}
-            minPageSize={minPerPage} 
-            onChangePageSize={() => console.log('null')} />
-        </Flex>} />
+            minPageSize={minPerPage}
+            pageSize={pageSize}
+            totalPages={totalPages}
+            onChangePageSize={() => console.log('null')}
+            onDecrementPageSize={onDecrementPageSize} 
+            onIncrementPageSize={onIncrementPageSize}
+          />
+        </Flex>}
+      itemsCount={paginatedItems.length}
+      loading={isFetchingdescriptors}
+      rows={<DescriptorsTableRows descriptorsList={paginatedItems} />}
+      thPadding='auto'
+    />
   )
 }
 

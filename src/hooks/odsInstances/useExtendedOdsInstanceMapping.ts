@@ -1,11 +1,13 @@
-import { ExtendedODSInstance, ODSInstance } from '../../core/ODSInstance.types'
+import {
+  ExtendedODSInstance, ODSInstance 
+} from '../../core/ODSInstance.types'
 import useHttpService from '../http/useHttpService'
-import { EdFiMetadata } from '../useEdfiUrls.types'
 import useOdsInstanceEdFiStatus from './useOdsInstanceEdFiStatus'
 import useOdsVersions from './useOdsVersions'
 
 const useExtendedOdsInstanceMapping = () => {
   const { getSimpleAsync } = useHttpService()
+
   const {
     getEdFiVersionFromMetadata,
     getTSDSVersionFromMetadata
@@ -16,19 +18,8 @@ const useExtendedOdsInstanceMapping = () => {
     edFiMetadata: null
   })
 
-  const getInstanceEdFiMetadata = async (instance: ODSInstance) => {
-    if (!instance.baseUrl)
-      return null
-
-    const getEdfiMetadataResult = await getSimpleAsync<EdFiMetadata>({
-      actionName: 'Get Instance Metadata',
-      url: instance.baseUrl ?? ''
-    })
-
-    if (getEdfiMetadataResult.type === 'Error')
-      return null
-
-    return getEdfiMetadataResult.data
+  const getInstanceEdFiMetadata = (instance: ODSInstance) => {
+    return instance.edfiMetadata
   }
 
   const mapToExtendedOdsInstance = async (instance: ODSInstance): Promise<ExtendedODSInstance> => {
@@ -40,7 +31,7 @@ const useExtendedOdsInstanceMapping = () => {
       instanceName: instance.instanceName,
       instanceType: instance.instanceType,
       connectionType: instance.connectionType,
-      baseUrl: instance.baseUrl,
+      edfiMetadata: instance.edfiMetadata,
       resourcesUrl: instance.resourcesUrl,
       authenticationUrl: instance.authenticationUrl,
       clientId: instance.clientId,
@@ -55,9 +46,7 @@ const useExtendedOdsInstanceMapping = () => {
     }
   }
 
-  return {
-    mapToExtendedOdsInstance
-  }
+  return { mapToExtendedOdsInstance }
 }
 
 export default useExtendedOdsInstanceMapping

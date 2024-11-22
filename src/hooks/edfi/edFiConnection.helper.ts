@@ -8,8 +8,9 @@ const initialFormData: EdFiConnectionFormData = {
 }
 
 export const getInitialConnectionFormData = (initialData?: EdFiConnectionFormData) => {
-  if (!initialData)
+  if (!initialData) {
     return { ...initialFormData }
+  }
 
   const connectionData: EdFiConnectionFormData = {
     connectionId: initialData.connectionId,

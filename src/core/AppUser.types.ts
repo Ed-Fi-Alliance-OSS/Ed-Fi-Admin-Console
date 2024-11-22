@@ -31,11 +31,7 @@ export interface AppUser {
     firstName: string 
     lastName: string 
     status: AppUserStatus
-    email: string 
-    licenses: AppUserLicense[]
-    tenants?: AppUserTenant[]
-    roles: AppUserRole[]
-    source: AppUserSource | null // If this is null, means == Manual
+    email: string
     updated: string 
 }
 

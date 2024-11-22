@@ -1,17 +1,18 @@
 import { ChevronDownIcon } from '@chakra-ui/icons'
-import { Popover, PopoverTrigger, Button, PopoverContent, PopoverBody, Flex } from '@chakra-ui/react'
+import {
+  Button, Flex, Popover, PopoverBody, PopoverContent, PopoverTrigger 
+} from '@chakra-ui/react'
 import { useContext } from 'react'
 import { adminConsoleContext } from '../../../context/adminConsoleContext'
-import { AppUser, AppUserSource, AppUserStatus } from '../../../core/AppUser.types'
+import {
+  AppUser, AppUserSource, AppUserStatus 
+} from '../../../core/AppUser.types'
 import { InvitationStatus } from '../../../core/invitations/Invitation.types'
-import { UsersTableMode } from '../../../hooks/adminActions/users/useManageUsersTable'
 
 interface ManageUserControlPopoverProps {
     userId: string
-    source: AppUserSource | null
     user: AppUser
     status: AppUserStatus | InvitationStatus
-    mode: UsersTableMode
     isDeleting: boolean
     isDeletingInvitation: boolean 
     onDeleteInvitation: (invitationId: string) => void
@@ -21,37 +22,29 @@ interface ManageUserControlPopoverProps {
     onEditInvitation: (user: AppUser) => void
 }
 
-const ManageUserControlPopover = ({ userId, user, source, mode, status, isDeleting, isDeletingInvitation, onDeleteInvitation, onActivate, onEditInvitation, onDeactivate, onDelete }: ManageUserControlPopoverProps) => {
+const ManageUserControlPopover = ({ userId, user, status, isDeleting, isDeletingInvitation, onDeleteInvitation, onActivate, onEditInvitation, onDeactivate, onDelete }: ManageUserControlPopoverProps) => {
   const adminConfig = useContext(adminConsoleContext)
 
   const showDeleteBtn = () => {
-    if ((adminConfig && adminConfig.showUserDelete) || mode === 'invitations')
+    if ((adminConfig && adminConfig.showUserDelete)) {
       return true
+    }
 
     return false
   }
 
   const showEditInvitationBtn = () => {
-    if (mode === 'invitations')
-      return true 
-
     return false
   }
 
   const selectBorderRadius = () => {
-    if (mode === 'invitations') {
-      if (status === 'Inactive')
-        return '0px 4px 4px 0px'
-
-      return '4px'
-    }
-
     return '0px 4px 4px 0px'
   }
 
   const isDisabled = (source: AppUserSource | null) => {
-    if (source === 'Manual' || source === null)
+    if (source === 'Manual' || source === null) {
       return false
+    }
 
     return true
   }
@@ -60,84 +53,100 @@ const ManageUserControlPopover = ({ userId, user, source, mode, status, isDeleti
     <Popover>
       <PopoverTrigger>
         <Button 
-          onClick={() => console.log('manage user control popover')}
-          size='xs'
+          aria-labelledby={`show-options-${userId}`}
           borderRadius={selectBorderRadius()}
-          variant='primaryBlue600'
-          ml='1px'
-          minW='24px'
           maxW='24px'
-          aria-labelledby={`show-options-${userId}`}>
-          <span id={`show-options-${userId}`} hidden>Show Options</span>
+          minW='24px'
+          ml='1px'
+          size='xs'
+          variant='primaryBlue600'
+          onClick={() => console.log('manage user control popover')}
+        >
+          <span
+            hidden
+            id={`show-options-${userId}`}
+          >Show Options
+          </span>
+
           <ChevronDownIcon 
-            fontSize='18px'    
-            aria-hidden="true" 
-            focusable="false"  />
+            aria-hidden="true"    
+            focusable="false" 
+            fontSize='18px'
+          />
         </Button>
       </PopoverTrigger>
+
       <PopoverContent 
-        top='0px'
-        padding='0'
-        w='auto'
         aria-label={`options-${userId}`}
+        padding='0'
+        top='0px'
+        w='auto'
       >
         <PopoverBody padding='10px'>
-          <Flex flexDir='column' w='auto'>
-            {status === 'Active' && mode === 'users' && <Button
-              onClick={() => onDeactivate(userId)}
-              display='flex'
-              fontWeight='400'
-              fontFamily='Open sans'
+          <Flex
+            flexDir='column'
+            w='auto'
+          >
+            {status === 'Active' && <Button
               color='black'
+              display='flex'
+              fontFamily='Open sans'
+              fontWeight='400'
+              justifyContent='start'
               minW='auto'
-              justifyContent='start'
+              padding='0'
               textAlign='start'
-              padding='0'>
-                                Mark as Inactive
+              onClick={() => onDeactivate(userId)}
+            >
+              Mark as Inactive
             </Button>}
-            {status === 'Inactive' && mode === 'users' && <Button 
-              onClick={() => onActivate(userId)}
-              display='flex'
-              fontWeight='400'
-              fontFamily='Open sans'
-              justifyContent='start'
+
+            {status === 'Inactive' && <Button 
               color='black'
+              display='flex'
+              fontFamily='Open sans'
+              fontWeight='400'
+              justifyContent='start'
+              padding='0'
               textAlign='start'
-              padding='0'> 
-                                Mark as Active
+              onClick={() => onActivate(userId)}
+            > 
+              Mark as Active
             </Button>}
+
             {showEditInvitationBtn() && <Button
-              onClick={() => onEditInvitation(user)}
-              display='flex'
-              fontWeight='400'
-              fontFamily='Open sans'
+              _disabled={{ opacity: 0.4 }}
               color="gray.600"
-              size='xs'
-              justifyContent='start'
-              textAlign='start'
-              minW='30px'
-              padding='0'
-              w='auto'
-              isDisabled={isDisabled(user.source)}
-              _disabled={{ opacity: 0.4 }}>
-                                Edit
-            </Button>}
-            {showDeleteBtn() && <Button
-              onClick={() => mode === 'users' ? onDelete(userId) : onDeleteInvitation(userId)}
-              isDisabled={isDisabled(source)}
               display='flex'
-              fontWeight='400'
               fontFamily='Open sans'
-              color="red.600"
-              size='xs'
-              isLoading={mode === 'users'? isDeleting : isDeletingInvitation}
+              fontWeight='400'
               justifyContent='start'
-              textAlign='start'
               minW='30px'
               padding='0'
+              size='xs'
+              textAlign='start'
               w='auto'
-              _disabled={{ opacity: 0.4 }}>
-                                Delete
+              onClick={() => onEditInvitation(user)}
+            >
+              Edit
+            </Button>}
+
+            {showDeleteBtn() && <Button
+              _disabled={{ opacity: 0.4 }}
+              color="red.600"
+              display='flex'
+              fontFamily='Open sans'
+              fontWeight='400'
+              isLoading={isDeleting}
+              justifyContent='start'
+              minW='30px'
+              padding='0'
+              size='xs'
+              textAlign='start'
+              w='auto'
+              onClick={() => onDelete(userId)}
+            >
+              Delete
             </Button>}
           </Flex>
         </PopoverBody>

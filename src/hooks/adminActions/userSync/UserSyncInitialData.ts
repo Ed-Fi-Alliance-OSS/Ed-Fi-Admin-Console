@@ -1,4 +1,6 @@
-import { JobExecutionListResponse, JobListResponse } from '../../../core/UserSync/UserSync.types'
+import {
+  JobExecutionListResponse, JobListResponse 
+} from '../../../core/UserSync/UserSync.types'
 
 const executionInitialData: JobExecutionListResponse = {
   tenantId: '', 

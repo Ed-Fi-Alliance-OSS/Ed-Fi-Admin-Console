@@ -1,9 +1,15 @@
 import { ActionParams } from '../adminAction.types'
 import adminActionRoutes from '../tenantActionRoutes'
 import SubscriptionsResponseMapper from './SubscriptionsResponseMapper'
-import { AddSubscriptionRequest, GetSubscriptionsListRequest, UpdateSubscriptionRequest } from './SubscriptionsService.requests'
-import { AddSubscriptionResponse, GetSubscriptionsListResponse, UpdateSubscriptionResponse } from './SubscriptionsService.responses'
-import { AddSubscriptionResult, GetSubscriptionsListResult, UpdateSubscriptionResult } from './SubscriptionsService.results'
+import {
+  AddSubscriptionRequest, GetSubscriptionsListRequest, UpdateSubscriptionRequest 
+} from './SubscriptionsService.requests'
+import {
+  AddSubscriptionResponse, GetSubscriptionsListResponse, UpdateSubscriptionResponse 
+} from './SubscriptionsService.responses'
+import {
+  AddSubscriptionResult, GetSubscriptionsListResult, UpdateSubscriptionResult 
+} from './SubscriptionsService.results'
 import { HttpServiceResponse } from '../../HttpService/HttpService.response.types'
 import { SubscriptionsListData } from './SubscriptionsResponseMapper.types'
 import useHttpService from '../../../hooks/http/useHttpService'
@@ -13,15 +19,16 @@ const useSubscriptionsService = () => {
 
   const getSubscriptionsList = async (actionParams: ActionParams, requestData: GetSubscriptionsListRequest): GetSubscriptionsListResult => {
     const { pageIndex, pageSize } = requestData
-    
     const baseUrl = actionParams.edxApiUrl
     let queryParams = `pageIndex=${pageIndex}&pageSize=${pageSize}`
 
-    if (requestData.filter)
+    if (requestData.filter) {
       queryParams = `${queryParams}&filter=${requestData.filter}`
+    }
 
-    if (requestData.orderBy)
+    if (requestData.orderBy) {
       queryParams = `${queryParams}&orderBy=${requestData.orderBy}`
+    }
 
     const url = `${baseUrl}/${adminActionRoutes.getSubscriptionsList(actionParams.tenantId)}?${queryParams}`
     

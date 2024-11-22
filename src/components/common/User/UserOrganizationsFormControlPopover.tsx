@@ -1,5 +1,7 @@
 import { ChevronDownIcon } from '@chakra-ui/icons'
-import { Popover, PopoverTrigger, Button, PopoverContent, PopoverBody, Flex } from '@chakra-ui/react'
+import {
+  Popover, PopoverTrigger, Button, PopoverContent, PopoverBody, Flex 
+} from '@chakra-ui/react'
 import { DeletingState } from '../../../core/deletingState.types'
 
 interface UserOrganizationsFormControlPopoverProps {
@@ -16,46 +18,57 @@ const UserOrganizationsFormControlPopover = ({ educationOrganizationId, staffCla
     <Popover>
       <PopoverTrigger>
         <Button 
-          onClick={() => console.log('User education organizations control popover')}
-          isDisabled={isDisabled}
-          size='xs'
+          aria-labelledby={`show-options-${educationOrganizationId}`}
           borderRadius='0px 4px 4px 0px'
-          variant='primaryBlue600'
-          ml='1px'
-          minW='24px'
+          isDisabled={isDisabled}
           maxW='24px'
-          aria-labelledby={`show-options-${educationOrganizationId}`}>
-          <span id={`show-options-${educationOrganizationId}`} hidden>Show Options</span>
+          minW='24px'
+          ml='1px'
+          size='xs'
+          variant='primaryBlue600'
+          onClick={() => console.log('User education organizations control popover')}
+        >
+          <span
+            hidden
+            id={`show-options-${educationOrganizationId}`}
+          >Show Options
+          </span>
+
           <ChevronDownIcon 
-            fontSize='18px'    
-            aria-hidden="true" 
-            focusable="false" />
+            aria-hidden="true"    
+            focusable="false" 
+            fontSize='18px'
+          />
         </Button>
       </PopoverTrigger>
+
       <PopoverContent 
-        top='0px'
         padding='0'
-        w='100px'>
+        top='0px'
+        w='100px'
+      >
         <PopoverBody padding='0'>
           <Flex 
+            bg='white'
             border='1px'
             borderColor='gray.400'
             borderRadius='4px'
             flexDir='column'
-            bg='white'
-            w='100px'> 
+            w='100px'
+          > 
             { canDelete && <Button
-              onClick={() => onDelete(educationOrganizationId, staffClassification)}
-              isLoading={isDeleting.deleting && isDeleting.id === educationOrganizationId}
-              fontFamily='Open sans'
-              display='flex'
+              _hover={{ background: 'white' }}
               bg='white'
-              color='red.600'
               borderRadius='4px'
-              size='xs'
+              color='red.600'
+              display='flex'
+              fontFamily='Open sans'
+              isLoading={isDeleting.deleting && isDeleting.id === educationOrganizationId}
               minW='80px'
-              _hover={{ background: 'white' }}>
-                                        Delete
+              size='xs'
+              onClick={() => onDelete(educationOrganizationId, staffClassification)}
+            >
+              Delete
             </Button> }
           </Flex>
         </PopoverBody>

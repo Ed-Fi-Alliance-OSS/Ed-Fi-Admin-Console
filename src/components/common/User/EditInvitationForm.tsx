@@ -13,8 +13,7 @@ interface AddAppUserFormProps {
 }
 
 const EditInvitationForm = ({ initialEditData, invitationsList, onAfterAddUser, onClose }: AddAppUserFormProps) => {
-  const { 
-    userData, 
+  const { userData, 
     mode,
     roleOptions,
     subscriptionsOptionList,
@@ -35,25 +34,28 @@ const EditInvitationForm = ({ initialEditData, invitationsList, onAfterAddUser, 
 
   return (
     <ModalForm
-      header={<EditInvitationFormHeader 
-        isSaving={savingChanges}
-        onAction={onSave}
-        onClose={onClose} />}
       content={<EditInvitationFormContent
-        mode={mode}
-        onToggleIsAdmin={onToggleIsAdmin}
-        userData={userData}
-        roleOptions={roleOptions}
-        subscriptionOptionsList={subscriptionsOptionList}
         errors={errors}
         hasTriedSubmit={hasTriedSubmit}
+        mode={mode}
+        roleOptions={roleOptions}
+        subscriptionOptionsList={subscriptionsOptionList}
+        userData={userData}
         onChangeMode={onChangeMode}
         onInputChange={onInputChange}
         onRoleSelect={onRoleSelect}
         onSelectApplicationRoleForUser={onSelectApplicationRoleForUser}
-        onSubscriptionToggle={onSubscriptionToggle} />}
+        onSubscriptionToggle={onSubscriptionToggle}
+        onToggleIsAdmin={onToggleIsAdmin}
+      />}
+      header={<EditInvitationFormHeader 
+        isSaving={savingChanges}
+        onAction={onSave}
+        onClose={onClose}
+      />}
       height='auto'
-      width="512px" />
+      width="512px"
+    />
   )
 }
 

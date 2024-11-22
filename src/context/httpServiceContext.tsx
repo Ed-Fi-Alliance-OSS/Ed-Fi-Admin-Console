@@ -19,7 +19,11 @@ interface HttpServiceContextProviderProps {
 
 const HttpServiceContextProvider = ({ children, redirectOnError }: HttpServiceContextProviderProps) => {
   return (
-    <HttpServiceContext.Provider value={{ httpService, redirectOnError }}>
+    <HttpServiceContext.Provider value={{
+      httpService,
+      redirectOnError 
+    }}
+    >
       { children }           
     </HttpServiceContext.Provider>
   )

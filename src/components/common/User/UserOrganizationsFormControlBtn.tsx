@@ -1,4 +1,6 @@
-import { Button, Flex, Tooltip } from '@chakra-ui/react'
+import {
+  Button, Flex, Tooltip 
+} from '@chakra-ui/react'
 import { DeletingState } from '../../../core/deletingState.types'
 import UserOrganizationsFormControlPopover from './UserOrganizationsFormControlPopover'
 
@@ -19,25 +21,37 @@ const UserOrganizationsFormControlBtn = ({ educationOrganizationId, staffClassif
   const canModify = () => source === 'Manual'
 
   return (
-    <Flex justifyContent='flex-end' w='auto'>
-      <Tooltip isDisabled={canModify()} hasArrow label='Cannot EDIT data from Ed-Fi' bg='blue.600' borderRadius='4px'>
+    <Flex
+      justifyContent='flex-end'
+      w='auto'
+    >
+      <Tooltip
+        hasArrow
+        bg='blue.600'
+        borderRadius='4px'
+        isDisabled={canModify()}
+        label='Cannot EDIT data from Ed-Fi'
+      >
         <Button 
-          onClick={() => onEdit(educationOrganizationId, staffClassification, index)}
-          isDisabled={!canModify() || isDisabled}
-          size='xs'
           borderRadius='4px 0px 0px 4px'
+          isDisabled={!canModify() || isDisabled}
+          minW='39px'
+          size='xs'
           variant='primaryBlue600'
-          minW='39px'>
-                        Edit
+          onClick={() => onEdit(educationOrganizationId, staffClassification, index)}
+        >
+          Edit
         </Button>
       </Tooltip>
+
       <UserOrganizationsFormControlPopover 
-        educationOrganizationId={educationOrganizationId} 
-        staffClassification={staffClassification}
-        isDisabled={isDisabled}
+        canDelete={canModify()} 
+        educationOrganizationId={educationOrganizationId}
         isDeleting={isDeleting}
-        canDelete={canModify()}
-        onDelete={onDelete} />
+        isDisabled={isDisabled}
+        staffClassification={staffClassification}
+        onDelete={onDelete}
+      />
     </Flex>
   )
 }

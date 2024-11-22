@@ -1,4 +1,6 @@
-import { Flex, Heading } from '@chakra-ui/react'
+import {
+  Flex, Heading 
+} from '@chakra-ui/react'
 import { useContext } from 'react'
 import { adminConsoleContext } from '../../../context/adminConsoleContext'
 import { ODSInstance } from '../../../core/ODSInstance.types'
@@ -53,21 +55,24 @@ const InstanceTabsMenu = ({ instance, showConfirmSetDefaultModal, showSetUpWizar
 
   const selectTabs = (tabName: string) => {
     if (tabName === 'Data Management (Advanced)') {
-      if (adminConfig && adminConfig.showAdvancedTabs)
+      if (adminConfig && adminConfig.showAdvancedTabs) {
         return true
+      }
 
       return false
     }
 
-    if (tabName == 'Vendors & Applications')
+    if (tabName == 'Vendors & Applications') {
       return showPartnersTab()
+    }
 
     return true
   }
 
   const updateTabs = (tabName: string, index: number) => {
-    if (externalODS.isExternalODS && index === 1)
+    if (externalODS.isExternalODS && index === 1) {
       return 'Applications'
+    }
 
     return tabName
   }
@@ -77,62 +82,84 @@ const InstanceTabsMenu = ({ instance, showConfirmSetDefaultModal, showSetUpWizar
 
     console.log('show partners tab', odsInstanceEdFiStatus)
 
-    if (odsInstanceEdFiStatus.operationStatus == 'Offline')
+    if (odsInstanceEdFiStatus.operationStatus == 'Offline') {
       return false
+    }
 
     return true
   }
 
   const getSchoolYear = () => {
-    if (!instance)
-      return 0 
+    if (!instance) {
+      return 0
+    } 
 
     const year = getInstanceYear(instance)
 
-    if (!year)
+    if (!year) {
       return 0
+    }
 
     return year
   }
 
   return (
-    <Flex flexDir='column' w='full'>
+    <Flex
+      flexDir='column'
+      w='full'
+    >
       { instance && <ConfirmSetDefaultInstanceModal
-        show={showConfirmSetDefaultModal}
         instance={instance}
+        show={showConfirmSetDefaultModal}
         updatingInstance={updatingInstance}
+        onClose={onCloseConfirmSetDefaultModal}
         onSetIsDefault={onSetIsDefault}
-        onClose={onCloseConfirmSetDefaultModal} />}
+      />}
 
       { instance && <SetUpInstanceModal 
         instance={instance} 
         show={showSetUpWizardModal} 
-        onClose={onCloseSetUpWizardModal} /> }
+        onClose={onCloseSetUpWizardModal}
+      /> }
                 
       <Heading
+        mt='5px'
         size='lg'
-        mt='5px'>
+      >
         { instance? getDisplayYear(instance) : 'Loading...'}
       </Heading>
-      <Flex mt='24px' w='full'>
-        <Flex className="spaec" position='relative' alignItems='flex-start' justifyContent='space-between' w='full'>
+
+      <Flex
+        mt='24px'
+        w='full'
+      >
+        <Flex
+          alignItems='flex-start'
+          className="spaec"
+          justifyContent='space-between'
+          position='relative'
+          w='full'
+        >
           <AdminConsoleTabsMenu 
             includeWrapper={false}
+            initialIndex={0}
             tabsList={tabsList.filter(tab => selectTabs(tab)).map((tab, index) => updateTabs(tab, index))}
-            initialIndex={0}>
+          >
             <TabContentWrapper>
-              { instance? <InstanceSummaryTabContent 
-                instance={instance} /> 
+              { instance? <InstanceSummaryTabContent instance={instance} /> 
                 : 
-                <InstanceLoadingContent /> }
+              <InstanceLoadingContent /> }
             </TabContentWrapper>
+
             <TabContentWrapper>
               { externalODS.isExternalODS? 
                 <EdFiSettingsTabContent /> : 
                 <PartnersAndApplicationTabContent
                   instance={instance}
-                  schoolYear={getSchoolYear()} /> }
+                  schoolYear={getSchoolYear()}
+                /> }
             </TabContentWrapper>
+
             <TabContentWrapper>
               <DataManagementTabContent />
             </TabContentWrapper>

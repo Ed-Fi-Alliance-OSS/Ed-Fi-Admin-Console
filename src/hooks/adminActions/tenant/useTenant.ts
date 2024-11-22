@@ -1,5 +1,9 @@
-import { TEEAuthDataContext, UserProfileContext } from '@edfi/admin-console-shared-sdk'
-import { useState, useEffect, useContext } from 'react'
+import {
+  TEEAuthDataContext, UserProfileContext 
+} from '@edfi/admin-console-shared-sdk'
+import {
+  useState, useEffect, useContext 
+} from 'react'
 import { adminConsoleContext } from '../../../context/adminConsoleContext'
 import { Tenant } from '../../../core/Tenant.types'
 import { PostDomainRequest } from '../../../services/AdminActions/Domains/DomainService.request'
@@ -11,9 +15,9 @@ const useTenant = () => {
   const { getTenant, updateTenant } = useTenantService()
   const { auth, edxAppConfig } = useContext(TEEAuthDataContext)
   const adminConfig = useContext(adminConsoleContext)
-  const [tenant, setTenant] = useState<Tenant | null>(null)
-  const [isAddingDomain, setIsAddingDomain] = useState(false)
-  const [isRemovingDomain, setIsRemovingDomain] = useState(false)
+  const [ tenant, setTenant ] = useState<Tenant | null>(null)
+  const [ isAddingDomain, setIsAddingDomain ] = useState(false)
+  const [ isRemovingDomain, setIsRemovingDomain ] = useState(false)
   const { createDomain, deleteDomain } = useDomainsService()
 
   const fetchTenant = async () => {
@@ -39,8 +43,9 @@ const useTenant = () => {
       const result = await createDomain(adminConfig.actionParams, request)
       setIsAddingDomain(false)
 
-      if (result.type === 'Response')
+      if (result.type === 'Response') {
         await fetchTenant()
+      }
     }
   }
 

@@ -1,4 +1,6 @@
-import { Flex, Text } from '@chakra-ui/react'
+import {
+  Flex, Text 
+} from '@chakra-ui/react'
 
 interface InstanceDescriptionFieldProps {
     title: string 
@@ -7,19 +9,25 @@ interface InstanceDescriptionFieldProps {
 
 const InstanceDescriptionField = ({ title, content }: InstanceDescriptionFieldProps) => {
   return (
-    <Flex flexDir='column' _notFirst={{ mt: '36px' }}>
+    <Flex
+      _notFirst={{ mt: '36px' }}
+      flexDir='column'
+    >
       <Text
         color='gray.600'
         fontFamily='Open sans'
         fontWeight='400'
-        size='sm'>
+        size='sm'
+      >
         {title}
       </Text>
+
       {typeof(content) === 'string' || typeof(content) === 'number'?
         <Text
           fontFamily='Open sans'
           fontWeight='700'
-          size='lg'>
+          size='lg'
+        >
           {content}
         </Text>
         : <Flex mt='5px'>

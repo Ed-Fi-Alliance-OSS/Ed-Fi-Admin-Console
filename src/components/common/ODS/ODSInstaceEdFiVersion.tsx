@@ -9,7 +9,8 @@ const ODSInstanceEdFiVersion = ({ version }: ODSInstanceEdFiVersionProps) => {
     <Text
       fontFamily='Open sans'
       fontWeight='400'
-      size='md'>
+      size='md'
+    >
       { version }
     </Text>
   )

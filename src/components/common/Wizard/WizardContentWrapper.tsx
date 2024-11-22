@@ -8,12 +8,13 @@ interface WizardContentWrapperProps {
 const WizardContentWrapper = ({ children, minH }: WizardContentWrapperProps) => {
   return (
     <Flex
-      flexDir='column'
       bg='white'
-      padding='32px'
-      minH={ minH ?? '900px'}
+      flexDir='column'
       h='auto'
-      w='full'>
+      minH={minH ?? '600px'}
+      padding='32px'
+      w='full'
+    >
       {children}
     </Flex>
   )

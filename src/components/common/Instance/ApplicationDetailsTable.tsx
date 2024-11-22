@@ -24,78 +24,103 @@ interface ApplicationDetailsTableProps {
 const ApplicationDetailsTable = ({ applicationsList, isDeleting, onEditApplication, onDeleteApplication }: ApplicationDetailsTableProps) => {
   return (
     <TableContainer
-      borderRadius='4px'
       border='1px'
-      borderColor='gray.300'>
+      borderColor='gray.300'
+      borderRadius='4px'
+    >
       <Table variant='simple'>
         <Thead bg='gray.100'>
           <Tr>
             <Th
               color='gray.700'
               fontFamily='Open sans'
+              fontSize='14px'
               fontWeight='700'
               textTransform='none'
-              fontSize='14px'>Application</Th>
+            >Application
+            </Th>
+
             <Th
               color='gray.700'
               fontFamily='Open sans'
+              fontSize='14px'
               fontWeight='700'
               textTransform='none'
-              fontSize='14px'>Education Organizations</Th>
+            >Education Organizations
+            </Th>
+
             <Th
               color='gray.700'
               fontFamily='Open sans'
+              fontSize='14px'
               fontWeight='700'
               textTransform='none'
-              fontSize='14px'>Permissions</Th>
+            >Permissions
+            </Th>
+
             <Th></Th>
           </Tr>
         </Thead>
+
         <Tbody>
           {applicationsList.map((application, index) => 
             <Tr
+              key={index} 
               border='2px' 
-              borderColor='gray.300' 
-              key={index}>
+              borderColor='gray.300'
+            >
               <Td
                 fontFamily='Open sans'
+                fontSize='14px'
                 fontWeight='400'
-                fontSize='14px'>{application.applicationName}</Td>
+              >{application.applicationName}
+              </Td>
+
               <Td
                 fontFamily='Open sans'
+                fontSize='14px'
                 fontWeight='400'
-                fontSize='14px'>{application.educationOrganizationId? 1 : 0}</Td>
+              >{application.educationOrganizationId? 1 : 0}
+              </Td>
+
               <Td>
                 <Flex flexDir='column'>
                   <Link
                     color='blue.600' 
                     fontFamily='Open sans'
-                    fontWeight='400'
                     fontSize='14px'
+                    fontWeight='400'
                     href='#'
-                    textDecoration='underline'>
+                    textDecoration='underline'
+                  >
                     {application.claimSetName}
                   </Link>
                 </Flex>
               </Td>
+
               <Td>
-                <Flex justifyContent='flex-end' w='full'>
+                <Flex
+                  justifyContent='flex-end'
+                  w='full'
+                >
                   <Button 
-                    onClick={() => onEditApplication(application)}
                     borderRadius='4px 0px 0px 4px'
-                    variant='primaryBlue600'
+                    minW='39px'
                     size='xs'
-                    minW='39px'>
-                                                Edit
+                    variant='primaryBlue600'
+                    onClick={() => onEditApplication(application)}
+                  >
+                    Edit
                   </Button>
+
                   <ApplicationDetailsControl 
                     data={application}
                     isDeleting={isDeleting.deleting && isDeleting.id === application.applicationId.toString()}
-                    onDelete={onDeleteApplication} />
+                    onDelete={onDeleteApplication}
+                  />
                 </Flex>
               </Td>
-            </Tr>
-          )}
+            </Tr>)}
         </Tbody>
       </Table>
     </TableContainer>

@@ -1,4 +1,6 @@
-import { Flex, Text } from '@chakra-ui/react'
+import {
+  Flex, Text 
+} from '@chakra-ui/react'
 import CommonTooltip from '../CommonTooltip'
 
 interface VerifyDomainTableProps {
@@ -10,12 +12,17 @@ const VerifyDomainTableHeader = ({ headerName, tooltipMessage }: VerifyDomainTab
   return (
     <Flex alignItems='center'>
       <Text
-        fontFamily='Open sans' mr='5px'>{ headerName }</Text>
+        fontFamily='Open sans'
+        mr='5px'
+      >{ headerName }
+      </Text>
+
       <CommonTooltip
-        iconColor="black"
         bg="blue.600"
+        iconColor="black"
         label={tooltipMessage}
-        size='14px' />
+        size='14px'
+      />
     </Flex>
   )
 }

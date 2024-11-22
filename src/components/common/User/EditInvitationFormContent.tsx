@@ -2,7 +2,9 @@ import { Flex } from '@chakra-ui/react'
 import AppUserDetailsForm from './AppUserDetailsForm'
 import AppUserSubscriptionsForm from './AppUserSubscriptionsForm'
 import { ChangeEvent } from 'react'
-import { CreateUserFormData, RoleOption, SubscriptionOption, UserFormMode } from '../../../hooks/adminActions/users/useCreateUserForm.types'
+import {
+  CreateUserFormData, RoleOption, SubscriptionOption, UserFormMode 
+} from '../../../hooks/adminActions/users/useCreateUserForm.types'
 import { CompleteFormErrorMessage } from '@edfi/admin-console-shared-sdk'
 import { FormDataErrors } from '../../../core/validation/FormValidations.types'
 
@@ -23,26 +25,40 @@ interface EditInvitationFormContentProps {
 
 const EditInvitationFormContent = ({ mode, userData, roleOptions, subscriptionOptionsList, errors, hasTriedSubmit, onToggleIsAdmin, onInputChange, onRoleSelect, onSelectApplicationRoleForUser, onSubscriptionToggle }: EditInvitationFormContentProps) => {
   return (
-    <Flex flexDir='column' w='full'>
+    <Flex
+      flexDir='column'
+      w='full'
+    >
       {Object.keys(errors).length > 0 && hasTriedSubmit && <CompleteFormErrorMessage />}
-      <Flex flexDir='column' mt={mode !== 'Invite Admin'? '24px' : '0px'} w='full'>
+
+      <Flex
+        flexDir='column'
+        mt={mode !== 'Invite Admin'? '24px' : '0px'}
+        w='full'
+      >
         <AppUserDetailsForm 
-          mode={mode}
-          userData={userData}
-          onToggleIsAdmin={onToggleIsAdmin}
-          roleOptions={roleOptions}
-          isEmailDisabled={true}
           errors={errors}
+          isEmailDisabled={true}
+          mode={mode}
+          roleOptions={roleOptions}
+          userData={userData}
           onInputChange={onInputChange}
-          onSelectChange={onRoleSelect} />
+          onSelectChange={onRoleSelect}
+          onToggleIsAdmin={onToggleIsAdmin}
+        />
       </Flex>
-      {mode !== 'Invite Admin' && <Flex mt='24px' w='full'>
+
+      {mode !== 'Invite Admin' && <Flex
+        mt='24px'
+        w='full'
+      >
         <AppUserSubscriptionsForm
-          isImplicit={() => false}
           isFetchingProfile={false}
+          isImplicit={() => false}
           subscriptionsList={subscriptionOptionsList}
           onSelectRoleForUser={onSelectApplicationRoleForUser}
-          onSubscriptionToggle={onSubscriptionToggle} />
+          onSubscriptionToggle={onSubscriptionToggle}
+        />
       </Flex>}
     </Flex>
   )

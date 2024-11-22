@@ -1,5 +1,7 @@
 
-import { test, Page, expect } from '@playwright/test'
+import {
+  test, Page, expect 
+} from '@playwright/test'
 import { routes } from '../core/routes'
 import { fillAddApplicationForm } from './addApplicationFormHelpers'
 

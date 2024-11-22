@@ -6,7 +6,13 @@ const TenantTabContent = () => {
   return (
     <Flex w='full'>
       <TabHeading text="Tenant Settings" />
-      <Flex mt='10px' ml='58px' w='full' maxW='730px'>
+
+      <Flex
+        maxW='730px'
+        ml='58px'
+        mt='10px'
+        w='full'
+      >
         <TenantSettingsForm />
       </Flex>
     </Flex>

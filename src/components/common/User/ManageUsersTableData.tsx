@@ -8,10 +8,11 @@ interface ManageUsersTableDataProps {
 const ManageUsersTableData = ({ children, width }: ManageUsersTableDataProps) => {
   return (
     <Td 
+      minW='50px' 
       paddingLeft='16px' 
-      paddingRight='16px' 
-      minW='50px'
-      w={width}>
+      paddingRight='16px'
+      w={width}
+    >
       {children}
     </Td>
   )

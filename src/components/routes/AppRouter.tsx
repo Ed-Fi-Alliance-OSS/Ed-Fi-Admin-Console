@@ -1,4 +1,6 @@
-import { Navigate, Route } from 'react-router-dom'
+import {
+  Navigate, Route 
+} from 'react-router-dom'
 import { Routes } from 'react-router-dom'
 import routes from '../../core/routes'
 import HomePage from '../pages/HomePage'
@@ -16,27 +18,87 @@ import { markdownRoutes } from './MarkdownFilesRoutes'
 const AppRouter = () => {
   return (
     <Routes>
-      <Route path={routes.home.url} element={<HomePage />} />
-      <Route path={routes.authCallback.url} element={<CallbackRouter />} />
-      <Route path='/' element={<Navigate to={routes.home.url} replace={true} />} />
-      <Route path={routes.onBoardingWizard.url} element={<OnBoardingPage />} />
-      <Route path={`${routes.setUpWizard.url}/:year`} element={<SetUpWizardPage />} />
-      <Route path={routes.stateSummary.url} element={<StatusSummaryPage />} />
-      <Route path={routes.console.url} element={<ConsolePage />} />
-      <Route path={routes.addInstance.url} element={<AddInstancePage />} />
-      <Route path={routes.instance.url} element={<InstancePage />} />
-      <Route path={routes.notFound.url} element={<ErrorPageContainer status="404" />} />
-      <Route path={routes.unauthorized.url} element={<ErrorPageContainer status="403" />} />
-      <Route path={routes.internalError.url} element={<ErrorPageContainer status="500" />} />
+      <Route
+        element={<HomePage />}
+        path={routes.home.url}
+      />
+
+      <Route
+        element={<CallbackRouter />}
+        path={routes.authCallback.url}
+      />
+
+      <Route
+        element={<Navigate
+          replace={true}
+          to={routes.home.url}
+        />}
+        path='/'
+      />
+
+      <Route
+        element={<OnBoardingPage />}
+        path={routes.onBoardingWizard.url}
+      />
+
+      <Route
+        element={<SetUpWizardPage />}
+        path={`${routes.setUpWizard.url}/:year`}
+      />
+
+      <Route
+        element={<StatusSummaryPage />}
+        path={routes.stateSummary.url}
+      />
+
+      <Route
+        element={<ConsolePage />}
+        path={routes.console.url}
+      />
+
+      <Route
+        element={<AddInstancePage />}
+        path={routes.addInstance.url}
+      />
+
+      <Route
+        element={<InstancePage />}
+        path={routes.instance.url}
+      />
+
+      <Route
+        element={<ErrorPageContainer status="404" />}
+        path={routes.notFound.url}
+      />
+
+      <Route
+        element={<ErrorPageContainer status="403" />}
+        path={routes.unauthorized.url}
+      />
+
+      <Route
+        element={<ErrorPageContainer status="500" />}
+        path={routes.internalError.url}
+      />
 
       {
         /* Auto-Generated Markdown Files */
         markdownRoutes.map(({ path, component: Component }) => {
-          return <Route key={`docs-${path}`} path={`${path}`} element={<Component />} />
+          return <Route
+            key={`docs-${path}`}
+            element={<Component />}
+            path={`${path}`}
+          />
         })
       }
 
-      <Route path='*' element={<Navigate to={routes.notFound.url} replace={true} />} />
+      <Route
+        element={<Navigate
+          replace={true}
+          to={routes.notFound.url}
+        />}
+        path='*'
+      />
     </Routes>
   )
 }

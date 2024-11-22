@@ -1,22 +1,27 @@
-import { ActionParams } from '../adminAction.types'
-import adminActionRoutes from '../tenantActionRoutes'
-import { UpdateTenantRequest } from './TenantService.requests'
-import { GetTenantResult, UpdateTenantResult } from './TenantService.results'
-import { GetTenantResponse } from './TenantService.responses'
-import { mapToTenant } from './TenantMapper'
-import { HttpServiceResponse } from '../../HttpService/HttpService.response.types'
+import { useConfig } from '@edfi/admin-console-shared-sdk'
 import { Tenant } from '../../../core/Tenant.types'
 import useHttpService from '../../../hooks/http/useHttpService'
+import { HttpServiceResponse } from '../../HttpService/HttpService.response.types'
+import { ActionParams } from '../adminAction.types'
+import adminActionRoutes from '../tenantActionRoutes'
+import { mapToTenant } from './TenantMapper'
+import { UpdateTenantRequest } from './TenantService.requests'
+import { GetTenantResponse } from './TenantService.responses'
+import {
+  GetTenantResult, UpdateTenantResult
+} from './TenantService.results'
 
 const useTenantService = () => {
   const { getAsync, putAsync } = useHttpService()
+  const { config } = useConfig()
 
   const getTenant = async (actionParams: ActionParams): GetTenantResult => {
     const baseUrl = actionParams.edxApiUrl
+
     // const url = `${baseUrl}/${adminActionRoutes.getTenant(actionParams.tenantId)}`
-    //const url = '/mockdata/data-tenants.json'
+    //const url = '/data-tenants.json'
     const url = actionParams.config.api?.useLocalMockData ?? true
-      ? '/mockdata/data-tenants.json'
+      ? `${config?.app.basePath}/mockdata/data-tenants.json`
       : `${baseUrl}/adminconsole/tenants`
     
     const result = await getAsync<GetTenantResponse>({
@@ -42,15 +47,18 @@ const useTenantService = () => {
     const baseUrl = actionParams.edxApiUrl
     const url = `${baseUrl}/${adminActionRoutes.putTenant(actionParams.tenantId)}`
     
-    const result = await putAsync<GetTenantResponse, UpdateTenantRequest>({
-      url,
-      actionName: 'Update Tenant',
-      access_token: actionParams.token,
-      data,
-      apiConfig: actionParams.config.api
-    })
+    // const result = await putAsync<GetTenantResponse, UpdateTenantRequest>({
+    //   url,
+    //   actionName: 'Update Tenant',
+    //   access_token: actionParams.token,
+    //   data,
+    //   apiConfig: actionParams.config.api
+    // })
     
-    return result
+    return {
+      type: 'Response',
+      data:{ tenantId: data.tenantId, }
+    }
   }
     
   return {

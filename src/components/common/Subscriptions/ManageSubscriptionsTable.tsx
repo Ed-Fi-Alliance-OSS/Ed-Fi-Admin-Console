@@ -13,10 +13,11 @@ const ManageSubscriptionsTable = ({ headers, rows, loading, itemsCount, paginati
     <ControlTable 
       headers={headers}
       itemsCount={itemsCount}
+      loading={loading}
+      pagination={pagination}
       rows={rows}
       thPadding="16px"
-      loading={loading}
-      pagination={pagination} />
+    />
   )
 }
 

@@ -1,5 +1,9 @@
-import { AppUserLicenseRole, AppUserTenant } from '../../../core/AppUser.types'
-import { Organization, StaffClassification } from '../../../core/Tenant.types'
+import {
+  AppUserLicenseRole, AppUserStatus
+} from '../../../core/AppUser.types'
+import {
+  Organization, StaffClassification
+} from '../../../core/Tenant.types'
 
 export interface ApiResponseApplicationRole {
     role: string 
@@ -25,13 +29,10 @@ export interface ApiResponseUserLicense {
 export interface ApiResponseUser {
     userId: string 
     userName: string 
-    email: string 
+    email: string
+    status: AppUserStatus 
     firstName: string 
     lastName: string 
-    tenantCount: number 
-    tenants: AppUserTenant[]
-    licenses: ApiResponseUserLicense[]
-    source: 'Manual' | 'Ed-Fi Sync' | null
     createdBy: string 
     createdDateTime: string 
     lastModifiedBy: string 
@@ -39,9 +40,9 @@ export interface ApiResponseUser {
 }
 
 export interface GetUsersListResponse {
-    pageIndex: number 
-    pageSize: number 
-    count: number 
+    pageIndex?: number 
+    pageSize?: number 
+    count?: number 
     data: ApiResponseUser[]
 }
 
@@ -141,9 +142,9 @@ export interface CheckUserEmailResponse {
 }
 
 export interface GetInvitationsListResponse {
-    pageIndex: number 
-    pageSize: number 
-    count: number
+    pageIndex?: number 
+    pageSize?: number 
+    count?: number
     data: ApiInvitation[]
 }
 

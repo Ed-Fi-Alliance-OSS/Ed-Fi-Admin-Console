@@ -1,11 +1,17 @@
-import { ChangeEvent, useContext, useEffect, useState } from 'react'
+import {
+  ChangeEvent, useContext, useEffect, useState 
+} from 'react'
 import { adminConsoleContext } from '../../context/adminConsoleContext'
 import useEdFiAdminConnectionsService from '../../services/AdminActions/EdFiAdmin/Connections/EdFiAdminConnectionsService'
-import { CreateEdfiAdminConnectionRequest, UpdateEdfiAdminConnectionRequest, VerifyEdFiAdminConnectionRequest } from '../../services/AdminActions/EdFiAdmin/Connections/EdfiAdminConnectionsService.requests'
+import {
+  CreateEdfiAdminConnectionRequest, UpdateEdfiAdminConnectionRequest, VerifyEdFiAdminConnectionRequest 
+} from '../../services/AdminActions/EdFiAdmin/Connections/EdfiAdminConnectionsService.requests'
 import { UpdatedEdFiAdminConnectionResponse } from '../../services/AdminActions/EdFiAdmin/Connections/EdfiAdminConnectionsService.response'
 import useEDXToast from '../common/useEDXToast'
 import { getInitialConnectionFormData } from './edFiConnection.helper'
-import { EdFiConnectionFormData, EdFiConnectionFormMode, EdFiConnectionVerificationStatus } from './useEdFiConnectionForm.types'
+import {
+  EdFiConnectionFormData, EdFiConnectionFormMode, EdFiConnectionVerificationStatus 
+} from './useEdFiConnectionForm.types'
 import useEdFiConnectionFormValidation from './useEdFiConnectionFormValidation'
 
 interface UseEdFiConnectionFormProps {
@@ -17,51 +23,54 @@ interface UseEdFiConnectionFormProps {
 
 const useEdFiConnectionForm = ({ initialData, inOnboarding, mode, onAfterSave }: UseEdFiConnectionFormProps) => {
   const adminConfig = useContext(adminConsoleContext)
-  const [formData, setFormData] = useState<EdFiConnectionFormData>(getInitialConnectionFormData(initialData))
-  const [isSaving, setIsSaving] = useState(false)
-  const [isVerifying, setIsverifying] = useState(false)
+  const [ formData, setFormData ] = useState<EdFiConnectionFormData>(getInitialConnectionFormData(initialData))
+  const [ isSaving, setIsSaving ] = useState(false)
+  const [ isVerifying, setIsverifying ] = useState(false)
+
   const {
     errors,
     validateInputChange,
     validFormData,
     isValidFormData
   } =  useEdFiConnectionFormValidation()
+
   const [ hasTriedSubmit, setHasTriedSubmit ] = useState(false)
   const [ verificationStatus, setVerificationStatus ] = useState<EdFiConnectionVerificationStatus>('Not Connected')
   const { successToast, errorToast } = useEDXToast()
   const { createConnection, updateConnection, verifyConnection } = useEdFiAdminConnectionsService()
 
   const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const nConnectionData = {...formData}
+    const nConnectionData = { ...formData }
 
     if (e.target.id === 'key') {
       nConnectionData.key = e.target.value
 
       validateInputChange('key', nConnectionData)
-    }
-    else if (e.target.id === 'secret') {
+    } else if (e.target.id === 'secret') {
       nConnectionData.secret = e.target.value
 
       validateInputChange('secret', nConnectionData)
-    }
-    else if (e.target.id === 'baseUrl') {
+    } else if (e.target.id === 'baseUrl') {
       console.log('target value', e.target.value)
       nConnectionData.baseUrl = e.target.value
 
       validateInputChange('baseUrl', nConnectionData)
     }
 
-    if (initialData)
-      if (nConnectionData.key !== initialData.key || nConnectionData.secret !== initialData.secret)
+    if (initialData) {
+      if (nConnectionData.key !== initialData.key || nConnectionData.secret !== initialData.secret) {
         setVerificationStatus('Unknown')
+      }
+    }
 
     return setFormData(nConnectionData)
   }
 
   const createEdFiAdminConnection = async (connectionName: string): Promise<UpdatedEdFiAdminConnectionResponse | null> => {
     console.log('create edfi admin connection')
-    if (!adminConfig)   
+    if (!adminConfig) {
       return null
+    }
 
     const createConnectionRequest: CreateEdfiAdminConnectionRequest = {
       tenantId: adminConfig.actionParams.tenantId,
@@ -86,8 +95,9 @@ const useEdFiConnectionForm = ({ initialData, inOnboarding, mode, onAfterSave }:
 
   const updateEdFiAdminConnection = async (connectionId: string): Promise<UpdatedEdFiAdminConnectionResponse | null> => {
     console.log('update edfi admin connection')
-    if (!adminConfig)   
+    if (!adminConfig) {
       return null
+    }
 
     const request: UpdateEdfiAdminConnectionRequest = {
       connectionId,
@@ -123,8 +133,9 @@ const useEdFiConnectionForm = ({ initialData, inOnboarding, mode, onAfterSave }:
       return 
     }
 
-    if (formData.connectionId)
+    if (formData.connectionId) {
       return await updateEdFiAdminConnection(formData.connectionId)
+    }
   }
 
   const scrollToErrorSection = () => {
@@ -136,8 +147,9 @@ const useEdFiConnectionForm = ({ initialData, inOnboarding, mode, onAfterSave }:
   }
 
   const createTestConnection = async () => {
-    if (!adminConfig)
-      return 
+    if (!adminConfig) {
+      return
+    } 
 
     if (formData.key == initialData?.key && formData.secret == initialData.secret) {
       return {
@@ -151,8 +163,9 @@ const useEdFiConnectionForm = ({ initialData, inOnboarding, mode, onAfterSave }:
 
   const onVerifyConnection = async () => {
     console.log('on verify connection')
-    if (!adminConfig)
-      return 
+    if (!adminConfig) {
+      return
+    } 
 
     setIsverifying(true)
 
@@ -196,11 +209,13 @@ const useEdFiConnectionForm = ({ initialData, inOnboarding, mode, onAfterSave }:
   }
 
   const onSimpleVerifyConnection = async () => {
-    if (!adminConfig)
-      return 
+    if (!adminConfig) {
+      return
+    } 
 
-    if (!initialData || !initialData.connectionId)
-      return 
+    if (!initialData || !initialData.connectionId) {
+      return
+    } 
 
     setIsverifying(true)
     console.log('connection id to check', initialData.connectionId)
@@ -240,12 +255,15 @@ const useEdFiConnectionForm = ({ initialData, inOnboarding, mode, onAfterSave }:
   const isDisabledVerification = () => isValidFormData(formData)
 
   const isDisabledSave = () => {
-    if (verificationStatus !== 'Connected')
+    if (verificationStatus !== 'Connected') {
       return true
+    }
 
-    if (mode == 'Edit' && initialData)
-      if (formData.key == initialData.key && formData.secret == initialData.secret) 
+    if (mode == 'Edit' && initialData) {
+      if (formData.key == initialData.key && formData.secret == initialData.secret) {
         return true
+      }
+    }
 
     return false
   }
@@ -258,8 +276,9 @@ const useEdFiConnectionForm = ({ initialData, inOnboarding, mode, onAfterSave }:
 
     await saveConnection()
 
-    if (onAfterSave)
+    if (onAfterSave) {
       onAfterSave()
+    }
   }
 
   useEffect(() => {

@@ -20,30 +20,67 @@ const APIClientsTable = ({ apiClientList }: APIClientsTableProps) => {
   return (
     <ControlTable
       headers={[
-        <ControlTableHeader headerData={{ fieldName: 'lea', text: 'ClientName', showSorting: true, sortedByField, sortingType, onSortAsc: sortTextAsc, onSortDesc: sortTextDesc }} />,
-        <ControlTableHeader headerData={{ fieldName: 'lea', text: 'ClientId', showSorting: true, sortedByField, sortingType, onSortAsc: sortTextAsc, onSortDesc: sortTextDesc }} />,
-        <ControlTableHeader headerData={{ fieldName: 'lea', text: 'Enabled', showSorting: true, sortedByField, sortingType, onSortAsc: sortTextAsc, onSortDesc: sortTextDesc }} />,
-        <ControlTableHeader headerData={{ fieldName: 'lea', text: 'Created At', showSorting: true, sortedByField, sortingType, onSortAsc: sortTextAsc, onSortDesc: sortTextDesc }} />,
+        <ControlTableHeader headerData={{
+          fieldName: 'lea',
+          text: 'ClientName',
+          showSorting: true,
+          sortedByField,
+          sortingType,
+          onSortAsc: sortTextAsc,
+          onSortDesc: sortTextDesc 
+        }}
+        />,
+        <ControlTableHeader headerData={{
+          fieldName: 'lea',
+          text: 'ClientId',
+          showSorting: true,
+          sortedByField,
+          sortingType,
+          onSortAsc: sortTextAsc,
+          onSortDesc: sortTextDesc 
+        }}
+        />,
+        <ControlTableHeader headerData={{
+          fieldName: 'lea',
+          text: 'Enabled',
+          showSorting: true,
+          sortedByField,
+          sortingType,
+          onSortAsc: sortTextAsc,
+          onSortDesc: sortTextDesc 
+        }}
+        />,
+        <ControlTableHeader headerData={{
+          fieldName: 'lea',
+          text: 'Created At',
+          showSorting: true,
+          sortedByField,
+          sortingType,
+          onSortAsc: sortTextAsc,
+          onSortDesc: sortTextDesc 
+        }}
+        />,
       ]}
-      itemsCount={apiClientList.length}
-      rows={<APIClientsTableRows apiClientList={apiClientList} />}
-      loading={false}
-      thPadding="16px"
       pagination={<TablePagination 
+        canNextPage={() => true}
+        canPreviousPage={() => true}
         currentPage={1}
         goToInitialPage={() => null}
         goToLastPage={() => null}
         goToNextPage={() => null}
         goToPreviousPage={() => null}
-        canNextPage={() => true}
-        canPreviousPage={() => true}
-        pageSize={5}
-        onDecrementPageSize={() => null}
-        onIncrementPageSize={() => null}
-        totalPages={10}
         maxPageSize={5}
         minPageSize={5}
-        onChangePageSize={() => null} />}
+        pageSize={5}
+        totalPages={10}
+        onChangePageSize={() => null}
+        onDecrementPageSize={() => null}
+        onIncrementPageSize={() => null}
+      />}
+      itemsCount={apiClientList.length}
+      loading={false}
+      rows={<APIClientsTableRows apiClientList={apiClientList} />}
+      thPadding="16px"
     />
   )
 }

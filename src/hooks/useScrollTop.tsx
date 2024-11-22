@@ -6,7 +6,7 @@ const useScrollTop = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0)
-  }, [pathname])
+  }, [ pathname ])
 
   return null
 }

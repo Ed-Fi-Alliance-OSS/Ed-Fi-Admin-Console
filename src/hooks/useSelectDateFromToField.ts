@@ -1,8 +1,8 @@
 import { useState } from 'react'
 
 const useSelectDateFromToField = () => {
-  const [startDate, setStartDate] = useState<Date | null>(null)
-  const [endDate, setEndDate] = useState<Date | null>(null)
+  const [ startDate, setStartDate ] = useState<Date | null>(null)
+  const [ endDate, setEndDate ] = useState<Date | null>(null)
 
   const handleUpdateStartDate = (date: Date) => {
     setStartDate(date)

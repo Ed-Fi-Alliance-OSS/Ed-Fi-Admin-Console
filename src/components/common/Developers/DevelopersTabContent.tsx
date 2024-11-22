@@ -13,21 +13,34 @@ const DocumentationTabContent = () => {
   } = useDevelopersDocumentation()
 
   return (
-    <Flex flexDir='column' w='full'>
+    <Flex
+      flexDir='column'
+      w='full'
+    >
       <Flex>
         <Flex w='300px'>
           <TabHeading text="Documentation (Advanced)" />
         </Flex>
+
         <APIDocumentationForm
-          selectedDocumentation={selectedDocumentation}
           documentationOptions={documentationOptions}
-          onSelectDocumentation={handleSelectDocumentation} />
+          selectedDocumentation={selectedDocumentation}
+          onSelectDocumentation={handleSelectDocumentation}
+        />
       </Flex>
-      <Flex flexDir='column' w='full'>
-        <Flex mt='32px' w='full'>
+
+      <Flex
+        flexDir='column'
+        w='full'
+      >
+        <Flex
+          mt='32px'
+          w='full'
+        >
           <DocumentationRender 
+            documentationUrl={documentationUrl}
             selectedDocumentation={selectedDocumentation}
-            documentationUrl={documentationUrl} />
+          />
         </Flex>
       </Flex>
     </Flex>

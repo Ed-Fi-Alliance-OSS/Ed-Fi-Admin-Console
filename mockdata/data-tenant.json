@@ -57,35 +57,60 @@
         1
     ],
     "onboarding": {
-        "status": "Completed",
-        "progressPercentage": 100,
-        "totalSteps": 3,
-        "lastCompletedStep": 3,
-        "startedAt": "2022-01-01T09:00:00",
-        "completedAt": "2022-01-01T10:00:00",
-        "steps": [
-            {
-                "number": 1,
-                "description": "Step 1",
-                "startedAt": "2022-01-01T09:00:00",
-                "completedAt": "2022-01-01T09:30:00",
-                "status": "Completed"
-            },
-            {
-                "number": 2,
-                "description": "Step 2",
-                "startedAt": "2022-01-01T09:30:00",
-                "completedAt": "2022-01-01T09:45:00",
-                "status": "Completed"
-            },
-            {
-                "number": 3,
-                "description": "Step 3",
-                "startedAt": "2022-01-01T09:45:00",
-                "completedAt": "2022-01-01T10:00:00",
-                "status": "Completed"
-            }
-        ]
+      "status": "Completed",
+      "progressPercentage": 100,
+      "totalSteps": 8,
+      "lastCompletedStep": 8,
+      "steps": [
+        {
+          "number": 1,
+          "description": "Step 1",
+          "status": "Completed",
+          "completedAt": "2024-11-15T17:10:30.680+00:00"
+        },
+        {
+          "number": 2,
+          "description": "Step 1",
+          "status": "Completed",
+          "completedAt": "2024-11-15T17:10:30.895+00:00"
+        },
+        {
+          "number": 3,
+          "description": "Step 1",
+          "status": "Completed",
+          "completedAt": "2024-11-15T17:10:31.065+00:00"
+        },
+        {
+          "number": 4,
+          "description": "Step 1",
+          "status": "Completed",
+          "completedAt": "2024-11-15T17:10:31.229+00:00"
+        },
+        {
+          "number": 5,
+          "description": "Step 1",
+          "status": "Completed",
+          "completedAt": "2024-11-15T17:10:31.385+00:00"
+        },
+        {
+          "number": 6,
+          "description": "Step 1",
+          "status": "Completed",
+          "completedAt": "2024-11-15T17:10:31.548+00:00"
+        },
+        {
+          "number": 7,
+          "description": "Step 1",
+          "status": "Completed",
+          "completedAt": "2024-11-15T17:10:31.702+00:00"
+        },
+        {
+          "number": 8,
+          "description": "Step 1",
+          "status": "Completed",
+          "completedAt": "2024-11-15T17:10:31.856+00:00"
+        }
+      ]
     },
     "organizations": [
         {

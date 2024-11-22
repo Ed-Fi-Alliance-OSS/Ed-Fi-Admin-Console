@@ -9,7 +9,8 @@ const ODSInstanceAdminDBStatus = ({ status }: ODSInstanceAdminDBStatusProps) => 
     <Text
       fontFamily='Open sans'
       fontWeight='400'
-      size='md'>
+      size='md'
+    >
       {status}
     </Text>
   )

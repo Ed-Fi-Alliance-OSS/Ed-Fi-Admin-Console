@@ -11,8 +11,7 @@ interface ManageSubscribersFormProps {
 }
 
 const ManageSubscribersForm = ({ selectedSubscription, onAfterAction, onClose }: ManageSubscribersFormProps) => {
-  const { 
-    usersSubscriptionList, 
+  const { usersSubscriptionList, 
     subscriptionRoleOptions,
     searchText,
     onSelectRoleForUser, 
@@ -26,20 +25,23 @@ const ManageSubscribersForm = ({ selectedSubscription, onAfterAction, onClose }:
 
   return (
     <ModalForm
-      header={<ManageSubscribersFormHeader 
-        isSavingChanges={isSavingChanges}
-        onSave={onSave}
-        onClose={onClose} />}
       content={<ManageSubscribersFormContent 
-        usersList={usersSubscriptionList}
-        subscriptionRoleOptions={subscriptionRoleOptions.filter(roleOption => roleOption.isAvailableForTenants)}
-        selectedSubscription={selectedSubscription}
         searchText={searchText}
+        selectedSubscription={selectedSubscription}
+        subscriptionRoleOptions={subscriptionRoleOptions.filter(roleOption => roleOption.isAvailableForTenants)}
+        usersList={usersSubscriptionList}
         onSearchUser={onSearchUser}
         onSelectRoleForUser={onSelectRoleForUser}
-        onToggleSubscription={onToggleSubscription} />}
+        onToggleSubscription={onToggleSubscription}
+      />}
+      header={<ManageSubscribersFormHeader 
+        isSavingChanges={isSavingChanges}
+        onClose={onClose}
+        onSave={onSave}
+      />}
       height='auto'
-      width="540px" />
+      width="540px"
+    />
   )
 }
 

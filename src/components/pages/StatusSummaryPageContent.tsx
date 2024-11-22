@@ -23,26 +23,26 @@ const instanceList: InstanceHealth[] = [
     healthList: [
       {
         name: 'Administration',
-        uptimeDescription: '100% in the last 90 days' ,
-        uptimePercentage: 100 ,
+        uptimeDescription: '100% in the last 90 days',
+        uptimePercentage: 100,
         updatedDate: 'Updated 5 hours ago' 
       },
       {
         name: 'Web Application',
-        uptimeDescription: '100% in the last 90 days' ,
-        uptimePercentage: 100 ,
+        uptimeDescription: '100% in the last 90 days',
+        uptimePercentage: 100,
         updatedDate: 'Updated 5 hours ago' 
       },
       {
         name: 'Analytics',
-        uptimeDescription: '100% in the last 90 days' ,
-        uptimePercentage: 100 ,
+        uptimeDescription: '100% in the last 90 days',
+        uptimePercentage: 100,
         updatedDate: 'Updated 5 hours ago' 
       },
       {
         name: 'Automation Service',
-        uptimeDescription: '100% in the last 90 days' ,
-        uptimePercentage: 100 ,
+        uptimeDescription: '100% in the last 90 days',
+        uptimePercentage: 100,
         updatedDate: 'Updated 5 hours ago' 
       }
     ]
@@ -53,8 +53,8 @@ const instanceList: InstanceHealth[] = [
     healthList: [
       {
         name: 'Administration',
-        uptimeDescription: '100% in the last 90 days' ,
-        uptimePercentage: 100 ,
+        uptimeDescription: '100% in the last 90 days',
+        uptimePercentage: 100,
         updatedDate: 'Updated 5 hours ago' 
       }
     ]
@@ -65,8 +65,8 @@ const instanceList: InstanceHealth[] = [
     healthList: [
       {
         name: 'Administration',
-        uptimeDescription: '100% in the last 90 days' ,
-        uptimePercentage: 100 ,
+        uptimeDescription: '100% in the last 90 days',
+        uptimePercentage: 100,
         updatedDate: 'Updated 5 hours ago' 
       }
     ]
@@ -77,8 +77,8 @@ const instanceList: InstanceHealth[] = [
     healthList: [
       {
         name: 'Administration',
-        uptimeDescription: '100% in the last 90 days' ,
-        uptimePercentage: 100 ,
+        uptimeDescription: '100% in the last 90 days',
+        uptimePercentage: 100,
         updatedDate: 'Updated 5 hours ago' 
       }
     ]
@@ -87,9 +87,16 @@ const instanceList: InstanceHealth[] = [
 
 const StatusSummaryPageContent = () => {
   return (
-    <Flex flexDir='column' w='full'>
+    <Flex
+      flexDir='column'
+      w='full'
+    >
       <StatusSummaryPageHeader />
-      <Flex mt='24px' w='full'>
+
+      <Flex
+        mt='24px'
+        w='full'
+      >
         <StatusSummaryAccordion instanceList={instanceList} />
       </Flex>
     </Flex>
