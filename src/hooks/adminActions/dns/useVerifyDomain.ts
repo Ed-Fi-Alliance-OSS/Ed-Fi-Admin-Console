@@ -42,8 +42,8 @@ const useVerifyDomain = ({ tenantDomains }: UseVerifyDomainProps) => {
   const { edxAppConfig, auth } = useContext(TEEAuthDataContext)
   const { userProfile } = useContext(UserProfileContext)
   const adminConfig = useContext(adminConsoleContext)
-  const [domainsList, setDomainsList] = useState<DomainData[]>([])
-  const [isCheckingDomainStatus, setIsCheckingDomainStatus] = useState(false)
+  const [ domainsList, setDomainsList ] = useState<DomainData[]>([])
+  const [ isCheckingDomainStatus, setIsCheckingDomainStatus ] = useState(false)
   const { verifyDomain } = useDomainsService()
 
   const assignDomainStatus = (domain: DomainData, verficationResult: VerifyDomainResponse) => {

@@ -9,7 +9,7 @@ export interface HandleSingleErrorI {
 }
 
 const useFormValidationErrors = () => {
-  const [errors, setErrors] = useState<FormDataErrors>({})
+  const [ errors, setErrors ] = useState<FormDataErrors>({})
 
   const handleSingleError = ({ field, error }: HandleSingleErrorI) => {
     const allErrors = { ...errors }

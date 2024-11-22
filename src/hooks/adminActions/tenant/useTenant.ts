@@ -15,9 +15,9 @@ const useTenant = () => {
   const { getTenant, updateTenant } = useTenantService()
   const { auth, edxAppConfig } = useContext(TEEAuthDataContext)
   const adminConfig = useContext(adminConsoleContext)
-  const [tenant, setTenant] = useState<Tenant | null>(null)
-  const [isAddingDomain, setIsAddingDomain] = useState(false)
-  const [isRemovingDomain, setIsRemovingDomain] = useState(false)
+  const [ tenant, setTenant ] = useState<Tenant | null>(null)
+  const [ isAddingDomain, setIsAddingDomain ] = useState(false)
+  const [ isRemovingDomain, setIsRemovingDomain ] = useState(false)
   const { createDomain, deleteDomain } = useDomainsService()
 
   const fetchTenant = async () => {

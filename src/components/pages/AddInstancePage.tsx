@@ -14,11 +14,11 @@ import TabHeading from '../common/TabHeading'
 
 const AddInstancePage = () => {
   const mock = useMockData()
-  const [instanceName, setInstanceName] = useState('')
-  const [instanceDescription, setInstanceDescription] = useState('')
-  const [schoolYear, setSchoolYear] = useState('2023')
+  const [ instanceName, setInstanceName ] = useState('')
+  const [ instanceDescription, setInstanceDescription ] = useState('')
+  const [ schoolYear, setSchoolYear ] = useState('2023')
 
-  const [schoolYearOptions, setSchoolYearOptions] = useState([
+  const [ schoolYearOptions, setSchoolYearOptions ] = useState([
     '2023',
     '2024',
     '2025'
@@ -46,7 +46,7 @@ const AddInstancePage = () => {
     mock.addElement('Instances', {
       instanceId: instanceName,
       instanceName: instanceName,
-      schoolYears: [Number.parseInt(schoolYear)],
+      schoolYears: [ Number.parseInt(schoolYear) ],
       baseUrl: 'https://999999.preprod-2024-2.edfi.pre.txedexchange.net'
     } as ODSInstance)
 

@@ -60,7 +60,7 @@ const useManageUsersTable = () => {
 
   const { errorToast } = useEDXToast()
   const { getAsync } = useHttpService()
-  const [invitationsList, setInvitationsList] = useState<ApiInvitation[]>([])
+  const [ invitationsList, setInvitationsList ] = useState<ApiInvitation[]>([])
   const inputTimeoutMiliseconds = 1000
   const debouncedPaginatedData = useDebounce(paginatedData, inputTimeoutMiliseconds)
 

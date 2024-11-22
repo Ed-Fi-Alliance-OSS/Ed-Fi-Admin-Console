@@ -11,7 +11,7 @@ interface UseOdsInstanceDescriptionProps {
 
 const useOdsInstanceDescription = ({ instance }: UseOdsInstanceDescriptionProps) => {
   const { getSimpleAsync } = useHttpService()
-  const [instanceOdsMetadata, setInstanceOdsMetadata] = useState<EdFiMetadata | null>(null)
+  const [ instanceOdsMetadata, setInstanceOdsMetadata ] = useState<EdFiMetadata | null>(null)
   const [ loadingInstanceOdsMetadata, setLoadingInstanceOdsMetadata ] = useState(false)
 
   const getInstanceEdFiMetadata = async () => {

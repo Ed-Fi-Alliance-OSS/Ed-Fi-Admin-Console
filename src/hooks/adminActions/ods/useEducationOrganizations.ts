@@ -10,8 +10,8 @@ const useEducationsOrganizations = () => {
   const { edxAppConfig, auth } = useContext(TEEAuthDataContext)
   const adminConfig = useContext(adminConsoleContext)
   const { getEducationOrganizations } = useODSService()
-  const [educationOrganizationsList, setEducationOrganizationsList] = useState<EducationOrganization[]>([])
-  const [isFetchingEducationOrganizations, setIsFetchingEducationOrganizations] = useState(false)
+  const [ educationOrganizationsList, setEducationOrganizationsList ] = useState<EducationOrganization[]>([])
+  const [ isFetchingEducationOrganizations, setIsFetchingEducationOrganizations ] = useState(false)
 
   const fetchEducationOrganizations = async () => {
     if (edxAppConfig && auth && auth.user && adminConfig) {

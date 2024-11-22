@@ -50,13 +50,13 @@ const useEdFiSettingsConnectionsTable = () => {
 
   const inputTimeoutMiliseconds = 1000
   const debouncedPaginatedData = useDebounce(paginatedData, inputTimeoutMiliseconds)
-  const [mode, setMode] = useState<EdFiConnectionFormMode>('Edit')
-  const [showConnectionModal, setShowConnectionModal] = useState(false)
-  const [showConfirmationModal, setShowConfirmationModal] = useState(false)
-  const [connectionDataToEdit, setConnectionDataToEdit] = useState<EdFiConnectionFormData>()
+  const [ mode, setMode ] = useState<EdFiConnectionFormMode>('Edit')
+  const [ showConnectionModal, setShowConnectionModal ] = useState(false)
+  const [ showConfirmationModal, setShowConfirmationModal ] = useState(false)
+  const [ connectionDataToEdit, setConnectionDataToEdit ] = useState<EdFiConnectionFormData>()
   const { verifyConnection } = useEdFiAdminConnectionsService()
   const [ connectionStatusList, setConnectionStatusList ] = useState<EdFiSettingsConnectionsTableItem[]>([])
-  const [isLoadingConnectionStatus, setIsLoadingConnectionStatus] = useState(false)
+  const [ isLoadingConnectionStatus, setIsLoadingConnectionStatus ] = useState(false)
 
   const onShowConnectionModal = (connectionId?: string) => {
     if (connectionId) {

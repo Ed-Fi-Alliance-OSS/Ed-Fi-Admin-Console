@@ -10,8 +10,8 @@ const usePermissionsAccordion = () => {
   const { edxAppConfig, auth } = useContext(TEEAuthDataContext)
   const adminConfig = useContext(adminConsoleContext)
   const { getClaimsetsList } = useClaimsetService()
-  const [permissions, setPermissions] = useState<EdfiClaimSet[]>([])
-  const [isFetchingPermissions, setIsFetchingPermissions] = useState(false)
+  const [ permissions, setPermissions ] = useState<EdfiClaimSet[]>([])
+  const [ isFetchingPermissions, setIsFetchingPermissions ] = useState(false)
 
   const fetchPermissions = async () => {
     if (edxAppConfig && auth && auth.user && adminConfig) {

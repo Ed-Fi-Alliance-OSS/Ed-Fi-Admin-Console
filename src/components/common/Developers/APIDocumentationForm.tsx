@@ -28,7 +28,7 @@ const APIDocumentationForm = ({ selectedDocumentation, documentationOptions, onS
           options={documentationOptions.map(option => ({
             value: option,
             text: option 
-          }) )}
+          }))}
           value={selectedDocumentation}
           onChange={onSelectDocumentation}
         />

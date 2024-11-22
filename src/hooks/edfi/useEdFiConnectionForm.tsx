@@ -23,9 +23,9 @@ interface UseEdFiConnectionFormProps {
 
 const useEdFiConnectionForm = ({ initialData, inOnboarding, mode, onAfterSave }: UseEdFiConnectionFormProps) => {
   const adminConfig = useContext(adminConsoleContext)
-  const [formData, setFormData] = useState<EdFiConnectionFormData>(getInitialConnectionFormData(initialData))
-  const [isSaving, setIsSaving] = useState(false)
-  const [isVerifying, setIsverifying] = useState(false)
+  const [ formData, setFormData ] = useState<EdFiConnectionFormData>(getInitialConnectionFormData(initialData))
+  const [ isSaving, setIsSaving ] = useState(false)
+  const [ isVerifying, setIsverifying ] = useState(false)
 
   const {
     errors,

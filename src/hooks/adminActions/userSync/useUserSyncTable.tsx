@@ -50,11 +50,11 @@ const useUserSyncTable = () => {
     initialOrderType: 'desc',
   })
 
-  const [selectedTable, setSelectedTable] = useState<SelectedUserSyncTable>('Executions')
-  const [edfiSyncJob, setEdFiSyncJob] = useState<JobListResponse>({ ...edfiSyncJobInitialData })
-  const [selectedExecution, setSelectedExecution] = useState<JobExecutionListResponse>({ ...executionInitialData })
-  const [isSaving, setIsSaving] = useState(false)
-  const [enabledNightlySync, setEnabledNightlySync] = useState(false)
+  const [ selectedTable, setSelectedTable ] = useState<SelectedUserSyncTable>('Executions')
+  const [ edfiSyncJob, setEdFiSyncJob ] = useState<JobListResponse>({ ...edfiSyncJobInitialData })
+  const [ selectedExecution, setSelectedExecution ] = useState<JobExecutionListResponse>({ ...executionInitialData })
+  const [ isSaving, setIsSaving ] = useState(false)
+  const [ enabledNightlySync, setEnabledNightlySync ] = useState(false)
   const adminConfig = useContext(adminConsoleContext)
 
   const {
@@ -67,7 +67,7 @@ const useUserSyncTable = () => {
   } = useUserSyncService()
 
   const { successToast, errorToast } = useEDXToast()
-  const [showConfigurationModal, setShowConfigurationModal] = useState(false)
+  const [ showConfigurationModal, setShowConfigurationModal ] = useState(false)
   const inputTimeoutMiliseconds = 1000
   const debouncedPaginatedData = useDebounce(paginatedData, inputTimeoutMiliseconds)
 

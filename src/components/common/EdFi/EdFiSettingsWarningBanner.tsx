@@ -8,7 +8,7 @@ import { useState } from 'react'
 import useHelpLinks from '../../../hooks/useHelpLinks'
 
 const EdFiSettingsWarningBanner = () => {
-  const [show, setShow] = useState(true)
+  const [ show, setShow ] = useState(true)
   const { getAdminActionHelpLinks } = useHelpLinks()
 
   return (

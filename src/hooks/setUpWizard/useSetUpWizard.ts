@@ -44,8 +44,8 @@ const useSetUpWizard = () => {
   const [ started, setStarted ] = useState(false)
   const [ currentStepIndex, setCurrentStepIndex ] = useState(0)
   const navigate = useNavigate()
-  const [allStepsProgressData, setAllStepsProgressData] = useState<AllStepsProgressData>({ ...allStepsProgress })
-  const [lastStep, setLastStep] = useState(3)
+  const [ allStepsProgressData, setAllStepsProgressData ] = useState<AllStepsProgressData>({ ...allStepsProgress })
+  const [ lastStep, setLastStep ] = useState(3)
 
   const getCompletedSteps = () : number => {
     if (setUpWizardData) {

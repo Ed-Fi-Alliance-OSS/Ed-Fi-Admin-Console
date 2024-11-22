@@ -54,7 +54,7 @@ const useEdfiApplicationsService = () => {
 
   const deleteEdfiApplication = async (actionParams: EdfiActionParams, data: DeleteEdfiApplicationRequest): DeleteEdfiApplicationResult => {
     const baseUrl = actionParams.edxApiUrl
-    const url = `${baseUrl}/${edfiActionRoutes.deleteApplicationById(actionParams.tenantId , data.applicationId)}`
+    const url = `${baseUrl}/${edfiActionRoutes.deleteApplicationById(actionParams.tenantId, data.applicationId)}`
 
     const result = await deleteAsync<DeleteEdfiApplicationResponse>({
       url,
@@ -81,7 +81,7 @@ const useEdfiApplicationsService = () => {
     return result
   }
     
-  const resetApplicationCredentials = async (actionParams: EdfiActionParams, data: ResetEdfiApplicationCredentialsRequest ): ResetEdfiApplicationCredentialsResult => {
+  const resetApplicationCredentials = async (actionParams: EdfiActionParams, data: ResetEdfiApplicationCredentialsRequest): ResetEdfiApplicationCredentialsResult => {
     const baseUrl = actionParams.edxApiUrl
     const url = `${baseUrl}/${edfiActionRoutes.resetApplicationCredentials(actionParams.tenantId, data.applicationId)}`
     
@@ -134,7 +134,7 @@ const useEdfiApplicationsService = () => {
     
   const deleteEdfiApplicationForSchoolYear = async (actionParams: EdfiActionParams, data: DeleteEdfiApplicationRequest, year: number): DeleteEdfiApplicationResult => {
     const baseUrl = actionParams.edxApiUrl
-    const url = `${baseUrl}/${edfiActionRoutes.deleteApplicationByIdForSchoolYear(actionParams.tenantId , data.applicationId, year)}`
+    const url = `${baseUrl}/${edfiActionRoutes.deleteApplicationByIdForSchoolYear(actionParams.tenantId, data.applicationId, year)}`
 
     const result = await deleteAsync<DeleteEdfiApplicationResponse>({
       url,

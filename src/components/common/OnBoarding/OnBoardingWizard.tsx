@@ -50,8 +50,8 @@ interface OnBoardingWizardProps {
 const OnBoardingWizard = ({ completedSteps, lastInProgress, currentStepIndex, lastStep, canNext, canPrev, onTabChange, onCompletedStep, onIncompletedStep, onNext, onPrev }: OnBoardingWizardProps) => {
   const adminConfig = useContext(adminConsoleContext)
   const { onBoardingWizardData } = useContext(onBoardingWizardContext) as OnBoardingWizardDataWrapper
-  const [connectedSISProvidersList, setConnectedSISProvidersList] = useState<SISProviderInfo[]>([])
-  const [verifiedDomainList, setVerifiedDomainList] = useState<VerifiedDomainInfo[]>([])
+  const [ connectedSISProvidersList, setConnectedSISProvidersList ] = useState<SISProviderInfo[]>([])
+  const [ verifiedDomainList, setVerifiedDomainList ] = useState<VerifiedDomainInfo[]>([])
   const { tenant, isAddingDomain, isRemovingDomain, onAddDomain, onRemoveDomain } = useTenant()
 
   const {
@@ -168,12 +168,12 @@ const OnBoardingWizard = ({ completedSteps, lastInProgress, currentStepIndex, la
     return false
   }
 
-  const [instancesCount, setInstancesCount] = useState(0)
+  const [ instancesCount, setInstancesCount ] = useState(0)
   const onUpdateInstancesCount = (count: number) => setInstancesCount(count)
-  const [showConfirmInstanceModal, setShowConfirmInstanceModal] = useState(false)
+  const [ showConfirmInstanceModal, setShowConfirmInstanceModal ] = useState(false)
   const onShowConfirmInstanceModal = () => setShowConfirmInstanceModal(true)
   const onClose = () => setShowConfirmInstanceModal(false)
-  const [selectedInstance, setSelectedInstance] = useState<ExtendedODSInstance | null>(null)
+  const [ selectedInstance, setSelectedInstance ] = useState<ExtendedODSInstance | null>(null)
   const onSelectInstance = (instance: ExtendedODSInstance) => setSelectedInstance({ ...instance })
 
   const {
@@ -182,7 +182,7 @@ const OnBoardingWizard = ({ completedSteps, lastInProgress, currentStepIndex, la
     updateInstanceOnboardingStep
   } = useOdsInstanceService()
 
-  const [settingAsDefault, setSettingAsDefault] = useState(false)
+  const [ settingAsDefault, setSettingAsDefault ] = useState(false)
 
   const onSetInstanceAsDefault = async () => {
     if (!adminConfig || !selectedInstance) {

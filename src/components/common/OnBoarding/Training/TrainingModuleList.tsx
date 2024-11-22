@@ -23,13 +23,13 @@ interface TrainingModuleListProps {
 }
 
 const TrainingModuleList = ({ trainingCompleted, onCompleteStep }: TrainingModuleListProps) => {
-  const [trainingModules, setTrainingModules] = useState<TrainingModule[]>([...trainingModuleList])
-  const [showVideoModal, setShowVideModal] = useState(false)
+  const [ trainingModules, setTrainingModules ] = useState<TrainingModule[]>([ ...trainingModuleList ])
+  const [ showVideoModal, setShowVideModal ] = useState(false)
   const url = 'https://youtu.be/ohxlNVg9iNg'
-  const [progress, setProgress] = useState<number>(0)
-  const [elapsedTime, setElapsedTime] = useState<number>(0)
-  const [isPlaying, setIsPlaying] = useState(true)
-  const [isReady, setIsReady] = useState(false)
+  const [ progress, setProgress ] = useState<number>(0)
+  const [ elapsedTime, setElapsedTime ] = useState<number>(0)
+  const [ isPlaying, setIsPlaying ] = useState(true)
+  const [ isReady, setIsReady ] = useState(false)
   const playerRef = useRef<ReactPlayer>()
   const handleShowVideoModal = () => setShowVideModal(true)
 
@@ -54,10 +54,10 @@ const TrainingModuleList = ({ trainingCompleted, onCompleteStep }: TrainingModul
       playerRef.current.seekTo(elapsedTime, 'seconds')
       setIsReady(true)
     }
-  }, [isReady])
+  }, [ isReady ])
 
   const handleCompletedVideo = () => {
-    const ntrainingModules = [...trainingModules]
+    const ntrainingModules = [ ...trainingModules ]
 
     ntrainingModules[0].status = 'Complete'
 

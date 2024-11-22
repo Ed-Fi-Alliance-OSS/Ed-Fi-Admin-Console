@@ -16,7 +16,7 @@ const generateDataHealthDate = () => {
 }
 
 const useDataHealthDateInfo = () => {
-  const [dataHealthDate, setDataHealthDate] = useState<string>(() => generateDataHealthDate())
+  const [ dataHealthDate, setDataHealthDate ] = useState<string>(() => generateDataHealthDate())
   const onUpdateDataHealthDate = () => setDataHealthDate(generateDataHealthDate())
 
   return {

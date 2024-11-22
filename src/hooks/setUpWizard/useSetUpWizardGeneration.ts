@@ -21,7 +21,7 @@ const useSetUpWizardGeneration = ({ instance }: UseSetUpWizardGenerationProps) =
   const adminConfig = useContext(adminConsoleContext)
   const { auth, edxAppConfig } = useContext(TEEAuthDataContext)
   const [ isFetchingSetUpWizard, setIsLoadingSetUpWizard ] = useState(true)
-  const [ setUpWizardData, setSetUpWizardData] = useState<InstanceOnboarding | null>(null)
+  const [ setUpWizardData, setSetUpWizardData ] = useState<InstanceOnboarding | null>(null)
   const { setUpWizardStepsMetadata } = useSetUpWizardStepsMetadata()
 
   const { 

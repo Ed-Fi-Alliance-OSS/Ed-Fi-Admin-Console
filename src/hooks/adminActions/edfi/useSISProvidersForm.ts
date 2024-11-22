@@ -59,23 +59,23 @@ const useSISProvidersForm = ({ schoolYear, onSelectSISProvider, onUnselectSISPro
   const { edxAppConfig, auth } = useContext(TEEAuthDataContext)
   const { createEdfiApplicationForSchoolYear, resetApplicationCredentialsForSchoolYear } = useEdfiApplicationsService()
   const { getVendorsListForSchoolYear, getVendorApplicationsForSchoolYear } = useEdfiVendorsService()
-  const [sisProvidersOptionList, setSISProvidersOptionList] = useState<SISProvidersOption[]>([...sisProviders])
+  const [ sisProvidersOptionList, setSISProvidersOptionList ] = useState<SISProvidersOption[]>([ ...sisProviders ])
   const { getCurrentTenant } = useTenantInfo()
-  const [selectedOptionalProviderId, setSelectedOptionalProviderId] = useState<string>('')
-  const [selectedProviderId, setSelectedProviderId] = useState(sisProvidersOptionList[0].value)
-  const [hasSelectedProvider, setHasSelectedProvider] = useState(false)
-  const [hasSelectedOptionalProvider, setHasSelectedOptionalProvider] = useState(false)
-  const [source, setSource] = useState('SIS')
-  const [optionalSource, setOptionalSource] = useState(optionalSISSources[0].value)
-  const [connectionState, setConnectionState] = useState<SISProviderConnectionState>('Awaiting Connection')
-  const [edfiApplicationAuthData, setEdfiApplicationAuthData] = useState<EdfiApplicationAuthData>({ applicationId: 0 })
-  const [isCreatingEdfiApplication, setIsCreatingEdfiApplication] = useState(false)
-  const [isLoadingCredentials, setIsLoadingCredentials] = useState(false)
-  const [optionalConnectionState, setOptionalConnectionState] = useState<SISProviderConnectionState>('Awaiting Connection')
-  const [optionaEdfiApplicationAuthData, setOptionalEdfiApplicationAuthData] = useState<EdfiApplicationAuthData>({ applicationId: 0 })
-  const [isCreatingOptionalEdfiApplication, setIsCreatingOptionalEdfiApplication] = useState(false)
-  const [isLoadingOptionalCredentials, setIsLoadingOptionalCredentials] = useState(false)
-  const [showOptionalForm, setShowOptionalForm] = useState(false)
+  const [ selectedOptionalProviderId, setSelectedOptionalProviderId ] = useState<string>('')
+  const [ selectedProviderId, setSelectedProviderId ] = useState(sisProvidersOptionList[0].value)
+  const [ hasSelectedProvider, setHasSelectedProvider ] = useState(false)
+  const [ hasSelectedOptionalProvider, setHasSelectedOptionalProvider ] = useState(false)
+  const [ source, setSource ] = useState('SIS')
+  const [ optionalSource, setOptionalSource ] = useState(optionalSISSources[0].value)
+  const [ connectionState, setConnectionState ] = useState<SISProviderConnectionState>('Awaiting Connection')
+  const [ edfiApplicationAuthData, setEdfiApplicationAuthData ] = useState<EdfiApplicationAuthData>({ applicationId: 0 })
+  const [ isCreatingEdfiApplication, setIsCreatingEdfiApplication ] = useState(false)
+  const [ isLoadingCredentials, setIsLoadingCredentials ] = useState(false)
+  const [ optionalConnectionState, setOptionalConnectionState ] = useState<SISProviderConnectionState>('Awaiting Connection')
+  const [ optionaEdfiApplicationAuthData, setOptionalEdfiApplicationAuthData ] = useState<EdfiApplicationAuthData>({ applicationId: 0 })
+  const [ isCreatingOptionalEdfiApplication, setIsCreatingOptionalEdfiApplication ] = useState(false)
+  const [ isLoadingOptionalCredentials, setIsLoadingOptionalCredentials ] = useState(false)
+  const [ showOptionalForm, setShowOptionalForm ] = useState(false)
   const { successToast, errorToast } = useEDXToast()
   const onShowOptionalForm = () => setShowOptionalForm(true)
   const generateEdfiApplicationNameFromSource = (vendorName: string, organizationName: string, applicationSource: string) => `${vendorName} ${applicationSource} ${organizationName}`
@@ -425,7 +425,7 @@ const useSISProvidersForm = ({ schoolYear, onSelectSISProvider, onUnselectSISPro
       const result = await fetchVendorsList(adminConfig.actionParams, schoolYear)
             
       if (result.type === 'Response') {
-        const nsisoptionsProvidersList = [...sisProvidersOptionList]
+        const nsisoptionsProvidersList = [ ...sisProvidersOptionList ]
 
         const availableVendors = [
           'Ascender', 'Aeries', 'Frontline', 'Power School', 'Skyward'

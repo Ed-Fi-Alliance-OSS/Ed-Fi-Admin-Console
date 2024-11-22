@@ -45,10 +45,10 @@ const ManageSubscriptionsTabContent = () => {
     maxPerPage
   } = useManageSubscriptionsTable()
 
-  const [selectedSubscription, setSelectedSubscription] = useState<Subscription | null>(null)
-  const [showAddSubscriptionModal, setShowAddSubscriptionModal] = useState(false)
-  const [showEditSubscriptionModal, setShowEditSubscriptionModal] = useState(false)
-  const [showManageSubscribersModal, setShowManageSubscribersModal] = useState(false)
+  const [ selectedSubscription, setSelectedSubscription ] = useState<Subscription | null>(null)
+  const [ showAddSubscriptionModal, setShowAddSubscriptionModal ] = useState(false)
+  const [ showEditSubscriptionModal, setShowEditSubscriptionModal ] = useState(false)
+  const [ showManageSubscribersModal, setShowManageSubscribersModal ] = useState(false)
 
   const handleSelectSubscription = (subscriptionId: string) => {
     const nselectedSubscription = subscriptionsList.find(subscription => subscription.subscriptionId === subscriptionId)

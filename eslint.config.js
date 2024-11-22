@@ -7,16 +7,12 @@ import tseslint from 'typescript-eslint'
 /** @type {import('eslint').Linter.Config[]} */
 export default [
   {
-    files: [ '**/*.{js,mjs,cjs,ts,jsx,tsx}' ],
-    ignores: [ 'dist/**', 'node_modules/**' ] 
+    ignores: [
+      '**/dist/**', 
+      '**/dist/assets/**',
+      '**/node_modules/**' 
+    ],
   },
-  {
-    languageOptions: { globals: globals.browser },
-    settings: { react: { version: 'detect' } }
-  },
-  pluginJs.configs.recommended,
-  tseslint.configs.base,
-  pluginReact.configs.flat.recommended,
   {
     files: [ '**/*.ts', '**/*.js' ],
     rules: { indent: [ 'error', 2 ], }
@@ -28,10 +24,20 @@ export default [
       'react/jsx-indent-props': [ 'error', 2 ],
     }
   },
+  { files: [ '**/*.{js,mjs,cjs,ts,jsx,tsx}' ], },
+  {
+    languageOptions: { globals: globals.browser },
+    settings: { react: { version: 'detect' } }
+  },
+  pluginJs.configs.recommended,
+  tseslint.configs.base,
+  pluginReact.configs.flat.recommended,
   {
     rules: {
       quotes: [ 'error', 'single' ],
       semi: [ 'error', 'never' ],
+      'react/jsx-indent': [ 'error', 2 ],
+      'react/jsx-indent-props': [ 'error', 2 ],
       'array-bracket-spacing': [ 'error', 'always' ],
       'block-spacing': [ 'error', 'always' ],
       'space-in-parens': [ 'error', 'never' ],
@@ -42,7 +48,7 @@ export default [
       'react/jsx-closing-bracket-location': [ 'error', 'line-aligned' ],
       'react/jsx-closing-tag-location': [ 'error', 'line-aligned' ],
       'react/jsx-curly-brace-presence': [ 'error', 'never' ],
-      'no-unused-vars': 'warn',
+      'no-unused-vars': 'off',
       'react/jsx-newline': 'warn',
       'react/jsx-curly-spacing': 'error',
       'react/jsx-max-props-per-line': [

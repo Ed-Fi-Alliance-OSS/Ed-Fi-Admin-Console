@@ -15,9 +15,9 @@ const useInvitationsList = () => {
   const { auth, edxAppConfig } = useContext(TEEAuthDataContext)
   const adminConfig = useContext(adminConsoleContext)
   const { getInvitationsList } = useUsersService()
-  const [invitationsList, setInvitationsList] = useState<Invitation[]>([])
+  const [ invitationsList, setInvitationsList ] = useState<Invitation[]>([])
   const { successToast, errorToast } = useEDXToast()
-  const [isFetchingInvitations, setIsFetchingInvitations] = useState(false)
+  const [ isFetchingInvitations, setIsFetchingInvitations ] = useState(false)
 
   const fetchInvitationsList = async () => {
     if (auth && auth.user && userProfile && edxAppConfig && adminConfig) {

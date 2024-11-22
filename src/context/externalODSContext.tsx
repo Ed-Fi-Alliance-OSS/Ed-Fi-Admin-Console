@@ -21,7 +21,7 @@ const ExternalODSProvider = ({ children, config }: ExternalODSProviderProps) => 
   const { userProfile } = useContext(UserProfileContext)
   const { auth, edxAppConfig } = useContext(TEEAuthDataContext)
   const { getTenant } = useTenantService()
-  const [isODS, setIsODS] = useState<boolean>(false)
+  const [ isODS, setIsODS ] = useState<boolean>(false)
 
   const fetchUseExternalODSSetting = async () => {
     if (!edxAppConfig || !userProfile || !auth) {

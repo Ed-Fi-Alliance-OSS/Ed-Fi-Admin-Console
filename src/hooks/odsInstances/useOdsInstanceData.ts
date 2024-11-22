@@ -154,7 +154,7 @@ const useOdsInstanceData = ({ instanceYear }: useOdsInstanceDataProps) => {
     } 
 
     fetchInstanceByYear()
-  }, [ ])
+  }, [])
 
   return {
     instance,

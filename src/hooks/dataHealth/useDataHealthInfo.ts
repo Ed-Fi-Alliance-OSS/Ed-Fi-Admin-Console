@@ -38,10 +38,10 @@ interface UseDataHealthInfoProps {
 }
 
 const useDataHealthInfo = ({ instance, usingSchoolYear }: UseDataHealthInfoProps) => {
-  const [dataHealthInfo, setDataHealthInfo] = useState<DataHealthDetails>({ ...initialDataHealth })
+  const [ dataHealthInfo, setDataHealthInfo ] = useState<DataHealthDetails>({ ...initialDataHealth })
   const { getDataHealthInfo, getOdsInstanceDataHealthInfo } = useDataHealthService()
   const adminConfig = useContext(adminConsoleContext)
-  const [dataHealthFetchError, setDataHealthFetchError] = useState<DataHealthFetchError>()
+  const [ dataHealthFetchError, setDataHealthFetchError ] = useState<DataHealthFetchError>()
 
   const {
     getInstanceYear

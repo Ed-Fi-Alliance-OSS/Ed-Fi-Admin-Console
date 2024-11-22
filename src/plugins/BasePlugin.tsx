@@ -42,9 +42,9 @@ export interface RegistryState {
 const PluginContext = createContext<RegistryState | undefined>(undefined)
 
 export const PluginProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [components, setComponents] = useState<componentType>(EmptyComponents as componentType)
-  const [functionalities, setFunctionalities] = useState<functionType>({})
-  const [strings, setStrings] = useState({})
+  const [ components, setComponents ] = useState<componentType>(EmptyComponents as componentType)
+  const [ functionalities, setFunctionalities ] = useState<functionType>({})
+  const [ strings, setStrings ] = useState({})
 
   const registerComponent: RegistryState['registerComponent'] = (name, component) => {
     setComponents((prev) => ({
@@ -126,7 +126,7 @@ export const PluginLoader: React.FC<PluginLoaderProps> = ({ plugins, enabled }) 
   useEffect(() => {
     console.debug('Loading Base Strings')
     registry.registerStrings(BasePluginStrings)
-  }, [BasePluginStrings])
+  }, [ BasePluginStrings ])
 
   useEffect(() => {
     console.debug('Loading plugins')
@@ -149,7 +149,7 @@ export const PluginLoader: React.FC<PluginLoaderProps> = ({ plugins, enabled }) 
       console.error('Plugins Not Found:', notFound)
     }
 
-  }, [enabled, plugins])
+  }, [ enabled, plugins ])
 
   return null
 }

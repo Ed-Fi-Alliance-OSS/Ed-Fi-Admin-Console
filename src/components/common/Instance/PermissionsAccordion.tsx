@@ -79,10 +79,10 @@ const PermissionsAccordion = () => {
                 </Text>
 
                 <PermissionsAccordionTable resourceInfo={{ 
-                    systemDescriptors: { name: permissionInfo.name  }, 
-                    types: { name: 'Types' },
-                    educationOrganizations: { name: 'Education Organizations' }
-                  }}
+                  systemDescriptors: { name: permissionInfo.name  }, 
+                  types: { name: 'Types' },
+                  educationOrganizations: { name: 'Education Organizations' }
+                }}
                 />
               </Flex>
             </AccordionPanel>

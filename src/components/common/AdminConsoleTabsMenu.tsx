@@ -14,7 +14,7 @@ interface AdminConsoleTabsMenuProps {
 }
 
 const AdminConsoleTabsMenu = ({ children, tabsList, initialIndex, contentMt, includeWrapper, actionControl }: AdminConsoleTabsMenuProps) => {
-  const [index, setIndex] = useState(initialIndex? initialIndex : 0)
+  const [ index, setIndex ] = useState(initialIndex? initialIndex : 0)
 
   return (
     <Tabs 

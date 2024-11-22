@@ -21,21 +21,21 @@ interface UseControlTableParams {
 }
 
 const useControlTable = <TData, TDataFilters>({ initialOrder, initialOrderType, initialMaxPerPage, initialMinPerPage, initialPageSize }: UseControlTableParams) => {
-  const [filterBy, setFilterBy] = useState<ControlTableFilter<TDataFilters> | null>(null)
+  const [ filterBy, setFilterBy ] = useState<ControlTableFilter<TDataFilters> | null>(null)
 
-  const [orderBy, setOrderBy] = useState<ControlTableSort>({
+  const [ orderBy, setOrderBy ] = useState<ControlTableSort>({
     field: initialOrder,
     order: initialOrderType ?? 'asc' 
   })
 
-  const [paginatedData, setPaginatedData] = useState<ControlTablePagination<TData>>({
+  const [ paginatedData, setPaginatedData ] = useState<ControlTablePagination<TData>>({
     ...initialPaginatedData,
     pageSize: initialPageSize ?? 10 
   })
 
-  const [isFetchingData, setIsFetchingData] = useState(false)
-  const [minPerPage, setMinPerPage] = useState(initialMinPerPage ?? 1)
-  const [maxPerPage, setMaxPerPage] = useState(initialMaxPerPage ?? 100)
+  const [ isFetchingData, setIsFetchingData ] = useState(false)
+  const [ minPerPage, setMinPerPage ] = useState(initialMinPerPage ?? 1)
+  const [ maxPerPage, setMaxPerPage ] = useState(initialMaxPerPage ?? 100)
   const totalPages = Math.ceil(paginatedData.count / paginatedData.pageSize)
 
   const onSelectOrderBy = async (field: string, order: ControlTableSortType) => setOrderBy({

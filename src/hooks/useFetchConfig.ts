@@ -55,7 +55,7 @@ declare global {
 
 
 const useFetchConfig = ({ env, serverMode }: UseFetchAppAuthConfig) => {
-  const [appConfig, setAppConfig] = useState<EdxAppConfig | null>(null)
+  const [ appConfig, setAppConfig ] = useState<EdxAppConfig | null>(null)
 
   const fetchAppConfig = async () => {
     const edxConfig = await fetchConfig({

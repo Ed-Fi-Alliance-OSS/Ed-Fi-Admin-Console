@@ -18,9 +18,9 @@ const usePartnerForm = ({ schoolYear, onFinishSave }: UsePartnerFormProps) => {
   const { edxAppConfig, auth } = useContext(TEEAuthDataContext)
   const adminConfig = useContext(adminConsoleContext)
   const { createVendorForSchoolYear, getVendorsListForSchoolYear } = useEdfiVendorService()
-  const [partnerData, setPartnerData] = useState<CreateEdfiVendorRequest>({ ...initialPartnerData })
-  const [isSaving, setIsSaving] = useState(false)
-  const [hasTriedSubmit, setHasTriedSubmit] = useState(false)
+  const [ partnerData, setPartnerData ] = useState<CreateEdfiVendorRequest>({ ...initialPartnerData })
+  const [ isSaving, setIsSaving ] = useState(false)
+  const [ hasTriedSubmit, setHasTriedSubmit ] = useState(false)
   const { errors, validPartnerData, validateInputChange } = usePartnerFormValidation()
   const { successToast, errorToast } = useEDXToast(7000)
 

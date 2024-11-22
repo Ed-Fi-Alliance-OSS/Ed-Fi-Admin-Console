@@ -59,7 +59,7 @@ const useResetOnBoardingWizardTest = () => {
       console.log('created step result', result.data)
 
       const onboardingWizardData = await fetchOnBoardingWizardData({ 
-        apiUrl: edxAppConfig?.api.baseUri as string ,
+        apiUrl: edxAppConfig?.api.baseUri as string,
         token: auth?.user?.access_token as string,
         tenantId,
         apiConfig: edxAppConfig?.api,
@@ -104,7 +104,7 @@ const useResetOnBoardingWizardTest = () => {
       console.log('updated step result', result.data)
 
       const onboardingWizardData = await fetchOnBoardingWizardData({ 
-        apiUrl: edxAppConfig?.api.baseUri as string ,
+        apiUrl: edxAppConfig?.api.baseUri as string,
         token: auth?.user?.access_token as string,
         tenantId,
         apiConfig: edxAppConfig?.api

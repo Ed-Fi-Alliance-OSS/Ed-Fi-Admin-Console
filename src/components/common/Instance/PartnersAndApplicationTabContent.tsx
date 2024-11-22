@@ -22,8 +22,8 @@ interface PartnersAndApplicationTabContentProps {
 }
 
 const  PartnersAndApplicationTabContent = ({ instance, schoolYear }: PartnersAndApplicationTabContentProps) => {
-  const [elementToShow, setElementToShow] = useState<'accordion' | 'edit partner' | 'add partner' | 'add application' | 'edit application'>('accordion')
-  const [selectedApplication, setSelectedApplication] = useState<EdfiApplication | undefined>()
+  const [ elementToShow, setElementToShow ] = useState<'accordion' | 'edit partner' | 'add partner' | 'add application' | 'edit application'>('accordion')
+  const [ selectedApplication, setSelectedApplication ] = useState<EdfiApplication | undefined>()
   const adminConfig = useContext(adminConsoleContext)
   const { deleteVendorForSchoolYear } = useEdfiVendorsService()
 
@@ -36,11 +36,11 @@ const  PartnersAndApplicationTabContent = ({ instance, schoolYear }: PartnersAnd
     onSelectPartner,
     onRefreshVendorsWithApplications } = usePartnersAndApplicationsAccordion({ schoolYear })
 
-  const [, refreshComponent] = useState(Date.now())
+  const [ , refreshComponent ] = useState(Date.now())
   const forceUpdate = useCallback(() => refreshComponent(Date.now() + Math.random()), [])
   const { deleteEdfiApplicationForSchoolYear } = useEdfiApplicationsService()
 
-  const [isDeletingApplication, setIsDeletingApplication] = useState<DeletingState>({
+  const [ isDeletingApplication, setIsDeletingApplication ] = useState<DeletingState>({
     deleting: false,
     id: '' 
   })

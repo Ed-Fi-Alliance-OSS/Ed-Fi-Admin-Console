@@ -93,12 +93,12 @@ const useManageSubscribersForm = ({ selectedSubscription, onAfterSave }: UseMana
   const { auth, edxAppConfig } = useContext(TEEAuthDataContext)
   const adminConfig = useContext(adminConsoleContext)
   const { userProfile } = useContext(UserProfileContext)
-  const [initialUserSubscriptionList, setInitialUsersSubscriptionList] = useState<UserSubscriber[]>([])
-  const [usersSubscriptionList, setUsersSubscriptionList] = useState<UserSubscriber[]>([])
-  const [subscriptionRoleOptions, setSubscriptionRoleOptions] = useState<SubscriptionRoleOption[]>([])
-  const [searchText, setSearchText] = useState('')
+  const [ initialUserSubscriptionList, setInitialUsersSubscriptionList ] = useState<UserSubscriber[]>([])
+  const [ usersSubscriptionList, setUsersSubscriptionList ] = useState<UserSubscriber[]>([])
+  const [ subscriptionRoleOptions, setSubscriptionRoleOptions ] = useState<SubscriptionRoleOption[]>([])
+  const [ searchText, setSearchText ] = useState('')
   const { successToast, errorToast } = useEDXToast()
-  const [isSavingChanges, setIsSavingChanges] = useState(false)
+  const [ isSavingChanges, setIsSavingChanges ] = useState(false)
 
   const onSelectRoleForUser = (userId: string, role: string) => {
     console.log('selected role for user', userId, role)

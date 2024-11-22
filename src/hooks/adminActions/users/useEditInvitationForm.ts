@@ -37,10 +37,10 @@ const useEditInvitationForm = (props?: useEditInvitationFormProps) => {
   const adminConfig = useContext(adminConsoleContext)
   const { checkUserEmail } = useUserService()
   const { getSubscriptionsList } = useSubscriptionService()
-  const [userData, setUserData] = useState<CreateUserFormData>(() => setInitialData(props?.editUserInitialData))
-  const [subscriptionsOptionList, setSubscriptionsOptionList] = useState<SubscriptionOption[]>([])
-  const [mode, setMode] = useState<UserFormMode>(props && props.formMode? props.formMode : 'Add')
-  const [savingChanges, setSavingChanges] = useState(false)
+  const [ userData, setUserData ] = useState<CreateUserFormData>(() => setInitialData(props?.editUserInitialData))
+  const [ subscriptionsOptionList, setSubscriptionsOptionList ] = useState<SubscriptionOption[]>([])
+  const [ mode, setMode ] = useState<UserFormMode>(props && props.formMode? props.formMode : 'Add')
+  const [ savingChanges, setSavingChanges ] = useState(false)
 
   const roleOptions: RoleOption[] = [
     'Tenant.User',
@@ -531,7 +531,7 @@ const useEditInvitationForm = (props?: useEditInvitationFormProps) => {
   useEffect(() => {
     console.log('update initial form data')
     updateInitialFormData()
-  }, [ ])
+  }, [])
 
   useEffect(() => {
     console.log('mode: ', mode)

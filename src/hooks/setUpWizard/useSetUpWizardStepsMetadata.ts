@@ -59,7 +59,7 @@ const selectStepsData = (): IOnBoardingWizardStepData => {
 }
 
 const useSetUpWizardStepsMetadata = () => {
-  const [setUpWizardStepsMetadata, setSetUpWizardStepsMetadata] = useState<IOnBoardingWizardStepData>(selectStepsData())
+  const [ setUpWizardStepsMetadata, setSetUpWizardStepsMetadata ] = useState<IOnBoardingWizardStepData>(selectStepsData())
 
   return { setUpWizardStepsMetadata }
 }

@@ -35,9 +35,9 @@ const useOdsInstanceTable = () => {
     initialPageSize: 100
   })
 
-  const [selectedInstance, setSelectedInstance] = useState<ExtendedODSInstance | null>(null)
+  const [ selectedInstance, setSelectedInstance ] = useState<ExtendedODSInstance | null>(null)
 
-  const [updatingIsDefault, setUpdatingIsDefault] = useState<UpdatingIsDefaultStatus>({
+  const [ updatingIsDefault, setUpdatingIsDefault ] = useState<UpdatingIsDefaultStatus>({
     instanceId: null,
     loading: false
   })

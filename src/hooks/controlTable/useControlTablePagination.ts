@@ -7,14 +7,14 @@ interface UseControlTablePaginationProps {
 }
 
 const useControlTablePagination = ({ data }: UseControlTablePaginationProps) => {
-  const [currentPage, setCurrentPage] = useState(1)
-  const [pageSize, setPageSize] = useState(10)
-  const [minPerPage, setMinPerPage] = useState(1)
-  const [maxPerPage, setMaxPerPage] = useState(100)
+  const [ currentPage, setCurrentPage ] = useState(1)
+  const [ pageSize, setPageSize ] = useState(10)
+  const [ minPerPage, setMinPerPage ] = useState(1)
+  const [ maxPerPage, setMaxPerPage ] = useState(100)
   const totalPages = Math.ceil(data.length / pageSize)
   const indexOfLastItem = currentPage * pageSize
   const indexOfFirstItem = indexOfLastItem - pageSize
-  const paginatedItems= [...data].slice(indexOfFirstItem, indexOfLastItem)
+  const paginatedItems= [ ...data ].slice(indexOfFirstItem, indexOfLastItem)
   const goToInitialPage = () => setCurrentPage(1)
   const gotToLastPage = () => setCurrentPage(totalPages)
 

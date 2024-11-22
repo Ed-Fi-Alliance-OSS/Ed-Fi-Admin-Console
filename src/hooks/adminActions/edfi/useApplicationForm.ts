@@ -79,23 +79,23 @@ const useApplicationForm = ({ schoolYear, mode, onFinishSave, editApplicationDat
   const { getClaimsetsListForSchoolYear } = useEdfiClaimsetService()
   const adminConfig = useContext(adminConsoleContext)
   const { getCurrentTenant } = useTenantInfo()
-  const [applicationData, setApplicationData] = useState<CreateEdfiApplicationRequest | UpdateEdfiApplicationRequest>(() => selectInitialFormData(mode, getCurrentTenant(), editApplicationData))
-  const [selectedApplicationId, setSelectedApplicationId] = useState<number>(editApplicationData? editApplicationData.applicationId : 0)
-  const [vendorOptionsList, setVendorOptionsList] = useState<EdfiVendor[]>([])
-  const [claimsOptionsList, setClaimsOptionsList] = useState<EdfiClaimSet[]>([])
-  const [operationalContext, setOperationalContext] = useState<string>('')
+  const [ applicationData, setApplicationData ] = useState<CreateEdfiApplicationRequest | UpdateEdfiApplicationRequest>(() => selectInitialFormData(mode, getCurrentTenant(), editApplicationData))
+  const [ selectedApplicationId, setSelectedApplicationId ] = useState<number>(editApplicationData? editApplicationData.applicationId : 0)
+  const [ vendorOptionsList, setVendorOptionsList ] = useState<EdfiVendor[]>([])
+  const [ claimsOptionsList, setClaimsOptionsList ] = useState<EdfiClaimSet[]>([])
+  const [ operationalContext, setOperationalContext ] = useState<string>('')
 
-  const [applicationAuthData, setApplicationAuthData] = useState<EdfiApplicationAuthData>({ 
+  const [ applicationAuthData, setApplicationAuthData ] = useState<EdfiApplicationAuthData>({ 
     applicationId: editApplicationData? editApplicationData.applicationId : 0,
     secret: mode === 'edit'? 'applicationSecret' : '',
     key: mode === 'edit'? 'applicationKey' : ''
   })
 
-  const [isSaving, setIsSaving] = useState(false)
-  const [hasTriedSubmit, setHasTriedSubmit] = useState(false)
+  const [ isSaving, setIsSaving ] = useState(false)
+  const [ hasTriedSubmit, setHasTriedSubmit ] = useState(false)
   const { errorToast, successToast } = useEDXToast()
   const { errors, validApplicationData, validateField } = useApplicationFormValidation()
-  const [selectedOrgId, setSelectedOrgId] = useState(false)
+  const [ selectedOrgId, setSelectedOrgId ] = useState(false)
   const [ isRegeneratingCredentials, setIsRegeneratingCredentials ] = useState(false)
 
   const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
@@ -130,7 +130,7 @@ const useApplicationForm = ({ schoolYear, mode, onFinishSave, editApplicationDat
         const includedOrganizationId = napplicationData.educationOrganizationIds.find(edOrgId => edOrgId === educationOrgId)
 
         if (includedOrganizationId) {
-          const norgIdsList = [...napplicationData.educationOrganizationIds].filter(id => id !== includedOrganizationId)
+          const norgIdsList = [ ...napplicationData.educationOrganizationIds ].filter(id => id !== includedOrganizationId)
           napplicationData.educationOrganizationIds = norgIdsList
           setApplicationData(napplicationData)
         } else {

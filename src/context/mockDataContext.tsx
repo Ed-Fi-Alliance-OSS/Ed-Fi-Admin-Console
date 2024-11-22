@@ -29,12 +29,12 @@ interface MockDataProviderProps {
 
 // Create the provider component
 export const MockDataProvider: React.FC<MockDataProviderProps> = ({ children }) => {
-  const [data, setData] = useState<Record<string, any>>(getPrimaryObject())
+  const [ data, setData ] = useState<Record<string, any>>(getPrimaryObject())
 
   // Save data to localStorage whenever it changes
   useEffect(() => {
     localStorage.setItem('mockData', JSON.stringify(data))
-  }, [data])
+  }, [ data ])
 
   function getPrimaryObject(): object {
     const obj = localStorage.getItem('mockData')
@@ -65,7 +65,7 @@ export const MockDataProvider: React.FC<MockDataProviderProps> = ({ children }) 
     if (!Array.isArray(getPrimaryObject()[key])) {
       setData(() => ({
         ...getPrimaryObject(),
-        [key]: [value],
+        [key]: [ value ],
       }))
 
       return
@@ -73,7 +73,7 @@ export const MockDataProvider: React.FC<MockDataProviderProps> = ({ children }) 
 
     setData(() => ({
       ...getPrimaryObject(),
-      [key]: [...getPrimaryObject()[key], value],
+      [key]: [ ...getPrimaryObject()[key], value ],
     }))
   }
 

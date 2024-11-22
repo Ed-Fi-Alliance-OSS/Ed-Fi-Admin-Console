@@ -24,10 +24,10 @@ interface UseUserEducationOrganizationsParams {
 
 const useUserEducationOrganizations = ({ selectedUser }: UseUserEducationOrganizationsParams): UserEducationOrganizationsHook => {
   const adminConfig = useContext(adminConsoleContext)
-  const [organizationsList, setOrganizationsList] = useState<Organization[]>([])
-  const [userEdOrgsList, setUserEdOrgsList] = useState<UserEducationOrganizationData[]>([])
-  const [viewEdOrgsList, setViewEdOrgsList] = useState<EdOrgViewItem[]>([])
-  const [staffClassificationsList, setStaffClassificationsList] = useState<StaffClassification[]>([])
+  const [ organizationsList, setOrganizationsList ] = useState<Organization[]>([])
+  const [ userEdOrgsList, setUserEdOrgsList ] = useState<UserEducationOrganizationData[]>([])
+  const [ viewEdOrgsList, setViewEdOrgsList ] = useState<EdOrgViewItem[]>([])
+  const [ staffClassificationsList, setStaffClassificationsList ] = useState<StaffClassification[]>([])
 
   const { getOrganizations, 
     getStaffClassifications, 
@@ -36,20 +36,20 @@ const useUserEducationOrganizations = ({ selectedUser }: UseUserEducationOrganiz
     updateUserEducationOrganization,
     deleteUserEducationOrganization } = useUserService()
 
-  const [educationOrganizationName, setEducationOrganizationName] = useState('')
-  const [staffClassificationDescriptor, setStaffClassificationDescriptor] = useState('')
-  const [edOrgToEdit, setEdOrgToEdit] = useState<EdOrgViewItem | null>(null)
-  const [isFetchingData, setIsFetchingData] = useState(false)
-  const [isCreatingUserEducationOrganization, setIsCreatingUserEducationOrganization] = useState(false)
+  const [ educationOrganizationName, setEducationOrganizationName ] = useState('')
+  const [ staffClassificationDescriptor, setStaffClassificationDescriptor ] = useState('')
+  const [ edOrgToEdit, setEdOrgToEdit ] = useState<EdOrgViewItem | null>(null)
+  const [ isFetchingData, setIsFetchingData ] = useState(false)
+  const [ isCreatingUserEducationOrganization, setIsCreatingUserEducationOrganization ] = useState(false)
  
-  const [isDeletingUserEducationOrganization, setIsDeletingUserEducationOrganization] = useState<DeletingState>({
+  const [ isDeletingUserEducationOrganization, setIsDeletingUserEducationOrganization ] = useState<DeletingState>({
     deleting: false,
     id: '' 
   })
  
-  const [isUpdatingUserEducationOrganization, setIsUpdatingUserEducationOrganization] = useState(false)
+  const [ isUpdatingUserEducationOrganization, setIsUpdatingUserEducationOrganization ] = useState(false)
   const { successToast, errorToast } = useEDXToast()
-  const [showAddItem, setShowAddItem] = useState(false)
+  const [ showAddItem, setShowAddItem ] = useState(false)
 
   // console.log("edorg name", educationOrganizationName)
   // console.log("staff class", staffClassificationDescriptor)

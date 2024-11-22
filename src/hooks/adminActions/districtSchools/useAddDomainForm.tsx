@@ -22,13 +22,13 @@ const useAddDomainForm = ({ districtData, onAfterSave }: UseAddDomainFormProps) 
   const { edxAppConfig, auth } = useContext(TEEAuthDataContext)
   const { updateTenant } = useTenantService()
   const { userProfile } = useContext(UserProfileContext)
-  const [domainName, setDomainName] = useState('')
+  const [ domainName, setDomainName ] = useState('')
   const adminConfig = useContext(adminConsoleContext)
   const { createDomain } = useDomainsService()
-  const [isSavingChanges, setIsSavingChanges] = useState(false)
-  const [hasTriedSubmit, setHasTriedSubmit] = useState(false)
+  const [ isSavingChanges, setIsSavingChanges ] = useState(false)
+  const [ hasTriedSubmit, setHasTriedSubmit ] = useState(false)
   const { successToast, errorToast } = useEDXToast()
-  const [errors, setErrors] = useState<FormDataErrors>({})
+  const [ errors, setErrors ] = useState<FormDataErrors>({})
 
   const isValidDomainName = (value: string) => {
     const nerrors = { ...errors }

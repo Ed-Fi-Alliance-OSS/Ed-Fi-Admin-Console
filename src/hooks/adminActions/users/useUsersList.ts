@@ -24,7 +24,7 @@ const useUsersList = () => {
   const { getUsersList } = useUsersService()
   const [ usersList, setUsersList ] = useState<AppUser[]>([])
   const adminConfig = useContext(adminConsoleContext)
-  const [isFetchingUsers, setIsFetchingUsers] = useState(false)
+  const [ isFetchingUsers, setIsFetchingUsers ] = useState(false)
 
   const [ paginationData, setPaginationData ] = useState<TablePaginationData>({
     count: 0,
@@ -51,7 +51,7 @@ const useUsersList = () => {
       if (result.type === 'Error') {
         errorToast(result.actionMessage)
       } else {
-        setUsersList([...result.data.data])
+        setUsersList([ ...result.data.data ])
         setPaginationData({
           ...paginationData, 
           pageSize: result.data.pageSize,

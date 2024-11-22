@@ -220,8 +220,8 @@ const useUserFormActions = () => {
     const bulkRequests = selectBulkRequests(editUserInitialData, subscriptionsOptionList)
 
     if (bulkRequests) {
-      assignLicensesRequestData.assignLicenseRequests = [...bulkRequests.assignLicensesList]
-      revokeLicensesRequestData.revokeLicenseRequests = [...bulkRequests.revokeLicensesList]
+      assignLicensesRequestData.assignLicenseRequests = [ ...bulkRequests.assignLicensesList ]
+      revokeLicensesRequestData.revokeLicenseRequests = [ ...bulkRequests.revokeLicensesList ]
     }
 
     console.log('assign data', assignLicensesRequestData)

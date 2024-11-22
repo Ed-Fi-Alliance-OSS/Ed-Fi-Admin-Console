@@ -18,8 +18,8 @@ const usePartnersAndApplicationsAccordion = ({ schoolYear }: UsePartnersAndAppli
   const { getVendorApplicationsForSchoolYear, getVendorsListForSchoolYear } = useEdfiVendorsService()
   const { getEdfiApplicationsListForSchoolYear } = useEdfiApplicationsService()
   const adminConfig = useContext(adminConsoleContext)
-  const [vendorsWithApplicationsList, setVendorsWithApplicationsList] = useState<EdfiVendorWithApplications[]>([])
-  const [selectedPartnerId, setSelectedPartnerId] = useState<number | null>()
+  const [ vendorsWithApplicationsList, setVendorsWithApplicationsList ] = useState<EdfiVendorWithApplications[]>([])
+  const [ selectedPartnerId, setSelectedPartnerId ] = useState<number | null>()
 
   const onSelectPartner = (partnerId: number) => {
     setSelectedPartnerId(partnerId)

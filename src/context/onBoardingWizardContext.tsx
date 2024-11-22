@@ -25,7 +25,7 @@ interface OnBoardingWizardProviderProps {
 const OnBoardingWizardProvider = ({ children }: OnBoardingWizardProviderProps) => {
   const { userProfile } = useContext(UserProfileContext)
   const { auth, edxAppConfig } = useContext(TEEAuthDataContext)
-  const [   isFetchingOnBoardingWizard, setIsFetchingOnBoardingWizard ] = useState(true)
+  const [ isFetchingOnBoardingWizard, setIsFetchingOnBoardingWizard ] = useState(true)
   const [ onBoardingWizardData, setOnBoardingWizardData ] = useState<OnBoardingWizardData | null>(null)
   const { onboardingStepsData } = useOnboardingWizardStepsData()
   const { config } = useConfig()

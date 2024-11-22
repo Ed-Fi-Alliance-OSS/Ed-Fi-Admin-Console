@@ -31,7 +31,7 @@ interface SetUpWizardProps {
 }
 
 const SetUpWizard = ({ instance, setupWizardData, completedSteps, lastInProgress, currentStepIndex, lastStep, canNext, canPrev, onTabChange, onCompletedStep, onIncompletedStep, onNext, onPrev }: SetUpWizardProps) => {
-  const [connectedSISProvidersList, setConnectedSISProvidersList] = useState<SISProviderInfo[]>([])
+  const [ connectedSISProvidersList, setConnectedSISProvidersList ] = useState<SISProviderInfo[]>([])
   const { setUpWizardStepsMetadata } = useSetUpWizardStepsMetadata()
   const { getInstanceYear } = useOdsInstanceYear()
 

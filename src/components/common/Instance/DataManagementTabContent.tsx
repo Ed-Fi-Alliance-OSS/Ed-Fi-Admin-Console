@@ -20,8 +20,8 @@ const dataSourceOptions = [
 ]
 
 const DataManagementTabContent = () => {
-  const [showLoadedData, setShowLoadedData] = useState(false)
-  const [selectedDataSource, setSelectedDataSource] = useState(dataSourceOptions[0])
+  const [ showLoadedData, setShowLoadedData ] = useState(false)
+  const [ selectedDataSource, setSelectedDataSource ] = useState(dataSourceOptions[0])
 
   const handleDataSourceChange = (e: ChangeEvent<HTMLSelectElement>) => {
     if (e.target.value !== dataSourceOptions[0]) {
@@ -54,7 +54,7 @@ const DataManagementTabContent = () => {
               options={dataSourceOptions.map(option => ({
                 value: option,
                 text: option 
-              }) )}
+              }))}
               id="selectDataSource"
               value={selectedDataSource}
               onChange={handleDataSourceChange}

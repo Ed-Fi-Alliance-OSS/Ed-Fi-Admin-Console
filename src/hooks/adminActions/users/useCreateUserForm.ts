@@ -36,10 +36,10 @@ const useCreateUserForm = (props?: UseCreateUserFormProps) => {
   const adminConfig = useContext(adminConsoleContext)
   const { checkUserEmail, getUserById } = useUserService()
   const { getSubscriptionsList } = useSubscriptionService()
-  const [userData, setUserData] = useState<CreateUserFormData>(() => setInitialData(props?.editUserInitialData, props?.formMode))
-  const [subscriptionsOptionList, setSubscriptionsOptionList] = useState<SubscriptionOption[]>([])
-  const [mode, setMode] = useState<UserFormMode>(props && props.formMode? props.formMode : 'Add')
-  const [savingChanges, setSavingChanges] = useState(false)
+  const [ userData, setUserData ] = useState<CreateUserFormData>(() => setInitialData(props?.editUserInitialData, props?.formMode))
+  const [ subscriptionsOptionList, setSubscriptionsOptionList ] = useState<SubscriptionOption[]>([])
+  const [ mode, setMode ] = useState<UserFormMode>(props && props.formMode? props.formMode : 'Add')
+  const [ savingChanges, setSavingChanges ] = useState(false)
 
   const roleOptions: RoleOption[] = [
     'Tenant.User', 
@@ -51,7 +51,7 @@ const useCreateUserForm = (props?: UseCreateUserFormProps) => {
   const { onAddUser, onInvite, onInviteAdmin, onUpdate, onManageSubscriptions } = useUserFormActions()
   const { errorToast } = useEDXToast()
   const [ userProfileById, setUserProfileById ] = useState<AppUserProfile | null>(null)
-  const [ isFetchingProfile, setIsFetchingProfile] = useState(true)
+  const [ isFetchingProfile, setIsFetchingProfile ] = useState(true)
   const pageIndex = 0
   const pageSize = 100
 

@@ -93,13 +93,13 @@ const selectStepsData = (isODS: boolean): IOnBoardingWizardStepData => {
 
 const useOnboardingWizardStepsData = () => {
   const { externalODS } = useExternalODSData()
-  const [onboardingStepsData, setOnboardingStepsData] = useState<IOnBoardingWizardStepData>(selectStepsData(externalODS.isExternalODS))
+  const [ onboardingStepsData, setOnboardingStepsData ] = useState<IOnBoardingWizardStepData>(selectStepsData(externalODS.isExternalODS))
 
   useEffect(() => {
     if (externalODS.isExternalODS) {
       setOnboardingStepsData(selectStepsData(externalODS.isExternalODS))
     }
-  }, [externalODS])
+  }, [ externalODS ])
 
   return { onboardingStepsData }
 }

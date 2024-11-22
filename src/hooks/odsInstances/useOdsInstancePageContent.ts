@@ -9,7 +9,7 @@ interface UseOdsInstancePageContentProps {
 }
 
 const useOdsInstancePageContent = ({ instance }: UseOdsInstancePageContentProps) => {
-  const [availableSetDefault, setAvailableSetDefault] = useState(false)
+  const [ availableSetDefault, setAvailableSetDefault ] = useState(false)
 
   const {
     canSetAsDefaultAsync

@@ -36,11 +36,11 @@ const useSSOProviders = () => {
   const { auth, edxAppConfig } = useContext(TEEAuthDataContext)
   const adminConfig = useContext(adminConsoleContext)
   const { userProfile } = useContext(UserProfileContext)
-  const [ ssoProviderOptions, setssoProviderOptions ] = useState<SSOMethod[]>([...ssoMethodsList])
-  const [isFetchingSSOProviders, setIsFetchingSSOProviders] = useState(false)
+  const [ ssoProviderOptions, setssoProviderOptions ] = useState<SSOMethod[]>([ ...ssoMethodsList ])
+  const [ isFetchingSSOProviders, setIsFetchingSSOProviders ] = useState(false)
 
   const onToggleSSOProviderOption = async (ssoMethodName: string) => {
-    const nssoMethods = [...ssoProviderOptions]
+    const nssoMethods = [ ...ssoProviderOptions ]
     const ssoIndex = nssoMethods.findIndex(ssoMethod => ssoMethod.name === ssoMethodName)
 
     if (ssoIndex > -1) {

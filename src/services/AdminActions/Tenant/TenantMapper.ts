@@ -50,7 +50,7 @@ const mapProviders = (identityProviders: number[]): SSOMethodDescriptor[] => {
     }
     
     return 'Google'
-  }) : ['Local']
+  }) : [ 'Local' ]
 
   return providers
 }

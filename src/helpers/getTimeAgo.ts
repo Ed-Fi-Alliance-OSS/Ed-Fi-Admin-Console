@@ -6,7 +6,7 @@ const DATE_UNITS = {
 }
 
 const getUnitAndValueDate = (secondsElapsed: number) => {
-  for (const [unit, secondsInUnit] of Object.entries(DATE_UNITS)) {
+  for (const [ unit, secondsInUnit ] of Object.entries(DATE_UNITS)) {
     if (secondsElapsed >= secondsInUnit || unit === 'second') {
       const value = Math.floor(secondsElapsed / secondsInUnit) * -1
 

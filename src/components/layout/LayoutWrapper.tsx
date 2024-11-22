@@ -28,7 +28,7 @@ const LayoutWrapper = () => {
   const { handleLogOut } = useAuthActions()
   const { loadingState, stateMessage } = useLoadingState()
   const { showInactiveModal, onCloseInactiveModal } = useIdleSession({ timeout: 10000 * 60 })
-  const [isClosingSession, setIsClosingSession] = useState(false)
+  const [ isClosingSession, setIsClosingSession ] = useState(false)
   const { onBoardingWizardData } = useOnBoardingWizard()
   const { finishedCheckedPermissions } = useCheckPermissions()
     

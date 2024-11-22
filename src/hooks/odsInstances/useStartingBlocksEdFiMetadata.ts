@@ -15,8 +15,8 @@ const useStartingBlocksEdFiMetadata = ({ fetch }: UseStartingBlocksEdFiMetadataP
   const { getEdFiMetadataSource } = useOdsInstanceEdFiMetadataSource()
   const adminConfig = useContext(adminConsoleContext)
   const { getSimpleAsync } = useHttpService()
-  const [startingBlocksMetadata, setStartingBlocksMetadata] = useState<EdFiMetadata | null>(null)
-  const [loadingStartingBlocksMetadata, setLoadingStartingBlocksMetadata] = useState(false)
+  const [ startingBlocksMetadata, setStartingBlocksMetadata ] = useState<EdFiMetadata | null>(null)
+  const [ loadingStartingBlocksMetadata, setLoadingStartingBlocksMetadata ] = useState(false)
 
   const fetchStartingBlocksMetadata = async (): Promise<EdFiMetadata | null> => {
     if (!adminConfig) {

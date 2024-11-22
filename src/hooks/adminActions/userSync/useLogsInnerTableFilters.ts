@@ -6,7 +6,7 @@ import {
 } from '../../../components/common/UserSync/LogsInnerTable.types'
 
 const useLogsInnerTableFilters = () => {
-  const [logFilterValues, setLogFilterValues] = useState<LogFilterValues>({
+  const [ logFilterValues, setLogFilterValues ] = useState<LogFilterValues>({
     messageText: '',
     messageType: 'Any'
   })

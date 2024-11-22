@@ -27,12 +27,12 @@ const useSubscriptionsForm = ({ mode, editSubscriptionData, currentSubscriptions
   const { auth, edxAppConfig } = useContext(TEEAuthDataContext)
   const adminConfig = useContext(adminConsoleContext)
   const { userProfile } = useContext(UserProfileContext)
-  const [subscriptionData, setSubscriptionData] = useState<SubscriptionFormData>(() => getInitialData(mode, editSubscriptionData))
-  const [applicationOptions, setApplicationOptions] = useState<SubscriptionApplicationOption[]>([])
+  const [ subscriptionData, setSubscriptionData ] = useState<SubscriptionFormData>(() => getInitialData(mode, editSubscriptionData))
+  const [ applicationOptions, setApplicationOptions ] = useState<SubscriptionApplicationOption[]>([])
   const { onAddSubscription, onEditSubscription } = useSubscriptionsFormActions()
   const { errors, validFormData, validateGracePeriod, validateNumberOfLicenses, validateHasSelectedApplication, validateSubscriptionDuration } = useSubscriptionsFormValidation()
-  const [isSavingChanges, setIsSavingChanges] = useState(false)
-  const [hasTriedSubmit, setHasTriedSubmit] = useState(false)
+  const [ isSavingChanges, setIsSavingChanges ] = useState(false)
+  const [ hasTriedSubmit, setHasTriedSubmit ] = useState(false)
 
   const onChangeStartDate = (date: Date) => {
     console.log('change start date', date)
@@ -135,7 +135,7 @@ const useSubscriptionsForm = ({ mode, editSubscriptionData, currentSubscriptions
 
   const extractSubscriptionOptions = (applicationsList: Application[]): SubscriptionApplicationOption[] => {
     let options: SubscriptionApplicationOption[] = []
-    let availableApplicationsForSubscription = [...applicationsList]
+    let availableApplicationsForSubscription = [ ...applicationsList ]
 
     if (currentSubscriptionsList && currentSubscriptionsList.length > 0) {
       availableApplicationsForSubscription = availableApplicationsForSubscription.filter(application => 

@@ -33,7 +33,7 @@ const useDebugOnBoardingWizard = ({ isDebug }: UseDebugOnBoardingWizardProps) =>
   const [ updatingAllSteps, setUpdatingAllSteps ] = useState(false)
   const [ currentResetStep, setCurrentResetStep ] = useState(1)
   const [ showTestingButtons, setShowTestingButtons ] = useState(isDebugMode(isDebug, adminConfig))
-  const [ selectedStep, setSelectedStep] = useState<number>(1)
+  const [ selectedStep, setSelectedStep ] = useState<number>(1)
   const [ selectedStepStatus, setSelectedStepStatus ] = useState<OnBoardingStepStatus>('Pending')
   const [ currentUpdateStep, setCurrentUpdateStep ] = useState(1)
   const { onboardingStepsData } = useOnboardingWizardStepsData()

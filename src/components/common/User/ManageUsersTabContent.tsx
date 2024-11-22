@@ -74,26 +74,26 @@ const ManageUsersTabContent = () => {
 
   useEffect(() => {
     console.log('paginatedData', paginatedData)
-  }, [paginatedData])
+  }, [ paginatedData ])
 
-  const [selectedUser, setSelectedUser] = useState<AppUser>({ ...initialSelectedUser })
-  const [showAddUserModal, setShowAddUserModal] = useState(false)
-  const [showEditUserModal, setShowEditUserModal] = useState(false)
-  const [showBulkEditRoleModal, setShowBulkEditRoleModal] = useState(false)
+  const [ selectedUser, setSelectedUser ] = useState<AppUser>({ ...initialSelectedUser })
+  const [ showAddUserModal, setShowAddUserModal ] = useState(false)
+  const [ showEditUserModal, setShowEditUserModal ] = useState(false)
+  const [ showBulkEditRoleModal, setShowBulkEditRoleModal ] = useState(false)
   const { successToast, errorToast } = useEDXToast()
   const { deleteUser, activateUser, deactivateUser, deleteInvitation, inviteUser } = useUserService()
   const { getSubscriptionsList } = useSubscriptionsService()
-  const [isDeletingInvitation, setIsDeletingInvitation] = useState(false)
-  const [isResendingInvitation, setIsResendingInvitation] = useState(false)
-  const [isDeletingUser, setIsDeletingUser] = useState(false)
-  const [showConfirmDeleteUserModal, setShowConfirmDeleteUserModal] = useState(false)
-  const [isActivatingUser, setIsActivatingUser] = useState(false)
-  const [showActivateUserModal, setShowActivateUserModal] = useState(false)
-  const [isDeactivatingUser, setIsDeactivatingUser] = useState(false)
-  const [showDeactivateUserModal, setShowDeactivateUserModal] = useState(false)
+  const [ isDeletingInvitation, setIsDeletingInvitation ] = useState(false)
+  const [ isResendingInvitation, setIsResendingInvitation ] = useState(false)
+  const [ isDeletingUser, setIsDeletingUser ] = useState(false)
+  const [ showConfirmDeleteUserModal, setShowConfirmDeleteUserModal ] = useState(false)
+  const [ isActivatingUser, setIsActivatingUser ] = useState(false)
+  const [ showActivateUserModal, setShowActivateUserModal ] = useState(false)
+  const [ isDeactivatingUser, setIsDeactivatingUser ] = useState(false)
+  const [ showDeactivateUserModal, setShowDeactivateUserModal ] = useState(false)
   // Invitations
-  const [selectedInvitation, setSelectedInvitation] = useState<AppUser>({ ...initialSelectedUser })
-  const [showEditInvitationModal, setShowEditInvitationModal] = useState(false)
+  const [ selectedInvitation, setSelectedInvitation ] = useState<AppUser>({ ...initialSelectedUser })
+  const [ showEditInvitationModal, setShowEditInvitationModal ] = useState(false)
 
   const handleDeleteUser = async (userId: string) => {
     if (adminConfig) {

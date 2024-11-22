@@ -22,7 +22,7 @@ test.describe('New Todo', () => {
     await newTodo.press('Enter')
 
     // Make sure the list only has one todo item.
-    await expect(page.getByTestId('todo-title')).toHaveText([TODO_ITEMS[0]])
+    await expect(page.getByTestId('todo-title')).toHaveText([ TODO_ITEMS[0] ])
 
     // Create 2nd todo.
     await newTodo.fill(TODO_ITEMS[1])
@@ -298,7 +298,7 @@ test.describe('Clear completed button', () => {
     await todoItems.nth(1).getByRole('checkbox').check()
     await page.getByRole('button', { name: 'Clear completed' }).click()
     await expect(todoItems).toHaveCount(2)
-    await expect(todoItems).toHaveText([TODO_ITEMS[0], TODO_ITEMS[2]])
+    await expect(todoItems).toHaveText([ TODO_ITEMS[0], TODO_ITEMS[2] ])
   })
 
   test('should be hidden when there are no items that are completed', async ({ page }) => {
@@ -321,18 +321,18 @@ test.describe('Persistence', () => {
     const todoItems = page.getByTestId('todo-item')
     const firstTodoCheck = todoItems.nth(0).getByRole('checkbox')
     await firstTodoCheck.check()
-    await expect(todoItems).toHaveText([TODO_ITEMS[0], TODO_ITEMS[1]])
+    await expect(todoItems).toHaveText([ TODO_ITEMS[0], TODO_ITEMS[1] ])
     await expect(firstTodoCheck).toBeChecked()
-    await expect(todoItems).toHaveClass(['completed', ''])
+    await expect(todoItems).toHaveClass([ 'completed', '' ])
 
     // Ensure there is 1 completed item.
     await checkNumberOfCompletedTodosInLocalStorage(page, 1)
 
     // Now reload.
     await page.reload()
-    await expect(todoItems).toHaveText([TODO_ITEMS[0], TODO_ITEMS[1]])
+    await expect(todoItems).toHaveText([ TODO_ITEMS[0], TODO_ITEMS[1] ])
     await expect(firstTodoCheck).toBeChecked()
-    await expect(todoItems).toHaveClass(['completed', ''])
+    await expect(todoItems).toHaveClass([ 'completed', '' ])
   })
 })
 
@@ -352,7 +352,7 @@ test.describe('Routing', () => {
     await checkNumberOfCompletedTodosInLocalStorage(page, 1)
     await page.getByRole('link', { name: 'Active' }).click()
     await expect(todoItem).toHaveCount(2)
-    await expect(todoItem).toHaveText([TODO_ITEMS[0], TODO_ITEMS[2]])
+    await expect(todoItem).toHaveText([ TODO_ITEMS[0], TODO_ITEMS[2] ])
   })
 
   test('should respect the back button', async ({ page }) => {

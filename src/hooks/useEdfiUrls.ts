@@ -8,7 +8,7 @@ import useTenantInfo from './useTenantInfo'
 
 const useEdfiUrls = () => {
   const adminConfig = useContext(adminConsoleContext)
-  const [edfiInfo, setEdfiInfo] = useState<EdFiMetadata | null>(null)
+  const [ edfiInfo, setEdfiInfo ] = useState<EdFiMetadata | null>(null)
   const { getCurrentTenant } = useTenantInfo()
 
   const generateBaseUrlFromTemplate = (edOrgId: string, applicationName: string) => {
