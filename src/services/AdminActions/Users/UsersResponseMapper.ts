@@ -1,31 +1,27 @@
 import {
-  AppUser, AppUserRole, AppUserStatus 
+  AppUser, AppUserRole, AppUserStatus
 } from '../../../core/AppUser.types'
 import {
-  Invitation, InvitationStatus 
+  Invitation, InvitationStatus
 } from '../../../core/invitations/Invitation.types'
 import getTimeAgo from '../../../helpers/getTimeAgo'
 import { AppUserListData } from './UsersResponseMapper.types'
 import {
-  GetInvitationsListResponse, GetUsersListResponse 
+  GetInvitationsListResponse, GetUsersListResponse
 } from './UsersService.responses'
 
 class UsersResponseMapper {
   public static mapToUsersList(response: GetUsersListResponse, tenantId: string): AppUserListData {
     const usersList: AppUser[] = response.data.map(apiUser => {
-      const tenantData = apiUser.tenants.find(tenant => tenant.tenantId === tenantId)
+      // const tenantData = apiUser.tenants.find(tenant => tenant.tenantId === tenantId)
 
       const appUser: AppUser = {
         userId: apiUser.userId,
         userName: apiUser.userName,
         firstName: apiUser.firstName,
         lastName: apiUser.lastName,
-        status: tenantData? this.mapUserStatus(tenantData.status) : 'Unknown',
+        status: apiUser.status ? this.mapUserStatus(apiUser.status) : 'Unknown',
         email: apiUser.email,
-        licenses: apiUser.licenses.map(license => license),
-        roles: tenantData? this.mapUserRoles(tenantData.roles) : [],
-        source: apiUser.source,
-        tenants: apiUser.tenants.map(tenantLicenses => tenantLicenses),
         updated: getTimeAgo(Date.parse(apiUser.lastModifiedDateTime))
       }
 
@@ -33,8 +29,8 @@ class UsersResponseMapper {
     })
 
     const data: AppUserListData = {
-      count: response.count,
-      pageSize: response.pageSize,
+      count: response.count ?? 0,
+      pageSize: response.pageSize ?? 0,
       data: usersList
     }
 

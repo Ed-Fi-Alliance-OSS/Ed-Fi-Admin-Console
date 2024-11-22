@@ -1,11 +1,14 @@
 import { Flex } from '@chakra-ui/react'
-import { EDXErrorPage } from '@edfi/admin-console-shared-sdk'
+import {
+  EDXErrorPage, useConfig
+} from '@edfi/admin-console-shared-sdk'
 
 interface ErrorPageContainerProps {
     status: '404' | '403' | '500'
 }
 
 const ErrorPageContainer = ({ status }: ErrorPageContainerProps) => {
+  const { config } = useConfig()
   return (
     <Flex 
       height='100vh'
@@ -18,8 +21,8 @@ const ErrorPageContainer = ({ status }: ErrorPageContainerProps) => {
         height="100vh"
         minHeight="100vh"
         minWidth="100vw"
-        primaryButtonBackUrl=""
-        primaryButtonLabel=""
+        primaryButtonBackUrl={config.app.basePath || '/'}
+        primaryButtonLabel="Back to Home"
         width="100vw"
       />
     </Flex>

@@ -1,0 +1,428 @@
+{
+  "pageIndex": 0,
+  "pageSize": 100,
+  "count": 36,
+  "data": [
+    {
+      "invitationStatus": 1,
+      "tenantId": "00000000-0000-0000-0000-000000000001",
+      "invitationId": "c90b10e0-8676-47cb-a7a7-34925f60b424",
+      "firstName": "Hammad",
+      "lastName": "Asif",
+      "email": "hammad@mail.com",
+      "role": "Tenant.Admin",
+      "invitationToken": "df2ad6f8-add2-42d7-a8ca-0695baa2438e",
+      "invitationSentDateTime": "2024-04-26T09:58:06.712+00:00",
+      "assignLicenseRequests": [
+        {
+          "tenantId": "00000000-0000-0000-0000-000000000001",
+          "subscriptionId": null,
+          "applicationId": "fb6adc84-4fa4-4765-97a4-5ff1fa139982",
+          "userId": null,
+          "roles": [
+            "DataSync.Admin"
+          ]
+        },
+        {
+          "tenantId": "00000000-0000-0000-0000-000000000001",
+          "subscriptionId": null,
+          "applicationId": "9f3ab3d1-dc8e-4593-a2d3-b4865596311c",
+          "userId": null,
+          "roles": [
+            "StateReporting.Admin"
+          ]
+        }
+      ]
+    },
+    
+    
+    
+    
+    {
+      "invitationStatus": 1,
+      "tenantId": "00000000-0000-0000-0000-000000000001",
+      "invitationId": "414c76b1-883a-491d-bb06-667433267088",
+      "firstName": "Pablo",
+      "lastName": "Alejandro",
+      "email": "pablo@mail.com",
+      "role": "Tenant.Admin",
+      "invitationToken": "aadbcac2-d79d-4425-9eb8-c67d9ae5c135",
+      "invitationSentDateTime": "2024-01-04T17:06:48.953+00:00",
+      "assignLicenseRequests": [
+        {
+          "tenantId": "00000000-0000-0000-0000-000000000001",
+          "subscriptionId": null,
+          "applicationId": "fb6adc84-4fa4-4765-97a4-5ff1fa139982",
+          "userId": null,
+          "roles": [
+            "DataSync.Admin"
+          ]
+        },
+        {
+          "tenantId": "00000000-0000-0000-0000-000000000001",
+          "subscriptionId": null,
+          "applicationId": "203d016d-e2f0-42ec-a03e-3bb409319820",
+          "userId": null,
+          "roles": [
+            "Developers.Admin"
+          ]
+        },
+        {
+          "tenantId": "00000000-0000-0000-0000-000000000001",
+          "subscriptionId": null,
+          "applicationId": "1fa34e8a-df3f-4f56-b8e8-f1432b256e72",
+          "userId": null,
+          "roles": [
+            "RTI.Admin"
+          ]
+        },
+        {
+          "tenantId": "00000000-0000-0000-0000-000000000001",
+          "subscriptionId": null,
+          "applicationId": "e4ae02ee-2edb-4c61-8c63-22af8e46dd3d",
+          "userId": null,
+          "roles": [
+            "Analytics.Admin"
+          ]
+        },
+        {
+          "tenantId": "00000000-0000-0000-0000-000000000001",
+          "subscriptionId": null,
+          "applicationId": "3d8a0055-cf1c-4c1a-9d44-cc3325618887",
+          "userId": null,
+          "roles": [
+            "Validations.Admin"
+          ]
+        },
+        {
+          "tenantId": "00000000-0000-0000-0000-000000000001",
+          "subscriptionId": null,
+          "applicationId": "484f6f2a-f68b-4699-899d-a2e7feba61c1",
+          "userId": null,
+          "roles": [
+            "EdFiAdmin.Admin"
+          ]
+        },
+        {
+          "tenantId": "00000000-0000-0000-0000-000000000001",
+          "subscriptionId": null,
+          "applicationId": "b6701dd6-6307-42b0-85e1-5bd08dfd7202",
+          "userId": null,
+          "roles": [
+            "AdminConsole.Admin"
+          ]
+        },
+        {
+          "tenantId": "00000000-0000-0000-0000-000000000001",
+          "subscriptionId": null,
+          "applicationId": "784b48f0-c92b-5ffd-9dee-dbeaf4ef5dd9",
+          "userId": null,
+          "roles": [
+            "Partner.Admin"
+          ]
+        },
+        {
+          "tenantId": "00000000-0000-0000-0000-000000000001",
+          "subscriptionId": null,
+          "applicationId": "0741a7d8-2f48-4ba2-a2c4-efb5ff6ae711",
+          "userId": null,
+          "roles": [
+            "Community.ExchangeAdmin"
+          ]
+        }
+      ]
+    },
+    {
+      "invitationStatus": 1,
+      "tenantId": "00000000-0000-0000-0000-000000000001",
+      "invitationId": "d13acb90-8d80-452d-82fa-8ffc55633f01",
+      "firstName": "Pedro",
+      "lastName": "louis",
+      "email": "pedro@mail.com",
+      "role": "Tenant.User",
+      "invitationToken": "bbda0083-8f0a-4a52-9a90-e7fb6f471d98",
+      "invitationSentDateTime": "2023-07-24T21:42:10.366+00:00",
+      "assignLicenseRequests": [
+        {
+          "tenantId": "00000000-0000-0000-0000-000000000001",
+          "subscriptionId": null,
+          "applicationId": "e4ae02ee-2edb-4c61-8c63-22af8e46dd3d",
+          "userId": null,
+          "roles": [
+            "Analytics.User"
+          ]
+        },
+        {
+          "tenantId": "00000000-0000-0000-0000-000000000001",
+          "subscriptionId": null,
+          "applicationId": "e4ae02ee-2edb-4c61-8c63-22af8e46dd3d",
+          "userId": null,
+          "roles": [
+            "Analytics.User"
+          ]
+        }
+      ]
+    },
+    {
+      "invitationStatus": 1,
+      "tenantId": "00000000-0000-0000-0000-000000000001",
+      "invitationId": "901f0ec2-8e37-43d0-8674-1253cb1f3c88",
+      "firstName": "antonio",
+      "lastName": "reyna",
+      "email": "antonio@gmail.com",
+      "role": "Tenant.User",
+      "invitationToken": "2b236fe2-3fc8-45f9-b627-62c0e4f7d8a5",
+      "invitationSentDateTime": "2024-04-05T21:49:55.440+00:00",
+      "assignLicenseRequests": []
+    },
+    {
+      "invitationStatus": 1,
+      "tenantId": "00000000-0000-0000-0000-000000000001",
+      "invitationId": "a58ae993-a7a4-46e2-8407-5ded674557f7",
+      "firstName": "test",
+      "lastName": "test",
+      "email": "test1234@1234.test",
+      "role": "Tenant.User",
+      "invitationToken": "d74599cf-5d05-4ac2-90c3-7266ee10cd25",
+      "invitationSentDateTime": "2024-04-05T21:51:54.637+00:00",
+      "assignLicenseRequests": []
+    },
+    {
+      "invitationStatus": 1,
+      "tenantId": "00000000-0000-0000-0000-000000000001",
+      "invitationId": "98784012-9643-4ffc-bb6f-a37e42989348",
+      "firstName": "test",
+      "lastName": "user",
+      "email": "test+2@test.test",
+      "role": "Tenant.User",
+      "invitationToken": "2f56f03d-e937-46e5-8276-7448b5014aa0",
+      "invitationSentDateTime": "2024-04-08T19:45:07.429+00:00",
+      "assignLicenseRequests": []
+    },
+    {
+      "invitationStatus": 1,
+      "tenantId": "00000000-0000-0000-0000-000000000001",
+      "invitationId": "c2d4217a-2053-4a36-9722-24378b8fdda1",
+      "firstName": "test",
+      "lastName": "test",
+      "email": "test1@test.test",
+      "role": "Tenant.User",
+      "invitationToken": "fce14e3a-c16a-4f5d-ba89-f1b5d9723682",
+      "invitationSentDateTime": "2024-04-08T20:10:20.041+00:00",
+      "assignLicenseRequests": []
+    },
+    {
+      "invitationStatus": 1,
+      "tenantId": "00000000-0000-0000-0000-000000000001",
+      "invitationId": "ea01314a-ac79-4206-b65d-cc21591d3122",
+      "firstName": "test admin four",
+      "lastName": "test admin four",
+      "email": "testadmin4@testadmin4.com",
+      "role": "Tenant.Admin",
+      "invitationToken": "c86e782c-153d-47dd-8955-d357876884eb",
+      "invitationSentDateTime": "2024-04-24T20:37:53.647+00:00",
+      "assignLicenseRequests": [
+        {
+          "tenantId": "00000000-0000-0000-0000-000000000001",
+          "subscriptionId": null,
+          "applicationId": "b6701dd6-6307-42b0-85e1-5bd08dfd7202",
+          "userId": null,
+          "roles": [
+            "AdminConsole.Admin"
+          ]
+        },
+        {
+          "tenantId": "00000000-0000-0000-0000-000000000001",
+          "subscriptionId": null,
+          "applicationId": "0741a7d8-2f48-4ba2-a2c4-efb5ff6ae711",
+          "userId": null,
+          "roles": [
+            "Community.User"
+          ]
+        }
+      ]
+    },
+    {
+      "invitationStatus": 1,
+      "tenantId": "00000000-0000-0000-0000-000000000001",
+      "invitationId": "140a521f-daec-4559-b5ff-b9d91d82bfd8",
+      "firstName": "test admin one",
+      "lastName": "test admin one",
+      "email": "testadmin1@testadmin1.com",
+      "role": "Tenant.Admin",
+      "invitationToken": "45964771-c30b-4bc4-977c-3e2d423ff026",
+      "invitationSentDateTime": "2024-04-23T05:03:25.950+00:00",
+      "assignLicenseRequests": [
+        {
+          "tenantId": "00000000-0000-0000-0000-000000000001",
+          "subscriptionId": null,
+          "applicationId": "b6701dd6-6307-42b0-85e1-5bd08dfd7202",
+          "userId": null,
+          "roles": [
+            "AdminConsole.Admin"
+          ]
+        },
+        {
+          "tenantId": "00000000-0000-0000-0000-000000000001",
+          "subscriptionId": null,
+          "applicationId": "0741a7d8-2f48-4ba2-a2c4-efb5ff6ae711",
+          "userId": null,
+          "roles": [
+            "Community.User"
+          ]
+        }
+      ]
+    },
+    {
+      "invitationStatus": 1,
+      "tenantId": "00000000-0000-0000-0000-000000000001",
+      "invitationId": "13896752-fdda-48e9-97ab-34b558fe886b",
+      "firstName": "test admin three",
+      "lastName": "test admin three",
+      "email": "testadmin3@testadmin3.com",
+      "role": "Tenant.Admin",
+      "invitationToken": "a6e32a17-4d95-4781-b317-2994066e3601",
+      "invitationSentDateTime": "2024-04-23T05:07:20.626+00:00",
+      "assignLicenseRequests": [
+        {
+          "tenantId": "00000000-0000-0000-0000-000000000001",
+          "subscriptionId": null,
+          "applicationId": "b6701dd6-6307-42b0-85e1-5bd08dfd7202",
+          "userId": null,
+          "roles": [
+            "AdminConsole.Admin"
+          ]
+        },
+        {
+          "tenantId": "00000000-0000-0000-0000-000000000001",
+          "subscriptionId": null,
+          "applicationId": "0741a7d8-2f48-4ba2-a2c4-efb5ff6ae711",
+          "userId": null,
+          "roles": [
+            "Community.User"
+          ]
+        }
+      ]
+    },
+    {
+      "invitationStatus": 1,
+      "tenantId": "00000000-0000-0000-0000-000000000001",
+      "invitationId": "c62cc95c-09be-4b4c-971e-ff3449da8b70",
+      "firstName": "test admin two",
+      "lastName": "test admin two",
+      "email": "testadmin2@testadmin2.com",
+      "role": "Tenant.Admin",
+      "invitationToken": "89577f05-986e-4c2a-b9f2-b4aeb2bfe841",
+      "invitationSentDateTime": "2024-04-23T05:05:17.966+00:00",
+      "assignLicenseRequests": [
+        {
+          "tenantId": "00000000-0000-0000-0000-000000000001",
+          "subscriptionId": null,
+          "applicationId": "b6701dd6-6307-42b0-85e1-5bd08dfd7202",
+          "userId": null,
+          "roles": [
+            "AdminConsole.Admin"
+          ]
+        },
+        {
+          "tenantId": "00000000-0000-0000-0000-000000000001",
+          "subscriptionId": null,
+          "applicationId": "0741a7d8-2f48-4ba2-a2c4-efb5ff6ae711",
+          "userId": null,
+          "roles": [
+            "Community.User"
+          ]
+        }
+      ]
+    },
+    {
+      "invitationStatus": 1,
+      "tenantId": "00000000-0000-0000-0000-000000000001",
+      "invitationId": "20275c70-698c-4840-b455-179e6c704004",
+      "firstName": "test five",
+      "lastName": "admin five",
+      "email": "testadmin5@testadmin5.com",
+      "role": "Tenant.Admin",
+      "invitationToken": "13e418a2-291f-48fa-a33e-6668d97c2c70",
+      "invitationSentDateTime": "2024-04-24T20:48:01.411+00:00",
+      "assignLicenseRequests": [
+        {
+          "tenantId": "00000000-0000-0000-0000-000000000001",
+          "subscriptionId": null,
+          "applicationId": "b6701dd6-6307-42b0-85e1-5bd08dfd7202",
+          "userId": null,
+          "roles": [
+            "AdminConsole.Admin"
+          ]
+        },
+        {
+          "tenantId": "00000000-0000-0000-0000-000000000001",
+          "subscriptionId": null,
+          "applicationId": "0741a7d8-2f48-4ba2-a2c4-efb5ff6ae711",
+          "userId": null,
+          "roles": [
+            "Community.User"
+          ]
+        }
+      ]
+    },
+    {
+      "invitationStatus": 1,
+      "tenantId": "00000000-0000-0000-0000-000000000001",
+      "invitationId": "24a4783f-9cb7-4e24-af67-135a94c1cdc2",
+      "firstName": "test with",
+      "lastName": "plus sign",
+      "email": "test+@test.test",
+      "role": "Tenant.User",
+      "invitationToken": "65f08e4a-7144-4fee-b9f1-8629e30e7c07",
+      "invitationSentDateTime": "2024-04-16T05:46:18.912+00:00",
+      "assignLicenseRequests": []
+    },
+    {
+      "invitationStatus": 1,
+      "tenantId": "00000000-0000-0000-0000-000000000001",
+      "invitationId": "bb777faa-da04-445b-976a-aa6bbf44f616",
+      "firstName": "tuserob",
+      "lastName": "tuserob",
+      "email": "tuserob@mail.com",
+      "role": "Tenant.Admin",
+      "invitationToken": "6eda2f85-8365-4776-9fc7-f2228c212842",
+      "invitationSentDateTime": "2023-07-23T13:33:54.832+00:00",
+      "assignLicenseRequests": []
+    },
+    {
+      "invitationStatus": 1,
+      "tenantId": "00000000-0000-0000-0000-000000000001",
+      "invitationId": "df684f3d-316c-4ad4-b24f-eee6522ca14e",
+      "firstName": "user",
+      "lastName": "user",
+      "email": "user@mail.com",
+      "role": "Tenant.User",
+      "invitationToken": "32befd0a-a555-4768-bdc2-6c4a1d2a13d9",
+      "invitationSentDateTime": "2023-07-06T21:47:08.973+00:00",
+      "assignLicenseRequests": [
+        {
+          "tenantId": "00000000-0000-0000-0000-000000000001",
+          "subscriptionId": null,
+          "applicationId": "e4ae02ee-2edb-4c61-8c63-22af8e46dd3d",
+          "userId": null,
+          "roles": [
+            "Analytics.User"
+          ]
+        }
+      ]
+    },
+    {
+      "invitationStatus": 1,
+      "tenantId": "00000000-0000-0000-0000-000000000001",
+      "invitationId": "24a86050-5cdd-4c57-abae-834240ab1728",
+      "firstName": "user first name",
+      "lastName": "user last name",
+      "email": "useremail@user.mail",
+      "role": "Tenant.User",
+      "invitationToken": "8e8011c9-84c3-4356-879d-d1b435196637",
+      "invitationSentDateTime": "2024-04-08T21:53:44.794+00:00",
+      "assignLicenseRequests": []
+    }
+  ]
+}

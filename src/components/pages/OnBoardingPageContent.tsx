@@ -2,10 +2,8 @@ import {
   Flex, Heading
 } from '@chakra-ui/react'
 import routes from '../../core/routes'
-import useHelpLinks from '../../hooks/useHelpLinks'
 import useOnBoardingWizard from '../../hooks/useOnBoardingWizard'
 import BackToLink from '../common/BackToLink'
-import NeedHelpLinks from '../common/NeedHelpLinks'
 import OnBoardingWizard from '../common/OnBoarding/OnBoardingWizard'
 import OnBoardingWizardStart from '../common/OnBoarding/OnBoardingWizardStart'
 
@@ -23,8 +21,6 @@ const OnBoardingPageContent = () => {
     canNext,
     canPrev } = useOnBoardingWizard()
 
-  const { getAdminActionHelpLinks } = useHelpLinks()
-
   return (
     <Flex
       flexDir='column'
@@ -34,11 +30,6 @@ const OnBoardingPageContent = () => {
         <BackToLink 
           text="Finish later"
           url={routes.home.url}
-        />
-
-        <NeedHelpLinks 
-          knowledgeBaseUrl={getAdminActionHelpLinks().knowledgeBaseUrl}
-          supportUrl={getAdminActionHelpLinks().supportTicketUrl}
         />
       </Flex>
 

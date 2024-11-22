@@ -18,11 +18,11 @@ const OnBoardingWizardTabsData = [
   { 
     tabName: 'Invite Users',
     contentName: 'Add Additional Admin Users',
-    description: 'Give other users within your District/Charter School Admin Access. You’ll need their email addresses.' 
+    description: 'Give other users within your District/Charter School Admin Access. You\'ll need their email addresses.' 
   },
   {
-    tabName: 'Select School Year',
-    contentName: 'Select School Year',
+    tabName: 'Select ODS Instance',
+    contentName: 'Select ODS Instance',
     description: 'Select a school year to load data into.' 
   },
   {
@@ -33,12 +33,12 @@ const OnBoardingWizardTabsData = [
   {
     tabName: 'Select SSO Methods',
     contentName: 'Select Single Sign-On Methods',
-    description: 'You’ll see a list of SSO methods that have been made available to you. Select which ones you’d like to use and prompt a validation. ' 
+    description: 'You\'ll see a list of SSO methods that have been made available to you. Select which ones you\'d like to use and prompt a validation. ' 
   },
   {
     tabName: 'Finalize',
     contentName: 'Review and Finalize',
-    description: 'We’ll summarize all of the information for one last look so you can review and get up and running. ' 
+    description: 'We\'ll summarize all of the information for one last look so you can review and get up and running. ' 
   }
 ]
 

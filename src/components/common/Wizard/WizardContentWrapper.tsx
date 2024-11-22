@@ -11,7 +11,7 @@ const WizardContentWrapper = ({ children, minH }: WizardContentWrapperProps) => 
       bg='white'
       flexDir='column'
       h='auto'
-      minH={minH ?? '900px'}
+      minH={minH ?? '600px'}
       padding='32px'
       w='full'
     >

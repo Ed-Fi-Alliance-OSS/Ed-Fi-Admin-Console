@@ -1,15 +1,15 @@
-import { ActionParams } from '../adminAction.types'
-import adminActionRoutes from '../tenantActionRoutes'
-import { UpdateTenantRequest } from './TenantService.requests'
-import {
-  GetTenantResult, UpdateTenantResult 
-} from './TenantService.results'
-import { GetTenantResponse } from './TenantService.responses'
-import { mapToTenant } from './TenantMapper'
-import { HttpServiceResponse } from '../../HttpService/HttpService.response.types'
+import { useConfig } from '@edfi/admin-console-shared-sdk'
 import { Tenant } from '../../../core/Tenant.types'
 import useHttpService from '../../../hooks/http/useHttpService'
-import { useConfig } from '@edfi/admin-console-shared-sdk'
+import { HttpServiceResponse } from '../../HttpService/HttpService.response.types'
+import { ActionParams } from '../adminAction.types'
+import adminActionRoutes from '../tenantActionRoutes'
+import { mapToTenant } from './TenantMapper'
+import { UpdateTenantRequest } from './TenantService.requests'
+import { GetTenantResponse } from './TenantService.responses'
+import {
+  GetTenantResult, UpdateTenantResult
+} from './TenantService.results'
 
 const useTenantService = () => {
   const { getAsync, putAsync } = useHttpService()
@@ -47,15 +47,18 @@ const useTenantService = () => {
     const baseUrl = actionParams.edxApiUrl
     const url = `${baseUrl}/${adminActionRoutes.putTenant(actionParams.tenantId)}`
     
-    const result = await putAsync<GetTenantResponse, UpdateTenantRequest>({
-      url,
-      actionName: 'Update Tenant',
-      access_token: actionParams.token,
-      data,
-      apiConfig: actionParams.config.api
-    })
+    // const result = await putAsync<GetTenantResponse, UpdateTenantRequest>({
+    //   url,
+    //   actionName: 'Update Tenant',
+    //   access_token: actionParams.token,
+    //   data,
+    //   apiConfig: actionParams.config.api
+    // })
     
-    return result
+    return {
+      type: 'Response',
+      data:{ tenantId: data.tenantId, }
+    }
   }
     
   return {

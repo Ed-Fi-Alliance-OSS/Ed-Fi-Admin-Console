@@ -1,9 +1,14 @@
-import { hasIn } from 'lodash-es'
+import {
+  cloneDeep,
+  get as get_,
+  hasIn,
+  set as set_
+} from 'lodash-es'
 import React, {
-  createContext, ReactNode, useContext, useEffect, useState 
+  createContext, ReactNode, useContext, useEffect, useState
 } from 'react'
 
-export type MockDataType = 'Instances' | 'Tenants' | 'Users' | 'Roles' | 'Permissions' | `Vendors:${string}`;
+export type MockDataType = 'Instances' | 'Tenants' | 'Users' | 'Roles' | 'Permissions' | `Vendors:${string}` | `Step:${number | string}` | 'OnBoardingCurrentStep' | string;
 
 // Define the type for our context data structure
 interface MockDataContextType {
@@ -43,19 +48,15 @@ export const MockDataProvider: React.FC<MockDataProviderProps> = ({ children }) 
 
   // Function to set key-value pairs
   const set = (key: MockDataType, value: any) => {
-    const ls = {
-      ...getPrimaryObject(),
-      [key]: value,
-    }
-
-    // localStorage.setItem('mockData', JSON.stringify(ls))
+    const ls = cloneDeep(getPrimaryObject())
+    set_(ls, key, value)
     setData(() => ls)
   }
 
   // Function to get value by key
   const get = (key: MockDataType) => {
     const doExist = hasIn(getPrimaryObject(), key)
-    return doExist ? getPrimaryObject()[key] : null
+    return doExist ? get_(getPrimaryObject(), key) : null
   }
 
   // Function to add an element to an array

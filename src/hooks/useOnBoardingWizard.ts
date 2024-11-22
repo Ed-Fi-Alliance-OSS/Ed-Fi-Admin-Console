@@ -1,13 +1,17 @@
 import {
-  UserProfileContext, TEEAuthDataContext 
+  TEEAuthDataContext,
+  UserProfileContext
 } from '@edfi/admin-console-shared-sdk'
 import {
-  useContext, useState, useEffect 
+  useContext,
+  useEffect,
+  useState
 } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { adminConsoleContext } from '../context/adminConsoleContext'
+import { useMockData } from '../context/mockDataContext'
 import {
-  onBoardingWizardContext, OnBoardingWizardDataWrapper 
+  onBoardingWizardContext, OnBoardingWizardDataWrapper
 } from '../context/onBoardingWizardContext'
 import { EdfiApplicationAuthData } from '../core/Edfi/EdfiApplications'
 import { OnBoardingStepStatus } from '../core/onBoardingWizard/onBoardingWizard.types'
@@ -17,7 +21,6 @@ import useDataSyncService from '../services/AdminActions/DataSync/DataSyncServic
 import { CreateEdfiApplicationRequest } from '../services/AdminActions/Edfi/Applications/EdfiApplicationService.requests'
 import useEdfiApplicationsService from '../services/AdminActions/Edfi/Applications/EdfiApplicationsService'
 import useEdfiVendorsService from '../services/AdminActions/Edfi/Vendors/EdfiVendorsService'
-import { updateOnBoardingWizardStep } from '../services/OnBoardingWizard/onBoardingWizardService'
 import useEDXToast from './common/useEDXToast'
 import useEdfiUrls from './useEdfiUrls'
 import useExternalODSData from './useExternalODSData'
@@ -46,10 +49,10 @@ interface UpdateProgressProps {
 
 const selectLastStepValue = (isODS: boolean) => {
   if (!isODS) {
-    return 8
+    return 5
   }
 
-  return 7
+  return 5
 }
 
 const useOnBoardingWizard = () => {
@@ -61,14 +64,15 @@ const useOnBoardingWizard = () => {
   const [ started, setStarted ] = useState(false)
   const [ currentStepIndex, setCurrentStepIndex ] = useState(0)
   const navigate = useNavigate()
-  const [allStepsProgressData, setAllStepsProgressData] = useState<AllStepsProgressData>({ ...allStepsProgress })
+  const [ allStepsProgressData, setAllStepsProgressData ] = useState<AllStepsProgressData>({ ...allStepsProgress })
   const { createEdfiApplication, getEdfiApplicationsList } = useEdfiApplicationsService()
   const { getVendorsList } = useEdfiVendorsService()
   const { createConnection } = useDataSyncService()
   const { getCurrentTenant } = useTenantInfo()
   const { successToast, errorToast } = useEDXToast()
   const { externalODS } = useExternalODSData()
-  const [lastStep, setLastStep] = useState(selectLastStepValue(externalODS.isExternalODS))
+  const [ lastStep, setLastStep ] = useState(selectLastStepValue(externalODS.isExternalODS))
+  const mock = useMockData()
     
   console.log('has connected sis', allStepsProgressData.hasConnectedSIS)
   console.log('Onboarding wizard data', onBoardingWizardData)
@@ -193,7 +197,7 @@ const useOnBoardingWizard = () => {
             applicationName,
             vendorId: exchangeVendor.vendorId ?? 0,
             claimSetName: 'SIS/HR/Finance Vendor',
-            educationOrganizationIds: [currentTenant? currentTenant.organizationIdentifier : 'unknown']
+            educationOrganizationIds: [ currentTenant? currentTenant.organizationIdentifier : 'unknown' ]
           }
         
           console.log('Create tech console application with data', data)
@@ -357,24 +361,27 @@ const useOnBoardingWizard = () => {
   const updateOBStepStatus = async ({ stepNumber, stepStatus }: UpdateProgressProps) => {
     // console.log('Update OB step status')
 
-    const apiUrl = edxAppConfig?.api.baseUri as string
+    // const apiUrl = edxAppConfig?.api.edfiApiBaseUri as string
     const token = auth?.user?.access_token as string 
     const tenantId = userProfile?.tenantId as string 
 
-    const result = await updateOnBoardingWizardStep({ 
-      apiUrl,
-      token,
-      tenantId,
-      stepNumber,
-      stepStatus,
-      apiConfig: edxAppConfig?.api
-    })
+    // const result = await updateOnBoardingWizardStep({ 
+    //   apiUrl: '',
+    //   token,
+    //   tenantId,
+    //   stepNumber,
+    //   stepStatus,
+    //   apiConfig: edxAppConfig?.api
+    // })
 
-    if (result.tenantId === userProfile?.tenantId) {
-      return true
-    }
+    // if (result.tenantId === userProfile?.tenantId) {
+    //   return true
+    // }
+    // TODO: remove this mock data code and replace with actual API call
+    localStorage.setItem(`onboarding.step.${stepNumber}`, stepStatus)
+    return true
 
-    return false
+    // return false
   }
 
   const updateCurrentStep = () => {
@@ -391,7 +398,7 @@ const useOnBoardingWizard = () => {
 
   const updateStepsValidation = () => {
     if (onBoardingWizardData) {
-      // console.log('Update steps validation')
+      console.log('Update steps validation')
 
       if (onBoardingWizardData.status !== 'Completed' && onBoardingWizardData.totalSteps === 8) {
         const nallStepsProgressData = { ...allStepsProgressData }

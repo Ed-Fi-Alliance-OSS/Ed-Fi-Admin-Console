@@ -1,10 +1,10 @@
 import {
-  Button, Flex 
+  Button, Flex
 } from '@chakra-ui/react'
 import useOnboardingWizardStepsData from '../../../hooks/useOnBoardingWizardStepsData'
 import WizardContentWrapper from '../Wizard/WizardContentWrapper'
-import OnBoardingWizardStartLeft from './OnBoardingWizardStartLeft'
 import WizardStartRight from '../Wizard/WizardStartRight'
+import OnBoardingWizardStartLeft from './OnBoardingWizardStartLeft'
 
 interface OnBoardingWizardStartProps {
     currentStepIndex: number 
@@ -18,6 +18,8 @@ const OnBoardingWizardStart = ({ currentStepIndex, lastInProgress, completedStep
 
   return (
     <WizardContentWrapper>
+      
+
       <Flex
         h='full'
         justifyContent='space-between'

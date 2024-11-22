@@ -26,16 +26,12 @@ import useOdsInstanceService from '../../../services/ODSInstances/OdsInstanceSer
 import {
   CreateOdsInstanceOnboardingStepRequest, UpdateOdsInstanceOnboardingStepRequest
 } from '../../../services/ODSInstances/OdsInstanceService.requests'
-import ConnectEdFiTabContent from './ConnectEdFi/ConnectEdFiTabContent'
 import ConnectSISTabContent from './ConnectSISTabContent'
 import FinalizeTabContent from './FinalizeTabContent'
 import InviteUsersTabContent from './InviteUser/InviteUsersTabContent'
 import OnBoardingTabsWrapper from './OnBoardingTabsWrapper'
-import ReviewDataTabContent from './ReviewDataTabContent'
 import SelectInstancesTabContent from './SelectInstancesTabContent'
 import SelectSSOMethodTabContent from './SelectSSOMethodTabContent'
-import TrainingTabContent from './Training/TrainingTabContent'
-import VerifyDomainTabContent from './VerifyDomainTabContent'
 
 interface OnBoardingWizardProps {
     completedSteps: number
@@ -331,7 +327,11 @@ const OnBoardingWizard = ({ completedSteps, lastInProgress, currentStepIndex, la
     }
   }, [ domainsList ])
 
-  return (
+  if(!onboardingStepsData) {
+    return 'loading...'
+  }
+
+  return (<>
     <Tabs
       isLazy
       index={currentStepIndex}
@@ -339,7 +339,7 @@ const OnBoardingWizard = ({ completedSteps, lastInProgress, currentStepIndex, la
       w='full'
       onChange={(index) => onTabChange(index)}
     >
-      <TabList justifyContent='space-between'>
+      <TabList justifyContent='start'>
         {onboardingStepsData.tabsData.map((step, index) => 
           <Tab 
             key={index}
@@ -349,16 +349,16 @@ const OnBoardingWizard = ({ completedSteps, lastInProgress, currentStepIndex, la
             }}
             borderRadius='0'
             color='white'
+            flexGrow={1}
             fontFamily='Open sans'
             fontSize='14px'
             fontWeight='700'
             h='54px'
             isDisabled={isDisabledTab(index)}
-            lineHeight='28px'
-            padding='8px 8px' 
-            w='auto'
+            lineHeight='28px' 
+            padding='8px 8px'
           >
-            {onBoardingWizardData && onBoardingWizardData.steps[index].status === 'Completed' ?
+            {onBoardingWizardData && onBoardingWizardData.steps && onBoardingWizardData.steps[index] &&  onBoardingWizardData.steps[index].status === 'Completed' ?
               <Flex alignItems='center'>
                 {step.tabName}
 
@@ -377,6 +377,8 @@ const OnBoardingWizard = ({ completedSteps, lastInProgress, currentStepIndex, la
               : step.tabName}
           </Tab>)}
       </TabList>
+
+      
 
       <TabPanels padding='0'>
         <TabPanel padding='0'>
@@ -399,71 +401,24 @@ const OnBoardingWizard = ({ completedSteps, lastInProgress, currentStepIndex, la
             canPrev={canPrev}
             currentStep={2}
             lastStep={lastStep}
-            stepName="Training & Best Practices"
-            onNext={onNext}
+            stepName={onboardingStepsData.tabsData[1].contentName}
+            onNext={onVariableStepNext}
             onPrev={onPrev}
           >
-            <TrainingTabContent onCompleteStep={onCompletedStep}     />
-          </OnBoardingTabsWrapper>
-        </TabPanel>
-
-        <TabPanel padding='0'>
-          <OnBoardingTabsWrapper
-            canNext={canNext}
-            canPrev={canPrev}
-            currentStep={3}
-            lastStep={lastStep}
-            stepName={onboardingStepsData.tabsData[2].contentName}
-            onNext={onNext}
-            onPrev={onPrev}
-          >
-            <VerifyDomainTabContent
-              domainsList={domainsList}
-              isAddingDomain={isAddingDomain}
-              isCheckingDomainStatus={isCheckingDomainStatus}
-              isRemovingDomain={isRemovingDomain}
-              onAddDomain={onAddDomain}
-              onRemoveDomain={onRemoveDomain} 
-              onVerifyDomain={onVerifyDomain}
+            <SelectInstancesTabContent 
+              selectedInstance={selectedInstance} 
+              settingAsDefault={settingAsDefault}
+              showConfirmInstanceModal={showConfirmInstanceModal}
+              tableMode="Select" 
+              onCloseModal={onClose}
+              onContinue={onNextFromModal}
+              onSelectInstance={onSelectInstance}
+              onUpdateInstancesCount={onUpdateInstancesCount}
             />
           </OnBoardingTabsWrapper>
         </TabPanel>
 
-        <TabPanel padding='0'>
-          <OnBoardingTabsWrapper
-            canNext={canNext}
-            canPrev={canPrev}
-            currentStep={4}
-            lastStep={lastStep}
-            stepName={externalODS.isExternalODS? 'Connect Apps to Ed-Fi' : 'Select School Year'}
-            onNext={onVariableStepNext}
-            onPrev={onPrev}
-          >
-            { externalODS.isExternalODS? 
-              <ConnectEdFiTabContent
-                disabledVerification={!isDisabledVerification()}
-                errors={errors}
-                formData={formData}
-                isSaving={isSaving}
-                isVerifying={isVerifying}
-                mode="Add"
-                verificationStatus={verificationStatus}
-                onInputChange={onInputChange}
-                onVerifyConnection={onVerifyConnection}
-              /> : <SelectInstancesTabContent 
-                selectedInstance={selectedInstance} 
-                settingAsDefault={settingAsDefault}
-                showConfirmInstanceModal={showConfirmInstanceModal}
-                tableMode="Select" 
-                onCloseModal={onClose}
-                onContinue={onNextFromModal}
-                onSelectInstance={onSelectInstance}
-                onUpdateInstancesCount={onUpdateInstancesCount}
-              />}
-          </OnBoardingTabsWrapper>
-        </TabPanel>
-
-        { !externalODS.isExternalODS && <OnBoardingConnectSISContextProvider
+        <OnBoardingConnectSISContextProvider
           schoolYear={defaultInstance? getInstanceYear(defaultInstance) : 0}
           onSelectSISProvider={onSelectSISProvider}
           onUnselectSISProvider={onUnselectSISProvider}
@@ -472,9 +427,9 @@ const OnBoardingWizard = ({ completedSteps, lastInProgress, currentStepIndex, la
             <OnBoardingTabsWrapper
               canNext={canNext}
               canPrev={canPrev}
-              currentStep={5}
+              currentStep={3}
               lastStep={lastStep}
-              stepName={onboardingStepsData.tabsData[4].contentName}
+              stepName={onboardingStepsData.tabsData[2].contentName}
               onNext={onNext}
               onPrev={onPrev}
             >
@@ -484,9 +439,23 @@ const OnBoardingWizard = ({ completedSteps, lastInProgress, currentStepIndex, la
               />
             </OnBoardingTabsWrapper>
           </TabPanel>
-        </OnBoardingConnectSISContextProvider> }
+        </OnBoardingConnectSISContextProvider> 
 
         <TabPanel padding='0'>
+          <OnBoardingTabsWrapper
+            canNext={canNext}
+            canPrev={canPrev}
+            currentStep={4}
+            lastStep={lastStep}
+            stepName={onboardingStepsData.tabsData[3].contentName}
+            onNext={onNext}
+            onPrev={onPrev}
+          >
+            <SelectSSOMethodTabContent />
+          </OnBoardingTabsWrapper>
+        </TabPanel>
+
+        {/* <TabPanel padding='0'>
           <OnBoardingTabsWrapper
             canNext={canNext}
             canPrev={canPrev}
@@ -498,29 +467,17 @@ const OnBoardingWizard = ({ completedSteps, lastInProgress, currentStepIndex, la
           >
             <ReviewDataTabContent />
           </OnBoardingTabsWrapper>
-        </TabPanel>
+        </TabPanel> */}
+
+        
 
         <TabPanel padding='0'>
           <OnBoardingTabsWrapper
             canNext={canNext}
             canPrev={canPrev}
-            currentStep={externalODS.isExternalODS? 6 : 7}
+            currentStep={5}
             lastStep={lastStep}
-            stepName={externalODS.isExternalODS? onboardingStepsData.tabsData[5].contentName : onboardingStepsData.tabsData[6].contentName}
-            onNext={onNext}
-            onPrev={onPrev}
-          >
-            <SelectSSOMethodTabContent />
-          </OnBoardingTabsWrapper>
-        </TabPanel>
-
-        <TabPanel padding='0'>
-          <OnBoardingTabsWrapper
-            canNext={canNext}
-            canPrev={canPrev}
-            currentStep={externalODS.isExternalODS? 7 : 8}
-            lastStep={lastStep}
-            stepName={externalODS.isExternalODS? onboardingStepsData.tabsData[6].contentName : onboardingStepsData.tabsData[7].contentName}
+            stepName={onboardingStepsData.tabsData[4].contentName}
             onNext={onFinalize}
             onPrev={onPrev}
           >
@@ -537,6 +494,7 @@ const OnBoardingWizard = ({ completedSteps, lastInProgress, currentStepIndex, la
         </TabPanel>
       </TabPanels>
     </Tabs>
+  </>
   )
 }
 

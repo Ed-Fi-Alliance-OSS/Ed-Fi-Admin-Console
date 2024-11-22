@@ -7,8 +7,8 @@ import tseslint from 'typescript-eslint'
 /** @type {import('eslint').Linter.Config[]} */
 export default [
   {
-    files: ['**/*.{js,mjs,cjs,ts,jsx,tsx}'],
-    ignores: ['dist/**', 'node_modules/**'] 
+    files: [ '**/*.{js,mjs,cjs,ts,jsx,tsx}' ],
+    ignores: [ 'dist/**', 'node_modules/**' ] 
   },
   {
     languageOptions: { globals: globals.browser },
@@ -18,27 +18,30 @@ export default [
   tseslint.configs.base,
   pluginReact.configs.flat.recommended,
   {
-    files: ['**/*.ts', '**/*.js'],
-    rules: { indent: ['error', 2], }
+    files: [ '**/*.ts', '**/*.js' ],
+    rules: { indent: [ 'error', 2 ], }
   },
   {
-    files: ['**/*.jsx', '**/*.tsx'],
+    files: [ '**/*.jsx', '**/*.tsx' ],
     rules: {
-      'react/jsx-indent': ['error', 2],
-      'react/jsx-indent-props': ['error', 2],
+      'react/jsx-indent': [ 'error', 2 ],
+      'react/jsx-indent-props': [ 'error', 2 ],
     }
   },
   {
     rules: {
-      quotes: ['error', 'single'],
-      semi: ['error', 'never'],
-      
+      quotes: [ 'error', 'single' ],
+      semi: [ 'error', 'never' ],
+      'array-bracket-spacing': [ 'error', 'always' ],
+      'block-spacing': [ 'error', 'always' ],
+      'space-in-parens': [ 'error', 'never' ],
+      'comma-spacing': 'error',
       'react/jsx-uses-react': 'off',
       'react/react-in-jsx-scope': 'off',
       'react/jsx-child-element-spacing': 'error',
-      'react/jsx-closing-bracket-location': ['error', 'line-aligned'],
-      'react/jsx-closing-tag-location': ['error', 'line-aligned'],
-      'react/jsx-curly-brace-presence': ['error', 'never'],
+      'react/jsx-closing-bracket-location': [ 'error', 'line-aligned' ],
+      'react/jsx-closing-tag-location': [ 'error', 'line-aligned' ],
+      'react/jsx-curly-brace-presence': [ 'error', 'never' ],
       'no-unused-vars': 'warn',
       'react/jsx-newline': 'warn',
       'react/jsx-curly-spacing': 'error',
@@ -48,8 +51,8 @@ export default [
           when: 'multiline' 
         }
       ],
-      'react/jsx-first-prop-new-line': ['error', 'multiprop'],
-      'react/jsx-equals-spacing': ['error', 'never'],
+      'react/jsx-first-prop-new-line': [ 'error', 'multiprop' ],
+      'react/jsx-equals-spacing': [ 'error', 'never' ],
       'react/jsx-sort-props': [
         'error', {
           ignoreCase: true,
@@ -124,22 +127,22 @@ export default [
         },
         {
           blankLine: 'never',
-          prev: ['import'],
-          next: ['import'],
+          prev: [ 'import' ],
+          next: [ 'import' ],
         },
       ],
       'sort-vars': [
         'error',
         { ignoreCase: true },
       ],
-      'curly': ['error', 'all'],
+      'curly': [ 'error', 'all' ],
       'brace-style': [
         'error',
         '1tbs',
         { allowSingleLine: false },
       ],
-      'function-paren-newline': ['error', 'multiline'],
-      'array-element-newline': ['error', 'consistent'],
+      'function-paren-newline': [ 'error', 'multiline' ],
+      'array-element-newline': [ 'error', 'consistent' ],
       'array-bracket-newline': [
         'error',
         {
@@ -147,8 +150,8 @@ export default [
           minItems: 3,
         },
       ],
-      'object-property-newline': ['error', { 'allowAllPropertiesOnSameLine': false }],
-      'object-curly-spacing': ['error', 'always'],
+      'object-property-newline': [ 'error', { 'allowAllPropertiesOnSameLine': false } ],
+      'object-curly-spacing': [ 'error', 'always' ],
       'object-curly-newline': [
         'error', {
           ImportDeclaration: {

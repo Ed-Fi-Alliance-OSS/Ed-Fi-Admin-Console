@@ -31,7 +31,7 @@ const WizardStartRight = ({ currentStepIndex, lastInProgress, completedSteps, st
   return (
     <Flex 
       flexDir='column'
-      h={h ?? '720px'}
+      mb='10px'
       padding='0 32px'
       w='48%'
     >
