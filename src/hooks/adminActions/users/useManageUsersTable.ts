@@ -1,11 +1,11 @@
 import { useAuth } from '@edfi/admin-console-shared-sdk'
 import {
-  useContext, useEffect, useState 
+  useContext, useEffect, useState
 } from 'react'
 import { adminConsoleContext } from '../../../context/adminConsoleContext'
 import { AppUser } from '../../../core/AppUser.types'
 import {
-  ControlTableFilter, DataFetchParams 
+  ControlTableFilter, DataFetchParams
 } from '../../../core/controlTable'
 import useUserService from '../../../services/AdminActions/Users/UsersService'
 import { GetUsersListRequest } from '../../../services/AdminActions/Users/UsersService.requests'
@@ -161,10 +161,10 @@ const useManageUsersTable = () => {
         console.log('users list received', result.data)
 
         setPaginatedData({
-          count: result.count,
+          count: result.data.count,
           pageIndex: pageIndex,
           pageSize: pageSize,
-          data: result.data
+          data: result.data.data
         })
       }
     }

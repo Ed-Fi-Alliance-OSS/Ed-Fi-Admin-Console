@@ -1,5 +1,5 @@
 import {
-  Flex, Text 
+  Flex, Text
 } from '@chakra-ui/react'
 import { AppUser } from '../../../core/AppUser.types'
 import ControlTableRow from '../ControlTableRow'
@@ -28,7 +28,7 @@ const ManageUsersTableRows = ({ usersList, isDeleting, isDeletingInvitation, isR
 
   return (
     <>
-      {usersList.map((user, index) => 
+      {(Array.isArray(usersList) ? usersList : []).map((user, index) => 
         <ControlTableRow key={index}>
           <ManageUsersTableData width="120px">
             <AppUserName 

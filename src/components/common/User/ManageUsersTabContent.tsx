@@ -1,11 +1,11 @@
 import {
-  Button, Flex 
+  Button, Flex
 } from '@chakra-ui/react'
 import {
-  TablePagination, UserProfileContext 
+  TablePagination, UserProfileContext
 } from '@edfi/admin-console-shared-sdk'
 import {
-  ChangeEvent, useContext, useEffect, useState 
+  ChangeEvent, useContext, useEffect, useState
 } from 'react'
 import { adminConsoleContext } from '../../../context/adminConsoleContext'
 import { AppUser } from '../../../core/AppUser.types'
@@ -14,7 +14,7 @@ import useEDXToast from '../../../hooks/common/useEDXToast'
 import useSubscriptionsService from '../../../services/AdminActions/Subscriptions/SubscriptionsService'
 import useUserService from '../../../services/AdminActions/Users/UsersService'
 import {
-  ActivateUserRequest, AssignLicenseRequest, DeactivateUserRequest, DeleteInvitationRequest, DeleteUserRequest, InviteUserRequest 
+  ActivateUserRequest, AssignLicenseRequest, DeactivateUserRequest, DeleteInvitationRequest, DeleteUserRequest, InviteUserRequest
 } from '../../../services/AdminActions/Users/UsersService.requests'
 import ActivateUserModal from '../../ActivateUserModal'
 import ConfirmDeleteUserModal from '../../ConfirmDeleteUserModal'
@@ -36,9 +36,9 @@ const initialSelectedUser: AppUser = {
   userId: '',
   status: 'Unknown',
   email: '',
-  roles: [],
-  licenses: [],
-  source: null,
+  // roles: [],
+  // licenses: [],
+  // source: null,
   updated: ''
 }
 
