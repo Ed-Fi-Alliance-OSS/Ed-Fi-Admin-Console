@@ -1,21 +1,12 @@
-{
-  "pageIndex": 0,
-  "pageSize": 10,
-  "count": 2,
-  "data": [
-    {
-      "odsInstanceId": 1,
-      "name": "Instance #1 - 2024",
-      "instanceType": null,
-      "verificationStatus": {
-        "status": "InProgress"
-      }
-    },
-    {
-      "odsInstanceId": 2,
-      "name": "Instance #1 - 2025",
-      "instanceType": null,
-      "verificationStatus": null
-    }
-  ]
-}
+[
+  {
+    "odsInstanceId": 1,
+    "name": "Instance #1 - 2024",
+    "instanceType": null
+  },
+  {
+    "odsInstanceId": 2,
+    "name": "Instance #1 - 2025",
+    "instanceType": null
+  }
+]
