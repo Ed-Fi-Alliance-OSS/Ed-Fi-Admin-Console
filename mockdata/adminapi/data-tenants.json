@@ -1,0 +1,28 @@
+{
+    "pageIndex": 0,
+    "pageSize": 10,
+    "count": 3,
+    "data": [
+        {
+            "tenantId": "Tenant1",
+            "edfiApiDiscoveryUrl": "https://api.ed-fi.org/v7.2/api",
+            "onBoarding": {
+                "status": "InProgress"
+            }
+        },
+        {
+            "tenantId": "Tenant2",
+            "edfiApiDiscoveryUrl": "https://api.ed-fi.org/v7.2/api",
+            "onBoarding": {
+                "status": "Completed"
+            }
+        },
+        {
+            "tenantId": "Tenant3",
+            "edfiApiDiscoveryUrl": null,
+            "onBoarding": {
+                "status": "InProgress"
+            }
+        }
+    ]
+}

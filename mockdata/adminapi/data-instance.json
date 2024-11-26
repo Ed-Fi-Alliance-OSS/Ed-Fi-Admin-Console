@@ -1,0 +1,51 @@
+{
+    "odsInstanceId": 1,
+    "name": "Instance #1 - 2024",
+    "instanceType": null,
+    "odsInstanceContexts": [
+      {
+        "id": 1,
+        "odsInstanceId": 1,
+        "contextKey": "schoolYearFromRoute",
+        "contextValue": "2024"
+      }
+    ],
+    "odsInstanceDerivatives": [
+      {
+        "id": 1,
+        "odsInstanceId": 2,
+        "derivativeType": "Read"
+      }
+    ],
+    "verificationStatus": {
+      "status": "InProgress",
+      "progressPercentage": 100,
+      "totalSteps": 3,
+      "lastCompletedStep": 3,
+      "startedAt": "2022-01-15T08:00:00Z",
+      "completedAt": "2022-01-15T08:00:00Z",
+      "steps": [
+        {
+          "number": 1,
+          "description": "Step 1 Description",
+          "startedAt": "2022-01-15T08:05:00Z",
+          "completedAt": "2022-01-15T08:10:00Z",
+          "status": "Completed"
+        },
+        {
+          "number": 2,
+          "description": "Step 2 Description",
+          "startedAt": "2022-01-15T08:12:00Z",
+          "completedAt": null,
+          "status": "InProgress"
+        },
+        {
+          "number": 3,
+          "description": "Step 3 Description",
+          "startedAt": null,
+          "completedAt": null,
+          "status": "Pending"
+        }
+      ]
+    }
+}
