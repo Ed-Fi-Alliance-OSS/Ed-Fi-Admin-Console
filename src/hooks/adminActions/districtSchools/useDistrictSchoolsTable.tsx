@@ -1,8 +1,9 @@
 import {
-  TEEAuthDataContext, UserProfileContext 
+  TEEAuthDataContext, UserProfileContext
 } from '@edfi/admin-console-shared-sdk'
 import {
-  useEffect, useState, useContext 
+  useContext,
+  useEffect, useState
 } from 'react'
 import { adminConsoleContext } from '../../../context/adminConsoleContext'
 import { Tenant } from '../../../core/Tenant.types'
@@ -21,14 +22,11 @@ const useDistrictSchoolsTable = () => {
   const fetchDistrictsData = async () => {
     if (auth && auth.user && edxAppConfig && userProfile && adminConfig) {
       const result = await getTenant(adminConfig.actionParams)
+      // const result: Tenant[] = []
 
-      if (result.type === 'Response') {
-        const ndistrictsList: Tenant[] = []
-        ndistrictsList.push(result.data)
-
-        console.log('district data', result.data)
-
-        setDistrictsList(ndistrictsList)
+      if (Array.isArray(result) && result.length > 0) {
+        console.log('district data', result)
+        setDistrictsList(result)
       }
     }
   }

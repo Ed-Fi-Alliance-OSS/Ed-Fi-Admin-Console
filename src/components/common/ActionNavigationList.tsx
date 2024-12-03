@@ -9,13 +9,9 @@ const ActionNavigationList = () => {
 
   const actionNavigationList: ActionNavigationItem[] = [
     {
-      icon: `${config.app.basePath}/assets/people-icon.svg`,
-      name: 'Manage Users' 
+      icon: `${config.app.basePath}/assets/settings-icon.svg`,
+      name: 'Tenant Instance Settings'
     },
-    {
-      icon: `${config.app.basePath}/assets/unlock-icon.svg`,
-      name: 'SSO' 
-    }
   ]
 
   return (
@@ -24,10 +20,10 @@ const ActionNavigationList = () => {
       mt='16px'
       w='full'
     >
-      {actionNavigationList.map((item, index) => 
-        <ActionNavigationCard 
-          key={item.name} 
-          data={item} 
+      {actionNavigationList.map((item, index) =>
+        <ActionNavigationCard
+          key={item.name}
+          data={item}
           index={index}
         />)}
     </Flex>

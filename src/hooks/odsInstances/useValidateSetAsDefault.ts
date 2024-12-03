@@ -1,10 +1,10 @@
 import { useContext } from 'react'
+import { adminConsoleContext } from '../../context/adminConsoleContext'
 import {
-  ExtendedODSInstance, ODSInstance 
+  ExtendedODSInstance, ODSInstance
 } from '../../core/ODSInstance.types'
 import useOdsInstanceService from '../../services/ODSInstances/OdsInstanceService'
 import { GetOdsInstancesListRequest } from '../../services/ODSInstances/OdsInstanceService.requests'
-import { adminConsoleContext } from '../../context/adminConsoleContext'
 import useOdsInstanceYear from './useOdsInstanceYear'
 
 const useValidateSetAsDefault = () => {
@@ -41,7 +41,7 @@ const useValidateSetAsDefault = () => {
       return true
     }
 
-    if (currentDefault.instanceId == newDefault.instanceId) {
+    if (currentDefault.odsInstanceId == newDefault.odsInstanceId) {
       return false
     }
 
@@ -82,12 +82,11 @@ const useValidateSetAsDefault = () => {
       return null
     }
 
-    return response.data.data
+    return response.data
   }
 
   const findCurrentDefaultInstance = (instanceList: ODSInstance[]): ODSInstance | null => {
-    const currentDefault = instanceList
-      .find(instance => instance.isDefault == true)
+    const currentDefault = instanceList.length > 0 ? instanceList[0] : null
 
     if (!currentDefault) {
       return null

@@ -2,15 +2,16 @@ import { ODSInstance } from '../../core/ODSInstance.types'
 
 const useOdsInstanceYear = () => {
   const getInstanceYear = (instance: ODSInstance) => {
-    if (!instance) {
-      return null
-    }
+    // if (!instance) {
+    //   return null
+    // }
 
-    if (instance.schoolYears.length == 0) {
-      return null
-    }
+    // if (instance.schoolYears.length == 0) {
+    //   return null
+    // }
         
-    return instance.schoolYears[0]
+    // return instance.schoolYears[0]
+    return new Date().getFullYear()
   }
 
   return { getInstanceYear }

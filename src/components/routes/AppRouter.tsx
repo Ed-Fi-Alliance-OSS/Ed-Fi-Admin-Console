@@ -1,17 +1,15 @@
 import {
-  Navigate, Route 
+  Navigate, Route,
+  Routes
 } from 'react-router-dom'
-import { Routes } from 'react-router-dom'
 import routes from '../../core/routes'
-import HomePage from '../pages/HomePage'
-import CallbackRouter from './CallbackRouter'
-import OnBoardingPage from '../pages/OnBoardingPage'
+import AddInstancePage from '../pages/AddInstancePage'
 import ConsolePage from '../pages/ConsolePage'
+import ErrorPageContainer from '../pages/ErrorPageContainer'
+import HomePage from '../pages/HomePage'
 import InstancePage from '../pages/InstancePage'
 import StatusSummaryPage from '../pages/StatusSummaryPage'
-import AddInstancePage from '../pages/AddInstancePage'
-import ErrorPageContainer from '../pages/ErrorPageContainer'
-import SetUpWizardPage from '../pages/SetUpWizardPage'
+import CallbackRouter from './CallbackRouter'
 import { markdownRoutes } from './MarkdownFilesRoutes'
 
 
@@ -36,15 +34,15 @@ const AppRouter = () => {
         path='/'
       />
 
-      <Route
+      {/* <Route
         element={<OnBoardingPage />}
         path={routes.onBoardingWizard.url}
-      />
+      /> */}
 
-      <Route
+      {/* <Route
         element={<SetUpWizardPage />}
         path={`${routes.setUpWizard.url}/:year`}
-      />
+      /> */}
 
       <Route
         element={<StatusSummaryPage />}

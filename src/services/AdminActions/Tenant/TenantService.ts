@@ -1,46 +1,36 @@
-import { useConfig } from '@edfi/admin-console-shared-sdk'
+import {
+  useApiService, useConfig
+} from '@edfi/admin-console-shared-sdk'
 import { Tenant } from '../../../core/Tenant.types'
-import useHttpService from '../../../hooks/http/useHttpService'
-import { HttpServiceResponse } from '../../HttpService/HttpService.response.types'
 import { ActionParams } from '../adminAction.types'
 import adminActionRoutes from '../tenantActionRoutes'
-import { mapToTenant } from './TenantMapper'
 import { UpdateTenantRequest } from './TenantService.requests'
-import { GetTenantResponse } from './TenantService.responses'
-import {
-  GetTenantResult, UpdateTenantResult
-} from './TenantService.results'
+import { UpdateTenantResult } from './TenantService.results'
 
 const useTenantService = () => {
-  const { getAsync, putAsync } = useHttpService()
+  // const { getAsync, putAsync } = useHttpService()
+  const { get } = useApiService()
   const { config } = useConfig()
 
-  const getTenant = async (actionParams: ActionParams): GetTenantResult => {
+  const getTenant = async (actionParams: ActionParams): Promise<Tenant[]> => {
     const baseUrl = actionParams.edxApiUrl
 
     // const url = `${baseUrl}/${adminActionRoutes.getTenant(actionParams.tenantId)}`
     //const url = '/data-tenants.json'
     const url = actionParams.config.api?.useLocalMockData ?? true
-      ? `${config?.app.basePath}/mockdata/data-tenants.json`
+      ? `${config?.app.basePath}/mockdata/adminapi/data-tenants.json`
       : `${baseUrl}/adminconsole/tenants`
     
-    const result = await getAsync<GetTenantResponse>({
+    const result = await get<Tenant[]>({
       url,
       actionName: 'Get Tenant',
-      access_token: actionParams.token,
-      apiConfig: actionParams.config.api
     })
     
     if (result.type === 'Response') {
-      const mappedResult: HttpServiceResponse<Tenant> = {
-        data: mapToTenant(result.data),
-        type: 'Response'
-      }
-    
-      return mappedResult
+      return result.data
     }
-    
-    return result
+
+    return []
   }
     
   const updateTenant = async (actionParams: ActionParams, data: UpdateTenantRequest): UpdateTenantResult => {

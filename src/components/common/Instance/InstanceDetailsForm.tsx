@@ -1,12 +1,9 @@
 import {
-  Button, Flex, FormControl 
+  Button, Flex, FormControl
 } from '@chakra-ui/react'
-import { UserProfileContext } from '@edfi/admin-console-shared-sdk'
+import { CustomFormHeader, CustomFormLabel, CustomInput, CustomSelect, UserProfileContext } from '@edfi/admin-console-shared-sdk'
 import { useContext } from 'react'
 import { ODSInstance } from '../../../core/ODSInstance.types'
-import {
-  CustomFormLabel, CustomSelect, CustomFormHeader, CustomInput 
-} from '@edfi/admin-console-shared-sdk'
 import { usePluginContext } from '../../../plugins/BasePlugin'
 
 interface InstanceDetailsFormProps {
@@ -51,7 +48,7 @@ const InstanceDetailsForm = ({ mode, instance }: InstanceDetailsFormProps) => {
           <CustomInput
             disabled={true}
             id='instanceName'
-            value={userProfile? `${getInstanceName(userProfile.tenants, userProfile.tenantId)} ${instance?.instanceName}` : `Instance ${instance?.instanceName}`}
+            value={userProfile? `${getInstanceName(userProfile.tenants, userProfile.tenantId)} ${instance?.name}` : `Instance ${instance?.name}`}
             onChange={() => null}
           />
         </FormControl>

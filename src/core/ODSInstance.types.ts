@@ -1,6 +1,4 @@
 import React from 'react'
-import { EdFiMetadata } from '../hooks/useEdfiUrls.types'
-import { OnBoardingWizardData } from './onBoardingWizard/onBoardingWizard.types'
 
 export interface InstanceEdfiStatus {
   operationStatus: InstanceOperationStatus
@@ -9,20 +7,9 @@ export interface InstanceEdfiStatus {
 export type InstanceOperationStatus = 'Operational' | 'Offline'
 
 export interface ODSInstance {
-  instanceId: string
-  tenantId: string
-  instanceName: string
-  instanceType: string 
-  connectionType: string
-  clientId: string
-  clientSecret: string
-  edfiMetadata: EdFiMetadata
-  authenticationUrl: string 
-  resourcesUrl: string 
-  schoolYears: number[]
-  isDefault: boolean
-  verificationStatus: OnBoardingWizardData | null
-  provider: string 
+  odsInstanceId: string
+  name: string
+  instanceType?: string
 }
 
 export interface ExtendedODSInstance extends ODSInstance {

@@ -1,15 +1,13 @@
 import {
-  RadioGroup, Td 
+  RadioGroup, Td
 } from '@chakra-ui/react'
 import { CustomRadio } from '@edfi/admin-console-shared-sdk'
 import { useEffect } from 'react'
 import { ExtendedODSInstance } from '../../../core/ODSInstance.types'
 import { UpdatingIsDefaultStatus } from '../../../hooks/odsInstances/useOdsInstanceTable.types'
 import ManageInstanceBtn from './ManageInstanceBtn'
-import ODSInstanceEdFiVersion from './ODSInstaceEdFiVersion'
 import ODSInstanceEdFiStatus from './ODSInstanceEdFiStatus'
 import { ODSInstanceTableMode } from './ODSInstanceTable.types'
-import ODSInstanceDataModelsLabel from './ODSInstanceTSDSVersion'
 import ODSInstanceYear from './ODSInstanceYear'
 import SetUpInstanceBtn from './SetUpInstanceBtn'
 
@@ -36,9 +34,9 @@ const ODSInstanceManagementTableRowItem = ({ tableMode, selectedInstance, instan
   }
 
   useEffect(() => {
-    if (instance.isDefault) {
-      onSelectInstance(instance)
-    }
+    // if (instance.isDefault) {
+    //   onSelectInstance(instance)
+    // }
 
     console.log('instance', instance)
   }, [])
@@ -47,13 +45,13 @@ const ODSInstanceManagementTableRowItem = ({ tableMode, selectedInstance, instan
     <>
       { tableMode != 'Display' && <Td w='80px'>
         <RadioGroup 
-          value={selectedInstance?.instanceId ?? ''} 
+          value={selectedInstance?.odsInstanceId ?? ''} 
           onChange={() => onSelectInstance(instance)}
         >
           <CustomRadio 
-            isChecked={selectedInstance?.instanceId == instance.instanceId}
+            isChecked={selectedInstance?.odsInstanceId == instance.odsInstanceId}
             text=""
-            value={instance.instanceId}
+            value={instance.odsInstanceId}
           />
         </RadioGroup>
       </Td> }
@@ -63,11 +61,13 @@ const ODSInstanceManagementTableRowItem = ({ tableMode, selectedInstance, instan
       </Td>
 
       <Td>
-        <ODSInstanceEdFiVersion version={instance.edFiVersion} /> 
+        N/A
+        {/* <ODSInstanceEdFiVersion version={instance.edFiVersion} />  */}
       </Td>
 
       <Td>
-        <ODSInstanceDataModelsLabel dataModels={instance.edfiMetadata.dataModels} /> 
+        N/A
+        {/* <ODSInstanceDataModelsLabel dataModels={instance.edfiMetadata.dataModels} />  */}
       </Td>
 
       <Td>

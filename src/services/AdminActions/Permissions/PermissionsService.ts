@@ -9,10 +9,10 @@ const usePermissionsService = () => {
 
   const checkPermissions = async (actionParams: ActionParams) : GetPermissionsResult => {
     //const url = `${actionParams.edxApiUrl}/verifypermission`
-    //const url = "/mockdata/data-permissions.json"
+    //const url = "/mockdata/adminapi/data-permissions.json"
     const url = actionParams.config.api?.useLocalMockData ?? true
-      ? `${config?.app.basePath}/mockdata/data-permissions.json`
-      : `${actionParams?.config?.api?.baseUri ?? ''}/adminconsole/permissions`
+      ? `${config?.app.basePath}/mockdata/edgraphapi/data-permissions.json`
+      : `${actionParams?.config?.api?.edfiApiBaseUri ?? ''}/adminconsole/permissions`
 
     const result = await getAsync<GetPermissionsResult>({
       url,

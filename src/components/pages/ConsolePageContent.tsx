@@ -1,35 +1,28 @@
 import { Flex } from '@chakra-ui/react'
-import { useContext } from 'react'
 import { useLocation } from 'react-router-dom'
-import { adminConsoleContext } from '../../context/adminConsoleContext'
 import AdminConsoleHeader from '../common/AdminConsoleHeader'
 import AdminConsoleTabsMenu from '../common/AdminConsoleTabsMenu'
-import DevelopersTabContent from '../common/Developers/DevelopersTabContent'
-import SSOTabContent from '../common/Security/SSOTabContent'
-import ManageUsersTabContent from '../common/User/ManageUsersTabContent'
+import TenantInstanceTab from '../common/TenantInstance/TenantInstanceTab'
 
-const tabsList = [
-  'Manage Users',
-  'SSO'
-]
+const tabsList = [ 'Tenant Instance Settings', ]
 
 const ConsolePageContent = () => {
   const location = useLocation()
-  const adminConfig = useContext(adminConsoleContext)
+  // const adminConfig = useContext(adminConsoleContext)
 
   // console.log('admin config', adminConfig)
 
-  const selectTabs = (tabName: string) => {
-    if (tabName === 'Documentation (Advanced)') {
-      if (adminConfig && adminConfig.showAdvancedTabs) {
-        return true
-      }
+  // const selectTabs = (tabName: string) => {
+  //   if (tabName === 'Documentation (Advanced)') {
+  //     if (adminConfig && adminConfig.showAdvancedTabs) {
+  //       return true
+  //     }
 
-      return false
-    }
+  //     return false
+  //   }
 
-    return true
-  }
+  //   return true
+  // }
 
   return (
     <Flex
@@ -42,25 +35,16 @@ const ConsolePageContent = () => {
         mt='24px'
         w='full'
       >
-        { adminConfig && adminConfig.showAdvancedTabs?  
-          <AdminConsoleTabsMenu 
-            initialIndex={location.state? location.state.consoleActionIndex : 0}
-            tabsList={tabsList}
-          >
-            <ManageUsersTabContent />
+        <AdminConsoleTabsMenu 
+          initialIndex={location.state? location.state.consoleActionIndex : 0}
+          tabsList={tabsList}
+        >
 
-            <SSOTabContent />
+          <TenantInstanceTab />
 
-            <DevelopersTabContent />
-          </AdminConsoleTabsMenu> :
-          <AdminConsoleTabsMenu 
-            initialIndex={location.state? location.state.consoleActionIndex : 0}
-            tabsList={tabsList.filter(tab => selectTabs(tab))}
-          >
-            <ManageUsersTabContent />
+          <></>
 
-            <SSOTabContent />
-          </AdminConsoleTabsMenu> }
+        </AdminConsoleTabsMenu>
       </Flex>
     </Flex>
   )

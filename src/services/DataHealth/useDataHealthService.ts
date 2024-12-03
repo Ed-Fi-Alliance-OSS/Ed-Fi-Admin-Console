@@ -1,7 +1,6 @@
 import { useConfig } from '@edfi/admin-console-shared-sdk'
 import useHttpService from '../../hooks/http/useHttpService'
 import { ActionParams } from '../AdminActions/adminAction.types'
-import tenantActionRoutes from '../AdminActions/tenantActionRoutes'
 import { GetDataHealthDistrictDetailsResponse } from './DataHealthService.responses'
 import { GetDataHealthDistrictDetailsResult } from './DataHealthService.results'
 
@@ -12,7 +11,7 @@ const useDataHealthService = () => {
   const getDataHealthInfo = async (actionParams: ActionParams): GetDataHealthDistrictDetailsResult => {
     const baseUrl = actionParams.edxApiUrl
     // const url = `${baseUrl}/${tenantActionRoutes.getHealthCheckDistrictDetails(actionParams.tenantId)}`
-    const url = `${config?.app.basePath}/mockdata/data-healthcheck.json`
+    const url = `${config?.app.basePath}/mockdata/adminapi/data-healthcheck.json`
     
     const result = await getSimpleAsync<GetDataHealthDistrictDetailsResponse>({
       url,
@@ -27,7 +26,7 @@ const useDataHealthService = () => {
   const getOdsInstanceDataHealthInfo = async (actionParams: ActionParams, year: number): GetDataHealthDistrictDetailsResult => {
     const baseUrl = actionParams.edxApiUrl
     // const url = `${baseUrl}/${tenantActionRoutes.getOdsInstanceHealthCheckDistrictDetails(actionParams.tenantId, year)}`
-    const url = `${config?.app.basePath}/mockdata/data-healthcheck.json`
+    const url = `${config?.app.basePath}/mockdata/adminapi/data-healthcheck.json`
 
     const result = await getSimpleAsync<GetDataHealthDistrictDetailsResponse>({
       url,
