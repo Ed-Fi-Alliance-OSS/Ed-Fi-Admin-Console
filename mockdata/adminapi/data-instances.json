@@ -1,12 +1,18 @@
 [
   {
     "odsInstanceId": 1,
-    "name": "Instance #1 - 2024",
-    "instanceType": null
+    "tenantId": 1,
+    "document": {
+      "name": "Instance #1 - 2024",
+      "instanceType": null
+    }
   },
   {
     "odsInstanceId": 2,
-    "name": "Instance #1 - 2025",
-    "instanceType": null
+    "tenantId": 1,
+    "document": {
+      "name": "Instance #1 - 2025",
+      "instanceType": null
+    }
   }
 ]

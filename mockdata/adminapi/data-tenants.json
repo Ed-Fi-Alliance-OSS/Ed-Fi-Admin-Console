@@ -1,23 +1,23 @@
 [
     {
-        "tenantId": "Tenant1",
-        "edfiApiDiscoveryUrl": "https://api.ed-fi.org/v7.2/api",
-        "onBoarding": {
-            "status": "InProgress"
+        "tenantId": 1,
+        "document": {
+            "name": "Tenant1",
+            "edfiApiDiscoveryUrl": "https://api.ed-fi.org/v7.2/api"
         }
     },
     {
-        "tenantId": "Tenant2",
-        "edfiApiDiscoveryUrl": "https://api.ed-fi.org/v7.2/api",
-        "onBoarding": {
-            "status": "Completed"
+        "tenantId": 2,
+        "document": {
+            "name": "Tenant2",
+            "edfiApiDiscoveryUrl": "https://api.ed-fi.org/v7.2/api"
         }
     },
     {
-        "tenantId": "Tenant3",
-        "edfiApiDiscoveryUrl": null,
-        "onBoarding": {
-            "status": "InProgress"
+        "tenantId": 3,
+        "document": {
+            "name": "Tenant3",
+            "edfiApiDiscoveryUrl": null
         }
     }
 ]

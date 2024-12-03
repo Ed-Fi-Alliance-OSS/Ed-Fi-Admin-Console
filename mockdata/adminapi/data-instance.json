@@ -1,20 +1,23 @@
 {
   "odsInstanceId": 1,
-  "name": "Instance #1 - 2024",
-  "instanceType": null,
-  "odsInstanceContexts": [
-    {
-      "id": 1,
-      "odsInstanceId": 1,
-      "contextKey": "schoolYearFromRoute",
-      "contextValue": "2024"
-    }
-  ],
-  "odsInstanceDerivatives": [
-    {
-      "id": 1,
-      "odsInstanceId": 2,
-      "derivativeType": "Read"
-    }
-  ]
+  "tenantId": 1,
+  "document": {
+    "name": "Instance #1 - 2024",
+    "instanceType": null,
+    "odsInstanceContexts": [
+      {
+        "id": 1,
+        "odsInstanceId": 1,
+        "contextKey": "schoolYearFromRoute",
+        "contextValue": "2024"
+      }
+    ],
+    "odsInstanceDerivatives": [
+      {
+        "id": 1,
+        "odsInstanceId": 2,
+        "derivativeType": "Read"
+      }
+    ]
+  }
 }
