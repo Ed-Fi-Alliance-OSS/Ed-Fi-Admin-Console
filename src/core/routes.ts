@@ -2,8 +2,8 @@ import { Route } from '@edfi/admin-console-shared-sdk'
 
 interface AppRoute {
     home: Route
-    onBoardingWizard: Route
-    setUpWizard: Route
+    // onBoardingWizard: Route
+    // setUpWizard: Route
     console: Route
     instance: Route
     addInstance: Route

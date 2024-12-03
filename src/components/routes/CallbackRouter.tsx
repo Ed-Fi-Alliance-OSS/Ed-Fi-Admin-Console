@@ -1,9 +1,9 @@
 // import { useNavigate } from 'react-router-dom'
 import {
-  useAuth, useConfig, useInitialRoute 
+  useAuth, useConfig, useInitialRoute
 } from '@edfi/admin-console-shared-sdk'
-import routes from '../../core/routes'
 import { useEffect } from 'react'
+import routes from '../../core/routes'
 
 const CallbackRouter = () => {
   const auth = useAuth()
@@ -33,7 +33,7 @@ const CallbackRouter = () => {
     } else {
       // If the auth is not authenticated, redirect to the login page
       console.log('🚁 Redirecting from Callback to Login')
-      window.location.replace(config.app.basePath + '/401')
+      // window.location.replace(config.app.basePath + '/401')
     }
 
   }, [])

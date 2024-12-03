@@ -1,9 +1,8 @@
 import { useState } from 'react'
 import {
-  ControlTableSort, ControlTableSortType 
+  ControlTableSort, ControlTableSortType
 } from '../../core/controlTable'
 import { ExtendedODSInstance } from '../../core/ODSInstance.types'
-import useOdsInstanceYear from './useOdsInstanceYear'
 
 type ODSInstanceTableSortingField = 'Year' | 'Status' | 'EdFiVersion' | 'EdFiDataModels'
 
@@ -12,35 +11,6 @@ const useOdsInstanceTableSorting = () => {
     field: 'Year',
     order: 'desc',
   })
-
-  const { getInstanceYear } = useOdsInstanceYear()
-
-  const sortByYear = (instances: ExtendedODSInstance[]): ExtendedODSInstance[] => {
-    return instances
-      .map(instance => ({ ...instance }))
-      .sort((instancea, instanceb) => {
-        const instanceaYear = getInstanceYear(instancea)
-        const instancebYear = getInstanceYear(instanceb)
-
-        if (instanceaYear == null || instancebYear == null) {
-          return 0
-        }
-
-        if (instanceaYear == null && instancebYear != null) {
-          return 1
-        }
-
-        if (instanceaYear != null && instancebYear == null) {
-          return -1
-        } 
-
-        if (orderBy.order == 'desc') {
-          return instancebYear - instanceaYear
-        }
-
-        return instanceaYear - instancebYear
-      })
-  }
 
   const sortByStatus = (instances: ExtendedODSInstance[]): ExtendedODSInstance[] => {
     return instances
@@ -60,10 +30,10 @@ const useOdsInstanceTableSorting = () => {
       .map(instance => ({ ...instance }))
       .sort((instancea, instanceb) => {
         if (orderBy.order == 'desc') {
-          return instanceb.edFiVersion.localeCompare(instancea.edFiVersion)
+          return instanceb.edFiVersion.toString().localeCompare(instancea.edFiVersion.toString())
         }
 
-        return instancea.edFiVersion.localeCompare(instanceb.edFiVersion)
+        return instancea.edFiVersion.toString().localeCompare(instanceb.edFiVersion.toString())
       })
   }
 
@@ -72,18 +42,15 @@ const useOdsInstanceTableSorting = () => {
       .map(instance => ({ ...instance }))
       .sort((instancea, instanceb) => {
         if (orderBy.order == 'desc') {
-          return instanceb.tsdsVersion.localeCompare(instancea.tsdsVersion)
+          return instanceb.tsdsVersion.toString().localeCompare(instancea.tsdsVersion.toString())
         }
 
-        return instancea.tsdsVersion.localeCompare(instanceb.tsdsVersion)
+        return instancea.tsdsVersion.toString().localeCompare(instanceb.tsdsVersion.toString())
       })
   }
 
   const getSortedInstances = (instances: ExtendedODSInstance[]): ExtendedODSInstance[] => {
-    if (orderBy.field == 'Year') {
-      return sortByYear(instances)
-    }
-
+    
     if (orderBy.field == 'Status') {
       return sortByStatus(instances)
     }

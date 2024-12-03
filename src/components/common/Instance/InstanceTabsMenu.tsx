@@ -1,23 +1,22 @@
 import {
-  Flex, Heading 
+  Flex, Heading
 } from '@chakra-ui/react'
 import { useContext } from 'react'
 import { adminConsoleContext } from '../../../context/adminConsoleContext'
 import { ODSInstance } from '../../../core/ODSInstance.types'
+import useOdsInstanceDescription from '../../../hooks/odsInstances/useOdsInstanceDescription'
+import useOdsInstanceEdFiStatus from '../../../hooks/odsInstances/useOdsInstanceEdFiStatus'
 import useOdsInstanceDisplayYear from '../../../hooks/odsInstances/useOdsInstanceYearName'
 import useExternalODSData from '../../../hooks/useExternalODSData'
 import AdminConsoleTabsMenu from '../AdminConsoleTabsMenu'
 import EdFiSettingsTabContent from '../EdFi/EdFiSettingsTabContent'
 import ConfirmSetDefaultInstanceModal from '../ODS/ConfirmSetDefaultInstanceModal'
+import SetUpInstanceModal from '../ODS/SetUpInstanceModal'
 import TabContentWrapper from '../TabContentWrapper'
 import DataManagementTabContent from './DataManagementTabContent'
 import InstanceLoadingContent from './InstanceLoadingContent'
 import InstanceSummaryTabContent from './InstanceSummaryTabContent'
 import PartnersAndApplicationTabContent from './PartnersAndApplicationTabContent'
-import SetUpInstanceModal from '../ODS/SetUpInstanceModal'
-import useOdsInstanceDescription from '../../../hooks/odsInstances/useOdsInstanceDescription'
-import useOdsInstanceEdFiStatus from '../../../hooks/odsInstances/useOdsInstanceEdFiStatus'
-import useOdsInstanceYear from '../../../hooks/odsInstances/useOdsInstanceYear'
 
 const tabsList = [
   'Summary',
@@ -41,7 +40,6 @@ interface InstanceTabsMenuProps {
 const InstanceTabsMenu = ({ instance, showConfirmSetDefaultModal, showSetUpWizardModal, canSetAsDefault, updatingInstance, onSetIsDefault, onCloseSetUpWizardModal, onShowSetUpWizardModal, onShowConfirmSetDefaultModal, onCloseConfirmSetDefaultModal }: InstanceTabsMenuProps) => {
   const adminConfig = useContext(adminConsoleContext)
   const { getDisplayYear } = useOdsInstanceDisplayYear()
-  const { getInstanceYear } = useOdsInstanceYear()
   const { externalODS } = useExternalODSData()
 
   const { 
@@ -94,7 +92,7 @@ const InstanceTabsMenu = ({ instance, showConfirmSetDefaultModal, showSetUpWizar
       return 0
     } 
 
-    const year = getInstanceYear(instance)
+    const year = 0//getInstanceYear(instance)
 
     if (!year) {
       return 0

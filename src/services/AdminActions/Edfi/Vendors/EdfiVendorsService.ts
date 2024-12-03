@@ -6,11 +6,11 @@ import useHttpService from '../../../../hooks/http/useHttpService'
 import { EdfiActionParams } from '../../adminAction.types'
 import edfiActionRoutes from '../../edfiActionRoutes'
 import {
-  CreateEdfiVendorRequest, DeleteEdfiVendorRequest 
+  CreateEdfiVendorRequest, DeleteEdfiVendorRequest
 } from './EdfiVendorsService.requests'
 import { DeleteEdfiVendorResponse } from './EdfiVendorsService.response'
 import {
-  CreateEdfiVendorResult, DeleteEdfiVendorResult, GetVendorApplicationsListResult, GetVendorsListResult 
+  CreateEdfiVendorResult, DeleteEdfiVendorResult, GetVendorApplicationsListResult, GetVendorsListResult
 } from './EdfiVendorsService.results'
 
 const useEdfiVendorsService = () => {
@@ -84,7 +84,7 @@ const useEdfiVendorsService = () => {
     // const url = `${baseUrl}/${edfiActionRoutes.getVendorsListForSchoolYear(actionParams.tenantId, year)}`
     // const url = "/data-vendors.json"
     const url = actionParams.config.api?.useLocalMockData ?? true
-      ? `${config?.app.basePath}/mockdata/data-vendors.json`
+      ? `${config?.app.basePath}/mockdata/adminapi/data-vendors.json`
       : `${baseUrl}/v2/vendors`
 
     const result = await getAsync<EdfiVendor[]>({

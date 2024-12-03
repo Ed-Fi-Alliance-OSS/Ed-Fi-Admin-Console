@@ -1,14 +1,15 @@
 import {
-  useContext, useEffect, useState 
+  useContext, useEffect, useState
 } from 'react'
 import { adminConsoleContext } from '../../context/adminConsoleContext'
 import { useMockData } from '../../context/mockDataContext'
 import {
-  ExtendedODSInstance, ODSInstance 
+  ExtendedODSInstance, ODSInstance
 } from '../../core/ODSInstance.types'
+import { MockPaginationData } from '../../helpers/constants'
 import useOdsInstanceService from '../../services/ODSInstances/OdsInstanceService'
 import {
-  GetOdsInstancesListRequest, UpdateOdsInstanceIsDefaultRequest 
+  GetOdsInstancesListRequest, UpdateOdsInstanceIsDefaultRequest
 } from '../../services/ODSInstances/OdsInstanceService.requests'
 import useEDXToast from '../common/useEDXToast'
 import useControlTable from '../controlTable/useControlTable'
@@ -71,21 +72,21 @@ const useOdsInstanceTable = () => {
     errorToast
   } = useEDXToast(7000)
 
-  const filterInstancesWithoutYear = (instancesList: ODSInstance[]): ODSInstance[] => {
-    console.log('instanceList')
-    console.log(instancesList)
-    return instancesList.filter(instance => {
-      if (!instance.schoolYears) {
-        return false
-      }
+  // const filterInstancesWithoutYear = (instancesList: ODSInstance[]): ODSInstance[] => {
+  //   console.log('instanceList')
+  //   console.log(instancesList)
+  //   return instancesList.filter(instance => {
+  //     if (!instance.schoolYears) {
+  //       return false
+  //     }
 
-      if (instance.schoolYears.length == 0) {
-        return false
-      }
+  //     if (instance.schoolYears.length == 0) {
+  //       return false
+  //     }
 
-      return true
-    })
-  }
+  //     return true
+  //   })
+  // }
 
   const fetchInstancesList = async () => {
     if (!adminConfig) {
@@ -107,18 +108,18 @@ const useOdsInstanceTable = () => {
       return
     } 
             
-    const filteredInstances = filterInstancesWithoutYear(response.data.data)
+    // const filteredInstances = filterInstancesWithoutYear(response.data.data)
             
-    const mappedInstances = await Promise.all(filteredInstances.map(async (instance) =>
+    const mappedInstances = await Promise.all(response.data.map(async (instance) =>
       await mapToExtendedOdsInstance(instance)))
         
     setIsFetchingData(false)
     console.log(mock.get('Instances'))
     if(mappedInstances.length > 0) {
       setPaginatedData({
-        pageIndex: response.data.pageIndex,
-        pageSize: response.data.pageSize,
-        count: response.data.count,
+        pageIndex: MockPaginationData.pageIndex,
+        pageSize: MockPaginationData.maxPageSize,
+        count: response.data.length,
         data: mappedInstances.concat((mock.get('Instances') ?? []).map(a => ({
           ...mappedInstances[0],
           ...a 
@@ -128,7 +129,7 @@ const useOdsInstanceTable = () => {
   }
 
   const onOpenSetDefaultModal = (instanceId: string) => {
-    const instanceById = paginatedData.data.find(i => i.instanceId == instanceId)
+    const instanceById = paginatedData.data.find(i => i.odsInstanceId == instanceId)
 
     if (!instanceById) {
       return
@@ -139,7 +140,7 @@ const useOdsInstanceTable = () => {
   }
 
   const onOpenSetUpModal = (instanceId: string) => {
-    const instanceById = paginatedData.data.find(i => i.instanceId == instanceId)
+    const instanceById = paginatedData.data.find(i => i.odsInstanceId == instanceId)
 
     if (!instanceById) {
       return
@@ -155,7 +156,7 @@ const useOdsInstanceTable = () => {
     } 
 
     const instanceById = paginatedData.data
-      .find(instance => instance.instanceId == instanceId)
+      .find(instance => instance.odsInstanceId == instanceId)
 
     if (!instanceById) {
       return

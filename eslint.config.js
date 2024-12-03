@@ -13,17 +13,7 @@ export default [
       '**/node_modules/**' 
     ],
   },
-  {
-    files: [ '**/*.ts', '**/*.js' ],
-    rules: { indent: [ 'error', 2 ], }
-  },
-  {
-    files: [ '**/*.jsx', '**/*.tsx' ],
-    rules: {
-      'react/jsx-indent': [ 'error', 2 ],
-      'react/jsx-indent-props': [ 'error', 2 ],
-    }
-  },
+
   { files: [ '**/*.{js,mjs,cjs,ts,jsx,tsx}' ], },
   {
     languageOptions: { globals: globals.browser },
@@ -36,8 +26,9 @@ export default [
     rules: {
       quotes: [ 'error', 'single' ],
       semi: [ 'error', 'never' ],
-      'react/jsx-indent': [ 'error', 2 ],
+      indent: [ 'error', 2 ],
       'react/jsx-indent-props': [ 'error', 2 ],
+      'react/jsx-indent': [ 'error', 2 ],
       'array-bracket-spacing': [ 'error', 'always' ],
       'block-spacing': [ 'error', 'always' ],
       'space-in-parens': [ 'error', 'never' ],

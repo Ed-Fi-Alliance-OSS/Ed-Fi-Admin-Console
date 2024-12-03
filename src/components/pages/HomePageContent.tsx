@@ -1,23 +1,14 @@
 import {
-  Flex, Heading 
+  Flex, Heading
 } from '@chakra-ui/react'
 import { useLocation } from 'react-router-dom'
 import useDebugOnBoardingWizard from '../../hooks/debug/useDebugOnBoardingWizard'
 import useHelpLinks from '../../hooks/useHelpLinks'
-import useOnBoardingWizard from '../../hooks/useOnBoardingWizard'
-import useOnboardingWizardStepsData from '../../hooks/useOnBoardingWizardStepsData'
 import ActionNavigationList from '../common/ActionNavigationList'
-import ContentBlocker from '../common/ContentBlocker'
 import OnBoardingWizardDebugMenu from '../common/Debug/OnBoardingWizardDebugMenu'
 import ODSInstanceTableWrapper from '../common/ODS/ODSInstanceTableWrapper'
-import OnBoardingWizardBanner from '../common/OnBoarding/OnBoardingWizardBanner'
 
 const HomePageContent = () => {
-  const { isOBActive, 
-    currentStepIndex, 
-    getCurrentStepStatus } = useOnBoardingWizard()
-
-  const { onboardingStepsData } = useOnboardingWizardStepsData()
   const location = useLocation()
 
   const {
@@ -62,24 +53,10 @@ const HomePageContent = () => {
         onUpdateOBStep={handleUpdateOBStep}
       />
 
-      {isOBActive() && <>
-        <ContentBlocker />
-
-        <Flex
-          w='full'
-          zIndex='2'
-        >
-          <OnBoardingWizardBanner 
-            currentStepName={currentStepIndex > 0? onboardingStepsData.tabsData[currentStepIndex].tabName : onboardingStepsData.tabsData[0].tabName}
-            currentStepNumber={currentStepIndex + 1}
-            currentStepStatus={getCurrentStepStatus()}
-            totalSteps={onboardingStepsData.stepsData.length}
-          />
-        </Flex>
-      </>}
+      
 
       <Heading
-        mt={isOBActive()? '48px' : '16px'}
+        mt="16px"
         size='lg'
       >Admin Actions
       </Heading>

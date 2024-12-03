@@ -12,7 +12,8 @@
     "subtitle": "Subtitle",
     "logo": "/assets/logo-test.png",
     "basePath": "",
-    "helpLinkUrl": "/docs/index"
+    "helpLinkUrl": "/docs/index",
+    "multiTenancy": false
   },
   "plugins": [
     "test-plugin"

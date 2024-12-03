@@ -1,15 +1,17 @@
 import {
-  useContext, useState, useEffect 
+  useContext,
+  useEffect,
+  useState
 } from 'react'
 import { adminConsoleContext } from '../../context/adminConsoleContext'
 import { ODSInstance } from '../../core/ODSInstance.types'
 import useOdsInstanceService from '../../services/ODSInstances/OdsInstanceService'
 import {
-  GetOdsInstancesListRequest, UpdateOdsInstanceIsDefaultRequest 
+  GetOdsInstancesListRequest, UpdateOdsInstanceIsDefaultRequest
 } from '../../services/ODSInstances/OdsInstanceService.requests'
+import useEDXToast from '../common/useEDXToast'
 import useConfirmSetDefaultModal from './useConfirmSetDefaultModal'
 import useSetUpWizardModal from './useSetUpWizardModal'
-import useEDXToast from '../common/useEDXToast'
 
 interface useOdsInstanceDataProps {
     instanceYear: string | null
@@ -65,13 +67,13 @@ const useOdsInstanceData = ({ instanceYear }: useOdsInstanceDataProps) => {
       return
     } 
         
-    if (response.data.data.length == 0) {
+    if (response.data.length == 0) {
       return
     } 
         
-    console.log('Instance by id', response.data.data[0])
+    console.log('Instance by id', response.data[0])
 
-    setInstance(response.data.data[0])
+    setInstance(response.data[0])
   }
 
   const fetchInstanceByYear = async () => {
@@ -97,13 +99,13 @@ const useOdsInstanceData = ({ instanceYear }: useOdsInstanceDataProps) => {
       return
     } 
         
-    if (response.data.data.length == 0) {
+    if (response.data.length == 0) {
       return
     } 
         
-    console.log('Instance by year', response.data.data[0])
+    console.log('Instance by year', response.data[0])
 
-    setInstance(response.data.data[0])
+    setInstance(response.data[0])
   }
 
   const onSetIsDefault = async (instanceId: string, isDefault: boolean, validate: boolean) => {

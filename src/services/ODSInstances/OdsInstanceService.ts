@@ -33,7 +33,7 @@ const useOdsInstanceService = () => {
     // const url = `${baseUrl}/${odsInstancesActionRoutes.getInstancesList(actionParams.tenantId)}?${queryParams}`
     // const url = '/data-odsinstances.json'
     const url = actionParams.config.api?.useLocalMockData ?? true
-      ? `${config?.app.basePath}/mockdata/data-odsinstances.json`
+      ? `${config?.app.basePath}/mockdata/adminapi/data-odsinstances.json`
       : `${baseUrl}/adminconsole/odsinstances`
 
     const result = await getAsync<GetOdsInstancesListResponse>({
@@ -53,7 +53,7 @@ const useOdsInstanceService = () => {
     queryParams = `${queryParams}&filter=${filter}`
         
     // const url = `${baseUrl}/${odsInstancesActionRoutes.getInstancesList(actionParams.tenantId)}?${queryParams}`
-    const url  = `${config.app.basePath}/mockdata/data-odsinstances.json`
+    const url  = `${config.app.basePath}/mockdata/adminapi/data-odsinstances.json`
     
     const result = await getAsync<GetOdsInstancesListResponse>({
       url,
@@ -64,10 +64,7 @@ const useOdsInstanceService = () => {
 
     if(result.type === 'Response') { 
       return {
-        data: {
-          ...result.data,
-          data: result.data.data.filter(instance => instance.instanceId === instanceId) ?? [],
-        },
+        data: result.data.filter(instance => instance.odsInstanceId === instanceId) ?? [],
         type: 'Response' 
       }
     }

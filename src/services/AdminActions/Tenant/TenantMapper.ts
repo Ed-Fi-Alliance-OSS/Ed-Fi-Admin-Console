@@ -1,44 +1,19 @@
-import { SSOMethodDescriptor } from '../../../core/ssoMethods/SSOMethods.types'
 import {
-  DomainStatus, Tenant, TenantDomain, TenantStatus, TenantType 
+  DomainStatus, Tenant
 } from '../../../core/Tenant.types'
-import {
-  GetTenantResponse, IntTenantDomain 
-} from './TenantService.responses'
+import { GetTenantResponse } from './TenantService.responses'
 
 const mapToTenant = (response: GetTenantResponse): Tenant => {
   const tenant: Tenant = {
     tenantId: response.tenantId,
-    organizationName: response.organizationName,
-    organizationIdentifier: response.organizationIdentifier,
-    state: response.state,
-    tenantStatus: mapTenantStatus(response.tenantStatus),
-    tenantType: mapTenantType(response.tenantType),
-    identityProviders: mapProviders(response.identityProviders),
-    domains: mapDomains(response.domains),
-    isDemo: response.isDemo,
-    subscriptions: response.subscriptions,
-    enforceMfa: response.enforceMfa,
-    createdBy: response.createdBy,
-    createdDateTime: response.createdDateTime,
-    lastModifiedBy: response.lastModifiedBy,
-    lastModifiedDateTime: response.lastModifiedDateTime,
     onBoarding: { ...response.onBoarding },
-    organizations: response.organizations,
-    subscriptionsMigrated: response.subscriptionsMigrated,
-    settings: [
-      {
-        'code': 'setting1',
-        'value': 'value1',
-        'dataType': 'string'
-      }
-    ]
-    //response.settings.map(setting => ({...setting}))
+    edfiApiDiscoveryUrl: response.edfiApiDiscoveryUrl
   }
 
   return tenant
 }
 
+/*
 const mapProviders = (identityProviders: number[]): SSOMethodDescriptor[] => {
   const providers: SSOMethodDescriptor[] = identityProviders ? identityProviders.map(provider => {
     if (provider === 1) {
@@ -99,25 +74,7 @@ const mapTenantType = (type: number): TenantType => {
   return 'Student'
 }
 
-const getDomainStatus = (status: number): DomainStatus => {
-  if (status === 0) {
-    return 'Unknown'
-  }
 
-  if (status === 1) {
-    return 'Unverified'
-  }
-
-  if (status === 2) {
-    return 'Verified'
-  }
-
-  if (status === 3) {
-    return 'Rejected'
-  }
-
-  return 'Error'
-}
 
 const mapDomains = (domainsList: IntTenantDomain[]): TenantDomain[] => {
   domainsList = [
@@ -148,8 +105,53 @@ const mapDomains = (domainsList: IntTenantDomain[]): TenantDomain[] => {
 
   return tenantDomains
 }
+const mapTenants = (response: Tenant[]): Tenant[] => {
+  return response.map(tenant => ({
+    tenantId: tenant.tenantId,
+    edfiApiDiscoveryUrl: '',
+    onBoarding: tenant.onBoarding,
+    // organizationName: tenant.organizationName,
+    // organizationIdentifier: tenant.organizationIdentifier,
+    // state: tenant.state,
+    // tenantStatus: tenant.tenantStatus,
+    // tenantType: tenant.tenantType,
+    // identityProviders: tenant.identityProviders,
+    // domains: tenant.domains,
+    // isDemo: tenant.isDemo,
+    // subscriptions: tenant.subscriptions,
+    // enforceMfa: tenant.enforceMfa,
+    // createdBy: tenant.createdBy,
+    // createdDateTime: tenant.createdDateTime,
+    // lastModifiedBy: tenant.lastModifiedBy,
+    // lastModifiedDateTime: tenant.lastModifiedDateTime,
+    
+    // organizations: tenant.organizations,
+    // subscriptionsMigrated: tenant.subscriptionsMigrated,
+    // settings: tenant.settings
+  }))
+}
+*/
+
+const getDomainStatus = (status: number): DomainStatus => {
+  if (status === 0) {
+    return 'Unknown'
+  }
+
+  if (status === 1) {
+    return 'Unverified'
+  }
+
+  if (status === 2) {
+    return 'Verified'
+  }
+
+  if (status === 3) {
+    return 'Rejected'
+  }
+
+  return 'Error'
+}
 
 export {
-  mapToTenant,
-  getDomainStatus
+  getDomainStatus, mapToTenant
 }

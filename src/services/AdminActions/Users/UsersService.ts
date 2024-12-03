@@ -41,7 +41,7 @@ const useUserService = () => {
     }
 
     // const url = `${baseUrl}/${adminActionRoutes.getUsersList(actionParams.tenantId)}?${queryParams}`
-    const url = `${config.app.basePath}/mockdata/data-users.json`
+    const url = `${config.app.basePath}/mockdata/adminapi/data-users.json`
     
     const result = await getAsync<ApiResponseUser[]>({ 
       actionName: 'Get Users List',
@@ -186,7 +186,7 @@ const useUserService = () => {
     }
     
     // const url = `${baseUrl}/${adminActionRoutes.getInvitationsList(actionParams.tenantId)}?${queryParams}`
-    const url = `${config.app.basePath}/mockdata/data-invitations.json`
+    const url = `${config.app.basePath}/mockdata/adminapi/data-invitations.json`
         
     const result = await getAsync<GetInvitationsListResponse>({ 
       actionName: 'Get Invitations List',
