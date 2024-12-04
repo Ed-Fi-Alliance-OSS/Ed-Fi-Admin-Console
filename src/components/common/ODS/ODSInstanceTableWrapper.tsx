@@ -1,5 +1,5 @@
 import {
-  Button, Flex, Heading 
+  Button, Flex, Heading
 } from '@chakra-ui/react'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -45,7 +45,7 @@ const ODSInstanceTableWrapper = ({ tableMode, pickedInstance, onSelectInstance, 
   const nav = useNavigate()
 
   useEffect(() => {
-    onUpdateInstancesCount(paginatedData.data.length)
+    onUpdateInstancesCount(paginatedData.data?.length ?? 0)
   }, [ paginatedData.data ])
 
   function onAddBtnClick() {

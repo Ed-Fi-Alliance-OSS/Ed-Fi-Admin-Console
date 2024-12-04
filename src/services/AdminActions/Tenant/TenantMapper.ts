@@ -6,8 +6,7 @@ import { GetTenantResponse } from './TenantService.responses'
 const mapToTenant = (response: GetTenantResponse): Tenant => {
   const tenant: Tenant = {
     tenantId: response.tenantId,
-    onBoarding: { ...response.onBoarding },
-    edfiApiDiscoveryUrl: response.edfiApiDiscoveryUrl
+    document: { edfiApiDiscoveryUrl: response.document?.edfiApiDiscoveryUrl ?? '' }
   }
 
   return tenant

@@ -25,12 +25,12 @@ const ODSInstanceManagementTableRows = ({ tableMode, selectedInstance, instanceL
       return true
     } 
 
-    return instance.instanceId == selectedInstance?.instanceId
+    return instance.odsInstanceId == selectedInstance?.odsInstanceId
   }
 
   return (
     <>
-      {instanceList.filter(instance => filterInstancesFromMode(instance)).map((instance, index) => 
+      {instanceList?.filter(instance => filterInstancesFromMode(instance))?.map((instance, index) => 
         <ControlTableRow key={index}>
           <ODSInstanceManagementTableRowItem
             key={index}

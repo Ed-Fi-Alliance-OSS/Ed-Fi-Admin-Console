@@ -1,16 +1,15 @@
 import {
+  useApiService, useConfig
+} from '@edfi/admin-console-shared-sdk'
+import {
   useContext, useEffect, useState
 } from 'react'
 import { adminConsoleContext } from '../../context/adminConsoleContext'
 import { useMockData } from '../../context/mockDataContext'
-import {
-  ExtendedODSInstance, ODSInstance
-} from '../../core/ODSInstance.types'
-import { MockPaginationData } from '../../helpers/constants'
+import { ExtendedODSInstance } from '../../core/ODSInstance.types'
+import { usePluginContext } from '../../plugins/BasePlugin'
 import useOdsInstanceService from '../../services/ODSInstances/OdsInstanceService'
-import {
-  GetOdsInstancesListRequest, UpdateOdsInstanceIsDefaultRequest
-} from '../../services/ODSInstances/OdsInstanceService.requests'
+import { UpdateOdsInstanceIsDefaultRequest } from '../../services/ODSInstances/OdsInstanceService.requests'
 import useEDXToast from '../common/useEDXToast'
 import useControlTable from '../controlTable/useControlTable'
 import useConfirmSetDefaultModal from './useConfirmSetDefaultModal'
@@ -72,60 +71,27 @@ const useOdsInstanceTable = () => {
     errorToast
   } = useEDXToast(7000)
 
-  // const filterInstancesWithoutYear = (instancesList: ODSInstance[]): ODSInstance[] => {
-  //   console.log('instanceList')
-  //   console.log(instancesList)
-  //   return instancesList.filter(instance => {
-  //     if (!instance.schoolYears) {
-  //       return false
-  //     }
-
-  //     if (instance.schoolYears.length == 0) {
-  //       return false
-  //     }
-
-  //     return true
-  //   })
-  // }
+  const { config } = useConfig()
+  const { functionalities } = usePluginContext()
+  const apiService = functionalities.ApiService?.(config, useApiService)
 
   const fetchInstancesList = async () => {
     if (!adminConfig) {
       return
-    } 
-
-    const request: GetOdsInstancesListRequest = {
-      pageIndex: paginatedData.pageIndex,
-      pageSize: paginatedData.pageSize
     }
+
 
     setIsFetchingData(true)
-    const response = await getOdsInstancesList(
-      adminConfig.actionParams, 
-      request
-    )
+    const instancesResp = await apiService.instances.getAll()
+    console.log('instances getAll resp', instancesResp)
+    setPaginatedData({
+      pageIndex: 0,
+      pageSize: 100,
+      count: 100,
+      data: instancesResp
+    })
 
-    if (response.type == 'Error') {
-      return
-    } 
-            
-    // const filteredInstances = filterInstancesWithoutYear(response.data.data)
-            
-    const mappedInstances = await Promise.all(response.data.map(async (instance) =>
-      await mapToExtendedOdsInstance(instance)))
-        
     setIsFetchingData(false)
-    console.log(mock.get('Instances'))
-    if(mappedInstances.length > 0) {
-      setPaginatedData({
-        pageIndex: MockPaginationData.pageIndex,
-        pageSize: MockPaginationData.maxPageSize,
-        count: response.data.length,
-        data: mappedInstances.concat((mock.get('Instances') ?? []).map(a => ({
-          ...mappedInstances[0],
-          ...a 
-        } as ODSInstance)))
-      })
-    }
   }
 
   const onOpenSetDefaultModal = (instanceId: string) => {
@@ -133,8 +99,8 @@ const useOdsInstanceTable = () => {
 
     if (!instanceById) {
       return
-    } 
-   
+    }
+
     setSelectedInstance({ ...instanceById })
     onShowConfirmSetDefaultModal()
   }
@@ -144,7 +110,7 @@ const useOdsInstanceTable = () => {
 
     if (!instanceById) {
       return
-    } 
+    }
 
     setSelectedInstance({ ...instanceById })
     onShowSetUpWizardModal()
@@ -153,20 +119,20 @@ const useOdsInstanceTable = () => {
   const onSetIsDefault = async (instanceId: string, isDefault: boolean) => {
     if (!adminConfig) {
       return
-    } 
+    }
 
     const instanceById = paginatedData.data
       .find(instance => instance.odsInstanceId == instanceId)
 
     if (!instanceById) {
       return
-    } 
+    }
 
     const canSetAsDefaultResult = canSetAsDefault(instanceById, paginatedData.data)
 
     if (!canSetAsDefaultResult) {
       return
-    } 
+    }
 
     const request: UpdateOdsInstanceIsDefaultRequest = {
       tenantId: adminConfig.actionParams.tenantId,
@@ -175,7 +141,7 @@ const useOdsInstanceTable = () => {
       validate: true
     }
 
-    setUpdatingIsDefault({ 
+    setUpdatingIsDefault({
       instanceId,
       loading: true
     })
@@ -195,9 +161,9 @@ const useOdsInstanceTable = () => {
 
       errorToast('Failed to set instance as default')
 
-      return 
+      return
     }
-            
+
     await fetchInstancesList()
 
     setUpdatingIsDefault({

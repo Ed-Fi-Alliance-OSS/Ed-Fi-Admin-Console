@@ -1,4 +1,3 @@
-import { OnBoardingWizardData } from './onBoardingWizard/onBoardingWizard.types'
 
 export interface Organization {
   identifierType: string
@@ -91,25 +90,9 @@ export interface TenantDomain {
 
 export interface Tenant {
   tenantId: string
-  edfiApiDiscoveryUrl: string
-  onBoarding: OnBoardingWizardData
-  // tenantType: TenantType
-  // tenantStatus: TenantStatus 
-  // organizationIdentifier: string 
-  // organizationName: string 
-  // isDemo: boolean
-  // enforceMfa: boolean 
-  // state: string 
-  // subscriptionsMigrated: boolean 
-  // subscriptions: Subscription[]
-  // domains: TenantDomain[]
-  // createdBy: string 
-  // createdDateTime: string 
-  // lastModifiedBy: string 
-  // lastModifiedDateTime: string 
-  // identityProviders: IdentityProvider[]
-  // organizations: Organization[]
-  // settings: TenantSetting[]
+  document: {
+    edfiApiDiscoveryUrl: string
+  }
 }
 
 export interface TenantSetting {

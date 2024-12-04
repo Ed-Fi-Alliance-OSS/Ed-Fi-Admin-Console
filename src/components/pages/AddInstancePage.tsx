@@ -1,12 +1,15 @@
 import { Flex } from '@chakra-ui/react'
 import {
-  ChangeEvent, useState 
+  useApiService, useConfig
+} from '@edfi/admin-console-shared-sdk'
+import {
+  ChangeEvent, useState
 } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useMockData } from '../../context/mockDataContext'
-import { ODSInstance } from '../../core/ODSInstance.types'
 import routes from '../../core/routes'
 import useEDXToast from '../../hooks/common/useEDXToast'
+import { usePluginContext } from '../../plugins/BasePlugin'
 import BackToLink from '../common/BackToLink'
 import AddInstanceForm from '../common/Instance/AddInstanceForm'
 import TabContentWrapper from '../common/TabContentWrapper'
@@ -40,17 +43,20 @@ const AddInstancePage = () => {
 
   const { successToast } = useEDXToast()
   const nav = useNavigate()
+  const { functionalities } = usePluginContext()
+  const { config } = useConfig()
+  const apiService = functionalities.ApiService?.(config, useApiService)
 
-  const handleSaveChanges = () => {
-    // TODO: Add Real Instance API Call
-    mock.addElement('Instances', {
+  const handleSaveChanges = async () => {
+    await apiService.instances.create({
       instanceId: instanceName,
       instanceName: instanceName,
       schoolYears: [ Number.parseInt(schoolYear) ],
       baseUrl: 'https://999999.preprod-2024-2.edfi.pre.txedexchange.net'
-    } as ODSInstance)
+    })
 
     successToast(`Instance created successfully, Instance: ${instanceName}, Description: ${instanceDescription}, School Year: ${schoolYear}`)
+
     nav(-1)
   }
 

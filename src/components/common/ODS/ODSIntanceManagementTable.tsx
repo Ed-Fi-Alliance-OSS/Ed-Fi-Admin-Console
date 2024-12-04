@@ -43,7 +43,7 @@ const ODSInstanceManagementTable = ({ tableMode, tableHeaders, selectedInstance,
         onSelectInstance={onSelectInstance}
       />} 
       headers={filteredTableHeaders(tableHeaders)}
-      itemsCount={instanceList.length}
+      itemsCount={instanceList?.length ?? 0}
       loading={loading}
       thPadding='auto'
     />

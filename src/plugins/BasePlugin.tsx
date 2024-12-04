@@ -1,17 +1,17 @@
 import {
-  defaultsDeep, get, hasIn 
+  defaultsDeep, get, hasIn
 } from 'lodash-es'
 import React, {
-  createContext, ReactNode, useContext, useEffect, useState 
+  createContext, ReactNode, useContext, useEffect, useState
 } from 'react'
 import {
-  BasePluginComponent, BasePluginComponentNames, EmptyComponents 
+  BasePluginComponent, BasePluginComponentNames, EmptyComponents
 } from './BasePluginComponent'
 import {
-  BasePluginFunction, BasePluginFunctionNames 
+  BasePluginFunction, BasePluginFunctionNames
 } from './BasePluginFunction'
 import {
-  BasePluginStrings, BasePluginStringsKeys, StringsShape 
+  BasePluginStrings, BasePluginStringsKeys, StringsShape
 } from './BasePluginStrings'
 
 // Load all plugins inside the plugins folder
@@ -21,7 +21,7 @@ export function loadPlugins() {
 }
 
 type componentType = { [K in BasePluginComponentNames]: React.FC<typeof BasePluginComponent[K]> }
-type functionType = { [K in BasePluginFunctionNames]?: (...args: BasePluginFunction[K]) => void | unknown }
+type functionType = { [K in BasePluginFunctionNames]?: (...args: BasePluginFunction[K]) => (void | any) }
 
 export interface RegistryState {
   components: componentType;
@@ -35,7 +35,7 @@ export interface RegistryState {
   ) => void;
   registerFunctionality: <K extends BasePluginFunctionNames>(
     name: K,
-    functionality: (...args: BasePluginFunction[K]) => void
+    functionality: (...args: BasePluginFunction[K]) => any
   ) => void;
 }
 
@@ -44,7 +44,7 @@ const PluginContext = createContext<RegistryState | undefined>(undefined)
 export const PluginProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [ components, setComponents ] = useState<componentType>(EmptyComponents as componentType)
   const [ functionalities, setFunctionalities ] = useState<functionType>({})
-  const [ strings, setStrings ] = useState({})
+  const [ strings, setStrings ] = useState<Record<string, string>>({})
 
   const registerComponent: RegistryState['registerComponent'] = (name, component) => {
     setComponents((prev) => ({

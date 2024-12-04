@@ -1,8 +1,8 @@
 import {
-  TEEAuthDataContext, UserProfileContext 
+  TEEAuthDataContext, UserProfileContext
 } from '@edfi/admin-console-shared-sdk'
 import {
-  createContext, useContext, useEffect, useState 
+  createContext, useContext, useEffect, useState
 } from 'react'
 import useTenantService from '../services/AdminActions/Tenant/TenantService'
 
@@ -32,30 +32,25 @@ const ExternalODSProvider = ({ children, config }: ExternalODSProviderProps) => 
       return
     } 
 
-    const tenant = await getTenant({
-      tenantId: userProfile.tenantId,
-      token: auth.user.access_token,
-      config: edxAppConfig,
-      edxApiUrl: config.api.edxApiUri
-    })
+    // const tenant = await getTenant(userProfile.tenantId)
 
-    if (tenant.type === 'Response') {
-      if (!tenant.data.settings) {
-        return
-      } 
+    // if (tenant.type === 'Response') {
+    //   if (!tenant.data.settings) {
+    //     return
+    //   } 
             
-      const useExternalODSSetting = tenant.data.settings.find(setting => setting.code === 'useExternalEdFiOds')
+    //   const useExternalODSSetting = tenant.data.settings.find(setting => setting.code === 'useExternalEdFiOds')
         
-      if (!useExternalODSSetting) {
-        return
-      }
+    //   if (!useExternalODSSetting) {
+    //     return
+    //   }
 
-      if (useExternalODSSetting.value !== 'true') {
-        return
-      } 
+    //   if (useExternalODSSetting.value !== 'true') {
+    //     return
+    //   } 
 
-      setIsODS(true)
-    }
+    //   setIsODS(true)
+    // }
   }
 
   useEffect(() => {
