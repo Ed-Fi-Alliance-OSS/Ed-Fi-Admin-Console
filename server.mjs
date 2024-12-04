@@ -7,21 +7,6 @@ import defaultConfig from './app.config.json' assert { type: 'json' }
 import { mergeEnvVars } from './merge-env-vars.mjs'
 
 const app = express()
-
-app.use('/api', (req, res, next) => {
-  req.body = req.body || {}
-  req.body = {
-    ...req.body,
-    id: Date.now() + '-' + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15),
-  }
-
-  next()
-}, jsonServer.defaults({
-  bodyParser: true,
-  logger: true,
-  noCors: true 
-}), jsonServer.router('./mockdata/adminapi/db.json'))
-
 const originalConfig = mergeEnvVars(defaultConfig)
 let config = cloneDeep(originalConfig)
 const staticFileMiddleware = express.static('dist')
@@ -36,6 +21,19 @@ app.use(history({
 }))
 
 app.use(config.app.basePath, staticFileMiddleware)
+app.use('/api', (req, res, next) => {
+  req.body = req.body || {}
+  req.body = {
+    ...req.body,
+    id: Date.now() + '-' + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15),
+  }
+
+  next()
+}, jsonServer.defaults({
+  bodyParser: true,
+  logger: true,
+  noCors: true 
+}), jsonServer.router('./mockdata/adminapi/db.json'))
 
 app.listen(process.env.PORT || 8598, () => {
   console.table(config.app)

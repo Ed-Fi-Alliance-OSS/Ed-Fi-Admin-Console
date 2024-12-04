@@ -114,7 +114,7 @@
   "tenants": [
     {
       "document": {
-        "edfiApiDiscoveryUrl": "https://api.ed-fi.org/v7.2/api/v7"
+        "edfiApiDiscoveryUrl": "https://api.ed-fi.org/v7.2/api/v7/lo"
       },
       "id": 1,
       "tenantId": "1"

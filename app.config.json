@@ -13,20 +13,20 @@
     "logo": "/assets/logo-test.png",
     "basePath": "",
     "helpLinkUrl": "/docs/index",
-    "multiTenancy": false
+    "multiTenancy": true
   },
   "plugins": [
     "test-plugin"
   ],
   "auth": {
-    "authority": "http://localhost:28080/realms/myrealm/",
-    "clientId": "ac",
+    "authority": "http://localhost:28080/realms/edfi/",
+    "clientId": "97356e5cd86857f88eda9cae53edf790",
     "redirectUri": "http://localhost:8598/callback",
     "silentRedirectUri": "http://localhost:8598/silent-renew",
     "postLogoutRedirectUri": "http://localhost:8598",
-    "scope": "openid",
+    "scope": "openid edfiadmin/full-access",
     "responseType": "code",
-    "loadUserInfo": false,
+    "loadUserInfo": true,
     "automaticSilentRenew": true,
     "automaticSilentSignin": true
   }
