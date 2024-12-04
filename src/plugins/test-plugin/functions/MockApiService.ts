@@ -5,8 +5,7 @@ import {
 import { Tenant } from '../../../core/Tenant.types'
 
 export function MockApiService(config: EdxAppConfig, apiService: typeof useApiService) {
-  // const baseUrl = config.app.basePath + '/api'
-  const baseUrl = 'http://localhost:3000/api'
+  const baseUrl = config.app.basePath + '/api'
   const { api } = apiService()
   return {
     tenants: {
