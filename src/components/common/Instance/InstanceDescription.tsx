@@ -4,6 +4,7 @@ import useDisplayOdsVersions from '../../../hooks/odsInstances/useDisplayOdsVers
 import useOdsInstanceDescription from '../../../hooks/odsInstances/useOdsInstanceDescription'
 import useOdsInstanceEdFiStatus from '../../../hooks/odsInstances/useOdsInstanceEdFiStatus'
 import useOdsInstanceHostingType from '../../../hooks/odsInstances/useOdsInstanceHostingType'
+import useOdsInstanceYear from '../../../hooks/odsInstances/useOdsInstanceYear'
 import ODSInstanceEdFiStatus from '../ODS/ODSInstanceEdFiStatus'
 import InstanceDescriptionField from './InstanceDescriptionField'
 
@@ -26,6 +27,8 @@ const InstanceDescription = ({ instance }: InstanceDescriptionProps) => {
     edFiMetadata: instanceOdsMetadata
   })
 
+  const { getInstanceYear } = useOdsInstanceYear()
+
   const {
     getHostingType
   } = useOdsInstanceHostingType()
@@ -33,6 +36,21 @@ const InstanceDescription = ({ instance }: InstanceDescriptionProps) => {
   return (
     <Flex>
       <Flex flexDir='column'>
+        <InstanceDescriptionField
+          content={instance.document.name}
+          title='Instance Name'
+        />
+        
+        <InstanceDescriptionField
+          content={instance.odsInstanceId}
+          title='Instance ID'
+        />
+        
+        <InstanceDescriptionField
+          content={getInstanceYear(instance)?.toString() ?? ''}
+          title='Instance Year'
+        />
+
         <InstanceDescriptionField
           content={displayEdFiVersionContent()}
           title='Ed-Fi Version'

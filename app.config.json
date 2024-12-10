@@ -13,6 +13,7 @@
     "logo": "/assets/logo-test.png",
     "basePath": "",
     "helpLinkUrl": "/docs/index",
+    "termsUrl": "/docs/terms",
     "multiTenancy": true
   },
   "plugins": [

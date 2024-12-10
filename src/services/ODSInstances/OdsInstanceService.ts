@@ -1,6 +1,9 @@
-import { useConfig } from '@edfi/admin-console-shared-sdk'
-import { useMockData } from '../../context/mockDataContext'
+import {
+  useApiService, useConfig
+} from '@edfi/admin-console-shared-sdk'
+import { ODSInstance } from '../../core/ODSInstance.types'
 import useHttpService from '../../hooks/http/useHttpService'
+import { usePluginContext } from '../../plugins/BasePlugin'
 import { ActionParams } from '../AdminActions/adminAction.types'
 import odsInstancesActionRoutes from './odsInstancesActionRoutes'
 import {
@@ -10,13 +13,15 @@ import {
   GetOdsInstancesListResponse, ODSInstanceUpdatedResponse
 } from './OdsInstanceService.responses'
 import {
-  GetOdsInstancesListResult, PostOdsInstanceOnboardingStepResult, PutOdsInstanceIsDefaultResult, PutOdsInstanceOnboardingStepResult
+  GetOdsInstancesListResult, PostOdsInstanceOnboardingStepResult,
+  PutOdsInstanceOnboardingStepResult
 } from './OdsInstanceService.results'
 
 const useOdsInstanceService = () => {
   const { getAsync, postAsync, putAsync } = useHttpService()
   const { config } = useConfig()
-  const mock  = useMockData()
+  const { functionalities } = usePluginContext()
+  const apiService = functionalities.ApiService?.(config, useApiService)
 
   const getOdsInstancesList = async (actionParams: ActionParams, request: GetOdsInstancesListRequest): GetOdsInstancesListResult => {
     const baseUrl = actionParams.edxApiUrl
@@ -46,53 +51,12 @@ const useOdsInstanceService = () => {
     return result
   }
 
-  const getOdsInstanceById = async (actionParams: ActionParams, instanceId: string): GetOdsInstancesListResult => {
-    const baseUrl = actionParams.edxApiUrl
-    const filter = `id == "${instanceId}"`
-    let queryParams = `pageIndex=${0}&pageSize=${1}`
-    queryParams = `${queryParams}&filter=${filter}`
-        
-    // const url = `${baseUrl}/${odsInstancesActionRoutes.getInstancesList(actionParams.tenantId)}?${queryParams}`
-    const url  = `${config.app.basePath}/mockdata/adminapi/data-odsinstances.json`
-    
-    const result = await getAsync<GetOdsInstancesListResponse>({
-      url,
-      access_token: actionParams.token,
-      actionName: 'Get Instance By Id',
-      apiConfig: actionParams.config.api
-    })
-
-    if(result.type === 'Response') { 
-      return {
-        data: result.data.filter(instance => instance.odsInstanceId === instanceId) ?? [],
-        type: 'Response' 
-      }
-    }
-    
-    return result
+  const getOdsInstanceById = async (instanceId: string): Promise<ODSInstance> => {
+    return apiService.instances.get(instanceId)
   }
     
-  const updateInstanceIsDefault = async (actionParams: ActionParams, data: UpdateOdsInstanceIsDefaultRequest): PutOdsInstanceIsDefaultResult => {
-    const baseUrl = actionParams.edxApiUrl
-    // const url = `${baseUrl}/${odsInstancesActionRoutes.putInstanceIsDefault(actionParams.tenantId, data.instanceId)}`
-    // TODO - update the mock data
-    mock.set('instance.default', data.instanceId)
-    return {
-      data: {
-        instanceId: data.instanceId,
-        tenantId: data.tenantId
-      },
-      type: 'Response'
-    }
-    // const result = await putAsync<UpdateODSInstanceIsDefaultResponse, UpdateOdsInstanceIsDefaultRequest>({
-    //   url,
-    //   actionName: 'Update Is Default Instance',
-    //   access_token: actionParams.token,
-    //   data,
-    //   apiConfig: actionParams.config.api
-    // })
-    
-    // return result
+  const updateInstanceIsDefault = async (actionParams: ActionParams, data: UpdateOdsInstanceIsDefaultRequest) => {
+    return apiService.instances.update(data.instanceId, data)
   }
 
   const createInstanceOnboardingStep = async (actionParams: ActionParams, data: CreateOdsInstanceOnboardingStepRequest): PostOdsInstanceOnboardingStepResult => {

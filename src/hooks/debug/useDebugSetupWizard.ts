@@ -1,19 +1,20 @@
 import {
-  useState, useContext, ChangeEvent 
+  ChangeEvent,
+  useContext,
+  useState
 } from 'react'
 import { useNavigate } from 'react-router-dom'
 import {
-  AdminConsoleConfig, adminConsoleContext 
+  AdminConsoleConfig, adminConsoleContext
 } from '../../context/adminConsoleContext'
+import { ODSInstance } from '../../core/ODSInstance.types'
 import { OnBoardingStepStatus } from '../../core/onBoardingWizard/onBoardingWizard.types'
-import routes from '../../core/routes'
+import useOdsInstanceYear from '../odsInstances/useOdsInstanceYear'
 import useOnboardingWizardStepsData from '../useOnBoardingWizardStepsData'
 import useDebugSetupWizardActions from './useDebugSetupWizardActions'
-import { ODSInstance } from '../../core/ODSInstance.types'
 
 interface UseDebugSetupWizardProps {
     instance: ODSInstance | null
-    year: string 
     isDebug: boolean 
 }
 
@@ -27,9 +28,10 @@ const isDebugMode = (debugValue: boolean, config: AdminConsoleConfig | null) => 
   return false
 }
 
-const useDebugSetupWizard = ({ instance, year, isDebug }: UseDebugSetupWizardProps) => {
+const useDebugSetupWizard = ({ instance, isDebug }: UseDebugSetupWizardProps) => {
   const adminConfig = useContext(adminConsoleContext)
   const navigate = useNavigate()
+  const { getInstanceYear } = useOdsInstanceYear()
   const { handleUpdateStep, handleAddStep } = useDebugSetupWizardActions({ instance })
   const [ creatingStep, setCreatingStep ] = useState(false)
   const [ updatingStep, setUpdatingStep ] = useState(false)
@@ -71,7 +73,7 @@ const useDebugSetupWizard = ({ instance, year, isDebug }: UseDebugSetupWizardPro
       setUpdatingStep(false)
     }
         
-    navigate(`${routes.setUpWizard.url}/${year}`)
+    // navigate(`${routes.setUpWizard.url}/${getInstanceYear(instance)}`)
     window.location.reload()
   }
 
@@ -118,7 +120,7 @@ const useDebugSetupWizard = ({ instance, year, isDebug }: UseDebugSetupWizardPro
 
     setUpdatingAllSteps(false)
         
-    navigate(`${routes.setUpWizard.url}/${year}`)
+    // navigate(`${routes.setUpWizard.url}/${getInstanceYear(instance)}`)
     window.location.reload()
   }
 

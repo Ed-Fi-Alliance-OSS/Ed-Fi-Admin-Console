@@ -4,14 +4,18 @@ import useOdsInstanceYear from './useOdsInstanceYear'
 const useOdsInstanceDisplayYear = () => {
   const { getInstanceYear } = useOdsInstanceYear()
 
-  const getDisplayYear = (instance: ODSInstance) => {
+  const getDisplayYear = (instance: ODSInstance | null | undefined) => {
+    if (!instance) {
+      return 'Empty'
+    }
+
     const instanceYear = getInstanceYear(instance)
 
     if (!instanceYear) {
       return 'Empty'
     }
 
-    return `${instanceYear - 1} - ${instanceYear}`
+    return `${parseInt(instanceYear.toString()) - 1} - ${instanceYear}`
   }
 
   const getDisplayYearFromString = (year: string) => {

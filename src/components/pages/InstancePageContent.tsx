@@ -1,21 +1,21 @@
 import { Flex } from '@chakra-ui/react'
 import useOdsInstanceData from '../../hooks/odsInstances/useOdsInstanceData'
-import InstancePageHeader from '../common/Instance/InstancePageHeader'
-import InstanceTabsMenu from '../common/Instance/InstanceTabsMenu'
 import useOdsInstancePageContent from '../../hooks/odsInstances/useOdsInstancePageContent'
 import useSetUpWizardModal from '../../hooks/odsInstances/useSetUpWizardModal'
+import InstancePageHeader from '../common/Instance/InstancePageHeader'
+import InstanceTabsMenu from '../common/Instance/InstanceTabsMenu'
 
 interface InstancePageContentProps {
-    instanceYear: string  
+    instanceId: string  
 }
 
-const InstancePageContent = ({ instanceYear }: InstancePageContentProps) => {
+const InstancePageContent = ({ instanceId }: InstancePageContentProps) => {
   const { instance, 
     updatingInstance,
     onSetIsDefault,
     showConfirmSetDefaultModal,
     onShowConfirmSetDefaultModal,
-    onCloseConfirmSetDefaultModal } = useOdsInstanceData({ instanceYear: instanceYear })
+    onCloseConfirmSetDefaultModal } = useOdsInstanceData({ instanceId })
 
   const {
     showSetUpWizardModal,

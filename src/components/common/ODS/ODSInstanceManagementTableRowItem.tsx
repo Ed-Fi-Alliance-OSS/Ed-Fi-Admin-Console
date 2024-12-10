@@ -49,8 +49,12 @@ const ODSInstanceManagementTableRowItem = ({ tableMode, selectedInstance, instan
         </RadioGroup>
       </Td>}
 
-      <Td w='200px'>
+      <Td width={100}>
         <ODSInstanceYear instance={instance} />
+      </Td>
+
+      <Td width={400}>
+        {instance.document.name ?? ''}
       </Td>
 
       <Td>

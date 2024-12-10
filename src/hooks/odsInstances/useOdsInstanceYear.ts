@@ -1,17 +1,14 @@
 import { ODSInstance } from '../../core/ODSInstance.types'
 
 const useOdsInstanceYear = () => {
-  const getInstanceYear = (instance: ODSInstance) => {
-    // if (!instance) {
-    //   return null
-    // }
+  const getInstanceYear = (instance: ODSInstance | null | undefined) => {
+    if (!instance) {
+      return null
+    }
 
-    // if (instance.schoolYears.length == 0) {
-    //   return null
-    // }
-        
-    // return instance.schoolYears[0]
-    return new Date().getFullYear()
+    console.log(instance)
+
+    return instance.document?.odsInstanceContexts?.find(context => context.contextKey === 'schoolYearFromRoute')?.contextValue ?? new Date().getFullYear()
   }
 
   return { getInstanceYear }

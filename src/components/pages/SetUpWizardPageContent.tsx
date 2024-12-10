@@ -1,19 +1,19 @@
 import {
-  Flex, Heading 
+  Flex, Heading
 } from '@chakra-ui/react'
+import { useLocation } from 'react-router-dom'
 import routes from '../../core/routes'
+import useDebugSetupWizard from '../../hooks/debug/useDebugSetupWizard'
+import useOdsInstanceIdParam from '../../hooks/odsInstances/useOdsInstanceIdParam'
 import useOdsInstanceDisplayYear from '../../hooks/odsInstances/useOdsInstanceYearName'
 import useSetUpWizard from '../../hooks/setUpWizard/useSetUpWizard'
 import useHelpLinks from '../../hooks/useHelpLinks'
 import BackToLink from '../common/BackToLink'
+import SetupWizardDebugMenu from '../common/Debug/SetupWizardDebugMenu'
+import InstanceLoadingContent from '../common/Instance/InstanceLoadingContent'
 import NeedHelpLinks from '../common/NeedHelpLinks'
 import SetUpWizard from '../common/SetUpWizard/SetUpWizard'
 import SetUpWizardStart from '../common/SetUpWizard/SetUpWizardStart'
-import InstanceLoadingContent from '../common/Instance/InstanceLoadingContent'
-import { useLocation } from 'react-router-dom'
-import useDebugSetupWizard from '../../hooks/debug/useDebugSetupWizard'
-import SetupWizardDebugMenu from '../common/Debug/SetupWizardDebugMenu'
-import useOdsInstanceParamYear from '../../hooks/odsInstances/useOdsInstanceParamYear'
 
 const SetUpWizardPageContent = () => {
   const {
@@ -36,7 +36,7 @@ const SetUpWizardPageContent = () => {
   } = useSetUpWizard()
 
   const { getDisplayYear } = useOdsInstanceDisplayYear()
-  const { getInstanceYearFromPathName } = useOdsInstanceParamYear()
+  const { getInstanceIdFromPath } = useOdsInstanceIdParam()
   const { getAdminActionHelpLinks } = useHelpLinks()
   const location = useLocation()
 
@@ -54,7 +54,6 @@ const SetUpWizardPageContent = () => {
     handleResetOBSteps
   } = useDebugSetupWizard({ 
     instance,
-    year: getInstanceYearFromPathName(),
     isDebug: location.search.includes('debug') 
   })
 

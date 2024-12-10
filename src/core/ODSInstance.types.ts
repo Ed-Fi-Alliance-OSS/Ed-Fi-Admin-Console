@@ -6,10 +6,20 @@ export interface InstanceEdfiStatus {
 
 export type InstanceOperationStatus = 'Operational' | 'Offline'
 
+export interface ODSInstanceContext {
+  contextKey: 'schoolYearFromRoute'
+  contextValue: string
+  id: number | string
+  odsInstanceId: string | number
+}
+
 export interface ODSInstance {
-  odsInstanceId: string
-  name: string
-  instanceType?: string
+  odsInstanceId: string | number
+  document: {
+    name: string
+    instanceType?: string
+    odsInstanceContexts: ODSInstanceContext[]
+  }
 }
 
 export interface ExtendedODSInstance extends ODSInstance {
@@ -104,25 +114,25 @@ export interface Endpoint {
 }
 
 export interface AvailableInstance {
-    isSelected: boolean
-    district: string
-    instanceYear: string 
-    edfiVersion: string 
-    edfiStatus: InstanceEdfiStatus
+  isSelected: boolean
+  district: string
+  instanceYear: string
+  edfiVersion: string
+  edfiStatus: InstanceEdfiStatus
 }
 
 export interface InstanceDescription {
-    name: string 
-    description: string 
-    connection: string 
-    edfiExtension: string 
-    edfiVersion: string 
-    edfiStatus: InstanceEdfiStatus
-    tsdsVersion: string
-    educationOrgId: string 
-    stateOrgId: string 
-    campusesCount: number
-    staffCount: number 
-    studentsCount: number 
-    coursesCount: number
+  name: string
+  description: string
+  connection: string
+  edfiExtension: string
+  edfiVersion: string
+  edfiStatus: InstanceEdfiStatus
+  tsdsVersion: string
+  educationOrgId: string
+  stateOrgId: string
+  campusesCount: number
+  staffCount: number
+  studentsCount: number
+  coursesCount: number
 }

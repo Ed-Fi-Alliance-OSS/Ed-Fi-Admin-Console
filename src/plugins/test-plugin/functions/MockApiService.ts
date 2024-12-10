@@ -5,7 +5,7 @@ import {
 import { Tenant } from '../../../core/Tenant.types'
 
 export function MockApiService(config: EdxAppConfig, apiService: typeof useApiService) {
-  const baseUrl = config.app.basePath + '/api'
+  const baseUrl = window.location.origin.includes('localhost') ? 'http://localhost:3000/api' : config.app.basePath + '/api'
   const { api } = apiService()
   return {
     tenants: {
@@ -25,6 +25,7 @@ export function MockApiService(config: EdxAppConfig, apiService: typeof useApiSe
     odsinstances: {
       getAll: () => api.get(`${baseUrl}/odsinstances`).then(resp => resp.data),
       get: (odsInstanceId: string) => api.get(`${baseUrl}/odsinstances/${odsInstanceId}`).then(resp => resp.data),
+      update: (odsInstanceId: string, odsInstance: any) => api.patch(`${baseUrl}/odsinstances/${odsInstanceId}`, odsInstance).then(resp => resp.data),
     }
   }
 }

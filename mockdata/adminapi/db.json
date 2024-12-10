@@ -40,57 +40,6 @@
       "id": 4,
       "odsInstanceId": 4,
       "tenantId": 1
-    },
-    {
-      "document": {
-        "instanceType": null,
-        "name": "Instance #3",
-        "odsInstanceContexts": [
-          {
-            "contextKey": "schoolYearFromRoute",
-            "contextValue": "2026",
-            "id": 1,
-            "odsInstaneId": 2
-          }
-        ]
-      },
-      "id": 5,
-      "odsInstanceId": 4,
-      "tenantId": 1
-    },
-    {
-      "document": {
-        "instanceType": null,
-        "name": "Instance #3",
-        "odsInstanceContexts": [
-          {
-            "contextKey": "schoolYearFromRoute",
-            "contextValue": "2026",
-            "id": 1,
-            "odsInstaneId": 2
-          }
-        ]
-      },
-      "id": 6,
-      "odsInstanceId": 4,
-      "tenantId": 1
-    },
-    {
-      "document": {
-        "instanceType": null,
-        "name": "Instance #3",
-        "odsInstanceContexts": [
-          {
-            "contextKey": "schoolYearFromRoute",
-            "contextValue": "2026",
-            "id": 1,
-            "odsInstaneId": 2
-          }
-        ]
-      },
-      "id": 7,
-      "odsInstanceId": 4,
-      "tenantId": 1
     }
   ],
   "odsinstances": [

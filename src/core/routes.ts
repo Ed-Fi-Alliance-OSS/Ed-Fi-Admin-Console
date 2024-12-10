@@ -20,21 +20,21 @@ const routes: AppRoute = {
     url: '/',
     name: 'Home' 
   },
-  onBoardingWizard: {
-    url: '/onBoarding',
-    name: 'On Boarding Wizard' 
-  },
-  setUpWizard: {
-    url: '/setupwizard',
-    name: 'Set Up Wizard' 
-  },
+  // onBoardingWizard: {
+  //   url: '/onBoarding',
+  //   name: 'On Boarding Wizard' 
+  // },
+  // setUpWizard: {
+  //   url: '/setupwizard',
+  //   name: 'Set Up Wizard' 
+  // },
   console: {
     url: '/console',
     name: 'Console' 
   },
   instance: {
-    url: '/schoolyear/:year',
-    name: 'School Year' 
+    url: '/instance/:odsInstanceId',
+    name: 'Instance' 
   },
   addInstance: {
     url: '/addInstance',

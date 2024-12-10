@@ -25,16 +25,16 @@ const tabsList = [
 ]
 
 interface InstanceTabsMenuProps {
-    instance: ODSInstance | null
-    showConfirmSetDefaultModal: boolean 
-    showSetUpWizardModal: boolean 
-    canSetAsDefault: boolean 
-    updatingInstance: boolean 
-    onSetIsDefault: (instanceId: string, isDefault: boolean, validate: boolean) => void
-    onShowConfirmSetDefaultModal: () => void
-    onCloseConfirmSetDefaultModal: () => void 
-    onCloseSetUpWizardModal: () => void
-    onShowSetUpWizardModal: () => void
+  instance: ODSInstance | null
+  showConfirmSetDefaultModal: boolean
+  showSetUpWizardModal: boolean
+  canSetAsDefault: boolean
+  updatingInstance: boolean
+  onSetIsDefault: (instanceId: string, isDefault: boolean, validate: boolean) => void
+  onShowConfirmSetDefaultModal: () => void
+  onCloseConfirmSetDefaultModal: () => void
+  onCloseSetUpWizardModal: () => void
+  onShowSetUpWizardModal: () => void
 }
 
 const InstanceTabsMenu = ({ instance, showConfirmSetDefaultModal, showSetUpWizardModal, canSetAsDefault, updatingInstance, onSetIsDefault, onCloseSetUpWizardModal, onShowSetUpWizardModal, onShowConfirmSetDefaultModal, onCloseConfirmSetDefaultModal }: InstanceTabsMenuProps) => {
@@ -42,8 +42,8 @@ const InstanceTabsMenu = ({ instance, showConfirmSetDefaultModal, showSetUpWizar
   const { getDisplayYear } = useOdsInstanceDisplayYear()
   const { externalODS } = useExternalODSData()
 
-  const { 
-    instanceOdsMetadata 
+  const {
+    instanceOdsMetadata
   } = useOdsInstanceDescription({ instance })
 
   const { getOdsInstanceEdFiStatus } = useOdsInstanceEdFiStatus({
@@ -90,7 +90,7 @@ const InstanceTabsMenu = ({ instance, showConfirmSetDefaultModal, showSetUpWizar
   const getSchoolYear = () => {
     if (!instance) {
       return 0
-    } 
+    }
 
     const year = 0//getInstanceYear(instance)
 
@@ -106,7 +106,7 @@ const InstanceTabsMenu = ({ instance, showConfirmSetDefaultModal, showSetUpWizar
       flexDir='column'
       w='full'
     >
-      { instance && <ConfirmSetDefaultInstanceModal
+      {instance && <ConfirmSetDefaultInstanceModal
         instance={instance}
         show={showConfirmSetDefaultModal}
         updatingInstance={updatingInstance}
@@ -114,17 +114,17 @@ const InstanceTabsMenu = ({ instance, showConfirmSetDefaultModal, showSetUpWizar
         onSetIsDefault={onSetIsDefault}
       />}
 
-      { instance && <SetUpInstanceModal 
-        instance={instance} 
-        show={showSetUpWizardModal} 
+      {instance && <SetUpInstanceModal
+        instance={instance}
+        show={showSetUpWizardModal}
         onClose={onCloseSetUpWizardModal}
-      /> }
-                
+      />}
+
       <Heading
         mt='5px'
         size='lg'
       >
-        { instance? getDisplayYear(instance) : 'Loading...'}
+        {instance ? getDisplayYear(instance) : 'Loading...'}
       </Heading>
 
       <Flex
@@ -138,24 +138,25 @@ const InstanceTabsMenu = ({ instance, showConfirmSetDefaultModal, showSetUpWizar
           position='relative'
           w='full'
         >
-          <AdminConsoleTabsMenu 
+          <AdminConsoleTabsMenu
             includeWrapper={false}
             initialIndex={0}
             tabsList={tabsList.filter(tab => selectTabs(tab)).map((tab, index) => updateTabs(tab, index))}
           >
             <TabContentWrapper>
-              { instance? <InstanceSummaryTabContent instance={instance} /> 
-                : 
-              <InstanceLoadingContent /> }
+              {instance 
+                ? <InstanceSummaryTabContent instance={instance} />
+                :
+                <InstanceLoadingContent />}
             </TabContentWrapper>
 
             <TabContentWrapper>
-              { externalODS.isExternalODS? 
-                <EdFiSettingsTabContent /> : 
+              {externalODS.isExternalODS ?
+                <EdFiSettingsTabContent /> :
                 <PartnersAndApplicationTabContent
                   instance={instance}
                   schoolYear={getSchoolYear()}
-                /> }
+                />}
             </TabContentWrapper>
 
             <TabContentWrapper>

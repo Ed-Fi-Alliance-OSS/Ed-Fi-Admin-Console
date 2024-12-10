@@ -1,5 +1,5 @@
 import {
-  Button, Flex 
+  Button, Flex
 } from '@chakra-ui/react'
 import { useNavigate } from 'react-router-dom'
 import { ODSInstance } from '../../../core/ODSInstance.types'
@@ -33,8 +33,8 @@ const ManageInstanceBtn = ({ instance, canSetAsDefault, updatingIsDefault, onOpe
 
       <ManageInstanceControlBtnPopover
         canSetAsDefault={canSetAsDefault}
-        instanceId={instance.instanceId} 
-        isDefault={instance.isDefault}
+        instanceId={instance.odsInstanceId?.toString() ?? '0'} 
+        isDefault={false}
         updatingIsDefault={updatingIsDefault}
         onOpenSetDefaultModal={onOpenSetDefaultModal}
       />

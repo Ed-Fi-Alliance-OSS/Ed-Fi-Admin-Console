@@ -90,7 +90,7 @@ const ODSInstanceTableWrapper = ({ tableMode, pickedInstance, onSelectInstance, 
             size='sm'
             onClick={onAddBtnClick}
           >
-            Add Instance
+            Add ODS Instance
           </Button>
         </Flex>
       </Flex> }  
@@ -119,6 +119,16 @@ const ODSInstanceTableWrapper = ({ tableMode, pickedInstance, onSelectInstance, 
               sortingType: orderBy.order,
               onSortAsc: () => onOrderBy('Year', 'asc'),
               onSortDesc: () => onOrderBy('Year', 'desc') 
+            }}
+            />,
+            <ControlTableHeader headerData={{
+              text: 'Instance Name',
+              fieldName: 'InstanceName',
+              sortedByField: orderBy.field,
+              showSorting: true,
+              sortingType: orderBy.order,
+              onSortAsc: () => onOrderBy('InstanceName', 'asc'),
+              onSortDesc: () => onOrderBy('InstanceName', 'desc') 
             }}
             />,
             <ControlTableHeader headerData={{

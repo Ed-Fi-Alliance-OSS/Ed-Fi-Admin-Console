@@ -1,5 +1,7 @@
 import {
-  useContext, useState, useEffect 
+  useContext,
+  useEffect,
+  useState
 } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { adminConsoleContext } from '../../context/adminConsoleContext'
@@ -8,8 +10,8 @@ import { InstanceOnBoardingStepStatus } from '../../core/setUpWizard/setUpWizard
 import useOdsInstanceService from '../../services/ODSInstances/OdsInstanceService'
 import { UpdateOdsInstanceOnboardingStepRequest } from '../../services/ODSInstances/OdsInstanceService.requests'
 import useOdsInstanceData from '../odsInstances/useOdsInstanceData'
+import useOdsInstanceIdParam from '../odsInstances/useOdsInstanceIdParam'
 import useSetUpWizardGeneration from './useSetUpWizardGeneration'
-import useOdsInstanceParamYear from '../odsInstances/useOdsInstanceParamYear'
 
 export interface AllStepsProgressData {
     hasConnectedSIS: boolean  
@@ -23,7 +25,7 @@ interface UpdateProgressProps {
 }
 
 const useSetUpWizard = () => {
-  const { getInstanceYearFromPathName } = useOdsInstanceParamYear()
+  const { getInstanceId: getInstanceYearFromPathName } = useOdsInstanceIdParam()
 
   const { 
     instance, 
