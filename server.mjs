@@ -15,13 +15,7 @@ app.use(`${config.app.basePath}/config.json`, (_, res) => {
   res.json(config)
 })
 
-app.use(history({
-  index: `${config.app.basePath}/index.html`,
-  verbose: true,
-}))
-
-app.use(config.app.basePath, staticFileMiddleware)
-app.use('/api', (req, res, next) => {
+app.use(`${config.app.basePath}/api`, (req, res, next) => {
   req.body = req.body || {}
   req.body = {
     ...req.body,
@@ -34,6 +28,13 @@ app.use('/api', (req, res, next) => {
   logger: true,
   noCors: true 
 }), jsonServer.router('./mockdata/adminapi/db.json'))
+
+app.use(history({
+  index: `${config.app.basePath}/index.html`,
+  verbose: true,
+}))
+
+app.use(config.app.basePath, staticFileMiddleware)
 
 app.listen(process.env.PORT || 8598, () => {
   console.table(config.app)
