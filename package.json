@@ -14,7 +14,7 @@
     "lint:fix": "eslint . --quiet --fix"
   },
   "dependencies": {
-    "@edfi/admin-console-shared-sdk": "2.2.10-alpha.8",
+    "@edfi/admin-console-shared-sdk": "2.2.10-alpha.9",
     "@chakra-ui/icons": "2.1.1",
     "@chakra-ui/react": "2.8.2",
     "@emotion/react": "11.11.3",

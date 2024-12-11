@@ -3,19 +3,19 @@ import {
   Spinner
 } from '@chakra-ui/react'
 import {
-  CustomFormLabel, CustomInput
+  CustomFormLabel, CustomInput,
+  Tenant
 } from '@edfi/admin-console-shared-sdk'
 import {
   useEffect, useState
 } from 'react'
-import isUrl from 'validator/es/lib/isURL'
 import useEDXToast from '../../../hooks/common/useEDXToast'
 import useFormValidationErrors from '../../../hooks/validations/useFormValidationErrors'
 import useTenantService from '../../../services/AdminActions/Tenant/TenantService'
 
 export function TenantInstanceForm() {
   const { errors, handleAllErrors, handleSingleError } = useFormValidationErrors()
-  const [ tenantInstanceData, setTenantInstanceData ] = useState({ edfiApiDiscoveryUrl: '' })
+  const [ tenantInstanceData, setTenantInstanceData ] = useState<Tenant>()
   const { getTenantById } = useTenantService()
   const [ loading, setLoading ] = useState(false)
   const { successToast } = useEDXToast(1000)
@@ -25,7 +25,7 @@ export function TenantInstanceForm() {
     setLoading(true)
     getTenantById(TenantId).then((tenant) => {
       setLoading(false)
-      setTenantInstanceData({ edfiApiDiscoveryUrl: tenant.document.edfiApiDiscoveryUrl })
+      setTenantInstanceData(tenant)
     })
   }, [])
 
@@ -43,14 +43,14 @@ export function TenantInstanceForm() {
   }
 
   function onInputChange(val) {
-    if(!isUrl) {
-      handleSingleError({
-        field: 'edfiApiDiscoveryUrl',
-        error: { message: 'Please enter a valid URL' } 
-      })
-    }
+  //   if(!isUrl) {
+  //     handleSingleError({
+  //       field: 'edfiApiDiscoveryUrl',
+  //       error: { message: 'Please enter a valid URL' } 
+  //     })
+  //   }
 
-    setTenantInstanceData({ edfiApiDiscoveryUrl: val.target.value })
+  //   setTenantInstanceData({ })
   }
 
   return (
@@ -62,17 +62,35 @@ export function TenantInstanceForm() {
 
       <FormControl>
         <CustomFormLabel 
-          htmlFor='edfiApiDiscoveryUrl' 
-          text='Edfi Api Discovery URL'
+          htmlFor='name' 
+          text='Tenant Name'
         />
 
         <CustomInput 
           readOnly
-          error={errors && errors['edfiApiDiscoveryUrl'] && errors['edfiApiDiscoveryUrl'].message}
-          id='edfiApiDiscoveryUrl'
-          value={tenantInstanceData.edfiApiDiscoveryUrl}
+          error={errors && errors['name'] && errors['name'].message}
+          id='name'
+          value={tenantInstanceData?.document.name}
           onChange={onInputChange}
         />
+
+        <Flex
+          flexDir='column'
+          mt={4}
+        >
+          <CustomFormLabel 
+            htmlFor='edfiApiDiscoveryUrl'
+            text='Edfi Api Discovery URL'
+          />
+
+          <CustomInput 
+            readOnly
+            error={errors && errors['edfiApiDiscoveryUrl'] && errors['edfiApiDiscoveryUrl'].message}
+            id='edfiApiDiscoveryUrl'
+            value={tenantInstanceData?.document.edfiApiDiscoveryUrl}
+            onChange={onInputChange}
+          />
+        </Flex>
       </FormControl>
     </Flex>
   )

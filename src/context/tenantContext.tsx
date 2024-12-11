@@ -33,7 +33,7 @@ export const TenantsContextProvider: FC<TenantsContextProviderProps> = ({ childr
   const apiService = functionalities.ApiService?.(config, useApiService)
   const [ tenants, setTenants ] = useState<Tenant[]>([])
   const [ selectedTenant, setSelectedTenant ] = useState<Tenant>()
-  const [ selectedTenantName ] = useSessionStorage('selectedTenant', '', true)
+  const [ selectedTenantName, setSelectedTenantName ] = useSessionStorage('selectedTenant', '', true)
   const [ selectedTenantId, setSelectedTenantId ] = useState<string>()
 
   async function fetchTenants () {
@@ -57,6 +57,7 @@ export const TenantsContextProvider: FC<TenantsContextProviderProps> = ({ childr
     }
 
     if(!selectedTenantName) {
+      setSelectedTenantName(tenants?.at(0)?.document?.name ?? '')
       return
     }
 

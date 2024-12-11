@@ -1,4 +1,3 @@
-import { Heading } from '@chakra-ui/react'
 import routes from '../../core/routes'
 import BackToLink from './BackToLink'
 
@@ -10,11 +9,6 @@ const AdminConsoleHeader = () => {
         url={routes.home.url}
       />
 
-      <Heading 
-        mt='5px'
-        size='lg'
-      >Admin Actions
-      </Heading>
     </>
   )
 }
