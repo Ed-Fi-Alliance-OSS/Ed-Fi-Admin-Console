@@ -1,6 +1,6 @@
 import { WarningTwoIcon } from '@chakra-ui/icons'
 import {
-  Button, Flex, Text 
+  Button, Flex, Text
 } from '@chakra-ui/react'
 
 interface EdFiSettingsConnectSectionProps {
@@ -22,7 +22,7 @@ const EdFiSettingsConnectSection = ({ onConnect }: EdFiSettingsConnectSectionPro
       <WarningTwoIcon fontSize='24px' />
 
       <Text
-        fontFamily='Open sans'
+        fontFamily='Poppins'
         fontSize='14px'
         fontWeight='700'
         mt='6px'
@@ -31,7 +31,7 @@ const EdFiSettingsConnectSection = ({ onConnect }: EdFiSettingsConnectSectionPro
 
       <Text
         color='gray.800'
-        fontFamily='Open sans'
+        fontFamily='Poppins'
         fontWeight='400'
         mt='6px'
       >

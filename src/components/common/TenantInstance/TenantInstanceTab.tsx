@@ -1,5 +1,4 @@
 import {
-  Button,
   Flex, FormControl,
   Spinner
 } from '@chakra-ui/react'
@@ -17,30 +16,30 @@ import useTenantService from '../../../services/AdminActions/Tenant/TenantServic
 export function TenantInstanceForm() {
   const { errors, handleAllErrors, handleSingleError } = useFormValidationErrors()
   const [ tenantInstanceData, setTenantInstanceData ] = useState({ edfiApiDiscoveryUrl: '' })
-  const { getTenant, updateTenant } = useTenantService()
+  const { getTenantById } = useTenantService()
   const [ loading, setLoading ] = useState(false)
   const { successToast } = useEDXToast(1000)
   const TenantId = '1'
 
   useEffect(() => {
     setLoading(true)
-    getTenant(TenantId).then((tenant) => {
+    getTenantById(TenantId).then((tenant) => {
       setLoading(false)
       setTenantInstanceData({ edfiApiDiscoveryUrl: tenant.document.edfiApiDiscoveryUrl })
     })
   }, [])
 
   function onSave() {
-    console.log('the data is saving')
-    console.log(tenantInstanceData)
-    setLoading(true)
-    updateTenant(TenantId, {
-      document: { edfiApiDiscoveryUrl: tenantInstanceData.edfiApiDiscoveryUrl ?? '' },
-      tenantId: TenantId
-    }).then(() => {
-      setLoading(false)
-      successToast('Tenant Instance updated successfully')
-    })
+    // console.log('the data is saving')
+    // console.log(tenantInstanceData)
+    // setLoading(true)
+    // updateTenant(TenantId, {
+    //   document: { edfiApiDiscoveryUrl: tenantInstanceData.edfiApiDiscoveryUrl ?? '' },
+    //   tenantId: TenantId
+    // }).then(() => {
+    //   setLoading(false)
+    //   successToast('Tenant Instance updated successfully')
+    // })
   }
 
   function onInputChange(val) {
@@ -68,23 +67,13 @@ export function TenantInstanceForm() {
         />
 
         <CustomInput 
+          readOnly
           error={errors && errors['edfiApiDiscoveryUrl'] && errors['edfiApiDiscoveryUrl'].message}
           id='edfiApiDiscoveryUrl'
           value={tenantInstanceData.edfiApiDiscoveryUrl}
           onChange={onInputChange}
         />
       </FormControl>
-
-      <Button
-        maxW='200px'
-        minW='150px'
-        mt='32px'
-        size='lg'
-        variant='primaryBlue600'
-        onClick={onSave}
-      >
-        Save
-      </Button>
     </Flex>
   )
 }

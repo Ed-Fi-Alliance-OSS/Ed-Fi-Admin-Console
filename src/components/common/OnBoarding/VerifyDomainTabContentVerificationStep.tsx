@@ -1,5 +1,5 @@
 import {
-  Flex, Text 
+  Flex, Text
 } from '@chakra-ui/react'
 import { ChangeEvent } from 'react'
 import { DomainData } from '../../../hooks/adminActions/dns/useVerifyDomain'
@@ -27,7 +27,7 @@ const VerifyDomainTabContentVerificationStep = ({ domainsList, isCheckingDomainS
         <Text
           borderRadius='4px'
           display='flex'
-          fontFamily='Open sans'
+          fontFamily='Poppins'
           fontSize='18px'
           fontWeight='700'
           size='md'
@@ -36,7 +36,7 @@ const VerifyDomainTabContentVerificationStep = ({ domainsList, isCheckingDomainS
         </Text>
 
         <Text
-          fontFamily='Open sans'
+          fontFamily='Poppins'
           fontSize='16px'
           fontWeight='400'
           ml='10px'

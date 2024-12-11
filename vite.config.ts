@@ -12,7 +12,15 @@ export default defineConfig(({ mode }) => {
   return {
     base: (isProd && envConfig.app.basePath) ? `${envConfig.app.basePath}/` : '/',
     css: { preprocessorOptions: { scss: { api: 'modern' } } },
-    server: { port: +(process.env.PORT || 8598) },
+    server: {
+      port: +(process.env.PORT || 8598),
+      watch: {
+        ignored: [
+          '!**/dist/**',
+          '!**/node_modules/**'
+        ]
+      }
+    },
     plugins: [
       {
         mode: 'pre',

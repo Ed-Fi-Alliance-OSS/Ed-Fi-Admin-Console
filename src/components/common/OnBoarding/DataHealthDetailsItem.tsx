@@ -1,5 +1,7 @@
 import {
-  GridItem, Flex, Text 
+  Flex,
+  GridItem,
+  Text
 } from '@chakra-ui/react'
 
 interface DataHealthDetailsItemProps {
@@ -28,7 +30,7 @@ const DataHealthDetailsItem = ({ text, value }: DataHealthDetailsItemProps) => {
       >
         <Text 
           color={selectTextColor()}
-          fontFamily='Open sans'
+          fontFamily='Poppins'
           fontSize='14px'
           fontWeight='700'
         >{text}

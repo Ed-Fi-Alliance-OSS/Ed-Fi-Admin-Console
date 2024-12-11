@@ -12,7 +12,7 @@ import useTenantService from '../../../services/AdminActions/Tenant/TenantServic
 
 const useDistrictSchoolsTable = () => {
   const { auth, edxAppConfig } = useContext(TEEAuthDataContext)
-  const { getTenant } = useTenantService()
+  const { getTenantById } = useTenantService()
   const adminConfig = useContext(adminConsoleContext)
   const { userProfile } = useContext(UserProfileContext)
   const [ districtsList, setDistrictsList ] = useState<Tenant[]>([])
@@ -21,7 +21,7 @@ const useDistrictSchoolsTable = () => {
 
   const fetchDistrictsData = async () => {
     if (auth && auth.user && edxAppConfig && userProfile && adminConfig) {
-      const result = await getTenant(adminConfig.actionParams)
+      const result = await getTenantById('1')
       // const result: Tenant[] = []
 
       if (Array.isArray(result) && result.length > 0) {

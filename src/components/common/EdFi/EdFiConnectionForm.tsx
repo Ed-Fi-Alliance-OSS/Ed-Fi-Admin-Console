@@ -1,13 +1,13 @@
 import {
-  Button, Flex, FormControl, Text 
+  Button, Flex, FormControl, Text
 } from '@chakra-ui/react'
 import {
-  CustomFormLabel, CustomInput, CustomSelect 
+  CustomFormLabel, CustomInput, CustomSelect
 } from '@edfi/admin-console-shared-sdk'
 import { ChangeEvent } from 'react'
 import { FormDataErrors } from '../../../core/validation/FormValidations.types'
 import {
-  EdFiConnectionFormData, EdFiConnectionFormMode, EdFiConnectionVerificationStatus 
+  EdFiConnectionFormData, EdFiConnectionFormMode, EdFiConnectionVerificationStatus
 } from '../../../hooks/edfi/useEdFiConnectionForm.types'
 import EdFiConnectionVerification from './EdFiConnectionVerification'
 
@@ -39,7 +39,7 @@ const EdFiConnectionForm = ({ formData, errors, mode, inOnboarding, verification
         </Text>
 
         <Text
-          fontFamily='Open sans'
+          fontFamily='Poppins'
           fontWeight='400'
           w='500px'
         >

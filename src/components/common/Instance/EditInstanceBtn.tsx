@@ -1,6 +1,6 @@
 import { EditIcon } from '@chakra-ui/icons'
 import {
-  Button, Text 
+  Button, Text
 } from '@chakra-ui/react'
 
 interface EditInstanceBtnProps {
@@ -28,7 +28,7 @@ const EditInstanceBtn = ({ onClick }: EditInstanceBtnProps) => {
 
       <Text
         color='blue.600'
-        fontFamily='Open sans'
+        fontFamily='Poppins'
         fontWeight='400'
         ml='5px'
         size='md'

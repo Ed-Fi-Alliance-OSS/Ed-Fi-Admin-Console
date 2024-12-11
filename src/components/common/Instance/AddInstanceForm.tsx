@@ -2,32 +2,23 @@ import {
   Button, Flex, FormControl
 } from '@chakra-ui/react'
 import {
-  CustomFormHeader, CustomFormLabel, CustomInput, CustomSelect, UserProfileContext, useTenantSelectPopover
+  CustomFormHeader, CustomFormLabel, CustomInput, CustomSelect
 } from '@edfi/admin-console-shared-sdk'
-import {
-  ChangeEvent, useContext
-} from 'react'
+import { ChangeEvent } from 'react'
 import { usePluginContext } from '../../../plugins/BasePlugin'
 
 interface AddInstanceFormProps {
-  instanceName: string
-  instanceDescription: string
-  schoolYear: string
-  schoolYearOptions: string[]
+  name: string
+  connectionString: string
+  type
   onInputChange: (e: ChangeEvent<HTMLInputElement>) => void
-  onSelectChange: (e: ChangeEvent<HTMLSelectElement>) => void
+  onSelectChange: (e: ChangeEvent<HTMLInputElement>) => void
   onSaveChanges: () => void
 }
 
 
 const AddInstanceForm = ({ instanceName, instanceDescription, schoolYear, schoolYearOptions, onInputChange, onSelectChange, onSaveChanges }: AddInstanceFormProps) => {
   const { getString } = usePluginContext()
-  const { userProfile } = useContext(UserProfileContext)
-
-  const { topItemsList } = useTenantSelectPopover({
-    onChangeTenantId: () => { },
-    userProfile: userProfile,
-  })
 
   return (
     <Flex
@@ -48,11 +39,7 @@ const AddInstanceForm = ({ instanceName, instanceDescription, schoolYear, school
             text="Instance Name"
           />
 
-          <CustomSelect
-            options={topItemsList.map(tenant => ({
-              value: tenant.organizationIdentifier,
-              text: tenant.organizationName 
-            }))}
+          <CustomInput
             id='instanceName'
             value={instanceName}
             onChange={onSelectChange}
@@ -61,13 +48,13 @@ const AddInstanceForm = ({ instanceName, instanceDescription, schoolYear, school
 
         <FormControl mt='16px'>
           <CustomFormLabel
-            htmlFor="instanceDescription"
-            text="Description"
+            htmlFor="connectionString"
+            text="Connection String"
           />
 
           <CustomInput
-            id="instanceDescription"
-            value={instanceDescription}
+            id="connectionString"
+            value={connectionString}
             onChange={onInputChange}
           />
         </FormControl>

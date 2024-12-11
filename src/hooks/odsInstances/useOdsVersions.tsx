@@ -20,7 +20,7 @@ const useOdsVersions = () => {
     if (!metadata) {
       return <Tag
         colorScheme='blue'
-        fontFamily='Open Sans'
+        fontFamily='Poppins'
         size='lg'
       >Core
       </Tag>
@@ -29,7 +29,7 @@ const useOdsVersions = () => {
     if (!metadata.dataModels) {
       return <Tag
         colorScheme='blue'
-        fontFamily='Open Sans'
+        fontFamily='Poppins'
         size='lg'
       >Core
       </Tag>
@@ -39,7 +39,7 @@ const useOdsVersions = () => {
       return <Tag
         key={dataModel.name}
         colorScheme='blue'
-        fontFamily='Open Sans'
+        fontFamily='Poppins'
         size='lg'
       >{dataModel.name} ({dataModel.version})
       </Tag>

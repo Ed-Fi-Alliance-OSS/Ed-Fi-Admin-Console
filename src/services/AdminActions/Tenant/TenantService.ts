@@ -1,27 +1,25 @@
 import {
+  Tenant,
   useApiService, useConfig
 } from '@edfi/admin-console-shared-sdk'
-import { Tenant } from '../../../core/Tenant.types'
 import { usePluginContext } from '../../../plugins/BasePlugin'
-import { UpdateTenantRequest } from './TenantService.requests'
-import { UpdateTenantResult } from './TenantService.results'
 
 const useTenantService = () => {
   const { config } = useConfig()
   const { functionalities } = usePluginContext()
   const apiService = functionalities.ApiService?.(config, useApiService)
 
-  const getTenant = async (tenantId: string): Promise<Tenant> => {
+  const getTenantById = async (tenantId: string): Promise<Tenant> => {
     return apiService.tenants.get(tenantId)
   }
-    
-  const updateTenant = async (tenantId: string, data: UpdateTenantRequest): UpdateTenantResult => {
-    return apiService.tenants.update(tenantId, data)
+
+  const getTenants = async (): Promise<Tenant[]> => {
+    return apiService.tenants.getAll()
   }
     
   return {
-    getTenant,
-    updateTenant
+    getTenantById,
+    getTenants
   }
 }
 

@@ -1,16 +1,16 @@
 import {
-  ChangeEvent, useState 
-} from 'react'
-import {
-  Button, Flex, FormControl, Text 
+  Button, Flex, FormControl, Text
 } from '@chakra-ui/react'
+import {
+  CustomFormLabel, CustomSelect
+} from '@edfi/admin-console-shared-sdk'
+import {
+  ChangeEvent, useState
+} from 'react'
 import TabHeading from '../TabHeading'
 import DescriptorsTable from './DescriptorsTable'
 import EducationOrganizationsTable from './EducationOrganizationsTable'
 import PermissionsAccordion from './PermissionsAccordion'
-import {
-  CustomFormLabel, CustomSelect 
-} from '@edfi/admin-console-shared-sdk'
 
 const dataSourceOptions = [
   'Select',
@@ -83,7 +83,7 @@ const DataManagementTabContent = () => {
 
           <Text
             color='gray.500'
-            fontFamily='Open sans'
+            fontFamily='Poppins'
             fontSize='18px'
             fontWeight='400'
             mb='5px'

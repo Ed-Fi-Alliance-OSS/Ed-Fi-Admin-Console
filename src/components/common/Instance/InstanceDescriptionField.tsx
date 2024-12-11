@@ -1,5 +1,5 @@
 import {
-  Flex, Text 
+  Flex, Text
 } from '@chakra-ui/react'
 
 interface InstanceDescriptionFieldProps {
@@ -15,7 +15,7 @@ const InstanceDescriptionField = ({ title, content }: InstanceDescriptionFieldPr
     >
       <Text
         color='gray.600'
-        fontFamily='Open sans'
+        fontFamily='Poppins'
         fontWeight='400'
         size='sm'
       >
@@ -24,7 +24,7 @@ const InstanceDescriptionField = ({ title, content }: InstanceDescriptionFieldPr
 
       {typeof(content) === 'string' || typeof(content) === 'number'?
         <Text
-          fontFamily='Open sans'
+          fontFamily='Poppins'
           fontWeight='700'
           size='lg'
         >

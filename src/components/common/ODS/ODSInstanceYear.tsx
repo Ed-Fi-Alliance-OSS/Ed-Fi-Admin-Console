@@ -1,5 +1,5 @@
 import {
-  Flex, Link 
+  Flex, Link
 } from '@chakra-ui/react'
 import { Link as RouterLink } from 'react-router-dom'
 import { ODSInstance } from '../../../core/ODSInstance.types'
@@ -24,7 +24,7 @@ const ODSInstanceYear = ({ instance }: ODSInstanceYearProps) => {
       <Link 
         as={RouterLink} 
         color='blue.600'
-        fontFamily='Open sans'
+        fontFamily='Poppins'
         fontWeight='700'
         lineHeight='22px'
         size='md'

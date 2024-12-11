@@ -12,7 +12,7 @@ const SubscriptionLicensesAmount = ({ subscriptionId, amount, onManageSubscriber
     <Button
       color='blue.600'
       cursor='pointer'
-      fontFamily='Open sans'
+      fontFamily='Poppins'
       fontWeight='700'
       minW='auto'
       size='md'

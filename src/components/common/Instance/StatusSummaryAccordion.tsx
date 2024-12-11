@@ -1,11 +1,11 @@
 import {
   Accordion,
-  AccordionItem,
   AccordionButton,
-  AccordionPanel,
   AccordionIcon,
-  Text,
+  AccordionItem,
+  AccordionPanel,
   Flex,
+  Text,
 } from '@chakra-ui/react'
 import { InstanceEdfiStatus } from '../../../core/ODSInstance.types'
 import ODSInstanceEdFiStatus from '../ODS/ODSInstanceEdFiStatus'
@@ -53,7 +53,7 @@ const StatusSummaryAccordion = ({ instanceList }: StatusSummaryAccordionProps) =
 
             <Text 
               color='blue.600'
-              fontFamily='Open sans'
+              fontFamily='Poppins'
               fontWeight='700'
               ml='10px'
               size='16px'

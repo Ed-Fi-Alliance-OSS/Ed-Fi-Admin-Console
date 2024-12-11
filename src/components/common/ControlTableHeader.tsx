@@ -1,8 +1,8 @@
 import {
-  TriangleDownIcon, TriangleUpIcon 
+  TriangleDownIcon, TriangleUpIcon
 } from '@chakra-ui/icons'
 import {
-  Button, Flex, Text 
+  Button, Flex, Text
 } from '@chakra-ui/react'
 import { ControlTableHeaderField } from '../../core/controlTable'
 
@@ -20,7 +20,7 @@ const ControlTableHeader = ({ headerData, justifyContent }: ControlTableHeaderPr
     >
       <Text
         color='black'
-        fontFamily='Open sans'
+        fontFamily='Poppins'
         fontSize='14px'
         fontWeight='700'
         lineHeight='20px'

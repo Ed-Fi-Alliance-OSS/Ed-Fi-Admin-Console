@@ -1,5 +1,5 @@
 import {
-  Button, Flex, Text 
+  Flex, Text
 } from '@chakra-ui/react'
 import OnBoardingTabContentWrapper from './OnBoardingTabContentWrapper'
 import SelectSSOMethodTable from './SelectSSOMethodTable'
@@ -8,7 +8,7 @@ const SelectSSOMethodTabContent = () => {
   return (
     <OnBoardingTabContentWrapper>
       <Text
-        fontFamily='Open sans'
+        fontFamily='Poppins'
         fontWeight='400'
         textAlign='justify'
         w='730px'
@@ -30,7 +30,7 @@ const SelectSSOMethodTabContent = () => {
       >
         {false && <Text
           color='blue.500'
-          fontFamily='Open sans'
+          fontFamily='Poppins'
           fontWeight='700'
           size='md'
         >

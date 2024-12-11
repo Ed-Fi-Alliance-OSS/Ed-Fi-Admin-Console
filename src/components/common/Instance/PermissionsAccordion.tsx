@@ -1,5 +1,5 @@
 import {
-  Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel, Flex, Text 
+  Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel, Flex, Text
 } from '@chakra-ui/react'
 import usePermissionsAccordion from '../../../hooks/adminActions/ods/usePermissionsAccordion'
 import AccordionItemSkeleton from '../AccordionItemSkeleton'
@@ -16,7 +16,7 @@ const PermissionsAccordion = () => {
       <Text
         border='1px'
         borderColor='gray.300'
-        fontFamily='Open sans'
+        fontFamily='Poppins'
         fontWeight='700'
         padding='10px 50px'
         size='sm'
@@ -51,7 +51,7 @@ const PermissionsAccordion = () => {
 
                 <Text 
                   color='blue.600'
-                  fontFamily='Open sans'
+                  fontFamily='Poppins'
                   fontWeight='700'
                   ml='10px'
                 >
@@ -70,7 +70,7 @@ const PermissionsAccordion = () => {
               >
                 <Text
                   color='blue.600'
-                  fontFamily='Open sans'
+                  fontFamily='Poppins'
                   fontWeight='700'
                   mb='16px'
                   size='lg'

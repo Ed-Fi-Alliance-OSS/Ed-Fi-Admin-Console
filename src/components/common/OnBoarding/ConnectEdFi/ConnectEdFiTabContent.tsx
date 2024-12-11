@@ -1,10 +1,10 @@
 import {
-  Flex, Text 
+  Flex, Text
 } from '@chakra-ui/react'
 import { ChangeEvent } from 'react'
 import { FormDataErrors } from '../../../../core/validation/FormValidations.types'
 import {
-  EdFiConnectionFormData, EdFiConnectionFormMode, EdFiConnectionVerificationStatus 
+  EdFiConnectionFormData, EdFiConnectionFormMode, EdFiConnectionVerificationStatus
 } from '../../../../hooks/edfi/useEdFiConnectionForm.types'
 import EdFiConnectionForm from '../../EdFi/EdFiConnectionForm'
 import OnBoardingTabContentWrapper from '../OnBoardingTabContentWrapper'
@@ -25,7 +25,7 @@ const ConnectEdFiTabContent = ({ formData, mode, verificationStatus, isVerifying
   return (
     <OnBoardingTabContentWrapper>
       <Text
-        fontFamily='Open sans'
+        fontFamily='Poppins'
         fontWeight='400'
         textAlign='justify'
         w='720px'

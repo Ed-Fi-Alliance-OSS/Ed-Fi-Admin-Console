@@ -1,17 +1,17 @@
+import { AddIcon } from '@chakra-ui/icons'
 import {
-  Button, Flex, FormControl, Text 
+  Button, Flex, FormControl, Text
 } from '@chakra-ui/react'
+import {
+  CustomFormLabel, CustomSelect
+} from '@edfi/admin-console-shared-sdk'
+import { ChangeEvent } from 'react'
+import { EdfiApplicationAuthData } from '../../../core/Edfi/EdfiApplications'
+import { SISProviderConnectionState } from '../../../core/sisProviders/SISProviders.types'
+import { SISProvidersOption } from '../../../hooks/adminActions/edfi/useSISProvidersForm.types'
 import SISCredentialsField from './SISCredentialsField'
 import SISEndpointsField from './SISEndpointsField'
 import SISProviderConnectionField from './SISProviderConnectionField'
-import { ChangeEvent } from 'react'
-import { AddIcon } from '@chakra-ui/icons'
-import {
-  CustomFormLabel, CustomSelect 
-} from '@edfi/admin-console-shared-sdk'
-import { SISProviderConnectionState } from '../../../core/sisProviders/SISProviders.types'
-import { EdfiApplicationAuthData } from '../../../core/Edfi/EdfiApplications'
-import { SISProvidersOption } from '../../../hooks/adminActions/edfi/useSISProvidersForm.types'
 
 interface OptionalSISProviderFormProps {
     authenticationUrl: string
@@ -73,7 +73,7 @@ const OptionalSISProviderForm = ({ authenticationUrl,
 
       {!showOptionalForm? <Flex flexDir='column'>
         <Text
-          fontFamily='Open sans'
+          fontFamily='Poppins'
           fontSize='14px'
           fontWeight='400'
           mt='8px'
@@ -199,7 +199,7 @@ const OptionalSISProviderForm = ({ authenticationUrl,
 
           <Flex mt='16px'>
             <Text 
-              fontFamily='Open sans'
+              fontFamily='Poppins'
               size='sm'
             >
               For help connecting, reach out to your source provider's support services or read through their provided documentation.

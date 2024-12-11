@@ -1,25 +1,25 @@
 import { CloseIcon } from '@chakra-ui/icons'
 import {
   Accordion,
-  AccordionItem,
   AccordionButton,
-  AccordionPanel,
   AccordionIcon,
+  AccordionItem,
+  AccordionPanel,
+  Button,
   Flex,
   Text,
-  Button,
 } from '@chakra-ui/react'
-import { EdfiVendorWithApplications } from '../../../hooks/adminActions/edfi/usePartnersAndApplicationsAccordion.types'
+import { TablePagination } from '@edfi/admin-console-shared-sdk'
+import { useContext } from 'react'
+import { adminConsoleContext } from '../../../context/adminConsoleContext'
+import { DeletingState } from '../../../core/deletingState.types'
 import { EdfiApplication } from '../../../core/Edfi/EdfiApplications'
+import { EdfiVendorWithApplications } from '../../../hooks/adminActions/edfi/usePartnersAndApplicationsAccordion.types'
+import useControlTablePagination from '../../../hooks/controlTable/useControlTablePagination'
+import useControlTableSorting from '../../../hooks/controlTable/useControlTableSorting'
 import AccordionItemSkeleton from '../AccordionItemSkeleton'
 import ApplicationDetailsTable from './ApplicationDetailsTable'
 import PartnersAndApplicationAccordionHeader from './PartnersAndApplicationAccordionHeader'
-import { DeletingState } from '../../../core/deletingState.types'
-import { useContext } from 'react'
-import { adminConsoleContext } from '../../../context/adminConsoleContext'
-import { TablePagination } from '@edfi/admin-console-shared-sdk'
-import useControlTableSorting from '../../../hooks/controlTable/useControlTableSorting'
-import useControlTablePagination from '../../../hooks/controlTable/useControlTablePagination'
 
 interface PartnersAndApplicationAccordionProps {
     vendorsWithApplicationsList: EdfiVendorWithApplications[]
@@ -79,7 +79,6 @@ const PartnersAndApplicationAccordion = ({ vendorsWithApplicationsList, isDeleti
       />
 
       <Accordion
-        allowMultiple
         allowToggle
         w='full'
       >

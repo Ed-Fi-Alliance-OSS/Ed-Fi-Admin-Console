@@ -1,7 +1,11 @@
-import { useState } from 'react'
 import {
-  Tabs, TabList, Tab, TabIndicator, TabPanel, TabPanels, Flex 
+  Flex,
+  Tab, TabIndicator,
+  TabList,
+  TabPanel, TabPanels,
+  Tabs
 } from '@chakra-ui/react'
+import { useState } from 'react'
 import TabContentWrapper from './TabContentWrapper'
 
 interface AdminConsoleTabsMenuProps {
@@ -36,7 +40,7 @@ const AdminConsoleTabsMenu = ({ children, tabsList, initialIndex, contentMt, inc
                 key={tab}
                 _notFirst={{ ml: '32px' }}
                 _selected={{ color: 'blue.600' }}
-                fontFamily='Open sans'
+                fontFamily='Poppins'
                 fontWeight='bold'
                 padding='0'
               >{tab}

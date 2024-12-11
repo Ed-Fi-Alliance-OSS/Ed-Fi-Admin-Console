@@ -1,7 +1,7 @@
-import { useState } from 'react'
 import {
-  Flex, Text 
+  Flex, Text
 } from '@chakra-ui/react'
+import { useState } from 'react'
 import AddAPIClientModal from './AddAPIClientModal'
 import APIClientsTabHeader from './APIClientsTabHeader'
 import APIClientsTable from './APIClientsTable'
@@ -38,7 +38,7 @@ const APIClientsTab = () => {
             w='full'
           >
             <Text 
-              fontFamily='Open sans'
+              fontFamily='Poppins'
               fontWeight='400'
               size='md'
             >
@@ -46,7 +46,7 @@ const APIClientsTab = () => {
             </Text> 
 
             <Text
-              fontFamily='Open sans'
+              fontFamily='Poppins'
               fontWeight='400'
               size='md'
             >

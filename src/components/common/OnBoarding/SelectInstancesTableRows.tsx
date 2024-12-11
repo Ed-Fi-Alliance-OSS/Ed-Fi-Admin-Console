@@ -1,10 +1,10 @@
 import {
-  Flex, Td, Text 
+  Flex, Td, Text
 } from '@chakra-ui/react'
+import { CustomCheckbox } from '@edfi/admin-console-shared-sdk'
 import { ChangeEvent } from 'react'
 import { AvailableInstance } from '../../../core/ODSInstance.types'
 import ControlTableRow from '../ControlTableRow'
-import { CustomCheckbox } from '@edfi/admin-console-shared-sdk'
 import ODSInstanceEdFiStatus from '../ODS/ODSInstanceEdFiStatus'
 
 interface SelectInstancesTableRowsProps {
@@ -29,7 +29,7 @@ const SelectInstancesTableRows = ({ instancesList, showChecked, onSelectInstance
 
               <Text
                 color='gray.700'
-                fontFamily='Open sans'
+                fontFamily='Poppins'
                 fontWeight='400'
                 ml={showChecked? '10px' : '0px'}
                 size='md'
@@ -42,7 +42,7 @@ const SelectInstancesTableRows = ({ instancesList, showChecked, onSelectInstance
           <Td w={showChecked? 'auto' : '30%'}>
             <Text
               color='blue.600'
-              fontFamily='Open sans'
+              fontFamily='Poppins'
               fontWeight='700'
               size='md'
             >
@@ -53,7 +53,7 @@ const SelectInstancesTableRows = ({ instancesList, showChecked, onSelectInstance
           <Td w={showChecked? 'auto' : '30%'}>
             <Text
               color='gray.700'
-              fontFamily='Open sans'
+              fontFamily='Poppins'
               fontWeight='400'
               size='md'
             >

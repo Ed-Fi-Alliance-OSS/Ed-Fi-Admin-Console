@@ -1,13 +1,14 @@
 import {
-  Flex, Link, Text 
+  Flex, Link, Text
 } from '@chakra-ui/react'
 import { useContext } from 'react'
 import { adminConsoleContext } from '../../../context/adminConsoleContext'
 import { Invitation } from '../../../core/invitations/Invitation.types'
+import { ExtendedODSInstance } from '../../../core/ODSInstance.types'
 import { SISProviderInfo } from '../../../core/sisProviders/SISProviders.types'
 import { VerifiedDomainInfo } from '../../../core/verifyDomain/VerifyDomain.types'
 import {
-  EdFiConnectionFormData, EdFiConnectionVerificationStatus 
+  EdFiConnectionFormData, EdFiConnectionVerificationStatus
 } from '../../../hooks/edfi/useEdFiConnectionForm.types'
 import useExternalODSData from '../../../hooks/useExternalODSData'
 import ConnectedEdFiTable from './ConnectEdFi/ConnectedEdFiTable'
@@ -20,7 +21,6 @@ import SelectedInstancesTable from './SelectedInstancesTable'
 import SelectSSOMethodTable from './SelectSSOMethodTable'
 import TrainingModuleList from './Training/TrainingModuleList'
 import VerifiedDomainInfoTable from './VerifiedDomainInfoTable'
-import { ExtendedODSInstance } from '../../../core/ODSInstance.types'
 
 
 interface FinalizeTabContentProps {
@@ -41,7 +41,7 @@ const FinalizeTabContent = ({ connectedSISProvidersList, verifiedDomainList, con
   return (
     <OnBoardingTabContentWrapper>
       <Text
-        fontFamily='Open sans'
+        fontFamily='Poppins'
         fontWeight='400'
         w='730px'
       >
@@ -75,7 +75,7 @@ const FinalizeTabContent = ({ connectedSISProvidersList, verifiedDomainList, con
 
           <Text
             color='blue.500'
-            fontFamily='Open sans'
+            fontFamily='Poppins'
             fontSize='16px'
             fontWeight='400'
             ml='16px'
@@ -224,7 +224,7 @@ const FinalizeTabContent = ({ connectedSISProvidersList, verifiedDomainList, con
               isReview={true}
               showReload={true}
             /> : <Text
-              fontFamily='Open sans'
+              fontFamily='Poppins'
               fontSize='24px'
               fontWeight='600'
               w='730px'
@@ -251,7 +251,7 @@ const FinalizeTabContent = ({ connectedSISProvidersList, verifiedDomainList, con
 
           <Text
             color='blue.500'
-            fontFamily='Open sans'
+            fontFamily='Poppins'
             fontSize='16px'
             fontWeight='400'
             ml='16px'

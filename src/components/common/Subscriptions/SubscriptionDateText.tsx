@@ -7,7 +7,7 @@ interface SubscriptionDateTextProps {
 const SubscriptionDateText = ({ date }: SubscriptionDateTextProps) => {
   return (
     <Text
-      fontFamily='Open sans'
+      fontFamily='Poppins'
       fontWeight='400'
       size='md'
     >

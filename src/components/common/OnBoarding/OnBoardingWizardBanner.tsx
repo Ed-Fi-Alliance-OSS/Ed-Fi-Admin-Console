@@ -1,11 +1,10 @@
 import {
-  Button, Flex, Heading, Img, Text 
+  Button, Flex, Heading, Img, Text
 } from '@chakra-ui/react'
 import { Link as RouterLink } from 'react-router-dom'
-import { Link } from '@chakra-ui/react'
+import { OnBoardingStepStatus } from '../../../core/onBoardingWizard/onBoardingWizard.types'
 import routes from '../../../core/routes'
 import getAppScope from '../../../helpers/getAppScope'
-import { OnBoardingStepStatus } from '../../../core/onBoardingWizard/onBoardingWizard.types'
 
 interface OnBoardingWizardBannerProps {
     currentStepStatus: OnBoardingStepStatus
@@ -58,7 +57,7 @@ const OnBoardingWizardBanner = ({ currentStepStatus, currentStepName, currentSte
         >
           <Text
             color='white'
-            fontFamily='Open sans'
+            fontFamily='Poppins'
             fontWeight='400'
             size='sm'
           >
@@ -67,7 +66,7 @@ const OnBoardingWizardBanner = ({ currentStepStatus, currentStepName, currentSte
 
           <Text
             color='white'
-            fontFamily='Open sans'
+            fontFamily='Poppins'
             fontWeight='700'
             ml='5px'
           >

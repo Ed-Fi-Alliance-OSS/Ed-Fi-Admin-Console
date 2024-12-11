@@ -1,5 +1,5 @@
 import {
-  Flex, Text 
+  Flex, Text
 } from '@chakra-ui/react'
 import SelectSSOMethodTable from '../OnBoarding/SelectSSOMethodTable'
 import TabHeading from '../TabHeading'
@@ -15,7 +15,7 @@ const SSOTabContent = () => {
           <TabHeading text="Single Sign-On" />
 
           <Text 
-            fontFamily='Open sans'
+            fontFamily='Poppins'
             fontWeight='400'
             lineHeight='22px'
             mt='16px'

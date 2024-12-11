@@ -14,7 +14,7 @@ const CommonTooltip = ({ bg, iconColor, label, size }: CommonTooltipProps) => {
       <Tooltip 
         hasArrow 
         bg={bg}
-        fontFamily='Open sans'
+        fontFamily='Poppins'
         fontSize={size}
         fontWeight='400'
         h='auto'

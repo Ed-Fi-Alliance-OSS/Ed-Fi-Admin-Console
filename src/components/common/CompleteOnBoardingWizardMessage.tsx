@@ -1,5 +1,5 @@
 import {
-  Flex, Text 
+  Flex, Text
 } from '@chakra-ui/react'
 
 const CompleteOnBoardingWizardMessage = () => {
@@ -13,7 +13,7 @@ const CompleteOnBoardingWizardMessage = () => {
       w='full'
     >
       <Text 
-        fontFamily='Open sans'
+        fontFamily='Poppins'
         fontWeight='400'
         size='md'
       >

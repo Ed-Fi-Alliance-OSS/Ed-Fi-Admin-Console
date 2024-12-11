@@ -1,5 +1,5 @@
 import {
-  Td, Text 
+  Td, Text
 } from '@chakra-ui/react'
 import { SISProviderInfo } from '../../../core/sisProviders/SISProviders.types'
 import ControlTableRow from '../ControlTableRow'
@@ -17,7 +17,7 @@ const ConnectedSISProvidersTableRows = ({ connectedSISProvidersList }: Connected
           <Td w='15%'>
             <Text
               color='blue.600'
-              fontFamily='Open sans'
+              fontFamily='Poppins'
               fontWeight='700'
               size='md'
             >

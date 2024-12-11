@@ -1,5 +1,5 @@
 import {
-  Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel, Flex, Text 
+  Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel, Flex, Text
 } from '@chakra-ui/react'
 
 interface ResourceInfoData {
@@ -48,7 +48,7 @@ const PermissionsAccordionResourceInfo = ({ resourceInfoData }: PermissionsAccor
 
                 <Text 
                   color='blue.600'
-                  fontFamily='Open sans'
+                  fontFamily='Poppins'
                   fontWeight='700'
                   ml='10px'
                 >

@@ -1,10 +1,10 @@
 import {
-  Flex, Text 
+  Flex, Text
 } from '@chakra-ui/react'
+import { ExtendedODSInstance } from '../../../core/ODSInstance.types'
+import { ODSInstanceTableMode } from '../ODS/ODSInstanceTable.types'
 import OnBoardingTabContentWrapper from './OnBoardingTabContentWrapper'
 import SelectedInstancesTable from './SelectedInstancesTable'
-import { ODSInstanceTableMode } from '../ODS/ODSInstanceTable.types'
-import { ExtendedODSInstance } from '../../../core/ODSInstance.types'
 
 interface SelectInstancesTabContentProps {
     tableMode: ODSInstanceTableMode
@@ -21,7 +21,7 @@ const SelectInstancesTabContent = ({ tableMode, selectedInstance, settingAsDefau
   return (
     <OnBoardingTabContentWrapper>
       <Text
-        fontFamily='Open sans'
+        fontFamily='Poppins'
         fontWeight='400'
         textAlign='justify'
         w='720px'
@@ -54,7 +54,7 @@ const SelectInstancesTabContent = ({ tableMode, selectedInstance, settingAsDefau
       >
         {false &&  <Text
           color='blue.500'
-          fontFamily='Open sans'
+          fontFamily='Poppins'
           fontWeight='700'
           size='md'
         >

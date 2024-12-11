@@ -1,5 +1,5 @@
 import {
-  Flex, Link, Text 
+  Flex, Link, Text
 } from '@chakra-ui/react'
 import { MdHelpOutline } from 'react-icons/md'
 
@@ -12,7 +12,7 @@ const NeedHelpLinks = ({ knowledgeBaseUrl, supportUrl }: NeedHelpsLinksProps) =>
   return (
     <Flex 
       color='gray.800'
-      fontFamily='Open sans'
+      fontFamily='Poppins'
       fontWeight='400'
     >
       <MdHelpOutline 

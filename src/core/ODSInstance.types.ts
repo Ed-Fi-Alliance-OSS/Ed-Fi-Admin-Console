@@ -1,5 +1,4 @@
-import React from 'react'
-
+export type { ODSInstance } from '@edfi/admin-console-shared-sdk'
 export interface InstanceEdfiStatus {
   operationStatus: InstanceOperationStatus
 }
@@ -11,21 +10,6 @@ export interface ODSInstanceContext {
   contextValue: string
   id: number | string
   odsInstanceId: string | number
-}
-
-export interface ODSInstance {
-  odsInstanceId: string | number
-  document: {
-    name: string
-    instanceType?: string
-    odsInstanceContexts: ODSInstanceContext[]
-  }
-}
-
-export interface ExtendedODSInstance extends ODSInstance {
-  edFiVersion: string | React.JSX.Element
-  tsdsVersion: string | React.JSX.Element
-  edFiStatus: InstanceEdfiStatus
 }
 
 export interface SelectedConnection {

@@ -1,5 +1,5 @@
 import {
-  Button, Flex, Link, Text, Tooltip 
+  Button, Flex, Link, Text, Tooltip
 } from '@chakra-ui/react'
 import { MdHelpOutline } from 'react-icons/md'
 import useHelpLinks from '../../../hooks/useHelpLinks'
@@ -35,7 +35,7 @@ const OnBoardingTabsWrapper = ({ children, stepName, currentStep, lastStep, canN
       >
         <Text   
           color='gray.500'
-          fontFamily='Open sans'
+          fontFamily='Poppins'
           fontWeight='400'
           size='sm'
         >

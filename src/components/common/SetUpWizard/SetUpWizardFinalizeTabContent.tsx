@@ -1,14 +1,14 @@
 import {
-  Flex, Link, Text 
+  Flex, Link, Text
 } from '@chakra-ui/react'
 import { useContext } from 'react'
 import { adminConsoleContext } from '../../../context/adminConsoleContext'
+import { ODSInstance } from '../../../core/ODSInstance.types'
 import { SISProviderInfo } from '../../../core/sisProviders/SISProviders.types'
+import useOdsInstanceDisplayYear from '../../../hooks/odsInstances/useOdsInstanceYearName'
 import ConnectedSISProvidersTable from '../OnBoarding/ConnectedSISProvidersTable'
 import DataHealthDetails from '../OnBoarding/DataHealthDetails'
 import OnBoardingTabContentWrapper from '../OnBoarding/OnBoardingTabContentWrapper'
-import useOdsInstanceDisplayYear from '../../../hooks/odsInstances/useOdsInstanceYearName'
-import { ODSInstance } from '../../../core/ODSInstance.types'
 
 interface SetUpWizardFinalizeTabContentProps {
     instance: ODSInstance
@@ -22,7 +22,7 @@ const SetUpWizardFinalizeTabContent = ({ connectedSISProvidersList, instance }: 
   return (
     <OnBoardingTabContentWrapper>
       <Text
-        fontFamily='Open sans'
+        fontFamily='Poppins'
         fontWeight='400'
         w='730px'
       >
@@ -87,7 +87,7 @@ const SetUpWizardFinalizeTabContent = ({ connectedSISProvidersList, instance }: 
               isReview={true}
               showReload={true}
             /> : <Text
-              fontFamily='Open sans'
+              fontFamily='Poppins'
               fontSize='24px'
               fontWeight='600'
               w='730px'

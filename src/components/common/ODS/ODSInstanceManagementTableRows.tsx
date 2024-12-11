@@ -1,4 +1,7 @@
-import { ExtendedODSInstance } from '../../../core/ODSInstance.types'
+import {
+  ExtendedODSInstance, ODSInstance
+} from '../../../core/ODSInstance.types'
+import { Tenant } from '../../../core/Tenant.types'
 import { UpdatingIsDefaultStatus } from '../../../hooks/odsInstances/useOdsInstanceTable.types'
 import useValidateSetAsDefault from '../../../hooks/odsInstances/useValidateSetAsDefault'
 import ControlTableRow from '../ControlTableRow'
@@ -7,7 +10,8 @@ import { ODSInstanceTableMode } from './ODSInstanceTable.types'
 
 interface ODSInstanceManagementTableRowsProps {
     tableMode: ODSInstanceTableMode
-    instanceList: ExtendedODSInstance[]
+    instanceList: ODSInstance[]
+    tenants: Tenant[]
     updatingIsDefault: UpdatingIsDefaultStatus
     selectedInstance: ExtendedODSInstance | null
     onSelectInstance: (instance: ExtendedODSInstance) => void
@@ -15,7 +19,7 @@ interface ODSInstanceManagementTableRowsProps {
     onOpenSetUpModal: (instanceId: string) => void
 }
 
-const ODSInstanceManagementTableRows = ({ tableMode, selectedInstance, instanceList, updatingIsDefault, onSelectInstance, onOpenSetDefaultModal, onOpenSetUpModal }: ODSInstanceManagementTableRowsProps) => {
+const ODSInstanceManagementTableRows = ({ tenants, tableMode, selectedInstance, instanceList, updatingIsDefault, onSelectInstance, onOpenSetDefaultModal, onOpenSetUpModal }: ODSInstanceManagementTableRowsProps) => {
   const {
     canSetAsDefault
   } = useValidateSetAsDefault()
@@ -38,6 +42,7 @@ const ODSInstanceManagementTableRows = ({ tableMode, selectedInstance, instanceL
             instance={instance}
             selectedInstance={selectedInstance}
             tableMode={tableMode}
+            tenants={tenants}
             updatingIsDefault={updatingIsDefault}
             onOpenSetDefaultModal={onOpenSetDefaultModal}
             onOpenSetUpModal={onOpenSetUpModal}

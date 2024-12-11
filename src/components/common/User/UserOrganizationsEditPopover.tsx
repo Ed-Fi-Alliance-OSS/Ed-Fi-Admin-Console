@@ -1,6 +1,11 @@
 import { ChevronDownIcon } from '@chakra-ui/icons'
 import {
-  Popover, PopoverTrigger, Button, PopoverContent, PopoverBody, Flex 
+  Button,
+  Flex,
+  Popover,
+  PopoverBody,
+  PopoverContent,
+  PopoverTrigger
 } from '@chakra-ui/react'
 
 interface UserOrganizationsFormSavePopoverProps {
@@ -54,7 +59,7 @@ const UserOrganizationsEditPopover = ({ onCancelEdit }: UserOrganizationsFormSav
               borderRadius='4px'
               color='black'
               display='flex'
-              fontFamily='Open sans'
+              fontFamily='Poppins'
               isLoading={false}
               minW='80px'
               size='xs'

@@ -1,5 +1,5 @@
 import {
-  Flex, Tab, TabIndicator, TabList, TabPanel, TabPanels, Tabs 
+  Flex, Tab, TabIndicator, TabList, TabPanel, TabPanels, Tabs
 } from '@chakra-ui/react'
 import TabHeading from '../TabHeading'
 import APIClientsTab from './APIClientsTab'
@@ -37,7 +37,7 @@ const SecurityTabContent = () => {
                 key={index}
                 _notFirst={{ ml: '32px' }}
                 _selected={{ color: 'blue.600' }}
-                fontFamily='Open sans'
+                fontFamily='Poppins'
                 fontWeight='bold'
                 padding='0'
               >{tab}

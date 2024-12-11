@@ -61,7 +61,7 @@ const ManageUsersTableRows = ({ usersList, isDeleting, isDeletingInvitation, isR
           <ManageUsersTableData width="100px">
             <Flex>
               <Text
-                fontFamily='Open sans'
+                fontFamily='Poppins'
                 fontWeight='400'
                 size='md'
                 w='auto'
@@ -75,7 +75,7 @@ const ManageUsersTableRows = ({ usersList, isDeleting, isDeletingInvitation, isR
           <ManageUsersTableData width="50px">
             <Text 
               color='gray.500'
-              fontFamily='Open sans'
+              fontFamily='Poppins'
               fontWeight='400'
               size='md'
               whiteSpace='initial'

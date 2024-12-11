@@ -31,7 +31,7 @@ const EdFiSettingsConnectionTableRows = ({ connections, connectionStatusList, is
         <ControlTableRow key={index}>
           <Td
             color='gray.800'
-            fontFamily='Open sans'
+            fontFamily='Poppins'
             fontWeight='400'
             pl='15px'
             w='600px'

@@ -1,8 +1,8 @@
 import {
-  Td, Text 
+  Td, Text
 } from '@chakra-ui/react'
 import {
-  EdFiConnectionFormData, EdFiConnectionVerificationStatus 
+  EdFiConnectionFormData, EdFiConnectionVerificationStatus
 } from '../../../../hooks/edfi/useEdFiConnectionForm.types'
 import ControlTable from '../../ControlTable'
 import ControlTableRow from '../../ControlTableRow'
@@ -26,7 +26,7 @@ const ConnectedEdFiTable = ({ connectedODS, verificationStatus }: ConnectedEdFiT
           <Td w='15%'>
             <Text
               color='blue.600'
-              fontFamily='Open sans'
+              fontFamily='Poppins'
               fontWeight='700'
               size='md'
             >

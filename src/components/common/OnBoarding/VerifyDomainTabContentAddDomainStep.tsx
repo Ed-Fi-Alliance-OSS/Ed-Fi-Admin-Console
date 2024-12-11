@@ -1,5 +1,5 @@
 import {
-  Flex, Text 
+  Flex, Text
 } from '@chakra-ui/react'
 import { ChangeEvent } from 'react'
 import { FormDataErrors } from '../../../core/validation/FormValidations.types'
@@ -25,7 +25,7 @@ const VerifyDomainTabContentAddDomainStep = ({ domainName, errors, isValidData, 
         <Text
           borderRadius='4px'
           display='inline-block'
-          fontFamily='Open sans'
+          fontFamily='Poppins'
           fontSize='18px'
           fontWeight='700'
           size='md'
@@ -33,7 +33,7 @@ const VerifyDomainTabContentAddDomainStep = ({ domainName, errors, isValidData, 
           Step 1: Add a Domain
           <Text
             as="span"
-            fontFamily='Open sans'
+            fontFamily='Poppins'
             fontSize='16px'
             fontWeight='400'
             ml='5px'

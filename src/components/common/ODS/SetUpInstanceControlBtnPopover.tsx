@@ -1,6 +1,6 @@
 import { ChevronDownIcon } from '@chakra-ui/icons'
 import {
-  Button, Popover, PopoverBody, PopoverContent, PopoverTrigger 
+  Button, Popover, PopoverBody, PopoverContent, PopoverTrigger
 } from '@chakra-ui/react'
 import { ODSInstance } from '../../../core/ODSInstance.types'
 import { UpdatingIsDefaultStatus } from '../../../hooks/odsInstances/useOdsInstanceTable.types'
@@ -53,7 +53,7 @@ const SetUpInstanceControlBtnPopover = ({ instance, updatingIsDefault, onOpenSet
             borderRadius='4px'
             color='gray.800'
             display='flex'
-            fontFamily='Open sans'
+            fontFamily='Poppins'
             fontWeight='400'
             h='25px'
             isDisabled={updatingIsDefault.loading}

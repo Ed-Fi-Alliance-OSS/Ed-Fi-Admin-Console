@@ -3,7 +3,8 @@ import {
 } from '@chakra-ui/react'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { ExtendedODSInstance } from '../../../core/ODSInstance.types'
+import { ODSInstance } from '../../../core/ODSInstance.types'
+import { Tenant } from '../../../core/Tenant.types'
 import useOdsInstanceTable from '../../../hooks/odsInstances/useOdsInstanceTable'
 import useOdsInstanceTableSorting from '../../../hooks/odsInstances/useOdsInstanceTableSorting'
 import { usePluginContext } from '../../../plugins/BasePlugin'
@@ -15,12 +16,13 @@ import SetUpInstanceModal from './SetUpInstanceModal'
 
 interface ODSInstanceTableWrapperProps {
     tableMode: ODSInstanceTableMode
-    pickedInstance: ExtendedODSInstance | null
-    onSelectInstance: (instance: ExtendedODSInstance) => void
+    tenants: Tenant[]
+    pickedInstance: ODSInstance | null
+    onSelectInstance: (instance: ODSInstance) => void
     onUpdateInstancesCount: (count: number) => void
 }
 
-const ODSInstanceTableWrapper = ({ tableMode, pickedInstance, onSelectInstance, onUpdateInstancesCount }: ODSInstanceTableWrapperProps) => {
+const ODSInstanceTableWrapper = ({ tenants, tableMode, pickedInstance, onSelectInstance, onUpdateInstancesCount }: ODSInstanceTableWrapperProps) => {
   const {
     paginatedData,
     selectedInstance,
@@ -112,16 +114,6 @@ const ODSInstanceTableWrapper = ({ tableMode, pickedInstance, onSelectInstance, 
             }}
             />,
             <ControlTableHeader headerData={{
-              text: 'Year',
-              fieldName: 'Year',
-              sortedByField: orderBy.field,
-              showSorting: true,
-              sortingType: orderBy.order,
-              onSortAsc: () => onOrderBy('Year', 'asc'),
-              onSortDesc: () => onOrderBy('Year', 'desc') 
-            }}
-            />,
-            <ControlTableHeader headerData={{
               text: 'Instance Name',
               fieldName: 'InstanceName',
               sortedByField: orderBy.field,
@@ -175,7 +167,8 @@ const ODSInstanceTableWrapper = ({ tableMode, pickedInstance, onSelectInstance, 
           instanceList={getSortedInstances(paginatedData.data)}
           loading={isFetchingData}
           selectedInstance={pickedInstance}
-          tableMode={tableMode} 
+          tableMode={tableMode}
+          tenants={tenants} 
           updatingIsDefault={updatingIsDefault}
           onOpenSetDefaultModal={onOpenSetDefaultModal}
           onOpenSetUpModal={onOpenSetUpModal}

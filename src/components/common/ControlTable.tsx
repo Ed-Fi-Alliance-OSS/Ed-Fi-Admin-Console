@@ -1,5 +1,8 @@
 import {
-  Flex, Skeleton, Text, Table, TableContainer, Tbody, Th, Thead, Tr 
+  Flex, Skeleton,
+  Table, TableContainer, Tbody,
+  Text,
+  Th, Thead, Tr
 } from '@chakra-ui/react'
 import { ControlTableRowList } from '../../core/controlTable'
 
@@ -74,7 +77,7 @@ const ControlTable = ({ headers, rows, thPadding, itemsCount, loading, paginatio
           w='full'
         >
           <Text 
-            fontFamily='Open sans'
+            fontFamily='Poppins'
             fontSize='16px'
             fontWeight='700'
           >

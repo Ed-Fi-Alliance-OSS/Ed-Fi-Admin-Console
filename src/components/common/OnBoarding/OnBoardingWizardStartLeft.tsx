@@ -1,5 +1,5 @@
 import {
-  Flex, Text 
+  Flex, Text
 } from '@chakra-ui/react'
 
 interface OnBoardingWizardStartLeftProps {
@@ -27,7 +27,7 @@ const OnBoardingWizardStartLeft = ({ hasStarted }: OnBoardingWizardStartLeftProp
         mt='32px'
       >
         <Text 
-          fontFamily='Open sans'
+          fontFamily='Poppins'
           fontSize='16px'
           fontWeight='400'
         >
@@ -35,7 +35,7 @@ const OnBoardingWizardStartLeft = ({ hasStarted }: OnBoardingWizardStartLeftProp
         </Text>
 
         <Text
-          fontFamily='Open sans'
+          fontFamily='Poppins'
           fontSize='16px'
           fontWeight='400'
           mt='15px'
@@ -44,7 +44,7 @@ const OnBoardingWizardStartLeft = ({ hasStarted }: OnBoardingWizardStartLeftProp
         </Text>
 
         <Text
-          fontFamily='Open sans'
+          fontFamily='Poppins'
           fontSize='16px'
           fontWeight='400'
           mt='15px'

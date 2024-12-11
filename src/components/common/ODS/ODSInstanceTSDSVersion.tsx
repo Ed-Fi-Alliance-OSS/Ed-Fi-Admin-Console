@@ -1,12 +1,14 @@
-import { Tag } from '@chakra-ui/react'
+import {
+  Flex, Tag
+} from '@chakra-ui/react'
 import { EdFiMetadata } from '../../../hooks/useEdfiUrls.types'
 
 interface ODSInstanceTSDSVersionProps {
-  dataModels: EdFiMetadata['dataModels']
+  dataModels?: EdFiMetadata['dataModels']
 }
 
 const ODSInstanceDataModelsLabel = ({ dataModels }: ODSInstanceTSDSVersionProps) => {
-  return dataModels.map(model => <>
+  return dataModels?.map((model, i) => <Flex key={JSON.stringify(model) + i}>
     <Tag
       colorScheme='blue'
       mb={1}
@@ -17,7 +19,7 @@ const ODSInstanceDataModelsLabel = ({ dataModels }: ODSInstanceTSDSVersionProps)
     </Tag>
 
     <br />
-  </>)
+  </Flex>)
 }
 
 export default ODSInstanceDataModelsLabel

@@ -1,8 +1,8 @@
 import {
-  Flex, Text 
+  Flex, Text
 } from '@chakra-ui/react'
 import {
-  CustomSelect, CustomSwitch 
+  CustomSelect, CustomSwitch
 } from '@edfi/admin-console-shared-sdk'
 
 const subscriptions = [
@@ -39,7 +39,7 @@ const APIClientSubscriptionsForm = () => {
 
             <Text
               color='blue.600'
-              fontFamily='Open sans'
+              fontFamily='Poppins'
               fontWeight='700'
               ml='15px'
               size='sm'

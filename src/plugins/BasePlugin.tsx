@@ -2,7 +2,8 @@ import {
   defaultsDeep, get, hasIn
 } from 'lodash-es'
 import React, {
-  createContext, ReactNode, useContext, useEffect, useState
+  createContext, ReactNode,
+  useContext, useEffect, useState
 } from 'react'
 import {
   BasePluginComponent, BasePluginComponentNames, EmptyComponents
@@ -62,6 +63,7 @@ export const PluginProvider: React.FC<{ children: ReactNode }> = ({ children }) 
 
   // Register a functionality with the specific function signature
   const registerFunctionality: RegistryState['registerFunctionality'] = (name, functionality) => {
+    console.debug('Registering Functionality:', name)
     setFunctionalities((prev) => ({
       ...prev,
       [name]: functionality 
@@ -89,6 +91,7 @@ export const PluginProvider: React.FC<{ children: ReactNode }> = ({ children }) 
     registerComponent,
     registerFunctionality
   }
+
 
   return (
     <PluginContext.Provider value={registry}>
@@ -120,7 +123,7 @@ interface PluginLoaderProps {
 }
 
 export const PluginLoader: React.FC<PluginLoaderProps> = ({ plugins, enabled }) => {
-
+  const [ loaded, setLoaded ] = useState(false)
   const registry = usePluginContext()
 
   useEffect(() => {
@@ -148,6 +151,8 @@ export const PluginLoader: React.FC<PluginLoaderProps> = ({ plugins, enabled }) 
     if(notFound.length > 0) {
       console.error('Plugins Not Found:', notFound)
     }
+
+    setLoaded(true)
 
   }, [ enabled, plugins ])
 

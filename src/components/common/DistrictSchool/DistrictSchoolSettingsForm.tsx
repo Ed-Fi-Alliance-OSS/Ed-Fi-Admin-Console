@@ -1,5 +1,7 @@
 import { AddIcon } from '@chakra-ui/icons'
-import { Button, Flex, Text } from '@chakra-ui/react'
+import {
+  Button, Flex, Text
+} from '@chakra-ui/react'
 import { VerifiedDomainInfo } from '../../../core/verifyDomain/VerifyDomain.types'
 import DomainTag from '../DomainTag'
 import DomainVerificationStatus from '../OnBoarding/DomainVerificationStatus'
@@ -16,97 +18,137 @@ interface DistrictSchoolSettingsFormProps {
 
 const DistrictSchoolSettingsForm = ({ districtSchoolName, districtSchoolId, tsdsId, domainsInfo, isRemovingDomain, onRemoveDomain }: DistrictSchoolSettingsFormProps) => {
   return (
-    <Flex flexDir='column' w='full'>
+    <Flex
+      flexDir='column'
+      w='full'
+    >
       <Text
         color='gray.700'
-        fontFamily='Open sans'
+        fontFamily='Poppins'
         fontWeight='400'
-        size='md'>
-                    District/Charter School Name (Read-Only)
+        size='md'
+      >
+        District/Charter School Name (Read-Only)
       </Text>
+
       <Text
-        fontFamily='Open sans'
+        fontFamily='Poppins'
         fontWeight='700'
-        size='md'>
+        size='md'
+      >
         {districtSchoolName}
       </Text>
 
-      <Flex flexDir='column' mt='16px'>
+      <Flex
+        flexDir='column'
+        mt='16px'
+      >
         <Text
           color='gray.700'
-          fontFamily='Open sans'
+          fontFamily='Poppins'
           fontWeight='400'
-          size='md'>
-                        District/Charter School ID (Read-Only)
+          size='md'
+        >
+          District/Charter School ID (Read-Only)
         </Text>
+
         <Text
-          fontFamily='Open sans'
+          fontFamily='Poppins'
           fontWeight='700'
-          size='md'>
+          size='md'
+        >
           {districtSchoolId}
         </Text>
       </Flex>
 
-      <Flex flexDir='column' mt='16px'>
+      <Flex
+        flexDir='column'
+        mt='16px'
+      >
         <Text
           color='gray.700'
-          fontFamily='Open sans'
+          fontFamily='Poppins'
           fontWeight='400'
-          size='md'>
-                        TSDS ID (Read-Only)
+          size='md'
+        >
+          TSDS ID (Read-Only)
         </Text>
+
         <Text
-          fontFamily='Open sans'
+          fontFamily='Poppins'
           fontWeight='700'
-          size='md'>
+          size='md'
+        >
           {tsdsId}
         </Text>
       </Flex>
 
-      <Flex flexDir='column' mt='16px'>
+      <Flex
+        flexDir='column'
+        mt='16px'
+      >
         <Text
-          fontFamily='Open sans'
+          fontFamily='Poppins'
           fontWeight='700'
-          size='md'>
-                        Your Domain(s)
+          size='md'
+        >
+          Your Domain(s)
         </Text>
-        <Flex flexDir='column' mt='5px' w='full'>
+
+        <Flex
+          flexDir='column'
+          mt='5px'
+          w='full'
+        >
           {domainsInfo.map(domain => 
             <Flex key={domain.domain}>
               <DomainTag domain={domain.domain} />
+
               <Flex mx='10px'>
                 <DomainVerificationStatus 
-                  status={domain.status}
                   isRemovingDomain={isRemovingDomain}
-                  onRemoveDomain={onRemoveDomain} />
+                  status={domain.status}
+                  onRemoveDomain={onRemoveDomain}
+                />
               </Flex>
+
               <RefreshBtn 
                 id={domain.domain}
-                onAction={() => console.log('refresh domain info for', domain.domain)} />
-            </Flex>
-          )}
+                onAction={() => console.log('refresh domain info for', domain.domain)}
+              />
+            </Flex>)}
+
           <Button
-            variant='secondaryBlue600'
-            mt='5px'
-            minWidth='30px'
+            aria-labelledby="add-btn"
             maxW='30px'
+            minWidth='30px'
+            mt='5px'
+            variant='secondaryBlue600'
             w='auto'
-            aria-labelledby="add-btn">
-            <span id="add-btn" hidden>Add</span>
-            <AddIcon fontSize='10px'
-              aria-hidden="true" 
-              focusable="false" />
+          >
+            <span
+              hidden
+              id="add-btn"
+            >Add
+            </span>
+
+            <AddIcon
+              aria-hidden="true"
+              focusable="false" 
+              fontSize='10px'
+            />
           </Button>   
         </Flex>
       </Flex>
 
       <Button
-        variant='primaryBlue600'
-        size='lg'
-        mt='32px'
+        maxW='200px'
         minW='150px'
-        maxW='200px'>
-                    Save Edits
+        mt='32px'
+        size='lg'
+        variant='primaryBlue600'
+      >
+        Save Edits
       </Button>
     </Flex>        
   )

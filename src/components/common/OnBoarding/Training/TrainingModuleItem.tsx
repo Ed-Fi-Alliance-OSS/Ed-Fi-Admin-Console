@@ -1,8 +1,8 @@
 import {
-  Button, Flex, Text 
+  Button, Flex, Text
 } from '@chakra-ui/react'
 import {
-  TrainingModule, TrainingModuleStatus 
+  TrainingModule, TrainingModuleStatus
 } from '../../../../core/TrainingModule.types'
 
 interface TrainingModuleItemProps {
@@ -27,7 +27,7 @@ const TrainingModuleItem = ({ data, status, onAction }: TrainingModuleItemProps)
     >
       <Text 
         color='blue.600'
-        fontFamily='Open sans'
+        fontFamily='Poppins'
         fontWeight='700'
         size='md'
       >
@@ -36,7 +36,7 @@ const TrainingModuleItem = ({ data, status, onAction }: TrainingModuleItemProps)
 
       <Text
         color='gray.700'
-        fontFamily='Open sans'
+        fontFamily='Poppins'
         fontWeight='400'
         size='md'
         w='271px'

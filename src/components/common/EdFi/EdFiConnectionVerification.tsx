@@ -1,8 +1,8 @@
 import {
-  Flex, Link, Text 
+  Flex, Link, Text
 } from '@chakra-ui/react'
 import {
-  EdFiConnectionFormMode, EdFiConnectionVerificationStatus as VerificationStatus 
+  EdFiConnectionFormMode, EdFiConnectionVerificationStatus as VerificationStatus
 } from '../../../hooks/edfi/useEdFiConnectionForm.types'
 import EdFiConnectionVerificationError from './EdFiConnectionVerificationError'
 import EdFiConnectionVerificationStatus from './EdFiConnectionVerificationStatus'
@@ -33,7 +33,7 @@ const EdFiConnectionVerification = ({ mode, inOnboarding, status }: EdFiConnecti
           use the error message to troubleshoot or 
           <Link 
             color='blue.500'
-            fontFamily='Open sans'
+            fontFamily='Poppins'
             href="https://txedexchange.atlassian.net/servicedesk/customer/portals" 
             ml='4px'
             target="_blank"
@@ -46,7 +46,7 @@ const EdFiConnectionVerification = ({ mode, inOnboarding, status }: EdFiConnecti
           If the status does not change to “Connected” use the error message to troubleshoot or 
           <Link 
             color='blue.500'
-            fontFamily='Open sans'
+            fontFamily='Poppins'
             href="https://txedexchange.atlassian.net/servicedesk/customer/portals"
             mx='4px'
             target="_blank"

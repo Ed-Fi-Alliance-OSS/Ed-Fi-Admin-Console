@@ -1,11 +1,11 @@
 import {
-  Flex, Text 
+  Flex, Text
 } from '@chakra-ui/react'
 import {
-  ChangeEvent, useState 
+  ChangeEvent, useState
 } from 'react'
 import {
-  FieldError, FormDataErrors 
+  FieldError, FormDataErrors
 } from '../../../core/validation/FormValidations.types'
 import { DomainData } from '../../../hooks/adminActions/dns/useVerifyDomain'
 import OnBoardingTabContentWrapper from './OnBoardingTabContentWrapper'
@@ -83,7 +83,7 @@ const VerifyDomainTabContent = ({ domainsList, isAddingDomain, isRemovingDomain,
   return (
     <OnBoardingTabContentWrapper>
       <Text
-        fontFamily='Open sans'
+        fontFamily='Poppins'
         fontWeight='400'
         textAlign='justify'
         w='750px'
@@ -139,7 +139,7 @@ const VerifyDomainTabContent = ({ domainsList, isAddingDomain, isRemovingDomain,
       >
         {false && <Text
           color='blue.500'
-          fontFamily='Open sans'
+          fontFamily='Poppins'
           fontWeight='700'
           size='md'
         >

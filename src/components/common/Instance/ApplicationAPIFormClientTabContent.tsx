@@ -1,8 +1,8 @@
 import {
-  Alert, AlertIcon, Flex, FormControl, Text 
+  Alert, AlertIcon, Flex, FormControl, Text
 } from '@chakra-ui/react'
 import {
-  CopyTextBtn, CustomFormLabel, CustomInput 
+  CopyTextBtn, CustomFormLabel, CustomInput
 } from '@edfi/admin-console-shared-sdk'
 import { EdfiApplicationAuthData } from '../../../core/Edfi/EdfiApplications'
 import RefreshBtn from '../RefreshBtn'
@@ -36,7 +36,7 @@ const ApplicationAPIFormClientTabContent = ({ clientData, mode, isRegeneratingCr
       w='full'
     >
       {clientData.key !== 'applicationKey' && <Alert
-        fontFamily='Open sans'
+        fontFamily='Poppins'
         fontSize='12px'
         mt='10px'
         padding='10px'
@@ -101,7 +101,7 @@ const ApplicationAPIFormClientTabContent = ({ clientData, mode, isRegeneratingCr
         </Flex>
 
         <Alert
-          fontFamily='Open sans'
+          fontFamily='Poppins'
           fontSize='12px'
           mt='10px'
           padding='10px'

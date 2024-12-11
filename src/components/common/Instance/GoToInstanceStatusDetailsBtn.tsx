@@ -1,5 +1,5 @@
 import {
-  Button, Flex, Text 
+  Button, Flex, Text
 } from '@chakra-ui/react'
 import { InstanceStatus } from '../../../core/Instance.types'
 
@@ -46,7 +46,7 @@ const GoToInstanceStatusDetails = ({ status }: GoToInstanceStatusDetailsProps) =
 
       <Button 
         color='gray.600'
-        fontFamily='Open sans'
+        fontFamily='Poppins'
         fontWeight='400'
         size='sm'
       >

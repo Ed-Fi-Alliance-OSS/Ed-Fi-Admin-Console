@@ -1,11 +1,11 @@
-import { Flex } from '@chakra-ui/react'
+import {
+  Flex, Spinner
+} from '@chakra-ui/react'
 import { ODSInstance } from '../../../core/ODSInstance.types'
-import useDisplayOdsVersions from '../../../hooks/odsInstances/useDisplayOdsVersions'
-import useOdsInstanceDescription from '../../../hooks/odsInstances/useOdsInstanceDescription'
-import useOdsInstanceEdFiStatus from '../../../hooks/odsInstances/useOdsInstanceEdFiStatus'
-import useOdsInstanceHostingType from '../../../hooks/odsInstances/useOdsInstanceHostingType'
-import useOdsInstanceYear from '../../../hooks/odsInstances/useOdsInstanceYear'
+import { useEdfiMetadata } from '../../../hooks/odsInstances/useEdfiMetadata'
+import ODSInstanceEdFiVersion from '../ODS/ODSInstaceEdFiVersion'
 import ODSInstanceEdFiStatus from '../ODS/ODSInstanceEdFiStatus'
+import ODSInstanceDataModelsLabel from '../ODS/ODSInstanceTSDSVersion'
 import InstanceDescriptionField from './InstanceDescriptionField'
 
 interface InstanceDescriptionProps {
@@ -13,59 +13,39 @@ interface InstanceDescriptionProps {
 }
 
 const InstanceDescription = ({ instance }: InstanceDescriptionProps) => {
-  const { 
-    instanceOdsMetadata 
-  } = useOdsInstanceDescription({ instance })
-
-  const {
-    displayEdFiVersionContent,
-    displayTsdsVersionContent
-  } = useDisplayOdsVersions({ instanceOdsMetadata })
-
-  const { getOdsInstanceEdFiStatus } = useOdsInstanceEdFiStatus({
-    instance,
-    edFiMetadata: instanceOdsMetadata
-  })
-
-  const { getInstanceYear } = useOdsInstanceYear()
-
-  const {
-    getHostingType
-  } = useOdsInstanceHostingType()
+  
+  const { edFiStatus, edfiMetadata, metaDataLoading } = useEdfiMetadata()
 
   return (
     <Flex>
-      <Flex flexDir='column'>
+      {metaDataLoading ? <Spinner /> : <Flex flexDir='column'>
         <InstanceDescriptionField
-          content={instance.document.name}
+          content={instance.name}
           title='Instance Name'
         />
         
         <InstanceDescriptionField
-          content={instance.odsInstanceId}
+          content={instance.id}
           title='Instance ID'
         />
         
+      
         <InstanceDescriptionField
-          content={getInstanceYear(instance)?.toString() ?? ''}
-          title='Instance Year'
-        />
-
-        <InstanceDescriptionField
-          content={displayEdFiVersionContent()}
+          content={<ODSInstanceEdFiVersion version={edfiMetadata?.version} />}
           title='Ed-Fi Version'
         />
 
         <InstanceDescriptionField
-          content={displayTsdsVersionContent()}
+          content={<ODSInstanceDataModelsLabel dataModels={edfiMetadata?.dataModels} />}
           title="Extension"
         />
 
         <InstanceDescriptionField 
-          content={<ODSInstanceEdFiStatus status={getOdsInstanceEdFiStatus()} />}
+          content={<ODSInstanceEdFiStatus status={edFiStatus} />}
           title="Ed-Fi Status"
         />
       </Flex>
+      }
     </Flex>
   )
 }

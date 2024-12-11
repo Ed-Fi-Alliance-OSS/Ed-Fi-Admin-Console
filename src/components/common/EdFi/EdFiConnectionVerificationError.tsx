@@ -1,6 +1,6 @@
 import { WarningIcon } from '@chakra-ui/icons'
 import {
-  Flex, Text 
+  Flex, Text
 } from '@chakra-ui/react'
 import { EdFiConnectionVerificationStatus } from '../../../hooks/edfi/useEdFiConnectionForm.types'
 
@@ -60,7 +60,7 @@ const EdFiConnectionVerificationError = ({ status }: EdFiConnectionVerificationE
 
         <Text 
           color='gray.800' 
-          fontFamily='Open sans' 
+          fontFamily='Poppins' 
           ml='28px' 
           mt='6px'
         >

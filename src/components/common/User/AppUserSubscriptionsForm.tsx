@@ -1,10 +1,10 @@
 import {
-  Flex, Spinner, Text 
+  Flex, Spinner, Text
 } from '@chakra-ui/react'
-import { SubscriptionOption } from '../../../hooks/adminActions/users/useCreateUserForm.types'
 import {
-  CustomFormLabel, CustomSelect, CustomSwitch 
+  CustomSelect, CustomSwitch
 } from '@edfi/admin-console-shared-sdk'
+import { SubscriptionOption } from '../../../hooks/adminActions/users/useCreateUserForm.types'
 
 interface AppUserSubscriptionsFormProps {
     subscriptionsList: SubscriptionOption[]
@@ -85,7 +85,7 @@ const AppUserSubscriptionsForm = ({ subscriptionsList, isImplicit, isFetchingPro
               <Flex w='full'>
                 <Text
                   color='blue.600'
-                  fontFamily='Open sans'
+                  fontFamily='Poppins'
                   fontWeight='700'
                   lineHeight='22px'
                   size='sm'
@@ -97,7 +97,7 @@ const AppUserSubscriptionsForm = ({ subscriptionsList, isImplicit, isFetchingPro
                   borderColor='blue.600'
                   borderRadius='4px'
                   color='blue.900'
-                  fontFamily='Open sans'
+                  fontFamily='Poppins'
                   fontSize='12px'
                   fontWeight='bold'
                   ml='6px'
@@ -109,7 +109,7 @@ const AppUserSubscriptionsForm = ({ subscriptionsList, isImplicit, isFetchingPro
 
               <Text
                 color='gray.700'
-                fontFamily='Open sans'
+                fontFamily='Poppins'
                 fontWeight='400'
                 lineHeight='16px'
                 size='xs'

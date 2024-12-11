@@ -1,9 +1,9 @@
 import {
-  Td, Text 
+  Td, Text
 } from '@chakra-ui/react'
+import { CustomSwitch } from '@edfi/admin-console-shared-sdk'
 import { SSOMethod } from '../../../core/ssoMethods/SSOMethods.types'
 import ControlTableRow from '../ControlTableRow'
-import { CustomSwitch } from '@edfi/admin-console-shared-sdk'
 import SSOConsentStatus from './SSOConsentStatus'
 
 interface SSOMethodTableRowsProps {
@@ -20,7 +20,7 @@ const SSOMethodTableRows = ({ ssoMethodsList, showOnlySelected, onToggleSSOMetho
           <Td w={showOnlySelected? 'full' : 'auto'}>
             <Text
               color='blue.600'
-              fontFamily='Open sans'
+              fontFamily='Poppins'
               fontWeight='700'
               size='md'
             >

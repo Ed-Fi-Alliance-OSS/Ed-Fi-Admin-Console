@@ -1,13 +1,12 @@
 import {
-  ChangeEvent, useContext 
-} from 'react'
-import {
-  Td, Text 
+  Td, Text
 } from '@chakra-ui/react'
+import { CopyTextBtn, UserProfileContext } from '@edfi/admin-console-shared-sdk'
+import {
+  ChangeEvent, useContext
+} from 'react'
 import { VerifyDomain } from '../../../core/verifyDomain/VerifyDomain.types'
 import ControlTableRow from '../ControlTableRow'
-import { CopyTextBtn } from '@edfi/admin-console-shared-sdk'
-import { UserProfileContext } from '@edfi/admin-console-shared-sdk'
 
 interface VerifyDomainTableRowsProps {
     verifyDomainList: VerifyDomain[]
@@ -23,7 +22,7 @@ const VerifyDomainTableRows = ({ verifyDomainList, onCheck }: VerifyDomainTableR
         <ControlTableRow key={index}>
           <Td display='flex'>
             <Text
-              fontFamily='Open sans'
+              fontFamily='Poppins'
               fontWeight='400'
               size='md'
             >
@@ -33,7 +32,7 @@ const VerifyDomainTableRows = ({ verifyDomainList, onCheck }: VerifyDomainTableR
 
           <Td>
             <Text
-              fontFamily='Open sans'
+              fontFamily='Poppins'
               fontWeight='400'
               size='md'
             >
@@ -43,7 +42,7 @@ const VerifyDomainTableRows = ({ verifyDomainList, onCheck }: VerifyDomainTableR
 
           <Td display='flex'>
             <Text
-              fontFamily='Open sans'
+              fontFamily='Poppins'
               fontWeight='400'
               size='md'
               w='380px'
@@ -59,7 +58,7 @@ const VerifyDomainTableRows = ({ verifyDomainList, onCheck }: VerifyDomainTableR
 
           <Td>
             <Text
-              fontFamily='Open sans'
+              fontFamily='Poppins'
               fontWeight='400'
               size='md'
             >

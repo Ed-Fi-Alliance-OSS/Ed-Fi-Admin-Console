@@ -1,14 +1,14 @@
 import {
-  Table,
-  Thead,
-  Tbody,
-  Tr,
-  Th,
-  Td,
-  TableContainer,
-  Link,
-  Flex,
   Button,
+  Flex,
+  Link,
+  Table,
+  TableContainer,
+  Tbody,
+  Td,
+  Th,
+  Thead,
+  Tr,
 } from '@chakra-ui/react'
 import { DeletingState } from '../../../core/deletingState.types'
 import { EdfiApplication } from '../../../core/Edfi/EdfiApplications'
@@ -33,7 +33,7 @@ const ApplicationDetailsTable = ({ applicationsList, isDeleting, onEditApplicati
           <Tr>
             <Th
               color='gray.700'
-              fontFamily='Open sans'
+              fontFamily='Poppins'
               fontSize='14px'
               fontWeight='700'
               textTransform='none'
@@ -42,7 +42,7 @@ const ApplicationDetailsTable = ({ applicationsList, isDeleting, onEditApplicati
 
             <Th
               color='gray.700'
-              fontFamily='Open sans'
+              fontFamily='Poppins'
               fontSize='14px'
               fontWeight='700'
               textTransform='none'
@@ -51,7 +51,7 @@ const ApplicationDetailsTable = ({ applicationsList, isDeleting, onEditApplicati
 
             <Th
               color='gray.700'
-              fontFamily='Open sans'
+              fontFamily='Poppins'
               fontSize='14px'
               fontWeight='700'
               textTransform='none'
@@ -70,14 +70,14 @@ const ApplicationDetailsTable = ({ applicationsList, isDeleting, onEditApplicati
               borderColor='gray.300'
             >
               <Td
-                fontFamily='Open sans'
+                fontFamily='Poppins'
                 fontSize='14px'
                 fontWeight='400'
               >{application.applicationName}
               </Td>
 
               <Td
-                fontFamily='Open sans'
+                fontFamily='Poppins'
                 fontSize='14px'
                 fontWeight='400'
               >{application.educationOrganizationId? 1 : 0}
@@ -87,7 +87,7 @@ const ApplicationDetailsTable = ({ applicationsList, isDeleting, onEditApplicati
                 <Flex flexDir='column'>
                   <Link
                     color='blue.600' 
-                    fontFamily='Open sans'
+                    fontFamily='Poppins'
                     fontSize='14px'
                     fontWeight='400'
                     href='#'

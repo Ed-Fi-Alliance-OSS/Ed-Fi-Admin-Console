@@ -1,9 +1,9 @@
 import {
-  Flex, Text 
+  Flex, Text
 } from '@chakra-ui/react'
 import { DeletingState } from '../../../core/deletingState.types'
 import {
-  Organization, StaffClassification 
+  Organization, StaffClassification
 } from '../../../core/Tenant.types'
 import { EdOrgViewItem } from '../../../hooks/adminActions/users/useUserEducationOrganizations.types'
 import UserOrganizationsFormControlBtn from './UserOrganizationsFormControlBtn'
@@ -50,7 +50,7 @@ const UserOrganizationsCard = ({ educationOrganization, staffClassificationsList
       >
         <Text
           color='blue.600'
-          fontFamily='Open sans'
+          fontFamily='Poppins'
           fontSize="14px"
           fontWeight='700'
         >

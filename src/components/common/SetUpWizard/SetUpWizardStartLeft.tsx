@@ -1,5 +1,5 @@
 import {
-  Flex, Text 
+  Flex, Text
 } from '@chakra-ui/react'
 
 interface SetUpWizardStartLeftProps {
@@ -26,7 +26,7 @@ const SetUpWizardStartLeft = ({ hasStarted }: SetUpWizardStartLeftProps) => {
         mt='32px'
       >
         <Text
-          fontFamily='Open sans'
+          fontFamily='Poppins'
           fontSize='16px'
           fontWeight='400'
           mt='15px'

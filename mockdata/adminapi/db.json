@@ -2,43 +2,11 @@
   "instances": [
     {
       "document": {
-        "instanceType": null,
-        "name": "Instance #1 - 2024",
-        "odsInstanceContexts": [
-          {
-            "contextKey": "schoolYearFromRoute",
-            "contextValue": "2024",
-            "id": 1,
-            "odsInstanceId": 1
-          }
-        ],
-        "odsInstanceDerivatives": [
-          {
-            "derivativeType": "Read",
-            "id": 1,
-            "odsInstanceId": 2
-          }
-        ]
+        "instanceType": "ReadOnly",
+        "name": "Instance #1"
       },
       "id": 1,
       "odsInstanceId": 1,
-      "tenantId": 1
-    },
-    {
-      "document": {
-        "instanceType": null,
-        "name": "Instance #3",
-        "odsInstanceContexts": [
-          {
-            "contextKey": "schoolYearFromRoute",
-            "contextValue": "2026",
-            "id": 1,
-            "odsInstaneId": 2
-          }
-        ]
-      },
-      "id": 4,
-      "odsInstanceId": 4,
       "tenantId": 1
     }
   ],
@@ -63,22 +31,23 @@
   "tenants": [
     {
       "document": {
+        "name": "Tenant1",
         "edfiApiDiscoveryUrl": "https://api.ed-fi.org/v7.2/api/v7/lo"
       },
       "id": 1,
-      "tenantId": "1"
+      "tenantId": 1
     },
     {
       "document": {
-        "edfiApiDiscoveryUrl": "https://api.ed-fi.org/v7.2/api",
-        "name": "Tenant2"
+        "name": "Tenant2",
+        "edfiApiDiscoveryUrl": "https://api.ed-fi.org/v7.2/api"
       },
       "id": 2,
       "tenantId": 2
     },
     {
       "document": {
-        "edfiApiDiscoveryUrl": null,
+        "edfiApiDiscoveryUrl": "https://api.ed-fi.org/v7.2/api",
         "name": "Tenant3"
       },
       "id": 3,

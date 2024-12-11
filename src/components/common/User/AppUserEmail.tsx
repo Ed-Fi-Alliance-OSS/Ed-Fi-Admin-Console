@@ -15,7 +15,7 @@ const AppUserEmail = ({ email }: AppUserEmailProps) => {
 
   return (
     <Text 
-      fontFamily='Open sans'
+      fontFamily='Poppins'
       fontSize='md'
       fontWeight='400'
     >

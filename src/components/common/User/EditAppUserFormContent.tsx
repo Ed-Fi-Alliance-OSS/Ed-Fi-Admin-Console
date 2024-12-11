@@ -1,14 +1,11 @@
-import { Flex } from '@chakra-ui/react'
+import { Flex, Tab, TabIndicator, TabList, TabPanel, TabPanels, Tabs } from '@chakra-ui/react'
 import {
-  Tabs, TabList, Tab, TabIndicator, TabPanel, TabPanels 
-} from '@chakra-ui/react'
-import {
-  ChangeEvent, useContext 
+  ChangeEvent, useContext
 } from 'react'
 import { adminConsoleContext } from '../../../context/adminConsoleContext'
 import { FormDataErrors } from '../../../core/validation/FormValidations.types'
 import {
-  CreateUserFormData, RoleOption, SubscriptionOption, UserFormMode 
+  CreateUserFormData, RoleOption, SubscriptionOption, UserFormMode
 } from '../../../hooks/adminActions/users/useCreateUserForm.types'
 import { UserEducationOrganizationsHook } from '../../../hooks/adminActions/users/useUserEducationOrganizations.types'
 import AppUserDetailsForm from './AppUserDetailsForm'
@@ -80,7 +77,7 @@ const EditAppUserFormContent = ({ userData, edOrgHookData, mode, isImplicit, isF
               key={index}
               _notFirst={{ ml: '32px' }}
               _selected={{ color: 'blue.600' }}
-              fontFamily='Open sans'
+              fontFamily='Poppins'
               fontSize='16px'
               fontWeight='bold'
               padding='0'

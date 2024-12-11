@@ -1,6 +1,11 @@
 import { ChevronDownIcon } from '@chakra-ui/icons'
 import {
-  Popover, PopoverTrigger, Button, PopoverContent, PopoverBody, Flex 
+  Button,
+  Flex,
+  Popover,
+  PopoverBody,
+  PopoverContent,
+  PopoverTrigger
 } from '@chakra-ui/react'
 import { DeletingState } from '../../../core/deletingState.types'
 
@@ -60,7 +65,7 @@ const EdFiConnectionControlPopover = ({ connectionId, isDeleting, isDisabled, on
               borderRadius='4px'
               color='red.600'
               display='flex'
-              fontFamily='Open sans'
+              fontFamily='Poppins'
               isLoading={isDeleting.deleting && isDeleting.id === connectionId}
               minW='80px'
               size='xs'

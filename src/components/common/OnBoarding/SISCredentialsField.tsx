@@ -1,10 +1,12 @@
-import { ChangeEvent } from 'react'
 import {
-  Button, Flex, FormControl 
+  Button, Flex, FormControl
 } from '@chakra-ui/react'
 import {
-  CustomFormLabel, CopyTextBtn, CustomInput 
+  CopyTextBtn,
+  CustomFormLabel,
+  CustomInput
 } from '@edfi/admin-console-shared-sdk'
+import { ChangeEvent } from 'react'
 
 interface SISCredentialsFieldProps {
     credentialsKey: string 
@@ -74,7 +76,7 @@ const SISCredentialsField = ({ credentialsKey, credentialsSecret, isLoadingCrede
       >
         <Button
           color='blue.500'
-          fontFamily='Open sans'
+          fontFamily='Poppins'
           fontSize='16px'
           fontWeight='700'
           isDisabled={regenerateCredentialsDisabled}

@@ -1,7 +1,7 @@
-import {
-  Link, Text 
-} from '@chakra-ui/react'
 import { ArrowBackIcon } from '@chakra-ui/icons'
+import {
+  Link, Text
+} from '@chakra-ui/react'
 import { Link as RouterLink } from 'react-router-dom'
 
 interface BackToLinkProps {
@@ -28,7 +28,7 @@ const BackToLink = ({ url, text }: BackToLinkProps) => {
 
       <Text
         color='gray.700'
-        fontFamily='Open sans'
+        fontFamily='Poppins'
         fontWeight='400'
         ml='10px'
         size='sm'

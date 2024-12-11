@@ -1,5 +1,5 @@
 import {
-  InstanceEdfiStatus, InstanceOperationStatus, ODSInstance 
+  InstanceEdfiStatus, InstanceOperationStatus, ODSInstance
 } from '../../core/ODSInstance.types'
 import { EdFiMetadata } from '../useEdfiUrls.types'
 
@@ -17,8 +17,8 @@ const useOdsInstanceEdFiStatus = ({ edFiMetadata }: UseOdsInstanceEdFiStatusProp
     return 'Operational'
   }
 
-  const getOdsInstanceEdFiStatus = (): InstanceEdfiStatus => {
-    return { operationStatus: getOperationStatus() }
+  const getOdsInstanceEdFiStatus = (): InstanceOperationStatus => {
+    return getOperationStatus()
   }
 
 

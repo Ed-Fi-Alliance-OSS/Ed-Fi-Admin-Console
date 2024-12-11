@@ -1,11 +1,11 @@
 import {
-  Flex, FormControl, List, ListItem, Text 
+  Flex, FormControl, List, ListItem, Text
 } from '@chakra-ui/react'
+import {
+  CustomFormLabel, CustomSelect
+} from '@edfi/admin-console-shared-sdk'
 import { ChangeEvent } from 'react'
 import { AppUser } from '../../../core/AppUser.types'
-import {
-  CustomFormLabel, CustomSelect 
-} from '@edfi/admin-console-shared-sdk'
 
 interface BulkEditRoleFormContentProps {
     selectedUsersList: AppUser[]
@@ -41,7 +41,7 @@ const BulkEditRoleFormContent = ({ selectedUsersList, selectedRole, onSelectUser
             >
               <Text 
                 color='blue.600'
-                fontFamily='Open sans'
+                fontFamily='Poppins'
                 fontWeight='700'
                 size='sm'
               >
@@ -50,7 +50,7 @@ const BulkEditRoleFormContent = ({ selectedUsersList, selectedRole, onSelectUser
 
               <Text
                 color='gray.700'
-                fontFamily='Open sans'
+                fontFamily='Poppins'
                 fontWeight='400'
                 size='xs'
               >

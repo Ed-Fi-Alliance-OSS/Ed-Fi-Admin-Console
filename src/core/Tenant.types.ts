@@ -1,3 +1,4 @@
+export type { Tenant } from '@edfi/admin-console-shared-sdk'
 
 export interface Organization {
   identifierType: string
@@ -86,13 +87,6 @@ export interface TenantDomain {
   createdDateTime: string
   lastModifiedBy: string
   lastModifiedDateTime: string
-}
-
-export interface Tenant {
-  tenantId: string
-  document: {
-    edfiApiDiscoveryUrl: string
-  }
 }
 
 export interface TenantSetting {

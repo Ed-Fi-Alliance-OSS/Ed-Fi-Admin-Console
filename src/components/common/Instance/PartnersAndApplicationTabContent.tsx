@@ -1,6 +1,6 @@
 import { Flex } from '@chakra-ui/react'
 import {
-  useCallback, useContext, useState 
+  useCallback, useContext, useState
 } from 'react'
 import { adminConsoleContext } from '../../../context/adminConsoleContext'
 import { DeletingState } from '../../../core/deletingState.types'

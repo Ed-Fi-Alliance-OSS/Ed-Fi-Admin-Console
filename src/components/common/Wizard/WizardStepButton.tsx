@@ -36,7 +36,7 @@ const WizardStepButton = ({ isCurrent, isDisabled, stepData, onClick }: OnBoardi
     >
       <Text
         color={isCurrent? 'blue.500' : 'black'}
-        fontFamily='Open sans'
+        fontFamily='Poppins'
         fontWeight='700'
         size='lg'
         whiteSpace='initial'
@@ -46,7 +46,7 @@ const WizardStepButton = ({ isCurrent, isDisabled, stepData, onClick }: OnBoardi
 
       <Text
         color={isCurrent? 'blue.500' : 'black'}
-        fontFamily='Open sans'
+        fontFamily='Poppins'
         fontWeight='400'
         mt='5px'
         size='sm'

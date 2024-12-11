@@ -1,5 +1,5 @@
 import {
-  Flex, Text 
+  Flex, Text
 } from '@chakra-ui/react'
 import VerifyDomainTable from './VerifyDomainTable'
 
@@ -16,7 +16,7 @@ const VerifyDomainTabContentAddDNSStep = () => {
           borderRadius='4px'
           display='flex'
           flexDir='column'
-          fontFamily='Open sans'
+          fontFamily='Poppins'
           fontSize='18px'
           fontWeight='700'
           size='md'
@@ -25,7 +25,7 @@ const VerifyDomainTabContentAddDNSStep = () => {
         </Text>
 
         <Text
-          fontFamily='Open sans'
+          fontFamily='Poppins'
           fontSize='16px'
           fontWeight='400'
         >   

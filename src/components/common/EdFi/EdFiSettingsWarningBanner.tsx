@@ -1,9 +1,9 @@
 import {
-  Button, Flex, Link, Text 
-} from '@chakra-ui/react'
-import {
-  CloseIcon, InfoIcon 
+  CloseIcon, InfoIcon
 } from '@chakra-ui/icons'
+import {
+  Button, Flex, Link, Text
+} from '@chakra-ui/react'
 import { useState } from 'react'
 import useHelpLinks from '../../../hooks/useHelpLinks'
 
@@ -30,7 +30,7 @@ const EdFiSettingsWarningBanner = () => {
 
             <Text
               color='gray.800' 
-              fontFamily='Open sans' 
+              fontFamily='Poppins' 
               fontSize='16px'
               fontWeight='700'
               ml='16px'
@@ -57,7 +57,7 @@ const EdFiSettingsWarningBanner = () => {
         >
           <Text 
             color='gray.800' 
-            fontFamily='Open sans' 
+            fontFamily='Poppins' 
             fontSize='14px'
             ml='16px'
           >

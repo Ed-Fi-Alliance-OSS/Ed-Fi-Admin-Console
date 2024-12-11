@@ -1,5 +1,5 @@
 import {
-  Flex, Link, Text 
+  Flex, Link, Text
 } from '@chakra-ui/react'
 
 const FinalizeTabBlurb = () => {
@@ -20,7 +20,7 @@ const FinalizeTabBlurb = () => {
       </Text>
 
       <Text 
-        fontFamily='Open sans'
+        fontFamily='Poppins'
         fontSize='12px'
         mt='16px'
       >

@@ -1,5 +1,10 @@
 import {
-  Table, TableContainer, Thead, Tr, Th, Td, Tbody, Flex, Link, Button 
+  Flex,
+  Table, TableContainer,
+  Tbody,
+  Td,
+  Th,
+  Thead, Tr
 } from '@chakra-ui/react'
 import PermissionsAccordionResourceInfo from './PermissionsAccordionResourceInfo'
 
@@ -40,7 +45,7 @@ const PermissionsAccordionTable = ({ resourceInfo }: PermissionsAccordionTablePr
 
             <Th
               color='gray.700'
-              fontFamily='Open sans'
+              fontFamily='Poppins'
               fontSize='14px'
               fontWeight='700'
               textTransform='none'

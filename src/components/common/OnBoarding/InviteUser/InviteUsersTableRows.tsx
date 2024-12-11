@@ -1,5 +1,5 @@
 import {
-  Td, Text 
+  Td, Text
 } from '@chakra-ui/react'
 import { Invitation } from '../../../../core/invitations/Invitation.types'
 import ControlTableRow from '../../ControlTableRow'
@@ -17,7 +17,7 @@ const InviteUsersTableRows = ({ invitationsList }: InviteUsersTableRowsProps) =>
           <Td w='30%'>
             <Text
               color='gray.700'
-              fontFamily='Open sans'
+              fontFamily='Poppins'
               fontWeight='400'
               size='sm'
             >
@@ -28,7 +28,7 @@ const InviteUsersTableRows = ({ invitationsList }: InviteUsersTableRowsProps) =>
           <Td w='20%'>
             <Text
               color='gray.700'
-              fontFamily='Open sans'
+              fontFamily='Poppins'
               fontWeight='400'
               size='sm'
             >
@@ -39,7 +39,7 @@ const InviteUsersTableRows = ({ invitationsList }: InviteUsersTableRowsProps) =>
           <Td w='20%'>
             <Text
               color='gray.700'
-              fontFamily='Open sans'
+              fontFamily='Poppins'
               fontWeight='400'
               size='sm'
             >
@@ -50,7 +50,7 @@ const InviteUsersTableRows = ({ invitationsList }: InviteUsersTableRowsProps) =>
           <Td w='20%'>
             <Text
               color='gray.700'
-              fontFamily='Open sans'
+              fontFamily='Poppins'
               fontWeight='400'
               size='sm'
             >

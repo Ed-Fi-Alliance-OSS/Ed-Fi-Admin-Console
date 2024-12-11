@@ -6,14 +6,11 @@ import {
 } from 'react'
 import { adminConsoleContext } from '../../context/adminConsoleContext'
 import { useMockData } from '../../context/mockDataContext'
-import { ExtendedODSInstance } from '../../core/ODSInstance.types'
+import { ODSInstance } from '../../core/ODSInstance.types'
 import { usePluginContext } from '../../plugins/BasePlugin'
-import useOdsInstanceService from '../../services/ODSInstances/OdsInstanceService'
-import { UpdateOdsInstanceIsDefaultRequest } from '../../services/ODSInstances/OdsInstanceService.requests'
 import useEDXToast from '../common/useEDXToast'
 import useControlTable from '../controlTable/useControlTable'
 import useConfirmSetDefaultModal from './useConfirmSetDefaultModal'
-import useExtendedOdsInstanceMapping from './useExtendedOdsInstanceMapping'
 import { UpdatingIsDefaultStatus } from './useOdsInstanceTable.types'
 import useSetUpWizardModal from './useSetUpWizardModal'
 import useValidateSetAsDefault from './useValidateSetAsDefault'
@@ -30,22 +27,22 @@ const useOdsInstanceTable = () => {
     orderBy,
     onSortAsc,
     onSortDesc,
-  } = useControlTable<ExtendedODSInstance, any>({
+  } = useControlTable<ODSInstance, any>({
     initialOrder: 'year',
     initialPageSize: 100
   })
 
-  const [ selectedInstance, setSelectedInstance ] = useState<ExtendedODSInstance | null>(null)
+  const [ selectedInstance, setSelectedInstance ] = useState<ODSInstance | null>(null)
 
   const [ updatingIsDefault, setUpdatingIsDefault ] = useState<UpdatingIsDefaultStatus>({
     instanceId: null,
     loading: false
   })
 
-  const {
-    getOdsInstancesList,
-    updateInstanceIsDefault
-  } = useOdsInstanceService()
+  // const {
+  //   getOdsInstancesList,
+  //   updateInstanceIsDefault
+  // } = useOdsInstanceService()
 
   const {
     showConfirmSetDefaultModal,
@@ -59,9 +56,6 @@ const useOdsInstanceTable = () => {
     onCloseSetUpWizardModal
   } = useSetUpWizardModal()
 
-  const {
-    mapToExtendedOdsInstance
-  } = useExtendedOdsInstanceMapping()
 
   const {
     canSetAsDefault
@@ -95,7 +89,7 @@ const useOdsInstanceTable = () => {
   }
 
   const onOpenSetDefaultModal = (instanceId: string) => {
-    const instanceById = paginatedData.data.find(i => i.odsInstanceId == instanceId)
+    const instanceById = paginatedData.data.find(i => i.id == instanceId)
 
     if (!instanceById) {
       return
@@ -106,7 +100,7 @@ const useOdsInstanceTable = () => {
   }
 
   const onOpenSetUpModal = (instanceId: string) => {
-    const instanceById = paginatedData.data.find(i => i.odsInstanceId == instanceId)
+    const instanceById = paginatedData.data.find(i => i.id == instanceId)
 
     if (!instanceById) {
       return
@@ -117,61 +111,61 @@ const useOdsInstanceTable = () => {
   }
 
   const onSetIsDefault = async (instanceId: string, isDefault: boolean) => {
-    if (!adminConfig) {
-      return
-    }
+    // if (!adminConfig) {
+    //   return
+    // }
 
-    const instanceById = paginatedData.data
-      .find(instance => instance.odsInstanceId == instanceId)
+    // const instanceById = paginatedData.data
+    //   .find(instance => instance.id == instanceId)
 
-    if (!instanceById) {
-      return
-    }
+    // if (!instanceById) {
+    //   return
+    // }
 
-    const canSetAsDefaultResult = canSetAsDefault(instanceById, paginatedData.data)
+    // const canSetAsDefaultResult = canSetAsDefault(instanceById, paginatedData.data)
 
-    if (!canSetAsDefaultResult) {
-      return
-    }
+    // if (!canSetAsDefaultResult) {
+    //   return
+    // }
 
-    const request: UpdateOdsInstanceIsDefaultRequest = {
-      tenantId: adminConfig.actionParams.tenantId,
-      instanceId,
-      isDefault,
-      validate: true
-    }
+    // const request: UpdateOdsInstanceIsDefaultRequest = {
+    //   tenantId: adminConfig.actionParams.tenantId,
+    //   instanceId,
+    //   isDefault,
+    //   validate: true
+    // }
 
-    setUpdatingIsDefault({
-      instanceId,
-      loading: true
-    })
+    // setUpdatingIsDefault({
+    //   instanceId,
+    //   loading: true
+    // })
 
-    const response = await updateInstanceIsDefault(
-      adminConfig.actionParams,
-      request
-    )
+    // const response = await updateInstanceIsDefault(
+    //   adminConfig.actionParams,
+    //   request
+    // )
 
-    if (response.type == 'Error') {
-      setUpdatingIsDefault({
-        instanceId,
-        loading: false
-      })
+    // if (response.type == 'Error') {
+    //   setUpdatingIsDefault({
+    //     instanceId,
+    //     loading: false
+    //   })
 
-      onCloseConfirmSetDefaultModal()
+    //   onCloseConfirmSetDefaultModal()
 
-      errorToast('Failed to set instance as default')
+    //   errorToast('Failed to set instance as default')
 
-      return
-    }
+    //   return
+    // }
 
-    await fetchInstancesList()
+    // await fetchInstancesList()
 
-    setUpdatingIsDefault({
-      instanceId,
-      loading: false
-    })
+    // setUpdatingIsDefault({
+    //   instanceId,
+    //   loading: false
+    // })
 
-    onCloseConfirmSetDefaultModal()
+    // onCloseConfirmSetDefaultModal()
   }
 
   useEffect(() => {

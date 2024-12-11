@@ -1,13 +1,15 @@
 import {
-  Flex, FormControl, Text 
+  Flex, FormControl, Text
 } from '@chakra-ui/react'
 import {
-  CustomFormLabel, CopyTextBtn, CustomInput 
+  CopyTextBtn,
+  CustomFormLabel,
+  CustomInput
 } from '@edfi/admin-console-shared-sdk'
 import { useContext } from 'react'
 import { adminConsoleContext } from '../../../context/adminConsoleContext'
-import useEdfiUrls from '../../../hooks/useEdfiUrls'
 import { ODSInstance } from '../../../core/ODSInstance.types'
+import useEdfiUrls from '../../../hooks/useEdfiUrls'
 
 interface ApplicationAPIEndpointsTabContentProps {
     instance: ODSInstance | null
@@ -88,7 +90,7 @@ const ApplicationAPIEndpointsTabContent = ({ instance }: ApplicationAPIEndpoints
 
       { adminConfig && adminConfig.showCompositeUrls && <>
         <Text
-          fontFamily='Open sans'
+          fontFamily='Poppins'
           fontWeight='700'
           mt='16px'
           size='md'

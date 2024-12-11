@@ -1,5 +1,5 @@
 import {
-  Flex, Text 
+  Flex, Text
 } from '@chakra-ui/react'
 import { CustomSwitch } from '@edfi/admin-console-shared-sdk'
 
@@ -20,7 +20,7 @@ const AdvancedModeSwitch = ({ checked }: AdvancedModeSwitchProps) => {
       />
 
       <Text 
-        fontFamily='Open sans'
+        fontFamily='Poppins'
         fontWeight='700'
         ml='15px'
         size='2m'

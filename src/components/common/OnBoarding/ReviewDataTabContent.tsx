@@ -19,7 +19,7 @@ const ReviewDataTabContent = ({ setupWizard }: ReviewDataTabContentProps) => {
     <OnBoardingTabContentWrapper>
       {adminConfig && adminConfig.showDataHealth? <>
         <Text
-          fontFamily='Open sans'
+          fontFamily='Poppins'
           fontWeight='400'
           w='730px'
         >
@@ -37,13 +37,13 @@ const ReviewDataTabContent = ({ setupWizard }: ReviewDataTabContentProps) => {
         </Flex>
       </> : 
       <Text
-        fontFamily='Open sans'
-        fontSize='24px'
-        fontWeight='600'
-        w='730px'
-      >
-        Coming Soon
-      </Text>}
+          fontFamily='Poppins'
+          fontSize='24px'
+          fontWeight='600'
+          w='730px'
+        >
+          Coming Soon
+        </Text>}
 
       <Flex
         justifyContent='space-between'
@@ -52,7 +52,7 @@ const ReviewDataTabContent = ({ setupWizard }: ReviewDataTabContentProps) => {
       >
         {false && <Link
           color='blue.500'
-          fontFamily='Open sans'
+          fontFamily='Poppins'
           fontWeight='700'
           size='md'
         >

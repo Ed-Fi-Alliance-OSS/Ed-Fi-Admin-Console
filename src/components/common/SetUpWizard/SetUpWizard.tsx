@@ -1,18 +1,18 @@
 import { CheckIcon } from '@chakra-ui/icons'
 import {
-  Flex, Tab, TabList, TabPanel, TabPanels, Tabs 
+  Flex, Tab, TabList, TabPanel, TabPanels, Tabs
 } from '@chakra-ui/react'
 import { useState } from 'react'
 import OnBoardingConnectSISContextProvider from '../../../context/onBoardingConnectSISContext'
+import { ODSInstance } from '../../../core/ODSInstance.types'
+import { InstanceOnboarding } from '../../../core/setUpWizard/setUpWizard.types'
 import { SISProviderInfo } from '../../../core/sisProviders/SISProviders.types'
+import useOdsInstanceYear from '../../../hooks/odsInstances/useOdsInstanceYear'
 import useSetUpWizardStepsMetadata from '../../../hooks/setUpWizard/useSetUpWizardStepsMetadata'
 import ConnectSISTabContent from '../OnBoarding/ConnectSISTabContent'
 import OnBoardingTabsWrapper from '../OnBoarding/OnBoardingTabsWrapper'
 import ReviewDataTabContent from '../OnBoarding/ReviewDataTabContent'
 import SetUpWizardFinalizeTabContent from './SetUpWizardFinalizeTabContent'
-import { InstanceOnboarding } from '../../../core/setUpWizard/setUpWizard.types'
-import { ODSInstance } from '../../../core/ODSInstance.types'
-import useOdsInstanceYear from '../../../hooks/odsInstances/useOdsInstanceYear'
 
 interface SetUpWizardProps {
     instance: ODSInstance
@@ -127,7 +127,7 @@ const SetUpWizard = ({ instance, setupWizardData, completedSteps, lastInProgress
             }}
             borderRadius='0'
             color='white'
-            fontFamily='Open sans'
+            fontFamily='Poppins'
             fontSize='14px'
             fontWeight='700'
             h='54px'

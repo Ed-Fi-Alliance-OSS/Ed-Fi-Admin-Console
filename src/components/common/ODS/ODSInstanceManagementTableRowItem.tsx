@@ -1,22 +1,32 @@
 import {
-  RadioGroup, Td
+  Flex,
+  Link,
+  RadioGroup, Spinner, Td
 } from '@chakra-ui/react'
-import { CustomRadio } from '@edfi/admin-console-shared-sdk'
+import {
+  CustomRadio, Tenant
+} from '@edfi/admin-console-shared-sdk'
 import { useEffect } from 'react'
-import { ExtendedODSInstance } from '../../../core/ODSInstance.types'
+import { Link as RouterLink } from 'react-router-dom'
+import { ODSInstance } from '../../../core/ODSInstance.types'
+import { useEdfiMetadata } from '../../../hooks/odsInstances/useEdfiMetadata'
+import useOdsInstanceLink from '../../../hooks/odsInstances/useOdsInstanceLink'
 import { UpdatingIsDefaultStatus } from '../../../hooks/odsInstances/useOdsInstanceTable.types'
 import ManageInstanceBtn from './ManageInstanceBtn'
+import ODSInstanceEdFiVersion from './ODSInstaceEdFiVersion'
+import ODSInstanceEdFiStatus from './ODSInstanceEdFiStatus'
 import { ODSInstanceTableMode } from './ODSInstanceTable.types'
-import ODSInstanceYear from './ODSInstanceYear'
+import ODSInstanceDataModelsLabel from './ODSInstanceTSDSVersion'
 import SetUpInstanceBtn from './SetUpInstanceBtn'
 
 interface ODSInstanceManagementTableRowItemProps {
   tableMode: ODSInstanceTableMode
-  instance: ExtendedODSInstance
+  tenants: Tenant[]
+  instance: ODSInstance
   updatingIsDefault: UpdatingIsDefaultStatus
   canSetAsDefault: boolean
-  selectedInstance: ExtendedODSInstance | null
-  onSelectInstance: (instance: ExtendedODSInstance) => void
+  selectedInstance: ODSInstance | null
+  onSelectInstance: (instance: ODSInstance) => void
   onOpenSetDefaultModal: (instanceId: string) => void
   onOpenSetUpModal: (instanceId: string) => void
 }
@@ -25,6 +35,9 @@ const ODSInstanceManagementTableRowItem = ({ tableMode, selectedInstance, instan
   const showSetupBtn = () => {
     return false
   }
+
+  const { getOdsInstanceLink } = useOdsInstanceLink()
+  const { edfiMetadata, edFiStatus, metaDataLoading } = useEdfiMetadata()
 
   useEffect(() => {
     // if (instance.isDefault) {
@@ -38,38 +51,50 @@ const ODSInstanceManagementTableRowItem = ({ tableMode, selectedInstance, instan
     <>
       {tableMode != 'Display' && <Td w='80px'>
         <RadioGroup
-          value={selectedInstance?.odsInstanceId ?? ''}
+          value={selectedInstance?.id ?? ''}
           onChange={() => onSelectInstance(instance)}
         >
           <CustomRadio
-            isChecked={selectedInstance?.odsInstanceId == instance.odsInstanceId}
+            isChecked={selectedInstance?.id == instance.id}
             text=""
-            value={instance.odsInstanceId}
+            value={instance.id}
           />
         </RadioGroup>
       </Td>}
 
-      <Td width={100}>
-        <ODSInstanceYear instance={instance} />
-      </Td>
-
       <Td width={400}>
-        {instance.document.name ?? ''}
+        <Flex
+          flexDir='column'
+          flexWrap='wrap'
+          h='auto'
+          w='250px'
+        >
+          <Link
+            as={RouterLink} 
+            color='blue.600'
+            fontFamily='Poppins'
+            fontWeight='700'
+            lineHeight='22px'
+            size='md'
+            state={{ instanceId: instance.id }}
+            to={getOdsInstanceLink(instance)}
+            w="100px"
+          >
+            {instance.name}
+          </Link>
+        </Flex>
       </Td>
 
       <Td>
-        N/A
-        {/* <ODSInstanceEdFiVersion version={instance.edFiVersion} />  */}
+        {metaDataLoading ? <Spinner /> : <ODSInstanceEdFiVersion version={edfiMetadata?.version} /> }
       </Td>
 
       <Td>
-        N/A
-        {/* <ODSInstanceDataModelsLabel dataModels={instance.edfiMetadata.dataModels} />  */}
+        {metaDataLoading ? <Spinner /> : <ODSInstanceDataModelsLabel dataModels={edfiMetadata?.dataModels} /> }
       </Td>
 
       <Td>
-        {/* <ODSInstanceEdFiStatus status={instance.edFiStatus} /> */}
-        Status
+        {metaDataLoading ? <Spinner /> : <ODSInstanceEdFiStatus status={edFiStatus ?? ''} />}
       </Td>
 
       {tableMode == 'Display' && <>

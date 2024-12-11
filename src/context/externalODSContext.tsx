@@ -2,9 +2,9 @@ import {
   TEEAuthDataContext, UserProfileContext
 } from '@edfi/admin-console-shared-sdk'
 import {
-  createContext, useContext, useEffect, useState
+  createContext, useContext,
+  useState
 } from 'react'
-import useTenantService from '../services/AdminActions/Tenant/TenantService'
 
 export interface ExternalODSInfo {
     isExternalODS: boolean 
@@ -20,7 +20,7 @@ interface ExternalODSProviderProps {
 const ExternalODSProvider = ({ children, config }: ExternalODSProviderProps) => {
   const { userProfile } = useContext(UserProfileContext)
   const { auth, edxAppConfig } = useContext(TEEAuthDataContext)
-  const { getTenant } = useTenantService()
+  // const { getTenant } = useTenantService()
   const [ isODS, setIsODS ] = useState<boolean>(false)
 
   const fetchUseExternalODSSetting = async () => {
@@ -53,11 +53,11 @@ const ExternalODSProvider = ({ children, config }: ExternalODSProviderProps) => 
     // }
   }
 
-  useEffect(() => {
-    if (userProfile) {
-      fetchUseExternalODSSetting()
-    }
-  }, [ userProfile ])
+  // useEffect(() => {
+  //   if (userProfile) {
+  //     fetchUseExternalODSSetting()
+  //   }
+  // }, [ userProfile ])
 
   return (
     <externalODSContext.Provider value={{ isExternalODS: isODS }}>

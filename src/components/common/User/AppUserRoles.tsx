@@ -1,5 +1,5 @@
 import {
-  Flex, Text 
+  Flex, Text
 } from '@chakra-ui/react'
 import { AppUserRole } from '../../../core/AppUser.types'
 
@@ -13,7 +13,7 @@ const AppUserRoles = ({ roles }: AppUserRolesProps) => {
       {roles.map((role, index) => 
         <Text
           key={index}
-          fontFamily='Open sans'
+          fontFamily='Poppins'
           fontWeight='400'
           size='md'
         >

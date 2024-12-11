@@ -75,6 +75,7 @@ const HomePageContent = () => {
           <ODSInstanceTableWrapper
             pickedInstance={null}
             tableMode="Display"
+            tenants={[]}
             onSelectInstance={() => null}
             onUpdateInstancesCount={() => null}
           />

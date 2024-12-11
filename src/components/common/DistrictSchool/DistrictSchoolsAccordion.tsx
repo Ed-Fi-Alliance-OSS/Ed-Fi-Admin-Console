@@ -16,40 +16,40 @@ interface DistrictSchoolsAccordionProps {
 
 const getStatusColor = (status: DomainStatus) => {
   if (status === 'Verified') {
- return 'green.600' 
-}
+    return 'green.600' 
+  }
 
   if (status === 'Unverified') {
- return 'orange.400' 
-}
+    return 'orange.400' 
+  }
 
   if (status === 'Rejected') {
- return 'red.800' 
-}
+    return 'red.800' 
+  }
 
   if (status === 'Error') {
- return 'red.800' 
-}
+    return 'red.800' 
+  }
         
   return 'gray.500'
 }
 
 const getBorderColor = (status: DomainStatus) => {
   if (status === 'Verified') {
- return 'green.400' 
-}
+    return 'green.400' 
+  }
 
   if (status === 'Unverified') {
- return 'orange.300' 
-}
+    return 'orange.300' 
+  }
 
   if (status === 'Rejected') {
- return 'red.400' 
-}
+    return 'red.400' 
+  }
 
   if (status === 'Error') {
- return 'red.400' 
-}
+    return 'red.400' 
+  }
     
   return 'gray.300'
 }  
@@ -79,7 +79,7 @@ const DistrictSchoolsAccordion = ({ district, isRemovingDomain, onRemoveDomain, 
 
               <Text 
                 color='blue.600'
-                fontFamily='Open sans'
+                fontFamily='Poppins'
                 fontWeight='700'
                 ml='10px'
               >
@@ -91,7 +91,7 @@ const DistrictSchoolsAccordion = ({ district, isRemovingDomain, onRemoveDomain, 
             <Flex w='231px'>
               <Text
                 color='gray.700'
-                fontFamily='Open sans'
+                fontFamily='Poppins'
                 fontWeight='300'
               >
                 {/* {district.organizationIdentifier} */}
@@ -116,7 +116,7 @@ const DistrictSchoolsAccordion = ({ district, isRemovingDomain, onRemoveDomain, 
             <Flex w='150px'>
               <Text
                 color='gray.700'
-                fontFamily='Open sans'
+                fontFamily='Poppins'
                 fontWeight='300'
               >
                 org length

@@ -1,6 +1,6 @@
 import { InfoIcon } from '@chakra-ui/icons'
 import {
-  Flex, Text 
+  Flex, Text
 } from '@chakra-ui/react'
 import { ChangeEvent } from 'react'
 import { FormDataErrors } from '../../../../core/validation/FormValidations.types'
@@ -42,7 +42,7 @@ const InviteUserFormContent = ({ userData, hasTriedSubmit, errors, onInputChange
           </Text>
 
           <Text
-            fontFamily='Open sans'
+            fontFamily='Poppins'
             fontSize='16px'
             fontWeight='400'
           >

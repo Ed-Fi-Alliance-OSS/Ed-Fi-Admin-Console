@@ -10,7 +10,7 @@ const SubscriptionApplication = ({ name, onEditApplicationSubscription }: Subscr
     <Button
       color='blue.600'
       cursor='pointer'
-      fontFamily='Open sans'
+      fontFamily='Poppins'
       fontWeight='700'
       minW='auto'
       size='md'

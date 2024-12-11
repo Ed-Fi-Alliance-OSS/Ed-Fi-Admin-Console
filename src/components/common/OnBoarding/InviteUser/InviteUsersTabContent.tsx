@@ -1,13 +1,13 @@
 import {
-  useEffect, useState 
-} from 'react'
-import {
-  Button, Flex, Text 
+  Button, Flex, Text
 } from '@chakra-ui/react'
+import {
+  useEffect, useState
+} from 'react'
+import useInvitationsList from '../../../../hooks/adminActions/users/useInvitationsList'
+import OnBoardingTabContentWrapper from '../OnBoardingTabContentWrapper'
 import InviteUserModal from './InviteUserModal'
 import InviteUsersTable from './InviteUsersTable'
-import OnBoardingTabContentWrapper from '../OnBoardingTabContentWrapper'
-import useInvitationsList from '../../../../hooks/adminActions/users/useInvitationsList'
 
 interface InviteUsersTabContentProps {
     onCompleteStep: (stepIndex: number) => void
@@ -38,7 +38,7 @@ const InviteUsersTabContent = ({ onCompleteStep }: InviteUsersTabContentProps) =
   return (
     <OnBoardingTabContentWrapper>
       <Text
-        fontFamily='Open sans'
+        fontFamily='Poppins'
         fontWeight='400'
         textAlign='justify'
         w='730px'

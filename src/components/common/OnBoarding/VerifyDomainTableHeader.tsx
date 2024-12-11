@@ -1,5 +1,5 @@
 import {
-  Flex, Text 
+  Flex, Text
 } from '@chakra-ui/react'
 import CommonTooltip from '../CommonTooltip'
 
@@ -12,7 +12,7 @@ const VerifyDomainTableHeader = ({ headerName, tooltipMessage }: VerifyDomainTab
   return (
     <Flex alignItems='center'>
       <Text
-        fontFamily='Open sans'
+        fontFamily='Poppins'
         mr='5px'
       >{ headerName }
       </Text>

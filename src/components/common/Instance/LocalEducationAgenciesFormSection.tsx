@@ -1,5 +1,5 @@
 import {
-  Flex, Text 
+  Flex, Text
 } from '@chakra-ui/react'
 import { CustomSwitch } from '@edfi/admin-console-shared-sdk'
 import { ChangeEvent } from 'react'
@@ -42,14 +42,14 @@ const LocalEducationAgenciesFormSection = ({ name, mode, description, selected, 
         >
           <Text
             color='blue.600'
-            fontFamily='Open sans'
+            fontFamily='Poppins'
             fontWeight='700'
           >{name}
           </Text>
 
           <Text
             color='gray.700'
-            fontFamily='Open sans'
+            fontFamily='Poppins'
             fontWeight='400'
           >
             {description}

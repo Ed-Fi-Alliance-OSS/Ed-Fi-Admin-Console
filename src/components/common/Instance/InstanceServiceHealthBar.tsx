@@ -1,5 +1,5 @@
 import {
-  Flex, Grid, GridItem, Text 
+  Flex, Grid, GridItem, Text
 } from '@chakra-ui/react'
 
 interface ServiceHealth {
@@ -25,7 +25,7 @@ const InstanceServiceHealthBar = ({ serviceHealth }: InstanceServiceHealthBarPro
       padding='16px 16px 16px 24px'
     >
       <Text 
-        fontFamily='Open sans'
+        fontFamily='Poppins'
         fontSize='sm'
         fontWeight='700'
         w='160px'
@@ -39,7 +39,7 @@ const InstanceServiceHealthBar = ({ serviceHealth }: InstanceServiceHealthBarPro
       >
         <Text
           color='gray.500'
-          fontFamily='Open sans'
+          fontFamily='Poppins'
           fontSize='sm'
           fontWeight='400'
         >{serviceHealth.uptimeDescription}
@@ -47,7 +47,7 @@ const InstanceServiceHealthBar = ({ serviceHealth }: InstanceServiceHealthBarPro
 
         <Text   
           color='gray.500'
-          fontFamily='Open sans'
+          fontFamily='Poppins'
           fontSize='sm'
           fontWeight='400'
         >{serviceHealth.updatedDate}

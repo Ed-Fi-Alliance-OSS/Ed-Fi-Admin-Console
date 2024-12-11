@@ -1,5 +1,5 @@
 import {
-  Flex, Text 
+  Flex, Text
 } from '@chakra-ui/react'
 import { CustomSwitch } from '@edfi/admin-console-shared-sdk'
 
@@ -35,7 +35,7 @@ const IdentityProvidersTab = () => {
 
           <Text
             color='blue.600'
-            fontFamily='Open sans'
+            fontFamily='Poppins'
             fontWeight='700'
             ml='15px'
             size='sm'

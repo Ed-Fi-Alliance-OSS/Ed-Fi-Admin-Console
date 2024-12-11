@@ -8,7 +8,7 @@ const OptionText = ({ text }: OptionTextProps) => {
   return (
     <Text 
       color='gray.600'
-      fontFamily='Open sans'
+      fontFamily='Poppins'
       fontWeight='400'
       mb='2px' 
       ml='10px'

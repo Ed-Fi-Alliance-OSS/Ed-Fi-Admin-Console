@@ -1,5 +1,5 @@
 import {
-  Button, Flex, Text 
+  Button, Flex, Text
 } from '@chakra-ui/react'
 import { AppUser } from '../core/AppUser.types'
 import EDXCustomModal from './common/EDXCustomModal'
@@ -24,7 +24,7 @@ const ConfirmDeleteUserModal = ({ user, show, isDeletingUser, onDeleteUser, onCl
         </Text>
 
         <Text 
-          fontFamily='Open sans'
+          fontFamily='Poppins'
           fontWeight='700'
         >
           {`${user.firstName} ${user.lastName}`}

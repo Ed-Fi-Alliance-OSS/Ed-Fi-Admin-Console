@@ -1,4 +1,6 @@
-import { Table, TableContainer, Tbody, Td, Th, Thead, Tr } from '@chakra-ui/react'
+import {
+  Table, TableContainer, Tbody, Td, Th, Thead, Tr
+} from '@chakra-ui/react'
 import { Organization } from '../../../core/Tenant.types'
 
 interface DistrictSchoolsDataTableProps {
@@ -7,60 +9,71 @@ interface DistrictSchoolsDataTableProps {
 
 const DistrictSchoolsDataTable = ({ schools }: DistrictSchoolsDataTableProps) => {
   return (
-    <TableContainer 
-      borderRadius='4px'>
+    <TableContainer borderRadius='4px'>
       <Table
         border='1px'
-        borderRadius='4px'
         borderColor='gray.300'
+        borderRadius='4px'
         overflow='hidden'
-        variant='simple'>
+        variant='simple'
+      >
         <Thead bg='gray.100'>
-          <Tr borderRadius='4px' p='0'>
+          <Tr
+            borderRadius='4px'
+            p='0'
+          >
             <Th 
               color='gray.700'
-              fontFamily='Open sans'
-              fontWeight='700'
+              fontFamily='Poppins'
               fontSize='14px'
-              textTransform='none'>
-                                        Identifier
+              fontWeight='700'
+              textTransform='none'
+            >
+              Identifier
             </Th>
+
             <Th
               color='gray.700'
-              fontFamily='Open sans'
-              fontWeight='700'
+              fontFamily='Poppins'
               fontSize='14px'
-              textTransform='none'>
-                                        Organization Name
+              fontWeight='700'
+              textTransform='none'
+            >
+              Organization Name
             </Th>
+
             <Th
               color='gray.700'
-              fontFamily='Open sans'
-              fontWeight='700'
+              fontFamily='Poppins'
               fontSize='14px'
-              textTransform='none'>
-                                        Source
+              fontWeight='700'
+              textTransform='none'
+            >
+              Source
             </Th>
           </Tr>
         </Thead>
+
         <Tbody>
           {schools.map(school => 
             <Tr
+              key={school.identifierValue}
               border='2px'
               borderColor='gray.300'
               padding='0'
-              key={school.identifierValue}>
+            >
               <Td paddingY='0'>
                 {school.identifierValue}
               </Td>
+
               <Td>
                 {school.nameOfInstitution}
               </Td>
+
               <Td>    
                 {school.source}
               </Td>
-            </Tr>
-          )}
+            </Tr>)}
         </Tbody>
       </Table>
     </TableContainer>

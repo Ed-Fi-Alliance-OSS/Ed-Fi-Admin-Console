@@ -1,5 +1,13 @@
 import {
-  Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter, useColorModeValue, Text 
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
+  Text,
+  useColorModeValue
 } from '@chakra-ui/react'
 
 interface InformationModalProps {
@@ -61,7 +69,7 @@ const EDXCustomModal = ({ type, header, content, footer, isOpen, onClose }: Info
           w=''
         >
           { typeof(content) === 'string'? 
-            <Text fontFamily='Open sans'>{ content }
+            <Text fontFamily='Poppins'>{ content }
             </Text> : content } 
         </ModalBody>
 

@@ -1,5 +1,5 @@
 import {
-  Flex, Text 
+  Flex, Text
 } from '@chakra-ui/react'
 import { useContext } from 'react'
 import { onBoardingConnectSISContext } from '../../../context/onBoardingConnectSISContext'
@@ -45,7 +45,7 @@ const ConnectSISTabContent = ({ odsAuthenticationUrl, odsResourcesUrl, setupWiza
   return (
     <OnBoardingTabContentWrapper>
       <Text
-        fontFamily='Open sans'
+        fontFamily='Poppins'
         fontWeight='400'
         textAlign='justify'
         w='730px'

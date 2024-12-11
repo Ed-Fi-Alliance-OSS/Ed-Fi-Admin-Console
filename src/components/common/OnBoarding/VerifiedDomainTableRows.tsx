@@ -1,5 +1,5 @@
 import {
-  Td, Text 
+  Td, Text
 } from '@chakra-ui/react'
 import { VerifiedDomainInfo } from '../../../core/verifyDomain/VerifyDomain.types'
 import ControlTableRow from '../ControlTableRow'
@@ -17,7 +17,7 @@ const VerifiedDomainTableRows = ({ verifiedDomains }: VerifiedDomainTableRowsPro
           <Td w='50%'>
             <Text
               color='blue.600'
-              fontFamily='Open sans'
+              fontFamily='Poppins'
               fontWeight='700'
               size='md'
             >
@@ -28,7 +28,7 @@ const VerifiedDomainTableRows = ({ verifiedDomains }: VerifiedDomainTableRowsPro
           <Td w='50%'>
             <Text
               color='blue.600'
-              fontFamily='Open sans'
+              fontFamily='Poppins'
               fontWeight='700'
               size='md'
             >

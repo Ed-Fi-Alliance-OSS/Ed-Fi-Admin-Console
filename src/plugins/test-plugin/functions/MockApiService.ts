@@ -2,21 +2,20 @@ import {
   EdxAppConfig,
   useApiService
 } from '@edfi/admin-console-shared-sdk'
-import { Tenant } from '../../../core/Tenant.types'
 
 export function MockApiService(config: EdxAppConfig, apiService: typeof useApiService) {
   const baseUrl = window.location.origin.includes('localhost') ? 'http://localhost:3000/api' : config.app.basePath + '/api'
-  const { api } = apiService()
+  const { api } = apiService('')
+  const { api: adminConsoleApi } = apiService(config.api.edfiAdminApiBaseUri)
   return {
     tenants: {
-      getAll: () => api.get(`${baseUrl}/tenants`).then(resp => resp.data),
-      get: (tenantId: string) => api.get(`${baseUrl}/tenants/${tenantId}`).then(resp => resp.data),
-      update: (tenantId: string, tenant: Tenant) => api.patch(`${baseUrl}/tenants/${tenantId}`, tenant).then(resp => resp.data),
+      getAll: () => adminConsoleApi.get('/adminconsole/tenants').then(resp => resp.data),
+      get: (tenantId: string) => adminConsoleApi.get(`/adminconsole/tenants/${tenantId}`).then(resp => resp.data),
     },
     instances: {
-      getAll: () => api.get(`${baseUrl}/instances`).then(resp => resp.data),
-      get: (instanceId: string) => api.get(`${baseUrl}/instances/${instanceId}`).then(resp => resp.data),
-      create: (instance: any) => api.post(`${baseUrl}/instances`, instance).then(resp => resp.data),
+      getAll: () => adminConsoleApi.get('/v2/odsinstances').then(resp => resp.data),
+      get: (instanceId: string) => adminConsoleApi.get(`/v2/odsinstances/${instanceId}`).then(resp => resp.data),
+      create: (instance: any) => adminConsoleApi.post('/v2/odsinstances').then(resp => resp.data),
     },
     users: {
       getAll: () => api.get(`${baseUrl}/users`).then(resp => resp.data),

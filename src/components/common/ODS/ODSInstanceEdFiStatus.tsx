@@ -1,30 +1,30 @@
 import {
-  Flex, Spinner, Text 
+  Flex, Spinner, Text
 } from '@chakra-ui/react'
-import { InstanceEdfiStatus } from '../../../core/ODSInstance.types'
+import { InstanceOperationStatus } from '../../../core/ODSInstance.types'
 
 interface ODSInstanceEdFiStatusProps {
-    status: InstanceEdfiStatus | null
+  status: InstanceOperationStatus
 }
 
-const selectBorderColor = (status: InstanceEdfiStatus) => {
-  if (status.operationStatus === 'Operational') {
+const selectBorderColor = (status: InstanceOperationStatus) => {
+  if (status === 'Operational') {
     return 'green.400'
   }
-    
+
   return 'orange.400'
 }
 
-const selectTextColor = (status: InstanceEdfiStatus) => {
-  if (status.operationStatus === 'Operational') {
+const selectTextColor = (status: InstanceOperationStatus) => {
+  if (status === 'Operational') {
     return 'green.800'
   }
-    
+
   return 'orange.800'
 }
 
-const selectSize = (status: InstanceEdfiStatus) => {
-  if (status.operationStatus === 'Operational') {
+const selectSize = (status: InstanceOperationStatus) => {
+  if (status === 'Operational') {
     return '150px'
   }
 
@@ -32,9 +32,9 @@ const selectSize = (status: InstanceEdfiStatus) => {
 }
 
 const ODSInstanceEdFiStatus = ({ status }: ODSInstanceEdFiStatusProps) => {
-  return (    
+  return (
     <>
-      {status? <Flex 
+      {status ? <Flex
         alignItems='center'
         border='1px'
         borderColor={selectBorderColor(status)}
@@ -45,23 +45,20 @@ const ODSInstanceEdFiStatus = ({ status }: ODSInstanceEdFiStatusProps) => {
       >
         <Text
           color={selectTextColor(status)}
-          fontFamily='Archivo Narrow'
           fontWeight='400'
           size='md'
         >
-          { status.operationStatus }
+          {status}
         </Text>
-      </Flex> 
-        : 
-      <Flex
+      </Flex> : <Flex
         h='32px'
         w='150px'
       >
-        <Spinner 
-          color='gray.500' 
+        <Spinner
+          color='gray.500'
           size='sm'
         />
-      </Flex> }
+      </Flex>}
     </>
   )
 }

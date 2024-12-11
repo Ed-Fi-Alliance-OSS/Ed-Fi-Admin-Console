@@ -1,8 +1,8 @@
 import {
-  TriangleDownIcon, TriangleUpIcon 
+  TriangleDownIcon, TriangleUpIcon
 } from '@chakra-ui/icons'
 import {
-  Button, Flex, Text 
+  Button, Flex, Text
 } from '@chakra-ui/react'
 import { SortByParams } from '../../../hooks/controlTable/useControlTableSorting'
 
@@ -65,7 +65,7 @@ const PartnersAndApplicationAccordionHeader = ({ sortByPartnerDesc, sortByPartne
       </Flex>
 
       <Text 
-        fontFamily='Open sans'
+        fontFamily='Poppins'
         fontWeight='700'
         w='250px'
       >
@@ -73,7 +73,7 @@ const PartnersAndApplicationAccordionHeader = ({ sortByPartnerDesc, sortByPartne
       </Text>
 
       <Text 
-        fontFamily='Open sans'
+        fontFamily='Poppins'
         fontWeight='700'
         ml='40px'
         w='650px'
@@ -82,7 +82,7 @@ const PartnersAndApplicationAccordionHeader = ({ sortByPartnerDesc, sortByPartne
       </Text>
 
       <Text 
-        fontFamily='Open sans'
+        fontFamily='Poppins'
         fontWeight='700'
         w='25%'
       >

@@ -1,11 +1,11 @@
 import { ChevronDownIcon } from '@chakra-ui/icons'
 import {
-  Button, Flex, Popover, PopoverBody, PopoverContent, PopoverTrigger 
+  Button, Flex, Popover, PopoverBody, PopoverContent, PopoverTrigger
 } from '@chakra-ui/react'
 import { useContext } from 'react'
 import { adminConsoleContext } from '../../../context/adminConsoleContext'
 import {
-  AppUser, AppUserSource, AppUserStatus 
+  AppUser, AppUserSource, AppUserStatus
 } from '../../../core/AppUser.types'
 import { InvitationStatus } from '../../../core/invitations/Invitation.types'
 
@@ -90,7 +90,7 @@ const ManageUserControlPopover = ({ userId, user, status, isDeleting, isDeleting
             {status === 'Active' && <Button
               color='black'
               display='flex'
-              fontFamily='Open sans'
+              fontFamily='Poppins'
               fontWeight='400'
               justifyContent='start'
               minW='auto'
@@ -104,7 +104,7 @@ const ManageUserControlPopover = ({ userId, user, status, isDeleting, isDeleting
             {status === 'Inactive' && <Button 
               color='black'
               display='flex'
-              fontFamily='Open sans'
+              fontFamily='Poppins'
               fontWeight='400'
               justifyContent='start'
               padding='0'
@@ -118,7 +118,7 @@ const ManageUserControlPopover = ({ userId, user, status, isDeleting, isDeleting
               _disabled={{ opacity: 0.4 }}
               color="gray.600"
               display='flex'
-              fontFamily='Open sans'
+              fontFamily='Poppins'
               fontWeight='400'
               justifyContent='start'
               minW='30px'
@@ -135,7 +135,7 @@ const ManageUserControlPopover = ({ userId, user, status, isDeleting, isDeleting
               _disabled={{ opacity: 0.4 }}
               color="red.600"
               display='flex'
-              fontFamily='Open sans'
+              fontFamily='Poppins'
               fontWeight='400'
               isLoading={isDeleting}
               justifyContent='start'

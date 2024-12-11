@@ -1,31 +1,20 @@
 import {
-  ChakraProvider, ColorModeScript 
+  ChakraProvider, ColorModeScript
 } from '@chakra-ui/react'
 import {
-  baseTheme, EdxConfigProvider, LoadingScreen, TEEAuthContextProvider, useSaveInitialRoute 
+  baseTheme, EdxConfigProvider, LoadingScreen, TEEAuthContextProvider, useSaveInitialRoute
 } from '@edfi/admin-console-shared-sdk'
 import { HelmetProvider } from 'react-helmet-async'
 import LayoutWrapper from './components/layout/LayoutWrapper'
-import OnBoardingWizardProvider from './context/onBoardingWizardContext'
-import routes from './core/routes'
-import {
-  loadPlugins, PluginLoader, PluginProvider 
-} from './plugins/BasePlugin'
-// Fonts 
-import '@fontsource/archivo-narrow'
-import '@fontsource/open-sans/400-italic.css'
-import '@fontsource/open-sans/400.css'
-import '@fontsource/open-sans/600.css'
-import '@fontsource/open-sans/700.css'
-import '@fontsource/poppins/400.css'
-import '@fontsource/poppins/600-italic.css'
-import '@fontsource/poppins/600.css'
-import '@fontsource/poppins/700.css'
-import '@fontsource/poppins/900.css'
 import AdminConsoleConfigProvider from './context/adminConsoleContext'
-import ExternalODSProvider from './context/externalODSContext'
 import { HttpServiceContextProvider } from './context/httpServiceContext'
 import { MockDataProvider } from './context/mockDataContext'
+import OnBoardingWizardProvider from './context/onBoardingWizardContext'
+import { TenantsContextProvider } from './context/tenantContext'
+import routes from './core/routes'
+import {
+  loadPlugins, PluginLoader, PluginProvider
+} from './plugins/BasePlugin'
 
 interface AppProps {
   appConfig: any
@@ -65,16 +54,17 @@ function App({ appConfig }: AppProps) {
                     plugins={loadPlugins()}
                   />
 
+
                   <TEEAuthContextProvider edxAppConfig={appConfig}>
-                    <ExternalODSProvider config={appConfig}>
-                      <OnBoardingWizardProvider>
-                        <AdminConsoleConfigProvider config={appConfig}>
-                          <HttpServiceContextProvider redirectOnError={true}>
+                    <OnBoardingWizardProvider>
+                      <AdminConsoleConfigProvider config={appConfig}>
+                        <HttpServiceContextProvider redirectOnError={true}>
+                          <TenantsContextProvider>
                             <LayoutWrapper />
-                          </HttpServiceContextProvider>
-                        </AdminConsoleConfigProvider>
-                      </OnBoardingWizardProvider>
-                    </ExternalODSProvider>
+                          </TenantsContextProvider>
+                        </HttpServiceContextProvider>
+                      </AdminConsoleConfigProvider>
+                    </OnBoardingWizardProvider>
                   </TEEAuthContextProvider>
                 </PluginProvider>
               </MockDataProvider>

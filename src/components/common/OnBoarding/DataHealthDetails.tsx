@@ -67,7 +67,7 @@ const DataHealthDetails = ({ showReload, isReview }: DataHealthDetailsProps) => 
           >
             <Text
               color='gray.500'
-              fontFamily='Open sans'
+              fontFamily='Poppins'
               fontStyle='italic'
               fontWeight='400'
               mt='5px'

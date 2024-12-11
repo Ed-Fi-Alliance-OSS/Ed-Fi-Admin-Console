@@ -1,9 +1,9 @@
-import { ChangeEvent } from 'react'
 import { CloseIcon } from '@chakra-ui/icons'
 import {
-  Button, Flex, FormControl, Text 
+  Button, Flex, FormControl, Text
 } from '@chakra-ui/react'
 import { CustomSelect } from '@edfi/admin-console-shared-sdk'
+import { ChangeEvent } from 'react'
 import RefreshBtn from '../RefreshBtn'
 import SISProviderConnectionTag from './SISProviderConnectionTag'
 
@@ -29,7 +29,7 @@ const SISProviderConnectionField = ({ id, providerFunction, sisProviderOptions, 
   if (!hasSelectedProvider) {
     return (
       <FormControl
-        fontFamily='Open sans'
+        fontFamily='Poppins'
         w='300px'
       >
         <CustomSelect

@@ -1,14 +1,16 @@
 import {
-  Flex, FormControl, FormLabel, Text 
+  Flex, FormControl, FormLabel, Text
 } from '@chakra-ui/react'
+import {
+  CustomCheckbox,
+  CustomFormLabel,
+  CustomInput
+} from '@edfi/admin-console-shared-sdk'
 import { ChangeEvent } from 'react'
 import { FormDataErrors } from '../../../core/validation/FormValidations.types'
 import {
-  CreateUserFormData, RoleOption, UserFormMode 
+  CreateUserFormData, RoleOption, UserFormMode
 } from '../../../hooks/adminActions/users/useCreateUserForm.types'
-import {
-  CustomFormLabel, CustomSelect, CustomInput, CustomCheckbox 
-} from '@edfi/admin-console-shared-sdk'
 
 interface AppUserDetailsFormProps {
     mode: UserFormMode
@@ -129,7 +131,7 @@ const AppUserDetailsForm = ({ mode, userData, isEmailDisabled, roleOptions, erro
         </Flex>
 
         <Text
-          fontFamily='Open sans'
+          fontFamily='Poppins'
           fontSize='12px'
           fontWeight='400'
           mt='6px'

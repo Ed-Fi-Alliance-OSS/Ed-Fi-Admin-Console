@@ -1,5 +1,5 @@
 import {
-  Flex, Link, Text 
+  Flex, Link, Text
 } from '@chakra-ui/react'
 import OnBoardingTabContentWrapper from '../OnBoardingTabContentWrapper'
 import TrainingModuleList from './TrainingModuleList'
@@ -12,7 +12,7 @@ const TrainingTabContent = ({ onCompleteStep }: TrainingTabContentProps) => {
   return (
     <OnBoardingTabContentWrapper>
       <Text
-        fontFamily='Open sans'
+        fontFamily='Poppins'
         fontWeight='400'
         w='539px'
       >

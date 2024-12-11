@@ -1,4 +1,5 @@
-import { ExtendedODSInstance } from '../../../core/ODSInstance.types'
+import { ODSInstance } from '../../../core/ODSInstance.types'
+import { Tenant } from '../../../core/Tenant.types'
 import { UpdatingIsDefaultStatus } from '../../../hooks/odsInstances/useOdsInstanceTable.types'
 import ControlTable from '../ControlTable'
 import ODSInstanceManagementTableRows from './ODSInstanceManagementTableRows'
@@ -7,16 +8,17 @@ import { ODSInstanceTableMode } from './ODSInstanceTable.types'
 interface ODSInstanceManagementTableProps {
     tableMode: ODSInstanceTableMode
     tableHeaders: JSX.Element[]
-    instanceList: ExtendedODSInstance[]
-    selectedInstance: ExtendedODSInstance | null
+    tenants: Tenant[]
+    instanceList: ODSInstance[]
+    selectedInstance: ODSInstance | null
     loading: boolean
     updatingIsDefault: UpdatingIsDefaultStatus
-    onSelectInstance: (instance: ExtendedODSInstance) => void
+    onSelectInstance: (instance: ODSInstance) => void
     onOpenSetDefaultModal: (instanceId: string) => void
     onOpenSetUpModal: (instanceId: string) => void
 }
 
-const ODSInstanceManagementTable = ({ tableMode, tableHeaders, selectedInstance, instanceList, loading, updatingIsDefault, onSelectInstance, onOpenSetDefaultModal, onOpenSetUpModal }: ODSInstanceManagementTableProps) => {
+const ODSInstanceManagementTable = ({ tenants, tableMode, tableHeaders, selectedInstance, instanceList, loading, updatingIsDefault, onSelectInstance, onOpenSetDefaultModal, onOpenSetUpModal }: ODSInstanceManagementTableProps) => {
   const filteredTableHeaders = (headers: JSX.Element[]) => {
     return headers.filter((header, index) => {
       if (tableMode == 'Display') {
@@ -37,6 +39,7 @@ const ODSInstanceManagementTable = ({ tableMode, tableHeaders, selectedInstance,
         instanceList={instanceList}
         selectedInstance={selectedInstance}
         tableMode={tableMode}
+        tenants={tenants}
         updatingIsDefault={updatingIsDefault}
         onOpenSetDefaultModal={onOpenSetDefaultModal}
         onOpenSetUpModal={onOpenSetUpModal}
