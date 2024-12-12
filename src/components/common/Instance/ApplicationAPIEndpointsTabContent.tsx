@@ -1,5 +1,5 @@
 import {
-  Flex, FormControl, Text
+  Flex, FormControl
 } from '@chakra-ui/react'
 import {
   CopyTextBtn,
@@ -9,14 +9,15 @@ import {
 import { useContext } from 'react'
 import { adminConsoleContext } from '../../../context/adminConsoleContext'
 import { ODSInstance } from '../../../core/ODSInstance.types'
-import useEdfiUrls from '../../../hooks/useEdfiUrls'
+import { useEdfiMetadata } from '../../../hooks/odsInstances/useEdfiMetadata'
 
 interface ApplicationAPIEndpointsTabContentProps {
     instance: ODSInstance | null
 }
 
 const ApplicationAPIEndpointsTabContent = ({ instance }: ApplicationAPIEndpointsTabContentProps) => {
-  const { edfiInfo } = useEdfiUrls()
+  // const { edfiInfo } = useEdfiUrls()
+  const { edfiMetadata } = useEdfiMetadata()
   const adminConfig = useContext(adminConsoleContext)
 
   return (
@@ -26,19 +27,19 @@ const ApplicationAPIEndpointsTabContent = ({ instance }: ApplicationAPIEndpoints
     >
       <FormControl>
         <CustomFormLabel 
-          htmlFor="baseUrl" 
+          htmlFor="dataManagementApi" 
           text="Base URL"
         />
 
         <Flex w='full'>
           <CustomInput
-            id="baseUrl"
-            value={instance? instance.baseUrl : ''}
+            id="dataManagementApi"
+            value={edfiMetadata?.urls ? edfiMetadata.urls.dataManagementApi : ''}
             onChange={() => null}
           />
 
           <Flex ml='8px'>
-            <CopyTextBtn value={instance? instance.baseUrl : ''} />
+            <CopyTextBtn value={edfiMetadata?.urls ? edfiMetadata.urls.dataManagementApi : ''} />
           </Flex>
         </Flex>
       </FormControl>
@@ -46,37 +47,18 @@ const ApplicationAPIEndpointsTabContent = ({ instance }: ApplicationAPIEndpoints
       <FormControl mt={4}>
         <CustomFormLabel 
           htmlFor="authenticationUrl" 
-          text="Authentication URL"
+          text="OAuth API URL"
         />
 
         <Flex w='full'>
           <CustomInput
             id="authenticationUrl"
-            value={instance? instance.authenticationUrl : ''}
+            value={edfiMetadata?.urls? edfiMetadata.urls.oauth : ''}
             onChange={() => null}
           />
 
           <Flex ml='8px'>
-            <CopyTextBtn value={instance? instance.authenticationUrl : ''} />
-          </Flex>
-        </Flex>
-      </FormControl>
-
-      <FormControl mt='16px'> 
-        <CustomFormLabel 
-          htmlFor="resourcePrimaryUrl" 
-          text="Primary Resources URL (Read-Write)"
-        />
-
-        <Flex w='full'>
-          <CustomInput
-            id="resourcePrimaryUrl"
-            value={instance? instance.resourcesUrl : ''}
-            onChange={() => null}
-          />
-
-          <Flex ml='8px'>
-            <CopyTextBtn value={instance? instance.resourcesUrl : ''} />
+            <CopyTextBtn value={edfiMetadata?.urls? edfiMetadata.urls.oauth : ''} />
           </Flex>
         </Flex>
       </FormControl>
@@ -88,54 +70,6 @@ const ApplicationAPIEndpointsTabContent = ({ instance }: ApplicationAPIEndpoints
         w='full'
       />
 
-      { adminConfig && adminConfig.showCompositeUrls && <>
-        <Text
-          fontFamily='Poppins'
-          fontWeight='700'
-          mt='16px'
-          size='md'
-        >
-          Composites URLs
-        </Text>
-
-        <FormControl mt='16px'> 
-          <CustomFormLabel 
-            htmlFor="compositePrimaryUrl" 
-            text="Primary (Read-Write)"
-          />
-
-          <Flex w='full'>
-            <CustomInput
-              id="compositePrimaryUrl"
-              value={edfiInfo? edfiInfo.urls.composites : ''}
-              onChange={() => null}
-            />
-
-            <Flex ml='8px'>
-              <CopyTextBtn value={edfiInfo? edfiInfo.urls.composites : ''} />
-            </Flex>
-          </Flex>
-        </FormControl>
-
-        <FormControl mt='16px'> 
-          <CustomFormLabel 
-            htmlFor="compositeReplicaUrl" 
-            text="Replica (Read-Only)"
-          />
-
-          <Flex w='full'>
-            <CustomInput
-              id="primaryUrl"
-              value={edfiInfo? edfiInfo.urls.composites : ''}
-              onChange={() => null}
-            />
-
-            <Flex ml='8px'>
-              <CopyTextBtn value={edfiInfo? edfiInfo.urls.composites : ''} />
-            </Flex>
-          </Flex>
-        </FormControl>
-      </> }
     </Flex>
   )
 }

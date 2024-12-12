@@ -109,9 +109,9 @@ const PartnersAndApplicationTabContent = ({ instance, schoolYear }: PartnersAndA
 
   const onReturnToAccordion = async () => {
     console.log('return to accordion')
+    setElementToShow('accordion')
     await onRefreshVendorsWithApplications()
     forceUpdate()
-    setElementToShow('accordion')
   }
 
   console.log('rendering...')

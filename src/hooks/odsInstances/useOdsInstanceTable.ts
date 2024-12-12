@@ -6,6 +6,7 @@ import {
 } from 'react'
 import { adminConsoleContext } from '../../context/adminConsoleContext'
 import { useMockData } from '../../context/mockDataContext'
+import { useTenantContext } from '../../context/tenantContext'
 import { ODSInstance } from '../../core/ODSInstance.types'
 import { usePluginContext } from '../../plugins/BasePlugin'
 import useEDXToast from '../common/useEDXToast'
@@ -65,6 +66,7 @@ const useOdsInstanceTable = () => {
     errorToast
   } = useEDXToast(7000)
 
+  const { selectedTenant } = useTenantContext()
   const { config } = useConfig()
   const { functionalities } = usePluginContext()
   const apiService = functionalities.ApiService?.(config, useApiService)
@@ -74,9 +76,13 @@ const useOdsInstanceTable = () => {
       return
     }
 
+    if(!selectedTenant) {
+      return
+    }
+
 
     setIsFetchingData(true)
-    const instancesResp = await apiService.instances.getAll()
+    const instancesResp = await apiService?.instances.getAll()
     console.log('instances getAll resp', instancesResp)
     setPaginatedData({
       pageIndex: 0,
@@ -88,7 +94,7 @@ const useOdsInstanceTable = () => {
     setIsFetchingData(false)
   }
 
-  const onOpenSetDefaultModal = (instanceId: string) => {
+  const onOpenSetDefaultModal = (instanceId: number) => {
     const instanceById = paginatedData.data.find(i => i.id == instanceId)
 
     if (!instanceById) {
@@ -99,7 +105,7 @@ const useOdsInstanceTable = () => {
     onShowConfirmSetDefaultModal()
   }
 
-  const onOpenSetUpModal = (instanceId: string) => {
+  const onOpenSetUpModal = (instanceId: number) => {
     const instanceById = paginatedData.data.find(i => i.id == instanceId)
 
     if (!instanceById) {
@@ -110,67 +116,9 @@ const useOdsInstanceTable = () => {
     onShowSetUpWizardModal()
   }
 
-  const onSetIsDefault = async (instanceId: string, isDefault: boolean) => {
-    // if (!adminConfig) {
-    //   return
-    // }
-
-    // const instanceById = paginatedData.data
-    //   .find(instance => instance.id == instanceId)
-
-    // if (!instanceById) {
-    //   return
-    // }
-
-    // const canSetAsDefaultResult = canSetAsDefault(instanceById, paginatedData.data)
-
-    // if (!canSetAsDefaultResult) {
-    //   return
-    // }
-
-    // const request: UpdateOdsInstanceIsDefaultRequest = {
-    //   tenantId: adminConfig.actionParams.tenantId,
-    //   instanceId,
-    //   isDefault,
-    //   validate: true
-    // }
-
-    // setUpdatingIsDefault({
-    //   instanceId,
-    //   loading: true
-    // })
-
-    // const response = await updateInstanceIsDefault(
-    //   adminConfig.actionParams,
-    //   request
-    // )
-
-    // if (response.type == 'Error') {
-    //   setUpdatingIsDefault({
-    //     instanceId,
-    //     loading: false
-    //   })
-
-    //   onCloseConfirmSetDefaultModal()
-
-    //   errorToast('Failed to set instance as default')
-
-    //   return
-    // }
-
-    // await fetchInstancesList()
-
-    // setUpdatingIsDefault({
-    //   instanceId,
-    //   loading: false
-    // })
-
-    // onCloseConfirmSetDefaultModal()
-  }
-
   useEffect(() => {
     fetchInstancesList()
-  }, [])
+  }, [ selectedTenant ])
 
   return {
     paginatedData,
@@ -187,7 +135,7 @@ const useOdsInstanceTable = () => {
     onShowSetUpWizardModal,
     onCloseSetUpWizardModal,
     onOpenSetUpModal,
-    onSetIsDefault
+    onSetIsDefault: () => {}
   }
 }
 

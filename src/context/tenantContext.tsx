@@ -12,9 +12,9 @@ import { usePluginContext } from '../plugins/BasePlugin'
 
 // Define the type for our context data structure
 interface TenantsContextType {
-  tenants: Tenant[]
+  tenants?: Tenant[]
   selectedTenant?: Tenant
-  selectedTenantId?: string
+  selectedTenantId?: number
   fetchTenants: () => void
 }
 
@@ -31,45 +31,78 @@ export const TenantsContextProvider: FC<TenantsContextProviderProps> = ({ childr
   const { config } = useConfig()
   const { functionalities } = usePluginContext()
   const apiService = functionalities.ApiService?.(config, useApiService)
-  const [ tenants, setTenants ] = useState<Tenant[]>([])
+  const [ tenants, setTenants ] = useState<Tenant[]>()
   const [ selectedTenant, setSelectedTenant ] = useState<Tenant>()
   const [ selectedTenantName, setSelectedTenantName ] = useSessionStorage('selectedTenant', '', true)
-  const [ selectedTenantId, setSelectedTenantId ] = useState<string>()
+  const [ selectedTenantId, setSelectedTenantId ] = useState<number>()
+
+  useEffect(() => {
+    const _t = tenants?.find(t => t.document.name === selectedTenantName)
+
+    if(_t) {
+      setSelectedTenant(_t)
+      setSelectedTenantId(_t.tenantId)
+    }
+  }, [ selectedTenantName, tenants ])
 
   async function fetchTenants () {
+    
     if(!apiService) {
       return
     }
 
+    
+
     if(!config.app.multiTenancy) {
+      
       setTenants([])
       return
     }
 
+    
+
     // Fetch tenants from the API
     const tenants = await apiService?.tenants?.getAll?.()
-    console.log('🚨 tenants', tenants)
+    
     setTenants(tenants)
   }
 
   useEffect(() => {
-    fetchTenants()
-  }, [  ])
+    if(!Array.isArray(tenants)) {
+      fetchTenants()
+    }
+  })
   
   useEffect(() => {
-    if(!tenants) {
+    
+    if(!Array.isArray(tenants) || tenants.length === 0) {
       return
     }
-
+    
     if(!selectedTenantName) {
       setSelectedTenantName(tenants?.at(0)?.document?.name ?? '')
       return
     }
-
-    const _t = tenants.find(t => t.document.name === selectedTenantName)
-    setSelectedTenant(_t)
-    setSelectedTenantId(_t?.tenantId)
+    
   }, [ tenants, selectedTenantName ])
+
+  useEffect(() => {
+    if(Array.isArray(tenants) && tenants.length > 0) {
+      // if no tenant is selected, select the first tenant
+      if(!selectedTenantName) {
+        setSelectedTenantName(tenants[0].document.name)
+        window.location.reload()
+      }
+
+      const _t = tenants.find(t => t.document.name === selectedTenantName)
+
+      // if the selected tenant is not in the list of tenants, select the first tenant
+      if(!_t) {
+        setSelectedTenantName(tenants[0].document.name)
+        window.location.reload()
+      }
+    }
+  }, [ tenants ])
 
   
 

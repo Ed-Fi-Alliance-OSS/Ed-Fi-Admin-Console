@@ -71,7 +71,7 @@ export function TenantInstanceForm() {
           error={errors && errors['name'] && errors['name'].message}
           id='name'
           value={tenantInstanceData?.document.name}
-          onChange={onInputChange}
+          onChange={() => {}}
         />
 
         <Flex
@@ -88,7 +88,7 @@ export function TenantInstanceForm() {
             error={errors && errors['edfiApiDiscoveryUrl'] && errors['edfiApiDiscoveryUrl'].message}
             id='edfiApiDiscoveryUrl'
             value={tenantInstanceData?.document.edfiApiDiscoveryUrl}
-            onChange={onInputChange}
+            onChange={() => {}}
           />
         </Flex>
       </FormControl>

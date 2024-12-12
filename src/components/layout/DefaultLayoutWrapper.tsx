@@ -2,9 +2,7 @@ import { Flex } from '@chakra-ui/react'
 import {
   AppsMenuMoreOption, Content, DefaultLayout, EdxAppConfig, ExternalAppsContext, Footer, NotificationBar, TEEAuthDataContext, TopBar, TopBarLeft, TopBarRight, useAuthActions, useConfig, useNotificationsBar, UserProfileContext
 } from '@edfi/admin-console-shared-sdk'
-import {
-  useContext
-} from 'react'
+import { useContext } from 'react'
 import { AuthContextProps } from 'react-oidc-context'
 import { useNavigate } from 'react-router-dom'
 import { useTenantContext } from '../../context/tenantContext'
@@ -81,14 +79,14 @@ const DefaultLayoutWrapper = ({ content, notificationBarMessage, isClosingSessio
           menuOptions={moreOptions}
           onClick={handleLogoClick}
         />}
-        rightComponent={tenants && <TopBarRight
+        rightComponent={(Array.isArray(tenants) && tenants.length > 0) ? <TopBarRight
           isClosingSession={isClosingSession}
           profileData={userProfile}
           tenants={tenants}
           onChangeTenantId={handleChangeTenantId}
           onLogin={handleLogIn}
           onLogout={onLogout}
-        />}
+        /> : <></>}
       />}
     />
   )
