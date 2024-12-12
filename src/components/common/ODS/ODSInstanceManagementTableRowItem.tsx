@@ -105,12 +105,7 @@ const ODSInstanceManagementTableRowItem = ({ tableMode, selectedInstance, instan
               updatingIsDefault={updatingIsDefault}
               onOpenSetUpModal={onOpenSetUpModal}
             /> : 
-            <ManageInstanceBtn
-              canSetAsDefault={canSetAsDefault}
-              instance={instance}
-              updatingIsDefault={updatingIsDefault}
-              onOpenSetDefaultModal={onOpenSetDefaultModal}
-            />}
+            <ManageInstanceBtn instance={instance} />}
         </Td>
       </>}
     </>

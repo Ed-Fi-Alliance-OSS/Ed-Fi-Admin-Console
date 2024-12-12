@@ -4,25 +4,18 @@ import {
 import { useNavigate } from 'react-router-dom'
 import { ODSInstance } from '../../../core/ODSInstance.types'
 import useOdsInstanceLink from '../../../hooks/odsInstances/useOdsInstanceLink'
-import { UpdatingIsDefaultStatus } from '../../../hooks/odsInstances/useOdsInstanceTable.types'
-import ManageInstanceControlBtnPopover from './ManageInstanceControlBtnPopover'
 
 interface ManageInstanceBtnProps {
     instance: ODSInstance
-    updatingIsDefault: UpdatingIsDefaultStatus
-    canSetAsDefault: boolean 
-    onOpenSetDefaultModal: (instanceId: string) => void
 }
 
-const ManageInstanceBtn = ({ instance, canSetAsDefault, updatingIsDefault, onOpenSetDefaultModal }: ManageInstanceBtnProps) => {
+const ManageInstanceBtn = ({ instance }: ManageInstanceBtnProps) => {
   const { getOdsInstanceLink } = useOdsInstanceLink()
   const navigate = useNavigate()
 
   return (
     <Flex w='80px'>
       <Button 
-        borderRadius='4px 0px 0px 4px'
-        isDisabled={updatingIsDefault.loading}
         minW='67px'
         size='xs'
         variant='primaryBlue600'
@@ -30,14 +23,6 @@ const ManageInstanceBtn = ({ instance, canSetAsDefault, updatingIsDefault, onOpe
       >
         Manage
       </Button>
-
-      <ManageInstanceControlBtnPopover
-        canSetAsDefault={canSetAsDefault}
-        instanceId={instance.odsInstanceId?.toString() ?? '0'} 
-        isDefault={false}
-        updatingIsDefault={updatingIsDefault}
-        onOpenSetDefaultModal={onOpenSetDefaultModal}
-      />
     </Flex>
   )
 }
