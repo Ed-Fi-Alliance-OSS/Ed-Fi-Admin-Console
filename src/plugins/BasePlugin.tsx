@@ -22,7 +22,7 @@ export function loadPlugins() {
 }
 
 type componentType = { [K in BasePluginComponentNames]: React.FC<typeof BasePluginComponent[K]> }
-type functionType = { [K in BasePluginFunctionNames]?: (...args: BasePluginFunction[K]) => (void | any) }
+type functionType = { [K in BasePluginFunctionNames]?: BasePluginFunction[K] }
 
 export interface RegistryState {
   components: componentType;
@@ -36,7 +36,7 @@ export interface RegistryState {
   ) => void;
   registerFunctionality: <K extends BasePluginFunctionNames>(
     name: K,
-    functionality: (...args: BasePluginFunction[K]) => any
+    functionality: BasePluginFunction[K]
   ) => void;
 }
 

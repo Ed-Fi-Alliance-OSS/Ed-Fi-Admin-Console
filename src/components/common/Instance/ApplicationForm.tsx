@@ -1,26 +1,25 @@
 import { Flex } from '@chakra-ui/react'
-import { EdfiApplication } from '../../../core/Edfi/EdfiApplications'
-import useApplicationForm from '../../../hooks/adminActions/edfi/useApplicationForm'
 import {
-  CompleteFormErrorMessage, UserProfile, UserProfileContext 
+  CompleteFormErrorMessage, UserProfile, UserProfileContext
 } from '@edfi/admin-console-shared-sdk'
+import { useContext } from 'react'
+import { EdfiApplication } from '../../../core/Edfi/EdfiApplications'
+import { ODSInstance } from '../../../core/ODSInstance.types'
+import useApplicationForm from '../../../hooks/adminActions/edfi/useApplicationForm'
+import useTenantInfo from '../../../hooks/useTenantInfo'
 import ApplicationAPIFormSection from './ApplicationAPIFormSection'
 import ApplicationDetailsFormSection from './ApplicationDetailsFormSection'
-import LocalEducationAgenciesFormSection from './LocalEducationAgenciesFormSection'
-import { useContext } from 'react'
-import useTenantInfo from '../../../hooks/useTenantInfo'
 import EdFiModalForm from './EdFiModalForm'
-import { ODSInstance } from '../../../core/ODSInstance.types'
+import LocalEducationAgenciesFormSection from './LocalEducationAgenciesFormSection'
 
 interface ApplicationFormProps {
     instance: ODSInstance | null
-    schoolYear: number 
     mode: 'add' | 'edit'
     editApplicationData?: EdfiApplication
     onFinishSave: () => void
 }
 
-const ApplicationForm = ({ instance, schoolYear, mode, editApplicationData, onFinishSave }: ApplicationFormProps) => {
+const ApplicationForm = ({ instance, mode, editApplicationData, onFinishSave }: ApplicationFormProps) => {
   const {
     applicationData,
     vendorOptionsList,
@@ -38,7 +37,7 @@ const ApplicationForm = ({ instance, schoolYear, mode, editApplicationData, onFi
     onSelectVendor,
     onSave
   } = useApplicationForm({ 
-    schoolYear,
+    instanceId: instance?.id ?? 0,
     mode, 
     editApplicationData, 
     onFinishSave 
@@ -52,7 +51,7 @@ const ApplicationForm = ({ instance, schoolYear, mode, editApplicationData, onFi
       const tenant = getCurrentTenant()
 
       if (tenant) {
-        return tenant.organizationName
+        return tenant.document.name
       }
 
       return 'Loading...'
@@ -67,7 +66,7 @@ const ApplicationForm = ({ instance, schoolYear, mode, editApplicationData, onFi
     const currentTenant = getCurrentTenant()
 
     if (currentTenant) {
-      return currentTenant.organizationIdentifier
+      return `Id: ${currentTenant.tenantId}`
     }
 
     return '...'
@@ -116,7 +115,7 @@ const ApplicationForm = ({ instance, schoolYear, mode, editApplicationData, onFi
               instance={instance}
               isRegeneratingCredentials={isRegeneratingCredentials}
               mode={mode}
-              onRegenerateCredentials={() => onRegenerateCredentials(editApplicationData? editApplicationData.applicationId : 0)}
+              onRegenerateCredentials={() => onRegenerateCredentials(editApplicationData? editApplicationData.id : 0)}
             />
           </Flex>
         </Flex>

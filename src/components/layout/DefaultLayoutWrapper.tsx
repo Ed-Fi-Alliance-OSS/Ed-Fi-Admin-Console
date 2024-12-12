@@ -3,11 +3,11 @@ import {
   AppsMenuMoreOption, Content, DefaultLayout, EdxAppConfig, ExternalAppsContext, Footer, NotificationBar, TEEAuthDataContext, TopBar, TopBarLeft, TopBarRight, useAuthActions, useConfig, useNotificationsBar, UserProfileContext
 } from '@edfi/admin-console-shared-sdk'
 import {
-  useContext, useEffect, useState
+  useContext
 } from 'react'
 import { AuthContextProps } from 'react-oidc-context'
 import { useNavigate } from 'react-router-dom'
-import { Tenant } from '../../core/Tenant.types'
+import { useTenantContext } from '../../context/tenantContext'
 import useTenantService from '../../services/AdminActions/Tenant/TenantService'
 
 interface DefaultLayoutContentProps {
@@ -28,16 +28,7 @@ const DefaultLayoutWrapper = ({ content, notificationBarMessage, isClosingSessio
   const { handleLogIn, handleChangeTenantId } = useAuthActions()
   const { showNotificationsBar, onCloseNotificationsBar } = useNotificationsBar({ show: true })
   const navigate = useNavigate()
-  const [ tenants, setTenants ] = useState<Tenant[]>([])
-
-  useEffect(() => {
-    const fetchTenants = async () => {
-      const tenants = await getTenants()
-      setTenants(tenants)
-    }
-
-    fetchTenants()
-  }, [])
+  const { tenants } = useTenantContext()
 
   const moreOptions: AppsMenuMoreOption[] = [
     {

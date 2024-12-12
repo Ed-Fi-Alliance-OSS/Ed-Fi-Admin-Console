@@ -18,26 +18,20 @@ import TabHeading from '../common/TabHeading'
 const AddInstancePage = () => {
   const mock = useMockData()
   const [ instanceName, setInstanceName ] = useState('')
-  const [ instanceDescription, setInstanceDescription ] = useState('')
-  const [ schoolYear, setSchoolYear ] = useState('2023')
-
-  const [ schoolYearOptions, setSchoolYearOptions ] = useState([
-    '2023',
-    '2024',
-    '2025'
-  ])
+  const [ instanceType, setInstanceType ] = useState('')
+  const [ connectionString, setConnectionString ] = useState('')
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {    
-    setInstanceDescription(e.target.value)
-  }
-
-  const handleSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    if(e.target.id === 'instanceName') {
+    if(e.target.id === 'name') {
       setInstanceName(e.target.value)
     }
+  
+    if (e.target.id === 'type') {
+      setInstanceType(e.target.value)
+    }
 
-    if (e.target.id === 'schoolYear') {
-      setSchoolYear(e.target.value)
+    if (e.target.id === 'connectionString') {
+      setConnectionString(e.target.value)
     }
   }
 
@@ -48,14 +42,13 @@ const AddInstancePage = () => {
   const apiService = functionalities.ApiService?.(config, useApiService)
 
   const handleSaveChanges = async () => {
-    await apiService.instances.create({
-      instanceId: instanceName,
-      instanceName: instanceName,
-      schoolYears: [ Number.parseInt(schoolYear) ],
-      baseUrl: 'https://999999.preprod-2024-2.edfi.pre.txedexchange.net'
+    await apiService?.instances.create({
+      name: instanceName,
+      instanceType: instanceType,
+      connectionString: connectionString
     })
 
-    successToast(`Instance created successfully, Instance: ${instanceName}, Description: ${instanceDescription}, School Year: ${schoolYear}`)
+    successToast(`Instance created successfully, Instance: ${instanceName}, Type: ${instanceType}, Connection String: ${connectionString}`)
 
     nav(-1)
   }
@@ -86,13 +79,11 @@ const AddInstancePage = () => {
             w='full'
           >
             <AddInstanceForm
-              instanceDescription={instanceDescription}
-              instanceName={instanceName}
-              schoolYear={schoolYear}
-              schoolYearOptions={schoolYearOptions}
+              connectionString={connectionString}
+              name={instanceName}
+              type={instanceType}
               onInputChange={handleInputChange}
               onSaveChanges={handleSaveChanges} 
-              onSelectChange={handleSelectChange}
             />
           </Flex>
         </TabContentWrapper>

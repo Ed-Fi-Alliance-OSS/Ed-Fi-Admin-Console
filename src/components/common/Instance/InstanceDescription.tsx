@@ -18,34 +18,38 @@ const InstanceDescription = ({ instance }: InstanceDescriptionProps) => {
 
   return (
     <Flex>
-      {metaDataLoading ? <Spinner /> : <Flex flexDir='column'>
+      <Flex flexDir='column'>
         <InstanceDescriptionField
           content={instance.name}
           title='Instance Name'
         />
         
         <InstanceDescriptionField
-          content={instance.id}
-          title='Instance ID'
+          content={instance.instanceType}
+          title='Instance Type'
         />
         
       
-        <InstanceDescriptionField
-          content={<ODSInstanceEdFiVersion version={edfiMetadata?.version} />}
-          title='Ed-Fi Version'
-        />
+        {metaDataLoading ? <Spinner /> : <Flex
+          flexDir="column"
+          mt={5}
+        >
+          <InstanceDescriptionField
+            content={<ODSInstanceEdFiVersion version={edfiMetadata?.version} />}
+            title='Ed-Fi Version'
+          />
 
-        <InstanceDescriptionField
-          content={<ODSInstanceDataModelsLabel dataModels={edfiMetadata?.dataModels} />}
-          title="Extension"
-        />
+          <InstanceDescriptionField
+            content={<ODSInstanceDataModelsLabel dataModels={edfiMetadata?.dataModels} />}
+            title="Extension"
+          />
 
-        <InstanceDescriptionField 
-          content={<ODSInstanceEdFiStatus status={edFiStatus} />}
-          title="Ed-Fi Status"
-        />
+          <InstanceDescriptionField 
+            content={<ODSInstanceEdFiStatus status={edFiStatus} />}
+            title="Ed-Fi Status"
+          />
+        </Flex>}
       </Flex>
-      }
     </Flex>
   )
 }

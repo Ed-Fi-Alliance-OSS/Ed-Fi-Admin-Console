@@ -1,14 +1,18 @@
 import {
-  Flex, Text, FormControl 
+  Flex,
+  FormControl,
+  Text
 } from '@chakra-ui/react'
+import {
+  CustomFormLabel,
+  CustomInput,
+  CustomSelect
+} from '@edfi/admin-console-shared-sdk'
 import { ChangeEvent } from 'react'
 import { EdfiClaimSet } from '../../../core/Edfi/EdfiClaimsets'
 import { EdfiVendor } from '../../../core/Edfi/EdfiVendors'
 import { FormDataErrors } from '../../../core/validation/FormValidations.types'
 import { CreateEdfiApplicationRequest } from '../../../services/AdminActions/Edfi/Applications/EdfiApplicationService.requests'
-import {
-  CustomFormLabel, CustomSelect, CustomInput 
-} from '@edfi/admin-console-shared-sdk'
 
 interface ApplicationDetailsFormSectionProps {
     applicationData: CreateEdfiApplicationRequest
@@ -66,7 +70,7 @@ const ApplicationDetailsFormSection = ({ applicationData, mode, errors, operatio
           <CustomSelect 
             options={vendorOptions.map(option => ({
               text: option.company ?? '',
-              value: option.vendorId ?? 0 
+              value: option.id ?? 0 
             }))}
             disabled={mode == 'edit'? true : false}
             error={errors && errors['vendor'] && errors['vendor'].message}

@@ -1,9 +1,12 @@
-import { TEEAuthDataContext } from '@edfi/admin-console-shared-sdk'
 import {
-  useState, ChangeEvent, useContext 
+  TEEAuthDataContext, useApiService, useConfig
+} from '@edfi/admin-console-shared-sdk'
+import {
+  ChangeEvent, useContext,
+  useState
 } from 'react'
 import { adminConsoleContext } from '../../../context/adminConsoleContext'
-import useEdfiVendorService from '../../../services/AdminActions/Edfi/Vendors/EdfiVendorsService'
+import { usePluginContext } from '../../../plugins/BasePlugin'
 import { CreateEdfiVendorRequest } from '../../../services/AdminActions/Edfi/Vendors/EdfiVendorsService.requests'
 import useEDXToast from '../../common/useEDXToast'
 import initialPartnerData from './initialPartnerData'
@@ -17,12 +20,15 @@ interface UsePartnerFormProps {
 const usePartnerForm = ({ schoolYear, onFinishSave }: UsePartnerFormProps) => {
   const { edxAppConfig, auth } = useContext(TEEAuthDataContext)
   const adminConfig = useContext(adminConsoleContext)
-  const { createVendorForSchoolYear, getVendorsListForSchoolYear } = useEdfiVendorService()
+  // const { createVendorForSchoolYear, getVendorsListForSchoolYear } = useEdfiVendorService()
   const [ partnerData, setPartnerData ] = useState<CreateEdfiVendorRequest>({ ...initialPartnerData })
   const [ isSaving, setIsSaving ] = useState(false)
   const [ hasTriedSubmit, setHasTriedSubmit ] = useState(false)
   const { errors, validPartnerData, validateInputChange } = usePartnerFormValidation()
   const { successToast, errorToast } = useEDXToast(7000)
+  const { config } = useConfig()
+  const { functionalities } = usePluginContext()
+  const api = functionalities.ApiService?.(config, useApiService)
 
   const onChangeParnerData = (e: ChangeEvent<HTMLInputElement>) => {
     const nparnerData = { ...partnerData }
@@ -53,26 +59,25 @@ const usePartnerForm = ({ schoolYear, onFinishSave }: UsePartnerFormProps) => {
       if (validPartnerData(partnerData)) {
         setIsSaving(true)
     
-        const vendorList = await getVendorsListForSchoolYear(adminConfig.actionParams, schoolYear)
+        // const vendorList = await getVendorsListForSchoolYear(adminConfig.actionParams, schoolYear)
+        const vendorList = await api?.vendors.getAll() ?? []
 
-        if(vendorList.type === 'Response' && vendorList.data.some(vendor => 
-          vendor.contactName === partnerData.contactName)) {
+        if(vendorList.some(vendor => vendor.contactName === partnerData.contactName)) {
           errorToast('A Vendor with this name already exists. Please choose a unique name and try again.')
           setIsSaving(false)
           return
         }
 
-        const result = await createVendorForSchoolYear(adminConfig.actionParams, partnerData, schoolYear)
-    
-        setIsSaving(false)
-
-        if (result.type === 'Response') {
+        try {
+          await api?.vendors.create(partnerData)
           successToast('Added Vendor')
-        } else {
+        } catch (e) {
           errorToast('Failed to Add Vendor')
+        } finally {
+          setIsSaving(false)
+          onFinishSave()
         }
-
-        onFinishSave()
+    
       } else {
         setHasTriedSubmit(true)
       }

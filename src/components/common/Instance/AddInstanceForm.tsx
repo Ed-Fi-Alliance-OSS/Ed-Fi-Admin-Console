@@ -2,7 +2,7 @@ import {
   Button, Flex, FormControl
 } from '@chakra-ui/react'
 import {
-  CustomFormHeader, CustomFormLabel, CustomInput, CustomSelect
+  CustomFormHeader, CustomFormLabel, CustomInput
 } from '@edfi/admin-console-shared-sdk'
 import { ChangeEvent } from 'react'
 import { usePluginContext } from '../../../plugins/BasePlugin'
@@ -10,14 +10,13 @@ import { usePluginContext } from '../../../plugins/BasePlugin'
 interface AddInstanceFormProps {
   name: string
   connectionString: string
-  type
+  type: string
   onInputChange: (e: ChangeEvent<HTMLInputElement>) => void
-  onSelectChange: (e: ChangeEvent<HTMLInputElement>) => void
   onSaveChanges: () => void
 }
 
 
-const AddInstanceForm = ({ instanceName, instanceDescription, schoolYear, schoolYearOptions, onInputChange, onSelectChange, onSaveChanges }: AddInstanceFormProps) => {
+const AddInstanceForm = ({ name, type, connectionString, onInputChange, onSaveChanges }: AddInstanceFormProps) => {
   const { getString } = usePluginContext()
 
   return (
@@ -35,14 +34,27 @@ const AddInstanceForm = ({ instanceName, instanceDescription, schoolYear, school
       >
         <FormControl>
           <CustomFormLabel
-            htmlFor="instanceName"
+            htmlFor="name"
             text="Instance Name"
           />
 
           <CustomInput
-            id='instanceName'
-            value={instanceName}
-            onChange={onSelectChange}
+            id='name'
+            value={name}
+            onChange={onInputChange}
+          />
+        </FormControl>
+
+        <FormControl mt='16px'>
+          <CustomFormLabel
+            htmlFor="type"
+            text="Instance Type"
+          />
+
+          <CustomInput
+            id="type"
+            value={type}
+            onChange={onInputChange}
           />
         </FormControl>
 
@@ -58,37 +70,6 @@ const AddInstanceForm = ({ instanceName, instanceDescription, schoolYear, school
             onChange={onInputChange}
           />
         </FormControl>
-      </Flex>
-
-      <Flex
-        flexDir='column'
-        mt='48px'
-      >
-        <CustomFormHeader text={getString('app.ODS_INSTANCES')} />
-
-        <Flex
-          flexDir='column'
-          ml='10px'
-          mt='16px'
-          w='full'
-        >
-          <FormControl>
-            <CustomFormLabel
-              htmlFor='schoolYear'
-              text='School Year'
-            />
-
-            <CustomSelect
-              options={schoolYearOptions.map(year => ({
-                value: year,
-                text: year 
-              }))}
-              id='schoolYear'
-              value={schoolYear}
-              onChange={onSelectChange}
-            />
-          </FormControl>
-        </Flex>
       </Flex>
 
       <Button

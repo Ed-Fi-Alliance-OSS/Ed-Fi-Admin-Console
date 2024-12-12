@@ -1,21 +1,26 @@
 import {
-  TEEAuthDataContext, Tenant, UserProfileContext 
+  TEEAuthDataContext,
+  Tenant,
+  useApiService,
+  useConfig,
+  UserProfileContext
 } from '@edfi/admin-console-shared-sdk'
 import {
-  ChangeEvent, useState, useEffect, useContext 
+  ChangeEvent,
+  useContext,
+  useEffect,
+  useState
 } from 'react'
 import { adminConsoleContext } from '../../../context/adminConsoleContext'
 import {
-  EdfiApplication, EdfiApplicationAuthData 
+  EdfiApplication, EdfiApplicationAuthData
 } from '../../../core/Edfi/EdfiApplications'
 import { EdfiClaimSet } from '../../../core/Edfi/EdfiClaimsets'
 import { EdfiVendor } from '../../../core/Edfi/EdfiVendors'
+import { usePluginContext } from '../../../plugins/BasePlugin'
 import {
-  CreateEdfiApplicationRequest, ResetEdfiApplicationCredentialsRequest, UpdateEdfiApplicationRequest 
+  CreateEdfiApplicationRequest, ResetEdfiApplicationCredentialsRequest, UpdateEdfiApplicationRequest
 } from '../../../services/AdminActions/Edfi/Applications/EdfiApplicationService.requests'
-import useEdfiApplicationsService from '../../../services/AdminActions/Edfi/Applications/EdfiApplicationsService'
-import useEdfiClaimsetService from '../../../services/AdminActions/Edfi/ClaimSets/ClaimsetsService'
-import useEdfiVendorsService from '../../../services/AdminActions/Edfi/Vendors/EdfiVendorsService'
 import useEDXToast from '../../common/useEDXToast'
 import useTenantInfo from '../../useTenantInfo'
 import { initialApplicationData } from './initialApplicationData'
@@ -24,18 +29,17 @@ import useApplicationFormValidation from './useApplicationFormValidation'
 type UseApplicationFormMode = 'add' | 'edit'
 
 interface UseApplicationFormProps {
-    schoolYear: number 
-    mode: UseApplicationFormMode
-    editApplicationData?: EdfiApplication
-    onFinishSave: () => void
+  instanceId: number
+  mode: UseApplicationFormMode
+  editApplicationData?: EdfiApplication
+  onFinishSave: () => void
 }
 
-const selectInitialFormData = (mode: UseApplicationFormMode, currentTenant: Tenant | undefined, editApplicationData?: EdfiApplication) => {
+const selectInitialFormData = (mode: UseApplicationFormMode, selectedTenant?: Tenant, editApplicationData?: EdfiApplication) => {
   if (mode === 'edit' && editApplicationData) {
     console.log('edit application data', editApplicationData)
 
-    const educationorgIds: Array<string | number> = []
-    educationorgIds.push(editApplicationData.educationOrganizationId ?? 0)
+    const educationorgIds: Array<number> = editApplicationData.educationOrganizationIds ?? []
 
     const initialData: UpdateEdfiApplicationRequest = {
       applicationName: editApplicationData.applicationName ?? '',
@@ -56,8 +60,8 @@ const selectInitialFormData = (mode: UseApplicationFormMode, currentTenant: Tena
     educationOrganizationIds: []
   }
 
-  if (currentTenant) {
-    const currentOrgId = currentTenant.organizationIdentifier
+  if (selectedTenant) {
+    const currentOrgId = selectedTenant.tenantId
 
     if (currentOrgId) {
       initialData.educationOrganizationIds.push(currentOrgId)
@@ -67,28 +71,24 @@ const selectInitialFormData = (mode: UseApplicationFormMode, currentTenant: Tena
   return initialData
 }
 
-const useApplicationForm = ({ schoolYear, mode, onFinishSave, editApplicationData }: UseApplicationFormProps) => { 
+const useApplicationForm = ({ mode, onFinishSave, editApplicationData, instanceId }: UseApplicationFormProps) => {
   const { edxAppConfig, auth } = useContext(TEEAuthDataContext)
   const { userProfile } = useContext(UserProfileContext)
-  const { getVendorsListForSchoolYear } = useEdfiVendorsService()
-
-  const { createEdfiApplicationForSchoolYear, 
-    updateEdfiApplicationForSchoolYear, 
-    resetApplicationCredentialsForSchoolYear } = useEdfiApplicationsService()
-
-  const { getClaimsetsListForSchoolYear } = useEdfiClaimsetService()
   const adminConfig = useContext(adminConsoleContext)
   const { getCurrentTenant } = useTenantInfo()
   const [ applicationData, setApplicationData ] = useState<CreateEdfiApplicationRequest | UpdateEdfiApplicationRequest>(() => selectInitialFormData(mode, getCurrentTenant(), editApplicationData))
-  const [ selectedApplicationId, setSelectedApplicationId ] = useState<number>(editApplicationData? editApplicationData.applicationId : 0)
+  const [ selectedApplicationId, setSelectedApplicationId ] = useState<number>(editApplicationData ? editApplicationData.id : 0)
   const [ vendorOptionsList, setVendorOptionsList ] = useState<EdfiVendor[]>([])
   const [ claimsOptionsList, setClaimsOptionsList ] = useState<EdfiClaimSet[]>([])
   const [ operationalContext, setOperationalContext ] = useState<string>('')
+  const { config } = useConfig()
+  const { functionalities } = usePluginContext()
+  const api = functionalities.ApiService?.(config, useApiService)
 
-  const [ applicationAuthData, setApplicationAuthData ] = useState<EdfiApplicationAuthData>({ 
-    applicationId: editApplicationData? editApplicationData.applicationId : 0,
-    secret: mode === 'edit'? 'applicationSecret' : '',
-    key: mode === 'edit'? 'applicationKey' : ''
+  const [ applicationAuthData, setApplicationAuthData ] = useState<EdfiApplicationAuthData>({
+    id: editApplicationData ? editApplicationData.id : 0,
+    secret: mode === 'edit' ? 'applicationSecret' : '',
+    key: mode === 'edit' ? 'applicationKey' : ''
   })
 
   const [ isSaving, setIsSaving ] = useState(false)
@@ -123,7 +123,7 @@ const useApplicationForm = ({ schoolYear, mode, onFinishSave, editApplicationDat
     console.log('toggle org id')
 
     if (userProfile) {
-      const educationOrgId = getCurrentTenant()?.organizationIdentifier
+      const educationOrgId = getCurrentTenant()?.tenantId
       const napplicationData = { ...applicationData }
 
       if (educationOrgId) {
@@ -144,6 +144,7 @@ const useApplicationForm = ({ schoolYear, mode, onFinishSave, editApplicationDat
   }
 
   const onSelectVendor = (vendorId: number) => {
+    console.log('onSelected vendor id', vendorId)
     const napplicationData = { ...applicationData }
 
     napplicationData.vendorId = vendorId
@@ -173,16 +174,23 @@ const useApplicationForm = ({ schoolYear, mode, onFinishSave, editApplicationDat
 
       console.log('request data credentials', requestData)
       setIsRegeneratingCredentials(true)
-    
-      const result = await resetApplicationCredentialsForSchoolYear(adminConfig.actionParams, requestData, schoolYear)
-      setIsRegeneratingCredentials(false)
+      try {
+        const data = await api?.applications.resetPassword(applicationId.toString())
 
-      if (result.type === 'Response') {
-        setApplicationAuthData(result.data)
-        return 
+        if (data) {
+          setApplicationAuthData(data)
+        }
+      } catch (e) {
+        console.log('error', e)
+        errorToast('Failed to regenerate application credentials.')
+      } finally {
+        setIsRegeneratingCredentials(false)
       }
 
-      errorToast('Failed to regenerate application credentials.')
+      return
+
+
+
     }
 
     return null
@@ -196,20 +204,28 @@ const useApplicationForm = ({ schoolYear, mode, onFinishSave, editApplicationDat
 
       if (mode === 'add') {
         if (validApplicationData(applicationData)) {
-          const result = await createEdfiApplicationForSchoolYear(adminConfig.actionParams, {
-            applicationName: applicationData.applicationName,
-            vendorId: applicationData.vendorId,
-            claimSetName: applicationData.claimSetName,
-            educationOrganizationIds: applicationData.educationOrganizationIds
-          }, schoolYear)
-                    
-          console.log('result create application', result)
+          try {
 
-          if (result.type === 'Response') {
-            setApplicationAuthData(result.data)
-            successToast('Added Application.')
-          } else {
-            errorToast('Failed to Add Application.')
+
+            const result = await api?.applications.create({
+              applicationName: applicationData.applicationName,
+              vendorId: applicationData.vendorId,
+              claimSetName: applicationData.claimSetName,
+              educationOrganizationIds: applicationData.educationOrganizationIds,
+              odsInstanceIds: [ instanceId ]
+            })
+
+            console.log('result create application', result)
+
+            if (result) {
+              setApplicationAuthData(result)
+              successToast('Added Application.')
+            } else {
+              errorToast('Failed to Add Application.')
+            }
+          } catch (e) {
+            console.log('error', e)
+            errorToast('Failed to add application.')
           }
         } else {
           setHasTriedSubmit(true)
@@ -221,59 +237,65 @@ const useApplicationForm = ({ schoolYear, mode, onFinishSave, editApplicationDat
           console.log('valid application data edit')
 
           const currentTenant = getCurrentTenant()
-          const educationOrganizationIds: string[] = [ currentTenant? currentTenant.organizationIdentifier : 'unknown' ]
+          const educationOrganizationIds: number[] = [ currentTenant ? currentTenant.tenantId : 0 ]
 
-          const result = await updateEdfiApplicationForSchoolYear(adminConfig.actionParams, selectedApplicationId+'', {
-            applicationName: applicationData.applicationName,
-            claimSetName: applicationData.claimSetName,
-            vendorId: applicationData.vendorId,
-            educationOrganizationIds: educationOrganizationIds
-          }, schoolYear)
-    
-          console.log('result update application', result)
+          try {
+            const result = await api?.applications.update(selectedApplicationId.toString(), {
+              applicationName: applicationData.applicationName,
+              claimSetName: applicationData.claimSetName,
+              vendorId: applicationData.vendorId,
+              educationOrganizationIds: educationOrganizationIds
+            })
 
-          if (result.type === 'Response') {
-            setApplicationAuthData(result.data)
-            successToast('Updated Application.')
-          } else {
+            console.log('result update application', result)
+
+            if (result) {
+              setApplicationAuthData(result)
+              successToast('Updated Application.')
+            } else {
+              errorToast('Failed to Update Application.')
+            }
+          } catch (e) {
+            console.log('error', e)
             errorToast('Failed to Update Application.')
+
           }
+
         } else {
           setHasTriedSubmit(true)
         }
-                
+
         onFinishSave()
       }
-                
+
       setIsSaving(false)
     }
   }
 
   const fetchVendorsList = async () => {
     if (edxAppConfig && auth && auth.user && adminConfig) {
-      const vendorsListData = await getVendorsListForSchoolYear(adminConfig.actionParams, schoolYear)
-      const claimsetsListData = await getClaimsetsListForSchoolYear(adminConfig.actionParams, schoolYear)
+      const vendorsListData = await api?.vendors.getAll() ?? []
+      const claimsetsListData = await api?.claimSets.getAll() ?? []
 
       console.log('claimsets list data', claimsetsListData)
 
-      if (vendorsListData.type === 'Response' && claimsetsListData.type === 'Response') {
-        vendorsListData.data.unshift({
-          vendorId: 0,
-          company: 'Select Option' 
-        })
+      vendorsListData.unshift({
+        id: 0,
+        company: 'Select Option'
+      })
 
-        claimsetsListData.data.unshift({
-          id: 0,
-          name: 'Select Option',
-          applicationsCount: 0,
-          isSystemReserved: false 
-        })
+      claimsetsListData.unshift({
+        id: 0,
+        name: 'Select Option',
+        applicationsCount: 0,
+        isSystemReserved: false
+      })
 
-        setVendorOptionsList(vendorsListData.data)
-        setClaimsOptionsList(claimsetsListData.data)
-      }
+      setVendorOptionsList(vendorsListData)
+      setClaimsOptionsList(claimsetsListData)
+
     }
-  }   
+  }
 
   useEffect(() => {
     fetchVendorsList()

@@ -3,7 +3,7 @@ import { EdfiApplicationAuthData } from '../core/Edfi/EdfiApplications'
 import { SISProviderConnectionState } from '../core/sisProviders/SISProviders.types'
 import useSISProvidersForm from '../hooks/adminActions/edfi/useSISProvidersForm'
 import {
-  OptionalProvidersOption, SISProvidersOption 
+    OptionalProvidersOption, SISProvidersOption
 } from '../hooks/adminActions/edfi/useSISProvidersForm.types'
 
 export interface OnBoardigConnectSISContextData {
@@ -40,12 +40,12 @@ export const onBoardingConnectSISContext = createContext<OnBoardigConnectSISCont
   selectedOptionalProviderId: '',
   connectionState: 'Awaiting Connection',
   optionalConnectionState: 'Awaiting Connection',
-  optionaEdfiApplicationAuthData: { applicationId: 0 },
+  optionaEdfiApplicationAuthData: { id: 0 },
   isLoadingOptionalCredentials: false,
   hasSelectedProvider: false,
   hasSelectedOptionalProvider: false,
   optionalSource: 'Select Provider Function',
-  edfiApplicationAuthData: { applicationId: 0 },
+  edfiApplicationAuthData: { id: 0 },
   isLoadingCredentials: false,
   optionalSISSources: [],
   showOptionalForm: false,

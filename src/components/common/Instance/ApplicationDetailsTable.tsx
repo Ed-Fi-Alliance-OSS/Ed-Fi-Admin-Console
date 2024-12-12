@@ -1,14 +1,14 @@
 import {
-  Button,
-  Flex,
-  Link,
-  Table,
-  TableContainer,
-  Tbody,
-  Td,
-  Th,
-  Thead,
-  Tr,
+    Button,
+    Flex,
+    Link,
+    Table,
+    TableContainer,
+    Tbody,
+    Td,
+    Th,
+    Thead,
+    Tr,
 } from '@chakra-ui/react'
 import { DeletingState } from '../../../core/deletingState.types'
 import { EdfiApplication } from '../../../core/Edfi/EdfiApplications'
@@ -115,7 +115,7 @@ const ApplicationDetailsTable = ({ applicationsList, isDeleting, onEditApplicati
 
                   <ApplicationDetailsControl 
                     data={application}
-                    isDeleting={isDeleting.deleting && isDeleting.id === application.applicationId.toString()}
+                    isDeleting={isDeleting.deleting && isDeleting.id === application.id.toString()}
                     onDelete={onDeleteApplication}
                   />
                 </Flex>

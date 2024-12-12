@@ -1,6 +1,6 @@
 import { ChevronDownIcon } from '@chakra-ui/icons'
 import {
-  Button, Flex, Popover, PopoverBody, PopoverContent, PopoverTrigger 
+    Button, Flex, Popover, PopoverBody, PopoverContent, PopoverTrigger
 } from '@chakra-ui/react'
 import { useContext } from 'react'
 import { adminConsoleContext } from '../../../context/adminConsoleContext'
@@ -58,7 +58,7 @@ const ApplicationDetailsControl = ({ data, isDeleting, onDelete }: ApplicationDe
               justifyContent='center'
               size='xs'
               w='100px'
-              onClick={() => onDelete(data.applicationId.toString())}
+              onClick={() => onDelete(data.id.toString())}
             >
               Delete
             </Button> }

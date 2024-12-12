@@ -50,7 +50,7 @@ const InstanceDetailsForm = ({ mode, instance }: InstanceDetailsFormProps) => {
           <CustomInput
             disabled={true}
             id='instanceName'
-            value={userProfile? `${getInstanceName(userProfile.tenants, userProfile.tenantId)} ${instance?.name}` : `Instance ${instance?.name}`}
+            value={instance?.name ?? ''}
             onChange={() => null}
           />
         </FormControl>

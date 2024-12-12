@@ -23,17 +23,17 @@ import PartnersAndApplicationAccordionHeader from './PartnersAndApplicationAccor
 
 interface PartnersAndApplicationAccordionProps {
     vendorsWithApplicationsList: EdfiVendorWithApplications[]
-    isDeletingPartner: DeletingState 
+    isDeletingVendor: DeletingState 
     isDeletingApplication: DeletingState
-    onSelectPartner: (partnerId: number) => void
-    onEditPartner: () => void
+    onSelectVendor: (partnerId: number) => void
+    onEditVendor: () => void
     onEditApplication: (application: EdfiApplication) => void
-    onDeletePartner: (partnerId: string) => void
+    onDeleteVendor: (partnerId: string) => void
     onDeleteApplication: (applicationId: string) => void
     onAddApplication: () => void
 }
 
-const PartnersAndApplicationAccordion = ({ vendorsWithApplicationsList, isDeletingApplication, isDeletingPartner, onSelectPartner, onEditPartner, onDeletePartner, onDeleteApplication, onEditApplication, onAddApplication }: PartnersAndApplicationAccordionProps) => {
+const PartnersAndApplicationAccordion = ({ vendorsWithApplicationsList, isDeletingApplication, isDeletingVendor: isDeletingPartner, onSelectVendor: onSelectPartner, onEditVendor, onDeleteVendor, onDeleteApplication, onEditApplication, onAddApplication }: PartnersAndApplicationAccordionProps) => {
   const adminConfig = useContext(adminConsoleContext)
 
   const {
@@ -144,7 +144,7 @@ const PartnersAndApplicationAccordion = ({ vendorsWithApplicationsList, isDeleti
                   maxW='20px'
                   minW='20px'
                   w='20px'
-                  onClick={() => onDeletePartner(partner.vendorId? partner.vendorId.toString() : 'x')}
+                  onClick={() => onDeleteVendor(partner.vendorId? partner.vendorId.toString() : 'x')}
                 >
                   <span
                     hidden

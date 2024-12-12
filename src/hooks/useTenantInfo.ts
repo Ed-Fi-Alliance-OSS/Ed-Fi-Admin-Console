@@ -1,16 +1,14 @@
 import {
-  Tenant, UserProfileContext 
+  Tenant
 } from '@edfi/admin-console-shared-sdk'
-import { useContext } from 'react'
+import { useTenantContext } from '../context/tenantContext'
 
 const useTenantInfo = () => {
-  const { userProfile } = useContext(UserProfileContext)
+  const { selectedTenant } = useTenantContext()
 
   const getCurrentTenant = (): Tenant | undefined => {
-    if (userProfile) {
-      const currentTenant = userProfile.selectedTenant
-
-      return currentTenant
+    if (selectedTenant) {
+      return selectedTenant
     }
   }
 
