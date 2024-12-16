@@ -20,6 +20,11 @@ const InstanceDescription = ({ instance }: InstanceDescriptionProps) => {
     <Flex>
       <Flex flexDir='column'>
         <InstanceDescriptionField
+          content={edfiMetadata?.urls.dataManagementApi ?? ''}
+          title='Base URL'
+        />
+
+        <InstanceDescriptionField
           content={instance.name}
           title='Instance Name'
         />
@@ -41,7 +46,7 @@ const InstanceDescription = ({ instance }: InstanceDescriptionProps) => {
 
           <InstanceDescriptionField
             content={<ODSInstanceDataModelsLabel dataModels={edfiMetadata?.dataModels} />}
-            title="Extension"
+            title="Ed-Fi Data Models"
           />
 
           <InstanceDescriptionField 
