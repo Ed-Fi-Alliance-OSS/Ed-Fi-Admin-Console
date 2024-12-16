@@ -21,7 +21,7 @@ const InstanceDescription = ({ instance }: InstanceDescriptionProps) => {
       <Flex flexDir='column'>
         <InstanceDescriptionField
           content={selectedTenant?.document.edfiApiDiscoveryUrl ?? ''}
-          title='Base URL'
+          title='Ed-Fi Base URL'
         />
 
         <InstanceDescriptionField

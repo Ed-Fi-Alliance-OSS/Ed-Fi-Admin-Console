@@ -80,7 +80,7 @@ export function TenantInstanceForm() {
         >
           <CustomFormLabel 
             htmlFor='edfiApiDiscoveryUrl'
-            text='Base URL'
+            text='Ed-Fi Base URL'
           />
 
           <CustomInput 
