@@ -1,18 +1,17 @@
 import {
-    Button,
-    Flex,
-    Link,
-    Table,
-    TableContainer,
-    Tbody,
-    Td,
-    Th,
-    Thead,
-    Tr,
+  Button,
+  Flex,
+  Link,
+  Table,
+  TableContainer,
+  Tbody,
+  Td,
+  Th,
+  Thead,
+  Tr,
 } from '@chakra-ui/react'
 import { DeletingState } from '../../../core/deletingState.types'
 import { EdfiApplication } from '../../../core/Edfi/EdfiApplications'
-import ApplicationDetailsControl from './ApplicationDetailsControl'
 
 interface ApplicationDetailsTableProps {
     applicationsList: EdfiApplication[]
@@ -104,7 +103,7 @@ const ApplicationDetailsTable = ({ applicationsList, isDeleting, onEditApplicati
                   w='full'
                 >
                   <Button 
-                    borderRadius='4px 0px 0px 4px'
+                    // borderRadius='4px 0px 0px 4px'
                     minW='39px'
                     size='xs'
                     variant='primaryBlue600'
@@ -113,11 +112,11 @@ const ApplicationDetailsTable = ({ applicationsList, isDeleting, onEditApplicati
                     Edit
                   </Button>
 
-                  <ApplicationDetailsControl 
+                  {/* <ApplicationDetailsControl 
                     data={application}
                     isDeleting={isDeleting.deleting && isDeleting.id === application.id.toString()}
                     onDelete={onDeleteApplication}
-                  />
+                  /> */}
                 </Flex>
               </Td>
             </Tr>)}

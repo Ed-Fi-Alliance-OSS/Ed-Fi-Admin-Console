@@ -24,6 +24,8 @@ const ODSInstanceManagementTableRows = ({ tenants, tableMode, selectedInstance, 
     canSetAsDefault
   } = useValidateSetAsDefault()
 
+  
+
   const filterInstancesFromMode = (instance: ExtendedODSInstance) => {
     if (tableMode != 'Show Selected') {
       return true

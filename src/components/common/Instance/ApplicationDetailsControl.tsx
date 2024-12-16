@@ -1,6 +1,5 @@
-import { ChevronDownIcon } from '@chakra-ui/icons'
 import {
-    Button, Flex, Popover, PopoverBody, PopoverContent, PopoverTrigger
+  Button, Flex, Popover, PopoverBody, PopoverContent, PopoverTrigger
 } from '@chakra-ui/react'
 import { useContext } from 'react'
 import { adminConsoleContext } from '../../../context/adminConsoleContext'
@@ -20,7 +19,7 @@ const ApplicationDetailsControl = ({ data, isDeleting, onDelete }: ApplicationDe
       <PopoverTrigger>
         <Button
           aria-labelledby={`show-options-${data.applicationName}`}
-          borderRadius='0px 4px 4px 0px'
+          // borderRadius='0px 4px 4px 0px'
           minW='24px'
           ml='1px'
           size='xs'
@@ -32,11 +31,11 @@ const ApplicationDetailsControl = ({ data, isDeleting, onDelete }: ApplicationDe
           >Show Options
           </span>
 
-          <ChevronDownIcon
+          {/* <ChevronDownIcon
             aria-hidden="true"
             focusable="false"
             fontSize='18px'
-          />
+          /> */}
         </Button>
       </PopoverTrigger>
 

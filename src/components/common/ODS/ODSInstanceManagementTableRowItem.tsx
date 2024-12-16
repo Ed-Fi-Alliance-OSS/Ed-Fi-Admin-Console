@@ -1,15 +1,17 @@
 import {
   Flex,
   Link,
-  RadioGroup, Spinner, Td
+  RadioGroup,
+  Spinner,
+  Td
 } from '@chakra-ui/react'
 import {
   CustomRadio, Tenant
 } from '@edfi/admin-console-shared-sdk'
 import { useEffect } from 'react'
 import { Link as RouterLink } from 'react-router-dom'
+import { useTenantContext } from '../../../context/tenantContext'
 import { ODSInstance } from '../../../core/ODSInstance.types'
-import { useEdfiMetadata } from '../../../hooks/odsInstances/useEdfiMetadata'
 import useOdsInstanceLink from '../../../hooks/odsInstances/useOdsInstanceLink'
 import { UpdatingIsDefaultStatus } from '../../../hooks/odsInstances/useOdsInstanceTable.types'
 import ManageInstanceBtn from './ManageInstanceBtn'
@@ -23,6 +25,7 @@ interface ODSInstanceManagementTableRowItemProps {
   tableMode: ODSInstanceTableMode
   tenants: Tenant[]
   instance: ODSInstance
+  // metadata: EdFiMetadata | undefined
   updatingIsDefault: UpdatingIsDefaultStatus
   canSetAsDefault: boolean
   selectedInstance: ODSInstance | null
@@ -31,13 +34,13 @@ interface ODSInstanceManagementTableRowItemProps {
   onOpenSetUpModal: (instanceId: string) => void
 }
 
-const ODSInstanceManagementTableRowItem = ({ tableMode, selectedInstance, instance, canSetAsDefault, updatingIsDefault, onSelectInstance, onOpenSetDefaultModal, onOpenSetUpModal }: ODSInstanceManagementTableRowItemProps) => {
+const ODSInstanceManagementTableRowItem = ({  tableMode, selectedInstance, instance, canSetAsDefault, updatingIsDefault, onSelectInstance, onOpenSetDefaultModal, onOpenSetUpModal }: ODSInstanceManagementTableRowItemProps) => {
   const showSetupBtn = () => {
     return false
   }
 
   const { getOdsInstanceLink } = useOdsInstanceLink()
-  const { edfiMetadata, edFiStatus, metaDataLoading } = useEdfiMetadata()
+  const { metaDataLoading, edFiStatus, edfiMetadata } = useTenantContext()
 
   useEffect(() => {
     // if (instance.isDefault) {

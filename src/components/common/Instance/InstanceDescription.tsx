@@ -1,8 +1,8 @@
 import {
   Flex, Spinner
 } from '@chakra-ui/react'
+import { useTenantContext } from '../../../context/tenantContext'
 import { ODSInstance } from '../../../core/ODSInstance.types'
-import { useEdfiMetadata } from '../../../hooks/odsInstances/useEdfiMetadata'
 import ODSInstanceEdFiVersion from '../ODS/ODSInstaceEdFiVersion'
 import ODSInstanceEdFiStatus from '../ODS/ODSInstanceEdFiStatus'
 import ODSInstanceDataModelsLabel from '../ODS/ODSInstanceTSDSVersion'
@@ -14,7 +14,7 @@ interface InstanceDescriptionProps {
 
 const InstanceDescription = ({ instance }: InstanceDescriptionProps) => {
   
-  const { edFiStatus, edfiMetadata, metaDataLoading } = useEdfiMetadata()
+  const { edFiStatus, edfiMetadata, metaDataLoading } = useTenantContext()
 
   return (
     <Flex>

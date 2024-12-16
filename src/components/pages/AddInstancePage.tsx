@@ -1,10 +1,9 @@
 import { Flex } from '@chakra-ui/react'
 import {
+  ODSInstance,
   useApiService, useConfig
 } from '@edfi/admin-console-shared-sdk'
-import {
-  ChangeEvent, useState
-} from 'react'
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useMockData } from '../../context/mockDataContext'
 import routes from '../../core/routes'
@@ -20,32 +19,17 @@ const AddInstancePage = () => {
   const [ instanceName, setInstanceName ] = useState('')
   const [ instanceType, setInstanceType ] = useState('')
   const [ connectionString, setConnectionString ] = useState('')
-
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {    
-    if(e.target.id === 'name') {
-      setInstanceName(e.target.value)
-    }
-  
-    if (e.target.id === 'type') {
-      setInstanceType(e.target.value)
-    }
-
-    if (e.target.id === 'connectionString') {
-      setConnectionString(e.target.value)
-    }
-  }
-
   const { successToast } = useEDXToast()
   const nav = useNavigate()
   const { functionalities } = usePluginContext()
   const { config } = useConfig()
   const apiService = functionalities.ApiService?.(config, useApiService)
 
-  const handleSaveChanges = async () => {
+  const handleSaveChanges = async (instance: ODSInstance) => {
     await apiService?.instances.create({
-      name: instanceName,
-      instanceType: instanceType,
-      connectionString: connectionString
+      name: instance.name,
+      instanceType: instance.instanceType,
+      connectionString: instance.connectionString ?? ''
     })
 
     successToast(`Instance created successfully, Instance: ${instanceName}, Type: ${instanceType}, Connection String: ${connectionString}`)
@@ -82,7 +66,6 @@ const AddInstancePage = () => {
               connectionString={connectionString}
               name={instanceName}
               type={instanceType}
-              onInputChange={handleInputChange}
               onSaveChanges={handleSaveChanges} 
             />
           </Flex>

@@ -1,86 +1,85 @@
 import {
-  Button, Flex, FormControl
+  Button, Flex
 } from '@chakra-ui/react'
+import { CustomFormHeader } from '@edfi/admin-console-shared-sdk'
 import {
-  CustomFormHeader, CustomFormLabel, CustomInput
-} from '@edfi/admin-console-shared-sdk'
-import { ChangeEvent } from 'react'
-import { usePluginContext } from '../../../plugins/BasePlugin'
+  Form,
+  Formik
+} from 'formik'
+import * as Yup from 'yup'
+import AppInput from '../../AppInput'
 
 interface AddInstanceFormProps {
   name: string
   connectionString: string
   type: string
-  onInputChange: (e: ChangeEvent<HTMLInputElement>) => void
-  onSaveChanges: () => void
+  onSaveChanges: (values: any) => void
 }
 
 
-const AddInstanceForm = ({ name, type, connectionString, onInputChange, onSaveChanges }: AddInstanceFormProps) => {
-  const { getString } = usePluginContext()
+const AddInstanceForm = ({ name, type, connectionString, onSaveChanges: onSaveChanges2 }: AddInstanceFormProps) => {
+  
+  const validationSchema = Yup.object({
+    name: Yup.string().required('Name is required'),
+    type: Yup.string(),
+    connectionString: Yup.string().required('Connection String is required')
+  })
 
   return (
     <Flex
       flexDir='column'
       w='full'
     >
-      <CustomFormHeader text="Instance Details" />
-
-      <Flex
-        flexDir='column'
-        ml='10px'
-        mt='16px'
-        w='full'
+      <Formik
+        initialValues={{
+          name,
+          type,
+          connectionString 
+        }}
+        validationSchema={validationSchema}
+        onSubmit={onSaveChanges2}
       >
-        <FormControl>
-          <CustomFormLabel
-            htmlFor="name"
-            text="Instance Name"
-          />
+        <>
+          <CustomFormHeader text="Instance Details" />
 
-          <CustomInput
-            id='name'
-            value={name}
-            onChange={onInputChange}
-          />
-        </FormControl>
+          <Flex
+            flexDir='column'
+            ml='10px'
+            mt='16px'
+            w='full'
+          >
+            <Form>
+              <AppInput
+                required
+                fieldName='name'
+                label='Name'
+              />
+              
+              <AppInput
+                fieldName='type'
+                label='Instance Type'
+              />
+              
+              <AppInput
+                required
+                description='SQL Connection String for Ed-Fi ODS database'
+                fieldName='connectionString'
+                label='Connection String'
+              />
 
-        <FormControl mt='16px'>
-          <CustomFormLabel
-            htmlFor="type"
-            text="Instance Type"
-          />
-
-          <CustomInput
-            id="type"
-            value={type}
-            onChange={onInputChange}
-          />
-        </FormControl>
-
-        <FormControl mt='16px'>
-          <CustomFormLabel
-            htmlFor="connectionString"
-            text="Connection String"
-          />
-
-          <CustomInput
-            id="connectionString"
-            value={connectionString}
-            onChange={onInputChange}
-          />
-        </FormControl>
-      </Flex>
-
-      <Button
-        mt='32px'
-        size='lg'
-        variant='primaryBlue600'
-        w='250px'
-        onClick={onSaveChanges}
-      >
-        Create Instance
-      </Button>
+              <Button
+                mt='32px'
+                size='lg'
+                type='submit'
+                variant='primaryBlue600'
+                w='250px'
+              >
+                Create Instance
+              </Button>
+            </Form>
+          </Flex>
+        </>
+      </Formik>
     </Flex>
   )
 }

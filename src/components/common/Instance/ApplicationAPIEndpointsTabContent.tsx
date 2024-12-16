@@ -8,8 +8,8 @@ import {
 } from '@edfi/admin-console-shared-sdk'
 import { useContext } from 'react'
 import { adminConsoleContext } from '../../../context/adminConsoleContext'
+import { useTenantContext } from '../../../context/tenantContext'
 import { ODSInstance } from '../../../core/ODSInstance.types'
-import { useEdfiMetadata } from '../../../hooks/odsInstances/useEdfiMetadata'
 
 interface ApplicationAPIEndpointsTabContentProps {
     instance: ODSInstance | null
@@ -17,7 +17,7 @@ interface ApplicationAPIEndpointsTabContentProps {
 
 const ApplicationAPIEndpointsTabContent = ({ instance }: ApplicationAPIEndpointsTabContentProps) => {
   // const { edfiInfo } = useEdfiUrls()
-  const { edfiMetadata } = useEdfiMetadata()
+  const { edfiMetadata } = useTenantContext()
   const adminConfig = useContext(adminConsoleContext)
 
   return (

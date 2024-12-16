@@ -83,7 +83,7 @@ const ApplicationDetailsFormSection = ({ applicationData, mode, errors, operatio
         <FormControl mt='16px'>
           <CustomFormLabel
             htmlFor="claimset" 
-            text="Permissions"
+            text="Claim Sets"
           />
 
           <CustomSelect 
