@@ -14,13 +14,13 @@ interface InstanceDescriptionProps {
 
 const InstanceDescription = ({ instance }: InstanceDescriptionProps) => {
   
-  const { edFiStatus, edfiMetadata, metaDataLoading } = useTenantContext()
+  const { edFiStatus, edfiMetadata, metaDataLoading, selectedTenant } = useTenantContext()
 
   return (
     <Flex>
       <Flex flexDir='column'>
         <InstanceDescriptionField
-          content={edfiMetadata?.urls.dataManagementApi ?? ''}
+          content={selectedTenant?.document.edfiApiDiscoveryUrl ?? ''}
           title='Base URL'
         />
 

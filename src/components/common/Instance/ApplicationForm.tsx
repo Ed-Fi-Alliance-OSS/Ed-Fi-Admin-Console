@@ -120,7 +120,7 @@ const ApplicationForm = ({ instance, mode, editApplicationData, onFinishSave }: 
           </Flex>
         </Flex>
       </Flex>}
-      actionText="save"
+      actionText="Save"
       headerText={mode === 'add'? 'Add Application' : 'Edit Application'}
       isSaving={isSaving}
       onClose={onFinishSave}

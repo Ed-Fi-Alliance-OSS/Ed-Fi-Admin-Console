@@ -17,7 +17,7 @@ interface ApplicationAPIEndpointsTabContentProps {
 
 const ApplicationAPIEndpointsTabContent = ({ instance }: ApplicationAPIEndpointsTabContentProps) => {
   // const { edfiInfo } = useEdfiUrls()
-  const { edfiMetadata } = useTenantContext()
+  const { edfiMetadata, selectedTenant } = useTenantContext()
   const adminConfig = useContext(adminConsoleContext)
 
   return (
@@ -27,8 +27,27 @@ const ApplicationAPIEndpointsTabContent = ({ instance }: ApplicationAPIEndpoints
     >
       <FormControl>
         <CustomFormLabel 
-          htmlFor="dataManagementApi" 
+          htmlFor="baseUrl" 
           text="Base URL"
+        />
+
+        <Flex w='full'>
+          <CustomInput
+            id="baseUrl"
+            value={selectedTenant?.document.edfiApiDiscoveryUrl ? selectedTenant?.document.edfiApiDiscoveryUrl : ''}
+            onChange={() => null}
+          />
+
+          <Flex ml='8px'>
+            <CopyTextBtn value={selectedTenant?.document.edfiApiDiscoveryUrl ? selectedTenant?.document.edfiApiDiscoveryUrl : ''} />
+          </Flex>
+        </Flex>
+      </FormControl>
+
+      <FormControl mt={4}>
+        <CustomFormLabel 
+          htmlFor="dataManagementApi" 
+          text="Resources URL"
         />
 
         <Flex w='full'>
@@ -47,7 +66,7 @@ const ApplicationAPIEndpointsTabContent = ({ instance }: ApplicationAPIEndpoints
       <FormControl mt={4}>
         <CustomFormLabel 
           htmlFor="authenticationUrl" 
-          text="OAuth API URL"
+          text="Authorization URL"
         />
 
         <Flex w='full'>
