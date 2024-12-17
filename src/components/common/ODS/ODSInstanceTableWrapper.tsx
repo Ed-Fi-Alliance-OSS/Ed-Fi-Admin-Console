@@ -1,7 +1,10 @@
-import { Button, Flex, Heading } from '@chakra-ui/react'
+import {
+  Button, Flex, Heading
+} from '@chakra-ui/react'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { ExtendedODSInstance } from '../../../core/ODSInstance.types'
+import { ODSInstance } from '../../../core/ODSInstance.types'
+import { Tenant } from '../../../core/Tenant.types'
 import useOdsInstanceTable from '../../../hooks/odsInstances/useOdsInstanceTable'
 import useOdsInstanceTableSorting from '../../../hooks/odsInstances/useOdsInstanceTableSorting'
 import { usePluginContext } from '../../../plugins/BasePlugin'
@@ -13,12 +16,13 @@ import SetUpInstanceModal from './SetUpInstanceModal'
 
 interface ODSInstanceTableWrapperProps {
     tableMode: ODSInstanceTableMode
-    pickedInstance: ExtendedODSInstance | null
-    onSelectInstance: (instance: ExtendedODSInstance) => void
+    tenants: Tenant[]
+    pickedInstance: ODSInstance | null
+    onSelectInstance: (instance: ODSInstance) => void
     onUpdateInstancesCount: (count: number) => void
 }
 
-const ODSInstanceTableWrapper = ({ tableMode, pickedInstance, onSelectInstance, onUpdateInstancesCount }: ODSInstanceTableWrapperProps) => {
+const ODSInstanceTableWrapper = ({ tenants, tableMode, pickedInstance, onSelectInstance, onUpdateInstancesCount }: ODSInstanceTableWrapperProps) => {
   const {
     paginatedData,
     selectedInstance,
@@ -40,11 +44,10 @@ const ODSInstanceTableWrapper = ({ tableMode, pickedInstance, onSelectInstance, 
   } = useOdsInstanceTableSorting()
 
   const { getString } = usePluginContext()
-
   const nav = useNavigate()
 
   useEffect(() => {
-    onUpdateInstancesCount(paginatedData.data.length)
+    onUpdateInstancesCount(paginatedData.data?.length ?? 0)
   }, [ paginatedData.data ])
 
   function onAddBtnClick() {
@@ -54,51 +57,123 @@ const ODSInstanceTableWrapper = ({ tableMode, pickedInstance, onSelectInstance, 
   return (
     <> 
       { selectedInstance && <ConfirmSetDefaultInstanceModal
-        show={showConfirmSetDefaultModal}
         instance={selectedInstance}
+        show={showConfirmSetDefaultModal}
         updatingInstance={updatingIsDefault.loading}
+        onClose={onCloseConfirmSetDefaultModal}
         onSetIsDefault={onSetIsDefault}
-        onClose={onCloseConfirmSetDefaultModal} /> }
+      /> }
 
       { selectedInstance && <SetUpInstanceModal 
         instance={selectedInstance} 
         show={showSetUpWizardModal} 
-        onClose={onCloseSetUpWizardModal} /> }
+        onClose={onCloseSetUpWizardModal}
+      /> }
 
-      { tableMode == 'Display' && <Flex alignItems='center' justifyContent='space-between'>
-        <Flex alignItems='flex-end' justifyContent='space-between' width='full'>
+      { tableMode == 'Display' && <Flex
+        alignItems='center'
+        justifyContent='space-between'
+      >
+        <Flex
+          alignItems='flex-end'
+          justifyContent='space-between'
+          width='full'
+        >
           <Heading size='lg'>
             {getString('app.ODS_INSTANCES')}
           </Heading>
-          <Button color='blue.600'
-            size='sm'
+
+          <Button
             border='1px'
             borderColor='blue.400'
+            color='blue.600'
+            ml='16px'
             padding='10px'
-            ml='16px' onClick={onAddBtnClick}>
-            Add Instance
+            size='sm'
+            onClick={onAddBtnClick}
+          >
+            Add ODS Instance
           </Button>
         </Flex>
       </Flex> }  
             
-      <Flex mt='16px' w='full'>
+      <Flex
+        mt='16px'
+        w='full'
+      >
         <ODSInstanceManagementTable 
-          tableMode={tableMode}
           tableHeaders={[
-            <ControlTableHeader headerData={{ text: '', fieldName: '', sortedByField: orderBy.field, showSorting: false, sortingType: orderBy.order, onSortAsc: () => onOrderBy('Year', 'asc'), onSortDesc: () => onOrderBy('Year', 'desc') }} />,
-            <ControlTableHeader headerData={{ text: 'Year', fieldName: 'Year', sortedByField: orderBy.field, showSorting: true, sortingType: orderBy.order, onSortAsc: () => onOrderBy('Year', 'asc'), onSortDesc: () => onOrderBy('Year', 'desc') }} />,
-            <ControlTableHeader headerData={{ text: 'Ed-Fi Version', fieldName: 'EdFiVersion', sortedByField: orderBy.field, showSorting: true, sortingType: orderBy.order, onSortAsc: () => onOrderBy('EdFiVersion', 'asc'), onSortDesc: () => onOrderBy('EdFiVersion', 'desc') }} />,
-            <ControlTableHeader headerData={{ text: 'Extension', fieldName: 'TsdsVersion', sortedByField: orderBy.field, showSorting: true, sortingType: orderBy.order, onSortAsc: () => onOrderBy('TsdsVersion', 'asc'), onSortDesc: () => onOrderBy('TsdsVersion', 'desc') }} />,
-            <ControlTableHeader headerData={{ text: 'Ed-Fi Status', fieldName: 'Status', sortedByField: orderBy.field, showSorting: true, sortingType: orderBy.order, onSortAsc: () => onOrderBy('Status', 'asc'), onSortDesc: () => onOrderBy('Status', 'desc') }} />,
-            <ControlTableHeader headerData={{ text: '', fieldName: '', sortedByField: orderBy.field, showSorting: true, sortingType: orderBy.order, onSortAsc: () => onOrderBy('Year', 'asc'), onSortDesc: () => onOrderBy('Year', 'desc') }} />
+            <ControlTableHeader headerData={{
+              text: '',
+              fieldName: '',
+              sortedByField: orderBy.field,
+              showSorting: false,
+              sortingType: orderBy.order,
+              onSortAsc: () => onOrderBy('Year', 'asc'),
+              onSortDesc: () => onOrderBy('Year', 'desc') 
+            }}
+            />,
+            <ControlTableHeader headerData={{
+              text: 'Instance Name',
+              fieldName: 'InstanceName',
+              sortedByField: orderBy.field,
+              showSorting: true,
+              sortingType: orderBy.order,
+              onSortAsc: () => onOrderBy('InstanceName', 'asc'),
+              onSortDesc: () => onOrderBy('InstanceName', 'desc') 
+            }}
+            />,
+            <ControlTableHeader headerData={{
+              text: 'Ed-Fi Version',
+              fieldName: 'EdFiVersion',
+              sortedByField: orderBy.field,
+              showSorting: true,
+              sortingType: orderBy.order,
+              onSortAsc: () => onOrderBy('EdFiVersion', 'asc'),
+              onSortDesc: () => onOrderBy('EdFiVersion', 'desc') 
+            }}
+            />,
+            <ControlTableHeader headerData={{
+              text: 'Ed-Fi Data Models',
+              fieldName: 'EdFiDataModels',
+              sortedByField: orderBy.field,
+              showSorting: true,
+              sortingType: orderBy.order,
+              onSortAsc: () => onOrderBy('EdFiDataModels', 'asc'),
+              onSortDesc: () => onOrderBy('EdFiDataModels', 'desc') 
+            }}
+            />,
+            <ControlTableHeader headerData={{
+              text: 'Ed-Fi Status',
+              fieldName: 'Status',
+              sortedByField: orderBy.field,
+              showSorting: true,
+              sortingType: orderBy.order,
+              onSortAsc: () => onOrderBy('Status', 'asc'),
+              onSortDesc: () => onOrderBy('Status', 'desc') 
+            }}
+            />,
+            <ControlTableHeader headerData={{
+              text: '',
+              fieldName: '',
+              sortedByField: orderBy.field,
+              showSorting: true,
+              sortingType: orderBy.order,
+              onSortAsc: () => onOrderBy('Year', 'asc'),
+              onSortDesc: () => onOrderBy('Year', 'desc') 
+            }}
+            />
           ]}
-          selectedInstance={pickedInstance}
           instanceList={getSortedInstances(paginatedData.data)}
-          loading={isFetchingData} 
-          onSelectInstance={onSelectInstance}
+          loading={isFetchingData}
+          selectedInstance={pickedInstance}
+          tableMode={tableMode}
+          tenants={tenants} 
+          updatingIsDefault={updatingIsDefault}
           onOpenSetDefaultModal={onOpenSetDefaultModal}
           onOpenSetUpModal={onOpenSetUpModal}
-          updatingIsDefault={updatingIsDefault} />
+          onSelectInstance={onSelectInstance}
+        />
       </Flex>
     </>
   )

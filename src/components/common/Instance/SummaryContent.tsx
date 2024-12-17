@@ -10,8 +10,7 @@ const SummaryContent = ({ instance }: SummaryContentProps) => {
   return (
     <>
       <Flex>
-        <InstanceDescription 
-          instance={instance} />
+        <InstanceDescription instance={instance} />
       </Flex>
     </>
   )

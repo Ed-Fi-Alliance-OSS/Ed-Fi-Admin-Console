@@ -1,8 +1,10 @@
-import { Flex, Td, Text } from '@chakra-ui/react'
+import {
+  Flex, Td, Text
+} from '@chakra-ui/react'
+import { CustomCheckbox } from '@edfi/admin-console-shared-sdk'
 import { ChangeEvent } from 'react'
 import { AvailableInstance } from '../../../core/ODSInstance.types'
 import ControlTableRow from '../ControlTableRow'
-import { CustomCheckbox } from '@edfi/admin-console-shared-sdk'
 import ODSInstanceEdFiStatus from '../ODS/ODSInstanceEdFiStatus'
 
 interface SelectInstancesTableRowsProps {
@@ -20,42 +22,49 @@ const SelectInstancesTableRows = ({ instancesList, showChecked, onSelectInstance
             <Flex>
               {showChecked && <CustomCheckbox
                 id={instance.district}
-                value={instance.district}
                 isChecked={instance.isSelected}
-                onCheck={onSelectInstance} />}
+                value={instance.district}
+                onCheck={onSelectInstance}
+              />}
+
               <Text
                 color='gray.700'
-                fontFamily='Open sans'
+                fontFamily='Poppins'
                 fontWeight='400'
+                ml={showChecked? '10px' : '0px'}
                 size='md'
-                ml={showChecked? '10px' : '0px'}>
+              >
                 {instance.district}
               </Text>
             </Flex>
           </Td>
+
           <Td w={showChecked? 'auto' : '30%'}>
             <Text
               color='blue.600'
-              fontFamily='Open sans'
+              fontFamily='Poppins'
               fontWeight='700'
-              size='md'>
+              size='md'
+            >
               {instance.instanceYear}
             </Text>
           </Td>
+
           <Td w={showChecked? 'auto' : '30%'}>
             <Text
               color='gray.700'
-              fontFamily='Open sans'
+              fontFamily='Poppins'
               fontWeight='400'
-              size='md'>
+              size='md'
+            >
               {instance.edfiVersion}
             </Text>
           </Td>
+
           <Td>
             <ODSInstanceEdFiStatus status={instance.edfiStatus} />
           </Td>
-        </ControlTableRow>
-      )}
+        </ControlTableRow>)}
     </>
   )
 }

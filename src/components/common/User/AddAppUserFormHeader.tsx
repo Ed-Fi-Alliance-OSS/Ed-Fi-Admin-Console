@@ -13,7 +13,8 @@ const AddAppUserFormHeader = ({ isSaving, onAction, onClose }: AddAppUserFormHea
       headerText="Add User"
       isSaving={isSaving}
       onAction={onAction}
-      onClose={onClose} />
+      onClose={onClose}
+    />
   )
 }
 

@@ -1,5 +1,7 @@
 import { AppUser } from '../../../core/AppUser.types'
-import { CreateUserFormData, CreateUserFormLicensesData } from './useCreateUserForm.types'
+import {
+  CreateUserFormData, CreateUserFormLicensesData 
+} from './useCreateUserForm.types'
 
 export const setInitialData = (editUserInitialData?: AppUser) : CreateUserFormData => {
   if (editUserInitialData) {
@@ -20,8 +22,9 @@ export const setInitialData = (editUserInitialData?: AppUser) : CreateUserFormDa
           userId: editUserInitialData.userId
         }
                 
-        if (roles.length > 0) 
+        if (roles.length > 0) {
           formLicense.roles = roles
+        }
                 
         return formLicense
       })

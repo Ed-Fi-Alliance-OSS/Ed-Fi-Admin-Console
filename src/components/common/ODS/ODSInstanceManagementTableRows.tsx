@@ -1,4 +1,7 @@
-import { ExtendedODSInstance } from '../../../core/ODSInstance.types'
+import {
+  ExtendedODSInstance, ODSInstance
+} from '../../../core/ODSInstance.types'
+import { Tenant } from '../../../core/Tenant.types'
 import { UpdatingIsDefaultStatus } from '../../../hooks/odsInstances/useOdsInstanceTable.types'
 import useValidateSetAsDefault from '../../../hooks/odsInstances/useValidateSetAsDefault'
 import ControlTableRow from '../ControlTableRow'
@@ -7,7 +10,8 @@ import { ODSInstanceTableMode } from './ODSInstanceTable.types'
 
 interface ODSInstanceManagementTableRowsProps {
     tableMode: ODSInstanceTableMode
-    instanceList: ExtendedODSInstance[]
+    instanceList: ODSInstance[]
+    tenants: Tenant[]
     updatingIsDefault: UpdatingIsDefaultStatus
     selectedInstance: ExtendedODSInstance | null
     onSelectInstance: (instance: ExtendedODSInstance) => void
@@ -15,34 +19,38 @@ interface ODSInstanceManagementTableRowsProps {
     onOpenSetUpModal: (instanceId: string) => void
 }
 
-const ODSInstanceManagementTableRows = ({ tableMode, selectedInstance, instanceList, updatingIsDefault, onSelectInstance, onOpenSetDefaultModal, onOpenSetUpModal }: ODSInstanceManagementTableRowsProps) => {
+const ODSInstanceManagementTableRows = ({ tenants, tableMode, selectedInstance, instanceList, updatingIsDefault, onSelectInstance, onOpenSetDefaultModal, onOpenSetUpModal }: ODSInstanceManagementTableRowsProps) => {
   const {
     canSetAsDefault
   } = useValidateSetAsDefault()
 
-  const filterInstancesFromMode = (instance: ExtendedODSInstance) => {
-    if (tableMode != 'Show Selected')
-      return true 
+  
 
-    return instance.instanceId == selectedInstance?.instanceId
+  const filterInstancesFromMode = (instance: ExtendedODSInstance) => {
+    if (tableMode != 'Show Selected') {
+      return true
+    } 
+
+    return instance.odsInstanceId == selectedInstance?.odsInstanceId
   }
 
   return (
     <>
-      {instanceList.filter(instance => filterInstancesFromMode(instance)).map((instance, index) => 
+      {instanceList?.filter(instance => filterInstancesFromMode(instance))?.map((instance, index) => 
         <ControlTableRow key={index}>
           <ODSInstanceManagementTableRowItem
             key={index}
-            tableMode={tableMode}
-            selectedInstance={selectedInstance}
-            instance={instance}
             canSetAsDefault={canSetAsDefault(instance, instanceList)}
+            instance={instance}
+            selectedInstance={selectedInstance}
+            tableMode={tableMode}
+            tenants={tenants}
             updatingIsDefault={updatingIsDefault}
-            onSelectInstance={onSelectInstance}
             onOpenSetDefaultModal={onOpenSetDefaultModal}
-            onOpenSetUpModal={onOpenSetUpModal} />
-        </ControlTableRow>
-      )}
+            onOpenSetUpModal={onOpenSetUpModal}
+            onSelectInstance={onSelectInstance}
+          />
+        </ControlTableRow>)}
     </>
   )
 }

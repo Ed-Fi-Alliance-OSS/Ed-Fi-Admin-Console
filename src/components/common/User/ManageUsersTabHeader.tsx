@@ -1,4 +1,6 @@
-import { Button, Flex, FormControl, Select } from '@chakra-ui/react'
+import {
+  Button, Flex, FormControl, Select 
+} from '@chakra-ui/react'
 import { ChangeEvent } from 'react'
 import ControlTableFilterPopover from '../ControlTableFilterPopover'
 
@@ -23,68 +25,98 @@ const ManageUsersTabHeader = ({  filterValue, selectedFilter, filterOptionsList,
   ]
 
   const selectUITextOption = (option: string) => {
-    if (option === 'firstName')
+    if (option === 'firstName') {
       return optionTextList[0]
+    }
 
-    if (option === 'lastName')
+    if (option === 'lastName') {
       return optionTextList[1]
+    }
 
-    if (option === 'email')
+    if (option === 'email') {
       return optionTextList[2]
+    }
 
-    if (option === 'status')
+    if (option === 'status') {
       return optionTextList[3]
+    }
 
     return 'Select Filter'
   }
 
   return (
-    <Flex justifyContent='space-between' w='full'>
+    <Flex
+      justifyContent='space-between'
+      w='full'
+    >
       <Flex alignItems='flex-end'>
-        <Flex flexDir='column' aria-label="Select Mode" id="selectMode">
+        <Flex
+          aria-label="Select Mode"
+          flexDir='column'
+          id="selectMode"
+        >
           <FormControl>
             <Select
               aria-labelledby="selectMode"
-              fontFamily='Poppins'
-              fontWeight='700'
-              fontSize='32px'
-              lineHeight='42px' 
               border='none'
-              w='230px'>
-              <option key="users" value="users" style={{ fontFamily: 'sans-serif' }}>Users</option>
+              fontFamily='Poppins'
+              fontSize='32px'
+              fontWeight='700' 
+              lineHeight='42px'
+              w='230px'
+            >
+              <option
+                key="users"
+                style={{ fontFamily: 'sans-serif' }}
+                value="users"
+              >Users
+              </option>
             </Select>
           </FormControl>
         </Flex>
-        <Flex justifyContent='center' ml='5px' mb='6px'>
+
+        <Flex
+          justifyContent='center'
+          mb='6px'
+          ml='5px'
+        >
           <ControlTableFilterPopover
-            textFilter={filterValue}
+            isUserControl={true}
             options={filterOptionsList}
             selectedOption={selectedFilter}
             selectUITextOption={selectUITextOption}
-            isUserControl={true}
+            textFilter={filterValue}
             onChangeFilterOption={onChangeFilter}
             onChangeText={onChangeValue}
             onFilter={onFilter}
-            onResetFilter={onResetFilter} />
+            onResetFilter={onResetFilter}
+          />
         </Flex>
       </Flex>
-      <Flex alignItems='center' mt='5px'>
+
+      <Flex
+        alignItems='center'
+        mt='5px'
+      >
         <Button
-          onClick={onRefreshData}
-          variant='secondaryBlue600'
-          size='xs'
-          p='0 25px'
-          minW='5px'>
-                        Refresh List
-        </Button>
-        <Button
-          onClick={onAddUser}
-          variant='primaryBlue600'
-          size='xs'
-          p='0 25px'
           minW='5px'
-          ml='8px'>
-                        Add User
+          p='0 25px'
+          size='xs'
+          variant='secondaryBlue600'
+          onClick={onRefreshData}
+        >
+          Refresh List
+        </Button>
+
+        <Button
+          minW='5px'
+          ml='8px'
+          p='0 25px'
+          size='xs'
+          variant='primaryBlue600'
+          onClick={onAddUser}
+        >
+          Add User
         </Button>
       </Flex>
     </Flex>

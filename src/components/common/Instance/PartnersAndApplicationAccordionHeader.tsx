@@ -1,5 +1,9 @@
-import { TriangleDownIcon, TriangleUpIcon } from '@chakra-ui/icons'
-import { Button, Flex, Text } from '@chakra-ui/react'
+import {
+  TriangleDownIcon, TriangleUpIcon
+} from '@chakra-ui/icons'
+import {
+  Button, Flex, Text
+} from '@chakra-ui/react'
 import { SortByParams } from '../../../hooks/controlTable/useControlTableSorting'
 
 interface PartnersAndApplicationAccordionHeaderProps {
@@ -10,55 +14,79 @@ interface PartnersAndApplicationAccordionHeaderProps {
 
 const PartnersAndApplicationAccordionHeader = ({ sortByPartnerDesc, sortByPartnerAsc, sortingType }: PartnersAndApplicationAccordionHeaderProps) => {
   return (
-    <Flex
-      padding='16px 32px'>
-      <Flex flexDir='column' justifyContent='center' w='20px'>
+    <Flex padding='16px 32px'>
+      <Flex
+        flexDir='column'
+        justifyContent='center'
+        w='20px'
+      >
         <Button 
-          onClick={() => sortByPartnerAsc({ field: 'company' })}
-          aria-labelledby={'sort-asc-company'}
-          data-testid={'sort-asc-company'}
+          aria-labelledby="sort-asc-company"
           color={sortingType === 'asc'? 'gray.700' : 'gray.500'}
-          h='3px'
-          minW='5px'>
-          <span id={'sort-asc-company'} hidden>Sort ascending</span>
-          <TriangleUpIcon 
-            fontSize='10px'
-            aria-label="Sort field ascending"
-            focusable="true" />
-        </Button>
-        <Button 
-          onClick={() => sortByPartnerDesc({ field: 'company' })}
-          aria-labelledby={'sort-desc-company'}
-          data-testid={'sort-desc-company'}
-          color={sortingType === 'desc' ? 'gray.700' : 'gray.500'}
+          data-testid="sort-asc-company"
           h='3px'
           minW='5px'
-          mt='5px'>
-          <span id={'sort-desc-company'} hidden>Sort descending</span>
+          onClick={() => sortByPartnerAsc({ field: 'company' })}
+        >
+          <span
+            hidden
+            id="sort-asc-company"
+          >Sort ascending
+          </span>
+
+          <TriangleUpIcon 
+            aria-label="Sort field ascending"
+            focusable="true"
+            fontSize='10px'
+          />
+        </Button>
+
+        <Button 
+          aria-labelledby="sort-desc-company"
+          color={sortingType === 'desc' ? 'gray.700' : 'gray.500'}
+          data-testid="sort-desc-company"
+          h='3px'
+          minW='5px'
+          mt='5px'
+          onClick={() => sortByPartnerDesc({ field: 'company' })}
+        >
+          <span
+            hidden
+            id="sort-desc-company"
+          >Sort descending
+          </span>
+
           <TriangleDownIcon 
-            fontSize='10px' 
-            aria-label="Sort field descending"
-            focusable="true"/>
+            aria-label="Sort field descending" 
+            focusable="true"
+            fontSize='10px'
+          />
         </Button>
       </Flex>
+
       <Text 
-        fontFamily='Open sans'
+        fontFamily='Poppins'
         fontWeight='700'
-        w='250px'>
-                        Vendor
+        w='250px'
+      >
+        Vendor
       </Text>
+
       <Text 
-        fontFamily='Open sans'
+        fontFamily='Poppins'
         fontWeight='700'
         ml='40px'
-        w='650px'>
-                        Namespace Prefixes
+        w='650px'
+      >
+        Namespace Prefixes
       </Text>
+
       <Text 
-        fontFamily='Open sans'
+        fontFamily='Poppins'
         fontWeight='700'
-        w='25%'>
-                        Application Count
+        w='25%'
+      >
+        Application Count
       </Text>
     </Flex>
   )

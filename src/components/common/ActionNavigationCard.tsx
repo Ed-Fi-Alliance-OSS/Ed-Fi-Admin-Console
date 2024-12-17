@@ -1,5 +1,7 @@
 import { ArrowForwardIcon } from '@chakra-ui/icons'
-import { Flex, Img, Link, Text } from '@chakra-ui/react'
+import {
+  Flex, Img, Link, Text 
+} from '@chakra-ui/react'
 import { useConfig } from '@edfi/admin-console-shared-sdk'
 import { Link as RouterLink } from 'react-router-dom'
 import { ActionNavigationItem } from '../../core/actionNavigation'
@@ -11,43 +13,57 @@ interface ActionNavigationCardProps {
 }
 
 const ActionNavigationCard = ({ data, index }: ActionNavigationCardProps) => {
-  const {config} = useConfig()
+  const { config } = useConfig()
   return (
     <Link 
-      to={routes.console.url}
-      state={{ consoleActionIndex: index }}
-      as={RouterLink}
-      display='flex'
-      justifyContent='flex-start'
-      bg='white'
-      borderRadius='4px'
-      border='1px' 
-      borderColor='gray.300'
-      flexDir='column'
-      padding='15px 14px 0px 14px'
-      h='112px'
-      w='20%'
-      mr='16px'
       _hover={{ borderColor: 'blue.600' }}
-      style={{ textDecoration: 'none' }}>
+      as={RouterLink}
+      bg='white'
+      border='1px'
+      borderColor='gray.300'
+      borderRadius='4px'
+      display='flex'
+      flexDir='column' 
+      h='112px'
+      justifyContent='flex-start'
+      mr='16px'
+      padding='15px 14px 0px 14px'
+      state={{ consoleActionIndex: index }}
+      style={{ textDecoration: 'none' }}
+      to={routes.console.url}
+      w='20%'
+    >
       {typeof(data.icon) === 'string'? 
         <Img 
-          src={data.icon}
+          alt={data.name}
           h='32px' 
+          src={data.icon}
           w='32px'
-          alt={data.name} /> : 
+        /> : 
         data.icon}
-      <Flex mt='5px' color='blue.600'>
+
+      <Flex
+        color='blue.600'
+        mt='5px'
+      >
         <Text 
-          textDecoration='none'
+          color='blue.600'
           fontFamily='Poppins' 
           fontWeight='400'
-          color='blue.600'
-          maxW='180px'>{data.name}</Text>
-        <Flex alignItems='center' h='20px'>
+          maxW='180px'
+          textDecoration='none'
+        >{data.name}
+        </Text>
+
+        <Flex
+          alignItems='center'
+          h='20px'
+        >
           <ArrowForwardIcon 
+            aria-hidden="true"
+            focusable="false"
             ml='10px'
-            aria-hidden="true" focusable="false"  />
+          />
         </Flex>
       </Flex>
     </Link>

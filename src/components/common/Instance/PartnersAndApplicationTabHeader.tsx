@@ -3,15 +3,22 @@ import TabHeading from '../TabHeading'
 import PartnersAndApplicationControls from './PartnersAndApplicationControls'
 
 interface PartnersAndApplicationTabHeaderProps {
-   onAddPartner: () => void
+   onAddVendor: () => void
    onRefresh: () => void
 }
 
-const PartnersAndApplicationTabHeader = ({ onAddPartner, onRefresh }: PartnersAndApplicationTabHeaderProps) => {
+const PartnersAndApplicationTabHeader = ({ onAddVendor, onRefresh }: PartnersAndApplicationTabHeaderProps) => {
   return (
-    <Flex justifyContent='space-between' w='full'>
+    <Flex
+      justifyContent='space-between'
+      w='full'
+    >
       <TabHeading text='Vendors & Applications' />
-      <PartnersAndApplicationControls  onAddPartner={onAddPartner} onRefresh={onRefresh} />
+
+      <PartnersAndApplicationControls
+        onAddPartner={onAddVendor}
+        onRefresh={onRefresh}
+      />
     </Flex>
   )
 }

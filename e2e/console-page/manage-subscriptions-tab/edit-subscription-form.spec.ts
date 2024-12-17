@@ -1,10 +1,13 @@
 
-import { test, expect, Page } from '@playwright/test'
+import {
+  test, expect, Page 
+} from '@playwright/test'
 import { routes } from '../../core/routes'
 import { fillSubscriptionForm } from './addSubscriptionFormHelpers'
 
 const clickUpdateBtn = async (page: Page) => await page.getByRole('button', { name: 'Update' }).click()
 const openEditSubscriptionForm = async (page: Page) => await page.getByText('Test App').click()
+
 const closeEditSubscriptionForm = async (page: Page) => {
   await page.getByRole('button', { name: 'cancel' }).click()
   expect(page.getByText('Edit Subscription')).toBeVisible()

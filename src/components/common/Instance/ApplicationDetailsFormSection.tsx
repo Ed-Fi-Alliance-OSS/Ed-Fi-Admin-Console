@@ -1,10 +1,18 @@
-import { Flex, Text, FormControl } from '@chakra-ui/react'
+import {
+  Flex,
+  FormControl,
+  Text
+} from '@chakra-ui/react'
+import {
+  CustomFormLabel,
+  CustomInput,
+  CustomSelect
+} from '@edfi/admin-console-shared-sdk'
 import { ChangeEvent } from 'react'
 import { EdfiClaimSet } from '../../../core/Edfi/EdfiClaimsets'
 import { EdfiVendor } from '../../../core/Edfi/EdfiVendors'
 import { FormDataErrors } from '../../../core/validation/FormValidations.types'
 import { CreateEdfiApplicationRequest } from '../../../services/AdminActions/Edfi/Applications/EdfiApplicationService.requests'
-import { CustomFormLabel, CustomSelect, CustomInput } from '@edfi/admin-console-shared-sdk'
 
 interface ApplicationDetailsFormSectionProps {
     applicationData: CreateEdfiApplicationRequest
@@ -31,43 +39,64 @@ const ApplicationDetailsFormSection = ({ applicationData, mode, errors, operatio
   }
 
   return (
-    <Flex flexDir='column' w='full'>
+    <Flex
+      flexDir='column'
+      w='full'
+    >
       <Text fontWeight='700'>Application Details</Text>
+
       <Flex flexDir='column'>
         <FormControl mt='16px'>
           <CustomFormLabel
-            text="Application Name" 
-            htmlFor="applicationName"/>
+            htmlFor="applicationName" 
+            text="Application Name"
+          />
+
           <CustomInput 
-            id="applicationName"
             disabled={mode == 'edit'? true : false}
             error={errors && errors['applicationName'] && errors['applicationName'].message}
+            id="applicationName"
             value={applicationData.applicationName} 
-            onChange={onInputChange} />
+            onChange={onInputChange}
+          />
         </FormControl>
+
         <FormControl mt='16px'>
           <CustomFormLabel
-            text="Vendor" 
-            htmlFor="vendor"/>
+            htmlFor="vendor" 
+            text="Vendor"
+          />
+
           <CustomSelect 
-            id="vendor"
+            options={vendorOptions.map(option => ({
+              text: option.company ?? '',
+              value: option.id ?? 0 
+            }))}
             disabled={mode == 'edit'? true : false}
             error={errors && errors['vendor'] && errors['vendor'].message}
-            options={vendorOptions.map(option => ({ text: option.company ?? '', value: option.vendorId ?? 0 }))}
+            id="vendor"
             value={applicationData.vendorId} 
-            onChange={(e) => onSelectVendor(parseInt(e.target.value))} />
+            onChange={(e) => onSelectVendor(parseInt(e.target.value))}
+          />
         </FormControl>
+
         <FormControl mt='16px'>
           <CustomFormLabel
-            text="Permissions" 
-            htmlFor="claimset"/>
+            htmlFor="claimset" 
+            text="Claim Sets"
+          />
+
           <CustomSelect 
-            id="claimset"
+            options={claimSetOptions.map(option => ({
+              text: option.name,
+              value: option.name 
+            }))}
             disabled={mode == 'edit'? true : false}
             error={errors && errors['claimset'] && errors['claimset'].message}
-            options={claimSetOptions.map(option => ({ text: option.name, value: option.name }))}
+            id="claimset"
             value={applicationData.claimSetName}
-            onChange={(e) => onSelectClaimSet(e.target.value)} />
+            onChange={(e) => onSelectClaimSet(e.target.value)}
+          />
         </FormControl>
       </Flex>
     </Flex>

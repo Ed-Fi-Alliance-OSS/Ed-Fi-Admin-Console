@@ -1,4 +1,6 @@
-import { useEffect, useState } from 'react'
+import {
+  useEffect, useState 
+} from 'react'
 import { EdxAppConfig } from '@edfi/admin-console-shared-sdk'
 
 interface UseFetchAppAuthConfig {
@@ -15,16 +17,15 @@ interface FetchConfigParams {
 
 const fetchConfig = async ({ env, serverMode }: FetchConfigParams) => {
   const serveMode = serverMode && serverMode[serverMode.length - 1] === ''? serverMode.substring(0, serverMode.length - 1) : serverMode
-
   let uri = ''
 
   if (env) {
-    if (serveMode === 'node') 
+    if (serveMode === 'node') {
       uri = configUri
-    else 
+    } else {
       uri = '/local.config.json'
-  }
-  else {
+    }
+  } else {
     uri = configUri
   }
 
@@ -45,6 +46,7 @@ export const mapEdxToAppConfig = (edxConfig): EdxAppConfig => {
 
   return authConfig
 }
+
 declare global {
   export interface Window {
     config: any
@@ -53,10 +55,14 @@ declare global {
 
 
 const useFetchConfig = ({ env, serverMode }: UseFetchAppAuthConfig) => {
-  const [appConfig, setAppConfig] = useState<EdxAppConfig | null>(null)
+  const [ appConfig, setAppConfig ] = useState<EdxAppConfig | null>(null)
 
   const fetchAppConfig = async () => {
-    const edxConfig = await fetchConfig({ env, serverMode })
+    const edxConfig = await fetchConfig({
+      env,
+      serverMode 
+    })
+
     window.config = edxConfig
     setAppConfig(mapEdxToAppConfig(edxConfig))
   }
@@ -65,9 +71,7 @@ const useFetchConfig = ({ env, serverMode }: UseFetchAppAuthConfig) => {
     fetchAppConfig()
   }, [])
 
-  return {
-    appConfig
-  }
+  return { appConfig }
 }
 
 export default useFetchConfig

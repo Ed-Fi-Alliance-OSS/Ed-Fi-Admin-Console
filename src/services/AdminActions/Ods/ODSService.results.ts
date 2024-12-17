@@ -1,4 +1,6 @@
-import { HttpServiceRequestError, HttpServiceResponse } from '../../HttpService/HttpService.response.types'
+import {
+  HttpServiceRequestError, HttpServiceResponse
+} from '../../HttpService/HttpService.response.types'
 
 export interface Descriptor {
     namespace: string
@@ -39,23 +41,9 @@ export interface InstitutionTelephone {
 }
 
 export interface EducationOrganization {
-    id: string 
-    educationServiceCenterReference: EducationServiceCenterReference
-    localEducationAgencyId: number
-    nameOfInstitution: string 
-    shortNameOfInstitution: string
-    webSite: string 
-    localEducationAgencyCategoryDescriptor: string 
-    addresses: EducationOrganizationAddress[]
-    categories: EducationOrganizationCategory[]
-    identificationCodes: IdentificationCode[]
-    indicators: object[]
-    institutionTelephones: InstitutionTelephone[]
-    internationalAddresses: object[]
-    accountabilities: object[]
-    federalFunds: object[]
-    _etag: object[]
-    _lastModifiedDate: string
+  odsInstanceId: string
+  name: string
+  instanceType?: string
 }
 
 export type GetDescriptorsResult = Promise<HttpServiceResponse<Descriptor[]> | HttpServiceRequestError>

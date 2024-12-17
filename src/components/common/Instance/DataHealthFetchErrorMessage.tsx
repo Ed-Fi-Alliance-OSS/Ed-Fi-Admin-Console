@@ -1,4 +1,6 @@
-import { Flex, Text } from '@chakra-ui/react'
+import {
+  Flex, Text 
+} from '@chakra-ui/react'
 import { DataHealthFetchError } from '../../../hooks/dataHealth/useDataHealthInfo'
 
 interface DataHealthFetchErrorMessageProps {
@@ -8,15 +10,17 @@ interface DataHealthFetchErrorMessageProps {
 const DataHealthFetchErrorMessage = ({ error }: DataHealthFetchErrorMessageProps) => {
   return (
     <Flex 
+      alignItems='center'
       bg="red.100"
-      borderRadius='4px'
-      alignItems='center' 
+      borderRadius='4px' 
       justifyContent="center"
       p='4px'
-      w='full'>
+      w='full'
+    >
       <Text
         color='red.700'
-        fontSize='14px'>
+        fontSize='14px'
+      >
         { `A ${error.errorStatus} error has been encountered. ${error.message}` }
       </Text>
     </Flex>

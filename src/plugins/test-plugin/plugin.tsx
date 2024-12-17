@@ -1,16 +1,10 @@
 import { BasePlugin } from '../BasePlugin'
-import { FooterLeftComponent } from './components/FooterLeft'
-import { GetOrganisations } from './functions/GetOrganizations'
+import { MockApiService } from './functions/MockApiService'
 
 export default {
   name: 'test-plugin',
-  strings: {
-    'app': {
-      'ODS_INSTANCES': 'ODS Instances',
-    }
-  },
+  strings: { 'app': { 'ODS_INSTANCES': 'Instances', } },
   register: (registry) => {
-    registry.registerComponent('FooterLeft', FooterLeftComponent)
-    registry.registerFunctionality('GetOrganisations', GetOrganisations)
+    registry.registerFunctionality('ApiService', MockApiService)
   },
 } as BasePlugin

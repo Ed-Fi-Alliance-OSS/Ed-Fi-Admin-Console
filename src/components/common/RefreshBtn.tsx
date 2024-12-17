@@ -1,5 +1,7 @@
 import { RepeatIcon } from '@chakra-ui/icons'
-import { Button, Flex, keyframes, Tooltip } from '@chakra-ui/react'
+import {
+  Button, Flex, keyframes, Tooltip 
+} from '@chakra-ui/react'
 import { useState } from 'react'
 
 interface RefreshBtnProps {
@@ -24,8 +26,9 @@ const RefreshBtn = ({ id, fontSize, asFlex, isRefreshing, iconColor, onAction }:
   }
 
   const onClose = () => {
-    if (tooltipMessage === refreshedMessage)
+    if (tooltipMessage === refreshedMessage) {
       setTooltipMessage(refreshMessage)
+    }
   }
 
   const spin = keyframes`  
@@ -38,27 +41,35 @@ const RefreshBtn = ({ id, fontSize, asFlex, isRefreshing, iconColor, onAction }:
   if (asFlex) {
     return (
       <Tooltip 
-        display='flex'
-        justifyContent='center'
+        hasArrow
+        bg={tooltipMessage === refreshMessage? 'blue.600' : 'green.700'}
         borderRadius='4px'
-        label={tooltipMessage} 
-        hasArrow 
-        bg={tooltipMessage === refreshMessage? 'blue.600' : 'green.700'} 
-        placement='top' 
         closeOnClick={false} 
+        display='flex' 
+        justifyContent='center' 
+        label={tooltipMessage} 
+        placement='top' 
+        w='140px'
         onClose={onClose}
-        w='140px'>
+      >
         <Button 
-          onClick={onExecuteAction}
-          ml='10px'
+          aria-labelledby={`refresh-btn-${id}`}
           minW='auto'
-          aria-labelledby={`refresh-btn-${id}`}>
-          <span id={`refresh-btn-${id}`} hidden>Refresh</span>
+          ml='10px'
+          onClick={onExecuteAction}
+        >
+          <span
+            hidden
+            id={`refresh-btn-${id}`}
+          >Refresh
+          </span>
+
           <RepeatIcon 
-            color={iconColor ?? 'blue.600'} 
-            fontSize={fontSize ?? '20px'}
+            aria-hidden="true" 
+            color={iconColor ?? 'blue.600'}
             focusable='false'
-            aria-hidden="true" />
+            fontSize={fontSize ?? '20px'}
+          />
         </Button>     
       </Tooltip>
     )
@@ -66,29 +77,37 @@ const RefreshBtn = ({ id, fontSize, asFlex, isRefreshing, iconColor, onAction }:
 
   return (
     <Tooltip 
-      display='flex'
-      justifyContent='center'
+      hasArrow
+      bg={tooltipMessage === refreshMessage? 'blue.600' : 'green.700'}
       borderRadius='4px'
-      label={tooltipMessage} 
-      hasArrow 
-      bg={tooltipMessage === refreshMessage? 'blue.600' : 'green.700'} 
-      placement='top' 
       closeOnClick={false} 
+      display='flex' 
+      justifyContent='center' 
+      label={tooltipMessage} 
+      placement='top' 
+      w='140px'
       onClose={onClose}
-      w='140px'>
+    >
       <Button 
-        onClick={onExecuteAction}
-        variant='simple'
-        ml='10px'
+        aria-labelledby={`refresh-btn-${id}`}
         minW='auto'
-        aria-labelledby={`refresh-btn-${id}`}>
-        <span id={`refresh-btn-${id}`} hidden>Refresh</span>
+        ml='10px'
+        variant='simple'
+        onClick={onExecuteAction}
+      >
+        <span
+          hidden
+          id={`refresh-btn-${id}`}
+        >Refresh
+        </span>
+
         <RepeatIcon 
           animation={isRefreshing? spinAnimation : 'none'}
+          aria-label="refresh"
           color={iconColor ?? 'blue.600'}
-          fontSize={fontSize ?? '20px'}
           focusable='true'
-          aria-label="refresh" />
+          fontSize={fontSize ?? '20px'}
+        />
       </Button>
     </Tooltip>
   )

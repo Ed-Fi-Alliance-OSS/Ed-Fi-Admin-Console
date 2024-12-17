@@ -32,30 +32,34 @@ const SubscriptionForm = ({ mode, currentSubscriptionsList, selectedSubscription
     mode: mode, 
     currentSubscriptionsList: currentSubscriptionsList,
     editSubscriptionData: selectedSubscription? selectedSubscription : undefined,
-    onAfterAction: onAfterAction })
+    onAfterAction: onAfterAction 
+  })
 
   return (
     <ModalForm
-      header={<SubscriptionFormHeader 
-        mode={mode} 
-        isSavingChanges={isSavingChanges}
-        onSave={onSave}
-        onClose={onClose} />}
       content={<SubscriptionFormContent 
         applicationOptions={applicationOptions} 
-        subscriptionData={subscriptionData}
-        mode={mode}
-        hasTriedSubmit={hasTriedSubmit}
         errors={errors}
-        onChangeStartDate={onChangeStartDate}
+        hasTriedSubmit={hasTriedSubmit}
+        mode={mode}
+        subscriptionData={subscriptionData}
         onChangeEndDate={onChangeEndDate}
-        onSelectApplication={onSelectApplication}
         onChangeGracePeriod={onChangeGracePeriod}
         onChangeLicensesAmount={onChangeNumberOfLicenses}
+        onChangeStartDate={onChangeStartDate}
+        onSelectApplication={onSelectApplication}
         onToggleAutoAssign={onToggleAutoAssign}
-        onToggleLicenseType={onToggleLicenseType} />}
+        onToggleLicenseType={onToggleLicenseType}
+      />}
+      header={<SubscriptionFormHeader 
+        isSavingChanges={isSavingChanges} 
+        mode={mode}
+        onClose={onClose}
+        onSave={onSave}
+      />}
       height='auto'
-      width="512px" />
+      width="512px"
+    />
   )
 }
 

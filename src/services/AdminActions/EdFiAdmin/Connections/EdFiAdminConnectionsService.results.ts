@@ -1,5 +1,9 @@
-import { HttpServiceRequestError, HttpServiceResponse } from '../../../HttpService/HttpService.response.types'
-import { CreatedEdFiAdminConnectionResponse, GetAllEdFiAdminConnectionsResponse, UpdatedEdFiAdminConnectionResponse, VerifyEdFiAdminConnectionResponse } from './EdfiAdminConnectionsService.response'
+import {
+  HttpServiceRequestError, HttpServiceResponse 
+} from '../../../HttpService/HttpService.response.types'
+import {
+  CreatedEdFiAdminConnectionResponse, GetAllEdFiAdminConnectionsResponse, UpdatedEdFiAdminConnectionResponse, VerifyEdFiAdminConnectionResponse 
+} from './EdfiAdminConnectionsService.response'
 
 export type GetAllEdFiAdminConnectionsResult = Promise<HttpServiceResponse<GetAllEdFiAdminConnectionsResponse> | HttpServiceRequestError>
 export type CreateEdfiAdminConnectionResult = Promise<HttpServiceResponse<CreatedEdFiAdminConnectionResponse> | HttpServiceRequestError>

@@ -1,5 +1,6 @@
 export interface UpdateTenantRequest {
-    tenantId: string 
-    identityProviders?: string[]
-    domains?: string[]
+  tenantId: string
+  document: {
+    edfiApiDiscoveryUrl: string
+  }
 }

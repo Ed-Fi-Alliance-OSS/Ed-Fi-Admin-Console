@@ -1,6 +1,12 @@
-import { Flex, FormControl} from '@chakra-ui/react'
-import { CustomFormLabel, CustomSelect, CustomErrorField, CompleteFormErrorMessage, CustomSwitch, CustomNumberInput, SelectDateFromTo } from '@edfi/admin-console-shared-sdk'
-import { Mode, SubscriptionApplicationOption, SubscriptionFormData } from '../../../hooks/adminActions/subscriptions/useSubscriptionsForm.types'
+import {
+  Flex, FormControl 
+} from '@chakra-ui/react'
+import {
+  CustomFormLabel, CustomSelect, CustomErrorField, CompleteFormErrorMessage, CustomSwitch, CustomNumberInput, SelectDateFromTo 
+} from '@edfi/admin-console-shared-sdk'
+import {
+  Mode, SubscriptionApplicationOption, SubscriptionFormData 
+} from '../../../hooks/adminActions/subscriptions/useSubscriptionsForm.types'
 import { ChangeEvent } from 'react'
 import { FormDataErrors } from '../../../core/validation/FormValidations.types'
 import 'react-datepicker/dist/react-datepicker.css'
@@ -24,80 +30,115 @@ const SubscriptionFormContent = ({ subscriptionData, mode, applicationOptions, h
   console.log('errors in subscription form', errors)
 
   return (
-    <Flex flexDir='column' w='full'>
+    <Flex
+      flexDir='column'
+      w='full'
+    >
       {Object.keys(errors).length > 0 && hasTriedSubmit && <CompleteFormErrorMessage />}
+
       <FormControl w='full'>
         <CustomFormLabel 
-          text='License Duration (Start and End Date)' 
-          htmlFor='subscriptionDuration' />
+          htmlFor='subscriptionDuration' 
+          text='License Duration (Start and End Date)'
+        />
+
         {errors && errors['subscriptionDuration'] && <CustomErrorField errorMessage={errors['subscriptionDuration'].message} />}
+
         <SelectDateFromTo
-          startDate={subscriptionData.startDateTime}
           endDate={subscriptionData.endDateTime}
+          startDate={subscriptionData.startDateTime}
+          onUpdateEndDate={onChangeEndDate}
           onUpdateStartDate={onChangeStartDate}
-          onUpdateEndDate={onChangeEndDate} />
+        />
       </FormControl>
+
       <Flex mt='24px'>
         <FormControl>
           <CustomFormLabel 
-            text='Select Application' 
-            htmlFor='selectApplication' />
+            htmlFor='selectApplication' 
+            text='Select Application'
+          />
+
           <CustomSelect
+            options={applicationOptions.map(app => ({
+              value: app.applicationId,
+              text: app.applicationName 
+            }))}
             disabled={mode === 'Edit'}
-            id='selectApplication'
             error={errors && errors['selectApplication'] && errors['selectApplication'].message}
-            value={applicationOptions.find(option => option.applicationId === subscriptionData.applicationId)?.applicationId}
-            options={applicationOptions.map(app => ({ value: app.applicationId, text: app.applicationName }))}  
-            onChange={onSelectApplication} />
+            id='selectApplication'
+            value={applicationOptions.find(option => option.applicationId === subscriptionData.applicationId)?.applicationId}  
+            onChange={onSelectApplication}
+          />
         </FormControl>
       </Flex>
+
       <Flex mt='24px'>
         <FormControl>
           <CustomFormLabel
+            htmlFor='gracePeriod'
             text='Grace Period'
-            htmlFor='gracePeriod' />
+          />
+
           <CustomNumberInput
-            id='gracePeriod'
             defaultValue={0}
-            min={0}
-            max={365}
             error={errors && errors['gracePeriod'] && errors['gracePeriod'].message}
+            id='gracePeriod'
+            max={365}
+            min={0}
             value={subscriptionData.gracePeriod}
-            onChange={onChangeGracePeriod} />
+            onChange={onChangeGracePeriod}
+          />
         </FormControl>
       </Flex>
-      <Flex justifyContent='space-between' mt='24px' w='full'>
+
+      <Flex
+        justifyContent='space-between'
+        mt='24px'
+        w='full'
+      >
         <FormControl w='150px'>
           <CustomFormLabel
+            htmlFor='numberOfLicenses'
             text='No. of Licenses'
-            htmlFor='numberOfLicenses' />
+          />
+
           <CustomNumberInput 
-            id='numberOfLicenses'
             defaultValue={0}
-            min={-1}
-            max={100}
-            error={errors && errors['numberOfLicenses'] && errors['numberOfLicenses'].message}
             disabled={subscriptionData.unlimitedLicenses}
+            error={errors && errors['numberOfLicenses'] && errors['numberOfLicenses'].message}
+            id='numberOfLicenses'
+            max={100}
+            min={-1}
             value={subscriptionData.numberOfLicenses}
-            onChange={onChangeLicensesAmount} />
+            onChange={onChangeLicensesAmount}
+          />
         </FormControl>
+
         <FormControl w='90px'>
           <CustomFormLabel
+            htmlFor='unlimitedLicense'
             text='Unlimited'
-            htmlFor='unlimitedLicense' />
+          />
+
           <CustomSwitch 
             id='unlimitedLicense'
+            isChecked={subscriptionData.unlimitedLicenses}
             onCheck={onToggleLicenseType}
-            isChecked={subscriptionData.unlimitedLicenses} />
+          />
         </FormControl>
+
         <FormControl w='150px'>
           <CustomFormLabel
+            htmlFor='autoAssignLicense'
             text='Auto Assign License'
-            htmlFor='autoAssignLicense' />
+          />
+
           <CustomSwitch 
             id="autoAssignLicense"
+            isChecked={subscriptionData.autoAssign}
             onCheck={onToggleAutoAssign}
-            isChecked={subscriptionData.autoAssign} />
+          />
         </FormControl>
       </Flex>
     </Flex>

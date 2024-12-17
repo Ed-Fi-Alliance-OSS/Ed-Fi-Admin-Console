@@ -1,60 +1,64 @@
-import { TEEAuthDataContext } from '@edfi/admin-console-shared-sdk'
-import { useContext, useEffect, useState } from 'react'
+import {
+  TEEAuthDataContext, useApiService, useConfig
+} from '@edfi/admin-console-shared-sdk'
+import {
+  useContext, useEffect, useState
+} from 'react'
 import { adminConsoleContext } from '../../../context/adminConsoleContext'
 import { EdfiApplication } from '../../../core/Edfi/EdfiApplications'
 import { EdfiVendor } from '../../../core/Edfi/EdfiVendors'
-import useEdfiApplicationsService from '../../../services/AdminActions/Edfi/Applications/EdfiApplicationsService'
-import useEdfiVendorsService from '../../../services/AdminActions/Edfi/Vendors/EdfiVendorsService'
+import { usePluginContext } from '../../../plugins/BasePlugin'
 import { EdfiVendorWithApplications } from './usePartnersAndApplicationsAccordion.types'
 
 interface UsePartnersAndApplicationsAccordionProps {
-    schoolYear: number    
+
 }
 
-const usePartnersAndApplicationsAccordion = ({ schoolYear }: UsePartnersAndApplicationsAccordionProps) => {
+const usePartnersAndApplicationsAccordion = (props?: UsePartnersAndApplicationsAccordionProps) => {
   const { edxAppConfig, auth } = useContext(TEEAuthDataContext)
-  const { getVendorApplicationsForSchoolYear, getVendorsListForSchoolYear } = useEdfiVendorsService()
-  const { getEdfiApplicationsListForSchoolYear } = useEdfiApplicationsService()
   const adminConfig = useContext(adminConsoleContext)
-  const [vendorsWithApplicationsList, setVendorsWithApplicationsList] = useState<EdfiVendorWithApplications[]>([])
-  const [selectedPartnerId, setSelectedPartnerId] = useState<number | null>()
-
+  const [ vendorsWithApplicationsList, setVendorsWithApplicationsList ] = useState<EdfiVendorWithApplications[]>([])
+  const [ selectedPartnerId, setSelectedPartnerId ] = useState<number | null>()
+  const { config } = useConfig()
+  const { functionalities } = usePluginContext()
+  const api = functionalities.ApiService?.(config, useApiService)
+  
   const onSelectPartner = (partnerId: number) => {
     setSelectedPartnerId(partnerId)
   }
 
   const fetchVendorsWithApplicationsList = async () => {
     if (edxAppConfig && auth && auth.user && adminConfig) {
-      const vendorsListData = await getVendorsListForSchoolYear(adminConfig.actionParams, schoolYear)
+      // const vendorsListData = await getVendorsListForSchoolYear(adminConfig.actionParams, schoolYear)
+      const vendorsListData = await api?.vendors.getAll() ?? []
 
       console.log('vendors list', vendorsListData)
 
-      if (vendorsListData.type === 'Response') {
-        const vendorswapplicationsList: EdfiVendorWithApplications[] = []
+  
+      const vendorswapplicationsList: EdfiVendorWithApplications[] = []
 
-        for (const vendor of vendorsListData.data) {
-          if (vendor.vendorId) {
-            const vendorApplications = await getVendorApplicationsForSchoolYear(adminConfig.actionParams, vendor.vendorId+'', schoolYear)
-            console.log('vendor and applications ', vendor.vendorId, vendorApplications)
+      for (const vendor of vendorsListData) {
+        if (vendor.id) {
+          const vendorApplications = await api?.applications.getByVendorId(vendor.id)
+          console.log('vendor and applications ', vendor.id, vendorApplications)
 
-            if (vendorApplications.type === 'Response') {
-              const vendorWithApplications: EdfiVendorWithApplications = {
-                vendorId: vendor.vendorId,
-                contactName: vendor.contactName,
-                contactEmailAddress: vendor.contactEmailAddress,
-                company: vendor.company,
-                namespacePrefixes: vendor.namespacePrefixes,
-                applications: vendorApplications.data? vendorApplications.data : []
-              }
-    
-              vendorswapplicationsList.push(vendorWithApplications)
-            }
+          const vendorWithApplications: EdfiVendorWithApplications = {
+            vendorId: vendor.id,
+            contactName: vendor.contactName,
+            contactEmailAddress: vendor.contactEmailAddress,
+            company: vendor.company,
+            namespacePrefixes: vendor.namespacePrefixes,
+            applications: vendorApplications ?? []
           }
+    
+          vendorswapplicationsList.push(vendorWithApplications)
         }
-
-        if (vendorswapplicationsList.length > 0)
-          setVendorsWithApplicationsList(vendorswapplicationsList)
       }
+
+      if (vendorswapplicationsList.length > 0) {
+        setVendorsWithApplicationsList(vendorswapplicationsList)
+      }
+      
     }   
   }
 
@@ -68,9 +72,11 @@ const usePartnersAndApplicationsAccordion = ({ schoolYear }: UsePartnersAndAppli
     const result: EdfiVendorWithApplications[] = []
 
     for (const vendor of vendorList) {
-      const vendorApplications = applicationList.filter(application => application.vendorId == vendor.vendorId)
+      const vendorApplications = applicationList.filter(application => application.vendorId == vendor.id)
+
       const vendorWithApplications: EdfiVendorWithApplications = {
-        vendorId: vendor.vendorId,
+        vendorId: vendor.id,
+        id: vendor.id,
         company: vendor.company,
         namespacePrefixes: vendor.namespacePrefixes,
         contactName: vendor.contactName,
@@ -85,33 +91,29 @@ const usePartnersAndApplicationsAccordion = ({ schoolYear }: UsePartnersAndAppli
   }
 
   const fetchAllVendors = async (): Promise<EdfiVendor[] | undefined> => {
-    if (!adminConfig)
-      return 
+    if (!adminConfig) {
+      return
+    } 
 
-    const vendorsListResult = await getVendorsListForSchoolYear(adminConfig.actionParams, schoolYear)
-
-    if (vendorsListResult.type === 'Response') {
-      console.log('Hammad', vendorsListResult.data)
-      return vendorsListResult.data
-    }
+    const vendorsListResult = await api?.vendors.getAll()
+    return vendorsListResult
   }
 
   const fetchAllApplications = async (): Promise<EdfiApplication[] | undefined> => {
-    if (!adminConfig)
-      return 
+    if (!adminConfig) {
+      return
+    } 
         
-    const applicationsListResult = await getEdfiApplicationsListForSchoolYear(adminConfig.actionParams, schoolYear)
-
-    if (applicationsListResult.type === 'Response')
-      return applicationsListResult.data
+    return await api?.applications.getAll()
   }
 
   const fetchVendorsWithApplications = async () => {
     const vendorsList = await fetchAllVendors()
     const applicationsList = await fetchAllApplications()
 
-    if (!vendorsList || !applicationsList) 
-      return 
+    if (!vendorsList || !applicationsList) {
+      return
+    } 
 
     const vendorsWithApplications = mergeVendorsAndApplications(vendorsList, applicationsList)
     setVendorsWithApplicationsList(vendorsWithApplications)

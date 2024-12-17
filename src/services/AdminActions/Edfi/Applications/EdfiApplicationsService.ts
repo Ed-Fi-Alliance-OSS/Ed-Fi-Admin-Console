@@ -1,23 +1,30 @@
-import { TEEAuthDataContext, useConfig } from '@edfi/admin-console-shared-sdk'
-import { EdfiApplication, EdfiApplicationAuthData } from '../../../../core/Edfi/EdfiApplications'
+import {
+  useConfig
+} from '@edfi/admin-console-shared-sdk'
+import {
+  EdfiApplication, EdfiApplicationAuthData
+} from '../../../../core/Edfi/EdfiApplications'
 import useHttpService from '../../../../hooks/http/useHttpService'
 import { EdfiActionParams } from '../../adminAction.types'
 import edfiActionRoutes from '../../edfiActionRoutes'
-import { CreateEdfiApplicationRequest, DeleteEdfiApplicationRequest, ResetEdfiApplicationCredentialsRequest, UpdateEdfiApplicationRequest } from './EdfiApplicationService.requests'
+import {
+  CreateEdfiApplicationRequest, DeleteEdfiApplicationRequest, ResetEdfiApplicationCredentialsRequest, UpdateEdfiApplicationRequest
+} from './EdfiApplicationService.requests'
 import { DeleteEdfiApplicationResponse } from './EdfiApplicationService.responses'
-import { CreateEdfiApplicationResult, DeleteEdfiApplicationResult, GetEdfiApplicationsListResult, ResetEdfiApplicationCredentialsResult, UpdateEdfiApplicationResult } from './EdfiApplicationService.results'
-import { useContext } from 'react'
+import {
+  CreateEdfiApplicationResult, DeleteEdfiApplicationResult, GetEdfiApplicationsListResult, ResetEdfiApplicationCredentialsResult, UpdateEdfiApplicationResult
+} from './EdfiApplicationService.results'
 
 
 const useEdfiApplicationsService = () => {
   const { getAsync, postAsync, putAsync, deleteAsync } = useHttpService()
-  const {config} = useConfig()
+  const { config } = useConfig()
 
   const getEdfiApplicationsList = async (actionParams: EdfiActionParams): GetEdfiApplicationsListResult => {
-    const {config} = useConfig()
+    const { config } = useConfig()
     const baseUrl = actionParams.edxApiUrl
     // const url = `${baseUrl}/${edfiActionRoutes.getApplicationsList(actionParams.tenantId)}`
-    const url = `${config?.app.basePath}/mockdata/data-applications.json`
+    const url = `${config?.app.basePath}/mockdata/adminapi/data-applications.json`
     
     const result = await getAsync<EdfiApplication[]>({
       url,
@@ -46,7 +53,7 @@ const useEdfiApplicationsService = () => {
 
   const deleteEdfiApplication = async (actionParams: EdfiActionParams, data: DeleteEdfiApplicationRequest): DeleteEdfiApplicationResult => {
     const baseUrl = actionParams.edxApiUrl
-    const url = `${baseUrl}/${edfiActionRoutes.deleteApplicationById(actionParams.tenantId , data.applicationId)}`
+    const url = `${baseUrl}/${edfiActionRoutes.deleteApplicationById(actionParams.tenantId, data.applicationId)}`
 
     const result = await deleteAsync<DeleteEdfiApplicationResponse>({
       url,
@@ -73,7 +80,7 @@ const useEdfiApplicationsService = () => {
     return result
   }
     
-  const resetApplicationCredentials = async (actionParams: EdfiActionParams, data: ResetEdfiApplicationCredentialsRequest ): ResetEdfiApplicationCredentialsResult => {
+  const resetApplicationCredentials = async (actionParams: EdfiActionParams, data: ResetEdfiApplicationCredentialsRequest): ResetEdfiApplicationCredentialsResult => {
     const baseUrl = actionParams.edxApiUrl
     const url = `${baseUrl}/${edfiActionRoutes.resetApplicationCredentials(actionParams.tenantId, data.applicationId)}`
     
@@ -92,7 +99,8 @@ const useEdfiApplicationsService = () => {
   const getEdfiApplicationsListForSchoolYear = async (actionParams: EdfiActionParams, year: number): GetEdfiApplicationsListResult => {
     const baseUrl = actionParams.edxApiUrl
     // const url = `${baseUrl}/${edfiActionRoutes.getApplicationsListForSchoolyear(actionParams.tenantId, year)}`
-    const url = `${config?.app.basePath}/mockdata/data-applications.json`
+    const url = `${config?.app.basePath}/mockdata/adminapi/data-applications.json`
+
     // TODO: Adapt to use the structure returned by adminapi
     //const url = apiConfig?.useLocalMockData ?? true
     //    ? "/data-applications.json"
@@ -125,7 +133,7 @@ const useEdfiApplicationsService = () => {
     
   const deleteEdfiApplicationForSchoolYear = async (actionParams: EdfiActionParams, data: DeleteEdfiApplicationRequest, year: number): DeleteEdfiApplicationResult => {
     const baseUrl = actionParams.edxApiUrl
-    const url = `${baseUrl}/${edfiActionRoutes.deleteApplicationByIdForSchoolYear(actionParams.tenantId , data.applicationId, year)}`
+    const url = `${baseUrl}/${edfiActionRoutes.deleteApplicationByIdForSchoolYear(actionParams.tenantId, data.applicationId, year)}`
 
     const result = await deleteAsync<DeleteEdfiApplicationResponse>({
       url,

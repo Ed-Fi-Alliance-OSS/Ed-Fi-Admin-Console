@@ -10,6 +10,7 @@ interface SelectSSOMethodTableProps {
 
 const SelectSSOMethodTable = ({ showSelect }: SelectSSOMethodTableProps) => {
   const { ssoProviderOptions, isFetchingSSOProviders, onToggleSSOProviderOption } = useSSOProviders()
+
   const {
     sortedData,
     sortedByField,
@@ -19,8 +20,9 @@ const SelectSSOMethodTable = ({ showSelect }: SelectSSOMethodTableProps) => {
   } = useControlTableSorting({ data: ssoProviderOptions })
 
   const showSelectColumn = (index: number) => {
-    if (showSelect) 
+    if (showSelect) {
       return true
+    }
 
     return index === 0 || index === 1
   }
@@ -28,17 +30,46 @@ const SelectSSOMethodTable = ({ showSelect }: SelectSSOMethodTableProps) => {
   return (
     <ControlTable
       headers={[
-        <ControlTableHeader headerData={{ text: 'Identity Providers', fieldName: 'name', showSorting: true, sortedByField, sortingType, onSortAsc: sortTextAsc, onSortDesc: sortTextDesc }} />,
-        <ControlTableHeader headerData={{ text: 'Consent Status', fieldName: 'consentStatus', showSorting: false, sortedByField, sortingType, onSortAsc: sortTextAsc, onSortDesc: sortTextDesc }} />,
-        <ControlTableHeader headerData={{ text: 'Select?', fieldName: 'selected', showSorting: false, sortedByField, sortingType, onSortAsc: sortTextAsc, onSortDesc: sortTextDesc }} />
+        <ControlTableHeader headerData={{
+          text: 'Identity Providers',
+          fieldName: 'name',
+          showSorting: true,
+          sortedByField,
+          sortingType,
+          onSortAsc: sortTextAsc,
+          onSortDesc: sortTextDesc 
+        }}
+        />,
+        <ControlTableHeader headerData={{
+          text: 'Consent Status',
+          fieldName: 'consentStatus',
+          showSorting: false,
+          sortedByField,
+          sortingType,
+          onSortAsc: sortTextAsc,
+          onSortDesc: sortTextDesc 
+        }}
+        />,
+        <ControlTableHeader headerData={{
+          text: 'Select?',
+          fieldName: 'selected',
+          showSorting: false,
+          sortedByField,
+          sortingType,
+          onSortAsc: sortTextAsc,
+          onSortDesc: sortTextDesc 
+        }}
+        />
       ].filter((header, index) => showSelectColumn(index))}
-      itemsCount={sortedData.length}
-      loading={isFetchingSSOProviders}
       rows={<SSOMethodTableRows 
         showOnlySelected={showSelect? false : true}
         ssoMethodsList={sortedData}
-        onToggleSSOMethod={onToggleSSOProviderOption} />}
-      thPadding='auto' />
+        onToggleSSOMethod={onToggleSSOProviderOption}
+      />}
+      itemsCount={sortedData.length}
+      loading={isFetchingSSOProviders}
+      thPadding='auto'
+    />
   )
 }
 

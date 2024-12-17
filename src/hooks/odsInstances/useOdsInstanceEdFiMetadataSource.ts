@@ -6,15 +6,14 @@ const useOdsInstanceEdFiMetadataSource = () => {
   const { externalODS } = useExternalODSData()
 
   const getEdFiMetadataSource = (): InstanceEdFiMetadataSource => {
-    if (externalODS.isExternalODS)
+    if (externalODS.isExternalODS) {
       return 'Instance BaseUrl'
+    }
 
     return 'Starting Blocks'
   }
 
-  return {
-    getEdFiMetadataSource
-  }
+  return { getEdFiMetadataSource }
 }
 
 export default useOdsInstanceEdFiMetadataSource

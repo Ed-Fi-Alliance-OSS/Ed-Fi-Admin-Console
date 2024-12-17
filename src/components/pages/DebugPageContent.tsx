@@ -21,22 +21,27 @@ const DebugPageContent = () => {
   } = useDebugOnBoardingWizard({ isDebug: true })
 
   return (
-    <Flex position='relative' flexDir='column' w='full'>
+    <Flex
+      flexDir='column'
+      position='relative'
+      w='full'
+    >
       <OnBoardingWizardDebugMenu
+        creatingStep={creatingStep}
         currentResetStep={currentResetStep}
         currentUpdateStep={currentUpdateStep}
+        resetingAllSteps={updatingAllSteps}
+        selectedStatus={selectedStepStatus}
+        selectedStep={selectedStep}
         showTestingButtons={showTestingButtons}
-        creatingStep={creatingStep}
-        updatingStep={updatingStep}
         stepNumber={stepNumber}
         stepStatus={stepStatus}
-        selectedStep={selectedStep}
-        selectedStatus={selectedStepStatus}
-        resetingAllSteps={updatingAllSteps}
+        updatingStep={updatingStep}
         onChangeSelect={handleUpdateSelectedStep}
         onCreateOBStep={handleCreateOBStep}
+        onResetAllOBSteps={handleResetOBSteps}
         onUpdateOBStep={handleUpdateOBStep}
-        onResetAllOBSteps={handleResetOBSteps} />
+      />
     </Flex>
   )
 }

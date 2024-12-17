@@ -1,0 +1,23 @@
+[
+    {
+        "tenantId": 1,
+        "document": {
+            "name": "Tenant1",
+            "edfiApiDiscoveryUrl": "https://api.ed-fi.org/v7.2/api"
+        }
+    },
+    {
+        "tenantId": 2,
+        "document": {
+            "name": "Tenant2",
+            "edfiApiDiscoveryUrl": "https://api.ed-fi.org/v7.2/api"
+        }
+    },
+    {
+        "tenantId": 3,
+        "document": {
+            "name": "Tenant3",
+            "edfiApiDiscoveryUrl": null
+        }
+    }
+]

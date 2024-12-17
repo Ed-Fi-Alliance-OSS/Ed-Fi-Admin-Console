@@ -1,4 +1,6 @@
-import { useEffect, useState } from 'react'
+import {
+  useEffect, useState
+} from 'react'
 import { ODSInstance } from '../../core/ODSInstance.types'
 import useHttpService from '../http/useHttpService'
 import { EdFiMetadata } from '../useEdfiUrls.types'
@@ -9,46 +11,30 @@ interface UseOdsInstanceDescriptionProps {
 
 const useOdsInstanceDescription = ({ instance }: UseOdsInstanceDescriptionProps) => {
   const { getSimpleAsync } = useHttpService()
-  const [instanceOdsMetadata, setInstanceOdsMetadata] = useState<EdFiMetadata | null>(null)
+  const [ instanceOdsMetadata, setInstanceOdsMetadata ] = useState<EdFiMetadata | null>(null)
   const [ loadingInstanceOdsMetadata, setLoadingInstanceOdsMetadata ] = useState(false)
 
   const getInstanceEdFiMetadata = async () => {
-    if (!instance)
-      return 
+    if (!instance) {
+      return
+    } 
 
-    if (!instance.baseUrl)
-      return 
+    // if (!instance.edfiMetadata) {
+    //   return
+    // } 
 
-    setLoadingInstanceOdsMetadata(true)
-    const getEdfiMetadataResult = await getSimpleAsync<EdFiMetadata>({
-      actionName: 'Get Instance Metadata',
-      url: getInstanceBaseUrl()
-    })
-
-    setLoadingInstanceOdsMetadata(false)
-
-    if (getEdfiMetadataResult.type === 'Error')
-      return 
-
-    setInstanceOdsMetadata(getEdfiMetadataResult.data)
-  }
-
-  const getInstanceBaseUrl = () => {
-    if (!instance)
-      return ''
-
-    return instance.baseUrl
+    // setInstanceOdsMetadata(instance.edfiMetadata)
   }
 
   useEffect(() => {
-    if (!instance)
-      return 
+    if (!instance) {
+      return
+    } 
 
     getInstanceEdFiMetadata()
   }, [ instance ])
 
   return {
-    getInstanceBaseUrl,
     instanceOdsMetadata,
     loadingInstanceOdsMetadata
   }

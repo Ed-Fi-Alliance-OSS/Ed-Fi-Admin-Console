@@ -12,10 +12,12 @@ const AddAPIClientModal = ({ show, onClose }: AddAPIClientModalProps) => {
   return (
     <ConsoleModal
       content={<AddAPIClientForm
-        header={<AddAPIClientFormHeader onClose={onClose} />} 
-        content={<AddAPIClientFormContent />} />}
+        content={<AddAPIClientFormContent />} 
+        header={<AddAPIClientFormHeader onClose={onClose} />}
+      />}
       show={show}
-      onClose={onClose} />
+      onClose={onClose}
+    />
   )
 }
 

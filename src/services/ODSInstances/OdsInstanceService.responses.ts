@@ -1,11 +1,6 @@
 import { ODSInstance } from '../../core/ODSInstance.types'
 
-export interface GetOdsInstancesListResponse {
-    pageIndex: number 
-    pageSize: number 
-    count: number 
-    data: ODSInstance[]
-}
+export type GetOdsInstancesListResponse = ODSInstance[]
 
 export interface UpdateODSInstanceIsDefaultResponse {
     tenantId: string 

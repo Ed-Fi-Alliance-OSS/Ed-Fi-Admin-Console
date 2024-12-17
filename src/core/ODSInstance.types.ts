@@ -1,32 +1,15 @@
-import { OnBoardingWizardData } from './onBoardingWizard/onBoardingWizard.types'
-
+export type { ODSInstance } from '@edfi/admin-console-shared-sdk'
 export interface InstanceEdfiStatus {
   operationStatus: InstanceOperationStatus
 }
 
 export type InstanceOperationStatus = 'Operational' | 'Offline'
 
-export interface ODSInstance {
-  instanceId: string
-  tenantId: string
-  instanceName: string
-  instanceType: string 
-  connectionType: string
-  clientId: string
-  clientSecret: string
-  baseUrl: string 
-  authenticationUrl: string 
-  resourcesUrl: string 
-  schoolYears: number[]
-  isDefault: boolean
-  verificationStatus: OnBoardingWizardData | null
-  provider: string 
-}
-
-export interface ExtendedODSInstance extends ODSInstance {
-  edFiVersion: string 
-  tsdsVersion: string 
-  edFiStatus: InstanceEdfiStatus
+export interface ODSInstanceContext {
+  contextKey: 'schoolYearFromRoute'
+  contextValue: string
+  id: number | string
+  odsInstanceId: string | number
 }
 
 export interface SelectedConnection {
@@ -115,25 +98,25 @@ export interface Endpoint {
 }
 
 export interface AvailableInstance {
-    isSelected: boolean
-    district: string
-    instanceYear: string 
-    edfiVersion: string 
-    edfiStatus: InstanceEdfiStatus
+  isSelected: boolean
+  district: string
+  instanceYear: string
+  edfiVersion: string
+  edfiStatus: InstanceEdfiStatus
 }
 
 export interface InstanceDescription {
-    name: string 
-    description: string 
-    connection: string 
-    edfiExtension: string 
-    edfiVersion: string 
-    edfiStatus: InstanceEdfiStatus
-    tsdsVersion: string
-    educationOrgId: string 
-    stateOrgId: string 
-    campusesCount: number
-    staffCount: number 
-    studentsCount: number 
-    coursesCount: number
+  name: string
+  description: string
+  connection: string
+  edfiExtension: string
+  edfiVersion: string
+  edfiStatus: InstanceEdfiStatus
+  tsdsVersion: string
+  educationOrgId: string
+  stateOrgId: string
+  campusesCount: number
+  staffCount: number
+  studentsCount: number
+  coursesCount: number
 }

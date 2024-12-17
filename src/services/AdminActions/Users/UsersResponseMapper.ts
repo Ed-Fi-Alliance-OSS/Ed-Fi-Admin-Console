@@ -1,25 +1,27 @@
-import { AppUser, AppUserRole, AppUserStatus } from '../../../core/AppUser.types'
-import { Invitation, InvitationStatus } from '../../../core/invitations/Invitation.types'
+import {
+  AppUser, AppUserRole, AppUserStatus
+} from '../../../core/AppUser.types'
+import {
+  Invitation, InvitationStatus
+} from '../../../core/invitations/Invitation.types'
 import getTimeAgo from '../../../helpers/getTimeAgo'
 import { AppUserListData } from './UsersResponseMapper.types'
-import { GetInvitationsListResponse, GetUsersListResponse } from './UsersService.responses'
+import {
+  GetInvitationsListResponse, GetUsersListResponse
+} from './UsersService.responses'
 
 class UsersResponseMapper {
   public static mapToUsersList(response: GetUsersListResponse, tenantId: string): AppUserListData {
     const usersList: AppUser[] = response.data.map(apiUser => {
-      const tenantData = apiUser.tenants.find(tenant => tenant.tenantId === tenantId)
+      // const tenantData = apiUser.tenants.find(tenant => tenant.tenantId === tenantId)
 
       const appUser: AppUser = {
         userId: apiUser.userId,
         userName: apiUser.userName,
         firstName: apiUser.firstName,
         lastName: apiUser.lastName,
-        status: tenantData? this.mapUserStatus(tenantData.status) : 'Unknown',
+        status: apiUser.status ? this.mapUserStatus(apiUser.status) : 'Unknown',
         email: apiUser.email,
-        licenses: apiUser.licenses.map(license => license),
-        roles: tenantData? this.mapUserRoles(tenantData.roles) : [],
-        source: apiUser.source,
-        tenants: apiUser.tenants.map(tenantLicenses => tenantLicenses),
         updated: getTimeAgo(Date.parse(apiUser.lastModifiedDateTime))
       }
 
@@ -27,8 +29,8 @@ class UsersResponseMapper {
     })
 
     const data: AppUserListData = {
-      count: response.count,
-      pageSize: response.pageSize,
+      count: response.count ?? 0,
+      pageSize: response.pageSize ?? 0,
       data: usersList
     }
 
@@ -57,27 +59,30 @@ class UsersResponseMapper {
   }
 
   public static mapInvitationStatus(value: string | number): InvitationStatus {
-    if (value === 1)
+    if (value === 1) {
       return 'Sent'
-    if (value === 2)
+    }
+
+    if (value === 2) {
       return 'Accepted'
+    }
         
     return 'Unknown'
   }
 
-  private static mapUserStatus(value: string | number): AppUserStatus
-  {
-    if (value == 1 || value === 'Active')
+  private static mapUserStatus(value: string | number): AppUserStatus {
+    if (value == 1 || value === 'Active') {
       return 'Active'
+    }
         
-    if (value == 2 || value === 'Inactive')
+    if (value == 2 || value === 'Inactive') {
       return 'Inactive'
+    }
 
     return 'Active'
   }
 
-  private static mapUserRoles(rolesList: string[]) 
-  {
+  private static mapUserRoles(rolesList: string[]) {
     const userRoles: AppUserRole[] = rolesList.map(role => {
       const userRole: AppUserRole = role === 'Tenant.User'? 'Tenant.User' : 'Tenant.Admin'
 

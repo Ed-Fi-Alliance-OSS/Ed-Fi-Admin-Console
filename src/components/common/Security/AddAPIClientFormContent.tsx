@@ -1,31 +1,55 @@
-import { Flex, FormControl } from '@chakra-ui/react'
-import { CustomFormLabel, CustomSelect, CustomInput } from '@edfi/admin-console-shared-sdk'
+import {
+  Flex, FormControl 
+} from '@chakra-ui/react'
+import {
+  CustomFormLabel, CustomSelect, CustomInput 
+} from '@edfi/admin-console-shared-sdk'
 import APIClientSubscriptionsForm from './APIClientSubscriptionsForm'
 
 const AddAPIClientFormContent = () => {
   return (
-    <Flex flexDir='column' w='full'>
+    <Flex
+      flexDir='column'
+      w='full'
+    >
       <FormControl>
         <CustomFormLabel 
-          text='Client Name' 
-          htmlFor='clientName' />
+          htmlFor='clientName' 
+          text='Client Name'
+        />
+
         <CustomInput
           id="clientName"
           value=''
-          onChange={() => null} />
+          onChange={() => null}
+        />
       </FormControl>
+
       <Flex mt='24px'>
         <FormControl>
           <CustomFormLabel 
-            text='Select Expiry Date for API Secret' 
-            htmlFor='expirtationDate' />
+            htmlFor='expirtationDate' 
+            text='Select Expiry Date for API Secret'
+          />
+
           <CustomSelect
-            value=''
-            options={[{ value: 'Date Two', text: 'Date One' }]}  
-            onChange={() => null} />
+            options={[
+              {
+                value: 'Date Two',
+                text: 'Date One' 
+              }
+            ]}
+            value=''  
+            onChange={() => null}
+          />
         </FormControl>
       </Flex>
-      <Flex justifyContent='space-between' mt='40px' w='full'>
+
+      <Flex
+        justifyContent='space-between'
+        mt='40px'
+        w='full'
+      >
         <APIClientSubscriptionsForm />
       </Flex>
     </Flex>

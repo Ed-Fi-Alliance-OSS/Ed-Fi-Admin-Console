@@ -1,87 +1,115 @@
-import { RadioGroup, Td } from '@chakra-ui/react'
+import {
+  Flex,
+  Link,
+  RadioGroup,
+  Spinner,
+  Td
+} from '@chakra-ui/react'
+import {
+  CustomRadio, Tenant
+} from '@edfi/admin-console-shared-sdk'
+import { useEffect } from 'react'
+import { Link as RouterLink } from 'react-router-dom'
+import { useTenantContext } from '../../../context/tenantContext'
+import { ODSInstance } from '../../../core/ODSInstance.types'
+import useOdsInstanceLink from '../../../hooks/odsInstances/useOdsInstanceLink'
+import { UpdatingIsDefaultStatus } from '../../../hooks/odsInstances/useOdsInstanceTable.types'
 import ManageInstanceBtn from './ManageInstanceBtn'
 import ODSInstanceEdFiVersion from './ODSInstaceEdFiVersion'
 import ODSInstanceEdFiStatus from './ODSInstanceEdFiStatus'
-import ODSInstanceHostingType from './ODSInstanceHostingType'
-import ODSInstanceIsDefaultMark from './ODSInstanceIsDefaultMark'
-import ODSInstanceTSDSVersion from './ODSInstanceTSDSVersion'
-import ODSInstanceYear from './ODSInstanceYear'
-import SetUpInstanceBtn from './SetUpInstanceBtn'
-import { ExtendedODSInstance } from '../../../core/ODSInstance.types'
-import { UpdatingIsDefaultStatus } from '../../../hooks/odsInstances/useOdsInstanceTable.types'
 import { ODSInstanceTableMode } from './ODSInstanceTable.types'
-import { CustomRadio } from '@edfi/admin-console-shared-sdk'
-import { useEffect } from 'react'
+import ODSInstanceDataModelsLabel from './ODSInstanceTSDSVersion'
+import SetUpInstanceBtn from './SetUpInstanceBtn'
 
 interface ODSInstanceManagementTableRowItemProps {
-    tableMode: ODSInstanceTableMode
-    instance: ExtendedODSInstance
-    updatingIsDefault: UpdatingIsDefaultStatus
-    canSetAsDefault: boolean 
-    selectedInstance: ExtendedODSInstance | null
-    onSelectInstance: (instance: ExtendedODSInstance) => void
-    onOpenSetDefaultModal: (instanceId: string) => void
-    onOpenSetUpModal: (instanceId: string) => void
+  tableMode: ODSInstanceTableMode
+  tenants: Tenant[]
+  instance: ODSInstance
+  // metadata: EdFiMetadata | undefined
+  updatingIsDefault: UpdatingIsDefaultStatus
+  canSetAsDefault: boolean
+  selectedInstance: ODSInstance | null
+  onSelectInstance: (instance: ODSInstance) => void
+  onOpenSetDefaultModal: (instanceId: string) => void
+  onOpenSetUpModal: (instanceId: string) => void
 }
 
-const ODSInstanceManagementTableRowItem = ({ tableMode, selectedInstance, instance, canSetAsDefault, updatingIsDefault, onSelectInstance, onOpenSetDefaultModal, onOpenSetUpModal }: ODSInstanceManagementTableRowItemProps) => {
+const ODSInstanceManagementTableRowItem = ({  tableMode, selectedInstance, instance, canSetAsDefault, updatingIsDefault, onSelectInstance, onOpenSetDefaultModal, onOpenSetUpModal }: ODSInstanceManagementTableRowItemProps) => {
   const showSetupBtn = () => {
-    const edFiStatus = instance.edFiStatus
-
-    if (edFiStatus.operationStatus == 'Offline')  
-      return false
-            
-    return true
+    return false
   }
 
+  const { getOdsInstanceLink } = useOdsInstanceLink()
+  const { metaDataLoading, edFiStatus, edfiMetadata } = useTenantContext()
+
   useEffect(() => {
-    if (instance.isDefault) {
-      onSelectInstance(instance)
-    }
+    // if (instance.isDefault) {
+    //   onSelectInstance(instance)
+    // }
+
     console.log('instance', instance)
   }, [])
 
   return (
     <>
-      { tableMode != 'Display' && <Td w='80px'>
-        <RadioGroup 
-          onChange={() => onSelectInstance(instance)} 
-          value={selectedInstance?.instanceId ?? ''}>
-          <CustomRadio 
-            isChecked={selectedInstance?.instanceId == instance.instanceId}
+      {tableMode != 'Display' && <Td w='80px'>
+        <RadioGroup
+          value={selectedInstance?.id ?? ''}
+          onChange={() => onSelectInstance(instance)}
+        >
+          <CustomRadio
+            isChecked={selectedInstance?.id == instance.id}
             text=""
-            value={instance.instanceId} />
+            value={instance.id}
+          />
         </RadioGroup>
-      </Td> }
-      <Td w='200px'>
-        <ODSInstanceYear 
-          instance={instance} />
+      </Td>}
+
+      <Td width={400}>
+        <Flex
+          flexDir='column'
+          flexWrap='wrap'
+          h='auto'
+          w='250px'
+        >
+          <Link
+            as={RouterLink} 
+            color='blue.600'
+            fontFamily='Poppins'
+            fontWeight='700'
+            lineHeight='22px'
+            size='md'
+            state={{ instanceId: instance.id }}
+            to={getOdsInstanceLink(instance)}
+            w="100px"
+          >
+            {instance.name}
+          </Link>
+        </Flex>
       </Td>
+
       <Td>
-        <ODSInstanceEdFiVersion 
-          version={instance.edFiVersion} /> 
+        {metaDataLoading ? <Spinner /> : <ODSInstanceEdFiVersion version={edfiMetadata?.version} /> }
       </Td>
+
       <Td>
-        <ODSInstanceTSDSVersion 
-          version={instance.tsdsVersion} /> 
+        {metaDataLoading ? <Spinner /> : <ODSInstanceDataModelsLabel dataModels={edfiMetadata?.dataModels} /> }
       </Td>
+
       <Td>
-        <ODSInstanceEdFiStatus 
-          status={instance.edFiStatus} />
+        {metaDataLoading ? <Spinner /> : <ODSInstanceEdFiStatus status={edFiStatus ?? ''} />}
       </Td>
-      { tableMode == 'Display' && <>
+
+      {tableMode == 'Display' && <>
         <Td>
-          {showSetupBtn()?  
+          {showSetupBtn() ?
             <SetUpInstanceBtn
               instance={instance}
               updatingIsDefault={updatingIsDefault}
-              onOpenSetUpModal={onOpenSetUpModal} />
-            : <ManageInstanceBtn 
-              instance={instance}
-              canSetAsDefault={canSetAsDefault}
-              updatingIsDefault={updatingIsDefault}
-              onOpenSetDefaultModal={onOpenSetDefaultModal} /> }
-        </Td> 
+              onOpenSetUpModal={onOpenSetUpModal}
+            /> : 
+            <ManageInstanceBtn instance={instance} />}
+        </Td>
       </>}
     </>
   )

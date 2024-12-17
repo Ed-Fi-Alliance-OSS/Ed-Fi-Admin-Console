@@ -1,4 +1,6 @@
-import { Flex, Progress, Text } from '@chakra-ui/react'
+import {
+  Flex, Progress, Text 
+} from '@chakra-ui/react'
 import ReactPlayer from 'react-player'
 import { OnProgressProps } from 'react-player/base'
 
@@ -13,25 +15,35 @@ interface VideoPlayerProps {
 
 const VideoPlayer = ({ url, progress, playerRef, isPlaying, onProgress, onReady }: VideoPlayerProps) => {
   return (
-    <Flex flexDir='column' w='full'>
+    <Flex
+      flexDir='column'
+      w='full'
+    >
       <ReactPlayer    
         ref={playerRef}
-        url={url}
         controls={true}
         playing={isPlaying}
+        url={url}
         onProgress={onProgress}
-        onReady={onReady} />
-      <Text id="progressbar-label" mt='16px'>
+        onReady={onReady}
+      />
+
+      <Text
+        id="progressbar-label"
+        mt='16px'
+      >
         {progress < 99? `Progress: ${progress} %` : 'Completed'}
       </Text>
+
       <Progress 
-        aria-labelledby="progressbar-label"
-        hasStripe 
-        color='blue.500' 
+        hasStripe
+        aria-labelledby="progressbar-label" 
         bg='white' 
-        value={progress} 
-        mt='12px'
-        w='full' />
+        color='blue.500' 
+        mt='12px' 
+        value={progress}
+        w='full'
+      />
     </Flex>
   )
 }

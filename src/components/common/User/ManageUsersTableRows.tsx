@@ -1,4 +1,6 @@
-import { Flex, Text } from '@chakra-ui/react'
+import {
+  Flex, Text
+} from '@chakra-ui/react'
 import { AppUser } from '../../../core/AppUser.types'
 import ControlTableRow from '../ControlTableRow'
 import AppUserEmail from './AppUserEmail'
@@ -26,70 +28,80 @@ const ManageUsersTableRows = ({ usersList, isDeleting, isDeletingInvitation, isR
 
   return (
     <>
-      {usersList.map((user, index) => 
+      {(Array.isArray(usersList) ? usersList : []).map((user, index) => 
         <ControlTableRow key={index}>
           <ManageUsersTableData width="120px">
             <AppUserName 
               name={user.firstName}
-              userId={user.userId}
               user={user}
+              userId={user.userId}
+              onClick={onEdit}
               onClickInvitation={onEditInvitation}
-              onClick={onEdit} />
+            />
           </ManageUsersTableData>
+
           <ManageUsersTableData width="120px">
             <AppUserName 
               name={user.lastName}
-              userId={user.userId}
               user={user}
+              userId={user.userId}
               onClick={onEdit}
-              onClickInvitation={onEditInvitation} />
+              onClickInvitation={onEditInvitation}
+            />
           </ManageUsersTableData>
+
           <ManageUsersTableData width="50px">
             <AppUserStatus status={user.status} />
           </ManageUsersTableData>
+
           <ManageUsersTableData width="220px">
             <AppUserEmail email={user.email} />
           </ManageUsersTableData>
+
           <ManageUsersTableData width="100px">
             <Flex>
               <Text
-                fontFamily='Open sans'
+                fontFamily='Poppins'
                 fontWeight='400'
                 size='md'
                 w='auto'
-                whiteSpace='initial'>
+                whiteSpace='initial'
+              >
                 1
               </Text>
             </Flex>
           </ManageUsersTableData>
+
           <ManageUsersTableData width="50px">
             <Text 
               color='gray.500'
-              fontFamily='Open sans'
+              fontFamily='Poppins'
               fontWeight='400'
               size='md'
-              whiteSpace='initial'>
+              whiteSpace='initial'
+            >
               {user.updated}
             </Text> 
           </ManageUsersTableData>
+
           <ManageUsersTableData width="50px">
             <ManageUserControls 
-              userId={user.userId}
-              user={user}
-              status={user.status}
+              isDeleting={isDeleting}
               isDeletingInvitation={isDeletingInvitation}
               isResendingInvitation={isResendingInvitation}
-              isDeleting={isDeleting}
-              onDeleteInvitation={onDeleteInvitation}
-              onResendInvitation={onResendInvitation}
+              status={user.status}
+              user={user}
+              userId={user.userId}
               onActivate={onActivate}
               onDeactivate={onDeactivate}
               onDelete={onDelete}
+              onDeleteInvitation={onDeleteInvitation}
               onEdit={() => onEdit(user.userId)}
-              onEditInvitation={onEditInvitation} />
+              onEditInvitation={onEditInvitation}
+              onResendInvitation={onResendInvitation}
+            />
           </ManageUsersTableData>
-        </ControlTableRow>
-      )}
+        </ControlTableRow>)}
     </>
   )
 }

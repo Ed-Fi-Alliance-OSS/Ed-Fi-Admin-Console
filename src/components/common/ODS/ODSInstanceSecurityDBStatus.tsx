@@ -7,9 +7,10 @@ interface ODSInstanceSecurityDBStatusProps {
 const ODSInstanceSecurityDBStatus = ({ status }: ODSInstanceSecurityDBStatusProps) => {
   return (
     <Text
-      fontFamily='Open sans'
+      fontFamily='Poppins'
       fontWeight='400'
-      size='md'>
+      size='md'
+    >
       {status}
     </Text>
   )

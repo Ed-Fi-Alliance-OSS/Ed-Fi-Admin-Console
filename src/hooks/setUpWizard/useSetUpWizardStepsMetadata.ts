@@ -12,9 +12,18 @@ interface IOnBoardingWizardStepData {
 }
 
 const SetUpWizardTabsData = [
-  { tabName: 'Connect Sources', contentName: 'Connect Your Source Providers' },
-  { tabName: 'Review Data', contentName: 'Review Data' },
-  { tabName: 'Finalize', contentName: 'Review and Finalize' }
+  {
+    tabName: 'Connect Sources',
+    contentName: 'Connect Your Source Providers' 
+  },
+  {
+    tabName: 'Review Data',
+    contentName: 'Review Data' 
+  },
+  {
+    tabName: 'Finalize',
+    contentName: 'Review and Finalize' 
+  }
 ]
 
 const OnBoardingWizardStepsList: StepData[] = [
@@ -40,18 +49,19 @@ const selectStepsData = (): IOnBoardingWizardStepData => {
     tabsData: SetUpWizardTabsData
       .map(tab => tab),
     stepsData: OnBoardingWizardStepsList
-      .map((step, index) => ({...step, index }))
+      .map((step, index) => ({
+        ...step,
+        index 
+      }))
   }
 
   return stepsData
 }
 
 const useSetUpWizardStepsMetadata = () => {
-  const [setUpWizardStepsMetadata, setSetUpWizardStepsMetadata] = useState<IOnBoardingWizardStepData>(selectStepsData())
+  const [ setUpWizardStepsMetadata, setSetUpWizardStepsMetadata ] = useState<IOnBoardingWizardStepData>(selectStepsData())
 
-  return {
-    setUpWizardStepsMetadata
-  }
+  return { setUpWizardStepsMetadata }
 }
 
 export default useSetUpWizardStepsMetadata

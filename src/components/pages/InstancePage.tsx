@@ -1,17 +1,15 @@
-import useOdsInstanceParamYear from '../../hooks/odsInstances/useOdsInstanceParamYear'
+import useOdsInstanceIdParam from '../../hooks/odsInstances/useOdsInstanceIdParam'
 import useOdsInstanceDisplayYear from '../../hooks/odsInstances/useOdsInstanceYearName'
 import InstancePageContent from './InstancePageContent'
 import PageWrapper from './PageWrapper'
 
 const InstancePage = () => {
-  const { getInstanceYearFromPathName } = useOdsInstanceParamYear()
-  const { getDisplayYearFromString } = useOdsInstanceDisplayYear()
+  const { getInstanceIdFromPath } = useOdsInstanceIdParam()
+  const { getDisplayYear } = useOdsInstanceDisplayYear()
 
   return (
-    <PageWrapper 
-      pageName={`School Year ${getDisplayYearFromString(getInstanceYearFromPathName())}`}>
-      <InstancePageContent 
-        instanceYear={getInstanceYearFromPathName()} />
+    <PageWrapper pageName={`Instance Id ${getInstanceIdFromPath()}`}>
+      <InstancePageContent instanceId={getInstanceIdFromPath()} />
     </PageWrapper>
   )
 }

@@ -2,19 +2,19 @@ import { useConfig } from '@edfi/admin-console-shared-sdk'
 import { EdfiClaimSet } from '../../../../core/Edfi/EdfiClaimsets'
 import useHttpService from '../../../../hooks/http/useHttpService'
 import { EdfiActionParams } from '../../adminAction.types'
-import edfiActionRoutes from '../../edfiActionRoutes'
 import { GetClaimsetsListResult } from './ClaimsetsService.results'
 
 const useEdfiClaimsetsService = () => {
   const { getAsync } = useHttpService()
-  const {config} = useConfig()
+  const { config } = useConfig()
 
   const getClaimsetsList = async (actionParams: EdfiActionParams): GetClaimsetsListResult => {
     const baseUrl = actionParams.edxApiUrl
+
     // const url = `${baseUrl}/${edfiActionRoutes.getClaimsetsList(actionParams.tenantId)}`
     // const url = '/data-claimsets.json'
     const url = actionParams.config.api?.useLocalMockData ?? true
-      ? `${config?.app.basePath}/mockdata/data-claimsets.json`
+      ? `${config?.app.basePath}/mockdata/adminapi/data-claimsets.json`
       : `${baseUrl}/v2/claimSets`
     
     const result = await getAsync<EdfiClaimSet[]>({

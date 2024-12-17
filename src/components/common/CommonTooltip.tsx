@@ -12,22 +12,24 @@ const CommonTooltip = ({ bg, iconColor, label, size }: CommonTooltipProps) => {
   return (
     <div>
       <Tooltip 
-        bg={bg} 
+        hasArrow 
+        bg={bg}
+        fontFamily='Poppins'
         fontSize={size}
-        fontFamily='Open sans'
         fontWeight='400'
-        padding='2px 8px'
-        hasArrow
-        placement='top'
-        label={label}
-        textAlign='center'
         h='auto'
-        w='250px'>
+        label={label}
+        padding='2px 8px'
+        placement='top'
+        textAlign='center'
+        w='250px'
+      >
         <InfoIcon 
-          tabIndex={0}
-          color={iconColor}
           aria-label="info tooltip"
-          focusable="true" />
+          color={iconColor}
+          focusable="true"
+          tabIndex={0}
+        />
       </Tooltip>
     </div>
   )

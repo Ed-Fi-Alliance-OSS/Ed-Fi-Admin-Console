@@ -1,7 +1,13 @@
 import { PaginatedItemsViewModel } from '../../../core/apiResponses'
-import { JobExecutionListResponse, JobExecutionLogEntry, JobListResponse, JobProfile } from '../../../core/UserSync/UserSync.types'
-import { HttpServiceRequestError, HttpServiceResponse } from '../../HttpService/HttpService.response.types'
-import { EdFiSyncProfileResponse, EdFiSyncUpdatedResponse, JobExecutionRequestedResponse } from './UserSyncService.responses'
+import {
+  JobExecutionListResponse, JobExecutionLogEntry, JobListResponse, JobProfile 
+} from '../../../core/UserSync/UserSync.types'
+import {
+  HttpServiceRequestError, HttpServiceResponse 
+} from '../../HttpService/HttpService.response.types'
+import {
+  EdFiSyncProfileResponse, EdFiSyncUpdatedResponse, JobExecutionRequestedResponse 
+} from './UserSyncService.responses'
 
 export type GetEdFiSyncResult = Promise<HttpServiceResponse<JobListResponse> | HttpServiceRequestError>
 export type GetEdFiSyncByIdResult = Promise<HttpServiceResponse<JobProfile> | HttpServiceRequestError>

@@ -23,16 +23,62 @@ const InviteUsersTable = ({ invitationsList, isLoading }: InviteUsersTableProps)
   return (
     <ControlTable
       headers={[
-        <ControlTableHeader headerData={{ fieldName: 'email', text: 'Email', showSorting: true, sortedByField, sortingType, onSortAsc: sortTextAsc, onSortDesc: sortTextDesc }} />,
-        <ControlTableHeader headerData={{ fieldName: 'firstName', text: 'First Name', showSorting: true, sortedByField, sortingType, onSortAsc: sortTextAsc, onSortDesc: sortTextDesc }} />,
-        <ControlTableHeader headerData={{ fieldName: 'lastName', text: 'Last Name', showSorting: true, sortedByField, sortingType, onSortAsc: sortTextAsc, onSortDesc: sortTextDesc }} />,
-        <ControlTableHeader headerData={{ fieldName: 'role', text: 'Role', showSorting: true, sortedByField, sortingType, onSortAsc: sortTextAsc, onSortDesc: sortTextDesc }} />,
-        <ControlTableHeader headerData={{ fieldName: 'invitationStatus', text: 'Status', showSorting: true, sortedByField, sortingType, onSortAsc: sortTextAsc, onSortDesc: sortTextDesc }} />
+        <ControlTableHeader headerData={{
+          fieldName: 'email',
+          text: 'Email',
+          showSorting: true,
+          sortedByField,
+          sortingType,
+          onSortAsc: sortTextAsc,
+          onSortDesc: sortTextDesc 
+        }}
+        />,
+        <ControlTableHeader headerData={{
+          fieldName: 'firstName',
+          text: 'First Name',
+          showSorting: true,
+          sortedByField,
+          sortingType,
+          onSortAsc: sortTextAsc,
+          onSortDesc: sortTextDesc 
+        }}
+        />,
+        <ControlTableHeader headerData={{
+          fieldName: 'lastName',
+          text: 'Last Name',
+          showSorting: true,
+          sortedByField,
+          sortingType,
+          onSortAsc: sortTextAsc,
+          onSortDesc: sortTextDesc 
+        }}
+        />,
+        <ControlTableHeader headerData={{
+          fieldName: 'role',
+          text: 'Role',
+          showSorting: true,
+          sortedByField,
+          sortingType,
+          onSortAsc: sortTextAsc,
+          onSortDesc: sortTextDesc 
+        }}
+        />,
+        <ControlTableHeader headerData={{
+          fieldName: 'invitationStatus',
+          text: 'Status',
+          showSorting: true,
+          sortedByField,
+          sortingType,
+          onSortAsc: sortTextAsc,
+          onSortDesc: sortTextDesc 
+        }}
+        />
       ]}
       itemsCount={sortedData.length}
       loading={isLoading}
       rows={<InviteUsersTableRows invitationsList={sortedData} />}
-      thPadding='auto' />
+      thPadding='auto'
+    />
   )
 }
 

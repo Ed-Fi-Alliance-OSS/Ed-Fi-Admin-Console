@@ -7,18 +7,19 @@ interface DomainTagProps {
 const DomainTag = ({ domain }: DomainTagProps) => {
   return (
     <Text
-      display='flex'
-      justifyContent='center'
+      _notFirst={{ ml: '10px' }}
       alignItems='center'
       bg='gray.100'
-      color='gray.700'
-      fontFamily='Archivo Narrow'
-      textAlign='center'
-      height='28px'
       borderRadius='4px'
+      color='gray.700'
+      display='flex'
+      fontFamily='Archivo Narrow'
+      height='28px'
+      justifyContent='center'
       padding='0 12px'
       size='md'
-      _notFirst={{ ml: '10px' }}>
+      textAlign='center'
+    >
       {domain}
     </Text>
   )

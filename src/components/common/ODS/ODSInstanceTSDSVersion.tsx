@@ -1,18 +1,25 @@
-import { Text } from '@chakra-ui/react'
+import {
+  Flex, Tag
+} from '@chakra-ui/react'
+import { EdFiMetadata } from '../../../hooks/useEdfiUrls.types'
 
 interface ODSInstanceTSDSVersionProps {
-    version: string
+  dataModels?: EdFiMetadata['dataModels']
 }
 
-const ODSInstanceTSDSVersion = ({ version }: ODSInstanceTSDSVersionProps) => {
-  return (
-    <Text
-      fontFamily='Open sans'
-      fontWeight='400'
-      size='md'>
-      { version }
-    </Text>
-  )
+const ODSInstanceDataModelsLabel = ({ dataModels }: ODSInstanceTSDSVersionProps) => {
+  return dataModels?.map((model, i) => <Flex key={JSON.stringify(model) + i}>
+    <Tag
+      colorScheme='blue'
+      mb={1}
+      mr={1}
+      size='md'
+    >
+      {model.name} ({model.version})
+    </Tag>
+
+    <br />
+  </Flex>)
 }
 
-export default ODSInstanceTSDSVersion
+export default ODSInstanceDataModelsLabel

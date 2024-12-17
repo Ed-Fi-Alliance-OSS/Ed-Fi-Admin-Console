@@ -1,4 +1,6 @@
-import { ChangeEvent, useEffect, useState } from 'react'
+import {
+  ChangeEvent, useEffect, useState 
+} from 'react'
 
 type DocumentationType = 'Tenant' | 'Admin'
 export type DocumentationOption = DocumentationType | 'Select Source'
@@ -11,6 +13,7 @@ const documentationOptions: Array<DocumentationOption> = [
 
 const documentationBaseUrl = 'https://raw.githubusercontent.com/EdWire/public/main/swagger'
 const documentationFolder = 'txedexchange.dev'
+
 const documentationFiles = {
   tenant: 'tenants-v1-swagger.json',
   admin: 'edfiadmin-v1-swagger.json'
@@ -21,8 +24,9 @@ const useDevelopersDocumentation = () => {
   const [ selectedDocumentation, setSelectedDocumentation ] = useState<DocumentationOption>(documentationOptions[0])
 
   const handleSelectDocumentation = (e: ChangeEvent<HTMLSelectElement>) => {
-    if (e.target.value !== documentationOptions[0])
+    if (e.target.value !== documentationOptions[0]) {
       setSelectedDocumentation(e.target.value as DocumentationOption)
+    }
   }
 
   const generateDocumentationUrl = (documentation: DocumentationType) => {

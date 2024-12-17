@@ -1,4 +1,6 @@
-import { useContext, useEffect, useState } from 'react'
+import {
+  useContext, useEffect, useState 
+} from 'react'
 import { adminConsoleContext } from '../../../context/adminConsoleContext'
 import { EdFiAdminConnection } from '../../../core/EdFiAdmin/EdFiAdmin.types'
 import useEdFiAdminConnectionsService from '../../../services/AdminActions/EdFiAdmin/Connections/EdFiAdminConnectionsService'
@@ -9,16 +11,18 @@ const useEdFiAdminConnectionsList = () => {
   const { getConnectionsList } = useEdFiAdminConnectionsService()
 
   const fetchConnectionsList = async () => {
-    if (!adminConfig)
-      return 
+    if (!adminConfig) {
+      return
+    } 
 
     const result = await getConnectionsList(adminConfig.actionParams, {
       pageIndex: 0,
       pageSize: 100
     })
 
-    if (result.type === 'Error')
-      return 
+    if (result.type === 'Error') {
+      return
+    } 
 
     setConnectionsList(result.data.data)
   }
@@ -27,9 +31,7 @@ const useEdFiAdminConnectionsList = () => {
     fetchConnectionsList()
   }, [])
 
-  return {
-    connectionsList
-  }
+  return { connectionsList }
 }
 
 export default useEdFiAdminConnectionsList

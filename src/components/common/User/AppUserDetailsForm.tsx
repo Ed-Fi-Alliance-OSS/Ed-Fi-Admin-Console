@@ -1,8 +1,16 @@
-import { Flex, FormControl, FormLabel, Text } from '@chakra-ui/react'
+import {
+  Flex, FormControl, FormLabel, Text
+} from '@chakra-ui/react'
+import {
+  CustomCheckbox,
+  CustomFormLabel,
+  CustomInput
+} from '@edfi/admin-console-shared-sdk'
 import { ChangeEvent } from 'react'
 import { FormDataErrors } from '../../../core/validation/FormValidations.types'
-import { CreateUserFormData, RoleOption, UserFormMode } from '../../../hooks/adminActions/users/useCreateUserForm.types'
-import { CustomFormLabel, CustomSelect, CustomInput, CustomCheckbox } from '@edfi/admin-console-shared-sdk'
+import {
+  CreateUserFormData, RoleOption, UserFormMode
+} from '../../../hooks/adminActions/users/useCreateUserForm.types'
 
 interface AppUserDetailsFormProps {
     mode: UserFormMode
@@ -37,71 +45,98 @@ const AppUserDetailsForm = ({ mode, userData, isEmailDisabled, roleOptions, erro
         { showUserName &&  <>
           <CustomFormLabel 
             htmlFor='userName' 
-            text='User Name' />
+            text='User Name'
+          />
+
           <CustomInput 
             id='userName' 
             value={userData.userName}
-            onChange={onInputChange} />
+            onChange={onInputChange}
+          />
         </>}
       </FormControl>}
-      <FormControl mt={mode === 'Add' || mode === 'Edit'? '0px' : '0px' }>
+
+      <FormControl mt={mode === 'Add' || mode === 'Edit'? '0px' : '0px'}>
         <CustomFormLabel 
           htmlFor='firstName' 
-          text='First Name' />
+          text='First Name'
+        />
+
         <CustomInput 
-          id='firstName' 
-          value={userData.firstName}
-          disabled={mode === 'Edit'}
+          disabled={mode === 'Edit'} 
           error={errors && errors['firstName'] && errors['firstName'].message}
-          onChange={onInputChange} />
+          id='firstName'
+          value={userData.firstName}
+          onChange={onInputChange}
+        />
       </FormControl>
+
       <FormControl mt='24px'>
         <CustomFormLabel 
           htmlFor='lastName' 
-          text='Last Name' />
+          text='Last Name'
+        />
+
         <CustomInput 
-          id='lastName' 
-          value={userData.lastName}
+          disabled={mode === 'Edit'} 
           error={errors && errors['lastName'] && errors['lastName'].message}
-          disabled={mode === 'Edit'}
-          onChange={onInputChange} />
+          id='lastName'
+          value={userData.lastName}
+          onChange={onInputChange}
+        />
       </FormControl>
+
       <FormControl mt='24px'>
         <CustomFormLabel 
           htmlFor='email' 
-          text='Email' />
+          text='Email'
+        />
+
         <CustomInput 
-          type='email' 
+          disabled={mode === 'Edit' || isEmailDisabled} 
+          error={errors && errors['email'] && errors['email'].message} 
           id='email' 
-          value={userData.email} 
-          error={errors && errors['email'] && errors['email'].message}
-          disabled={mode === 'Edit' || isEmailDisabled}
-          onChange={onInputChange} />
+          type='email'
+          value={userData.email}
+          onChange={onInputChange}
+        />
       </FormControl>
+
       <FormControl mt='24px'>
         <Text 
+          fontSize='14px'
           fontWeight='700'
-          fontSize='14px'>Is System Administrator?</Text>
-        <Flex alignItems='center' mt='6px'>
+        >Is System Administrator?
+        </Text>
+
+        <Flex
+          alignItems='center'
+          mt='6px'
+        >
           <CustomCheckbox
             id="setAsAdmin"
-            value="Yes, grant System Administrator access."
             isChecked={userData.role === 'Tenant.Admin'? true : false}
-            onCheck={() => onToggleIsAdmin()} />
+            value="Yes, grant System Administrator access."
+            onCheck={() => onToggleIsAdmin()}
+          />
+
           <FormLabel
-            htmlFor="setAsAdmin"
             fontSize='12px'
+            htmlFor="setAsAdmin"
             ml='6px'
-            mt='2px'>
-                            Yes, grant System Administrator access.
+            mt='2px'
+          >
+            Yes, grant System Administrator access.
           </FormLabel>
         </Flex>
+
         <Text
-          fontFamily='Open sans'
+          fontFamily='Poppins'
           fontSize='12px'
           fontWeight='400'
-          mt='6px'>  
-                            NOTE: System Administrators have the highest level of access in the Tech Console. By granting this user System Administrator access, you will be giving them access to manage instances, users, and licenses, as well as update District/Charter School settings.
+          mt='6px'
+        >  
+          NOTE: System Administrators have the highest level of access in the Tech Console. By granting this user System Administrator access, you will be giving them access to manage instances, users, and licenses, as well as update District/Charter School settings.
         </Text>
       </FormControl>
     </>

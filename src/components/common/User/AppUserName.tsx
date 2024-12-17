@@ -16,13 +16,14 @@ const AppUserName = ({ name, userId, user, onClick, onClickInvitation }: AppUser
 
   return (
     <Button
-      onClick={onBtnClick}
-      cursor='pointer'
       color='blue.600'
-      fontFamily='Open sans'
+      cursor='pointer'
+      fontFamily='Poppins'
       fontWeight='700'
+      minW='auto'
       size='md'
-      minW='auto'>
+      onClick={onBtnClick}
+    >
       {name}
     </Button>
   )

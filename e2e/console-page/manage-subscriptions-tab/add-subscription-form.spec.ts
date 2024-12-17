@@ -1,10 +1,11 @@
 
-import { test, expect, Page } from '@playwright/test'
+import {
+  test, expect, Page 
+} from '@playwright/test'
 import { routes } from '../../core/routes'
 import { fillSubscriptionForm } from './addSubscriptionFormHelpers'
 
 let page: Page
-
 const applicationName = 'test'
 
 const openAddSubscriptionForm = async (page: Page) =>  {

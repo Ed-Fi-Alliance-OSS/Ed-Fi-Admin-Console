@@ -1,5 +1,9 @@
-import { Button, Flex } from '@chakra-ui/react'
-import { AppUser, AppUserStatus } from '../../../core/AppUser.types'
+import {
+  Button, Flex 
+} from '@chakra-ui/react'
+import {
+  AppUser, AppUserStatus 
+} from '../../../core/AppUser.types'
 import { InvitationStatus } from '../../../core/invitations/Invitation.types'
 import ManageUserControlPopover from './ManageUserControlPopover'
 
@@ -29,27 +33,33 @@ const ManageUserControls = ({ userId, user, status, isDeleting, isDeletingInvita
   }
 
   return (
-    <Flex justifyContent='flex-end' w='full'>
+    <Flex
+      justifyContent='flex-end'
+      w='full'
+    >
       <Button 
-        onClick={handleSendInvitation}
-        size='xs'
-        isLoading={false}
         borderRadius='4px 0px 0px 4px'
+        isLoading={false}
+        minW='39px'
+        size='xs'
         variant='primaryBlue600'
-        minW='39px'>
+        onClick={handleSendInvitation}
+      >
         'Edit'
       </Button>
+
       { getModelStatus() !== 'Accepted' && <ManageUserControlPopover 
-        userId={userId}
-        user={user}
-        status={status}
-        isDeletingInvitation={isDeletingInvitation}
         isDeleting={isDeleting}
+        isDeletingInvitation={isDeletingInvitation}
+        status={status}
+        user={user}
+        userId={userId}
         onActivate={onActivate}
-        onEditInvitation={onEditInvitation}
         onDeactivate={onDeactivate}
         onDelete={onDelete}
-        onDeleteInvitation={onDeleteInvitation} /> }
+        onDeleteInvitation={onDeleteInvitation}
+        onEditInvitation={onEditInvitation}
+      /> }
     </Flex>
   )
 }

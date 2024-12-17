@@ -1,4 +1,6 @@
-import { Button, Flex, Heading } from '@chakra-ui/react'
+import {
+  Button, Flex, Heading 
+} from '@chakra-ui/react'
 
 interface EditAppUserFormHeaderProps {
     isSaving: boolean 
@@ -9,25 +11,36 @@ interface EditAppUserFormHeaderProps {
 
 const EditAppUserFormHeader = ({ isSaving, isActionDisabled, onSave, onClose }: EditAppUserFormHeaderProps) => {
   return (
-    <Flex justifyContent='space-between' w='full'>
+    <Flex
+      justifyContent='space-between'
+      w='full'
+    >
       <Heading
         fontFamily='Poppins'
+        fontSize='32px'
         fontWeight='700'
-        fontSize='32px'>Edit User</Heading>
+      >Edit User
+      </Heading>
+
       <Flex alignItems='flex-end'>
         <Button
-          onClick={onClose}
-          variant='secondaryBlue600'
-          size='xs'
-          padding='0 25px'>Cancel</Button>
-        <Button
-          onClick={onSave}
-          isLoading={isSaving}
-          isDisabled={isActionDisabled}
-          variant='primaryBlue600'
-          size='xs'
           padding='0 25px'
-          ml='10px'>Update User</Button>
+          size='xs'
+          variant='secondaryBlue600'
+          onClick={onClose}
+        >Cancel
+        </Button>
+
+        <Button
+          isDisabled={isActionDisabled}
+          isLoading={isSaving}
+          ml='10px'
+          padding='0 25px'
+          size='xs'
+          variant='primaryBlue600'
+          onClick={onSave}
+        >Update User
+        </Button>
       </Flex>
     </Flex>
   )

@@ -1,5 +1,5 @@
 export interface EdfiVendor {
-    vendorId?: number
+    id?: number
     company?: string 
     namespacePrefixes?: string 
     contactName?: string 
