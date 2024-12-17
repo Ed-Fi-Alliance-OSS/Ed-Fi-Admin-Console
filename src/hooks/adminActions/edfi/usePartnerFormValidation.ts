@@ -1,14 +1,14 @@
+import { EdfiVendor } from '../../../core/Edfi/EdfiVendors'
 import { FormDataErrors } from '../../../core/validation/FormValidations.types'
 import {
-  PartnerValidator, PartnerValidatorFields 
+  PartnerValidator, PartnerValidatorFields
 } from '../../../core/validation/validators/PartnerValidator'
-import { CreateEdfiVendorRequest } from '../../../services/AdminActions/Edfi/Vendors/EdfiVendorsService.requests'
 import useFormValidationErrors from '../../validations/useFormValidationErrors'
 
 const usePartnerFormValidation = () => {
   const { errors, setErrors, handleSingleError } = useFormValidationErrors()
 
-  const validateInputChange = (field: PartnerValidatorFields, data: CreateEdfiVendorRequest) => {
+  const validateInputChange = (field: PartnerValidatorFields, data: EdfiVendor) => {
     handleSingleError({ 
       field, 
       error: PartnerValidator.validateField({
@@ -18,7 +18,7 @@ const usePartnerFormValidation = () => {
     })
   }
 
-  const validPartnerData = (data: CreateEdfiVendorRequest) => {
+  const validPartnerData = (data: EdfiVendor) => {
     const nameError = PartnerValidator.validateField({
       data,
       field: 'partnerName' 

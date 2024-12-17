@@ -8,8 +8,6 @@ import { adminConsoleContext } from '../../../context/adminConsoleContext'
 import { EdfiApplication } from '../../../core/Edfi/EdfiApplications'
 import { EdfiVendor } from '../../../core/Edfi/EdfiVendors'
 import { usePluginContext } from '../../../plugins/BasePlugin'
-import useEdfiApplicationsService from '../../../services/AdminActions/Edfi/Applications/EdfiApplicationsService'
-import useEdfiVendorsService from '../../../services/AdminActions/Edfi/Vendors/EdfiVendorsService'
 import { EdfiVendorWithApplications } from './usePartnersAndApplicationsAccordion.types'
 
 interface UsePartnersAndApplicationsAccordionProps {
@@ -18,8 +16,6 @@ interface UsePartnersAndApplicationsAccordionProps {
 
 const usePartnersAndApplicationsAccordion = (props?: UsePartnersAndApplicationsAccordionProps) => {
   const { edxAppConfig, auth } = useContext(TEEAuthDataContext)
-  const { getVendorApplicationsForSchoolYear, getVendorsListForSchoolYear } = useEdfiVendorsService()
-  const { getEdfiApplicationsListForSchoolYear } = useEdfiApplicationsService()
   const adminConfig = useContext(adminConsoleContext)
   const [ vendorsWithApplicationsList, setVendorsWithApplicationsList ] = useState<EdfiVendorWithApplications[]>([])
   const [ selectedPartnerId, setSelectedPartnerId ] = useState<number | null>()
@@ -80,6 +76,7 @@ const usePartnersAndApplicationsAccordion = (props?: UsePartnersAndApplicationsA
 
       const vendorWithApplications: EdfiVendorWithApplications = {
         vendorId: vendor.id,
+        id: vendor.id,
         company: vendor.company,
         namespacePrefixes: vendor.namespacePrefixes,
         contactName: vendor.contactName,

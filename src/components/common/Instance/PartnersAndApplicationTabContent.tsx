@@ -5,6 +5,7 @@ import {
 import { adminConsoleContext } from '../../../context/adminConsoleContext'
 import { DeletingState } from '../../../core/deletingState.types'
 import { EdfiApplication } from '../../../core/Edfi/EdfiApplications'
+import { EdfiVendor } from '../../../core/Edfi/EdfiVendors'
 import { ODSInstance } from '../../../core/ODSInstance.types'
 import usePartnersAndApplicationsAccordion from '../../../hooks/adminActions/edfi/usePartnersAndApplicationsAccordion'
 import useEDXToast from '../../../hooks/common/useEDXToast'
@@ -26,6 +27,7 @@ const PartnersAndApplicationTabContent = ({ instance, schoolYear }: PartnersAndA
   const [ selectedApplication, setSelectedApplication ] = useState<EdfiApplication | undefined>()
   const adminConfig = useContext(adminConsoleContext)
   const { deleteVendorForSchoolYear } = useEdfiVendorsService()
+  const [ isLoading, setisLoading ] = useState(false)
 
   const [ isDeletingVendor, setIsDeletingVendor ] = useState<DeletingState>({
     deleting: false,
@@ -47,7 +49,14 @@ const PartnersAndApplicationTabContent = ({ instance, schoolYear }: PartnersAndA
 
   const { successToast, errorToast } = useEDXToast()
   const onAddVendor = () => setElementToShow('add vendor')
-  const onEditVendor = () => setElementToShow('edit vendor')
+  const [ selectedVendor, setSelectedVendor ] = useState<EdfiVendor | undefined>()
+
+  const onEditVendor = (vendor: EdfiVendor) => {
+    console.log('edit vendor', vendor)
+    setSelectedVendor(vendor)
+    setElementToShow('edit vendor')
+  }
+
   const onAddApplication = () => setElementToShow('add application')
 
   const onEditApplication = (application: EdfiApplication) => {
@@ -110,8 +119,11 @@ const PartnersAndApplicationTabContent = ({ instance, schoolYear }: PartnersAndA
   const onReturnToAccordion = async () => {
     console.log('return to accordion')
     setElementToShow('accordion')
+    setSelectedVendor(undefined)
+    setisLoading(true)
     await onRefreshVendorsWithApplications()
     forceUpdate()
+    setisLoading(false)
   }
 
   console.log('rendering...')
@@ -151,6 +163,7 @@ const PartnersAndApplicationTabContent = ({ instance, schoolYear }: PartnersAndA
 
       <ConsoleModal
         content={<PartnerForm
+          initialData={undefined}
           mode="add"
           schoolYear={schoolYear}
           onFinishSave={onReturnToAccordion}
@@ -161,6 +174,7 @@ const PartnersAndApplicationTabContent = ({ instance, schoolYear }: PartnersAndA
 
       <ConsoleModal
         content={<PartnerForm
+          initialData={selectedVendor}
           mode="edit"
           schoolYear={schoolYear}
           onFinishSave={onReturnToAccordion}

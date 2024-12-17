@@ -1,6 +1,6 @@
-import { CreateEdfiVendorRequest } from '../../../services/AdminActions/Edfi/Vendors/EdfiVendorsService.requests'
+import { EdfiVendor } from '../../Edfi/EdfiVendors'
 import {
-  FieldError, FormDataErrors, ValidateFieldParams 
+  FieldError, FormDataErrors, ValidateFieldParams
 } from '../FormValidations.types'
 import partnerNameSchema from '../schemas/Vendors/nameSchema'
 import namespacePrefixesSchema from '../schemas/Vendors/namespacePrefixesSchema'
@@ -9,9 +9,9 @@ import ValidationErrorsMapper from './ValidationErrorsMapper'
 export type PartnerValidatorFields = 'partnerName' | 'namespacePrefixes'
 
 export class PartnerValidator {
-  public static validateField({ data, field }: ValidateFieldParams<CreateEdfiVendorRequest, PartnerValidatorFields>): FieldError | null {
+  public static validateField({ data, field }: ValidateFieldParams<EdfiVendor, PartnerValidatorFields>): FieldError | null {
     if (field === 'partnerName') {
-      return this.validateName(data.contactName)
+      return this.validateName(data.contactName ?? '')
     } else if (field === 'namespacePrefixes') {
       return this.validateNamespacePrefixes(data.namespacePrefixes)
     }

@@ -1,4 +1,3 @@
-import { CloseIcon } from '@chakra-ui/icons'
 import {
   Accordion,
   AccordionButton,
@@ -26,7 +25,7 @@ interface PartnersAndApplicationAccordionProps {
     isDeletingVendor: DeletingState 
     isDeletingApplication: DeletingState
     onSelectVendor: (partnerId: number) => void
-    onEditVendor: () => void
+    onEditVendor: (partner: EdfiVendorWithApplications) => void
     onEditApplication: (application: EdfiApplication) => void
     onDeleteVendor: (partnerId: string) => void
     onDeleteApplication: (applicationId: string) => void
@@ -129,12 +128,22 @@ const PartnersAndApplicationAccordion = ({ vendorsWithApplicationsList, isDeleti
                 </Text>
               </Flex>
 
-              { adminConfig && adminConfig.showEdfiPartnerDelete && <Flex
+              <Flex
                 justifyContent='center'
                 ml='auto'
                 w='150px'
               >
                 <Button 
+                  // borderRadius='4px 0px 0px 4px'
+                  minW='39px'
+                  size='xs'
+                  variant='primaryBlue600'
+                  onClick={() => onEditVendor(partner)}
+                >
+                  Edit
+                </Button>
+
+                {/* <Button 
                   _hover={{ background: 'red.600' }}
                   aria-labelledby="delete-partner-btn"
                   bg='red.600'
@@ -156,8 +165,8 @@ const PartnersAndApplicationAccordion = ({ vendorsWithApplicationsList, isDeleti
                     aria-hidden="true"
                     focusable="false"
                   />
-                </Button>
-              </Flex> }
+                </Button> */}
+              </Flex>
             </Flex>
 
             <AccordionPanel pb={4}>

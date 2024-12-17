@@ -90,13 +90,6 @@ export const TenantsContextProvider: FC<TenantsContextProviderProps> = ({ childr
       return
     }
 
-    if (!config.app.multiTenancy) {
-
-      setTenants([])
-      return
-    }
-
-
 
     // Fetch tenants from the API
     const tenants = await apiService?.tenants?.getAll?.()

@@ -11,7 +11,6 @@ import { EdfiVendor } from '../../../core/Edfi/EdfiVendors'
 import {
   CreateEdfiApplicationRequest, UpdateEdfiApplicationRequest
 } from '../../../services/AdminActions/Edfi/Applications/EdfiApplicationService.requests'
-import { CreateEdfiVendorRequest } from '../../../services/AdminActions/Edfi/Vendors/EdfiVendorsService.requests'
 
 export interface IApiServices {
   tenants: {
@@ -34,9 +33,9 @@ export interface IApiServices {
   vendors: {
     getAll: () => Promise<EdfiVendor[]>
     get: (vendorId: string) => Promise<EdfiVendor>
-    create: (vendor: CreateEdfiVendorRequest) => Promise<any>
+    create: (vendor: EdfiVendor) => Promise<any>
     delete: (vendorId: string) => Promise<any>
-    update: (vendor: any) => Promise<any>
+    update: (vendorId: number, vendor: any) => Promise<any>
   }
   applications: {
     getByVendorId: (vendorId: string | number) => Promise<EdfiApplication[]>
@@ -75,7 +74,7 @@ export function MockApiService(config: EdxAppConfig, apiService: typeof useApiSe
       get: (vendorId) => adminConsoleApi.get(`/v2/vendors/${vendorId}`).then(resp => resp.data),
       create: (vendor) => adminConsoleApi.post('/v2/vendors', vendor).then(resp => resp.data),
       delete: (vendorId) => adminConsoleApi.delete(`/v2/vendors/${vendorId}`).then(resp => resp.data),
-      update: (vendor) => adminConsoleApi.put(`/v2/vendors/${vendor.vendorId}`, vendor).then(resp => resp.data),
+      update: (vendorId, vendor) => adminConsoleApi.put(`/v2/vendors/${vendorId}`, vendor).then(resp => resp.data),
     },
     applications: {
       getByVendorId: (vendorId) => adminConsoleApi.get(`/v2/vendors/${vendorId}/applications`).then(resp => resp.data),
