@@ -1,5 +1,7 @@
 # Ed-Fi Admin Console
 
+[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/Ed-Fi-Alliance-OSS/Ed-Fi-Admin-Console/badge)](https://securityscorecards.dev/viewer/?uri=github.com/Ed-Fi-Alliance-OSS/Ed-Fi-Admin-Console)
+
 The Ed-Fi Admin Console presents a graphical user interface (GUI) environment for managing deployments of the Ed-Fi ODS/API in multi-tenant environments.
 
 The original source code was generously donated by the [Texas Education Service Center Region 4](https://www.esc4.net/).
