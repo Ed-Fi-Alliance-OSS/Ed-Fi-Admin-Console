@@ -16,6 +16,7 @@
   "dependencies": {
     "@chakra-ui/icons": "2.1.1",
     "@chakra-ui/react": "2.8.2",
+    "@choc-ui/chakra-autocomplete": "^5.8.0",
     "@edfi/admin-console-shared-sdk": "2.2.10-alpha.12",
     "@emotion/react": "11.11.3",
     "@emotion/styled": "11.11.0",

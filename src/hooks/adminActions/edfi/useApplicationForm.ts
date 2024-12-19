@@ -6,6 +6,9 @@ import {
   UserProfileContext
 } from '@edfi/admin-console-shared-sdk'
 import {
+  isNaN, isNumber
+} from 'lodash-es'
+import {
   ChangeEvent,
   useContext,
   useEffect,
@@ -39,7 +42,7 @@ const selectInitialFormData = (mode: UseApplicationFormMode, selectedTenant?: Te
   if (mode === 'edit' && editApplicationData) {
     console.log('edit application data', editApplicationData)
 
-    const educationorgIds: Array<number> = editApplicationData.educationOrganizationIds ?? []
+    const educationorgIds: number[] = editApplicationData.educationOrganizationIds ?? []
 
     const initialData: UpdateEdfiApplicationRequest = {
       applicationName: editApplicationData.applicationName ?? '',
@@ -60,13 +63,13 @@ const selectInitialFormData = (mode: UseApplicationFormMode, selectedTenant?: Te
     educationOrganizationIds: []
   }
 
-  if (selectedTenant) {
-    const currentOrgId = selectedTenant.tenantId
+  // if (selectedTenant) {
+  //   const currentOrgId = selectedTenant.tenantId
 
-    if (currentOrgId) {
-      initialData.educationOrganizationIds.push(currentOrgId)
-    }
-  }
+  //   if (currentOrgId) {
+  //     initialData.educationOrganizationIds.push(currentOrgId)
+  //   }
+  // }
 
   return initialData
 }
@@ -117,30 +120,12 @@ const useApplicationForm = ({ mode, onFinishSave, editApplicationData, instanceI
   }
 
   // console.log("user profile", userProfile)
-  console.log('application data', applicationData)
+  // console.log('application data', applicationData)
+  const [ edOrgs, setEdorgs ] = useState<number[]>([])
 
-  const onToggleOrgId = () => {
-    console.log('toggle org id')
-
-    if (userProfile) {
-      const educationOrgId = getCurrentTenant()?.tenantId
-      const napplicationData = { ...applicationData }
-
-      if (educationOrgId) {
-        const includedOrganizationId = napplicationData.educationOrganizationIds.find(edOrgId => edOrgId === educationOrgId)
-
-        if (includedOrganizationId) {
-          const norgIdsList = [ ...napplicationData.educationOrganizationIds ].filter(id => id !== includedOrganizationId)
-          napplicationData.educationOrganizationIds = norgIdsList
-          setApplicationData(napplicationData)
-        } else {
-          napplicationData.educationOrganizationIds.push(educationOrgId)
-          setApplicationData(napplicationData)
-        }
-      }
-
-      setSelectedOrgId(!selectedOrgId)
-    }
+  function transformText(text: string): number {
+    const data = parseInt(text?.toString().toUpperCase().replace(/[^\d]/g, '') ?? 0)
+    return (isNumber(data) && !isNaN(data)) ? data : 0
   }
 
   const onSelectVendor = (vendorId: number) => {
@@ -237,22 +222,25 @@ const useApplicationForm = ({ mode, onFinishSave, editApplicationData, instanceI
           console.log('valid application data edit')
 
           const currentTenant = getCurrentTenant()
-          const educationOrganizationIds: number[] = [ currentTenant ? currentTenant.tenantId : 0 ]
+          const educationOrganizationIds: number[] = [ ...edOrgs.map(g => parseInt(g.toString())) ]
 
           try {
             const result = await api?.applications.update(selectedApplicationId.toString(), {
               applicationName: applicationData.applicationName,
               claimSetName: applicationData.claimSetName,
               vendorId: applicationData.vendorId,
-              educationOrganizationIds: educationOrganizationIds
+              educationOrganizationIds: educationOrganizationIds,
+              odsInstanceIds: [ instanceId ]
             })
 
             console.log('result update application', result)
 
             if (result) {
-              setApplicationAuthData(result)
+              // setApplicationAuthData(result)
+              console.log('result', result)
               successToast('Updated Application.')
             } else {
+              console.log('result', result)
               errorToast('Failed to Update Application.')
             }
           } catch (e) {
@@ -312,13 +300,15 @@ const useApplicationForm = ({ mode, onFinishSave, editApplicationData, instanceI
     isRegeneratingCredentials,
     hasTriedSubmit,
     errors,
-    selectedOrgId,
-    onToggleOrgId,
+    // selectedOrgId,
     onRegenerateCredentials,
     onSelectVendor,
     onSelectClaim,
     onChangeInput,
-    onSave
+    onSave,
+    edOrgs,
+    setEdorgs,
+    transformText
   }
 }
 

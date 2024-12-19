@@ -6,7 +6,7 @@ export interface EdfiApplication {
   id: number
   applicationName?: string
   claimSetName?: string
-  educationOrganizationIds?: Array<number>
+  educationOrganizationIds?: number[]
   odsInstanceIds?: Array<number>
   vendorId?: number
   profileIds?: Array<number>

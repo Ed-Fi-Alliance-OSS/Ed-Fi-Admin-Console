@@ -43,7 +43,7 @@ export interface IApiServices {
     create: (application: CreateEdfiApplicationRequest) => Promise<EdfiApplication>
     delete: (applicationId: string) => Promise<any>
     resetPassword: (applicationId: string) => Promise<EdfiApplicationAuthData>
-    update: (applicationId: string, application: UpdateEdfiApplicationRequest) => Promise<EdfiApplication>
+    update: (applicationId: string, application: UpdateEdfiApplicationRequest) => Promise<boolean>
   }
   claimSets: {
     getAll: () => Promise<EdfiClaimSet[]>
@@ -82,7 +82,7 @@ export function MockApiService(config: EdxAppConfig, apiService: typeof useApiSe
       create: (application) => adminConsoleApi.post('/v2/applications', application).then(resp => resp.data),
       delete: (applicationId) => adminConsoleApi.delete(`/v2/applications/${applicationId}`).then(resp => resp.data),
       resetPassword: (applicationId) => adminConsoleApi.put(`/v2/applications/${applicationId}/reset-credential`).then(resp => resp.data),
-      update: (applicationId, application) => adminConsoleApi.put(`/v2/applications/${applicationId}`, application).then(resp => resp.data),
+      update: (applicationId, application) => adminConsoleApi.put(`/v2/applications/${applicationId}`, application).then(resp => resp.status >= 200 && resp.status < 300),
     },
     claimSets: {
       getAll: () => adminConsoleApi.get('/v2/claimSets').then(resp => resp.data),

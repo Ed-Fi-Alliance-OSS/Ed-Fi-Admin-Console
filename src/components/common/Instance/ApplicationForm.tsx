@@ -2,15 +2,17 @@ import { Flex } from '@chakra-ui/react'
 import {
   CompleteFormErrorMessage, UserProfile, UserProfileContext
 } from '@edfi/admin-console-shared-sdk'
-import { useContext } from 'react'
+import {
+  useContext, useEffect
+} from 'react'
 import { EdfiApplication } from '../../../core/Edfi/EdfiApplications'
 import { ODSInstance } from '../../../core/ODSInstance.types'
 import useApplicationForm from '../../../hooks/adminActions/edfi/useApplicationForm'
 import useTenantInfo from '../../../hooks/useTenantInfo'
+import MultiInput from '../../MultiInput'
 import ApplicationAPIFormSection from './ApplicationAPIFormSection'
 import ApplicationDetailsFormSection from './ApplicationDetailsFormSection'
 import EdFiModalForm from './EdFiModalForm'
-import LocalEducationAgenciesFormSection from './LocalEducationAgenciesFormSection'
 
 interface ApplicationFormProps {
     instance: ODSInstance | null
@@ -32,10 +34,12 @@ const ApplicationForm = ({ instance, mode, editApplicationData, onFinishSave }: 
     errors,
     onRegenerateCredentials,
     onChangeInput,
-    onToggleOrgId,
     onSelectClaim,
     onSelectVendor,
-    onSave
+    onSave,
+    transformText,
+    setEdorgs,
+    edOrgs
   } = useApplicationForm({ 
     instanceId: instance?.id ?? 0,
     mode, 
@@ -72,6 +76,27 @@ const ApplicationForm = ({ instance, mode, editApplicationData, onFinishSave }: 
     return '...'
   }
 
+  useEffect(() => {
+    if(applicationData.educationOrganizationIds){
+      console.log('setting edorgs', applicationData.educationOrganizationIds)
+      setEdorgs(applicationData.educationOrganizationIds)
+    }
+  }, [ applicationData ])
+
+  // setEdorgs
+  function isNumberKey(evt) {
+    if(evt.target.value) {
+      evt.target.value = evt.target.value.replace(/[^0-9]/g, '')
+    }
+    // var charCode = (evt.which) ? evt.which : evt.keyCode
+
+    // if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+    //   return false 
+    // }
+
+    // return true
+  }
+
   return (
     <EdFiModalForm
       content={<Flex w='full'>
@@ -97,12 +122,12 @@ const ApplicationForm = ({ instance, mode, editApplicationData, onFinishSave }: 
             mt='32px'
             w='full'
           >
-            <LocalEducationAgenciesFormSection
-              description={getLocalEducationOrgId()}
-              mode={mode}
-              name={getCurrentTenantOrgName(userProfile)}
-              selected={true}
-              onToggleOrgId={() => onToggleOrgId()}
+            <MultiInput
+              filterInput={isNumberKey}
+              label='EdOrgs'
+              transformText={transformText}
+              values={edOrgs}
+              onChange={setEdorgs}
             />
           </Flex>
 
