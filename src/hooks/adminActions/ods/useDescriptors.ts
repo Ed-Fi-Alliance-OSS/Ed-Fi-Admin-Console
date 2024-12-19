@@ -1,5 +1,7 @@
 import { TEEAuthDataContext } from '@edfi/admin-console-shared-sdk'
-import { useState, useEffect, useContext } from 'react'
+import {
+  useState, useEffect, useContext 
+} from 'react'
 import { adminConsoleContext } from '../../../context/adminConsoleContext'
 import useODSService from '../../../services/AdminActions/Ods/ODSService'
 import { Descriptor } from '../../../services/AdminActions/Ods/ODSService.results'
@@ -8,8 +10,8 @@ const useDescriptors = () => {
   const { edxAppConfig, auth } = useContext(TEEAuthDataContext)
   const adminConfig = useContext(adminConsoleContext)
   const { getDescriptors } = useODSService()
-  const [descriptorsList, setdescriptorsList] = useState<Descriptor[]>([])
-  const [isFetchingdescriptors, setIsFetchingdescriptors] = useState(false)
+  const [ descriptorsList, setdescriptorsList ] = useState<Descriptor[]>([])
+  const [ isFetchingdescriptors, setIsFetchingdescriptors ] = useState(false)
 
   const fetchDescriptors = async () => {
     if (edxAppConfig && auth && auth.user && adminConfig) {

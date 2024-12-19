@@ -1,4 +1,6 @@
-import { useEffect, useState } from 'react'
+import {
+  useEffect, useState 
+} from 'react'
 import { AppUser } from '../../core/AppUser.types'
 import { ControlTableSortType } from '../../core/controlTable'
 
@@ -11,12 +13,12 @@ export interface SortByParams {
 }
 
 const useControlTableSorting = ({ data }: UseControlTableSortingProps) => {
-  const [sortedData, setSortedData] = useState([...data])
-  const [sortedByField, setSortedByField] = useState('')
-  const [sortingType, setSortingType] = useState<ControlTableSortType>('asc')
+  const [ sortedData, setSortedData ] = useState([ ...data ])
+  const [ sortedByField, setSortedByField ] = useState('')
+  const [ sortingType, setSortingType ] = useState<ControlTableSortType>('asc')
 
   const sortTextDesc = ({ field }: SortByParams) => {
-    const nsortedData = [...data]
+    const nsortedData = [ ...data ]
 
     nsortedData.sort((a, b) => b[field].localeCompare(a[field]))
 
@@ -26,7 +28,7 @@ const useControlTableSorting = ({ data }: UseControlTableSortingProps) => {
   }
 
   const sortTextAsc = ({ field }: SortByParams) => {
-    const nsortedData = [...data]
+    const nsortedData = [ ...data ]
 
     nsortedData.sort((a, b) => a[field].localeCompare(b[field]))
 
@@ -36,7 +38,7 @@ const useControlTableSorting = ({ data }: UseControlTableSortingProps) => {
   }
 
   const sortNumericDesc = ({ field }) => {
-    const nsortedData = [...data]
+    const nsortedData = [ ...data ]
 
     nsortedData.sort((a, b) => b[field] - a[field])
 
@@ -46,7 +48,7 @@ const useControlTableSorting = ({ data }: UseControlTableSortingProps) => {
   }
 
   const sortNumericAsc = ({ field }) => {
-    const nsortedData = [...data]
+    const nsortedData = [ ...data ]
 
     nsortedData.sort((a, b) => a[field] - b[field])
 
@@ -56,7 +58,7 @@ const useControlTableSorting = ({ data }: UseControlTableSortingProps) => {
   }
 
   const sortByRoleDesc = ({ field }) => {
-    const nsortedData: AppUser[] = [...data]
+    const nsortedData: AppUser[] = [ ...data ]
 
     nsortedData.sort((a, b) => b.roles[0].localeCompare(a.roles[0]))
 
@@ -66,7 +68,7 @@ const useControlTableSorting = ({ data }: UseControlTableSortingProps) => {
   }
 
   const sortByRoleAsc = ({ field }) => {
-    const nsortedData: AppUser[] = [...data]
+    const nsortedData: AppUser[] = [ ...data ]
 
     nsortedData.sort((a, b) => a.roles[0].localeCompare(b.roles[0]))
 
@@ -77,7 +79,7 @@ const useControlTableSorting = ({ data }: UseControlTableSortingProps) => {
 
   const sortByNumberOfAppsDesc = ({ field }) => {
     console.log('sort num desc')
-    const nsortedData: AppUser[] = [...data]
+    const nsortedData: AppUser[] = [ ...data ]
 
     nsortedData.sort((a, b) => b.licenses.length - a.licenses.length)
 
@@ -88,7 +90,7 @@ const useControlTableSorting = ({ data }: UseControlTableSortingProps) => {
 
   const sortByNumberOfAppsAsc = ({ field }) => {
     console.log('sort num asc')
-    const nsortedData: AppUser[] = [...data]
+    const nsortedData: AppUser[] = [ ...data ]
 
     nsortedData.sort((a, b) => a.licenses.length - b.licenses.length)
 
@@ -98,7 +100,7 @@ const useControlTableSorting = ({ data }: UseControlTableSortingProps) => {
   }
 
   useEffect(() => {
-    setSortedData([...data])
+    setSortedData([ ...data ])
   }, [ data ])
 
   return {

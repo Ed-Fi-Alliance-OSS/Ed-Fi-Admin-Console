@@ -1,15 +1,14 @@
-import { Flex, Heading } from '@chakra-ui/react'
-import OnBoardingWizard from '../common/OnBoarding/OnBoardingWizard'
-import OnBoardingWizardStart from '../common/OnBoarding/OnBoardingWizardStart'
-import BackToLink from '../common/BackToLink'
+import {
+  Flex, Heading
+} from '@chakra-ui/react'
 import routes from '../../core/routes'
 import useOnBoardingWizard from '../../hooks/useOnBoardingWizard'
-import NeedHelpLinks from '../common/NeedHelpLinks'
-import useHelpLinks from '../../hooks/useHelpLinks'
+import BackToLink from '../common/BackToLink'
+import OnBoardingWizard from '../common/OnBoarding/OnBoardingWizard'
+import OnBoardingWizardStart from '../common/OnBoarding/OnBoardingWizardStart'
 
 const OnBoardingPageContent = () => {
-  const { 
-    started, 
+  const { started, 
     completedSteps, 
     currentStepIndex,
     lastStep,
@@ -22,33 +21,42 @@ const OnBoardingPageContent = () => {
     canNext,
     canPrev } = useOnBoardingWizard()
 
-  const { getAdminActionHelpLinks } = useHelpLinks()
-
   return (
-    <Flex flexDir='column' w='full'>
+    <Flex
+      flexDir='column'
+      w='full'
+    >
       <Flex justifyContent='space-between'>
         <BackToLink 
+          text="Finish later"
           url={routes.home.url}
-          text="Finish later" />
-        <NeedHelpLinks 
-          knowledgeBaseUrl={getAdminActionHelpLinks().knowledgeBaseUrl}
-          supportUrl={getAdminActionHelpLinks().supportTicketUrl} />
+        />
       </Flex>
+
       <Flex 
         bg='blue.500'
-        flexDir='column'
         borderRadius='4px'
-        padding='49px 58px'
+        flexDir='column'
         mt='10px'
-        w='full'>
+        padding='49px 58px'
+        w='full'
+      >
         <Heading
           color='white'
           fontFamily='Poppins'
+          fontSize='32px'
           fontWeight='700'
-          fontSize='32px'>Let’s get set up.</Heading>
-        <Flex mt='32px' w='full'>
+        >Let’s get set up.
+        </Heading>
+
+        <Flex
+          mt='32px'
+          w='full'
+        >
           {started? 
             <OnBoardingWizard
+              canNext={canNext()}
+              canPrev={canPrev()}
               completedSteps={completedSteps}
               currentStepIndex={currentStepIndex}
               lastInProgress={lastInProgress}
@@ -58,13 +66,13 @@ const OnBoardingPageContent = () => {
               onNext={handleNext}
               onPrev={handlePrev}
               onTabChange={handleGoToStep}
-              canNext={canNext()}
-              canPrev={canPrev()} /> : 
+            /> : 
             <OnBoardingWizardStart
+              completedSteps={completedSteps}
               currentStepIndex={currentStepIndex}
-              lastInProgress={lastInProgress}
-              completedSteps={completedSteps} 
-              onGoToStep={handleGoToStep} />}
+              lastInProgress={lastInProgress} 
+              onGoToStep={handleGoToStep}
+            />}
         </Flex>
       </Flex>
     </Flex>

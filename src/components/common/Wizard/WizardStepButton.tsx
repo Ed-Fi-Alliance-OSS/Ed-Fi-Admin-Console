@@ -1,4 +1,6 @@
-import { Button, Text } from '@chakra-ui/react'
+import {
+  Button, Text
+} from '@chakra-ui/react'
 import { StepData } from '../../../core/onBoardingWizard/onBoardingWizard.types'
 
 interface OnBoardingWizardStepButtonProps {  
@@ -11,39 +13,46 @@ interface OnBoardingWizardStepButtonProps {
 const WizardStepButton = ({ isCurrent, isDisabled, stepData, onClick }: OnBoardingWizardStepButtonProps) => {
   return (
     <Button 
-      display='flex'
-      flexDir='column'
+      _notFirst={{
+        pt: '16px',
+        pb: '16px' 
+      }}
+      _first={{ pb: '16px' }}
       alignItems='flex-start'
-      isDisabled={isDisabled}
-      justifyContent='flex-start'
-      borderRadius='0'
+      bg='white'
       borderBottom='1px'
       borderBottomColor='gray.300'
       borderLeft='4px'
-      borderLeftColor={ isCurrent? 'blue.500' : 'gray.300' }
-      bg='white'
+      borderLeftColor={isCurrent? 'blue.500' : 'gray.300'}
+      borderRadius='0'
+      display='flex'
+      flexDir='column'
       h='100px'
+      isDisabled={isDisabled}
+      justifyContent='flex-start'
       minW='351px'
       paddingLeft='20px'
-      _notFirst={{ pt: '16px', pb: '16px' }}
-      _first={{ pb: '16px' }}
-      onClick={() => onClick(stepData.index)}>
+      onClick={() => onClick(stepData.index)}
+    >
       <Text
         color={isCurrent? 'blue.500' : 'black'}
-        fontFamily='Open sans'
+        fontFamily='Poppins'
         fontWeight='700'
+        size='lg'
         whiteSpace='initial'
-        size='lg'>
-                        Step {stepData.index + 1}: {stepData.name}
+      >
+        Step {stepData.index + 1}: {stepData.name}
       </Text>
+
       <Text
         color={isCurrent? 'blue.500' : 'black'}
-        fontFamily='Open sans'
+        fontFamily='Poppins'
         fontWeight='400'
-        textAlign='start'
         mt='5px'
+        size='sm'
+        textAlign='start'
         whiteSpace='normal'
-        size='sm'>
+      >
         {stepData.description}
       </Text>
     </Button>

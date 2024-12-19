@@ -1,9 +1,13 @@
 import { AppUserProfile } from '../../../core/AppUser.types'
 import { Invitation } from '../../../core/invitations/Invitation.types'
 import { UserEducationOrganization } from '../../../core/userEducationOrganizations/UserEducationOrganizations.types'
-import { HttpServiceRequestError, HttpServiceResponse } from '../../HttpService/HttpService.response.types'
+import {
+  HttpServiceRequestError, HttpServiceResponse 
+} from '../../HttpService/HttpService.response.types'
 import { AppUserListData } from './UsersResponseMapper.types'
-import { AddUserResponse, AssignBulkLicensesResponse, ActivateUserResponse, DeactivateUserResponse, AssignLicenseResponse, CheckUserEmailResponse, CreateUserEducationOrganizationsResponse, DeleteUserEducationOrganizationResponse, DeleteUserResponse, EditUserResponse, GetOrganizationsResponse, GetStaffClassificationsResponse, InviteUserResponse, RevokeBulkLicensesResponse, RevokeLicenseResponse, UpdateUserEducationOrganizationResponse } from './UsersService.responses'
+import {
+  AddUserResponse, AssignBulkLicensesResponse, ActivateUserResponse, DeactivateUserResponse, AssignLicenseResponse, CheckUserEmailResponse, CreateUserEducationOrganizationsResponse, DeleteUserEducationOrganizationResponse, DeleteUserResponse, EditUserResponse, GetOrganizationsResponse, GetStaffClassificationsResponse, InviteUserResponse, RevokeBulkLicensesResponse, RevokeLicenseResponse, UpdateUserEducationOrganizationResponse 
+} from './UsersService.responses'
 
 export type GetUsersListResult = Promise<HttpServiceResponse<AppUserListData> | HttpServiceRequestError>
 export type GetUserProfileResult = Promise<HttpServiceResponse<AppUserProfile> | HttpServiceRequestError>

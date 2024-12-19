@@ -1,23 +1,29 @@
-import { useContext, useState, useEffect } from 'react'
+import {
+  useContext,
+  useEffect,
+  useState
+} from 'react'
 import { adminConsoleContext } from '../../context/adminConsoleContext'
 import { ODSInstance } from '../../core/ODSInstance.types'
 import useOdsInstanceService from '../../services/ODSInstances/OdsInstanceService'
-import { GetOdsInstancesListRequest, UpdateOdsInstanceIsDefaultRequest } from '../../services/ODSInstances/OdsInstanceService.requests'
+import { UpdateOdsInstanceIsDefaultRequest } from '../../services/ODSInstances/OdsInstanceService.requests'
+import useEDXToast from '../common/useEDXToast'
 import useConfirmSetDefaultModal from './useConfirmSetDefaultModal'
 import useSetUpWizardModal from './useSetUpWizardModal'
-import useEDXToast from '../common/useEDXToast'
 
 interface useOdsInstanceDataProps {
-    instanceYear: string | null
+    instanceId: string | null
 }
 
-const useOdsInstanceData = ({ instanceYear }: useOdsInstanceDataProps) => {
+const useOdsInstanceData = ({ instanceId }: useOdsInstanceDataProps) => {
   const adminConfig = useContext(adminConsoleContext)
   const [ instance, setInstance ] = useState<ODSInstance | null>(null)
   const [ fetchingData, setIsFetchingData ] = useState(false)
   const [ updatingInstance, setIsUpdatingInstance ] = useState(false)
+
   const {
     getOdsInstancesList,
+    getOdsInstanceById,
     updateInstanceIsDefault
   } = useOdsInstanceService()
 
@@ -38,64 +44,54 @@ const useOdsInstanceData = ({ instanceYear }: useOdsInstanceDataProps) => {
   } = useEDXToast(7000)
 
   const fetchInstanceById = async (instanceId: string) => {
-    if (!adminConfig)
-      return 
+    if (!adminConfig) {
+      return
+    } 
 
     setIsFetchingData(true)
-    const request: GetOdsInstancesListRequest = {
-      pageIndex: 0,
-      pageSize: 1,
-      filter: `id == "${instanceId}"`
-    }
+    const response = await getOdsInstanceById(instanceId)
 
-    const response = await getOdsInstancesList(
-      adminConfig.actionParams, 
-      request)
-
+    setInstance(response)
     setIsFetchingData(false)
         
-    if (response.type == 'Error')
-      return 
-        
-    if (response.data.data.length == 0)
-      return 
-        
-    console.log('Instance by id', response.data.data[0])
-
-    setInstance(response.data.data[0])
   }
 
-  const fetchInstanceByYear = async () => {
-    if (!adminConfig)
-      return 
+  // const fetchInstanceByYear = async () => {
+  //   if (!adminConfig) {
+  //     return
+  //   } 
 
-    setIsFetchingData(true)
-    const request: GetOdsInstancesListRequest = {
-      pageIndex: 0,
-      pageSize: 1,
-      filter: `databases.ods.any(year == ${instanceYear})`
-    }
+  //   setIsFetchingData(true)
+  //   const request: GetOdsInstancesListRequest = {
+  //     pageIndex: 0,
+  //     pageSize: 1,
+  //     filter: `databases.ods.any(year == ${instanceId})`
+  //   }
 
-    const response = await getOdsInstancesList(
-      adminConfig.actionParams, 
-      request)
+  //   const response = await getOdsInstancesList(
+  //     adminConfig.actionParams, 
+  //     request
+  //   )
 
-    setIsFetchingData(false)
+  //   setIsFetchingData(false)
         
-    if (response.type == 'Error')
-      return 
+  //   if (response.type == 'Error') {
+  //     return
+  //   } 
         
-    if (response.data.data.length == 0)
-      return 
+  //   if (response.data.length == 0) {
+  //     return
+  //   } 
         
-    console.log('Instance by year', response.data.data[0])
+  //   console.log('Instance by year', response.data[0])
 
-    setInstance(response.data.data[0])
-  }
+  //   setInstance(response.data[0])
+  // }
 
   const onSetIsDefault = async (instanceId: string, isDefault: boolean, validate: boolean) => {
-    if (!adminConfig)
-      return 
+    if (!adminConfig) {
+      return
+    } 
 
     const request: UpdateOdsInstanceIsDefaultRequest = {
       tenantId: adminConfig.actionParams.tenantId,
@@ -108,7 +104,8 @@ const useOdsInstanceData = ({ instanceYear }: useOdsInstanceDataProps) => {
 
     const response = await updateInstanceIsDefault(
       adminConfig.actionParams,
-      request)
+      request
+    )
             
             
     if (response.type == 'Error') {
@@ -128,16 +125,18 @@ const useOdsInstanceData = ({ instanceYear }: useOdsInstanceDataProps) => {
   }
 
   useEffect(() => {
-    console.log('instance year', instanceYear)
+    console.log('instance year', instanceId)
 
-    if (!instanceYear)
-      return 
+    if (!instanceId) {
+      return
+    } 
 
-    if (instanceYear == 'unknown')
-      return 
+    if (instanceId == 'unknown') {
+      return
+    } 
 
-    fetchInstanceByYear()
-  }, [ ])
+    fetchInstanceById(instanceId)
+  }, [])
 
   return {
     instance,

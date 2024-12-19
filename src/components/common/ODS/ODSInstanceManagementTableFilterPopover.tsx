@@ -9,7 +9,9 @@ import {
   Flex,
 } from '@chakra-ui/react'
 import { ChangeEvent } from 'react'
-import { CustomFormLabel, CustomSelect, CustomInput } from '@edfi/admin-console-shared-sdk'
+import {
+  CustomFormLabel, CustomSelect, CustomInput 
+} from '@edfi/admin-console-shared-sdk'
 
 interface ODSInstanceManagementTableFilterPopoverProps {
     textFilter: string
@@ -26,50 +28,69 @@ const ODSInstanceManagementTableFilterPopover = ({ textFilter, selectedOption, o
     <Popover>
       <PopoverTrigger>
         <Button
+          aria-aria-labelledby="search-btn"
           minWidth='auto'
-          aria-aria-labelledby="search-btn">
-          <span id="search-btn" hidden>Search</span>
+        >
+          <span
+            hidden
+            id="search-btn"
+          >Search
+          </span>
+
           <SearchIcon 
+            aria-hidden="true"
             color='gray.700'
+            focusable="false"
             fontSize='18px'
-            aria-hidden="true" focusable="false" />
+          />
         </Button>
       </PopoverTrigger>
-      <PopoverContent 
-        w='200px'>
-        <PopoverBody
-          padding='16px'>
+
+      <PopoverContent w='200px'>
+        <PopoverBody padding='16px'>
           <FormControl>
             <CustomFormLabel
               htmlFor="filter"
-              text="Filter for" />
+              text="Filter for"
+            />
+
             <CustomInput
               id="filter"
-              value={textFilter}
               placeholder='Type your search here'
-              onChange={onChangeText} />
+              value={textFilter}
+              onChange={onChangeText}
+            />
+
             <Flex mt='10px'>
               <CustomSelect 
-                options={options.map(option => ({ value: option, text: option }))}
+                options={options.map(option => ({
+                  value: option,
+                  text: option 
+                }))}
                 value={selectedOption}
-                onChange={onChangeFilterOption} />
+                onChange={onChangeFilterOption}
+              />
             </Flex>
           </FormControl>
+
           <Button
-            onClick={onFilter}
+            mt='10px'
+            size='sm'
             variant='primaryBlue600'
-            mt='10px'
-            size='sm'
-            w='full'>
-                                    Filter 
+            w='full'
+            onClick={onFilter}
+          >
+            Filter 
           </Button>
+
           <Button
-            onClick={onResetFilter}
-            variant='secondaryBlue600'
             mt='10px'
             size='sm'
-            w='full'>
-                                    Reset Filters
+            variant='secondaryBlue600'
+            w='full'
+            onClick={onResetFilter}
+          >
+            Reset Filters
           </Button>
         </PopoverBody>
       </PopoverContent>

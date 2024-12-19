@@ -1,7 +1,13 @@
-import { UserProfileContext, TEEAuthDataContext } from '@edfi/admin-console-shared-sdk'
-import { ChangeEvent, useContext, useEffect, useState } from 'react'
+import {
+  UserProfileContext, TEEAuthDataContext 
+} from '@edfi/admin-console-shared-sdk'
+import {
+  ChangeEvent, useContext, useEffect, useState 
+} from 'react'
 import { adminConsoleContext } from '../../../context/adminConsoleContext'
-import { AppUser, AppUserLicense, AppUserLicenseRole } from '../../../core/AppUser.types'
+import {
+  AppUser, AppUserLicense, AppUserLicenseRole 
+} from '../../../core/AppUser.types'
 import { Subscription } from '../../../core/Subscription.types'
 import useSubscriptionService from '../../../services/AdminActions/Subscriptions/SubscriptionsService'
 import { GetSubscriptionsListRequest } from '../../../services/AdminActions/Subscriptions/SubscriptionsService.requests'
@@ -11,7 +17,9 @@ import { ApiInvitation } from '../../../services/AdminActions/Users/UsersService
 import useEDXToast from '../../common/useEDXToast'
 import { setInitialData } from './createInvitationFormInitialData'
 import { canAssignLicense } from './helpers/canAssignLicense'
-import { CreateUserFormData, CreateUserFormLicensesData, RoleOption, SubscriptionOption, SubscriptionOptionRolesItem, UserFormMode } from './useCreateUserForm.types'
+import {
+  CreateUserFormData, CreateUserFormLicensesData, RoleOption, SubscriptionOption, SubscriptionOptionRolesItem, UserFormMode 
+} from './useCreateUserForm.types'
 import useCreateUserFormValidation from './useCreateUserFormValidation'
 import useUserFormActions from './useUserFormActions'
 
@@ -24,15 +32,16 @@ interface useEditInvitationFormProps {
 }
 
 const useEditInvitationForm = (props?: useEditInvitationFormProps) => {
-  const {auth, edxAppConfig} = useContext(TEEAuthDataContext)
-  const {userProfile} = useContext(UserProfileContext)
+  const { auth, edxAppConfig } = useContext(TEEAuthDataContext)
+  const { userProfile } = useContext(UserProfileContext)
   const adminConfig = useContext(adminConsoleContext)
   const { checkUserEmail } = useUserService()
   const { getSubscriptionsList } = useSubscriptionService()
-  const [userData, setUserData] = useState<CreateUserFormData>(() => setInitialData(props?.editUserInitialData))
-  const [subscriptionsOptionList, setSubscriptionsOptionList] = useState<SubscriptionOption[]>([])
-  const [mode, setMode] = useState<UserFormMode>(props && props.formMode? props.formMode : 'Add')
-  const [savingChanges, setSavingChanges] = useState(false)
+  const [ userData, setUserData ] = useState<CreateUserFormData>(() => setInitialData(props?.editUserInitialData))
+  const [ subscriptionsOptionList, setSubscriptionsOptionList ] = useState<SubscriptionOption[]>([])
+  const [ mode, setMode ] = useState<UserFormMode>(props && props.formMode? props.formMode : 'Add')
+  const [ savingChanges, setSavingChanges ] = useState(false)
+
   const roleOptions: RoleOption[] = [
     'Tenant.User',
     'Tenant.Admin'
@@ -42,13 +51,13 @@ const useEditInvitationForm = (props?: useEditInvitationFormProps) => {
   const { validateInputChange, validFormData, errors, resetErrors } = useCreateUserFormValidation()
   const { onUpdateInvite, onInviteAdmin, onUpdate, onManageSubscriptions } = useUserFormActions()
   const { errorToast } = useEDXToast()
-
   const pageIndex = 0
   const pageSize = 100
 
   const updateInitialFormData = async () => {
-    if (!props || !props.editUserInitialData)
-      return 
+    if (!props || !props.editUserInitialData) {
+      return
+    } 
 
     const userInitialData = props.editUserInitialData
 
@@ -65,30 +74,32 @@ const useEditInvitationForm = (props?: useEditInvitationFormProps) => {
       updated: ''
     }
 
-    if (!adminConfig)
-      return 
+    if (!adminConfig) {
+      return
+    } 
 
     const subscriptionsListResponse = await getSubscriptionsList(adminConfig.actionParams, {
       pageIndex: 0,
       pageSize: 100
     })
 
-    if (subscriptionsListResponse.type === 'Error')
-      return 
+    if (subscriptionsListResponse.type === 'Error') {
+      return
+    } 
 
     const subscriptionsList = subscriptionsListResponse.data.data
-        
     const invitiationById = props.invitationsList.find(invitation => invitation.invitationId === userInitialData.userId)
+
     if (invitiationById && userInitialData) {
       nuser.licenses = invitiationById.assignLicenseRequests.map(request => {
         const subscription = subscriptionsList.find(subscription => subscription.applicationId === request.applicationId)
-
         // console.log('subscription map', subscription)
         const initialUserLicense = userInitialData.licenses.find(l => l.applicationId === request.applicationId)
         let applicationRole: AppUserLicenseRole[] = []
 
-        if (initialUserLicense)
-          applicationRole = initialUserLicense.applicationRole.map(role => ({...role}))
+        if (initialUserLicense) {
+          applicationRole = initialUserLicense.applicationRole.map(role => ({ ...role }))
+        }
 
         const license: AppUserLicense = {
           subscriptionTenantId: subscription? subscription.tenantId : '',
@@ -120,39 +131,46 @@ const useEditInvitationForm = (props?: useEditInvitationFormProps) => {
     setHasTriedSubmit(false)
     resetErrors()
 
-    if (value === 'Add')
+    if (value === 'Add') {
       return setMode('Add')
+    }
 
-    if (value === 'Invite')
+    if (value === 'Invite') {
       return setMode('Invite')
+    }
 
-    if (value === 'Edit')
+    if (value === 'Edit') {
       return setMode('Edit')
+    }
 
     setMode('Manage Subscriptions')
   }
 
   const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     console.log('input change', e.target.id, e.target.value)
-    const nuserData = {...userData}
+    const nuserData = { ...userData }
 
-    if (e.target.id === 'userName')
+    if (e.target.id === 'userName') {
       nuserData.userName = e.target.value
-    else if (e.target.id === 'firstName') {
+    } else if (e.target.id === 'firstName') {
       nuserData.firstName = e.target.value
 
-      if (hasTriedSubmit) validateInputChange('firstName', nuserData)
-    }
-    else if (e.target.id === 'lastName') {
+      if (hasTriedSubmit) {
+        validateInputChange('firstName', nuserData)
+      }
+    } else if (e.target.id === 'lastName') {
       nuserData.lastName = e.target.value
 
-      if (hasTriedSubmit) validateInputChange('lastName', nuserData)
-    }
-    else if (e.target.id === 'email') {
+      if (hasTriedSubmit) {
+        validateInputChange('lastName', nuserData)
+      }
+    } else if (e.target.id === 'email') {
       nuserData.userName = e.target.value
       nuserData.email = e.target.value
 
-      if (hasTriedSubmit) validateInputChange('email', nuserData)
+      if (hasTriedSubmit) {
+        validateInputChange('email', nuserData)
+      }
     }
 
     return setUserData(nuserData)
@@ -160,31 +178,34 @@ const useEditInvitationForm = (props?: useEditInvitationFormProps) => {
 
   const onRoleSelect = (e: ChangeEvent<HTMLSelectElement>) => {
     const selectedRole = e.target.value as RoleOption
+    const nuserData = { ...userData }
 
-    const nuserData = {...userData}
-    if (e.target.value) 
+    if (e.target.value) {
       nuserData.role = selectedRole
+    }
 
     setUserData(nuserData)
   }
 
   const onToggleIsAdmin = () => {
-    const nuserData = {...userData}
+    const nuserData = { ...userData }
 
-    if (nuserData.role === 'Tenant.Admin')
+    if (nuserData.role === 'Tenant.Admin') {
       nuserData.role = 'Tenant.User'
-    else 
+    } else {
       nuserData.role = 'Tenant.Admin'
+    }
 
     setUserData(nuserData)
   }
 
   const updateSubscriptionOptionRole = (subscriptionId: string, role: string) => {    
-    const nsubscriptionsOptionsList = subscriptionsOptionList.map(subscription => ({...subscription}))
+    const nsubscriptionsOptionsList = subscriptionsOptionList.map(subscription => ({ ...subscription }))
     const subscriptionIndex = nsubscriptionsOptionsList.findIndex(subscription => subscription.subscriptionId === subscriptionId)
 
-    if (subscriptionIndex !== -1 && nsubscriptionsOptionsList[subscriptionIndex].roles)
+    if (subscriptionIndex !== -1 && nsubscriptionsOptionsList[subscriptionIndex].roles) {
       nsubscriptionsOptionsList[subscriptionIndex].selectedRole = role
+    }
 
     // console.log('update role for subscription option', nsubscriptionsOptionsList[subscriptionIndex])
 
@@ -195,14 +216,15 @@ const useEditInvitationForm = (props?: useEditInvitationFormProps) => {
     // console.log('select role for user in subscription', subscriptionId, role)
 
     if (role !== '') {
-      const nuserData = {...userData}
+      const nuserData = { ...userData }
       const licenseIndex = nuserData.licenses.findIndex(license => license.subscriptionId === subscriptionId)
     
       if (licenseIndex !== -1 && nuserData.licenses[licenseIndex].roles) {
         const licenseRoles = nuserData.licenses[licenseIndex].roles
     
-        if (licenseRoles && licenseRoles.length > 0) 
+        if (licenseRoles && licenseRoles.length > 0) {
           nuserData.licenses[licenseIndex].roles = []
+        }
     
         nuserData.licenses[licenseIndex].roles?.push(role)
       }
@@ -234,8 +256,9 @@ const useEditInvitationForm = (props?: useEditInvitationFormProps) => {
       license.roles.push(role)
       subscription.selectedRole = role
 
-      if (props && props.editUserInitialData)
+      if (props && props.editUserInitialData) {
         license.userId = props.editUserInitialData.userId
+      }
     
       data.licenses.push(license)
     
@@ -263,8 +286,8 @@ const useEditInvitationForm = (props?: useEditInvitationFormProps) => {
     const subscriptionIndex = subscriptionsOptionList.findIndex(option => option.subscriptionId === subscriptionId)
 
     if (subscriptionIndex !== -1) {
-      const nsusbscriptionOptions = subscriptionsOptionList.map(option => ({...option}))
-      const nuserData = {...userData}
+      const nsusbscriptionOptions = subscriptionsOptionList.map(option => ({ ...option }))
+      const nuserData = { ...userData }
 
       if (nsusbscriptionOptions[subscriptionIndex].checked) {
         console.log('options after toggle', nsusbscriptionOptions)
@@ -303,13 +326,14 @@ const useEditInvitationForm = (props?: useEditInvitationFormProps) => {
   }
 
   const extractApplicationRoles = (subscription: Subscription): SubscriptionOptionRolesItem[] => {
-    if (subscription.applicationRoles && subscription.applicationRoles.length > 0)
+    if (subscription.applicationRoles && subscription.applicationRoles.length > 0) {
       return subscription.applicationRoles.map(role => {
         return { 
           roleName: role.roleName ?? '',
           isAvailableForTenant: role.isAvailableForTenants
         }
       })
+    }
 
     return []
   }
@@ -331,8 +355,9 @@ const useEditInvitationForm = (props?: useEditInvitationFormProps) => {
       if (applicationRoles.length > 0) {
         option.roles = applicationRoles
 
-        if (hasAssignedLicense) 
+        if (hasAssignedLicense) {
           option.selectedRole = userLicenseRole(subscription.subscriptionId, licenses)
+        }
       }
 
       return option
@@ -345,7 +370,10 @@ const useEditInvitationForm = (props?: useEditInvitationFormProps) => {
 
   const fetchSubscriptionsList = async () => {
     if (auth && auth.user && userProfile && edxAppConfig && adminConfig && mode !== 'Invite Admin') {
-      const requestData: GetSubscriptionsListRequest = { pageIndex, pageSize }
+      const requestData: GetSubscriptionsListRequest = {
+        pageIndex,
+        pageSize 
+      }
 
       const result = await getSubscriptionsList(adminConfig.actionParams, requestData)
 
@@ -377,23 +405,27 @@ const useEditInvitationForm = (props?: useEditInvitationFormProps) => {
             if (status === 'Unregistered') {
               console.log('invite user', 'user does not exist')
               await onUpdateInvite(adminConfig.actionParams, userData)  
-            }
-            else if (status === 'Registered') {
+            } else if (status === 'Registered') {
               console.log('invite user', 'user registered in a different tenant')
               await onUpdateInvite(adminConfig.actionParams, userData)        
-            }
-            else {
+            } else {
               errorToast('The user is already registered in current tenant')
             }
           }
                     
-          if (props && props.onAddFinished) props.onAddFinished()
+          if (props && props.onAddFinished) {
+            props.onAddFinished()
+          }
+        } else {
+          setHasTriedSubmit(true)
         }
-        else setHasTriedSubmit(true)
-      }
-      else if (mode === 'Invite Admin') {
+      } else if (mode === 'Invite Admin') {
         if (validFormData(userData)) {
-          const subscriptionsRequestData: GetSubscriptionsListRequest = { pageIndex, pageSize }
+          const subscriptionsRequestData: GetSubscriptionsListRequest = {
+            pageIndex,
+            pageSize 
+          }
+
           const subscriptions = await getSubscriptionsList(adminConfig.actionParams, subscriptionsRequestData)
                     
           console.log('invite admin user subscriptions', subscriptions)
@@ -432,38 +464,46 @@ const useEditInvitationForm = (props?: useEditInvitationFormProps) => {
             console.log('licenses requests', userData.licenses)
 
             await onInviteAdmin(adminConfig.actionParams, userData)
-          }
-          else 
+          } else {
             await onInviteAdmin(adminConfig.actionParams, userData)
+          }
                     
-          if (props && props.onAddFinished) props.onAddFinished()
+          if (props && props.onAddFinished) {
+            props.onAddFinished()
+          }
+        } else {
+          setHasTriedSubmit(true)
         }
-        else setHasTriedSubmit(true)
-      }
-      else if (mode === 'Edit') {
+      } else if (mode === 'Edit') {
         if (validFormData(userData)) {
           if (props && props.editUserInitialData) {
             await onUpdate(adminConfig.actionParams, userData, props.editUserInitialData.userId)
         
-            if (props.onUpdateFinished) props.onUpdateFinished()
+            if (props.onUpdateFinished) {
+              props.onUpdateFinished()
+            }
           }
+        } else {
+          setHasTriedSubmit(true)
         }
-        else setHasTriedSubmit(true)
-      }
-      else {
+      } else {
         if (props && props.editUserInitialData) {
           await onManageSubscriptions(adminConfig.actionParams, props.editUserInitialData, subscriptionsOptionList)
     
-          if (props.onUpdateFinished) props.onUpdateFinished()
+          if (props.onUpdateFinished) {
+            props.onUpdateFinished()
+          }
         }
       }
+
       setSavingChanges(false)
     }
   }
 
   const onSaveUserData = async () => {
-    if (!adminConfig) 
-      return 
+    if (!adminConfig) {
+      return
+    } 
 
     setSavingChanges(true)
 
@@ -471,14 +511,18 @@ const useEditInvitationForm = (props?: useEditInvitationFormProps) => {
       if (props && props.editUserInitialData) {
         await onUpdate(adminConfig.actionParams, userData, props.editUserInitialData.userId)
 
-        if (props.onUpdateFinished) props.onUpdateFinished()
+        if (props.onUpdateFinished) {
+          props.onUpdateFinished()
+        }
       }
     }
 
     if (props && props.editUserInitialData && subscriptionsOptionList.length > 0) {
       await onManageSubscriptions(adminConfig.actionParams, props.editUserInitialData, subscriptionsOptionList)
 
-      if (props.onUpdateFinished) props.onUpdateFinished()
+      if (props.onUpdateFinished) {
+        props.onUpdateFinished()
+      }
     }
 
     setSavingChanges(false)
@@ -487,12 +531,12 @@ const useEditInvitationForm = (props?: useEditInvitationFormProps) => {
   useEffect(() => {
     console.log('update initial form data')
     updateInitialFormData()
-  }, [ ])
+  }, [])
 
   useEffect(() => {
     console.log('mode: ', mode)
     if (mode === 'Invite') {
-      const nuserData = {...userData}
+      const nuserData = { ...userData }
 
       nuserData.userName = ''
 

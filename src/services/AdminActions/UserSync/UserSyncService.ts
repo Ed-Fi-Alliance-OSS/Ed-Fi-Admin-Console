@@ -1,11 +1,19 @@
 import { ActionParams } from '../adminAction.types'
 import useHttpService from '../../../hooks/http/useHttpService'
-import { GetEdFiSyncByIdResult, GetEdFiSyncExecutionLogsResult, GetEdFiSyncExecutionsResult, GetEdFiSyncResult, PostEdFiSyncResult, PostExecuteEdFiSyncResult, PutEdFiSyncResult } from './UserSyncService.results'
-import { JobExecutionListResponse, JobExecutionLogEntry, JobListResponse, JobProfile } from '../../../core/UserSync/UserSync.types'
+import {
+  GetEdFiSyncByIdResult, GetEdFiSyncExecutionLogsResult, GetEdFiSyncExecutionsResult, GetEdFiSyncResult, PostEdFiSyncResult, PostExecuteEdFiSyncResult, PutEdFiSyncResult 
+} from './UserSyncService.results'
+import {
+  JobExecutionListResponse, JobExecutionLogEntry, JobListResponse, JobProfile 
+} from '../../../core/UserSync/UserSync.types'
 import edfiSyncActionRoutes from '../edfisyncRoutes'
-import { ExecuteEdFiSync, GetEdFiSyncExecutionLogsRequest, GetEdFiSyncExecutionsRequest, GetEdFiSyncJobByIdRequest, UpdateEdFiSyncRequest } from './UserSyncService.requests'
+import {
+  ExecuteEdFiSync, GetEdFiSyncExecutionLogsRequest, GetEdFiSyncExecutionsRequest, GetEdFiSyncJobByIdRequest, UpdateEdFiSyncRequest 
+} from './UserSyncService.requests'
 import { PaginatedItemsViewModel } from '../../../core/apiResponses'
-import { EdFiSyncProfileResponse, EdFiSyncUpdatedResponse, JobExecutionRequestedResponse } from './UserSyncService.responses'
+import {
+  EdFiSyncProfileResponse, EdFiSyncUpdatedResponse, JobExecutionRequestedResponse 
+} from './UserSyncService.responses'
 
 const useUserSyncService = () => {
   const { getSimpleAsync, postAsync, putAsync } = useHttpService()
@@ -41,13 +49,15 @@ const useUserSyncService = () => {
   const getEdFiSyncExecutions = async (actionParams: ActionParams, request: GetEdFiSyncExecutionsRequest): GetEdFiSyncExecutionsResult => {
     const baseUrl = actionParams.edxApiUrl
     const { pageIndex, pageSize } = request
-
     let queryParams = `pageIndex=${pageIndex}&pageSize=${pageSize}`
         
-    if (request.filter)
+    if (request.filter) {
       queryParams = `${queryParams}&filter=${request.filter}`
-    if (request.orderBy)
+    }
+
+    if (request.orderBy) {
       queryParams = `${queryParams}&orderBy=${request.orderBy}`
+    }
 
     const url = `${baseUrl}/${edfiSyncActionRoutes.getEdFiSyncExecutions(actionParams.tenantId, request.jobId)}?${queryParams}`
     
@@ -63,15 +73,18 @@ const useUserSyncService = () => {
 
   const getEdFiSyncExecutionLogs = async (actionParams: ActionParams, request: GetEdFiSyncExecutionLogsRequest): GetEdFiSyncExecutionLogsResult => {
     const baseUrl = actionParams.edxApiUrl
-        
     let queryParams = `pageIndex=${request.pageIndex}&pageSize=${request.pageSize}`
         
-    if (request.orderBy)
+    if (request.orderBy) {
       queryParams = `${queryParams}&orderBy=${request.orderBy}`
-    if (request.filterBy)
+    }
+
+    if (request.filterBy) {
       queryParams = `${queryParams}&filter=${request.filterBy}`
+    }
         
     const url = `${baseUrl}/${edfiSyncActionRoutes.getEdFiSyncExecutionLogs(actionParams.tenantId, request.jobId, request.executionId)}?${queryParams}`
+
     const result = await getSimpleAsync<PaginatedItemsViewModel<JobExecutionLogEntry>>({ 
       actionName: 'Get Ed-Fi Sync Job Execution Logs',  
       access_token: actionParams.token,

@@ -45,18 +45,19 @@ const ManageSubscriptionsTabContent = () => {
     maxPerPage
   } = useManageSubscriptionsTable()
 
-  const [selectedSubscription, setSelectedSubscription] = useState<Subscription | null>(null)
-  const [showAddSubscriptionModal, setShowAddSubscriptionModal] = useState(false)
-  const [showEditSubscriptionModal, setShowEditSubscriptionModal] = useState(false)
-  const [showManageSubscribersModal, setShowManageSubscribersModal] = useState(false)
+  const [ selectedSubscription, setSelectedSubscription ] = useState<Subscription | null>(null)
+  const [ showAddSubscriptionModal, setShowAddSubscriptionModal ] = useState(false)
+  const [ showEditSubscriptionModal, setShowEditSubscriptionModal ] = useState(false)
+  const [ showManageSubscribersModal, setShowManageSubscribersModal ] = useState(false)
 
   const handleSelectSubscription = (subscriptionId: string) => {
     const nselectedSubscription = subscriptionsList.find(subscription => subscription.subscriptionId === subscriptionId)
 
     console.log('selected subscription', nselectedSubscription)
 
-    if (nselectedSubscription)
-      setSelectedSubscription({...nselectedSubscription})
+    if (nselectedSubscription) {
+      setSelectedSubscription({ ...nselectedSubscription })
+    }
   }
 
   const handleShowAddSubscriptionModal = () => {
@@ -89,77 +90,160 @@ const ManageSubscriptionsTabContent = () => {
   }
 
   return (
-    <Flex flexDir='column' w='full'>
+    <Flex
+      flexDir='column'
+      w='full'
+    >
       <ConsoleModal 
         content={<SubscriptionForm 
-          mode='Add'
           currentSubscriptionsList={subscriptionsList}
+          mode='Add'
           onAfterAction={handleAfterSubscriptionAction}
-          onClose={handleHideAddSubscriptionModal} />}
+          onClose={handleHideAddSubscriptionModal}
+        />}
         show={showAddSubscriptionModal} 
-        onClose={() => setShowAddSubscriptionModal(false)} />
+        onClose={() => setShowAddSubscriptionModal(false)}
+      />
 
       <ConsoleModal 
         content={<SubscriptionForm
           mode='Edit'
-          onAfterAction={handleAfterSubscriptionAction}
           selectedSubscription={selectedSubscription}
-          onClose={handleHideEditSubscriptionModal} />}
+          onAfterAction={handleAfterSubscriptionAction}
+          onClose={handleHideEditSubscriptionModal}
+        />}
         show={showEditSubscriptionModal} 
-        onClose={() => setShowEditSubscriptionModal(false)} />
+        onClose={() => setShowEditSubscriptionModal(false)}
+      />
 
       <ConsoleModal 
         content={<ManageSubscribersForm 
           selectedSubscription={selectedSubscription}
           onAfterAction={handleAfterSubscriptionAction}
-          onClose={handleHideManageSubscribersModal} />}
+          onClose={handleHideManageSubscribersModal}
+        />}
         show={showManageSubscribersModal} 
-        onClose={handleHideManageSubscribersModal} />
+        onClose={handleHideManageSubscribersModal}
+      />
 
       <ManageSubscriptionsTabHeader
-        filterValue={filterBy? filterBy.value : ''}
         filterOptionsList={filterOptionsList}
+        filterValue={filterBy? filterBy.value : ''}
         onAddSubscription={handleShowAddSubscriptionModal}
         onChangeFilter={onChangeFilter}
         onChangeValue={onChangeValue}
         onFilter={onFilter}
+        onRefreshData={onRefreshSubscriptionsList}
         onResetFilter={onResetFilter}
-        onRefreshData={onRefreshSubscriptionsList} />
-      <Flex flexDir='column' mt='16px'>
+      />
+
+      <Flex
+        flexDir='column'
+        mt='16px'
+      >
         <ManageSubscriptionsTable
           headers={[
-            <ControlTableHeader headerData={{ text: 'Application', fieldName: 'applicationName', sortedByField, showSorting: true, sortingType, onSortAsc: sortTextAsc, onSortDesc: sortTextDesc }} />,
-            <ControlTableHeader headerData={{ text: 'Licenses', fieldName: 'licencesAmount', sortedByField, showSorting: true, sortingType, onSortAsc: sortNumericAsc, onSortDesc: sortNumericDesc }} />,
-            <ControlTableHeader headerData={{ text: 'Starts', fieldName: 'startDateTime', sortedByField, showSorting: true, sortingType, onSortAsc: sortTextAsc, onSortDesc: sortTextDesc }} />,
-            <ControlTableHeader headerData={{ text: 'Ends', fieldName: 'endDateTime', sortedByField, showSorting: true, sortingType, onSortAsc: sortTextAsc, onSortDesc: sortTextDesc }} />,
-            <ControlTableHeader headerData={{ text: 'License Type', fieldName: 'licenseType', sortedByField, showSorting: true, sortingType, onSortAsc: sortTextAsc, onSortDesc: sortTextDesc }} />,
-            <ControlTableHeader headerData={{ text: 'Status', fieldName: 'subscriptionStatus', sortedByField, showSorting: true, sortingType, onSortAsc: sortTextAsc, onSortDesc: sortTextDesc }} />,
-            <ControlTableHeader headerData={{ text: '', fieldName: '', sortedByField, showSorting: false, sortingType, onSortAsc: sortTextAsc, onSortDesc: sortTextDesc }} />
+            <ControlTableHeader headerData={{
+              text: 'Application',
+              fieldName: 'applicationName',
+              sortedByField,
+              showSorting: true,
+              sortingType,
+              onSortAsc: sortTextAsc,
+              onSortDesc: sortTextDesc 
+            }}
+            />,
+            <ControlTableHeader headerData={{
+              text: 'Licenses',
+              fieldName: 'licencesAmount',
+              sortedByField,
+              showSorting: true,
+              sortingType,
+              onSortAsc: sortNumericAsc,
+              onSortDesc: sortNumericDesc 
+            }}
+            />,
+            <ControlTableHeader headerData={{
+              text: 'Starts',
+              fieldName: 'startDateTime',
+              sortedByField,
+              showSorting: true,
+              sortingType,
+              onSortAsc: sortTextAsc,
+              onSortDesc: sortTextDesc 
+            }}
+            />,
+            <ControlTableHeader headerData={{
+              text: 'Ends',
+              fieldName: 'endDateTime',
+              sortedByField,
+              showSorting: true,
+              sortingType,
+              onSortAsc: sortTextAsc,
+              onSortDesc: sortTextDesc 
+            }}
+            />,
+            <ControlTableHeader headerData={{
+              text: 'License Type',
+              fieldName: 'licenseType',
+              sortedByField,
+              showSorting: true,
+              sortingType,
+              onSortAsc: sortTextAsc,
+              onSortDesc: sortTextDesc 
+            }}
+            />,
+            <ControlTableHeader headerData={{
+              text: 'Status',
+              fieldName: 'subscriptionStatus',
+              sortedByField,
+              showSorting: true,
+              sortingType,
+              onSortAsc: sortTextAsc,
+              onSortDesc: sortTextDesc 
+            }}
+            />,
+            <ControlTableHeader headerData={{
+              text: '',
+              fieldName: '',
+              sortedByField,
+              showSorting: false,
+              sortingType,
+              onSortAsc: sortTextAsc,
+              onSortDesc: sortTextDesc 
+            }}
+            />
           ]}
-          itemsCount={paginatedItems.length}
-          loading={isFetchingSubscriptions}
-          rows={<ManageSubscriptionsTableRows 
-            subscriptionsList={paginatedItems}
-            onEditSubscription={handleShowEditSubscriptionModal}
-            onManageSubscribers={handleShowManageSubscribersModal} />}
           pagination={
-            <Flex ml='auto' w='auto'>
+            <Flex
+              ml='auto'
+              w='auto'
+            >
               <TablePagination 
+                canNextPage={canNextPage}
+                canPreviousPage={canPreviousPage}
                 currentPage={currentPage}
                 goToInitialPage={goToInitialPage}
                 goToLastPage={gotToLastPage}
                 goToNextPage={goToNextPage}
                 goToPreviousPage={goToPreviousPage}
-                canNextPage={canNextPage}
-                canPreviousPage={canPreviousPage}
-                pageSize={pageSize}
-                onDecrementPageSize={onDecrementPageSize}
-                onIncrementPageSize={onIncrementPageSize}
-                totalPages={totalPages}
                 maxPageSize={maxPerPage}
                 minPageSize={minPerPage}
-                onChangePageSize={onChangePageSize} />
-            </Flex>} />
+                pageSize={pageSize}
+                totalPages={totalPages}
+                onChangePageSize={onChangePageSize}
+                onDecrementPageSize={onDecrementPageSize}
+                onIncrementPageSize={onIncrementPageSize}
+              />
+            </Flex>}
+          rows={<ManageSubscriptionsTableRows 
+            subscriptionsList={paginatedItems}
+            onEditSubscription={handleShowEditSubscriptionModal}
+            onManageSubscribers={handleShowManageSubscribersModal}
+          />}
+          itemsCount={paginatedItems.length}
+          loading={isFetchingSubscriptions}
+        />
       </Flex>
     </Flex>
   )

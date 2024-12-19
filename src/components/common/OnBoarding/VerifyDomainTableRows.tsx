@@ -1,9 +1,12 @@
-import { ChangeEvent, useContext } from 'react'
-import { Td, Text } from '@chakra-ui/react'
+import {
+  Td, Text
+} from '@chakra-ui/react'
+import { CopyTextBtn, UserProfileContext } from '@edfi/admin-console-shared-sdk'
+import {
+  ChangeEvent, useContext
+} from 'react'
 import { VerifyDomain } from '../../../core/verifyDomain/VerifyDomain.types'
 import ControlTableRow from '../ControlTableRow'
-import { CopyTextBtn } from '@edfi/admin-console-shared-sdk'
-import { UserProfileContext } from '@edfi/admin-console-shared-sdk'
 
 interface VerifyDomainTableRowsProps {
     verifyDomainList: VerifyDomain[]
@@ -19,40 +22,50 @@ const VerifyDomainTableRows = ({ verifyDomainList, onCheck }: VerifyDomainTableR
         <ControlTableRow key={index}>
           <Td display='flex'>
             <Text
-              fontFamily='Open sans'
+              fontFamily='Poppins'
               fontWeight='400'
-              size='md'>
+              size='md'
+            >
               {verifyDomain.type}
             </Text>
           </Td>
+
           <Td>
             <Text
-              fontFamily='Open sans'
+              fontFamily='Poppins'
               fontWeight='400'
-              size='md'>
+              size='md'
+            >
               {verifyDomain.name}
             </Text>
           </Td>
+
           <Td display='flex'>
             <Text
-              fontFamily='Open sans'
+              fontFamily='Poppins'
               fontWeight='400'
               size='md'
-              w='380px'>
+              w='380px'
+            >
               {`${verifyDomain.value}${userProfile? userProfile.tenantId : ''}`}
             </Text>
-            <CopyTextBtn withoutBorder={true} value={userProfile? userProfile.tenantId : ''} />
+
+            <CopyTextBtn
+              value={userProfile? userProfile.tenantId : ''}
+              withoutBorder={true}
+            />
           </Td>
+
           <Td>
             <Text
-              fontFamily='Open sans'
+              fontFamily='Poppins'
               fontWeight='400'
-              size='md'>
+              size='md'
+            >
               {verifyDomain.ttl}
             </Text>
           </Td>
-        </ControlTableRow>
-      )}
+        </ControlTableRow>)}
     </>
   )
 }

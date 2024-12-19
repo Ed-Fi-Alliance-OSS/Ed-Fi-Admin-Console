@@ -1,5 +1,6 @@
-import { test as setup, expect } from '@playwright/test'
-
+import {
+  test as setup, expect 
+} from '@playwright/test'
 import LoginPage  from './pages/login-page'
 import  { userinfo } from './user-info'
 

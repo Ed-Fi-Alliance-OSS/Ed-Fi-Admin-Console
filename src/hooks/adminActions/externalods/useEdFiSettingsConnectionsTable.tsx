@@ -1,9 +1,15 @@
-import { useContext, useEffect, useState } from 'react'
+import {
+  useContext, useEffect, useState 
+} from 'react'
 import { adminConsoleContext } from '../../../context/adminConsoleContext'
 import { EdFiAdminConnection } from '../../../core/EdFiAdmin/EdFiAdmin.types'
 import useEdFiAdminConnectionsService from '../../../services/AdminActions/EdFiAdmin/Connections/EdFiAdminConnectionsService'
-import { GetAllConnectionsRequest, VerifyEdFiAdminConnectionRequest } from '../../../services/AdminActions/EdFiAdmin/Connections/EdfiAdminConnectionsService.requests'
-import { EdFiConnectionFormMode, EdFiConnectionFormData } from '../../edfi/useEdFiConnectionForm.types'
+import {
+  GetAllConnectionsRequest, VerifyEdFiAdminConnectionRequest 
+} from '../../../services/AdminActions/EdFiAdmin/Connections/EdfiAdminConnectionsService.requests'
+import {
+  EdFiConnectionFormMode, EdFiConnectionFormData 
+} from '../../edfi/useEdFiConnectionForm.types'
 import { EdFiSettingsConnectionsTableItem } from './useEdFiSettingsConnectionsTable.types'
 import useControlTable from '../../controlTable/useControlTable' 
 import useDebounce from '../../useDebounce'
@@ -14,6 +20,7 @@ export type ConnectionDataFilters = 'empty' | 'message'
 const useEdFiSettingsConnectionsTable = () => {
   const adminConfig = useContext(adminConsoleContext)
   const { getConnectionsList } = useEdFiAdminConnectionsService()
+
   const {
     orderBy,
     paginatedData,
@@ -43,20 +50,21 @@ const useEdFiSettingsConnectionsTable = () => {
 
   const inputTimeoutMiliseconds = 1000
   const debouncedPaginatedData = useDebounce(paginatedData, inputTimeoutMiliseconds)
-  const [mode, setMode] = useState<EdFiConnectionFormMode>('Edit')
-  const [showConnectionModal, setShowConnectionModal] = useState(false)
-  const [showConfirmationModal, setShowConfirmationModal] = useState(false)
-  const [connectionDataToEdit, setConnectionDataToEdit] = useState<EdFiConnectionFormData>()
+  const [ mode, setMode ] = useState<EdFiConnectionFormMode>('Edit')
+  const [ showConnectionModal, setShowConnectionModal ] = useState(false)
+  const [ showConfirmationModal, setShowConfirmationModal ] = useState(false)
+  const [ connectionDataToEdit, setConnectionDataToEdit ] = useState<EdFiConnectionFormData>()
   const { verifyConnection } = useEdFiAdminConnectionsService()
   const [ connectionStatusList, setConnectionStatusList ] = useState<EdFiSettingsConnectionsTableItem[]>([])
-  const [isLoadingConnectionStatus, setIsLoadingConnectionStatus] = useState(false)
+  const [ isLoadingConnectionStatus, setIsLoadingConnectionStatus ] = useState(false)
 
   const onShowConnectionModal = (connectionId?: string) => {
     if (connectionId) {
       const connectionToEdit = paginatedData.data.find(connection => connection.id === connectionId)
             
-      if (!connectionToEdit)
-        return 
+      if (!connectionToEdit) {
+        return
+      } 
             
       // console.log('to edit', connectionToEdit)
             
@@ -77,8 +85,7 @@ const useEdFiSettingsConnectionsTable = () => {
       })
 
       setMode('Edit')
-    }
-    else {
+    } else {
       setMode('Add')
     }
         
@@ -109,17 +116,20 @@ const useEdFiSettingsConnectionsTable = () => {
   }
 
   const getBaseUrl = (connection: EdFiAdminConnection) => {
-    if (connection.tiers.length === 0)
+    if (connection.tiers.length === 0) {
       return '/'
+    }
 
-    if (connection.tiers[0].odsApiConnection.metadataUrl)
+    if (connection.tiers[0].odsApiConnection.metadataUrl) {
       return connection.tiers[0].odsApiConnection.metadataUrl
+    }
 
     if (connection.tiers[0].odsApiConnection.tokenUrl) {
       const simpleUrl = connection.tiers[0].odsApiConnection.tokenUrl.replace('/oauth/token', '')
 
-      if (simpleUrl.includes('/{InstanceId}'))
+      if (simpleUrl.includes('/{InstanceId}')) {
         return simpleUrl.replace('/{InstanceId}', '')
+      }
 
       return simpleUrl
     }
@@ -132,8 +142,9 @@ const useEdFiSettingsConnectionsTable = () => {
   }
     
   const onVerifyAllConnections = async (connectionsList: EdFiAdminConnection[]) => {
-    if (!adminConfig)
-      return 
+    if (!adminConfig) {
+      return
+    } 
 
     const nconnectionsStatusList: EdFiSettingsConnectionsTableItem[] = []
 
@@ -156,12 +167,13 @@ const useEdFiSettingsConnectionsTable = () => {
 
       // console.log("verify connection response", verifyConnectionResponse, connectionId)
 
-      if (verifyConnectionResponse.type === 'Error')
+      if (verifyConnectionResponse.type === 'Error') {
         connectionItem.status = 'URL Error'
-      else if(verifyConnectionResponse.data.status === 'failure')
+      } else if(verifyConnectionResponse.data.status === 'failure') {
         connectionItem.status = 'Credential Error'
-      else
+      } else {
         connectionItem.status = 'Connected'
+      }
 
       // console.log('new connection item', connectionItem, connectionId)
 
@@ -196,8 +208,9 @@ const useEdFiSettingsConnectionsTable = () => {
   }
 
   const fetchConnectionsList = async ({ pageIndex, pageSize, orderBy }: DataFetchParams<ConnectionDataFilters>) => {
-    if (!adminConfig)
-      return 
+    if (!adminConfig) {
+      return
+    } 
 
     setIsFetchingData(true)
     setPaginatedData({
@@ -216,8 +229,9 @@ const useEdFiSettingsConnectionsTable = () => {
     const getConnectionsResult = await getConnectionsList(adminConfig.actionParams, request)
     setIsFetchingData(false)
         
-    if (getConnectionsResult.type === 'Error')
-      return 
+    if (getConnectionsResult.type === 'Error') {
+      return
+    } 
             
     setPaginatedData({
       pageIndex: getConnectionsResult.data.pageIndex,
@@ -234,10 +248,16 @@ const useEdFiSettingsConnectionsTable = () => {
       pageIndex: paginatedData.pageIndex,
       pageSize: paginatedData.pageSize,
       orderBy,
-      filterBy: { field: 'message', value: '' }
+      filterBy: {
+        field: 'message',
+        value: '' 
+      }
     })
+
     setMode('Edit')
-  }, [ debouncedPaginatedData.pageIndex, debouncedPaginatedData.pageSize, orderBy ])
+  }, [
+    debouncedPaginatedData.pageIndex, debouncedPaginatedData.pageSize, orderBy 
+  ])
 
   return {
     paginatedData, 

@@ -1,68 +1,89 @@
-import { Button, Flex, Link, Text } from '@chakra-ui/react'
-import { CloseIcon, InfoIcon } from '@chakra-ui/icons'
+import {
+  CloseIcon, InfoIcon
+} from '@chakra-ui/icons'
+import {
+  Button, Flex, Link, Text
+} from '@chakra-ui/react'
 import { useState } from 'react'
 import useHelpLinks from '../../../hooks/useHelpLinks'
 
 const EdFiSettingsWarningBanner = () => {
-  const [show, setShow] = useState(true)
+  const [ show, setShow ] = useState(true)
   const { getAdminActionHelpLinks } = useHelpLinks()
 
   return (
     <>
       { show && <Flex 
         alignItems='flex-start'
-        flexDir='column'
         bg='orange.100'
+        flexDir='column'
         mt='16px'
         p='10px 12px'
-        w='90%'>
-        <Flex mt='3px' w='full'>
+        w='90%'
+      >
+        <Flex
+          mt='3px'
+          w='full'
+        >
           <Flex alignItems='center'>
-            <InfoIcon 
-              color='orange.500' />
+            <InfoIcon color='orange.500' />
+
             <Text
               color='gray.800' 
-              fontFamily='Open sans' 
+              fontFamily='Poppins' 
               fontSize='16px'
               fontWeight='700'
-              ml='16px'>
-                                    LIMITED FUNCTIONALITY
+              ml='16px'
+            >
+              LIMITED FUNCTIONALITY
             </Text>
           </Flex>
+
           <Flex ml='auto'>
             <Button minW='auto'>
               <CloseIcon 
+                fontSize='12px'
                 onClick={() => setShow(false)}
-                fontSize='12px' />
+              />
             </Button>
           </Flex>
         </Flex>
-        <Flex flexDir='column' mt='6px' ml='16px' w='80%'>
+
+        <Flex
+          flexDir='column'
+          ml='16px'
+          mt='6px'
+          w='80%'
+        >
           <Text 
             color='gray.800' 
-            fontFamily='Open sans' 
+            fontFamily='Poppins' 
             fontSize='14px'
-            ml='16px'>
-                                Note: The functionality below is limited due to the use of an externally-hosted ODS. 
-                                To enable functionality and/or learn more, 
-                                visit our 
+            ml='16px'
+          >
+            Note: The functionality below is limited due to the use of an externally-hosted ODS. 
+            To enable functionality and/or learn more, 
+            visit our 
             <Link 
+              fontWeight='700'
               href={getAdminActionHelpLinks().knowledgeBaseUrl}
+              ml='2px'
+              mr='2px'  
+              referrerPolicy="no-referrer" 
               target='_blank'
-              referrerPolicy="no-referrer"
-              fontWeight='700'  
-              mr='2px' 
-              ml='2px'>
-                                        Knowledge Base 
+            >
+              Knowledge Base 
             </Link>
-                                 or 
+            or 
+
             <Link 
+              fontWeight='700'
               href={getAdminActionHelpLinks().supportTicketUrl}
+              ml='2px'
+              referrerPolicy="no-referrer" 
               target='_blank'
-              referrerPolicy="no-referrer"
-              fontWeight='700' 
-              ml='2px'>
-                                        submit a support ticket
+            >
+              submit a support ticket
             </Link>.
           </Text>
         </Flex>

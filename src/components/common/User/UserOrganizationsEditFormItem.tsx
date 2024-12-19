@@ -1,7 +1,13 @@
-import { Button, Flex, FormControl, Select } from '@chakra-ui/react'
-import { CustomErrorField, CustomFormLabel } from '@edfi/admin-console-shared-sdk'
+import {
+  Button, Flex, FormControl, Select 
+} from '@chakra-ui/react'
+import {
+  CustomErrorField, CustomFormLabel 
+} from '@edfi/admin-console-shared-sdk'
 import { ChangeEvent } from 'react'
-import { Organization, StaffClassification } from '../../../core/Tenant.types'
+import {
+  Organization, StaffClassification 
+} from '../../../core/Tenant.types'
 import { EdOrgViewItem } from '../../../hooks/adminActions/users/useUserEducationOrganizations.types'
 import UserOrganizationsEditPopover from './UserOrganizationsEditPopover'
 
@@ -26,63 +32,90 @@ const UserOrganizationsEditFormItem = ({ organizationsList, staffClassifications
 
   return (
     <Flex 
+      _notFirst={{
+        borderTop: '2px',
+        borderTopColor: 'gray.300' 
+      }}
+      bg='#eff4f6'
       justifyContent="space-between"
       padding='16px'
-      _notFirst={{ borderTop: '2px', borderTopColor: 'gray.300' }}
-      bg='#eff4f6'>
+    >
       <Flex 
         flexDir='column'
-        w='320px'>
+        w='320px'
+      >
         <FormControl w='full'>
           <CustomFormLabel
             htmlFor="educationOrganizationName"
-            text="Organization Name" />
+            text="Organization Name"
+          />
+
           <Select
-            value={educationOrganizationName}
-            isDisabled={true}
-            onChange={onSelectEducationOrganizationName}
-            borderRadius='4px'
             bg='white'
-            size='xs'>
+            borderRadius='4px'
+            isDisabled={true}
+            size='xs'
+            value={educationOrganizationName}
+            onChange={onSelectEducationOrganizationName}
+          >
             {organizationsList.map((org, index) => 
-              <option key={index} value={org.identifierValue}>
+              <option
+                key={index}
+                value={org.identifierValue}
+              >
                 {org.nameOfInstitution}
-              </option>    
-            )}
+              </option>)}
           </Select> 
         </FormControl>
-        <FormControl mt='16px' w='full'>
+
+        <FormControl
+          mt='16px'
+          w='full'
+        >
           <CustomFormLabel
             htmlFor="staffClassificationDescriptor"
-            text="Role" />
+            text="Role"
+          />
+
           <Select
-            value={staffClassificationDescriptor}
-            isDisabled={isUpdatingEducationOrganization}
-            onChange={onSelectStaffClassificationDescriptor}
-            borderRadius='4px'
             bg='white'
+            borderRadius='4px'
             color='black'
-            size='xs'>
+            isDisabled={isUpdatingEducationOrganization}
+            size='xs'
+            value={staffClassificationDescriptor}
+            onChange={onSelectStaffClassificationDescriptor}
+          >
             {staffClassificationsList.map((staffClassification, index) => 
-              <option key={index} value={`${staffClassification.varNamespace}#${staffClassification.codeValue}`}>
+              <option
+                key={index}
+                value={`${staffClassification.varNamespace}#${staffClassification.codeValue}`}
+              >
                 {staffClassification.shortDescription}
-              </option>    
-            )}
+              </option>)}
           </Select>
         </FormControl>
+
         {!isValidData() && !isCurrentSelection() && <CustomErrorField errorMessage="One organization with this id and role already exists" />}
       </Flex>
-      <Flex justifyContent='start' alignItems='start' w='auto'>
+
+      <Flex
+        alignItems='start'
+        justifyContent='start'
+        w='auto'
+      >
         <Button 
-          onClick={() => onUpdate(edOrgToEdit.educationOrganizationId as any, edOrgToEdit.staffClassification)}
-          isLoading={isUpdatingEducationOrganization}
-          isDisabled={!isValidData()}
-          size='xs'
           borderRadius='4px 0px 0px 4px'
+          isDisabled={!isValidData()}
+          isLoading={isUpdatingEducationOrganization}
+          minW='39px'
+          size='xs'
           variant='primaryBlue600'
-          minW='39px'>
-                            Save
+          onClick={() => onUpdate(edOrgToEdit.educationOrganizationId as any, edOrgToEdit.staffClassification)}
+        >
+          Save
         </Button>
+
         <UserOrganizationsEditPopover onCancelEdit={onCancel} />
       </Flex>
     </Flex>

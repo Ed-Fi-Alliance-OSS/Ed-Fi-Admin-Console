@@ -1,11 +1,17 @@
-import { TEEAuthDataContext, UserProfileContext } from '@edfi/admin-console-shared-sdk'
-import { useState, useEffect, useContext, ChangeEvent } from 'react'
+import {
+  TEEAuthDataContext, UserProfileContext 
+} from '@edfi/admin-console-shared-sdk'
+import {
+  useState, useEffect, useContext, ChangeEvent 
+} from 'react'
 import { adminConsoleContext } from '../../../context/adminConsoleContext'
 import { AppUser } from '../../../core/AppUser.types'
 import { Subscription } from '../../../core/Subscription.types'
 import { ActionParams } from '../../../services/AdminActions/adminAction.types'
 import useUserService from '../../../services/AdminActions/Users/UsersService'
-import { AssignLicenseRequest, RevokeLicenseRequest } from '../../../services/AdminActions/Users/UsersService.requests'
+import {
+  AssignLicenseRequest, RevokeLicenseRequest 
+} from '../../../services/AdminActions/Users/UsersService.requests'
 import useEDXToast from '../../common/useEDXToast'
 import useUsersList from '../users/useUsersList'
 import { UserSubscriber } from './useManageSubscribersForm.types'
@@ -47,14 +53,17 @@ const generateSubscriptionRoleOptionsList = (subscription: Subscription): Subscr
       return roleOption
     })
 
-  subscriptionRoles.unshift({ roleName: 'Select Role', isAvailableForTenants: true })
+  subscriptionRoles.unshift({
+    roleName: 'Select Role',
+    isAvailableForTenants: true 
+  })
 
   return subscriptionRoles
 }
 
 const generateUsersSubscriptionList = (userList: AppUser[], subscriptionId: string): UserSubscriber[] => {
   const usubscribersList: UserSubscriber[] = userList.map(user => {
-    const {isSubscribed, index} = isUserSubscribed(user, subscriptionId)
+    const { isSubscribed, index } = isUserSubscribed(user, subscriptionId)
 
     const usub: UserSubscriber = {
       userId: user.userId,
@@ -63,8 +72,9 @@ const generateUsersSubscriptionList = (userList: AppUser[], subscriptionId: stri
       email: user.email
     }
 
-    if (isSubscribed) 
+    if (isSubscribed) {
       usub.selectedRole = findSelectedRole(user, index)
+    }
 
     return usub
   })
@@ -83,20 +93,21 @@ const useManageSubscribersForm = ({ selectedSubscription, onAfterSave }: UseMana
   const { auth, edxAppConfig } = useContext(TEEAuthDataContext)
   const adminConfig = useContext(adminConsoleContext)
   const { userProfile } = useContext(UserProfileContext)
-  const [initialUserSubscriptionList, setInitialUsersSubscriptionList] = useState<UserSubscriber[]>([])
-  const [usersSubscriptionList, setUsersSubscriptionList] = useState<UserSubscriber[]>([])
-  const [subscriptionRoleOptions, setSubscriptionRoleOptions] = useState<SubscriptionRoleOption[]>([])
-  const [searchText, setSearchText] = useState('')
+  const [ initialUserSubscriptionList, setInitialUsersSubscriptionList ] = useState<UserSubscriber[]>([])
+  const [ usersSubscriptionList, setUsersSubscriptionList ] = useState<UserSubscriber[]>([])
+  const [ subscriptionRoleOptions, setSubscriptionRoleOptions ] = useState<SubscriptionRoleOption[]>([])
+  const [ searchText, setSearchText ] = useState('')
   const { successToast, errorToast } = useEDXToast()
-  const [isSavingChanges, setIsSavingChanges] = useState(false)
+  const [ isSavingChanges, setIsSavingChanges ] = useState(false)
 
   const onSelectRoleForUser = (userId: string, role: string) => {
     console.log('selected role for user', userId, role)
-    const nusersSubscriptionList = usersSubscriptionList.map(user => ({...user}))
+    const nusersSubscriptionList = usersSubscriptionList.map(user => ({ ...user }))
     const userIndex = nusersSubscriptionList.findIndex(user => user.userId === userId)
 
-    if (role === 'Select Role')
-      return 
+    if (role === 'Select Role') {
+      return
+    } 
 
     if (userIndex !== -1) {
       if (nusersSubscriptionList[userIndex].subscribed) {
@@ -110,16 +121,16 @@ const useManageSubscribersForm = ({ selectedSubscription, onAfterSave }: UseMana
 
   const onToggleSubscription = (userId: string) => {
     console.log('userid', userId)
-    const nusersSubscriptionList = usersSubscriptionList.map(user => ({...user}))
-
+    const nusersSubscriptionList = usersSubscriptionList.map(user => ({ ...user }))
     const userIndex = nusersSubscriptionList.findIndex(user => user.userId === userId)
 
     if (userIndex !== -1) {
       nusersSubscriptionList[userIndex].subscribed = !nusersSubscriptionList[userIndex].subscribed
-      if (nusersSubscriptionList[userIndex].subscribed)
+      if (nusersSubscriptionList[userIndex].subscribed) {
         nusersSubscriptionList[userIndex].selectedRole = subscriptionRoleOptions.length > 0? subscriptionRoleOptions[0].roleName : ''
-      else 
+      } else {
         delete nusersSubscriptionList[userIndex].selectedRole
+      }
 
       console.log('list after toggle', nusersSubscriptionList)
 
@@ -135,8 +146,9 @@ const useManageSubscribersForm = ({ selectedSubscription, onAfterSave }: UseMana
     for (const user of usersList) {
       const index = usersList.findIndex(u => u.userId === user.userId)
 
-      if (index !== -1 && !initialUserSubscriptionList[index].subscribed && usersList[index].subscribed)
+      if (index !== -1 && !initialUserSubscriptionList[index].subscribed && usersList[index].subscribed) {
         assignList.push(usersList[index])
+      }
     }
 
     return assignList
@@ -144,11 +156,13 @@ const useManageSubscribersForm = ({ selectedSubscription, onAfterSave }: UseMana
 
   const selectRevokeItems = (usersList: UserSubscriber[]): UserSubscriber[] => {
     const revokeList: UserSubscriber[]=  []
+
     for (const user of usersList) {
       const index = usersList.findIndex(u => u.userId === user.userId)
 
-      if (index !== -1 && initialUserSubscriptionList[index].subscribed && !usersList[index].subscribed)
+      if (index !== -1 && initialUserSubscriptionList[index].subscribed && !usersList[index].subscribed) {
         revokeList.push(usersList[index])
+      }
     }
 
     return revokeList
@@ -158,8 +172,10 @@ const useManageSubscribersForm = ({ selectedSubscription, onAfterSave }: UseMana
     if (userProfile && selectedSubscription) {
       for (const user of assignList) {
         const roles: string[] = []
-        if (user.selectedRole)
+
+        if (user.selectedRole) {
           roles.push(user.selectedRole)
+        }
     
         const requestData: AssignLicenseRequest = {
           tenantId: userProfile.tenantId,
@@ -217,15 +233,17 @@ const useManageSubscribersForm = ({ selectedSubscription, onAfterSave }: UseMana
 
       setIsSavingChanges(false)
 
-      if (assignResult && assignResult.type === 'Response')
+      if (assignResult && assignResult.type === 'Response') {
         successToast('Assigned Licenses.')
-      else if (assignResult && assignResult.type === 'Error')
+      } else if (assignResult && assignResult.type === 'Error') {
         errorToast(assignResult.actionMessage)
+      }
 
-      if (revokeResult && revokeResult.type === 'Response')
+      if (revokeResult && revokeResult.type === 'Response') {
         successToast('Revoked Licenses.')
-      else if (revokeResult && revokeResult.type === 'Error')
+      } else if (revokeResult && revokeResult.type === 'Error') {
         errorToast(revokeResult.actionMessage)
+      }
 
       onAfterSave()
     }
@@ -237,7 +255,7 @@ const useManageSubscribersForm = ({ selectedSubscription, onAfterSave }: UseMana
       console.log('use effect inside if', usersList, selectedSubscription)
 
       const userSubList = generateUsersSubscriptionList(usersList, selectedSubscription.subscriptionId)
-      const initialSubList = userSubList.map(user => ({...user}))
+      const initialSubList = userSubList.map(user => ({ ...user }))
       const roleOptions = generateSubscriptionRoleOptionsList(selectedSubscription)
 
       console.log('users subscription list', userSubList)

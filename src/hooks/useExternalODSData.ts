@@ -4,9 +4,7 @@ import { externalODSContext } from '../context/externalODSContext'
 const useExternalODSData = () => {
   const externalODS = useContext(externalODSContext)
 
-  return {
-    externalODS
-  }
+  return { externalODS }
 }
 
 export default useExternalODSData

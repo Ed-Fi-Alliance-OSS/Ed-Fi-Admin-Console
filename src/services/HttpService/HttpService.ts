@@ -1,6 +1,10 @@
 import axios, { AxiosError } from 'axios'
-import { HttpServiceRequestError, HttpServiceResponse } from './HttpService.response.types'
-import { HttpService, HttpServiceDeleteRequest, HttpServiceGetRequest, HttpServiceMethod, HttpServicePostRequest, HttpServicePutRequest } from './HttpService.types'
+import {
+  HttpServiceRequestError, HttpServiceResponse 
+} from './HttpService.response.types'
+import {
+  HttpService, HttpServiceDeleteRequest, HttpServiceGetRequest, HttpServiceMethod, HttpServicePostRequest, HttpServicePutRequest 
+} from './HttpService.types'
 import { includeAuthorization } from '@edfi/admin-console-shared-sdk' 
 
 axios.interceptors.request.use(function (config) {
@@ -26,7 +30,10 @@ const createDefaultError = (method: HttpServiceMethod, actionName: string) => {
     type: 'Error'
   }
 
-  return { actionMessage, requestError }
+  return {
+    actionMessage,
+    requestError 
+  }
 }
 
 const handleAxiosError = (error: AxiosError, requestError: HttpServiceRequestError) => {
@@ -45,6 +52,7 @@ const httpService: HttpService = {
       access_token, 
       apiConfig
     )
+
     try {
       const res = await axios.get(url, authorizationToken)
         
@@ -54,8 +62,7 @@ const httpService: HttpService = {
       }
     
       return response
-    }
-    catch (error) {
+    } catch (error) {
       const { requestError, actionMessage } = createDefaultError('Get', actionName)
     
       if (error instanceof AxiosError) {
@@ -70,6 +77,7 @@ const httpService: HttpService = {
   async post<TResponse, TData>({ url, data, access_token, actionName, apiConfig }: HttpServicePostRequest<TData>) {
     console.log(`Post request ${actionName} to ${url}`)
     const authorizationToken = await includeAuthorization(access_token, apiConfig)
+
     try {
       const res = await axios.post(url, data, authorizationToken)
         
@@ -79,8 +87,7 @@ const httpService: HttpService = {
       }
     
       return response
-    }
-    catch (error) {
+    } catch (error) {
       const { actionMessage, requestError } = createDefaultError('Post', actionName)
     
       if (error instanceof AxiosError) {
@@ -95,6 +102,7 @@ const httpService: HttpService = {
   async put<TResponse, TData>({ url, data, access_token, actionName, apiConfig }: HttpServicePutRequest<TData>) {
     console.log(`Put request ${actionName} to ${url}`)
     const authorizationToken = await includeAuthorization(access_token, apiConfig)
+
     try {
       const res = await axios.put(url, data, authorizationToken)
         
@@ -104,8 +112,7 @@ const httpService: HttpService = {
       }
     
       return response
-    }
-    catch (error) {
+    } catch (error) {
       const { actionMessage, requestError } = createDefaultError('Put', actionName)
     
       if (error instanceof AxiosError) {
@@ -120,6 +127,7 @@ const httpService: HttpService = {
   async delete<TResponse>({ url, access_token, actionName, apiConfig }: HttpServiceDeleteRequest) {
     console.log(`Delete request ${actionName} to ${url}`)
     const authorizationToken = await includeAuthorization(access_token, apiConfig)
+
     try {
       const res = await axios.delete(url, authorizationToken)
         
@@ -129,8 +137,7 @@ const httpService: HttpService = {
       }
     
       return response
-    }
-    catch (error) {
+    } catch (error) {
       const { requestError, actionMessage } = createDefaultError('Get', actionName)
     
       if (error instanceof AxiosError) {

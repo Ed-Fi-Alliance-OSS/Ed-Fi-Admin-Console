@@ -1,5 +1,7 @@
 import { UserProfileContext } from '@edfi/admin-console-shared-sdk'
-import { useContext, useEffect, useState } from 'react'
+import {
+  useContext, useEffect, useState 
+} from 'react'
 import { adminConsoleContext } from '../context/adminConsoleContext'
 import usePermissionsService from '../services/AdminActions/Permissions/PermissionsService'
 
@@ -20,12 +22,12 @@ const useCheckPermissions = () => {
   }
 
   useEffect(() => {
-    if (userProfile) onCheckPermissions()
+    if (userProfile) {
+      onCheckPermissions()
+    }
   }, [ userProfile ]) 
 
-  return {
-    finishedCheckedPermissions
-  }
+  return { finishedCheckedPermissions }
 }
 
 export default useCheckPermissions

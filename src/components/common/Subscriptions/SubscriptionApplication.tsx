@@ -8,13 +8,14 @@ interface SubscriptionApplicationProps {
 const SubscriptionApplication = ({ name, onEditApplicationSubscription }: SubscriptionApplicationProps) => {
   return (
     <Button
-      onClick={onEditApplicationSubscription}
-      cursor='pointer'
       color='blue.600'
-      fontFamily='Open sans'
+      cursor='pointer'
+      fontFamily='Poppins'
       fontWeight='700'
+      minW='auto'
       size='md'
-      minW='auto'>
+      onClick={onEditApplicationSubscription}
+    >
       {name}
     </Button> 
   )

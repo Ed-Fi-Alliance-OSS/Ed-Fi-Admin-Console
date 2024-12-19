@@ -1,5 +1,7 @@
 import { useState } from 'react'
-import { FieldError, FormDataErrors } from '../../core/validation/FormValidations.types'
+import {
+  FieldError, FormDataErrors 
+} from '../../core/validation/FormValidations.types'
 
 export interface HandleSingleErrorI {
     field: string 
@@ -7,15 +9,16 @@ export interface HandleSingleErrorI {
 }
 
 const useFormValidationErrors = () => {
-  const [errors, setErrors] = useState<FormDataErrors>({})
+  const [ errors, setErrors ] = useState<FormDataErrors>({})
 
-  const handleSingleError = ({field, error}: HandleSingleErrorI) => {
-    const allErrors = {...errors}
+  const handleSingleError = ({ field, error }: HandleSingleErrorI) => {
+    const allErrors = { ...errors }
 
-    if (error)
+    if (error) {
       allErrors[field] = error
-    else 
+    } else {
       delete allErrors[field]
+    }
 
     setErrors(allErrors)
   }

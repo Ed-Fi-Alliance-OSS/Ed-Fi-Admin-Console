@@ -1,5 +1,7 @@
 import { TEEAuthDataContext } from '@edfi/admin-console-shared-sdk'
-import { useState, useEffect, useContext } from 'react'
+import {
+  useState, useEffect, useContext 
+} from 'react'
 import { adminConsoleContext } from '../../../context/adminConsoleContext'
 import useODSService from '../../../services/AdminActions/Ods/ODSService'
 import { EducationOrganization } from '../../../services/AdminActions/Ods/ODSService.results'
@@ -8,8 +10,8 @@ const useEducationsOrganizations = () => {
   const { edxAppConfig, auth } = useContext(TEEAuthDataContext)
   const adminConfig = useContext(adminConsoleContext)
   const { getEducationOrganizations } = useODSService()
-  const [educationOrganizationsList, setEducationOrganizationsList] = useState<EducationOrganization[]>([])
-  const [isFetchingEducationOrganizations, setIsFetchingEducationOrganizations] = useState(false)
+  const [ educationOrganizationsList, setEducationOrganizationsList ] = useState<EducationOrganization[]>([])
+  const [ isFetchingEducationOrganizations, setIsFetchingEducationOrganizations ] = useState(false)
 
   const fetchEducationOrganizations = async () => {
     if (edxAppConfig && auth && auth.user && adminConfig) {

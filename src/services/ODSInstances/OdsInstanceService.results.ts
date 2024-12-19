@@ -1,5 +1,9 @@
-import { HttpServiceRequestError, HttpServiceResponse } from '../HttpService/HttpService.response.types'
-import { GetOdsInstancesListResponse, ODSInstanceUpdatedResponse, UpdateODSInstanceIsDefaultResponse } from './OdsInstanceService.responses'
+import {
+  HttpServiceRequestError, HttpServiceResponse
+} from '../HttpService/HttpService.response.types'
+import {
+  GetOdsInstancesListResponse, ODSInstanceUpdatedResponse, UpdateODSInstanceIsDefaultResponse
+} from './OdsInstanceService.responses'
 
 export type GetOdsInstancesListResult = Promise<HttpServiceResponse<GetOdsInstancesListResponse> | HttpServiceRequestError>
 export type PutOdsInstanceIsDefaultResult = Promise<HttpServiceResponse<UpdateODSInstanceIsDefaultResponse> | HttpServiceRequestError>

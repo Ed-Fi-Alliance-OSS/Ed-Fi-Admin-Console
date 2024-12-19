@@ -23,35 +23,43 @@ const ManageSubscriptionsTableRows = ({ subscriptionsList, onEditSubscription, o
           <ManageUsersTableData width="auto">
             <SubscriptionApplication 
               name={subscription.applicationName}
-              onEditApplicationSubscription={() => onEditSubscription(subscription.subscriptionId)} />
+              onEditApplicationSubscription={() => onEditSubscription(subscription.subscriptionId)}
+            />
           </ManageUsersTableData>
+
           <ManageUsersTableData width="auto">
             <SubscriptionLicensesAmount 
-              subscriptionId={subscription.subscriptionId}
               amount={subscription.numberOfLicenses === -1? 'Unlimited' : subscription.numberOfLicenses}
-              onManageSubscribers={onManageSubscribers} />
+              subscriptionId={subscription.subscriptionId}
+              onManageSubscribers={onManageSubscribers}
+            />
           </ManageUsersTableData>
+
           <ManageUsersTableData width="auto">
             <SubscriptionDateText date={formatDate(subscription.startDateTime)} />
           </ManageUsersTableData>
+
           <ManageUsersTableData width="auto">
             <SubscriptionDateText date={formatDate(subscription.endDateTime)} />
           </ManageUsersTableData>
+
           <ManageUsersTableData width="auto">
             <SubscriptionType type={subscription.licenseType} />
           </ManageUsersTableData>
+
           <ManageUsersTableData width="auto">
             <SubscriptionStatus status={subscription.subscriptionStatus} />
           </ManageUsersTableData>
+
           <ManageUsersTableData width="auto">
             <ManageSubscribersControls 
               applicationName={subscription.applicationName}
               subscriptionId={subscription.subscriptionId}
               onManage={() => onEditSubscription(subscription.subscriptionId)}
-              onManageSubscribers={onManageSubscribers} />
+              onManageSubscribers={onManageSubscribers}
+            />
           </ManageUsersTableData>
-        </ControlTableRow>
-      )}
+        </ControlTableRow>)}
     </>
   )
 }

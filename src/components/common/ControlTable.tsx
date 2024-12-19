@@ -1,4 +1,9 @@
-import { Flex, Skeleton, Text, Table, TableContainer, Tbody, Th, Thead, Tr } from '@chakra-ui/react'
+import {
+  Flex, Skeleton,
+  Table, TableContainer, Tbody,
+  Text,
+  Th, Thead, Tr
+} from '@chakra-ui/react'
 import { ControlTableRowList } from '../../core/controlTable'
 
 interface ControlTableProps {
@@ -23,57 +28,80 @@ const ControlTable = ({ headers, rows, thPadding, itemsCount, loading, paginatio
       border='1px' 
       borderColor='gray.300'
       borderRadius='4px'
-      w='full'>
+      w='full'
+    >
       <Table variant='simple'>
         <Thead>
           <Tr>
             {headers.map((header, index) => 
               <Th 
+                key={index}
                 aria-hidden={header !== null}
                 borderBottom='1px'
                 borderBottomColor='gray.300'
                 padding={thPadding}
-                key={index}>
+              >
                 {header}
-              </Th>
-            )}
+              </Th>)}
           </Tr>
         </Thead>
+
         <Tbody>
           {rows}
         </Tbody>
       </Table>
-      {itemsCount === 0 && loading && <Flex flexDir='column' padding='16px' w='full'>
+
+      {itemsCount === 0 && loading && <Flex
+        flexDir='column'
+        padding='16px'
+        w='full'
+      >
         {generateSkeletonArray().map((item, index) => 
           <Skeleton 
             key={index} 
-            h='35px' 
+            _notFirst={{ mt: '12px' }} 
+            h='35px'
             w='full'
-            _notFirst={{ mt: '12px' }} />
-        )}
+          />)}
       </Flex>}
-      {itemsCount === 0 && !loading && <Flex flexDir='column' padding='16px' w='full'>
-        <Flex h='35px' justifyContent='center' alignItems='center' w='full'>
+
+      {itemsCount === 0 && !loading && <Flex
+        flexDir='column'
+        padding='16px'
+        w='full'
+      >
+        <Flex
+          alignItems='center'
+          h='35px'
+          justifyContent='center'
+          w='full'
+        >
           <Text 
-            fontFamily='Open sans'
+            fontFamily='Poppins'
+            fontSize='16px'
             fontWeight='700'
-            fontSize='16px'>
-                                There are 0 items to show
+          >
+            There are 0 items to show
           </Text>
         </Flex>
       </Flex>}
+
       {pagination &&  
-                    <Flex
-                      borderTop='2px' 
-                      _notLast={{ borderBottom: '2px', borderBottomColor: 'gray.300' }}
-                      borderTopColor='gray.300'
-                      py='16px'
-                      px='16px'
-                      w='full'>
-                      <Flex w='full'>
-                        {pagination}
-                      </Flex>
-                    </Flex>}
+      <Flex
+        _notLast={{
+          borderBottom: '2px',
+          borderBottomColor: 'gray.300' 
+        }} 
+        borderTop='2px'
+        borderTopColor='gray.300'
+        px='16px'
+        py='16px'
+        w='full'
+      >
+        <Flex w='full'>
+          {pagination}
+        </Flex>
+      </Flex>}
     </TableContainer>
   )
 }

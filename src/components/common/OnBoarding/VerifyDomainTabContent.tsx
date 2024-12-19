@@ -1,6 +1,12 @@
-import { Flex, Text } from '@chakra-ui/react'
-import { ChangeEvent, useState } from 'react'
-import { FieldError, FormDataErrors } from '../../../core/validation/FormValidations.types'
+import {
+  Flex, Text
+} from '@chakra-ui/react'
+import {
+  ChangeEvent, useState
+} from 'react'
+import {
+  FieldError, FormDataErrors
+} from '../../../core/validation/FormValidations.types'
 import { DomainData } from '../../../hooks/adminActions/dns/useVerifyDomain'
 import OnBoardingTabContentWrapper from './OnBoardingTabContentWrapper'
 import VerifyDomainTabContentAddDNSStep from './VerifyDomainTabContentAddDNSStep'
@@ -26,15 +32,19 @@ const VerifyDomainTabContent = ({ domainsList, isAddingDomain, isRemovingDomain,
     console.log('domain name lenght', domainName.length)
     let error: FieldError | null = null
 
-    if (domainName.length === 0)
+    if (domainName.length === 0) {
       error = { message: 'The domain name should not be empty' }
+    }
     
-    if (domainName.length > 63)
+    if (domainName.length > 63) {
       error = { message: 'Domain should not have more than 63 characters' }
+    }
             
     const regex = new RegExp(/^(?!-)[A-Za-z0-9-]+([\-\.]{1}[a-z0-9]+)*\.[A-Za-z]{2,6}$/)
-    if (regex.test(domainName) == false)
+
+    if (regex.test(domainName) == false) {
       error = { message: 'Invalid domain name' }
+    }
 
     return error
   }
@@ -42,8 +52,9 @@ const VerifyDomainTabContent = ({ domainsList, isAddingDomain, isRemovingDomain,
   const isValidData = () => { 
     const error = validateData(domainName) 
 
-    if (error)
+    if (error) {
       return false
+    }
 
     return true
   }
@@ -52,14 +63,18 @@ const VerifyDomainTabContent = ({ domainsList, isAddingDomain, isRemovingDomain,
     console.log('the value', e.target.value)
 
     const error = validateData(e.target.value)
-    if (error)
+
+    if (error) {
       setErrors({ addDomain: error })
-    else 
+    } else {
       delete errors['addDomain']
+    }
 
     setDomainName(e.target.value)
   }
+
   const onCheckDomain = (e: ChangeEvent<HTMLInputElement>) => setSelectedDomain(e.target.value)
+
   const onSaveDomain = (domainName: string) => {
     onAddDomain(domainName)
     setDomainName('')
@@ -68,46 +83,67 @@ const VerifyDomainTabContent = ({ domainsList, isAddingDomain, isRemovingDomain,
   return (
     <OnBoardingTabContentWrapper>
       <Text
-        fontFamily='Open sans'
+        fontFamily='Poppins'
         fontWeight='400'
         textAlign='justify'
-        w='750px'>
-                    Your domain must be verified in order to continue. Your ESC Admin will need the information below  to add a TXT record with your domain provider to serve as proof of ownership. Once the record has been added, come back here to check for verification. This process can take up to 24 hours after the TXT record has been added. Once the domain is verified, you may move on to the next step.
+        w='750px'
+      >
+        Your domain must be verified in order to continue. Your ESC Admin will need the information below  to add a TXT record with your domain provider to serve as proof of ownership. Once the record has been added, come back here to check for verification. This process can take up to 24 hours after the TXT record has been added. Once the domain is verified, you may move on to the next step.
       </Text>
-      <Flex flexDir='column' mt='32px'>
+
+      <Flex
+        flexDir='column'
+        mt='32px'
+      >
         <VerifyDomainTabContentAddDomainStep
           domainName={domainName}
-          isValidData={isValidData}
           errors={errors}
           isSaving={isAddingDomain}
+          isValidData={isValidData}
           onAddDomain={onSaveDomain}
-          onInputChange={onInputChange} />
+          onInputChange={onInputChange}
+        />
       </Flex>
+
       <>
         { domainsList.length > 0 && 
-                <Flex flexDir='column'>
-                  <Flex flexDir='column' mt='32px' w='full'>
-                    <VerifyDomainTabContentAddDNSStep />
-                  </Flex>
-                  <Flex flexDir='column' mt='32px' w='full'>
-                    <VerifyDomainTabContentVerificationStep 
-                      domainsList={domainsList}
-                      isCheckingDomainStatus={isCheckingDomainStatus}
-                      isRemovingDomain={isRemovingDomain}
-                      selectedDomain={selectedDomain}
-                      onSelectDomain={onCheckDomain}
-                      onVerifyDomain={onVerifyDomain}
-                      onRemoveDomain={onRemoveDomain} />
-                  </Flex>
-                </Flex>}
+        <Flex flexDir='column'>
+          <Flex
+            flexDir='column'
+            mt='32px'
+            w='full'
+          >
+            <VerifyDomainTabContentAddDNSStep />
+          </Flex>
+
+          <Flex
+            flexDir='column'
+            mt='32px'
+            w='full'
+          >
+            <VerifyDomainTabContentVerificationStep 
+              domainsList={domainsList}
+              isCheckingDomainStatus={isCheckingDomainStatus}
+              isRemovingDomain={isRemovingDomain}
+              selectedDomain={selectedDomain}
+              onRemoveDomain={onRemoveDomain}
+              onSelectDomain={onCheckDomain}
+              onVerifyDomain={onVerifyDomain}
+            />
+          </Flex>
+        </Flex>}
       </>
-      <Flex mt='32px' w='full'>
+      <Flex
+        mt='32px'
+        w='full'
+      >
         {false && <Text
           color='blue.500'
-          fontFamily='Open sans'
+          fontFamily='Poppins'
           fontWeight='700'
-          size='md'>
-                        Not sure how to proceed? Get help here. 
+          size='md'
+        >
+          Not sure how to proceed? Get help here. 
         </Text>}
       </Flex>
     </OnBoardingTabContentWrapper>

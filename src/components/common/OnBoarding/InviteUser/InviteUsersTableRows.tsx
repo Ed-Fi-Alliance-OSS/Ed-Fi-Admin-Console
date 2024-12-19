@@ -1,4 +1,6 @@
-import { Td, Text } from '@chakra-ui/react'
+import {
+  Td, Text
+} from '@chakra-ui/react'
 import { Invitation } from '../../../../core/invitations/Invitation.types'
 import ControlTableRow from '../../ControlTableRow'
 import InvitationStatus from './InvitationStatus'
@@ -15,44 +17,51 @@ const InviteUsersTableRows = ({ invitationsList }: InviteUsersTableRowsProps) =>
           <Td w='30%'>
             <Text
               color='gray.700'
-              fontFamily='Open sans'
+              fontFamily='Poppins'
               fontWeight='400'
-              size='sm'>
+              size='sm'
+            >
               {invitation.email}
             </Text>
           </Td>
+
           <Td w='20%'>
             <Text
               color='gray.700'
-              fontFamily='Open sans'
+              fontFamily='Poppins'
               fontWeight='400'
-              size='sm'>
+              size='sm'
+            >
               {invitation.firstName}
             </Text>
           </Td>
+
           <Td w='20%'>
             <Text
               color='gray.700'
-              fontFamily='Open sans'
+              fontFamily='Poppins'
               fontWeight='400'
-              size='sm'>
+              size='sm'
+            >
               {invitation.lastName}
             </Text>
           </Td>
+
           <Td w='20%'>
             <Text
               color='gray.700'
-              fontFamily='Open sans'
+              fontFamily='Poppins'
               fontWeight='400'
-              size='sm'>
+              size='sm'
+            >
               {invitation.role === 'Tenant.Admin'? 'District Admin' : 'District User'}
             </Text>
           </Td>
+
           <Td w='200px'>
             <InvitationStatus status={invitation.invitationStatus} />
           </Td>
-        </ControlTableRow>
-      )}
+        </ControlTableRow>)}
     </>
   )
 }

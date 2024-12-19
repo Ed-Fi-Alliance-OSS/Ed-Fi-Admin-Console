@@ -5,10 +5,11 @@ const localConfigFile = './local.config.json'
 function mapLocalConfig (data) {
   const localConfigJson = JSON.parse(data)
   const configKeys = Object.keys(localConfigJson)
-  const nfrontendConfig = {...appConfig}
+  const nfrontendConfig = { ...appConfig }
 
-  for (let key of configKeys)
+  for (let key of configKeys) {
     nfrontendConfig[key] = localConfigJson[key]
+  }
 
   console.log('Map local config')
 
@@ -18,10 +19,11 @@ function mapLocalConfig (data) {
 function mapDevConfig (data) {
   const devConfigJson = JSON.parse(data)
   const configKeys = Object.keys(devConfigJson)
-  const nfrontendConfig = {...devConfigJson}
+  const nfrontendConfig = { ...devConfigJson }
 
-  for (let key of configKeys)
+  for (let key of configKeys) {
     nfrontendConfig[key] = devConfigJson[key]
+  }
 
   console.log('Map dev config')
 
@@ -38,16 +40,14 @@ function mergeConfig () {
       config = mapLocalConfig(file)
 
       return config
-    }
-    else {
+    } else {
       const file = fs.readFileSync(appConfigFile, 'utf-8')
       console.log('app config file', appConfigFile)
       config = mapDevConfig(file)
             
       return config
     }
-  }
-  catch(ex) {
+  } catch(ex) {
     console.log('Error', ex)
   }
 }

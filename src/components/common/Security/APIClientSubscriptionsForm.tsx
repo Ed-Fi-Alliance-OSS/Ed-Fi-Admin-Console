@@ -1,5 +1,9 @@
-import { Flex, Text } from '@chakra-ui/react'
-import { CustomSelect, CustomSwitch } from '@edfi/admin-console-shared-sdk'
+import {
+  Flex, Text
+} from '@chakra-ui/react'
+import {
+  CustomSelect, CustomSwitch
+} from '@edfi/admin-console-shared-sdk'
 
 const subscriptions = [
   'Data Sync',
@@ -13,40 +17,51 @@ const APIClientSubscriptionsForm = () => {
   return (
     <Flex 
       flexDir='column' 
-      w='full'>
+      w='full'
+    >
       {subscriptions.map((option, index) => 
         <Flex 
           key={index}
+          _notFirst={{ mt: '15px' }}
           alignItems='center'
-          justifyContent='space-between'
-          borderRadius='4px'
           border='1px'
           borderColor='gray.300'
+          borderRadius='4px'
+          justifyContent='space-between'
           padding='12px 10px'
-          _notFirst={{ mt: '15px' }}
-          w='full'>
+          w='full'
+        >
           <Flex alignItems='center'>
             <CustomSwitch 
               id="apiClient"
-              isChecked={option === 'Data Sync'? true : false} />
+              isChecked={option === 'Data Sync'? true : false}
+            />
+
             <Text
               color='blue.600'
-              fontFamily='Open sans'
+              fontFamily='Poppins'
               fontWeight='700'
               ml='15px'
-              size='sm'>
+              size='sm'
+            >
               {option}
             </Text>
           </Flex>  
+
           {option === 'Data Sync' && 
-                                <Flex>
-                                  <CustomSelect
-                                    value='Data Sync.U...'
-                                    options={[{ text: 'Data Sync.U...', value: 'Data Sync.U...' }]}
-                                    onChange={() => null} />
-                                </Flex>}
-        </Flex>
-      )}
+          <Flex>
+            <CustomSelect
+              options={[
+                {
+                  text: 'Data Sync.U...',
+                  value: 'Data Sync.U...' 
+                }
+              ]}
+              value='Data Sync.U...'
+              onChange={() => null}
+            />
+          </Flex>}
+        </Flex>)}
     </Flex>
   )
 }   

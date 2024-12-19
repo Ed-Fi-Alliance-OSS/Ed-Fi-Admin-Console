@@ -1,11 +1,11 @@
 import {
   Accordion,
-  AccordionItem,
   AccordionButton,
-  AccordionPanel,
   AccordionIcon,
-  Text,
+  AccordionItem,
+  AccordionPanel,
   Flex,
+  Text,
 } from '@chakra-ui/react'
 import { InstanceEdfiStatus } from '../../../core/ODSInstance.types'
 import ODSInstanceEdFiStatus from '../ODS/ODSInstanceEdFiStatus'
@@ -34,37 +34,46 @@ const StatusSummaryAccordion = ({ instanceList }: StatusSummaryAccordionProps) =
       {instanceList.map((instance, index) => 
         <AccordionItem 
           key={index} 
-          bg='white' 
-          borderRadius='4px'
+          _notFirst={{ mt: '24px' }} 
+          bg='white'
           border='1px'
           borderColor='gray.300'
-          _notFirst={{ mt: '24px' }}>
+          borderRadius='4px'
+        >
           <AccordionButton
-            display='flex'
             alignItems='center'
-            h='64px'>
-            <AccordionIcon ml='30px' aria-hidden="true" focusable="false" />
+            display='flex'
+            h='64px'
+          >
+            <AccordionIcon
+              aria-hidden="true"
+              focusable="false"
+              ml='30px'
+            />
+
             <Text 
               color='blue.600'
-              fontFamily='Open sans'
+              fontFamily='Poppins'
               fontWeight='700'
+              ml='10px'
               size='16px'
-              ml='10px'>
+            >
               {instance.name}
             </Text>
+
             <Flex ml='50px'>
               <ODSInstanceEdFiStatus status={instance.status} />
             </Flex>
           </AccordionButton>
+
           <AccordionPanel padding='45px 30px'>
             {instance.healthList.map((service, sindex) => 
               <InstanceServiceHealthBar
                 key={sindex}
-                serviceHealth={service} />
-            )}
+                serviceHealth={service}
+              />)}
           </AccordionPanel>
-        </AccordionItem>
-      )}
+        </AccordionItem>)}
     </Accordion>
   )
 }

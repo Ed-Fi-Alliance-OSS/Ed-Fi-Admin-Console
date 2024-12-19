@@ -1,6 +1,12 @@
-import { TEEAuthDataContext, UserProfileContext } from '@edfi/admin-console-shared-sdk'
-import { createContext, useContext } from 'react'
-import { ActionParams, EdfiActionParams } from '../services/AdminActions/adminAction.types'
+import {
+  TEEAuthDataContext, UserProfileContext 
+} from '@edfi/admin-console-shared-sdk'
+import {
+  createContext, useContext 
+} from 'react'
+import {
+  ActionParams, EdfiActionParams 
+} from '../services/AdminActions/adminAction.types'
 
 export interface AdminConsoleConfig {
     actionParams: ActionParams
@@ -60,7 +66,6 @@ const AdminConsoleConfigProvider = ({ children, config }: AdminConsoleConfigProv
   const getShowAdvancedTabs = () => config.app.showAdvancedTabs? config.app.showAdvancedTabs : false
   const getAllowDebug = () => config.app.allowDebug? config.app.allowDebug : false
   const getUseDataHealthWithSchoolYear = () => config.app.useDataHealthWithSchoolYear? config.app.useDataHealthWithSchoolYear : false
-
   const getShowUserDelete = () => config.app.showUserDelete? config.app.showUserDelete : false
   const getShowEdfiPartnerDelete = () => config.app.showEdfiPartnerDelete? config.app.showEdfiPartnerDelete : false
   const getShowEdfiApplicationDelete = () => config.app.showEdfiApplicationDelete? config.app.showEdfiApplicationDelete : false
@@ -78,7 +83,7 @@ const AdminConsoleConfigProvider = ({ children, config }: AdminConsoleConfigProv
     const showEdOrgsTab = getShowEdOrgsTab()
     const useDataHealthWithSchoolYear = getUseDataHealthWithSchoolYear()
 
-    if (actionParams && edfiActionParams)
+    if (actionParams && edfiActionParams) {
       return { 
         actionParams, 
         edfiActionParams, 
@@ -93,6 +98,7 @@ const AdminConsoleConfigProvider = ({ children, config }: AdminConsoleConfigProv
         showEdOrgsTab,
         useDataHealthWithSchoolYear
       }
+    }
 
     return null
   }

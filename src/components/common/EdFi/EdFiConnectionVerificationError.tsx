@@ -1,5 +1,7 @@
 import { WarningIcon } from '@chakra-ui/icons'
-import { Flex, Text } from '@chakra-ui/react'
+import {
+  Flex, Text
+} from '@chakra-ui/react'
 import { EdFiConnectionVerificationStatus } from '../../../hooks/edfi/useEdFiConnectionForm.types'
 
 interface EdFiConnectionVerificationErrorProps {
@@ -19,14 +21,17 @@ const errorMessages: VerificationErrorMessagesData = {
 }
 
 const getErrorMessage = (status: EdFiConnectionVerificationStatus) => {
-  if (status === 'Authentication Failed')
+  if (status === 'Authentication Failed') {
     return errorMessages.authenticationFailed
+  }
 
-  if (status === 'URL Error')   
+  if (status === 'URL Error') {
     return errorMessages.baseUrlUnresolved
+  }
 
-  if (status === 'Credential Error')
+  if (status === 'Credential Error') {
     return errorMessages.credentialError
+  }
 
   return 'Unknown Error'
 }
@@ -38,23 +43,27 @@ const EdFiConnectionVerificationError = ({ status }: EdFiConnectionVerificationE
         bg='red.100'
         flexDir='column'
         p='16px 24px'
-        w='full'>
+        w='full'
+      >
         <Flex alignItems='center'>
-          <WarningIcon 
-            color='red.600' />
+          <WarningIcon color='red.600' />
+
           <Text
             fontFamily='Poppins'
-            fontWeight="600"
             fontSize='16px'
-            ml='12px'>
-                                ERROR
+            fontWeight="600"
+            ml='12px'
+          >
+            ERROR
           </Text>
         </Flex>
+
         <Text 
           color='gray.800' 
-          fontFamily='Open sans' 
-          mt='6px' 
-          ml='28px'>
+          fontFamily='Poppins' 
+          ml='28px' 
+          mt='6px'
+        >
           {getErrorMessage(status)}
         </Text>
       </Flex>

@@ -7,9 +7,10 @@ interface ODSInstanceEdFiExtensionProps {
 const ODSInstanceEdFiExtension = ({ extension }: ODSInstanceEdFiExtensionProps) => {
   return (
     <Text
-      fontFamily='Open sans'
+      fontFamily='Poppins'
       fontWeight='400'
-      size='md'>
+      size='md'
+    >
       {extension}
     </Text>
   )

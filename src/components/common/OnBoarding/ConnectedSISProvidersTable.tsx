@@ -20,7 +20,8 @@ const ConnectedSISProvidersTable = ({ connectedSISProvidersList }: ConnectedSISP
       itemsCount={connectedSISProvidersList.length}
       loading={false}
       rows={<ConnectedSISProvidersTableRows connectedSISProvidersList={connectedSISProvidersList} />}
-      thPadding='auto' />
+      thPadding='auto'
+    />
   )
 }
 

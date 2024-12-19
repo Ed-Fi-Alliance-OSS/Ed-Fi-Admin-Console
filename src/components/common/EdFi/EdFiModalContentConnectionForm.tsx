@@ -1,5 +1,7 @@
 import useEdFiConnectionForm from '../../../hooks/edfi/useEdFiConnectionForm'
-import { EdFiConnectionFormData, EdFiConnectionFormMode } from '../../../hooks/edfi/useEdFiConnectionForm.types'
+import {
+  EdFiConnectionFormData, EdFiConnectionFormMode 
+} from '../../../hooks/edfi/useEdFiConnectionForm.types'
 import ModalForm from '../ModalForm'
 import EdFiConnectionForm from './EdFiConnectionForm'
 import EdFiEditConnectionFormHeader from './EdFiConnectionFormHeader'
@@ -13,8 +15,7 @@ interface EdFiEditConnectionFormProps {
 }
 
 const EdFiModalContentConnectionForm  = ({ mode, initialData, onClose, onConfirmClose }: EdFiEditConnectionFormProps) => {
-  const { 
-    formData, 
+  const { formData, 
     isSaving,
     verificationStatus,
     isVerifying,
@@ -23,35 +24,43 @@ const EdFiModalContentConnectionForm  = ({ mode, initialData, onClose, onConfirm
     isDisabledSave,
     isDisabledVerification,
     onVerifyConnection,
-    onSave } = useEdFiConnectionForm({ initialData, mode, inOnboarding: false })
+    onSave } = useEdFiConnectionForm({
+    initialData,
+    mode,
+    inOnboarding: false 
+  })
 
   const onSaveChanges = async () => {
     await onSave()
 
-    if (verificationStatus === 'Connected')
+    if (verificationStatus === 'Connected') {
       onClose()
+    }
   }
 
   return (
     <ModalForm
-      header={<EdFiEditConnectionFormHeader
-        isSaving={false}
-        onAction={onSaveChanges}
-        isDisabled={isDisabledSave()}
-        onClose={onConfirmClose} />}
       content={<EdFiConnectionForm
+        disabledVerification={!isDisabledVerification()}
+        errors={errors}
         formData={formData}
+        inOnboarding={false}
         isSaving={isSaving}
         isverifying={isVerifying}
-        inOnboarding={false}
-        disabledVerification={!isDisabledVerification()}
         mode={mode}
         verificationStatus={verificationStatus}
-        errors={errors}
         onInputChange={onInputChange}
-        onVerifyConnection={onVerifyConnection} />}
+        onVerifyConnection={onVerifyConnection}
+      />}
+      header={<EdFiEditConnectionFormHeader
+        isDisabled={isDisabledSave()}
+        isSaving={false}
+        onAction={onSaveChanges}
+        onClose={onConfirmClose}
+      />}
       height='auto'
-      width="512px" />
+      width="512px"
+    />
   )
 }
 

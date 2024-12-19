@@ -12,8 +12,10 @@ const Page = ({ appName, title, children, htmlTags }: PageProps) => {
     <>
       <Helmet>
         <title>{ `${appName} | ${ title }` }</title>
+
         {htmlTags}
       </Helmet>
+
       { children }
     </>
   )

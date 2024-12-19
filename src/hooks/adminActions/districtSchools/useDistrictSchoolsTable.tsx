@@ -1,5 +1,10 @@
-import { TEEAuthDataContext, UserProfileContext } from '@edfi/admin-console-shared-sdk'
-import { useEffect, useState, useContext } from 'react'
+import {
+  TEEAuthDataContext, UserProfileContext
+} from '@edfi/admin-console-shared-sdk'
+import {
+  useContext,
+  useEffect, useState
+} from 'react'
 import { adminConsoleContext } from '../../../context/adminConsoleContext'
 import { Tenant } from '../../../core/Tenant.types'
 import useDomainsService from '../../../services/AdminActions/Domains/DomainsService'
@@ -7,7 +12,7 @@ import useTenantService from '../../../services/AdminActions/Tenant/TenantServic
 
 const useDistrictSchoolsTable = () => {
   const { auth, edxAppConfig } = useContext(TEEAuthDataContext)
-  const { getTenant } = useTenantService()
+  const { getTenantById } = useTenantService()
   const adminConfig = useContext(adminConsoleContext)
   const { userProfile } = useContext(UserProfileContext)
   const [ districtsList, setDistrictsList ] = useState<Tenant[]>([])
@@ -16,15 +21,12 @@ const useDistrictSchoolsTable = () => {
 
   const fetchDistrictsData = async () => {
     if (auth && auth.user && edxAppConfig && userProfile && adminConfig) {
-      const result = await getTenant(adminConfig.actionParams)
+      const result = await getTenantById('1')
+      // const result: Tenant[] = []
 
-      if (result.type === 'Response') {
-        const ndistrictsList: Tenant[] = []
-        ndistrictsList.push(result.data)
-
-        console.log('district data', result.data)
-
-        setDistrictsList(ndistrictsList)
+      if (Array.isArray(result) && result.length > 0) {
+        console.log('district data', result)
+        setDistrictsList(result)
       }
     }
   }

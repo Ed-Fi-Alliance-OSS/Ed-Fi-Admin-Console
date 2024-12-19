@@ -10,13 +10,14 @@ interface SubscriptionLicensesAmountProps {
 const SubscriptionLicensesAmount = ({ subscriptionId, amount, onManageSubscribers }: SubscriptionLicensesAmountProps) => {
   return (
     <Button
-      cursor='pointer'
-      onClick={() => onManageSubscribers(subscriptionId)}
       color='blue.600'
-      fontFamily='Open sans'
+      cursor='pointer'
+      fontFamily='Poppins'
       fontWeight='700'
+      minW='auto'
       size='md'
-      minW='auto'>
+      onClick={() => onManageSubscribers(subscriptionId)}
+    >
       {amount}
     </Button>
   )

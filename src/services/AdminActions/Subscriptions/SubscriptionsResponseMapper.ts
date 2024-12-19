@@ -1,4 +1,6 @@
-import { LicenseType, SubscriptionStatus } from '../../../core/Subscription.types'
+import {
+  LicenseType, SubscriptionStatus 
+} from '../../../core/Subscription.types'
 import { SubscriptionsListData } from './SubscriptionsResponseMapper.types'
 import { GetSubscriptionsListResponse } from './SubscriptionsService.responses'
 
@@ -23,29 +25,34 @@ class SubscriptionsResponseMapper {
     return subscriptionsListData
   }   
 
-  private static mapSubscriptionLicenseType(value: number): LicenseType
-  {
-    if (value === 1) 
+  private static mapSubscriptionLicenseType(value: number): LicenseType {
+    if (value === 1) {
       return 'Full'
-    if (value === 2) 
+    }
+
+    if (value === 2) {
       return 'Trial'
+    }
             
     return 'Unknown'
   }
 
-  private static mapSubscriptionStatus(value: number): SubscriptionStatus
-  {
-    if (value === 1)
+  private static mapSubscriptionStatus(value: number): SubscriptionStatus {
+    if (value === 1) {
       return 'Active'
+    }
             
-    if (value === 2)
+    if (value === 2) {
       return 'Inactive'
+    }
             
-    if (value === 3)
+    if (value === 3) {
       return 'Pending'
+    }
             
-    if (value === 4)
+    if (value === 4) {
       return 'Rejected'
+    }
             
     return 'Unknown'
   }

@@ -23,9 +23,7 @@ const useDataSyncService = () => {
     return result
   }
 
-  return {
-    createConnection
-  }
+  return { createConnection }
 }
 
 export default useDataSyncService

@@ -1,4 +1,6 @@
-import { Button, Flex } from '@chakra-ui/react'
+import {
+  Button, Flex 
+} from '@chakra-ui/react'
 
 interface APIClientsTabHeaderProps {
     onAddAPIClient: () => void
@@ -6,23 +8,32 @@ interface APIClientsTabHeaderProps {
 
 const APIClientsTabHeader = ({ onAddAPIClient }: APIClientsTabHeaderProps) => {
   return (
-    <Flex justifyContent='flex-end' w='full'>
-      <Flex alignItems='center' mt='5px'>
+    <Flex
+      justifyContent='flex-end'
+      w='full'
+    >
+      <Flex
+        alignItems='center'
+        mt='5px'
+      >
         <Button
-          variant='secondaryBlue600'
-          size='xs'
-          p='0 25px'
-          minW='5px'>
-                        Refresh List
-        </Button>
-        <Button
-          onClick={onAddAPIClient}
-          variant='primaryBlue600'
-          size='xs'
-          p='0 25px'
           minW='5px'
-          ml='8px'>
-                        Add Subscription
+          p='0 25px'
+          size='xs'
+          variant='secondaryBlue600'
+        >
+          Refresh List
+        </Button>
+
+        <Button
+          minW='5px'
+          ml='8px'
+          p='0 25px'
+          size='xs'
+          variant='primaryBlue600'
+          onClick={onAddAPIClient}
+        >
+          Add Subscription
         </Button>
       </Flex>
     </Flex>

@@ -1,4 +1,11 @@
-import { Table, TableContainer, Thead, Tr, Th, Td, Tbody, Flex, Link, Button } from '@chakra-ui/react'
+import {
+  Flex,
+  Table, TableContainer,
+  Tbody,
+  Td,
+  Th,
+  Thead, Tr
+} from '@chakra-ui/react'
 import PermissionsAccordionResourceInfo from './PermissionsAccordionResourceInfo'
 
 interface ResourceInfoData {
@@ -22,115 +29,201 @@ interface PermissionsAccordionTableProps {
 const PermissionsAccordionTable = ({ resourceInfo }: PermissionsAccordionTableProps) => {
   return (
     <TableContainer
-      borderRadius='4px'
       border='1px'
-      borderColor='gray.300'>
+      borderColor='gray.300'
+      borderRadius='4px'
+    >
       <Table   
         border='1px'
         borderColor='gray.300' 
         overflow='hidden'
-        variant='simple'>
+        variant='simple'
+      >
         <Thead bg='gray.100'>
           <Tr p='0'>
             <Th w='full'></Th>
+
             <Th
               color='gray.700'
-              fontFamily='Open sans'
+              fontFamily='Poppins'
+              fontSize='14px'
               fontWeight='700'
               textTransform='none'
-              fontSize='14px'>Read</Th>
-            <Th w='100px'>
-                            Create
+            >Read
             </Th>
+
             <Th w='100px'>
-                            Update
+              Create
             </Th>
+
             <Th w='100px'>
-                            Delete
+              Update
+            </Th>
+
+            <Th w='100px'>
+              Delete
             </Th>
           </Tr>
         </Thead>
+
         <Tbody>
           <Tr
             border='2px' 
             borderColor='gray.300'
-            padding='0'>
+            padding='0'
+          >
             <Td paddingY='0'>
               <PermissionsAccordionResourceInfo resourceInfoData={resourceInfo.types} />
             </Td> 
+
             <Td paddingY='0'>
-              <Flex borderRadius='4px' bg='gray.100' h='20px' w='20px'>
+              <Flex
+                bg='gray.100'
+                borderRadius='4px'
+                h='20px'
+                w='20px'
+              >
                                         
               </Flex>
             </Td> 
+
             <Td paddingY='0'>
-              <Flex borderRadius='4px' bg='gray.100' h='20px' w='20px'>
+              <Flex
+                bg='gray.100'
+                borderRadius='4px'
+                h='20px'
+                w='20px'
+              >
                                         
               </Flex>
             </Td> 
+
             <Td paddingY='0'>
-              <Flex borderRadius='4px' bg='gray.100' h='20px' w='20px'>
+              <Flex
+                bg='gray.100'
+                borderRadius='4px'
+                h='20px'
+                w='20px'
+              >
                                         
               </Flex>
             </Td> 
+
             <Td paddingY='0'>
-              <Flex borderRadius='4px' bg='gray.100' h='20px' w='20px'>
+              <Flex
+                bg='gray.100'
+                borderRadius='4px'
+                h='20px'
+                w='20px'
+              >
                                         
               </Flex>
             </Td> 
           </Tr>
+
           <Tr
             border='2px' 
             borderColor='gray.300'
-            padding='0'>
+            padding='0'
+          >
             <Td paddingY='0'>
               <PermissionsAccordionResourceInfo resourceInfoData={resourceInfo.systemDescriptors} />
             </Td> 
+
             <Td paddingY='0'>
-              <Flex borderRadius='4px' bg='gray.100' h='20px' w='20px'>
+              <Flex
+                bg='gray.100'
+                borderRadius='4px'
+                h='20px'
+                w='20px'
+              >
                                         
               </Flex>
             </Td> 
+
             <Td paddingY='0'>
-              <Flex borderRadius='4px' bg='gray.100' h='20px' w='20px'>
+              <Flex
+                bg='gray.100'
+                borderRadius='4px'
+                h='20px'
+                w='20px'
+              >
                                         
               </Flex>
             </Td> 
+
             <Td paddingY='0'>
-              <Flex borderRadius='4px' bg='gray.100' h='20px' w='20px'>
+              <Flex
+                bg='gray.100'
+                borderRadius='4px'
+                h='20px'
+                w='20px'
+              >
                                         
               </Flex>
             </Td> 
+
             <Td paddingY='0'>
-              <Flex borderRadius='4px' bg='gray.100' h='20px' w='20px'>
+              <Flex
+                bg='gray.100'
+                borderRadius='4px'
+                h='20px'
+                w='20px'
+              >
                                         
               </Flex>
             </Td> 
           </Tr>
+
           <Tr
             border='2px' 
             borderColor='gray.300'
-            padding='0'>
+            padding='0'
+          >
             <Td paddingY='0'>
               <PermissionsAccordionResourceInfo resourceInfoData={resourceInfo.educationOrganizations} />
             </Td> 
+
             <Td paddingY='0'>
-              <Flex borderRadius='4px' bg='gray.100' h='20px' w='20px'>
+              <Flex
+                bg='gray.100'
+                borderRadius='4px'
+                h='20px'
+                w='20px'
+              >
                                         
               </Flex>
             </Td> 
+
             <Td paddingY='0'>
-              <Flex borderRadius='4px' bg='gray.100' h='20px' w='20px'>
+              <Flex
+                bg='gray.100'
+                borderRadius='4px'
+                h='20px'
+                w='20px'
+              >
                                         
               </Flex>
             </Td> 
+
             <Td paddingY='0'>
-              <Flex borderRadius='4px' bg='gray.100' h='20px' w='20px'>
+              <Flex
+                bg='gray.100'
+                borderRadius='4px'
+                h='20px'
+                w='20px'
+              >
                                         
               </Flex>
             </Td> 
+
             <Td paddingY='0'>
-              <Flex borderRadius='4px' bg='gray.100' h='20px' w='20px'>
+              <Flex
+                bg='gray.100'
+                borderRadius='4px'
+                h='20px'
+                w='20px'
+              >
                                         
               </Flex>
             </Td> 

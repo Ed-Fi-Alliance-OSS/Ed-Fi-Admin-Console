@@ -13,10 +13,11 @@ const EdFiConnectionsTable = ({ headers, itemsCount, rows, loading, pagination }
     <ControlTable 
       headers={headers}
       itemsCount={itemsCount}
+      loading={loading}
+      pagination={pagination}
       rows={rows}
       thPadding="16px"
-      loading={loading}
-      pagination={pagination} />
+    />
   )
 }
 

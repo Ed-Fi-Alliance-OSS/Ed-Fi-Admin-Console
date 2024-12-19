@@ -1,15 +1,16 @@
 import { Text } from '@chakra-ui/react'
 
 interface ODSInstanceEdFiVersionProps {
-    version: string 
+    version?: string 
 }
 
 const ODSInstanceEdFiVersion = ({ version }: ODSInstanceEdFiVersionProps) => {
   return (
     <Text
-      fontFamily='Open sans'
+      fontFamily='Poppins'
       fontWeight='400'
-      size='md'>
+      size='md'
+    >
       { version }
     </Text>
   )

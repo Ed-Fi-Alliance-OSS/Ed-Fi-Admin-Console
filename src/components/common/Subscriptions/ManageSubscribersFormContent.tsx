@@ -1,9 +1,16 @@
-import { Flex, FormControl, Text } from '@chakra-ui/react'
-import { CustomFormLabel, CustomSelect, CustomInput, CustomSwitch } from '@edfi/admin-console-shared-sdk'
-import { Subscription } from '../../../core/Subscription.types'
-import { UserSubscriber } from '../../../hooks/adminActions/subscriptions/useManageSubscribersForm.types'
+import {
+  Flex, FormControl, Text
+} from '@chakra-ui/react'
+import {
+  CustomFormLabel,
+  CustomInput,
+  CustomSelect,
+  CustomSwitch
+} from '@edfi/admin-console-shared-sdk'
 import { ChangeEvent } from 'react'
+import { Subscription } from '../../../core/Subscription.types'
 import { SubscriptionRoleOption } from '../../../hooks/adminActions/subscriptions/useManageSubscribersForm'
+import { UserSubscriber } from '../../../hooks/adminActions/subscriptions/useManageSubscribersForm.types'
 
 interface ManageSubscribersFormContentProps {
     selectedSubscription: Subscription | null
@@ -19,66 +26,96 @@ const ManageSubscribersFormContent = ({ selectedSubscription, subscriptionRoleOp
   return (
     <Flex
       flexDir='column'
-      w='full'>
+      w='full'
+    >
       <Text
         fontFamily='Poppins'
         fontWeight='700'
-        size='lg'>
+        size='lg'
+      >
         {selectedSubscription? selectedSubscription.applicationName : ''}
       </Text>
+
       <FormControl mt='16px'>
         <CustomFormLabel
+          htmlFor="userName"
           text="Search for User"
-          htmlFor="userName" />
+        />
+
         <CustomInput 
           id="userName"
           value={searchText}
-          onChange={onSearchUser} />
+          onChange={onSearchUser}
+        />
       </FormControl>
+
       <Flex 
         bg='gray.300'
         borderColor='gray.300'
-        mt='25px'
-        h='1px' 
-        w='full' />
-      <Flex flexDir='column' mt='30px' data-testid="subscribers-list">
+        h='1px'
+        mt='25px' 
+        w='full'
+      />
+
+      <Flex
+        data-testid="subscribers-list"
+        flexDir='column'
+        mt='30px'
+      >
         {usersList.filter(user => user.name.toLocaleLowerCase().includes(searchText.toLocaleLowerCase())).map((user, index) => 
           <Flex
             key={index}
+            _notFirst={{ mt: '16px' }}
+            alignItems='center'
             border='1px'
             borderColor='gray.300'
             borderRadius='4px'
-            alignItems='center'
-            padding='8px'
             h='53px' 
+            padding='8px'
             w='full'
-            _notFirst={{ mt: '16px' }}>
+          >
             <CustomSwitch 
               id="manageSubscribers"
               isChecked={user.subscribed}
-              onCheck={() => onToggleSubscription(user.userId)} />
-            <Flex flexDir='column' ml='15px' w='240px'>
+              onCheck={() => onToggleSubscription(user.userId)}
+            />
+
+            <Flex
+              flexDir='column'
+              ml='15px'
+              w='240px'
+            >
               <Text
                 color='blue.600'
-                fontFamily='Open sans'
+                fontFamily='Poppins'
                 fontWeight='700'
-                size='md'>{user.name}</Text>
+                size='md'
+              >{user.name}
+              </Text>
+
               <Text
                 color='gray.700'
-                fontFamily='Open sans'
+                fontFamily='Poppins'
                 fontWeight='400'
-                size='sm'>{user.email}</Text>
+                size='sm'
+              >{user.email}
+              </Text>
             </Flex>
+
             {user.subscribed && <Flex  
               ml='auto'
-              w='133px'>
+              w='133px'
+            >
               <CustomSelect 
-                options={subscriptionRoleOptions.map(option => ({ value: option.roleName, text: option.roleName.split('.')[1] }))}
+                options={subscriptionRoleOptions.map(option => ({
+                  value: option.roleName,
+                  text: option.roleName.split('.')[1] 
+                }))}
                 value={user.selectedRole}
-                onChange={(e) => onSelectRoleForUser(user.userId, e.target.value)} />
+                onChange={(e) => onSelectRoleForUser(user.userId, e.target.value)}
+              />
             </Flex>}
-          </Flex>
-        )}
+          </Flex>)}
       </Flex>
     </Flex>
   )

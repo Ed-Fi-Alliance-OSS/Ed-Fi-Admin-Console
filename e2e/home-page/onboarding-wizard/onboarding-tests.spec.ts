@@ -1,7 +1,11 @@
 
-import { test, expect, Page } from '@playwright/test'
+import {
+  test, expect, Page 
+} from '@playwright/test'
 import { routes } from '../../core/routes'
-import { finishOnboardingWizard, resetOnBoardingWizard, updateOnboardingWizardSteps } from '../../helpers/OnboardingWizard.helpers'
+import {
+  finishOnboardingWizard, resetOnBoardingWizard, updateOnboardingWizardSteps 
+} from '../../helpers/OnboardingWizard.helpers'
 
 const bannerWelcomeText = 'Welcome'
 const bannerProgressMessage = 'Let’s finish your setup.'

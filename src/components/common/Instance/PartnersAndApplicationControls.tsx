@@ -1,4 +1,6 @@
-import { Button, Flex } from '@chakra-ui/react'
+import {
+  Button, Flex 
+} from '@chakra-ui/react'
 
 interface PartnersAndApplicationControlsProps {
     onAddPartner: () => void
@@ -8,23 +10,29 @@ interface PartnersAndApplicationControlsProps {
 const PartnersAndApplicationControls = ({ onAddPartner, onRefresh }: PartnersAndApplicationControlsProps) => {
   return (
     <Flex justifyContent='flex-end'>
-      <Flex alignItems='center' mt='5px'>
+      <Flex
+        alignItems='center'
+        mt='5px'
+      >
         <Button
-          onClick={onRefresh}
-          variant='secondaryBlue600'
-          size='xs'
-          p='0 25px'
-          minW='5px'>
-                        Refresh List
-        </Button>
-        <Button
-          onClick={onAddPartner}
-          variant='primaryBlue600'
-          size='xs'
-          p='0 25px'
           minW='5px'
-          ml='8px'>
-                        Add Vendor
+          p='0 25px'
+          size='xs'
+          variant='secondaryBlue600'
+          onClick={onRefresh}
+        >
+          Refresh List
+        </Button>
+
+        <Button
+          minW='5px'
+          ml='8px'
+          p='0 25px'
+          size='xs'
+          variant='primaryBlue600'
+          onClick={onAddPartner}
+        >
+          Add Vendor
         </Button>
       </Flex>
     </Flex>

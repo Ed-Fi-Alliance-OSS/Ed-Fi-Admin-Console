@@ -1,5 +1,11 @@
+import {
+  Flex,
+  Tab, TabIndicator,
+  TabList,
+  TabPanel, TabPanels,
+  Tabs
+} from '@chakra-ui/react'
 import { useState } from 'react'
-import { Tabs, TabList, Tab, TabIndicator, TabPanel, TabPanels, Flex } from '@chakra-ui/react'
 import TabContentWrapper from './TabContentWrapper'
 
 interface AdminConsoleTabsMenuProps {
@@ -12,47 +18,60 @@ interface AdminConsoleTabsMenuProps {
 }
 
 const AdminConsoleTabsMenu = ({ children, tabsList, initialIndex, contentMt, includeWrapper, actionControl }: AdminConsoleTabsMenuProps) => {
-  const [index, setIndex] = useState(initialIndex? initialIndex : 0)
+  const [ index, setIndex ] = useState(initialIndex? initialIndex : 0)
 
   return (
     <Tabs 
       isLazy
       index={index}
-      onChange={(nindex) => setIndex(nindex)}
-      position="relative" 
+      position="relative"
       variant="unstyled" 
-      w='full'>
-      <Flex justifyContent='space-between' w='full'>
+      w='full' 
+      onChange={(nindex) => setIndex(nindex)}
+    >
+      <Flex
+        justifyContent='space-between'
+        w='full'
+      >
         <Flex w='full'>
           <TabList>
             {tabsList.map(tab => 
               <Tab 
                 key={tab}
-                fontFamily='Open sans'
+                _notFirst={{ ml: '32px' }}
+                _selected={{ color: 'blue.600' }}
+                fontFamily='Poppins'
                 fontWeight='bold'
                 padding='0'
-                _selected={{ color: 'blue.600' }}
-                _notFirst={{ ml: '32px' }}>{tab}</Tab>
-            )}
+              >{tab}
+              </Tab>)}
           </TabList>
         </Flex>
+
         { actionControl }
       </Flex>
+
       <TabIndicator
-        mt="5px"
-        height="2px"
         bg="blue.600"
-        borderRadius="1px" />
+        borderRadius="1px"
+        height="2px"
+        mt="5px"
+      />
+
       <TabPanels padding='0'>
         {children.map((child, index) => 
-          <TabPanel mt={contentMt? contentMt : '45px'} padding='0' key={index} w='full'>
+          <TabPanel
+            key={index}
+            mt={contentMt? contentMt : '45px'}
+            padding='0'
+            w='full'
+          >
             {includeWrapper === false? 
               child  : 
               <TabContentWrapper>
                 {child}
               </TabContentWrapper> }
-          </TabPanel>
-        )}
+          </TabPanel>)}
       </TabPanels>
     </Tabs>
   )

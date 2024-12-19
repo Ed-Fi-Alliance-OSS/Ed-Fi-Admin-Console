@@ -24,13 +24,19 @@ const isSwitchChecked = async ({ page, testId, attributeName }: IsSwitchCheckPar
   await page.getByTestId(testId).getAttribute(attributeName)
 
 const selectSwitchField = async (page: Page, testId: string, select?: boolean) => {
-  const isChecked = await isSwitchChecked({ page, testId, attributeName: 'data-checked' })
+  const isChecked = await isSwitchChecked({
+    page,
+    testId,
+    attributeName: 'data-checked' 
+  })
 
-  if (!isChecked && select)
+  if (!isChecked && select) {
     return await clickUnlimitedLicenseSwitch(page)
+  }
 
-  if (isChecked && !select)
+  if (isChecked && !select) {
     await clickUnlimitedLicenseSwitch(page)
+  }
 }
 
 const getStringDate = (date?: Date): string => {
@@ -39,8 +45,13 @@ const getStringDate = (date?: Date): string => {
     let month: string | number = date.getMonth() + 1
     let day: string | number = date.getDate()
     
-    if (day < 10) day = '0' + day
-    if (month < 10) month = '0' + month
+    if (day < 10) {
+      day = '0' + day
+    }
+
+    if (month < 10) {
+      month = '0' + month
+    }
     
     const stringDate = month + '/' + day + '/' + year
 
@@ -56,8 +67,9 @@ const fillSubscriptionForm = async ({ page, startDate, endDate, application, sel
 
   await page.getByLabel('Grace Period').fill(gracePeriod? gracePeriod.toString() : '0')
 
-  if (selectApplication !== false)
+  if (selectApplication !== false) {
     await page.getByLabel('Select Application').selectOption({ label: application? application : 'Select the application' })
+  }
 
   await page.getByLabel('No. of Licenses').fill(numberOfLicenses?  numberOfLicenses.toString() : '1')
 

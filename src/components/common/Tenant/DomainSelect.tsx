@@ -1,5 +1,7 @@
 import { AddIcon } from '@chakra-ui/icons'
-import { Button, Flex, Text } from '@chakra-ui/react'
+import {
+  Button, Flex, Text 
+} from '@chakra-ui/react'
 import DomainTag from '../DomainTag'
 
 interface DomainSelectProps {
@@ -10,23 +12,29 @@ const DomainSelect = ({ domains }: DomainSelectProps) => {
   return (
     <Flex>
       {domains.map((domain, index) => 
-        <DomainTag domain={domain} key={index} />
-      )}
+        <DomainTag
+          key={index}
+          domain={domain}
+        />)}
+
       <Button 
-        variant='secondaryBlue600'
-        size='sm'
+        aria-labelledby="add-btn"
+        h='28px'
+        minW='28px'
         ml='10px'
         padding='0'
-        h='28px'
+        size='sm'
+        variant='secondaryBlue600'
         w='28px'
-        minW='28px'
-        aria-labelledby="add-btn">
+      >
         <span id="add-btn">Add</span>
+
         <AddIcon 
-          fontSize='10px'
+          aria-hidden="true"
+          focusable="false"
+          fontSize='10px' 
           fontWeight='bold'
-          aria-hidden="true" 
-          focusable="false"  />
+        />
       </Button>
     </Flex>
   )

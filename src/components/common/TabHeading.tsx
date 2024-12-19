@@ -8,9 +8,10 @@ const TabHeading = ({ text }: TabHeadingProps) => {
   return (
     <Heading
       fontFamily='Poppins'
-      fontWeight='700'
       fontSize='32px'
-      lineHeight='42px'>
+      fontWeight='700'
+      lineHeight='42px'
+    >
       {text}
     </Heading>
   )

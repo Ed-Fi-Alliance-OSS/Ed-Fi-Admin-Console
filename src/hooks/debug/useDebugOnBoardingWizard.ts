@@ -1,6 +1,10 @@
-import { useState, useContext, ChangeEvent } from 'react'
+import {
+  useState, useContext, ChangeEvent 
+} from 'react'
 import { useNavigate } from 'react-router-dom'
-import { AdminConsoleConfig, adminConsoleContext } from '../../context/adminConsoleContext'
+import {
+  AdminConsoleConfig, adminConsoleContext 
+} from '../../context/adminConsoleContext'
 import { OnBoardingStepStatus } from '../../core/onBoardingWizard/onBoardingWizard.types'
 import routes from '../../core/routes'
 import useResetOnBoardingWizardTest from '../../services/helpers/useOnBoardingWizardTest'
@@ -12,8 +16,9 @@ interface UseDebugOnBoardingWizardProps {
 
 const isDebugMode = (debugValue: boolean, config: AdminConsoleConfig | null) => {
   if (config) {
-    if (config.allowDebug && debugValue)
+    if (config.allowDebug && debugValue) {
       return true
+    }
   }
 
   return false
@@ -28,21 +33,22 @@ const useDebugOnBoardingWizard = ({ isDebug }: UseDebugOnBoardingWizardProps) =>
   const [ updatingAllSteps, setUpdatingAllSteps ] = useState(false)
   const [ currentResetStep, setCurrentResetStep ] = useState(1)
   const [ showTestingButtons, setShowTestingButtons ] = useState(isDebugMode(isDebug, adminConfig))
-  const [ selectedStep, setSelectedStep] = useState<number>(1)
+  const [ selectedStep, setSelectedStep ] = useState<number>(1)
   const [ selectedStepStatus, setSelectedStepStatus ] = useState<OnBoardingStepStatus>('Pending')
   const [ currentUpdateStep, setCurrentUpdateStep ] = useState(1)
   const { onboardingStepsData } = useOnboardingWizardStepsData()
-    
   const stepNumber = onboardingStepsData.stepsData.length
   const stepStatus: OnBoardingStepStatus = 'Pending'
   const description = onboardingStepsData.tabsData[stepNumber - 1].contentName
 
   const handleUpdateSelectedStep = (e: ChangeEvent<HTMLSelectElement>) => {
-    if (e.target.id === 'selectStep')
+    if (e.target.id === 'selectStep') {
       setSelectedStep(parseInt(e.target.value))
+    }
 
-    if (e.target.id === 'selectStatus')
+    if (e.target.id === 'selectStatus') {
       setSelectedStepStatus(e.target.value as OnBoardingStepStatus)
+    }
   }
     
   const handleUpdateOBStep = async () => {
@@ -50,10 +56,12 @@ const useDebugOnBoardingWizard = ({ isDebug }: UseDebugOnBoardingWizardProps) =>
 
     if (selectedStep > 1) {
       await handleUpdateOBStepsFromTo()
-    }
-    else {
+    } else {
       setUpdatingStep(true)
-      const result = await handleUpdateStep({ number: selectedStep, status: selectedStepStatus })
+      const result = await handleUpdateStep({
+        number: selectedStep,
+        status: selectedStepStatus 
+      })
     
       console.log(result)
     
@@ -73,10 +81,14 @@ const useDebugOnBoardingWizard = ({ isDebug }: UseDebugOnBoardingWizardProps) =>
       console.log('updating step', step, selectedStepStatus)
       setCurrentUpdateStep(step)
 
-      const result = await handleUpdateStep({ number: step, status: selectedStepStatus })
+      const result = await handleUpdateStep({
+        number: step,
+        status: selectedStepStatus 
+      })
             
-      if (result)
+      if (result) {
         console.log('updated step', step, selectedStepStatus)
+      }
     }
 
     setUpdatingStep(false)
@@ -91,10 +103,14 @@ const useDebugOnBoardingWizard = ({ isDebug }: UseDebugOnBoardingWizardProps) =>
     for (let step = 1; step <= 8; step++) {
       console.log('setting step', step, status)
       setCurrentResetStep(step)
-      const result = await handleUpdateStep({ number: step, status })
+      const result = await handleUpdateStep({
+        number: step,
+        status 
+      })
 
-      if (result)
+      if (result) {
         console.log('updated step', step, status)
+      }
     }
 
     setUpdatingAllSteps(false)
@@ -106,7 +122,11 @@ const useDebugOnBoardingWizard = ({ isDebug }: UseDebugOnBoardingWizardProps) =>
   const handleCreateOBStep = async () => {
     console.log('click update step...')
     setCreatingStep(true)
-    const result = await handleAddStep({ number: stepNumber, status: stepStatus, description })
+    const result = await handleAddStep({
+      number: stepNumber,
+      status: stepStatus,
+      description 
+    })
 
     console.log(result)
 

@@ -1,4 +1,6 @@
-import { InstanceEdfiStatus, InstanceOperationStatus, ODSInstance } from '../../core/ODSInstance.types'
+import {
+  InstanceEdfiStatus, InstanceOperationStatus, ODSInstance
+} from '../../core/ODSInstance.types'
 import { EdFiMetadata } from '../useEdfiUrls.types'
 
 interface UseOdsInstanceEdFiStatusProps {
@@ -8,25 +10,23 @@ interface UseOdsInstanceEdFiStatusProps {
 
 const useOdsInstanceEdFiStatus = ({ edFiMetadata }: UseOdsInstanceEdFiStatusProps) => {
   const getOperationStatus = (): InstanceOperationStatus => {
-    if (!edFiMetadata)
+    if (!edFiMetadata) {
       return 'Offline'
+    }
 
     return 'Operational'
   }
 
-  const getOdsInstanceEdFiStatus = (): InstanceEdfiStatus => {
-    return {
-      operationStatus: getOperationStatus()
-    }
+  const getOdsInstanceEdFiStatus = (): InstanceOperationStatus => {
+    return getOperationStatus()
   }
 
 
 
   const getOdsInstanceEdFiStatusFromMetadata = (edFiMetadata: EdFiMetadata | null): InstanceEdfiStatus => {
-    if (!edFiMetadata)
-      return {
-        operationStatus: 'Offline'
-      }
+    if (!edFiMetadata) {
+      return { operationStatus: 'Offline' }
+    }
 
     return { operationStatus: 'Operational' }
   }

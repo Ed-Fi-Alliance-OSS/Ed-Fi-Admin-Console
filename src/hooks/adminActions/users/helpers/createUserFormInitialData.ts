@@ -1,5 +1,7 @@
 import { AppUser } from '../../../../core/AppUser.types'
-import { CreateUserFormData, CreateUserFormLicensesData, UserFormMode } from '../useCreateUserForm.types'
+import {
+  CreateUserFormData, CreateUserFormLicensesData, UserFormMode 
+} from '../useCreateUserForm.types'
 
 export const setInitialData = (editUserInitialData?: AppUser, mode?: UserFormMode) : CreateUserFormData => {
   if (editUserInitialData) {
@@ -21,8 +23,9 @@ export const setInitialData = (editUserInitialData?: AppUser, mode?: UserFormMod
           userId: editUserInitialData.userId
         }
 
-        if (roles.length > 0) 
+        if (roles.length > 0) {
           formLicense.roles = roles
+        }
 
         return formLicense
       })
@@ -31,9 +34,7 @@ export const setInitialData = (editUserInitialData?: AppUser, mode?: UserFormMod
     console.log('initial data if user is edited', editUserInitialData)
 
     return data
-  }
-
-  else if (mode === 'Invite Admin') {
+  } else if (mode === 'Invite Admin') {
     const initialAdminUserData: CreateUserFormData = {
       userName: '',
       firstName: '',

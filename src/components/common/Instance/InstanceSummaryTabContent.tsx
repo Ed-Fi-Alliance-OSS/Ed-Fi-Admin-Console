@@ -1,6 +1,6 @@
 import { Flex } from '@chakra-ui/react'
-import SummaryContent from './SummaryContent'
 import { ODSInstance } from '../../../core/ODSInstance.types'
+import SummaryContent from './SummaryContent'
 
 interface InstanceSummaryTabContentProps {
     instance: ODSInstance
@@ -9,8 +9,8 @@ interface InstanceSummaryTabContentProps {
 const InstanceSummaryTabContent = ({ instance }: InstanceSummaryTabContentProps) => {
   return (
     <Flex w='full'>
-      <SummaryContent
-        instance={instance} />
+
+      <SummaryContent instance={instance} />
     </Flex>
   )
 }

@@ -3,7 +3,8 @@ export interface CreateEdfiApplicationRequest {
     vendorId: number 
     claimSetName: string 
     profileId?: number 
-    educationOrganizationIds: Array<string | number>
+    educationOrganizationIds: number[]
+    odsInstanceIds?: number[]
 }
 
 export interface DeleteEdfiApplicationRequest {
@@ -15,7 +16,8 @@ export interface UpdateEdfiApplicationRequest {
     vendorId: number 
     claimSetName: string 
     profileId?: number 
-    educationOrganizationIds: Array<string | number>
+    educationOrganizationIds: number[]
+    odsInstanceIds?: number[]
 }
 
 export interface ResetEdfiApplicationCredentialsRequest {

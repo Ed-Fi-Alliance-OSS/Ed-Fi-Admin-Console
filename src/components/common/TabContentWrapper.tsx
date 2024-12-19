@@ -10,7 +10,8 @@ const TabContentWrapper = ({ children }: TabContentWrapperProps) => {
       bg='white'
       borderRadius='4px'
       padding='38px 45px'
-      w='full'>
+      w='full'
+    >
       {children}
     </Flex>
   )

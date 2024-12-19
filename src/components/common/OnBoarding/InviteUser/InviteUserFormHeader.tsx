@@ -1,4 +1,6 @@
-import { Button, Flex, Heading } from '@chakra-ui/react'
+import {
+  Button, Flex, Heading 
+} from '@chakra-ui/react'
 
 interface InviteUserFormHeaderProps {
     isSavingChanges: boolean 
@@ -8,24 +10,35 @@ interface InviteUserFormHeaderProps {
 
 const InviteUserFormHeader = ({ isSavingChanges, onSave, onClose }: InviteUserFormHeaderProps) => {
   return (
-    <Flex justifyContent='space-between' w='full'>
+    <Flex
+      justifyContent='space-between'
+      w='full'
+    >
       <Heading
         fontFamily='Poppins'
+        fontSize='32px'
         fontWeight='700'
-        fontSize='32px'>Invite User</Heading>
+      >Invite User
+      </Heading>
+
       <Flex alignItems='center'>
         <Button
-          onClick={onClose}
-          variant='secondaryBlue600'
-          size='xs'
-          padding='0 25px'>Cancel</Button>
-        <Button
-          onClick={onSave}
-          isLoading={isSavingChanges}
-          variant='primaryBlue600'
-          size='xs'
           padding='0 25px'
-          ml='10px'>Invite User</Button>
+          size='xs'
+          variant='secondaryBlue600'
+          onClick={onClose}
+        >Cancel
+        </Button>
+
+        <Button
+          isLoading={isSavingChanges}
+          ml='10px'
+          padding='0 25px'
+          size='xs'
+          variant='primaryBlue600'
+          onClick={onSave}
+        >Invite User
+        </Button>
       </Flex>
     </Flex>
   )

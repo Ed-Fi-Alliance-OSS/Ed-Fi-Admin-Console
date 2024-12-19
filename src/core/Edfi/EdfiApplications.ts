@@ -1,20 +1,19 @@
 export interface EdfiApplicationProfile {
-    id: number 
+  id: number
 }
 
 export interface EdfiApplication {
-    applicationId: number
-    applicationName?: string 
-    claimSetName?: string 
-    profileName?: string 
-    educationOrganizationId?: string | number
-    odsInstanceName?: string 
-    vendorId?: number
-    profiles?: EdfiApplicationProfile[]
+  id: number
+  applicationName?: string
+  claimSetName?: string
+  educationOrganizationIds?: number[]
+  odsInstanceIds?: Array<number>
+  vendorId?: number
+  profileIds?: Array<number>
 }
 
 export interface EdfiApplicationAuthData {
-    applicationId: number 
-    key?: string 
-    secret?: string
+  id: number
+  key?: string
+  secret?: string
 }

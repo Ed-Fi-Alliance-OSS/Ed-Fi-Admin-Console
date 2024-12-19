@@ -1,9 +1,15 @@
 import useHttpService from '../../../../hooks/http/useHttpService'
 import { ActionParams } from '../../adminAction.types'
 import edfiActionRoutes from '../../edfiActionRoutes'
-import { CreateEdfiAdminConnectionRequest, GetAllConnectionsRequest, UpdateEdfiAdminConnectionRequest, VerifyEdFiAdminConnectionRequest } from './EdfiAdminConnectionsService.requests'
-import { CreatedEdFiAdminConnectionResponse, GetAllEdFiAdminConnectionsResponse, UpdatedEdFiAdminConnectionResponse, VerifyEdFiAdminConnectionResponse } from './EdfiAdminConnectionsService.response'
-import { CreateEdfiAdminConnectionResult, GetAllEdFiAdminConnectionsResult, UpdateEdfiAdminConnectionResult, VerifyEdFiAdminConnectionResult } from './EdFiAdminConnectionsService.results'
+import {
+  CreateEdfiAdminConnectionRequest, GetAllConnectionsRequest, UpdateEdfiAdminConnectionRequest, VerifyEdFiAdminConnectionRequest 
+} from './EdfiAdminConnectionsService.requests'
+import {
+  CreatedEdFiAdminConnectionResponse, GetAllEdFiAdminConnectionsResponse, UpdatedEdFiAdminConnectionResponse, VerifyEdFiAdminConnectionResponse 
+} from './EdfiAdminConnectionsService.response'
+import {
+  CreateEdfiAdminConnectionResult, GetAllEdFiAdminConnectionsResult, UpdateEdfiAdminConnectionResult, VerifyEdFiAdminConnectionResult 
+} from './EdFiAdminConnectionsService.results'
 
 const useEdFiAdminConnectionsService = () => {
   const { getAsync, postAsync, putAsync } = useHttpService()
@@ -14,8 +20,9 @@ const useEdFiAdminConnectionsService = () => {
 
     url = `${url}?pageIndex=${data.pageIndex}&pageSize=${data.pageSize}`
 
-    if (data.orderBy)
+    if (data.orderBy) {
       url = `${url}&orderBy=${data.orderBy}`
+    }
     
     const result = await getAsync<GetAllEdFiAdminConnectionsResponse>({
       url,

@@ -1,4 +1,6 @@
-import { Flex, Tab, TabIndicator, TabList, TabPanel, TabPanels, Tabs } from '@chakra-ui/react'
+import {
+  Flex, Tab, TabIndicator, TabList, TabPanel, TabPanels, Tabs
+} from '@chakra-ui/react'
 import TabHeading from '../TabHeading'
 import APIClientsTab from './APIClientsTab'
 import IdentityProvidersTab from './IdentityProvidersTab'
@@ -17,41 +19,48 @@ const SecurityTabContent = () => {
   return (
     <Flex w='full'>
       <TabHeading text="Security" />
+
       <Flex 
         className="s-container"
-        mt='10px' 
         ml='160px' 
-        w='full'>
+        mt='10px' 
+        w='full'
+      >
         <Tabs
           position="relative" 
           variant="unstyled"
-          w='full'>
+          w='full'
+        >
           <TabList>
             {tabs.map((tab, index) => 
               <Tab 
                 key={index}
-                fontFamily='Open sans'
+                _notFirst={{ ml: '32px' }}
+                _selected={{ color: 'blue.600' }}
+                fontFamily='Poppins'
                 fontWeight='bold'
                 padding='0'
-                _selected={{ color: 'blue.600' }}
-                _notFirst={{ ml: '32px' }}>{tab}</Tab>
-            )}
+              >{tab}
+              </Tab>)}
           </TabList>
+
           <TabIndicator
-            mt="5px"
-            height="2px"
             bg="blue.600"
-            borderRadius="1px" />
+            borderRadius="1px"
+            height="2px"
+            mt="5px"
+          />
+
           <TabPanels>
             {panels.map((panel, index) => 
               <TabPanel 
-                padding='0' 
-                key={index}
+                key={index} 
                 mt='45px'
-                w='full'>
+                padding='0'
+                w='full'
+              >
                 {panel}
-              </TabPanel>
-            )}
+              </TabPanel>)}
           </TabPanels>
         </Tabs>
       </Flex>

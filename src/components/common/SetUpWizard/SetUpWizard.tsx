@@ -1,16 +1,18 @@
 import { CheckIcon } from '@chakra-ui/icons'
-import { Flex, Tab, TabList, TabPanel, TabPanels, Tabs } from '@chakra-ui/react'
+import {
+  Flex, Tab, TabList, TabPanel, TabPanels, Tabs
+} from '@chakra-ui/react'
 import { useState } from 'react'
 import OnBoardingConnectSISContextProvider from '../../../context/onBoardingConnectSISContext'
+import { ODSInstance } from '../../../core/ODSInstance.types'
+import { InstanceOnboarding } from '../../../core/setUpWizard/setUpWizard.types'
 import { SISProviderInfo } from '../../../core/sisProviders/SISProviders.types'
+import useOdsInstanceYear from '../../../hooks/odsInstances/useOdsInstanceYear'
 import useSetUpWizardStepsMetadata from '../../../hooks/setUpWizard/useSetUpWizardStepsMetadata'
 import ConnectSISTabContent from '../OnBoarding/ConnectSISTabContent'
 import OnBoardingTabsWrapper from '../OnBoarding/OnBoardingTabsWrapper'
 import ReviewDataTabContent from '../OnBoarding/ReviewDataTabContent'
 import SetUpWizardFinalizeTabContent from './SetUpWizardFinalizeTabContent'
-import { InstanceOnboarding } from '../../../core/setUpWizard/setUpWizard.types'
-import { ODSInstance } from '../../../core/ODSInstance.types'
-import useOdsInstanceYear from '../../../hooks/odsInstances/useOdsInstanceYear'
 
 interface SetUpWizardProps {
     instance: ODSInstance
@@ -29,12 +31,13 @@ interface SetUpWizardProps {
 }
 
 const SetUpWizard = ({ instance, setupWizardData, completedSteps, lastInProgress, currentStepIndex, lastStep, canNext, canPrev, onTabChange, onCompletedStep, onIncompletedStep, onNext, onPrev }: SetUpWizardProps) => {
-  const [connectedSISProvidersList, setConnectedSISProvidersList] = useState<SISProviderInfo[]>([])
+  const [ connectedSISProvidersList, setConnectedSISProvidersList ] = useState<SISProviderInfo[]>([])
   const { setUpWizardStepsMetadata } = useSetUpWizardStepsMetadata()
   const { getInstanceYear } = useOdsInstanceYear()
 
   const onSelectSISProvider = (sisprovider: string, source: string) => {
     const nconnectedSISProvidersList = connectedSISProvidersList.map(prov => prov)
+
     const nprovider: SISProviderInfo = { 
       name: sisprovider, 
       source,
@@ -47,16 +50,18 @@ const SetUpWizard = ({ instance, setupWizardData, completedSteps, lastInProgress
 
     const includesRequiredProvider = connectedSISProvidersList.find(prov => prov.source === 'SIS')
 
-    if (source === 'SIS' || includesRequiredProvider)
+    if (source === 'SIS' || includesRequiredProvider) {
       onCompletedStep(0)
-    else 
+    } else {
       onIncompletedStep(0)
+    }
   }
 
   const onRemoveOptionalProvider = () => {
     const nconnectedSISProvidersList = connectedSISProvidersList.filter(prov => {
-      if (prov.source !== 'SIS')
+      if (prov.source !== 'SIS') {
         return false
+      }
 
       return true
     })
@@ -66,8 +71,9 @@ const SetUpWizard = ({ instance, setupWizardData, completedSteps, lastInProgress
 
   const onRemoveRequiredProvider = () => {
     const nconnectedSISProvidersList = connectedSISProvidersList.filter(prov => {
-      if (prov.source == 'SIS')
+      if (prov.source == 'SIS') {
         return false
+      }
 
       return true
     })
@@ -79,105 +85,130 @@ const SetUpWizard = ({ instance, setupWizardData, completedSteps, lastInProgress
     if (sisProviderType === 'required') {
       onRemoveRequiredProvider()
       onIncompletedStep(0)
-    }
-    else 
+    } else {
       onRemoveOptionalProvider()
+    }
   } 
 
   const isDisabledTab = (index: number): boolean => {
-    if (currentStepIndex === index)
+    if (currentStepIndex === index) {
       return false
+    }
 
-    if (index === lastInProgress)
+    if (index === lastInProgress) {
       return false
+    }
 
-    if (index > completedSteps - 1)
-      return true 
+    if (index > completedSteps - 1) {
+      return true
+    } 
 
     return false
   }
 
   return (
-    <Tabs isLazy index={currentStepIndex} onChange={(index) => onTabChange(index)} variant='enclosed' w='full'>
-      <TabList justifyContent='space-between' w='480px'>
+    <Tabs
+      isLazy
+      index={currentStepIndex}
+      variant='enclosed'
+      w='full'
+      onChange={(index) => onTabChange(index)}
+    >
+      <TabList
+        justifyContent='space-between'
+        w='480px'
+      >
         {setUpWizardStepsMetadata.tabsData.map((step, index) => 
           <Tab 
             key={index}
-            fontFamily='Open sans'
+            _selected={{
+              color: 'blue.600',
+              bg: 'white' 
+            }}
             borderRadius='0'
             color='white'
-            isDisabled={isDisabledTab(index)}
-            fontWeight='700'
+            fontFamily='Poppins'
             fontSize='14px'
+            fontWeight='700'
+            h='54px'
+            isDisabled={isDisabledTab(index)}
             lineHeight='28px'
-            _selected={{ color: 'blue.600', bg: 'white' }}
-            padding='8px 8px'
-            h='54px' 
-            w='auto'>
+            padding='8px 8px' 
+            w='auto'
+          >
             {setupWizardData && setupWizardData.steps[index].status === 'Completed' ?
               <Flex alignItems='center'>
                 {step.tabName}
+
                 <CheckIcon 
-                  color='blue.500' 
-                  borderRadius='full'
-                  bg='blue.100'
-                  ml='10px'
-                  padding='2px'
-                  h='14px'
-                  w='14px'
                   aria-hidden="true" 
-                  focusable="false" />
+                  bg='blue.100'
+                  borderRadius='full'
+                  color='blue.500'
+                  focusable="false"
+                  h='14px'
+                  ml='10px'
+                  padding='2px' 
+                  w='14px'
+                />
               </Flex>
               : step.tabName}
-          </Tab>
-        )}
+          </Tab>)}
       </TabList>
+
       <TabPanels padding='0'>
         <OnBoardingConnectSISContextProvider
           schoolYear={getInstanceYear(instance) ?? 0}
           onSelectSISProvider={onSelectSISProvider}
-          onUnselectSISProvider={onUnselectSISProvider}>
+          onUnselectSISProvider={onUnselectSISProvider}
+        >
           <TabPanel padding='0'>
             <OnBoardingTabsWrapper
-              stepName={setUpWizardStepsMetadata.tabsData[0].contentName}
+              canNext={canNext}
+              canPrev={canPrev}
               currentStep={1}
               lastStep={lastStep}
+              stepName={setUpWizardStepsMetadata.tabsData[0].contentName}
               onNext={onNext}
               onPrev={onPrev}
-              canNext={canNext}
-              canPrev={canPrev}>
+            >
               <ConnectSISTabContent 
                 odsAuthenticationUrl={instance.authenticationUrl}
                 odsResourcesUrl={instance.resourcesUrl}
-                setupWizard={true} />
+                setupWizard={true}
+              />
             </OnBoardingTabsWrapper>
           </TabPanel>
         </OnBoardingConnectSISContextProvider>
+
         <TabPanel padding='0'>
           <OnBoardingTabsWrapper
-            stepName={setUpWizardStepsMetadata.tabsData[1].contentName}
+            canNext={canNext}
+            canPrev={canPrev}
             currentStep={2}
             lastStep={lastStep}
+            stepName={setUpWizardStepsMetadata.tabsData[1].contentName}
             onNext={onNext}
             onPrev={onPrev}
-            canNext={canNext}
-            canPrev={canPrev}>
-            <ReviewDataTabContent
-              setupWizard={true} />
+          >
+            <ReviewDataTabContent setupWizard={true} />
           </OnBoardingTabsWrapper>
         </TabPanel>
+
         <TabPanel padding='0'>
           <OnBoardingTabsWrapper
-            stepName={setUpWizardStepsMetadata.tabsData[2].contentName}
+            canNext={canNext}
+            canPrev={canPrev}
             currentStep={3}
             lastStep={lastStep}
+            stepName={setUpWizardStepsMetadata.tabsData[2].contentName}
             onNext={onNext}
             onPrev={onPrev}
-            canNext={canNext}
-            canPrev={canPrev}>
+          >
             <SetUpWizardFinalizeTabContent 
+              connectedSISProvidersList={connectedSISProvidersList}
               instance={instance}
-              connectedSISProvidersList={connectedSISProvidersList} />
+            />
           </OnBoardingTabsWrapper>
         </TabPanel>
       </TabPanels>

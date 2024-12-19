@@ -7,16 +7,20 @@ import VerifyDomainTableRows from './VerifyDomainTableRows'
 const headers = [
   <VerifyDomainTableHeader 
     headerName="Type"
-    tooltipMessage="When adding this record to your DNS, select “TXT” as your record type." />,
+    tooltipMessage="When adding this record to your DNS, select “TXT” as your record type."
+  />,
   <VerifyDomainTableHeader 
     headerName="Name"
-    tooltipMessage="Add this value to the 'Name' field in your new DNS record." />,
+    tooltipMessage="Add this value to the 'Name' field in your new DNS record."
+  />,
   <VerifyDomainTableHeader 
     headerName="Value"
-    tooltipMessage="Copy this value and add it as a record in your DNS. Then come back and refresh the Domain to see if it has been confirmed." />,
+    tooltipMessage="Copy this value and add it as a record in your DNS. Then come back and refresh the Domain to see if it has been confirmed."
+  />,
   <VerifyDomainTableHeader 
     headerName="TTL"
-    tooltipMessage="Set the TTL (Time to Live) value within your DNS record. This dictates the amount of time it takes changes to the DNS record to appear." />,
+    tooltipMessage="Set the TTL (Time to Live) value within your DNS record. This dictates the amount of time it takes changes to the DNS record to appear."
+  />,
 ]
 
 const verifyDomainList: VerifyDomain[] = [
@@ -33,13 +37,15 @@ const VerifyDomainTable = () => {
 
   return (
     <ControlTable
-      headers={headers}
       rows={<VerifyDomainTableRows 
         verifyDomainList={verifyDomainList}
-        onCheck={handleCheckItem} />}
+        onCheck={handleCheckItem}
+      />}
+      headers={headers}
       itemsCount={verifyDomainList.length}
       loading={false}
-      thPadding='auto' />
+      thPadding='auto'
+    />
   )
 }
 

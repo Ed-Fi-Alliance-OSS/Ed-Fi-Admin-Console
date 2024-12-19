@@ -16,11 +16,13 @@ const BulkEditModal = ({ show, selectedUserList, onSelecteUserRole, onChangeRole
     <ConsoleModal 
       content={<BulkEditRoleForm 
         selectedUserList={selectedUserList}
+        onAction={onChangeRole}
+        onClose={onClose} 
         onSelectUserRole={onSelecteUserRole}
-        onAction={onChangeRole} 
-        onClose={onClose} />}
+      />}
       show={show}
-      onClose={onClose} />
+      onClose={onClose}
+    />
   )
 }
 

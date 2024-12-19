@@ -1,4 +1,6 @@
-import { Td, Text } from '@chakra-ui/react'
+import {
+  Td, Text
+} from '@chakra-ui/react'
 import { SISProviderInfo } from '../../../core/sisProviders/SISProviders.types'
 import ControlTableRow from '../ControlTableRow'
 import SISProviderConnectionTag from './SISProviderConnectionTag'
@@ -15,20 +17,25 @@ const ConnectedSISProvidersTableRows = ({ connectedSISProvidersList }: Connected
           <Td w='15%'>
             <Text
               color='blue.600'
-              fontFamily='Open sans'
+              fontFamily='Poppins'
               fontWeight='700'
-              size='md'>
+              size='md'
+            >
               {provider.name}
             </Text>
           </Td>
-          <Td alignItems='flex-end' w='15%'>
+
+          <Td
+            alignItems='flex-end'
+            w='15%'
+          >
             <Text>{provider.source}</Text>
           </Td>
+
           <Td w='5%'> 
             <SISProviderConnectionTag status={provider.status} />
           </Td>
-        </ControlTableRow>
-      )}
+        </ControlTableRow>)}
     </>
   )
 }

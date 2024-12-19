@@ -12,15 +12,18 @@ const useDisplayOdsVersions = ({ instanceOdsMetadata }: UseDisplayOdsVersionsPro
   } = useOdsVersions()
 
   const displayEdFiVersionContent = () => {
-    return getEdFiVersionFromMetadata(selectMetadata())
+    return getEdFiVersionFromMetadata(instanceOdsMetadata)
   }
 
   const displayTsdsVersionContent = () => {
-    return getTSDSVersionFromMetadata(selectMetadata())
-  }
-
-  const selectMetadata = () => {
-    return instanceOdsMetadata
+    return getTSDSVersionFromMetadata(instanceOdsMetadata)
+    // return <Flex gridGap={2}>
+    //   {instanceOdsMetadata?.dataModels?.map(dataModel => {
+    //     return <>
+    //       <Tag>{dataModel.name} ({dataModel.version})</Tag>
+    //     </>
+    //   })}
+    // </Flex>
   }
 
   return {

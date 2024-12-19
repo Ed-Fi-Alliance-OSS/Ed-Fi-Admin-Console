@@ -2,7 +2,9 @@ import { useContext } from 'react'
 import { OnBoardingStepStatus } from '../../core/onBoardingWizard/onBoardingWizard.types'
 import { ODSInstance } from '../../core/ODSInstance.types'
 import { adminConsoleContext } from '../../context/adminConsoleContext'
-import { CreateOdsInstanceOnboardingStepRequest, UpdateOdsInstanceOnboardingStepRequest } from '../../services/ODSInstances/OdsInstanceService.requests'
+import {
+  CreateOdsInstanceOnboardingStepRequest, UpdateOdsInstanceOnboardingStepRequest 
+} from '../../services/ODSInstances/OdsInstanceService.requests'
 import useOdsInstanceService from '../../services/ODSInstances/OdsInstanceService'
 
 interface UpdateStepProps {
@@ -30,8 +32,9 @@ const useDebugSetupWizardActions = ({ instance }: UseDebugSetupWizardActionsProp
 
   const handleAddStep = async ({ number, status, description }: AddStepProps) => {
     console.log('handle add step')
-    if (!adminConfig || !instance)
-      return 
+    if (!adminConfig || !instance) {
+      return
+    } 
 
     const request: CreateOdsInstanceOnboardingStepRequest = {
       instanceId: instance.instanceId,
@@ -43,8 +46,9 @@ const useDebugSetupWizardActions = ({ instance }: UseDebugSetupWizardActionsProp
 
     const result = await createInstanceOnboardingStep(adminConfig.actionParams, request)        
 
-    if (result.type == 'Error')
+    if (result.type == 'Error') {
       return false
+    }
 
     return true
   }
@@ -52,8 +56,9 @@ const useDebugSetupWizardActions = ({ instance }: UseDebugSetupWizardActionsProp
   const handleUpdateStep = async ({ number, status }: UpdateStepProps) => {
     console.log('update step', number)
 
-    if (!adminConfig || !instance)
-      return 
+    if (!adminConfig || !instance) {
+      return
+    } 
 
     const request: UpdateOdsInstanceOnboardingStepRequest = {
       instanceId: instance.instanceId,
@@ -64,8 +69,9 @@ const useDebugSetupWizardActions = ({ instance }: UseDebugSetupWizardActionsProp
 
     const result = await updateInstanceOnboardingStep(adminConfig.actionParams, request)
 
-    if (result.type == 'Error')
-      return false 
+    if (result.type == 'Error') {
+      return false
+    } 
 
     return true
   }

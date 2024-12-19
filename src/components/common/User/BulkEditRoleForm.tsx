@@ -14,14 +14,19 @@ interface BulkEditRoleFormProps {
 const BulkEditRoleForm = ({ selectedUserList, onSelectUserRole, onAction, onClose }: BulkEditRoleFormProps) => {
   return (
     <ModalForm
-      header={<BulkEditRoleFormHeader onAction={onAction} onClose={onClose} />}
       content={<BulkEditRoleFormContent 
-        selectedRole=""
         roleOptions={[]}
+        selectedRole=""
         selectedUsersList={selectedUserList}
-        onSelectUserRole={onSelectUserRole} />}
+        onSelectUserRole={onSelectUserRole}
+      />}
+      header={<BulkEditRoleFormHeader
+        onAction={onAction}
+        onClose={onClose}
+      />}
       height='auto'
-      width="512px" />
+      width="512px"
+    />
   )
 }
 

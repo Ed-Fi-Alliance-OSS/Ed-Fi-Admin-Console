@@ -1,7 +1,9 @@
-import { ChangeEvent } from 'react'
 import { CloseIcon } from '@chakra-ui/icons'
-import { Button, Flex, FormControl, Text } from '@chakra-ui/react'
+import {
+  Button, Flex, FormControl, Text
+} from '@chakra-ui/react'
 import { CustomSelect } from '@edfi/admin-console-shared-sdk'
+import { ChangeEvent } from 'react'
 import RefreshBtn from '../RefreshBtn'
 import SISProviderConnectionTag from './SISProviderConnectionTag'
 
@@ -26,12 +28,16 @@ interface SISProviderConnectionFieldProps {
 const SISProviderConnectionField = ({ id, providerFunction, sisProviderOptions, selectedProvider, hasSelectedProvider, connectionState, onChangeSISProvider, onRemoveProvider }: SISProviderConnectionFieldProps) => {
   if (!hasSelectedProvider) {
     return (
-      <FormControl fontFamily='Open sans' w='300px'>
+      <FormControl
+        fontFamily='Poppins'
+        w='300px'
+      >
         <CustomSelect
           id={id}
           options={sisProviderOptions}
           value={selectedProvider}
-          onChange={onChangeSISProvider} />
+          onChange={onChangeSISProvider}
+        />
       </FormControl> 
     )
   }
@@ -44,29 +50,44 @@ const SISProviderConnectionField = ({ id, providerFunction, sisProviderOptions, 
         color='gray.700'
         fontFamily='Archivo Narrow'
         fontWeight='400'
+        padding='5px 10px'
         size='sm'
-        padding='5px 10px'>
+      >
         {`${sisProviderOptions.find(option => option.value === selectedProvider)?.text} ${providerFunction? `(${providerFunction})` : '' }`}
+
         <Button
-          onClick={onRemoveProvider}
-          variant='simple'
+          aria-labelledby='close-btn'
           minW='auto'
-          aria-labelledby='close-btn'>
-          <span id="close-btn" hidden>Close</span>
+          variant='simple'
+          onClick={onRemoveProvider}
+        >
+          <span
+            hidden
+            id="close-btn"
+          >Close
+          </span>
+
           <CloseIcon 
-            ml='10px' 
-            fontSize='10px'
             aria-hidden="true" 
-            focusable="false"  />
+            focusable="false"
+            fontSize='10px' 
+            ml='10px'
+          />
         </Button>
       </Text>
+
       <Flex ml='10px'>
         <SISProviderConnectionTag status={connectionState} />
       </Flex>
-      <Flex alignItems='center'  ml='5px'>
+
+      <Flex
+        alignItems='center'
+        ml='5px'
+      >
         <RefreshBtn 
           id="connection-field"
-          onAction={() => console.log('refresh provider connection state...')} />
+          onAction={() => console.log('refresh provider connection state...')}
+        />
       </Flex>
     </Flex>
   )

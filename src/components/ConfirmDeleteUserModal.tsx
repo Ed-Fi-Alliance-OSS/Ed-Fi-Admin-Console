@@ -1,4 +1,6 @@
-import { Button, Flex, Text } from '@chakra-ui/react'
+import {
+  Button, Flex, Text
+} from '@chakra-ui/react'
 import { AppUser } from '../core/AppUser.types'
 import EDXCustomModal from './common/EDXCustomModal'
 
@@ -13,48 +15,61 @@ interface ConfirmDeleteUserModalProps {
 const ConfirmDeleteUserModal = ({ user, show, isDeletingUser, onDeleteUser, onClose }: ConfirmDeleteUserModalProps) => {
   return (
     <EDXCustomModal  
-      type="alert"
-      isOpen={show}
-      header="Delete user?"
-      content={<Flex flexDir='column' mt='12px'>
+      content={<Flex
+        flexDir='column'
+        mt='12px'
+      >
         <Text w='400px'>
-                    You are attempting to delete the following user:
+          You are attempting to delete the following user:
         </Text>
+
         <Text 
+          fontFamily='Poppins'
           fontWeight='700'
-          fontFamily='Open sans'>
+        >
           {`${user.firstName} ${user.lastName}`}
         </Text>
+
         <Text mt='32px'>
-                    Their account will be deleted and they will no longer have access to Acme Service Center. 
-                    Are you sure you want to continue?
+          Their account will be deleted and they will no longer have access to Acme Service Center. 
+          Are you sure you want to continue?
         </Text>
       </Flex>}
-      footer={<Flex alignItems='flex-start' w='full'>
+      footer={<Flex
+        alignItems='flex-start'
+        w='full'
+      >
         <Button
-          onClick={onClose}
-          isDisabled={isDeletingUser}
+          border='1px'
+          borderColor='gray.400'
           color='red.600'
-          border='1px'
-          borderColor='gray.400'
+          isDisabled={isDeletingUser}
           padding='10px'
-          size='sm'>
-                        No, Cancel
+          size='sm'
+          onClick={onClose}
+        >
+          No, Cancel
         </Button>
+
         <Button
-          onClick={() => onDeleteUser(user.userId)}
-          isLoading={isDeletingUser}
-          border='1px'
-          color='white'
           bg='#dd3827'
+          border='1px'
           borderColor='gray.400'
-          padding='10px'
+          color='white'
+          isLoading={isDeletingUser}
           ml='10px'
-          size='sm'>
-                        Yes, Delete User
+          padding='10px'
+          size='sm'
+          onClick={() => onDeleteUser(user.userId)}
+        >
+          Yes, Delete User
         </Button>
       </Flex>}
-      onClose={onClose} />
+      header="Delete user?"
+      isOpen={show}
+      type="alert"
+      onClose={onClose}
+    />
   )
 }
 

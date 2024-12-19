@@ -1,4 +1,6 @@
-import { defineConfig, devices } from '@playwright/test'
+import {
+  defineConfig, devices 
+} from '@playwright/test'
 
 /**
  * Read environment variables from file.
@@ -21,8 +23,8 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: [
-    ['line'],
-    ['junit', { outputFile: 'test-results/e2e/junit-e2e.xml'}]
+    [ 'line' ],
+    [ 'junit', { outputFile: 'test-results/e2e/junit-e2e.xml' } ]
   ],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
@@ -45,7 +47,7 @@ export default defineConfig({
         ...devices['Desktop Chrome'],
         storageState: 'playwright/.auth/user.json',
       },
-      dependencies: ['setup'],
+      dependencies: [ 'setup' ],
     },
     /*
     {

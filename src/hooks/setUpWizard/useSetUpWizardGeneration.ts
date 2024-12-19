@@ -1,5 +1,9 @@
-import { useState, useEffect, useContext } from 'react'
-import { TEEAuthDataContext, UserProfileContext } from '@edfi/admin-console-shared-sdk'
+import {
+  useState, useEffect, useContext 
+} from 'react'
+import {
+  TEEAuthDataContext, UserProfileContext 
+} from '@edfi/admin-console-shared-sdk'
 import { OnBoardingWizardData } from '../../core/onBoardingWizard/onBoardingWizard.types'
 import { ODSInstance } from '../../core/ODSInstance.types'
 import useSetUpWizardStepsMetadata from './useSetUpWizardStepsMetadata'
@@ -17,7 +21,7 @@ const useSetUpWizardGeneration = ({ instance }: UseSetUpWizardGenerationProps) =
   const adminConfig = useContext(adminConsoleContext)
   const { auth, edxAppConfig } = useContext(TEEAuthDataContext)
   const [ isFetchingSetUpWizard, setIsLoadingSetUpWizard ] = useState(true)
-  const [ setUpWizardData, setSetUpWizardData] = useState<InstanceOnboarding | null>(null)
+  const [ setUpWizardData, setSetUpWizardData ] = useState<InstanceOnboarding | null>(null)
   const { setUpWizardStepsMetadata } = useSetUpWizardStepsMetadata()
 
   const { 
@@ -26,8 +30,9 @@ const useSetUpWizardGeneration = ({ instance }: UseSetUpWizardGenerationProps) =
   } = useOdsInstanceService()
 
   const fetchOrSetOnBoardingDetails = async (instance: ODSInstance) => {
-    if (!auth || !auth.user || !userProfile || !edxAppConfig || !adminConfig)
-      return 
+    if (!auth || !auth.user || !userProfile || !edxAppConfig || !adminConfig) {
+      return
+    } 
 
     console.log('generate instance', instance.instanceId)
     console.log('started fetching instance OB')
@@ -45,8 +50,7 @@ const useSetUpWizardGeneration = ({ instance }: UseSetUpWizardGenerationProps) =
                 
       setIsLoadingSetUpWizard(false)
       setSetUpWizardData(data)
-    }
-    else {
+    } else {
       console.log('instance does not have OB data. Loading steps...')
       await setupInitialOnBoardingState(instance.instanceId)
             
@@ -55,8 +59,9 @@ const useSetUpWizardGeneration = ({ instance }: UseSetUpWizardGenerationProps) =
   }
 
   const hasStartedOB = (data: OnBoardingWizardData) : boolean => {
-    if (data.status === 'Pending') 
-      return false 
+    if (data.status === 'Pending') {
+      return false
+    } 
 
     return true
   }
@@ -64,8 +69,9 @@ const useSetUpWizardGeneration = ({ instance }: UseSetUpWizardGenerationProps) =
   const setupInitialOnBoardingState = async (instanceId: string) => {
     console.log('Setting initial setup wizard state...')
 
-    if (!auth || !auth.user || !userProfile || !edxAppConfig || !adminConfig)
-      return 
+    if (!auth || !auth.user || !userProfile || !edxAppConfig || !adminConfig) {
+      return
+    } 
 
     for (const step of setUpWizardStepsMetadata.stepsData) {
       console.log('creating step', step.index + 1, step.name)
@@ -83,12 +89,14 @@ const useSetUpWizardGeneration = ({ instance }: UseSetUpWizardGenerationProps) =
   }
 
   const setWizardDataFromLatestInstanceOnboarding = async (instanceId: string) => {
-    if (!adminConfig)
-      return 
+    if (!adminConfig) {
+      return
+    } 
 
     const response = await getOdsInstanceById(
       adminConfig.actionParams,
-      instanceId)
+      instanceId
+    )
         
     if (response.type == 'Response') {
       const onboarding = response.data.data[0].verificationStatus

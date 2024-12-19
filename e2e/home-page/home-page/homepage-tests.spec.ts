@@ -1,4 +1,6 @@
-import { test, expect, Page } from '@playwright/test'
+import {
+  test, expect, Page 
+} from '@playwright/test'
 import { routes } from '../../core/routes'
 
 let page: Page

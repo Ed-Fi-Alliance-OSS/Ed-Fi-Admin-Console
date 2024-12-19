@@ -4,8 +4,7 @@ import App from './App'
 
 console.log(`basePath is ${import.meta.env.BASE_URL }`)
 fetch(`${import.meta.env.BASE_URL || './'}config.json`).then(resp => resp.json()).then(config => {
-  ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-    <BrowserRouter basename={config.app.basePath}>
-      <App appConfig={config} />
-    </BrowserRouter>)
+  ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(<BrowserRouter basename={config.app.basePath}>
+    <App appConfig={config} />
+  </BrowserRouter>)
 }).catch(err => console.log('The config file fetching failed: ', err))

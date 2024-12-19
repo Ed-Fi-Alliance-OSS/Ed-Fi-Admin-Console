@@ -1,8 +1,18 @@
-import { UserProfileContext, TEEAuthDataContext } from '@edfi/admin-console-shared-sdk'
-import { useContext, useState, useEffect } from 'react'
+import {
+  TEEAuthDataContext,
+  UserProfileContext
+} from '@edfi/admin-console-shared-sdk'
+import {
+  useContext,
+  useEffect,
+  useState
+} from 'react'
 import { useNavigate } from 'react-router-dom'
 import { adminConsoleContext } from '../context/adminConsoleContext'
-import { onBoardingWizardContext, OnBoardingWizardDataWrapper } from '../context/onBoardingWizardContext'
+import { useMockData } from '../context/mockDataContext'
+import {
+  onBoardingWizardContext, OnBoardingWizardDataWrapper
+} from '../context/onBoardingWizardContext'
 import { EdfiApplicationAuthData } from '../core/Edfi/EdfiApplications'
 import { OnBoardingStepStatus } from '../core/onBoardingWizard/onBoardingWizard.types'
 import routes from '../core/routes'
@@ -11,7 +21,6 @@ import useDataSyncService from '../services/AdminActions/DataSync/DataSyncServic
 import { CreateEdfiApplicationRequest } from '../services/AdminActions/Edfi/Applications/EdfiApplicationService.requests'
 import useEdfiApplicationsService from '../services/AdminActions/Edfi/Applications/EdfiApplicationsService'
 import useEdfiVendorsService from '../services/AdminActions/Edfi/Vendors/EdfiVendorsService'
-import { updateOnBoardingWizardStep } from '../services/OnBoardingWizard/onBoardingWizardService'
 import useEDXToast from './common/useEDXToast'
 import useEdfiUrls from './useEdfiUrls'
 import useExternalODSData from './useExternalODSData'
@@ -39,10 +48,11 @@ interface UpdateProgressProps {
 }
 
 const selectLastStepValue = (isODS: boolean) => {
-  if (!isODS)   
-    return 8
+  if (!isODS) {
+    return 5
+  }
 
-  return 7
+  return 5
 }
 
 const useOnBoardingWizard = () => {
@@ -54,22 +64,24 @@ const useOnBoardingWizard = () => {
   const [ started, setStarted ] = useState(false)
   const [ currentStepIndex, setCurrentStepIndex ] = useState(0)
   const navigate = useNavigate()
-  const [allStepsProgressData, setAllStepsProgressData] = useState<AllStepsProgressData>({...allStepsProgress})
+  const [ allStepsProgressData, setAllStepsProgressData ] = useState<AllStepsProgressData>({ ...allStepsProgress })
   const { createEdfiApplication, getEdfiApplicationsList } = useEdfiApplicationsService()
   const { getVendorsList } = useEdfiVendorsService()
   const { createConnection } = useDataSyncService()
   const { getCurrentTenant } = useTenantInfo()
   const { successToast, errorToast } = useEDXToast()
   const { externalODS } = useExternalODSData()
-  const [lastStep, setLastStep] = useState(selectLastStepValue(externalODS.isExternalODS))
+  const [ lastStep, setLastStep ] = useState(selectLastStepValue(externalODS.isExternalODS))
+  const mock = useMockData()
     
   console.log('has connected sis', allStepsProgressData.hasConnectedSIS)
   console.log('Onboarding wizard data', onBoardingWizardData)
   console.log('progress data', allStepsProgressData)
 
   const getCompletedSteps = () : number => {
-    if (onBoardingWizardData)
+    if (onBoardingWizardData) {
       return onBoardingWizardData.steps.filter(step => step.status === 'Completed').length
+    }
 
     return 0
   }
@@ -79,8 +91,9 @@ const useOnBoardingWizard = () => {
 
   const isOBActive = () => {
     if (onBoardingWizardData) {
-      if (onBoardingWizardData.status !== 'Completed' && completedSteps < lastStep)
+      if (onBoardingWizardData.status !== 'Completed' && completedSteps < lastStep) {
         return true
+      }
     }
 
     return false
@@ -112,7 +125,7 @@ const useOnBoardingWizard = () => {
   }
 
   const onCompletedStep = (stepIndex: number) => {
-    const nallStepsProgressData = {...allStepsProgressData}
+    const nallStepsProgressData = { ...allStepsProgressData }
     // if (stepIndex === 0)
     nallStepsProgressData.hasInvitedUsers = true
     // else if (stepIndex === 1)
@@ -128,7 +141,7 @@ const useOnBoardingWizard = () => {
   }
 
   const onIncompletedStep = (stepIndex: number) => {
-    const nallStepsProgressData = {...allStepsProgressData}
+    const nallStepsProgressData = { ...allStepsProgressData }
     // if (stepIndex === 0)
     nallStepsProgressData.hasInvitedUsers = true
     // else if (stepIndex === 1)
@@ -153,8 +166,9 @@ const useOnBoardingWizard = () => {
       if (applicationsListRequest.type === 'Response') {
         const techApplication = applicationsListRequest.data.find(application => application.applicationName === applicationName)
 
-        if (!techApplication)
+        if (!techApplication) {
           return false
+        }
       }
     }
 
@@ -166,14 +180,15 @@ const useOnBoardingWizard = () => {
     if (adminConfig) {
       const currentTenant = getCurrentTenant()
       const applicationName = `Tech Console SIS ${currentTenant?.organizationName}`
-
       const applicationExists = await checkIfApplicationExists(applicationName)
       console.log(applicationExists? 'Application exists' : 'Application does not exist')
-      if (applicationExists)
+      if (applicationExists) {
         return null
+      }
             
       console.log('Create tech console: application does not exist, create it')
       const vendorsList = await getVendorsList(adminConfig.actionParams)
+
       if (vendorsList.type === 'Response') {
         const exchangeVendor = vendorsList.data.find(vendor => vendor.company === 'Texas Exchange')
 
@@ -182,17 +197,16 @@ const useOnBoardingWizard = () => {
             applicationName,
             vendorId: exchangeVendor.vendorId ?? 0,
             claimSetName: 'SIS/HR/Finance Vendor',
-            educationOrganizationIds: [
-              currentTenant? currentTenant.organizationIdentifier : 'unknown'
-            ]
+            educationOrganizationIds: [ currentTenant? currentTenant.organizationIdentifier : 'unknown' ]
           }
         
           console.log('Create tech console application with data', data)
           const result = await createEdfiApplication(adminConfig.edfiActionParams, data)
 
           console.log(result.type === 'Response'? 'Created tech console app' : 'failed to create tech console app')
-          if (result.type === 'Response')
+          if (result.type === 'Response') {
             return result.data
+          }
         }
       }
     }
@@ -243,10 +257,11 @@ const useOnBoardingWizard = () => {
         console.log('creating connection')
         const result = await createConnection(adminConfig.actionParams, data)
 
-        if (result.type === 'Response')
+        if (result.type === 'Response') {
           successToast('Created connection for Tech Console.')
-        else 
+        } else {
           errorToast('Failed to create connection for Tech Console.')
+        }
       }
     }
   }
@@ -255,7 +270,10 @@ const useOnBoardingWizard = () => {
     await connectWithCredentials()
 
     if (externalODS.isExternalODS) {
-      await updateOBStepStatus({ stepNumber: 8, stepStatus: 'Completed' })
+      await updateOBStepStatus({
+        stepNumber: 8,
+        stepStatus: 'Completed' 
+      })
     }
 
     navigate(routes.home.url)
@@ -265,28 +283,32 @@ const useOnBoardingWizard = () => {
     if (onBoardingWizardData) {
       console.log('HANDLE NEXT')
 
-      const obData = {...onBoardingWizardData}
+      const obData = { ...onBoardingWizardData }
       obData.steps[currentStepIndex].status = 'Completed'
 
-      if (currentStepIndex + 2 < lastStep && obData.steps[currentStepIndex].status !== 'Completed')
+      if (currentStepIndex + 2 < lastStep && obData.steps[currentStepIndex].status !== 'Completed') {
         obData.steps[currentStepIndex + 1].status = 'InProgress'
+      }
 
-      if (currentStepIndex + 1 < lastStep)
+      if (currentStepIndex + 1 < lastStep) {
         setCurrentStepIndex(currentStepIndex + 1)
+      }
             
       setOnBoardingWizardData(obData)
       setStarted(true)
 
       await updateOBProgress()
 
-      if (currentStepIndex + 1 === lastStep)
+      if (currentStepIndex + 1 === lastStep) {
         await handleFinalizeOB()
+      }
     }
   }
 
   const handlePrev = () => {
-    if (currentStepIndex === 0)
+    if (currentStepIndex === 0) {
       return setStarted(false)
+    }
 
     setCurrentStepIndex(currentStepIndex - 1)
   }
@@ -299,10 +321,14 @@ const useOnBoardingWizard = () => {
 
     if (onBoardingWizardData) {
       if (onBoardingWizardData.steps[index].status === 'Pending') {
-        const result = await updateOBStepStatus({ stepNumber: index + 1, stepStatus: 'InProgress' })
+        const result = await updateOBStepStatus({
+          stepNumber: index + 1,
+          stepStatus: 'InProgress' 
+        })
 
-        if (!result)
+        if (!result) {
           console.log('failed to update step status', index + 1)
+        }
       }
     }
   }
@@ -311,39 +337,51 @@ const useOnBoardingWizard = () => {
     // console.log('Update OB progress')
     // console.log('update OB progress', currentStepIndex)
 
-    const resultNext = await updateOBStepStatus({ stepNumber: currentStepIndex + 1, stepStatus: 'Completed' })
+    const resultNext = await updateOBStepStatus({
+      stepNumber: currentStepIndex + 1,
+      stepStatus: 'Completed' 
+    })
 
-    if (!resultNext) 
+    if (!resultNext) {
       console.log('failed to update step status', currentStepIndex + 1)
+    }
 
     if (currentStepIndex + 2 < lastStep) {
-      const resultCurrent = await updateOBStepStatus({ stepNumber: currentStepIndex + 2, stepStatus: 'InProgress' })
+      const resultCurrent = await updateOBStepStatus({
+        stepNumber: currentStepIndex + 2,
+        stepStatus: 'InProgress' 
+      })
 
-      if (!resultCurrent)
-        console.log('failed to update step status', currentStepIndex + 1) 
+      if (!resultCurrent) {
+        console.log('failed to update step status', currentStepIndex + 1)
+      } 
     }
   }
 
   const updateOBStepStatus = async ({ stepNumber, stepStatus }: UpdateProgressProps) => {
     // console.log('Update OB step status')
 
-    const apiUrl = edxAppConfig?.api.baseUri as string
+    // const apiUrl = edxAppConfig?.api.edfiApiBaseUri as string
     const token = auth?.user?.access_token as string 
     const tenantId = userProfile?.tenantId as string 
 
-    const result = await updateOnBoardingWizardStep({ 
-      apiUrl,
-      token,
-      tenantId,
-      stepNumber,
-      stepStatus,
-      apiConfig: edxAppConfig?.api
-    })
+    // const result = await updateOnBoardingWizardStep({ 
+    //   apiUrl: '',
+    //   token,
+    //   tenantId,
+    //   stepNumber,
+    //   stepStatus,
+    //   apiConfig: edxAppConfig?.api
+    // })
 
-    if (result.tenantId === userProfile?.tenantId)
-      return true
+    // if (result.tenantId === userProfile?.tenantId) {
+    //   return true
+    // }
+    // TODO: remove this mock data code and replace with actual API call
+    localStorage.setItem(`onboarding.step.${stepNumber}`, stepStatus)
+    return true
 
-    return false
+    // return false
   }
 
   const updateCurrentStep = () => {
@@ -352,30 +390,40 @@ const useOnBoardingWizard = () => {
 
       const ncurrentStep = onBoardingWizardData.steps.find(step => step.status !== 'Completed')
 
-      if (ncurrentStep && ncurrentStep.number - 1 !== currentStepIndex)
+      if (ncurrentStep && ncurrentStep.number - 1 !== currentStepIndex) {
         setCurrentStepIndex(ncurrentStep.number - 1)
+      }
     }
   }
 
   const updateStepsValidation = () => {
     if (onBoardingWizardData) {
-      // console.log('Update steps validation')
+      console.log('Update steps validation')
 
       if (onBoardingWizardData.status !== 'Completed' && onBoardingWizardData.totalSteps === 8) {
-        const nallStepsProgressData = {...allStepsProgressData}
+        const nallStepsProgressData = { ...allStepsProgressData }
 
         console.log('update step validation', onBoardingWizardData.steps)
 
-        if (onBoardingWizardData.steps[0].status === 'Completed')
+        if (onBoardingWizardData.steps[0].status === 'Completed') {
           nallStepsProgressData.hasInvitedUsers = true
-        if (onBoardingWizardData.steps[1].status === 'Completed')
+        }
+
+        if (onBoardingWizardData.steps[1].status === 'Completed') {
           nallStepsProgressData.hasCompletedTraining = true
-        if (onBoardingWizardData.steps[2].status === 'Completed')
+        }
+
+        if (onBoardingWizardData.steps[2].status === 'Completed') {
           nallStepsProgressData.hasVerifiedDomain = true
-        if (onBoardingWizardData.steps[3].status === 'Completed' && externalODS.isExternalODS)
+        }
+
+        if (onBoardingWizardData.steps[3].status === 'Completed' && externalODS.isExternalODS) {
           nallStepsProgressData.hasEdFiConnection = true
-        if (onBoardingWizardData.steps[4].status === 'Completed')
+        }
+
+        if (onBoardingWizardData.steps[4].status === 'Completed') {
           nallStepsProgressData.hasConnectedSIS = true
+        }
 
         // console.log('all steps validation after update', nallStepsProgressData)
         setAllStepsProgressData(nallStepsProgressData)
@@ -399,8 +447,9 @@ const useOnBoardingWizard = () => {
   }, [ currentStepIndex, started ])
 
   useEffect(() => {
-    if (externalODS.isExternalODS) 
+    if (externalODS.isExternalODS) {
       setLastStep(selectLastStepValue(externalODS.isExternalODS))
+    }
   }, [ externalODS ])
 
   return {

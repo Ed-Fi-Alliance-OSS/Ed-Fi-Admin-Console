@@ -1,8 +1,10 @@
-import { Button, Flex } from '@chakra-ui/react'
+import {
+  Button, Flex
+} from '@chakra-ui/react'
 import useOnboardingWizardStepsData from '../../../hooks/useOnBoardingWizardStepsData'
 import WizardContentWrapper from '../Wizard/WizardContentWrapper'
-import OnBoardingWizardStartLeft from './OnBoardingWizardStartLeft'
 import WizardStartRight from '../Wizard/WizardStartRight'
+import OnBoardingWizardStartLeft from './OnBoardingWizardStartLeft'
 
 interface OnBoardingWizardStartProps {
     currentStepIndex: number 
@@ -16,22 +18,34 @@ const OnBoardingWizardStart = ({ currentStepIndex, lastInProgress, completedStep
 
   return (
     <WizardContentWrapper>
-      <Flex justifyContent='space-between' h='full' w='full'>
-        <OnBoardingWizardStartLeft 
-          hasStarted={completedSteps > 0} />
+      
+
+      <Flex
+        h='full'
+        justifyContent='space-between'
+        w='full'
+      >
+        <OnBoardingWizardStartLeft hasStarted={completedSteps > 0} />
+
         <WizardStartRight
-          lastInProgress={lastInProgress}
-          currentStepIndex={currentStepIndex}
           completedSteps={completedSteps}
+          currentStepIndex={currentStepIndex}
+          lastInProgress={lastInProgress}
           stepsList={onboardingStepsData.stepsData}
-          onGoToStep={onGoToStep} />
+          onGoToStep={onGoToStep}
+        />
       </Flex>
-      <Flex justifyContent='flex-end' mt='auto'>
+
+      <Flex
+        justifyContent='flex-end'
+        mt='auto'
+      >
         <Button
-          onClick={() => onGoToStep(completedSteps === 0? 0 : completedSteps)}
-          variant='primaryBlue600'
+          minW='138px'
           size='lg'
-          minW='138px'>
+          variant='primaryBlue600'
+          onClick={() => onGoToStep(completedSteps === 0? 0 : completedSteps)}
+        >
           { completedSteps > 0? 'Continue' : 'Start' }
         </Button>
       </Flex>

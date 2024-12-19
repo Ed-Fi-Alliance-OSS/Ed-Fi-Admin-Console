@@ -1,4 +1,6 @@
-import { Button, Flex } from '@chakra-ui/react'
+import {
+  Button, Flex 
+} from '@chakra-ui/react'
 import { ChangeEvent } from 'react'
 import ControlTableFilterPopover from '../ControlTableFilterPopover'
 import TabHeading from '../TabHeading'
@@ -28,60 +30,83 @@ const ManageSubscriptionsTabHeader = ({ filterOptionsList, filterValue, selected
   const selectUITextOption = (option: string) => {
     console.log(option)
 
-    if (option === 'applicationName')
+    if (option === 'applicationName') {
       return optionTextList[0]
+    }
 
-    if (option === 'licensesAmount')
+    if (option === 'licensesAmount') {
       return optionTextList[1]
+    }
 
-    if (option === 'startDateTime')
+    if (option === 'startDateTime') {
       return optionTextList[2]
+    }
 
-    if (option === 'endDateTime')
+    if (option === 'endDateTime') {
       return optionTextList[3]
+    }
 
-    if (option === 'licenseType')
+    if (option === 'licenseType') {
       return optionTextList[4]
+    }
 
-    if (option === 'subscriptionStatus')
+    if (option === 'subscriptionStatus') {
       return optionTextList[5]
+    }
 
     return 'select filter'
   }
 
   return (
-    <Flex justifyContent='space-between' w='full'>
+    <Flex
+      justifyContent='space-between'
+      w='full'
+    >
       <Flex alignItems='flex-end'>
         <TabHeading text="Licenses" />
-        <Flex alignItems='center' justifyContent='flex-end' ml='5px' mb='6px'>
+
+        <Flex
+          alignItems='center'
+          justifyContent='flex-end'
+          mb='6px'
+          ml='5px'
+        >
           <ControlTableFilterPopover
-            textFilter={filterValue}
             options={filterOptionsList}
             selectedOption={selectedFilter}
             selectUITextOption={selectUITextOption}
+            textFilter={filterValue}
             onChangeFilterOption={onChangeFilter}
             onChangeText={onChangeValue}
             onFilter={onFilter}
-            onResetFilter={onResetFilter} />
+            onResetFilter={onResetFilter}
+          />
         </Flex>
       </Flex>
-      <Flex alignItems='center' mt='5px'>
+
+      <Flex
+        alignItems='center'
+        mt='5px'
+      >
         <Button
-          onClick={onRefreshData}
-          variant='secondaryBlue600'
-          size='xs'
-          p='0 25px'
-          minW='5px'>
-                        Refresh List
-        </Button>
-        <Button
-          onClick={onAddSubscription}
-          variant='primaryBlue600'
-          size='xs'
-          p='0 25px'
           minW='5px'
-          ml='8px'>
-                        Add License
+          p='0 25px'
+          size='xs'
+          variant='secondaryBlue600'
+          onClick={onRefreshData}
+        >
+          Refresh List
+        </Button>
+
+        <Button
+          minW='5px'
+          ml='8px'
+          p='0 25px'
+          size='xs'
+          variant='primaryBlue600'
+          onClick={onAddSubscription}
+        >
+          Add License
         </Button>
       </Flex>
     </Flex>

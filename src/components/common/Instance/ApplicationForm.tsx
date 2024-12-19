@@ -1,24 +1,27 @@
 import { Flex } from '@chakra-ui/react'
+import {
+  CompleteFormErrorMessage, UserProfile, UserProfileContext
+} from '@edfi/admin-console-shared-sdk'
+import {
+  useContext, useEffect
+} from 'react'
 import { EdfiApplication } from '../../../core/Edfi/EdfiApplications'
+import { ODSInstance } from '../../../core/ODSInstance.types'
 import useApplicationForm from '../../../hooks/adminActions/edfi/useApplicationForm'
-import { CompleteFormErrorMessage, UserProfile, UserProfileContext } from '@edfi/admin-console-shared-sdk'
+import useTenantInfo from '../../../hooks/useTenantInfo'
+import MultiInput from '../../MultiInput'
 import ApplicationAPIFormSection from './ApplicationAPIFormSection'
 import ApplicationDetailsFormSection from './ApplicationDetailsFormSection'
-import LocalEducationAgenciesFormSection from './LocalEducationAgenciesFormSection'
-import { useContext } from 'react'
-import useTenantInfo from '../../../hooks/useTenantInfo'
 import EdFiModalForm from './EdFiModalForm'
-import { ODSInstance } from '../../../core/ODSInstance.types'
 
 interface ApplicationFormProps {
     instance: ODSInstance | null
-    schoolYear: number 
     mode: 'add' | 'edit'
     editApplicationData?: EdfiApplication
     onFinishSave: () => void
 }
 
-const ApplicationForm = ({ instance, schoolYear, mode, editApplicationData, onFinishSave }: ApplicationFormProps) => {
+const ApplicationForm = ({ instance, mode, editApplicationData, onFinishSave }: ApplicationFormProps) => {
   const {
     applicationData,
     vendorOptionsList,
@@ -31,12 +34,14 @@ const ApplicationForm = ({ instance, schoolYear, mode, editApplicationData, onFi
     errors,
     onRegenerateCredentials,
     onChangeInput,
-    onToggleOrgId,
     onSelectClaim,
     onSelectVendor,
-    onSave
+    onSave,
+    transformText,
+    setEdorgs,
+    edOrgs
   } = useApplicationForm({ 
-    schoolYear,
+    instanceId: instance?.id ?? 0,
     mode, 
     editApplicationData, 
     onFinishSave 
@@ -49,8 +54,9 @@ const ApplicationForm = ({ instance, schoolYear, mode, editApplicationData, onFi
     if (profile) {
       const tenant = getCurrentTenant()
 
-      if (tenant) 
-        return tenant.organizationName
+      if (tenant) {
+        return tenant.document.name
+      }
 
       return 'Loading...'
     }
@@ -63,50 +69,88 @@ const ApplicationForm = ({ instance, schoolYear, mode, editApplicationData, onFi
   const getLocalEducationOrgId = () => {
     const currentTenant = getCurrentTenant()
 
-    if (currentTenant)
-      return currentTenant.organizationIdentifier
+    if (currentTenant) {
+      return `Id: ${currentTenant.tenantId}`
+    }
 
     return '...'
   }
 
+  useEffect(() => {
+    if(applicationData.educationOrganizationIds){
+      console.log('setting edorgs', applicationData.educationOrganizationIds)
+      setEdorgs(applicationData.educationOrganizationIds)
+    }
+  }, [ applicationData ])
+
+  // setEdorgs
+  function isNumberKey(evt) {
+    if(evt.target.value) {
+      evt.target.value = evt.target.value.replace(/[^0-9]/g, '')
+    }
+    // var charCode = (evt.which) ? evt.which : evt.keyCode
+
+    // if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+    //   return false 
+    // }
+
+    // return true
+  }
+
   return (
     <EdFiModalForm
-      actionText="save"
-      headerText={mode === 'add'? 'Add Application' : 'Edit Application'}
-      isSaving={isSaving}
-      onSave={onSave}
-      onClose={onFinishSave}
       content={<Flex w='full'>
-        <Flex flexDir='column' w='full'>
+        <Flex
+          flexDir='column'
+          w='full'
+        >
           { Object.keys(errors).length > 0 && hasTriedSubmit && <CompleteFormErrorMessage /> }
+
           <ApplicationDetailsFormSection
+            applicationData={applicationData}
+            claimSetOptions={claimsOptionsList}
             errors={errors}
             mode={mode}
-            applicationData={applicationData}
             operationalContext={operationalContext}
             vendorOptions={vendorOptionsList}
-            claimSetOptions={claimsOptionsList}
             onInputChange={onChangeInput}
+            onSelectClaimSet={onSelectClaim}
             onSelectVendor={onSelectVendor}
-            onSelectClaimSet={onSelectClaim} />
-          <Flex mt='32px' w='full'>
-            <LocalEducationAgenciesFormSection
-              name={getCurrentTenantOrgName(userProfile)}
-              description={getLocalEducationOrgId()}
-              selected={true}
-              mode={mode}
-              onToggleOrgId={() => onToggleOrgId()} />
+          />
+
+          <Flex
+            mt='32px'
+            w='full'
+          >
+            <MultiInput
+              filterInput={isNumberKey}
+              label='EdOrgs'
+              transformText={transformText}
+              values={edOrgs}
+              onChange={setEdorgs}
+            />
           </Flex>
-          <Flex mt={showApplicationAPIData()? '32px' : '0px'} w='full'>
+
+          <Flex
+            mt={showApplicationAPIData()? '32px' : '0px'}
+            w='full'
+          >
             <ApplicationAPIFormSection 
-              instance={instance}
-              mode={mode}
               applicationClientData={applicationAuthData}
+              instance={instance}
               isRegeneratingCredentials={isRegeneratingCredentials}
-              onRegenerateCredentials={() => onRegenerateCredentials(editApplicationData? editApplicationData.applicationId : 0)} />
+              mode={mode}
+              onRegenerateCredentials={() => onRegenerateCredentials(editApplicationData? editApplicationData.id : 0)}
+            />
           </Flex>
         </Flex>
-      </Flex>} />
+      </Flex>}
+      actionText="Save"
+      headerText={mode === 'add'? 'Add Application' : 'Edit Application'}
+      isSaving={isSaving}
+      onClose={onFinishSave}
+      onSave={onSave}
+    />
   )
 }
 

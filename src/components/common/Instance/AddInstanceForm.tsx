@@ -1,75 +1,85 @@
-import { Button, Flex, FormControl } from '@chakra-ui/react'
-import { CustomFormHeader, CustomFormLabel, CustomInput, CustomSelect, UserProfileContext, useTenantSelectPopover } from '@edfi/admin-console-shared-sdk'
-import { ChangeEvent, useContext } from 'react'
-import { usePluginContext } from '../../../plugins/BasePlugin'
+import {
+  Button, Flex
+} from '@chakra-ui/react'
+import { CustomFormHeader } from '@edfi/admin-console-shared-sdk'
+import {
+  Form,
+  Formik
+} from 'formik'
+import * as Yup from 'yup'
+import AppInput from '../../AppInput'
+
 interface AddInstanceFormProps {
-  instanceName: string
-  instanceDescription: string
-  schoolYear: string
-  schoolYearOptions: string[]
-  onInputChange: (e: ChangeEvent<HTMLInputElement>) => void
-  onSelectChange: (e: ChangeEvent<HTMLSelectElement>) => void
-  onSaveChanges: () => void
+  name: string
+  connectionString: string
+  type: string
+  onSaveChanges: (values: any) => void
 }
 
 
-const AddInstanceForm = ({ instanceName, instanceDescription, schoolYear, schoolYearOptions, onInputChange, onSelectChange, onSaveChanges }: AddInstanceFormProps) => {
-  const { getString } = usePluginContext()
-  const { userProfile } = useContext(UserProfileContext)
-  const {topItemsList} = useTenantSelectPopover({
-    onChangeTenantId: () => { },
-    userProfile: userProfile,
+const AddInstanceForm = ({ name, type, connectionString, onSaveChanges: onSaveChanges2 }: AddInstanceFormProps) => {
+  
+  const validationSchema = Yup.object({
+    name: Yup.string().required('Name is required'),
+    type: Yup.string(),
+    connectionString: Yup.string().required('Connection String is required')
   })
 
   return (
-    <Flex flexDir='column' w='full'>
-      <CustomFormHeader text="Instance Details" />
-      <Flex flexDir='column' mt='16px' ml='10px' w='full'>
-        <FormControl>
-          <CustomFormLabel
-            text="Instance Name"
-            htmlFor="instanceName" />
-          <CustomSelect
-            id='instanceName'
-            value={instanceName}
-            // pass tenants here
-            options={topItemsList.map(tenant => ({ value: tenant.organizationIdentifier, text: tenant.organizationName }))}
-            onChange={onSelectChange} />
-        </FormControl>
-        <FormControl mt='16px'>
-          <CustomFormLabel
-            text="Description"
-            htmlFor="instanceDescription" />
-          <CustomInput
-            id="instanceDescription"
-            value={instanceDescription}
-            onChange={onInputChange} />
-        </FormControl>
-      </Flex>
+    <Flex
+      flexDir='column'
+      w='full'
+    >
+      <Formik
+        initialValues={{
+          name,
+          type,
+          connectionString 
+        }}
+        validationSchema={validationSchema}
+        onSubmit={onSaveChanges2}
+      >
+        <>
+          <CustomFormHeader text="Instance Details" />
 
-      <Flex flexDir='column' mt='48px'>
-        <CustomFormHeader text={getString('app.ODS_INSTANCES')} />
-        <Flex flexDir='column' mt='16px' ml='10px' w='full'>
-          <FormControl>
-            <CustomFormLabel
-              text='School Year'
-              htmlFor='schoolYear' />
-            <CustomSelect
-              id='schoolYear'
-              value={schoolYear}
-              options={schoolYearOptions.map(year => ({ value: year, text: year }))}
-              onChange={onSelectChange} />
-          </FormControl>
-        </Flex>
-      </Flex>
-      <Button
-        onClick={onSaveChanges}
-        mt='32px'
-        variant='primaryBlue600'
-        size='lg'
-        w='250px'>
-        Create Instance
-      </Button>
+          <Flex
+            flexDir='column'
+            ml='10px'
+            mt='16px'
+            w='full'
+          >
+            <Form>
+              <AppInput
+                required
+                fieldName='name'
+                label='Name'
+              />
+              
+              <AppInput
+                fieldName='type'
+                label='Instance Type'
+              />
+              
+              <AppInput
+                required
+                description='SQL Connection String for Ed-Fi ODS database'
+                fieldName='connectionString'
+                label='Connection String'
+              />
+
+              <Button
+                mt='32px'
+                size='lg'
+                type='submit'
+                variant='primaryBlue600'
+                w='250px'
+              >
+                Create Instance
+              </Button>
+            </Form>
+          </Flex>
+        </>
+      </Formik>
     </Flex>
   )
 }

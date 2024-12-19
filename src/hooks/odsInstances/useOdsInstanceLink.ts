@@ -1,19 +1,13 @@
 import { ODSInstance } from '../../core/ODSInstance.types'
 import routes from '../../core/routes'
-import useOdsInstanceYear from './useOdsInstanceYear'
 
 const useOdsInstanceLink = () => {
-  const { getInstanceYear } = useOdsInstanceYear()
 
   const getOdsInstanceLink = (instance: ODSInstance): string => {
-    const year = getInstanceYear(instance)
-
-    return routes.instance.url.replace(':year', year? year.toString() : '0')
+    return routes.instance.url.replace(':odsInstanceId', instance.id ? instance.id.toString() : '0')
   }
 
-  return {
-    getOdsInstanceLink
-  }
+  return { getOdsInstanceLink }
 }
 
 export default useOdsInstanceLink

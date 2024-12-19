@@ -1,5 +1,9 @@
-import { TEEAuthDataContext, UserProfileContext } from '@edfi/admin-console-shared-sdk'
-import { useContext, useEffect, useState } from 'react'
+import {
+  TEEAuthDataContext, UserProfileContext
+} from '@edfi/admin-console-shared-sdk'
+import {
+  useContext, useEffect, useState
+} from 'react'
 import { adminConsoleContext } from '../../../context/adminConsoleContext'
 import { Subscription } from '../../../core/Subscription.types'
 import useSubscriptionsService from '../../../services/AdminActions/Subscriptions/SubscriptionsService'
@@ -13,11 +17,12 @@ interface TablePaginationData {
 
 const useSubscriptionsList = () => {
   const { getSubscriptionsList } = useSubscriptionsService()
-  const [subscriptionsList, setSubscriptionsList] = useState<Subscription[]>([])
+  const [ subscriptionsList, setSubscriptionsList ] = useState<Subscription[]>([])
   const { edxAppConfig, auth } = useContext(TEEAuthDataContext)
   const adminConfig = useContext(adminConsoleContext)
   const { userProfile } = useContext(UserProfileContext)
-  const [isFetchingSubscriptions, setIsFetchingSubscriptions] = useState(false)
+  const [ isFetchingSubscriptions, setIsFetchingSubscriptions ] = useState(false)
+
   const [ paginationData, setPaginationData ] = useState<TablePaginationData>({
     count: 0,
     pageIndex: 0,
@@ -39,7 +44,7 @@ const useSubscriptionsList = () => {
       console.log('subscriptions data', result)
 
       if (result.type === 'Response') {
-        setSubscriptionsList([...result.data.data])
+        setSubscriptionsList([ ...result.data.data ])
         setPaginationData({
           ...paginationData, 
           pageSize: result.data.pageSize,
