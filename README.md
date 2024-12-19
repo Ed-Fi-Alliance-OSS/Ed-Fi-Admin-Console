@@ -2,6 +2,12 @@
 This is the startup app that works as the base project template. Created
 from the Vite react-ts template. 
 
+## 🚨 Alpha Notice: Use at Your Own Risk
+
+This project is currently in **alpha** and under active development. Features and APIs are subject to change, and there may be bugs or incomplete functionality. 
+
+We welcome contributions and feedback, but please use this project at your own risk in environments. For more stable alternatives, consider waiting for a **beta** or **stable** release, scheduled in 1Q 2025.
+
 ### Frameworks and Libraries
 The frameworks and libraries used are the following: 
 - React 
