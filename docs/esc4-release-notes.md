@@ -1,4 +1,8 @@
-# Release Notes
+# Texas Education Exchange Tech Console Release Notes
+
+> [!NOTE]
+> These are the original release notes from Region 4's application, kept for posterity.
+> They do not reflect the state of work on the Ed-Fi Admin Console.
 
 These are the official release notes for the TX Education Exchange **Tech Console** and **Onboarding Wizard**.
 
