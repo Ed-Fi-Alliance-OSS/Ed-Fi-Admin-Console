@@ -35,6 +35,12 @@ The Admin Console provides comprehensive management of ODS/API instances, enabli
 
 ### Process Sequence Diagram
 
+Below are process diagrams to describe how instances are managed by the Instance Management Worker Process. 
+
+#### Create Instance
+
+Below is a Mermaid process diagram to describe the "create instance" operation for the Instance Management Worker Process.
+
 ```mermaid
 sequenceDiagram
     Console ->>+AdminAPI: Create Instance
