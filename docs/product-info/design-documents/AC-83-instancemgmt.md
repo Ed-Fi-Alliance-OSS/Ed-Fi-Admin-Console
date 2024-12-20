@@ -33,6 +33,18 @@ The Admin Console provides comprehensive management of ODS/API instances, enabli
 
 **Ed-Fi Instance** - a central data hub where education data lives securely to enable analytics and other use cases.  Typically is physically instantiated as a PostgreSQL or Microsoft SQL database; however as could found instantiated as Amazon Relational Database Service (RDS), Azure Database or GCP Cloud SQL cloud-hosted service.
 
+### Process Sequence Diagram
+
+```mermaid
+sequenceDiagram
+    Console ->>+AdminAPI: Create Instance
+    AdminAPI ->>+AdminAPI: Store metadata
+    Worker ->>+AdminAPI: Get job
+    Worker ->>+DB Server: Create ODS Database
+    Worker ->>+EdFi_Admin: INSERT dbo.OdsInstances
+    SysAdmin ->>+Ed-Fi ODS/API: manually update appsettings
+```
+
 ### Operations
 
 Below are the abstract operations that will be defined by Instance Management Worker Process and a summary of the operation it will cover.  Underlying in implementation, each database instance has methods to implement these abstract operations, which definition will be left to individual provider implementation.
