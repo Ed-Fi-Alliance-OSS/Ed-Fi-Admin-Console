@@ -1,4 +1,6 @@
 # Ed-Fi Admin Console
+[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/Ed-Fi-Alliance-OSS/Ed-Fi-Admin-Console/badge)](https://securityscorecards.dev/viewer/?uri=github.com/Ed-Fi-Alliance-OSS/Ed-Fi-Admin-Console)
+
 This is the startup app that works as the base project template. Created
 from the Vite react-ts template. 
 
