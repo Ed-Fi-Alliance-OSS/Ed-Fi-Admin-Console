@@ -1,9 +1,13 @@
 {
-  "name": "edx-adminconsole-web",
+  "name": "@edfi/admin-console-web",
   "private": true,
   "version": "1.0.0",
   "type": "module",
   "homepage": "http://localhost:8598/adminconsole",
+  "publishConfig": {
+    "registry": "https://pkgs.dev.azure.com/ed-fi-alliance/Ed-Fi-Alliance-OSS/_packaging/EdFi/npm/registry/"
+  },
+  "license": "Apache-2.0",
   "scripts": {
     "dev": "set VITE_ENV=local && vite --open",
     "build": "vite build --mode development",
