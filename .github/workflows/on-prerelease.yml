@@ -115,8 +115,8 @@ jobs:
           echo "TAGS=$TAGS" >> $GITHUB_OUTPUT
           echo "NPM_VERSION=$NPM_VERSION" >> $GITHUB_OUTPUT
 
-          - name: Checkout repository
-          uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+      - name: Checkout repository
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
   
       - name: Setup Node
         uses: actions/setup-node@8f152de45cc393bb48ce5d89d36b731f54556e65 # v4.0.0
