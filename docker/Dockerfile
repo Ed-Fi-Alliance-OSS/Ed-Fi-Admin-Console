@@ -9,11 +9,11 @@ ENV EG_app__basePath=/edficonsole/v2.3/v7.2/ds4/saas/tx
 ENV mode=production
 
 WORKDIR /app
-# Install all the dependecies
-RUN npm install
-
 COPY ./package.json /app/package.json
 COPY ./package-lock.json /app/package-lock.json
+
+# Install all the dependecies
+RUN npm install
 
 COPY ../. /app
 
