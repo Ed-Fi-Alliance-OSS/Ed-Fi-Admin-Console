@@ -1,6 +1,6 @@
 {
   "name": "@edfi/admin-console-web",
-  "private": true,
+  "private": false,
   "version": "1.0.0",
   "type": "module",
   "homepage": "http://localhost:8598/adminconsole",
