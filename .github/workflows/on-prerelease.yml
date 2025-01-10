@@ -230,8 +230,6 @@ jobs:
               -m sbom `
               -ps "Ed-Fi Alliance"
 
-          cp _manifest/spdx_2.2/manifest.spdx.* .
-
       - name: Upload SBOM
         if: success()
         uses: actions/upload-artifact@26f96dfa697d77e81fd5907df203aa23a56210a8 # v4.3.0
