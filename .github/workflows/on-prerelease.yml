@@ -254,7 +254,7 @@ jobs:
         uses: slsa-framework/slsa-github-generator/.github/actions/secure-download-artifact@7f4fdb871876c23e455853d694197440c5a91506 # 1.5.0
         with:
           name: admin-console-SBOM
-          path: _manifest/spdx_2.2/manifest.spdx.json
+          path: ./sbom
           sha256: "${{ needs.sbom-create.outputs.sbom-hash-code }}"
 
       - name: Attach to release
