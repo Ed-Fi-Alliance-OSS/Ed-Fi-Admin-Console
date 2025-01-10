@@ -20,7 +20,8 @@ env:
   DOCKER_USERNAME: ${{ vars.DOCKER_USERNAME }}
   REF: ${{ github.ref_name }}
   IMAGE_NAME: ${{ vars.ED_FI_ADMIN_CONSOLE_IMAGE_NAME }}
-  NPM_REGISTRY: ${{ vars.NPM_REGISTRY }}  
+  NPM_REGISTRY: ${{ vars.NPM_REGISTRY }} 
+  MANIFEST_FILE: "_manifest/spdx_2.2/manifest.spdx.json"
 
 jobs:
   azure-publish:
@@ -227,12 +228,15 @@ jobs:
               -nsb https://ed-fi.org `
               -m sbom `
               -ps "Ed-Fi Alliance"
+
+          cp _manifest/spdx_2.2/manifest.spdx.* .
+
       - name: Upload SBOM
         if: success()
         uses: actions/upload-artifact@26f96dfa697d77e81fd5907df203aa23a56210a8 # v4.3.0
         with:
           name: admin-console-SBOM
-          path: ./sbom
+          path: ${{ env.MANIFEST_FILE }}
           if-no-files-found: error
           retention-days: 30
 
@@ -247,14 +251,16 @@ jobs:
     runs-on: ubuntu-latest
     needs:
       - sbom-create
+      - azure-publish
     permissions:
+      actions: read
       contents: write
     steps:
       - name: Download the SBOM
         uses: Ed-Fi-Alliance-OSS/slsa-github-generator/.github/actions/secure-download-artifact@main
         with:
           name: admin-console-SBOM
-          path: ./sbom
+          path: ${{ env.MANIFEST_FILE }}
           sha256: "${{ needs.sbom-create.outputs.sbom-hash-code }}"
 
       - name: Attach to release
