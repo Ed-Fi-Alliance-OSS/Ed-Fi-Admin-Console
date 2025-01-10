@@ -251,7 +251,7 @@ jobs:
       contents: write
     steps:
       - name: Download the SBOM
-        uses: slsa-framework/slsa-github-generator/.github/actions/secure-download-artifact@7f4fdb871876c23e455853d694197440c5a91506 # 1.5.0
+        uses: Ed-Fi-Alliance-OSS/slsa-github-generator/.github/actions/secure-download-artifact@main
         with:
           name: admin-console-SBOM
           path: ./sbom
@@ -286,7 +286,7 @@ jobs:
     permissions:
       id-token: write
       contents: write
-    uses: Ed-Fi-Alliance-OSS/slsa-github-generator/.github/workflows/generator_generic_slsa3.yml@v1.5.0
+    uses: Ed-Fi-Alliance-OSS/slsa-github-generator/.github/workflows/generator_generic_slsa3.yml@main
     with:
       base64-subjects: ${{ needs.azure-publish.outputs.hash-code }}
       provenance-name: admin_console.intoto.jsonl
