@@ -21,7 +21,7 @@ env:
   REF: ${{ github.ref_name }}
   IMAGE_NAME: ${{ vars.ED_FI_ADMIN_CONSOLE_IMAGE_NAME }}
   NPM_REGISTRY: ${{ vars.NPM_REGISTRY }} 
-  MANIFEST_FILE: "_manifest/spdx_2.2/manifest.spdx.json"
+  MANIFEST_FILE: "./sbom/_manifest/spdx_2.2/manifest.spdx.json"
 
 jobs:
   azure-publish:
