@@ -220,6 +220,7 @@ jobs:
           $out = "$($env:RUNNER_TEMP)/sbom-tool"
           Invoke-RestMethod -Uri $url -OutFile $out
           chmod +x $out
+          dotnet tool install --global Microsoft.Sbom.DotNetTool
           New-Item -Path sbom -Type Directory
           &$out generate `
               -b . `
@@ -244,7 +245,9 @@ jobs:
         id: sbom-hash-code
         shell: bash
         run: |
-          echo sbom-hash-code=$(sha256sum ./sbom/_manifest/spdx_2.2/manifest.spdx.json | awk '{split($0,a); print a[1]}') >> $GITHUB_OUTPUT
+          # sha256sum returns "<hashcode>  <name of file". Split that and return only the <hashcode>.
+          sbom_hash=$(sha256sum ./${{ env.MANIFEST_FILE }} | awk '{split($0,a); print a[1]}')
+          echo "sbom-hash-code=$sbom_hash" >> $GITHUB_OUTPUT
 
   sbom-attach:
     name: Attach SBOM file
@@ -269,7 +272,7 @@ jobs:
           $release = "${{ env.REF }}"
           $repo = "${{ github.repository }}"
           $token = "${{ secrets.GITHUB_TOKEN }}"
-          $file = "_manifest/spdx_2.2/manifest.spdx.json"
+          $file = "${{ env.MANIFEST_FILE }}"
           $uploadName = "admin-console-SBOM.zip"
           $url = "https://api.github.com/repos/$repo/releases/tags/$release"
           $gh_headers = @{
