@@ -21,7 +21,7 @@ env:
   REF: ${{ github.ref_name }}
   IMAGE_NAME: ${{ vars.ED_FI_ADMIN_CONSOLE_IMAGE_NAME }}
   NPM_REGISTRY: ${{ vars.NPM_REGISTRY }} 
-  MANIFEST_FILE: "_manifest/spdx_2.2/manifest.spdx.json"
+  MANIFEST_FILE: "./sbom/_manifest/spdx_2.2/manifest.spdx.json"
 
 jobs:
   azure-publish:
@@ -230,8 +230,6 @@ jobs:
               -m sbom `
               -ps "Ed-Fi Alliance"
 
-          cp _manifest/spdx_2.2/manifest.spdx.* .
-
       - name: Upload SBOM
         if: success()
         uses: actions/upload-artifact@26f96dfa697d77e81fd5907df203aa23a56210a8 # v4.3.0
@@ -296,8 +294,10 @@ jobs:
       actions: read
       id-token: write
       contents: write
-    uses: Ed-Fi-Alliance-OSS/slsa-github-generator/.github/workflows/generator_generic_slsa3.yml@main 
+    uses: Ed-Fi-Alliance-OSS/slsa-github-generator/.github/workflows/generator_generic_slsa3.yml@main
     with:
       base64-subjects: ${{ needs.azure-publish.outputs.hash-code }}
       provenance-name: admin_console.intoto.jsonl
       upload-assets: true
+      # TODO: remove this after this issue is resolved: https://github.com/slsa-framework/slsa-github-generator/issues/876
+      compile-generator: true
