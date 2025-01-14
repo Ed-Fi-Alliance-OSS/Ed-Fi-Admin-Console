@@ -92,7 +92,7 @@ const ODSInstanceTableWrapper = ({ tenants, tableMode, pickedInstance, onSelectI
             size='sm'
             onClick={onAddBtnClick}
           >
-            Add ODS Instance
+            Add Instance
           </Button>
         </Flex>
       </Flex> }  
