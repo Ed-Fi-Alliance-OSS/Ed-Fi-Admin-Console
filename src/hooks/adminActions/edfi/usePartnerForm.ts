@@ -61,9 +61,9 @@ const usePartnerForm = ({ schoolYear, onFinishSave, initialData, mode }: UsePart
       nparnerData.contactEmailAddress = `${e.target.value}@gmail.com`
     }
 
-    if (e.target.id === 'namespacePrefixes') {
-      nparnerData.namespacePrefixes = e.target.value
-    }
+    // if (e.target.id === 'namespacePrefixes') {
+    //   nparnerData.namespacePrefixes = e.target.value.join(',')
+    // }
 
     if (hasTriedSubmit) {
       if (e.target.id === 'partnerName') {
@@ -75,6 +75,19 @@ const usePartnerForm = ({ schoolYear, onFinishSave, initialData, mode }: UsePart
 
     if(partnerData.id) {
       nparnerData.id = partnerData.id
+    }
+
+    setPartnerData(nparnerData)
+  }
+
+  const onChangeNamespacePrefixes = (prefixes: string[]) => {
+    const nparnerData: EdfiVendor = {
+      ...partnerData,
+      namespacePrefixes: prefixes.join(',') 
+    }
+
+    if (hasTriedSubmit) {
+      validateInputChange('namespacePrefixes', nparnerData)
     }
 
     setPartnerData(nparnerData)
@@ -136,6 +149,7 @@ const usePartnerForm = ({ schoolYear, onFinishSave, initialData, mode }: UsePart
     setIsSaving,
     errors,
     hasTriedSubmit,
+    onChangeNamespacePrefixes,
     onChangeParnerData,
     onSave
   }
