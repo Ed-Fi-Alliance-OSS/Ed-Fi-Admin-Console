@@ -4,7 +4,7 @@ import 'dotenv/config'
 import { defineConfig } from 'vite'
 import defaultConfig from './app.config.json' assert { type: 'json' }
 import { mergeEnvVars } from './merge-env-vars.mjs'
-
+import fs from 'fs';
 
 export default defineConfig(({ mode }) => {
   const isProd = mode === 'production'
@@ -13,6 +13,10 @@ export default defineConfig(({ mode }) => {
     base: (isProd && envConfig.app.basePath) ? `${envConfig.app.basePath}/` : '/',
     css: { preprocessorOptions: { scss: { api: 'modern' } } },
     server: {
+      https: {
+        key: fs.readFileSync('./eng/docker-compose/ssl/server.key'),
+        cert: fs.readFileSync('./eng/docker-compose/ssl/server.crt')
+      },
       port: +(process.env.PORT || 8598),
       watch: {
         ignored: [

@@ -1,0 +1,30 @@
+# SPDX-License-Identifier: Apache-2.0
+# Licensed to the Ed-Fi Alliance under one or more agreements.
+# The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
+# See the LICENSE and NOTICES files in the project root for more information.
+version: "3.8"
+
+services:
+
+  admin-console:
+    build:
+      context: ../../docker
+      dockerfile: Dockerfile
+    profiles: ["default"]
+    environment:
+      EG_auth__authority: https://${KEYCLOAK_HOSTNAME:-localhost}:${KEYCLOAK_PORT:-28080}/realms/${KEYCLOAK_ADMIN_CONSOLE_REALM:-myrealm}/
+      EG_app__basePath: /${ADMIN_CONSOLE_VIRTUAL_NAME:-adminconsole}
+      EG_auth__redirectUri: https://localhost/${ADMIN_CONSOLE_VIRTUAL_NAME:-adminconsole}/callback
+      EG_auth__silentRedirectUri: https://localhost/${ADMIN_CONSOLE_VIRTUAL_NAME:-adminconsole}/silent-renew
+      EG_auth__postLogoutRedirectUri: https://localhost/${ADMIN_CONSOLE_VIRTUAL_NAME:-adminconsole}
+      EG_auth__clientId: ${ADMIN_CONSOLE_CLIENT_ID:-ac}
+      EG_auth__scope: ${ADMIN_CONSOLE_SCOPE:-edfiadmin/full-access}
+      EG_api__useAdminApiAuthentication: ${ADMIN_CONSOLE_USE_ADMIN_API_AUTH:-true}
+      NODE_ENV: production
+    volumes:
+      - shared_data:/app
+    restart: always
+    hostname: ${ADMIN_CONSOLE_VIRTUAL_NAME:-adminconsole}
+    container_name: ed-fi-adminconsole
+    ports:
+      - "${ADMIN_CONSOLE_PORT:-8598}:${ADMIN_CONSOLE_PORT:-8598}"
