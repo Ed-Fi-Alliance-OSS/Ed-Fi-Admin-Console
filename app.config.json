@@ -1,17 +1,17 @@
 {
   "api": {
-    "edfiApiBaseUri": "https://api.dev.edgraph.com/edfi/v7.2/ds4/saas/tx",
-    "edfiAdminApiBaseUri": "https://api.dev.edgraph.com/edfi-admin/v2.3/v7.2/ds4/saas/tx",
-    "useLocalMockData": true,
-    "useAdminApiAuthentication": false,
-    "apiKey": "",
-    "apiSecret": ""
+    "edfiApiBaseUri": "https://localhost/api",
+    "edfiAdminApiBaseUri": "https://localhost/adminapi",
+    "useLocalMockData": false,
+    "useAdminApiAuthentication": true,
+    "apiKey": "test1",
+    "apiSecret": "Aj<.(6{L?i;nScSW>ADMzb1TGSPr<[Q8"
   },
-  "app": {  
+  "app": {
     "title": "AppName",
     "subtitle": "Subtitle",
     "logo": "/assets/logo-test.png",
-    "basePath": "",
+    "basePath": "adminconsole",
     "helpLinkUrl": "/docs/index",
     "termsUrl": "/docs/terms",
     "multiTenancy": true
@@ -20,12 +20,12 @@
     "test-plugin"
   ],
   "auth": {
-    "authority": "http://localhost:28080/realms/edfi/",
-    "clientId": "97356e5cd86857f88eda9cae53edf790",
-    "redirectUri": "http://localhost:8598/callback",
-    "silentRedirectUri": "http://localhost:8598/silent-renew",
-    "postLogoutRedirectUri": "http://localhost:8598",
-    "scope": "openid edfiadmin/full-access",
+    "authority": "https://localhost/auth/realms/myrealm/",
+    "clientId": "ac",
+    "redirectUri": "https://localhost/adminconsole/callback",
+    "silentRedirectUri": "https://localhost/adminconsole/silent-renew",
+    "postLogoutRedirectUri": "https://localhost/adminconsole",
+    "scope": "openid edfi_admin_api/full_access",
     "responseType": "code",
     "loadUserInfo": true,
     "automaticSilentRenew": true,

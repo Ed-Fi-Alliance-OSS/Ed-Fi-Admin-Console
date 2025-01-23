@@ -176,10 +176,14 @@ services:
   
   nginx:
     profiles: ["default"]
-    image: edfialliance/ods-api-web-gateway:${GATEWAY_TAG}
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
     environment:
       ODS_VIRTUAL_NAME: ${ODS_VIRTUAL_NAME:-api}
       ADMIN_API_VIRTUAL_NAME: ${ADMIN_API_VIRTUAL_NAME:-adminapi}
+      ADMIN_CONSOLE_VIRTUAL_NAME: ${ADMIN_CONSOLE_VIRTUAL_NAME:-adminconsole}
+      KEYCLOAK_VIRTUAL_NAME: ${KEYCLOAK_VIRTUAL_NAME:-auth}
     ports:
       - '443:443'
     container_name: ed-fi-gateway
@@ -187,9 +191,12 @@ services:
     hostname: nginx
     volumes:
       - ./ssl:/ssl/
+      - shared_data:/usr/share/nginx/html/adminconsole
     depends_on:
       - api
       - adminapi
+      - admin-console
+      - idp-keycloak
 
   pb-admin-tenant1:
     image: bitnami/pgbouncer:1.20.0

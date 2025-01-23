@@ -8,19 +8,23 @@ services:
 
   admin-console:
     build:
-      context: ../../docker
-      dockerfile: Dockerfile
+      context: ../../
+      dockerfile: docker/Dockerfile.dev
     profiles: ["default"]
     environment:
-      EG_auth__authority: https://${KEYCLOAK_HOSTNAME:-localhost}:${KEYCLOAK_PORT:-28080}/realms/${KEYCLOAK_ADMIN_CONSOLE_REALM:-myrealm}/
-      EG_app__basePath: /${ADMIN_CONSOLE_VIRTUAL_NAME:-adminconsole}
+      EG_api__edfiApiBaseUri: ${ADMIN_CONSOLE_ODSAPI_BASE_URI:-https://localhost/api}
+      EG_api__edfiAdminApiBaseUri: ${ADMIN_CONSOLE_API_BASE_URI:-https://localhost/adminapi}
+      EG_api__useLocalMockData: ${ADMIN_CONSOLE_USE_LOCAL_MOCK_DATA:-false}
+      EG_api__useAdminApiAuthentication: ${ADMIN_CONSOLE_USE_ADMIN_API_AUTH:-true}
+      EG_api__apiKey: ${ADMIN_CONSOLE_API_KEY:-true}
+      EG_api__apiSecret: ${ADMIN_CONSOLE_API_SECRET:-true}
+      EG_auth__authority: https://${KEYCLOAK_HOSTNAME:-localhost}/auth/realms/${KEYCLOAK_ADMIN_CONSOLE_REALM:-myrealm}/
       EG_auth__redirectUri: https://localhost/${ADMIN_CONSOLE_VIRTUAL_NAME:-adminconsole}/callback
       EG_auth__silentRedirectUri: https://localhost/${ADMIN_CONSOLE_VIRTUAL_NAME:-adminconsole}/silent-renew
       EG_auth__postLogoutRedirectUri: https://localhost/${ADMIN_CONSOLE_VIRTUAL_NAME:-adminconsole}
       EG_auth__clientId: ${ADMIN_CONSOLE_CLIENT_ID:-ac}
-      EG_auth__scope: ${ADMIN_CONSOLE_SCOPE:-edfiadmin/full-access}
-      EG_api__useAdminApiAuthentication: ${ADMIN_CONSOLE_USE_ADMIN_API_AUTH:-true}
-      NODE_ENV: production
+      EG_auth__scope: ${ADMIN_CONSOLE_SCOPE:-edfi_admin_api/full_access}
+      EG_app__basePath: ${ADMIN_CONSOLE_VIRTUAL_NAME:-adminconsole}
     volumes:
       - shared_data:/app
     restart: always
