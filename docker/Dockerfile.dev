@@ -27,11 +27,11 @@ RUN rm -r eng
 RUN rm -r .github
 RUN rm -r docs
 RUN rm -r e2e
-RUN rm -r playwright
-RUN rm -r release
-RUN rm -r test-results
-RUN rm -r tests
-RUN rm -r tests-examples
+# RUN rm -r playwright
+# RUN rm -r release
+# RUN rm -r test-results
+# RUN rm -r tests
+# RUN rm -r tests-examples
 
 EXPOSE 8598
 
