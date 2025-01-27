@@ -11,6 +11,8 @@ param(
 $composeFilePath = [IO.Path]::Combine($PSScriptRoot, 'compose-ods-multi-tenant.yml')
 $composeKeycloak = [IO.Path]::Combine($PSScriptRoot, 'compose-keycloak.yml')
 $composeLocalAdminConsole = [IO.Path]::Combine($PSScriptRoot, 'compose-adminconsole-local.yml')
+$composeLocalAdminApi = [IO.Path]::Combine($PSScriptRoot, 'compose-adminapi.yml')
+$composeLocalNginx = [IO.Path]::Combine($PSScriptRoot, 'compose-nginx.yml')
 $envFilePath = [IO.Path]::Combine($PSScriptRoot, '.env')
 
 $params = @(
@@ -24,7 +26,8 @@ $params = @(
 )
 
 # Add all files
-$params = $params[0..1] + "-f" + $composeKeycloak + "-f" + $composeLocalAdminConsole + $params[2..8]
+$params = $params[0..1] + "-f" + $composeKeycloak + "-f" + $composeLocalAdminConsole + "-f" +
+    $composeLocalAdminApi + "-f" + $composeLocalNginx + $params[2..8]
 
 write-output $params
 & docker compose $params
