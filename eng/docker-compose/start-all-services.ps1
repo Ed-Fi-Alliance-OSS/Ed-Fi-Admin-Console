@@ -3,11 +3,6 @@
 # The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 # See the LICENSE and NOTICES files in the project root for more information.
 
-param(
-    [ValidateSet('PostgreSQL')]
-    [string] $engineFolder = 'pgsql'
-)
-
 $composeFilePath = [IO.Path]::Combine($PSScriptRoot, 'compose-ods-multi-tenant.yml')
 $composeKeycloak = [IO.Path]::Combine($PSScriptRoot, 'compose-keycloak.yml')
 $composeLocalAdminConsole = [IO.Path]::Combine($PSScriptRoot, 'compose-adminconsole-local.yml')

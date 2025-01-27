@@ -25,9 +25,6 @@ relevant).
 
 * `start-all-services.ps1` launches `compose-adminapi.yml`, `compose-keycloak.yml`, `compose-nginx.yml`, `compose-adminconsole-local.yml`,  and
   `kafka-ods-multi-tenant.yml`, ready to check adminconsole website
-* `start-all-dependecies.ps1` launches `compose-adminapi.yml`, `compose-keycloak.yml`, `compose-nginx.yml`,  and
-  `kafka-ods-multi-tenant.yml`, without starting the Admin Console. Useful for running Admin Console in a
-  local debugger.
 * `start-keycloak.ps1` only starts KeyCloak.
 * `start-ods-multi-tenant.ps1` only starts ODS/API.
 
