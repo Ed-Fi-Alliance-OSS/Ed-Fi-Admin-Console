@@ -28,6 +28,8 @@ relevant).
 * `start-keycloak.ps1` only starts KeyCloak.
 * `start-ods-multi-tenant.ps1` only starts ODS/API.
 
+> [!NOTE]
+> **CREATE SSL** Please run the ssl/generate-certificate.sh script before
 
 ```pwsh
 # Start everything
