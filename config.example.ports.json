@@ -1,0 +1,34 @@
+{
+  "api": {
+    "edfiApiBaseUri": "http://localhost:8181",
+    "edfiAdminApiBaseUri": "http://localhost:8282",
+    "useLocalMockData": false,
+    "useAdminApiAuthentication": true,
+    "apiKey": "",
+    "apiSecret": ""
+  },
+  "app": {
+    "title": "AppName",
+    "subtitle": "Subtitle",
+    "logo": "/assets/logo-test.png",
+    "basePath": "",
+    "helpLinkUrl": "/docs/index",
+    "termsUrl": "/docs/terms",
+    "multiTenancy": true
+  },
+  "plugins": [
+    "test-plugin"
+  ],
+  "auth": {
+    "authority": "http://host.docker.internal:28080/realms/myrealm/",
+    "clientId": "ac",
+    "redirectUri": "http://localhost:8598/callback",
+    "silentRedirectUri": "http://localhost:8598/silent-renew",
+    "postLogoutRedirectUri": "hhttp://localhost:8598",
+    "scope": "openid edfi_admin_api/full_access",
+    "responseType": "code",
+    "loadUserInfo": true,
+    "automaticSilentRenew": true,
+    "automaticSilentSignin": true
+  }
+}

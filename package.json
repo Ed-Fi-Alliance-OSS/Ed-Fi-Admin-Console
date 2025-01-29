@@ -1,11 +1,12 @@
 {
-  "name": "edx-adminconsole-web",
+  "name": "edfi-adminconsole-web",
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "homepage": "http://localhost:8598/adminconsole",
+  "homepage": "http://localhost:8598/",
   "scripts": {
     "dev": "set VITE_ENV=local && vite --open",
+    "dev:docker": "set VITE_ENV=local && vite",
     "build": "vite build --mode development",
     "build:prod": "vite build --mode production",
     "preview": "vite preview",

@@ -14,12 +14,7 @@ RUN npm i
 
 COPY ../. /app
 
-RUN npm run build:prod
-
-RUN cp -a mockdata/. dist/mockdata/
-
-RUN cp -a public/. dist/
-RUN cp config.example.json dist/config.json
+RUN cp config.example.ports.json config.json
 
 # Remove folders
 RUN rm -r docker
@@ -27,14 +22,7 @@ RUN rm -r eng
 RUN rm -r .github
 RUN rm -r docs
 RUN rm -r e2e
-# RUN rm -r playwright
-# RUN rm -r release
-# RUN rm -r test-results
-# RUN rm -r tests
-# RUN rm -r tests-examples
 
 EXPOSE 8598
 
-# Use node directly
-# https://stackoverflow.com/questions/51191378/what-is-the-point-of-using-pm2-and-docker-together
-CMD ["node", "server.mjs", "--max-http-header-size=16384"]
+CMD ["npm", "run", "dev:docker"]

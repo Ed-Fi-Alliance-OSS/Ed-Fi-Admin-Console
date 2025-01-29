@@ -13,10 +13,11 @@ export default defineConfig(({ mode }) => {
     base: (isProd && envConfig.app.basePath) ? `${envConfig.app.basePath}/` : '/',
     css: { preprocessorOptions: { scss: { api: 'modern' } } },
     server: {
-      https: {
-        key: fs.readFileSync('./eng/docker-compose/ssl/server.key'),
-        cert: fs.readFileSync('./eng/docker-compose/ssl/server.crt')
-      },
+      // https: {
+      //   key: fs.readFileSync('./eng/docker-compose/ssl/server.key'),
+      //   cert: fs.readFileSync('./eng/docker-compose/ssl/server.crt')
+      // },
+      host: true,
       port: +(process.env.PORT || 8598),
       watch: {
         ignored: [
