@@ -102,7 +102,7 @@ services:
       ASPNETCORE_ENVIRONMENT: docker
     volumes:
       - ${LOGS_FOLDER}:/app/logs
-      - ./appsettings.dockertemplate.json:/app/appsettings.dockertemplate.json
+      - ./edfi/appsettings.dockertemplate.json:/app/appsettings.dockertemplate.json
     entrypoint:
       - /bin/sh
     command:

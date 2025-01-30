@@ -3,27 +3,26 @@
 # The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 # See the LICENSE and NOTICES files in the project root for more information.
 
-$composeFilePath = [IO.Path]::Combine($PSScriptRoot, 'compose-ods-multi-tenant-dev.yml')
+$composeFilePath = [IO.Path]::Combine($PSScriptRoot, 'compose-keycloak-dev.yml')
+$composeOds = [IO.Path]::Combine($PSScriptRoot, 'compose-ods-multi-tenant-dev.yml')
 $composeLocalAdminApi = [IO.Path]::Combine($PSScriptRoot, 'compose-adminapi-dev.yml')
 $composeLocalAdminConsole = [IO.Path]::Combine($PSScriptRoot, 'compose-adminconsole-local-dev.yml')
-$composeLocalKeycloak = [IO.Path]::Combine($PSScriptRoot, 'compose-keycloak-dev.yml')
 $envFilePath = [IO.Path]::Combine($PSScriptRoot, '.env')
-
 $params = @(
     "--profile", "default",
     "-f", $composeFilePath,
     "--env-file", $envFilePath,
     "-p", "adminconsole-local-dev",
-    "up",
-    "-d",
+    "down",
+    "-v",
     "--remove-orphans"
 )
 
-# Add all files
-$params = $params[0..1] + "-f" + $composeLocalAdminConsole + "-f" + $composeLocalAdminApi + "-f" + $composeLocalKeycloak + $params[2..8]
+# If the compose override exists, insert the -f parameter to get it merged
+$params = $params[0..1] + "-f" + $composeLocalAdminConsole + "-f" + $composeLocalAdminApi + "-f" + $composeOds + $params[2..8]
 
-Write-Output "Starting EdFi Services..."
-write-output $params
 & docker compose $params
 
-
+# Remove downloaded images
+docker rmi $(docker images --filter=reference="edfialliance/ods-*" -q)
+docker rmi $(docker images --filter=reference="bitnami/pgbouncer:*" -q)
