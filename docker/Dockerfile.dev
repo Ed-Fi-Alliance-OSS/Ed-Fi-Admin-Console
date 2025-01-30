@@ -16,13 +16,6 @@ COPY ../. /app
 
 RUN cp config.example.ports.json config.json
 
-# Remove folders
-RUN rm -r docker
-RUN rm -r eng
-RUN rm -r .github
-RUN rm -r docs
-RUN rm -r e2e
-
 EXPOSE 8598
 
 CMD ["npm", "run", "dev:docker"]

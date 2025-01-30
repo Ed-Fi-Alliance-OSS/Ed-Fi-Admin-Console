@@ -64,3 +64,9 @@ As we mentioned above, Crtl+C may stop the containers but if you want to remove 
 # Stop and remove everything
 ./stop-all-services-dev.ps1
 ```
+
+To delete volumes, also append `-v`. Examples:
+```pwsh
+# Stop and remove everything
+./stop-all-services-dev.ps1 -v
+```
