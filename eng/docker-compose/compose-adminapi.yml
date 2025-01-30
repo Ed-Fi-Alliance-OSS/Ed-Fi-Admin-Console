@@ -114,8 +114,8 @@ services:
       SwaggerSettings__DefaultTenant: ${SWAGGER_DEFAULT_TENANT:-tenant1}
       AppSettings__EnableAdminConsoleAPI: ${ENABLE_ADMINCONSOLE:-true}
       AdminConsoleSettings__CorsSettings__EnableCors: ${ADMINCONSOLE_ENABLE_CORS:-true}
-      AdminConsoleSettings__CorsSettings__AllowedOrigins: ${ADMINCONSOLE_ALLOWED_ORIGINS:-"[https://localhost/adminconsole]"}
-      Authentication__OIDC__Authority: ${OIDC_AUTHORITY}
+      AdminConsoleSettings__CorsSettings__AllowedOrigins__0: ${ADMINCONSOLE_ALLOWED_ORIGINS:-"https://localhost/adminconsole"}
+      Authentication__OIDC__Authority: "${OIDC_AUTHORITY}"
       Authentication__OIDC__RequireHttpsMetadata: 'false'
       Authentication__OIDC__EnableServerCertificateCustomValidationCallback: 'true'
     volumes:

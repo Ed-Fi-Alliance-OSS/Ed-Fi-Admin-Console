@@ -65,7 +65,7 @@ services:
     hostname: ${KEYCLOAK_VIRTUAL_NAME:-idp_keycloak}
     volumes:
       - ./ssl:/ssl/
-      - ./keycloak/realm-and-users.json:/opt/keycloak/data/import/realm-and-users.json
+      - ./keycloak/realm-and-users_nginx.json:/opt/keycloak/data/import/realm-and-users.json
     container_name: ed-fi-idp-keycloak
 
 volumes:

@@ -9,7 +9,7 @@ services:
   admin-console:
     build:
       context: ../../
-      dockerfile: docker/Dockerfile.dev
+      dockerfile: docker/Dockerfile
     profiles: ["default"]
     environment:
       EG_api__edfiApiBaseUri: ${ADMIN_CONSOLE_ODSAPI_BASE_URI:-https://localhost/api}

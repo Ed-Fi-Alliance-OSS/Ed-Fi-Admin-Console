@@ -68,13 +68,6 @@ server {
         expires max;
     }
 
-    location /assets {
-        alias /usr/share/nginx/html/adminconsole/dist/assets/;
-        try_files $uri =404;
-        access_log off;
-        expires max;
-    }
-
     location /${ADMIN_CONSOLE_VIRTUAL_NAME}/config.json {
         set $path admin-console:8598;
         resolver 127.0.0.11;
