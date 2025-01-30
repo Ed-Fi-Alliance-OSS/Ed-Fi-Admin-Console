@@ -7,6 +7,7 @@ import {
 } from '@edfi/admin-console-shared-sdk'
 import { EdfiVendor } from '../../../core/Edfi/EdfiVendors'
 import usePartnerForm from '../../../hooks/adminActions/edfi/usePartnerForm'
+import MultiInput from '../../MultiInput'
 import EdFiModalForm from './EdFiModalForm'
 
 interface PartnerFormProps {
@@ -24,6 +25,7 @@ const PartnerForm = ({ initialData, schoolYear, mode, onFinishSave }: PartnerFor
     errors,
     hasTriedSubmit,
     onChangeParnerData,
+    onChangeNamespacePrefixes,
     onSave 
   } = usePartnerForm({ 
     mode,
@@ -69,12 +71,20 @@ const PartnerForm = ({ initialData, schoolYear, mode, onFinishSave }: PartnerFor
           </FormControl>
 
           <FormControl mt='24px'>
-            <CustomFormLabel
-              htmlFor="namespacePrefixes" 
-              text="Namespace Prefixes"
-            />
-
             <Flex
+              flexDir="column"
+              w='full'
+            >
+              {/* error={errors && errors['namespacePrefixes'] && errors['namespacePrefixes'].message} */}
+              <MultiInput
+                // id="namespacePrefixes"
+                label='Add Namespace Prefixes'
+                values={partnerData.namespacePrefixes?.trim()?.split(',') ?? []}
+                onChange={onChangeNamespacePrefixes}
+              />
+            </Flex>
+
+            {/* <Flex
               flexDir='column'
               w='full'
             >
@@ -84,7 +94,7 @@ const PartnerForm = ({ initialData, schoolYear, mode, onFinishSave }: PartnerFor
                 value={partnerData.namespacePrefixes} 
                 onChange={onChangeParnerData}
               />
-            </Flex>
+            </Flex> */}
           </FormControl>
         </Flex>
       </Flex>

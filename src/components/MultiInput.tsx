@@ -140,7 +140,7 @@ function MultiInput<T extends string | number>({ filterInput, fieldName, label, 
         >
           <AutoCompleteInput
             enterKeyHint='enter'
-            placeholder='Add EdOrg IDs...'
+            placeholder={label}
             size='xs'
             variant="filled"
             onKeyUp={filterInput}
