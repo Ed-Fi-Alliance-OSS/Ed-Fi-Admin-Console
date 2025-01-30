@@ -49,11 +49,11 @@ This is an important process because we have to make sure keycloak has created t
 > [!IMPORTANT]
 > **Default users/passwords**
 > * Admin Console user
->   * __Username:__ **myuser**
->   * __Password:__ **123456**
+>   * _Username:_ **myuser**
+>   * _Password:_ **123456**
 > * Keycloak administrator
->   * __Username:__ **admin**
->   * __Password:__ **admin**
+>   * _Username:_ **admin**
+>   * _Password:_ **admin**
 
 
 ### Stop containers and remove images
