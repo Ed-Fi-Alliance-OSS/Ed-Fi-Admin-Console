@@ -18,17 +18,9 @@ start up different configurations:
 Convenience PowerShell scripts have been included in the directory, which
 startup the appropriate services.  
 
-> [!IMPORTANT]
-> * Admin Console user:
->   * Username: myuser
->   * Password: 123456
-> * Keycloak administrator
->   * Username: admin
->   * Password: admin
-
 ### Run containers
 
-Before running these, create a `.env` file. The `.env.example.ports` is a good
+Before running these, create a `.env` file. The `.env.example` is a good
 starting point.
 
 * `start-all-services-dev.ps1` launches `compose-adminapi-ports.yml`, `compose-keycloak-ports.yml`, `compose-adminconsole-local-ports.yml`,  and
@@ -53,6 +45,15 @@ This is an important process because we have to make sure keycloak has created t
 * Admin API: [http://localhost:8282](http://localhost:8282)
 * ODS/API: [http://localhost:8181](http://localhost:8181)
 * Keycloak: [http://localhost:28080](http://localhost:28080)
+
+> [!IMPORTANT]
+> **Default users/passwords**
+> * Admin Console user
+>   * __Username:__ **myuser**
+>   * __Password:__ **123456**
+> * Keycloak administrator
+>   * __Username:__ **admin**
+>   * __Password:__ **admin**
 
 
 ### Stop containers and remove images
