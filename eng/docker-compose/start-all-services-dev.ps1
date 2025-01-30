@@ -15,12 +15,11 @@ $params = @(
     "--env-file", $envFilePath,
     "-p", "adminconsole-local-dev",
     "up",
-    "-d",
     "--remove-orphans"
 )
 
 # Add all files
-$params = $params[0..1] + "-f" + $composeLocalAdminConsole + "-f" + $composeLocalAdminApi + "-f" + $composeLocalKeycloak + $params[2..8]
+$params = $params[0..1] + "-f" + $composeLocalAdminConsole + "-f" + $composeLocalAdminApi + "-f" + $composeLocalKeycloak + $params[2..9]
 
 Write-Output "Starting EdFi Services..."
 write-output $params

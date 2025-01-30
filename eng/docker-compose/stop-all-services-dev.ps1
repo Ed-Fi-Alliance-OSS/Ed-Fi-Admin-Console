@@ -19,10 +19,13 @@ $params = @(
 )
 
 # If the compose override exists, insert the -f parameter to get it merged
-$params = $params[0..1] + "-f" + $composeLocalAdminConsole + "-f" + $composeLocalAdminApi + "-f" + $composeOds + $params[2..8]
+$params = $params[0..1] + "-f" + $composeLocalAdminConsole + "-f" + $composeLocalAdminApi + "-f" + $composeOds + $params[2..10]
 
 & docker compose $params
 
 # Remove downloaded images
 docker rmi $(docker images --filter=reference="edfialliance/ods-*" -q)
 docker rmi $(docker images --filter=reference="bitnami/pgbouncer:*" -q)
+docker rmi $(docker images --filter=reference="quay.io/keycloak/keycloak:*" -q)
+docker rmi $(docker images --filter=reference="postgres:*" -q)
+docker rmi $(docker images --filter=reference="adminconsole-local-dev-admin-console:*" -q)

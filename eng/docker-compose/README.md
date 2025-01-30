@@ -9,16 +9,11 @@
 This directory contains several Docker Compose files, which can be combined to
 start up different configurations:
 
-1. `compose-adminapi.yml` covers AdminAPI 2.x and AdminDB databases multi-tenant using pgbouncer. Needs nginx.
-2. `compose-adminapi-ports.yml` covers AdminAPI 2.x and AdminDB databases multi-tenant using pgbouncer. It uses 8282 tcp port by default.
-3. `compose-adminconsole-local.yml` runs the Admin console from local source code. Needs nginx.
-4. `compose-adminconsole-local-ports.yml` runs the Admin console from local source code. It uses 8598 tcp port by default.
-5. `compose-adminconsole-published.yml` runs the latest Admin Console `pre` tag as published to Docker Hub.
-6. `compose-keycloak.yml` runs KeyCloak (identity provider). Needs nginx.
-7. `compose-keycloak-ports.yml` runs KeyCloak (identity provider). It uses 28080 tcp port by default.
-8. `compose-nginx.yml` covers nginx
-9. `compose-ods-multi-tenant.yml` covers ODS/API multitenant with databases using pgbouncer
-10. `compose-ods-multi-tenant-ports.yml` covers ODS/API multitenant with databases using pgbouncer. It uses 8181 tcp port by default.
+1. `compose-adminapi-dev.yml` covers AdminAPI 2.x and AdminDB databases multi-tenant using pgbouncer. It uses 8282 tcp port by default.
+2. `compose-adminconsole-local-dev.yml` runs the Admin console from local source code. It uses 8598 tcp port by default.
+3. `compose-adminconsole-published.yml` runs the latest Admin Console `pre` tag as published to Docker Hub.
+4. `compose-keycloak-dev.yml` runs KeyCloak (identity provider). It uses 28080 tcp port by default.
+5. `compose-ods-multi-tenant-dev.yml` covers ODS/API multitenant with databases using pgbouncer. It uses 8181 tcp port by default.
 
 Convenience PowerShell scripts have been included in the directory, which
 startup the appropriate services.  
@@ -31,7 +26,7 @@ startup the appropriate services.
 >   * Username: admin
 >   * Password: admin
 
-### Dev (Recommended)
+### Run containers
 
 Before running these, create a `.env` file. The `.env.example.ports` is a good
 starting point.
@@ -43,11 +38,16 @@ starting point.
 # Start everything
 ./start-all-services-dev.ps1
 ```
-Wait until you see this in your terminal
-![ready](<images/ready_to_use.png>)
+You will see the docker's log while running the script.
 
 > [!CAUTION]
-> Ctrl-C will stop the containers
+> Ctrl+C while running the script may stop the containers.
+
+First time running the script we have to wait until see this in your terminal (also can be checked it in the container's log). 
+![ready](<images/ready_to_use.png>)
+This is an important process because we have to make sure keycloak has created the configurations and default users correctly in the database.
+
+#### Links
 
 * The Admin Console: [http://localhost:8598](http://localhost:8598)
 * Admin API: [http://localhost:8282](http://localhost:8282)
@@ -55,26 +55,11 @@ Wait until you see this in your terminal
 * Keycloak: [http://localhost:28080](http://localhost:28080)
 
 
-### Docker image (Experimental)
+### Stop containers and remove images
 
-Before running these, create a `.env` file. The `.env.example` is a good
-starting point.
-
-> [!WARNING]
-> **EXPERIMENTAL** Some services might not work
-
-* `start-all-services.ps1` launches `compose-adminapi.yml`, `compose-keycloak.yml`, `compose-nginx.yml`, `compose-adminconsole-local.yml`,  and
-  `compose-ods-multi-tenant.yml`, ready to check adminconsole website
-
-> [!NOTE]
-> **CREATE SSL** Please run the ssl/generate-certificate.sh script before
+As we mentioned above, Crtl+C may stop the containers but if you want to remove the docker images/volumes run the following script
 
 ```pwsh
-# Start everything
-./start-all-services.ps1
+# Stop and remove everything
+./stop-all-services-dev.ps1
 ```
-
-* The Admin Console: [http://localhost/adminconsole](https://localhost/adminconsole)
-* Admin API: [https://localhos/adminapi](https://localhost/adminapi)
-* ODS/API: [https://localhos/api](https://localhost/api)
-* Keycloak: [https://localhost/auth](https://localhost/auth)
