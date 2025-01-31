@@ -23,8 +23,8 @@ startup the appropriate services.
 Before running these, create a `.env` file. The `.env.example` is a good
 starting point.
 
-* `start-all-services-dev.ps1` launches `compose-adminapi-ports.yml`, `compose-keycloak-ports.yml`, `compose-adminconsole-local-ports.yml`,  and
-  `compose-ods-multi-tenant-ports.yml`, ready to check adminconsole website
+* `start-all-services-dev.ps1` launches `compose-adminapi-dev.yml`, `compose-keycloak-dev.yml`, `compose-adminconsole-local-dev.yml`,  and
+  `compose-ods-multi-tenant-dev.yml`, ready to check adminconsole website
 
 ```pwsh
 # Start everything
@@ -61,7 +61,7 @@ This is an important process because we have to make sure keycloak has created t
 As we mentioned above, Crtl+C may stop the containers but if you want to remove the docker images/volumes run the following script
 
 ```pwsh
-# Stop and remove everything
+# Stop
 ./stop-all-services-dev.ps1
 ```
 
