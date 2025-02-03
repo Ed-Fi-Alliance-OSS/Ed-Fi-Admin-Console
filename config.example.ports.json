@@ -1,17 +1,17 @@
 {
   "api": {
-    "edfiApiBaseUri": "https://localhost/api",
-    "edfiAdminApiBaseUri": "https://localhost/adminapi",
+    "edfiApiBaseUri": "http://localhost:8181",
+    "edfiAdminApiBaseUri": "http://localhost:8282",
     "useLocalMockData": false,
     "useAdminApiAuthentication": true,
-    "apiKey": "test1",
-    "apiSecret": "Aj<.(6{L?i;nScSW>ADMzb1TGSPr<[Q8"
+    "apiKey": "",
+    "apiSecret": ""
   },
   "app": {
     "title": "AppName",
     "subtitle": "Subtitle",
     "logo": "/assets/logo-test.png",
-    "basePath": "adminconsole",
+    "basePath": "",
     "helpLinkUrl": "/docs/index",
     "termsUrl": "/docs/terms",
     "multiTenancy": true
@@ -20,11 +20,11 @@
     "test-plugin"
   ],
   "auth": {
-    "authority": "https://localhost/auth/realms/myrealm/",
+    "authority": "http://host.docker.internal:28080/realms/myrealm/",
     "clientId": "ac",
-    "redirectUri": "https://localhost/adminconsole/callback",
-    "silentRedirectUri": "https://localhost/adminconsole/silent-renew",
-    "postLogoutRedirectUri": "https://localhost/adminconsole",
+    "redirectUri": "http://localhost:8598/callback",
+    "silentRedirectUri": "http://localhost:8598/silent-renew",
+    "postLogoutRedirectUri": "hhttp://localhost:8598",
     "scope": "openid edfi_admin_api/full_access",
     "responseType": "code",
     "loadUserInfo": true,

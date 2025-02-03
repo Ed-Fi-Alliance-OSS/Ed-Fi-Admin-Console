@@ -1,54 +1,33 @@
 {
   "api": {
-    "baseUri": "",
-    "edxApiUri": "",
-    "dataHealthApiUri": "",
+    "edfiApiBaseUri": "https://localhost/api",
+    "edfiAdminApiBaseUri": "https://localhost/adminapi",
     "useLocalMockData": false,
     "useAdminApiAuthentication": true,
     "apiKey": "",
     "apiSecret": ""
   },
   "app": {
-    "name": "Acme Service Center",
-    "subtitle": "Admin Console",
-    "basePath": "",
-    "baseImagesUrl": "",
-    "showDataHealth": true,
-    "showAdvancedTabs": false,
-    "showCompositeUrls": false,
-    "allowDebug": true,
-    "odsApiInstance": "https://localhost/api",
-    "notificationsApplicationId": "z2WFYMjyRNEI",
-    "webAnalytics": {
-      "tool": "<Valid values: Matomo, GoogleAnalytics>",
-      "enableWebAnalytics": false,
-      "matomo":
-      {
-        "managerUrl": "https://<managerUrl>",
-        "containerId": "<containerId>"
-      },
-      "googleAnalytics":
-      {
-        "googleAnalyticsId": "<googleAnalyticsId>"
-      }
-    },
-    "enableHelpDeskLink": false,
-    "helpLinkUrl": "https://community.ed-fi.org/s/",
-    "showUserDelete": false,
-    "showEdfiPartnerDelete": false,
-    "showEdfiApplicationDelete": false,
-    "showEdOrgsTab": false,
-    "useDataHealthWithSchoolYear": false,
+    "title": "AppName",
+    "subtitle": "Subtitle",
+    "logo": "/assets/logo-test.png",
+    "basePath": "adminconsole",
+    "helpLinkUrl": "/docs/index",
+    "termsUrl": "/docs/terms",
+    "multiTenancy": true
   },
+  "plugins": [
+    "test-plugin"
+  ],
   "auth": {
-    "authority": "http://localhost:28080/realms/myrealm/",
+    "authority": "https://localhost/auth/realms/myrealm/",
     "clientId": "ac",
-    "redirectUri": "http://localhost:8598/callback",
-    "silentRedirectUri": "http://localhost:8598/silent-renew",
-    "postLogoutRedirectUri": "http://localhost:8598",
-    "scope": "openid",
+    "redirectUri": "https://localhost/adminconsole/callback",
+    "silentRedirectUri": "https://localhost/adminconsole/silent-renew",
+    "postLogoutRedirectUri": "https://localhost/adminconsole",
+    "scope": "openid edfi_admin_api/full_access",
     "responseType": "code",
-    "loadUserInfo": false,
+    "loadUserInfo": true,
     "automaticSilentRenew": true,
     "automaticSilentSignin": true
   }

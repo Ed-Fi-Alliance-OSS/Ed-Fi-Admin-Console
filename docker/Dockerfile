@@ -5,7 +5,6 @@
 
 FROM node:18-alpine AS build
 
-ENV EG_app__basePath=/edficonsole/v2.3/v7.2/ds4/saas/tx
 ENV mode=production
 
 WORKDIR /app
@@ -23,7 +22,15 @@ RUN cp -a mockdata/. dist/mockdata/
 
 RUN cp -a public/. dist/
 
+RUN cp config.example.json dist/config.json
+
 RUN rm -f .npmrc
+# Remove folders
+RUN rm -r docker
+RUN rm -r eng
+RUN rm -r .github
+RUN rm -r docs
+RUN rm -r e2e
 
 EXPOSE 8598
 

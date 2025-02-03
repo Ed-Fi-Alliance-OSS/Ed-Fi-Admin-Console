@@ -30,15 +30,19 @@ app.use(`${config.app.basePath}/api`, (req, res, next) => {
 }), jsonServer.router('./mockdata/adminapi/db.json'))
 
 app.use(history({
+  disableDotRule: true,
   index: `${config.app.basePath}/index.html`,
   verbose: true,
+  rewrites: [
+    {from: /\/config.json/, to: `${config.app.basePath}/config.json`}
+  ]
 }))
 
 app.use(config.app.basePath, staticFileMiddleware)
 
 app.listen(process.env.PORT || 8598, () => {
+  console.table(config.api)
   console.table(config.app)
-  console.log(config.app.basePath)
-  console.log(process.env.PORT)
+  console.table(config.auth)
   console.log(`Server running at http://localhost:${process.env.PORT || 8598}${config.app.basePath}`)
 })
