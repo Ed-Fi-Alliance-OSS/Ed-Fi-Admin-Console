@@ -11,26 +11,19 @@ WORKDIR /app
 COPY ./package.json /app/package.json
 COPY ./package-lock.json /app/package-lock.json
 
-# Install all the dependecies
+# Install all the dependencies
 RUN npm install
 
 COPY ../. /app
 
 RUN npm run build:prod
 
-RUN cp -a mockdata/. dist/mockdata/
+COPY mockdata/* /dist/mockdata/ 
+COPY public/* /dist/ 
+COPY config.example.json /dist/config.json
 
-RUN cp -a public/. dist/
-
-RUN cp config.example.json dist/config.json
-
-RUN rm -f .npmrc
-# Remove folders
-RUN rm -r docker
-RUN rm -r eng
-RUN rm -r .github
-RUN rm -r docs
-RUN rm -r e2e
+# Remove unnecessary files and folders
+RUN rm -rf .github .npmrc docker eng docs e2e
 
 EXPOSE 8598
 
