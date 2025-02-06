@@ -82,5 +82,8 @@
     "axios": "1.7.7",
     "esbuild": "0.19.12",
     "types-ramda": "0.29.4"
+  },
+  "engines": {
+    "node": ">=20.9.0"
   }
 }
