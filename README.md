@@ -17,7 +17,7 @@ The frameworks and libraries used are the following:
 
 ## Installation
 ### Requirements
-- [Node.js](https://nodejs.org/) v20+ to run.
+- [Node.js](https://nodejs.org/) v20.9.0+ to run.
 - IdP (Keycloak, Azure B2C, Amazon Cognito, etc) <br>
   Use Keycloak in docker using the following command:
   ```docker run -p 28080:8080 -e KEYCLOAK_ADMIN=admin -e KEYCLOAK_ADMIN_PASSWORD=admin quay.io/keycloak/keycloak:25.0.6 start-dev``` <br> And follow the steps to create a realm, client and user: https://www.keycloak.org/getting-started/getting-started-docker
