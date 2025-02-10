@@ -12,6 +12,7 @@ env:
   DOCKER_USERNAME: ${{ vars.DOCKER_USERNAME }}
   DOCKER_HUB_TOKEN: ${{ secrets.DOCKER_HUB_TOKEN }}
   IMAGE_NAME: ${{ vars.IMAGE_NAME }}
+  IMAGE_TAG: pre-alpha
 permissions: read-all
 
 jobs:
@@ -86,7 +87,7 @@ jobs:
          with:
            context: "{{defaultContext}}:/"
            file: docker/Dockerfile
-           tags: ${{ env.IMAGE_NAME }}:pre
+           tags: ${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
            push: true
  
        - name: Extract metadata (tags, labels) for admin console image
