@@ -3,18 +3,9 @@
 # The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 # See the LICENSE and NOTICES files in the project root for more information.
 
-name: On Pull Request - Dockerfile
+name: Publish Dockerfile
 
 on:
-  # push:
-  #   branches:
-  #     - main
-  # pull_request:
-  #   branches:
-  #     - main
-  #   paths:
-  #     - ".github/workflows/on-pullrequest-dockerfile.yml"
-  #     - "/*"
   workflow_dispatch:
 
 env:
@@ -34,7 +25,8 @@ jobs:
       matrix:
         dockerfile:
           [
-            { name: "development", path: "docker/Dockerfile", type: "local" },
+            { name: "development", path: "docker/Dockerfile.dev", type: "local" },
+            { name: "distribution", path: "docker/Dockerfile", type: "local" },
           ]
     steps:
       - name: Checkout code
