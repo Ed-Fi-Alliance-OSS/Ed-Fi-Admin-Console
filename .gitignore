@@ -15,8 +15,6 @@ dist-ssr
 src/shared
 
 # Editor directories and files
-.vscode/*
-!.vscode/extensions.json
 .idea
 .DS_Store
 *.suo
@@ -35,11 +33,12 @@ wwwroot
 .idea/
 *.log
 stats.html
+
 # Shared Components will come from Shared LIBRARY
 src/shared
 src/modules/local-axios.module.ts
 vite.config.ts.*
-.vscode
+
 
 #Config Files
 local.config.json

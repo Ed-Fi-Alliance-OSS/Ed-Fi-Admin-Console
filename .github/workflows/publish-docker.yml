@@ -3,24 +3,16 @@
 # The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 # See the LICENSE and NOTICES files in the project root for more information.
 
-name: On Pull Request - Dockerfile
+name: Publish Dockerfile
 
 on:
-  # push:
-  #   branches:
-  #     - main
-  # pull_request:
-  #   branches:
-  #     - main
-  #   paths:
-  #     - ".github/workflows/on-pullrequest-dockerfile.yml"
-  #     - "/*"
   workflow_dispatch:
 
 env:
   DOCKER_USERNAME: ${{ vars.DOCKER_USERNAME }}
   DOCKER_HUB_TOKEN: ${{ secrets.DOCKER_HUB_TOKEN }}
   IMAGE_NAME: ${{ vars.IMAGE_NAME }}
+  IMAGE_TAG: pre-alpha
 permissions: read-all
 
 jobs:
@@ -34,7 +26,8 @@ jobs:
       matrix:
         dockerfile:
           [
-            { name: "development", path: "docker/Dockerfile", type: "local" },
+            { name: "development", path: "docker/Dockerfile.dev", type: "local" },
+            { name: "distribution", path: "docker/Dockerfile", type: "local" },
           ]
     steps:
       - name: Checkout code
@@ -94,7 +87,7 @@ jobs:
          with:
            context: "{{defaultContext}}:/"
            file: docker/Dockerfile
-           tags: ${{ env.IMAGE_NAME }}:pre
+           tags: ${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
            push: true
  
        - name: Extract metadata (tags, labels) for admin console image
