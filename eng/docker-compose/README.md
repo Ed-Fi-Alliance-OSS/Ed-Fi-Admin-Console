@@ -21,7 +21,7 @@ startup the appropriate services.
 ### Run containers
 
 Before running these, create a `.env` file. The `.env.example` is a good
-starting point.
+starting point. Also you can use `.env.otp.example` for a Keycloak with an OTP Configuration.
 
 * `start-all-services-dev.ps1` launches `compose-adminapi-dev.yml`, `compose-keycloak-dev.yml`, `compose-adminconsole-local-dev.yml`,  and
   `compose-ods-multi-tenant-dev.yml`, ready to check adminconsole website
@@ -55,6 +55,18 @@ This is an important process because we have to make sure keycloak has created t
 >   * _Username:_ **admin**
 >   * _Password:_ **admin**
 
+#### OTP with Keycloak
+
+Keycloak allows enabling two-factor authentication for users. Below are the steps to include OTP in the Realm corresponding to AdminConsole. This configuration will add OTP setup as a required action for each new user. After this, the user must use both the password and OTP to log in to AdminConsole.
+
+Steps to Configure
+
+* Select the AdminConsole Realm that needs to be configured.
+* In the Configure section, select Authentication.
+* In Authentication, select the action Configure OTP. You must enable the options ‘Enabled’ and ‘Set as default action’.
+![ready](<images/keycloak_otp.png>)
+
+With this configuration, when the user logs in for the first time, after entering the password, they will receive a QR code to configure the app that manages the OTP. On subsequent logins, they must enter the value displayed in the application. You can use applications like FreeOTP, Google Authenticator, or Microsoft Authenticator to manage the token.
 
 ### Stop containers and remove images
 
