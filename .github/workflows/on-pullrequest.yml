@@ -85,5 +85,32 @@ jobs:
 
       # No unit tests to run yet, and linter is broken. SF 2/10/2025
       
+  docker-analysis:
+    runs-on: ubuntu-latest
+    permissions:
+        security-events: write
+        pull-request: write
+    strategy:
+      fail-fast: false
+      matrix:
+        dockerfile: [ './docker/Dockerfile', './KeyCloak/Dockerfile' ]
+    steps:
+      - name: Checkout the Repo
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+
+      - uses: hadolint/hadolint-action@54c9adbab1582c2ef04b2016b760714a4bfde3cf # v3.1.0
+        name: Run Linter on ${{ matrix.dockerfile.name }} Dockerfile
+        with:
+          dockerfile: ${{ matrix.dockerfile.path }}
+          failure-threshold: error
+
+      - name: Build
+        run: |
+          path=${{matrix.dockerfile.path}}
+          folder=${path%/*}
+          cd $folder
+          dockerfile=$(echo ${{matrix.dockerfile.path}} | awk -F"/" '{print $NF}')
+
+          docker build -f $dockerfile
 
 

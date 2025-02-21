@@ -1,20 +1,46 @@
-.dockerignore
+# SPDX-License-Identifier: Apache-2.0
+# Licensed to the Ed-Fi Alliance under one or more agreements.
+# The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
+# See the LICENSE and NOTICES files in the project root for more information.
+
+# Docker files
 Dockerfile*
-readme.md
-Compose
-**/.git
-**/.github
-**/.vscode
-**/.env
-**/.DS_Store
-**/config 
-**/build
-**/dist
-**/docs
-**/docker
-**/eng
+.dockerignore
+
+# Node dependencies
 **/node_modules
-**/README.md
-**/local.config.json
+**/package-lock.json
+
+# Environment and config files
+**/.env
+**/config
 **/config.example.json
 **/config.example.ports.json
+**/config.e2e.json
+**/local.config.json
+
+# IDE and editor files
+**/.vscode
+**/.git
+**/.github
+**/.DS_Store
+
+# Build and dist files
+**/build
+**/dist
+
+# Documentation and project files
+**/docs
+**/README.md
+**/CONTRIBUTORS.md
+**/CODE_OF_CONDUCT.md
+**/SECURITY.md
+**/NOTICES.md
+**/LICENSE
+
+# Docker and engineering folders
+**/docker
+**/eng
+**/e2e
+**/tests
+**/tests-examples

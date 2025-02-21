@@ -11,8 +11,8 @@ WORKDIR /app
 COPY ./package.json /app/package.json
 COPY ./package-lock.json /app/package-lock.json
 
-# Install all the dependencies
-RUN npm install
+# Install just production dependencies
+RUN npm ci --only=production 
 
 COPY ../. /app
 
