@@ -22,14 +22,13 @@ $params = @(
     "--env-file", $envFilePath,
     "-p", "adminconsole-local-dev",
     "down",
-    "-v",
     "--remove-orphans"
 )
 if ($v) {
-    $params = $params[0..1] + "-f" + $composeLocalAdminConsole + "-f" + $composeLocalAdminApi + "-f" + $composeOds + $params[2..10]
+    $params = $params[0..1] + "-f" + $composeLocalAdminConsole + "-f" + $composeLocalAdminApi + "-f" + $composeOds + $params[2..9] + "-v"
 }
 else {
-    $params = $params[0..1] + "-f" + $composeLocalAdminConsole + "-f" + $composeLocalAdminApi + "-f" + $composeOds + $params[2..8] + $params[10] 
+    $params = $params[0..1] + "-f" + $composeLocalAdminConsole + "-f" + $composeLocalAdminApi + "-f" + $composeOds + $params[2..9] 
 }
 
 & docker compose $params

@@ -11,8 +11,8 @@ WORKDIR /app
 COPY ./package.json /app/package.json
 COPY ./package-lock.json /app/package-lock.json
 
-# Install all the dependencies
-RUN npm install
+# Install dependencies
+RUN npm ci
 
 COPY ../. /app
 
@@ -20,7 +20,7 @@ RUN npm run build:prod
 
 COPY mockdata/* /dist/mockdata/ 
 COPY public/* /dist/ 
-COPY config.example.json /dist/config.json
+COPY ./config.example.json /dist/config.json
 
 # Remove unnecessary files and folders
 RUN rm -rf .github .npmrc docker eng docs e2e
