@@ -7,7 +7,7 @@ The files and folders in this folder will help you run Admin Console on Docker c
 * `./docker/Dockerfile`
 <br/>Docker file to build the image for admin console.
 
-* `./docker/Compose/.env.exmple`
+* `./docker/Compose/.env.example`
 <br/>Example file to use as a reference to create .env file.
 
 * `./docker/Compose/compose-build-dev.yml`
