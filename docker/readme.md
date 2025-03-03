@@ -10,7 +10,7 @@ The files and folders in this folder will help you run Admin Console on Docker c
 * `./docker/Compose/.env.exmple`
 <br/>Example file to use as a reference to create .env file.
 
-* `./docker/Compose/compose-build-dev.yml`
+* `./docker/Compose/docker-compose.yml`
 <br/>Docker compose file to create the 3 containers needed: postgres, keycloak, adminconsole.
 
 * `./docker/Compose/KeyCloak/Dockerfile`
@@ -32,7 +32,7 @@ In case we need to replace this file, follow these steps:
 * Open a terminal.
 * Go to `/docker/Compose/ folder`
 * Execute the following command:
-    `docker compose -f ./compose-build-dev.yml --env-file ./.env up -d`
+    `docker compose -f ./docker-compose.yml --env-file ./.env up -d`
 * Go to `http://localhost:28080/admin/master/console/` if you want to change any sort of configuration on KeyCloak.
 The credentials are: admin/admin. 
 * Go to `http://localhost:8598/` to open Admin Console on the browser.
