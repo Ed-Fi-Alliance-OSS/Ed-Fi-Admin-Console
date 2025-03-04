@@ -9,7 +9,7 @@ services:
   admin-console:
     build:
       context: ../../
-      dockerfile: docker/Dockerfile.dev
+      dockerfile: Dockerfile.dev
     profiles: ["default"]
     environment:
       EG_api__edfiApiBaseUri: http://localhost:8181
