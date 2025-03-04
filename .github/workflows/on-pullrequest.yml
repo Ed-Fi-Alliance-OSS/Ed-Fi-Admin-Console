@@ -93,26 +93,21 @@ jobs:
       pull-requests: write
     strategy:
       fail-fast: false
-      matrix:
-        name: [ 'admin-console' ]
-        path: [ 'Dockerfile' ]
+      dockerfile:
+          [
+            { name: "admin-console-local", path: "Dockerfile", type: "local" },
+          ]
     steps:
     - name: Checkout the Repo
       uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
 
     - uses: hadolint/hadolint-action@54c9adbab1582c2ef04b2016b760714a4bfde3cf # v3.1.0
-      name: Run Linter on ${{ matrix.name }} Dockerfile
+      name: Run Linter on ${{ matrix.dockerfile.name }} Dockerfile
       with:
-        dockerfile: ${{ matrix.path }}
+        dockerfile: ${{ matrix.dockerfile.path }}
         failure-threshold: error
 
     - name: Build
       run: |
-        path=${{ matrix.path }}
-        folder=${path%/*}
-        cd "$folder"
-        dockerfile=$(basename "${{ matrix.path }}")
-
-        docker build -f "$dockerfile" ../
-
+        docker build -f ${{ matrix.dockerfile.path }} -t ${{ matrix.dockerfile.name }} . 
 
