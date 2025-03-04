@@ -93,9 +93,10 @@ jobs:
       pull-requests: write
     strategy:
       fail-fast: false
-      dockerfile:
+      matrix:
+        dockerfile:
           [
-            { name: "admin-console-local", path: "Dockerfile", type: "local" },
+            { name: "admin-console-local", path: "Dockerfile", type: "local" }
           ]
     steps:
     - name: Checkout the Repo
