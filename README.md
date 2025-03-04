@@ -14,34 +14,11 @@ We welcome contributions and feedback, but please use this project at your own r
 
 ## Installation
 
-### Requirements
+> [!WARNING]
+> **NOT FOR PRODUCTION USE!** Includes passwords in the default configuration that are
+> visible in this repo and should never be used in real life. Be very careful!
 
-* Clone both project, Admin Console (this repo) and the [SDK](https://github.com/Ed-Fi-Alliance-OSS/Ed-Fi-Admin-Console-Shared-SDK) in the same folder. Example: C:/dev/ed-fi/Admin-Console
-* [Node.js](https://nodejs.org/) v16+ to run. (v18.12.1 used for development).
-* IdP (Keycloak, Azure B2C, Amazon Cognito, etc)
-  * Currently fully supporting Keycloak.
-  * Use Keycloak in docker using the following command:
-
-    ```bash
-    docker run -p 28080:8080 -e KEYCLOAK_ADMIN=admin -e KEYCLOAK_ADMIN_PASSWORD=admin quay.io/keycloak/keycloak:25.0.6 start-dev
-    ```
-
-    And follow the steps to create a realm, client and user: [Keycloak: Getting Started with Docker](https://www.keycloak.org/getting-started/getting-started-docker)
-
-  * Realm: myrealm
-  * Client: ac
-  * Root url: [http://localhost:8598](http://localhost:8598)
-  * Valid redirect uri: [http://localhost:8598/callback](http://localhost:8598/callback)
-  * Web origin: [http://localhost:8598/](http://localhost:8598/)
-* ODS/API
-
-### Steps
-
-* Move to the SDK folder and install dependencies in the EDX SDK using the following command: `npm install`
-* Build the SDK using the command: `npm run build`. Any change in the SDK has to be built it again using this command.
-* Install the Admin Console dependencies using the command: `npm install`.
-* Verify you have the config.json file. You can use the config.example.json as example.
-* Run the Admin Console using: `npm run dev`.
+* [Docker Compose Test and Demonstration Configurations](/eng/docker-compose/README.md)
 
 ## Developer Notes
 
@@ -57,7 +34,7 @@ The frameworks and libraries used are the following:
 ## Folder Structure
 
 * `Ed-Fi-Admin-Console/`
-  * `docker/` - sample setup for running the application locally.
+  * `eng/docker-compose` - sample setup for running the application locally.
   * `docs/` - markdown-based developer documentation
   * `public` - contains public/static assets (e.g. images)
   * `src` - core source code

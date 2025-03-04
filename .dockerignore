@@ -9,7 +9,6 @@ Dockerfile*
 
 # Node dependencies
 **/node_modules
-**/package-lock.json
 
 # Environment and config files
 **/.env

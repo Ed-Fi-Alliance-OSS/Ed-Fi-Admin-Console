@@ -18,6 +18,7 @@ services:
       TENANT_IDENTIFIER: tenant1
     volumes:
       - vol-db-admin-tenant1:/var/lib/postgresql/data
+      - ./edfi/bootstrap.sh:/docker-entrypoint-initdb.d/2-bootstrap.sh
     restart: always
     container_name: ed-fi-db-admin-tenant1
     healthcheck:
@@ -40,6 +41,7 @@ services:
       TENANT_IDENTIFIER: tenant2
     volumes:
       - vol-db-admin-tenant2:/var/lib/postgresql/data
+      - ./edfi/bootstrap.sh:/docker-entrypoint-initdb.d/2-bootstrap.sh
     restart: always
     container_name: ed-fi-db-admin-tenant2
     healthcheck:
@@ -117,7 +119,7 @@ services:
       OIDC_REQUIRE_METADATA: "${OIDC_REQUIRE_METADATA:-false}"
       OIDC_ENABLE_SERVER_CERTIFICATE: "${OIDC_ENABLE_SERVER_CERTIFICATE:-true}"
       ENABLE_CORS: ${ADMINCONSOLE_ENABLE_CORS:-true}
-      ALLOWED_ORIGINS: "${ADMINCONSOLE_ALLOWED_ORIGINS:-http://localhost:8598}"
+      AdminConsoleSettings__CorsSettings__AllowedOrigins__0: ${ADMINCONSOLE_ALLOWED_ORIGINS:-http://localhost:8598}
     volumes:
       - ./edfi/appsettings.dockertemplate.json:/app/appsettings.dockertemplate.json
     entrypoint:

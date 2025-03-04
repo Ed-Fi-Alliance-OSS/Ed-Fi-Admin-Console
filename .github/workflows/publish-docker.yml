@@ -26,8 +26,8 @@ jobs:
       matrix:
         dockerfile:
           [
-            { name: "development", path: "docker/Dockerfile.dev", type: "local" },
-            { name: "distribution", path: "docker/Dockerfile", type: "local" },
+            { name: "development", path: "Dockerfile.dev", type: "local" },
+            { name: "distribution", path: "Dockerfile", type: "local" },
           ]
     steps:
       - name: Checkout code
@@ -86,7 +86,7 @@ jobs:
          uses: docker/build-push-action@b32b51a8eda65d6793cd0494a773d4f6bcef32dc  # v6.11.0
          with:
            context: "{{defaultContext}}:/"
-           file: docker/Dockerfile
+           file: Dockerfile
            tags: ${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
            push: true
  
