@@ -1,3 +1,8 @@
+// SPDX-License-Identifier: Apache-2.0
+// Licensed to the Ed-Fi Alliance under one or more agreements.
+// The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
+// See the LICENSE and NOTICES files in the project root for more information.
+
 type PossibleValues = string | boolean | number | null | undefined;
 export type StringsShape = Record<string, Record<string, PossibleValues> | PossibleValues>;
 export const BasePluginStrings = {
