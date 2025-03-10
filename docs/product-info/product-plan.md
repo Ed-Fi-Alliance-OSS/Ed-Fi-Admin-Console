@@ -38,11 +38,6 @@ The Ed-Fi Admin Console offers the following features:
   service is provided to show health online status and summary row counts for
   main entities.
 
-## Release Plan & Estimates
-
-* Admin Console 1.0 - targeting December 2024
-* Admin Console 1.1 - targeting February 2025
-
 ## Information
 
 Below are links and additional information on Admin Console:
@@ -50,8 +45,10 @@ Below are links and additional information on Admin Console:
 * GitHub Repositories
   * [Ed-Fi Admin Console](https://github.com/Ed-Fi-Alliance-OSS/Ed-Fi-Admin-Console)
   * [Ed-Fi Admin Console Shared SDK](https://github.com/Ed-Fi-Alliance-OSS/Ed-Fi-Admin-Console-Shared-SDK)
-  * [Ed-Fi Admin API](https://localhost) 
+  * [Ed-Fi Admin API](https://github.com/Ed-Fi-Alliance-OSS/AdminAPI-2.x)
   * [Ed-Fi ODS/API](https://github.com/Ed-Fi-Alliance-OSS/Ed-Fi-ODS)
+* Design documents for the Admin Console and the applications that support it
+  are in the [Admin API repository](https://github.com/Ed-Fi-Alliance-OSS/AdminAPI-2.x/tree/main/docs/design/adminconsole)
 
 ## License
 
