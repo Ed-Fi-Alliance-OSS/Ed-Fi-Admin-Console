@@ -142,7 +142,7 @@ const useManageUsersTable = () => {
     if (adminConfig) {
       setIsFetchingData(true)
       // const users = await httpService.get({
-      //   url: 'http://localhost:28080/admin/realms/myrealm/users',
+      //   url: 'http://localhost:28080/admin/realms/edfi-admin-console/users',
       //   actionName: 'Get Users List',
       //   access_token: user?.access_token
       // })
