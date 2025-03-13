@@ -77,16 +77,14 @@ functionality includes:
   * Supported by Admin API and the _Instance Management Worker_ below.
 * Health check monitoring of ODS/API instances.
   * Supported by Admin API and the _Health Check Worker_ below.
+* Tenant switching
+  * Choose which tenant is being managed; influences the data available with the
+    functionality above.
+  * ⚠️ Adding, removing, or renaming a tenant is a manual operation.
 
 Only one user role will be included in 1.0, that of a system administrator who
 is allowed to take all available actions. Multiple system administrator users
 can be created for a given Admin Console deployment.
-
-> [!WARNING] SF notes to self
->
-> * I need to review what we decided about multi-tenancy, and management of
->   additional copies of the Admin and Security databases.
-> * Do we need to cover the SDK in this document?
 
 #### Admin API
 
@@ -121,6 +119,10 @@ This is a command line application that runs on a schedule. It supports
 creation, deletion, and renaming of ODS database instances. These are discrete
 databases on a given server. The ODS/API auto-discovers this connection
 information at runtime.
+
+This worker creates new `EdFi_ODS_<name>` database instances for a given tenant.
+It does _not_ create new `EdFi_Admin` and `EdFi_Security` databases for a new
+tenant; this continues to be a manual operation.
 
 #### Health Check Worker
 
@@ -160,10 +162,22 @@ multi-tenancy is an administrative feature, not an authorization feature.
 Keycloak is a third-party, open source, application that serves as an Open ID
 Connect compatible _identity provider_ (IdP). Admin Console users will
 authenticate with Keycloak, receiving a JSON Web Token (JWT) on successful
-sign-in. All requests to Admin API must include this token; the application will
-claims in the  token to determine if the requesting client application has
-permission to access the application (client authorization) and permission to
-access the given endpoint (resource authorization).
+sign-in. Admin API also has a legacy, internal, authentication system. That
+system is being kept for backwards compatibility with automation scripts that
+work directly with the Admin API. Admin Console 1.0 _requires_ use of Keycloak
+for authentication.
+
+> [!NOTE]
+> This test strategy will only cover the integration points between the Ed-Fi
+> system and Keycloak; for example, we will not perform detailed functional or
+> usability testing of Keycloak.
+
+All requests to Admin API must include this token; the application
+inspects claims in the token to determine if the requesting client application
+has permission to access the application (client authorization) and permission
+to access the given endpoint (resource authorization).
+
+##### Client Authorization
 
 Client authorization requires both a valid token, and that token must have an
 appropriate _role_ as a claim. In the JWT, this claim will be represented by
@@ -172,10 +186,9 @@ its value will be an array of roles. Role `adminconsole-user` will be required
 for access to Admin Console, and role `adminapi-client` required for access to
 Admin API.
 
-...
+##### Resource Authorization
 
-Resource authorization will be based on the
-_scope_ claim.
+Resource authorization will be based on the _scope_ claim.
 
 * Admin Console 1.0 users will use scope `edfi_admin_api/full_access`, giving
   access to all resources (endpoints).
@@ -185,28 +198,6 @@ _scope_ claim.
   only provide them access to the required resources:
   * `/adminconsole/instances`
   * `/adminconsole/healthcheck`
-
-Prior versions of Admin API supported a single scope:
-`edfi_admin_api/full_access`. This new version of Admin API will support a more
-limited access scope, `edfi_admin_api/worker`, which will be used for the client
-credentials used by the two worker processes. This "worker" scope provides
-access only to the endpoints required to operate these applications.
-
-This test strategy will only cover
-the integration points between the Ed-Fi system and Keycloak; for example, we
-will not perform detailed functional or useability testing of Keycloak.
-
-Admin API also has a legacy, internal, authentication system. That system is
-being kept for backwards compatibility with automation scripts that work
-directly with the Admin API. The Admin Console only supports use of Keycloak for
-authentication.
-
-With
-
-> [!WARNING] SF notes to self:
->
-> * Roles
-> * Scopes
 
 #### Database Management Systems
 
