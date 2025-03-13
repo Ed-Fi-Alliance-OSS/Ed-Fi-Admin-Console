@@ -92,10 +92,28 @@ can be created for a given Admin Console deployment.
 
 Admin API is a REST API application that will serve as the Backend-for-frontend
 (BFF) supporting Admin Console. In other words, the Admin Console will retrieve
-all necessary data from Admin API.
+all necessary data from Admin API. Additionally, Admin API will provide data
+management for the two worker processes described below.
 
-Additionally, Admin API will provide data management for the two worker
-processes described below.
+New endpoints are being added to Admin API for support of Admin Console. These
+are all at the path `/adminconsole/<new resource>` to differentiate from the
+existing `/v2/<resource>` endpoints. Only the latter endpoints are part of the
+formal Admin API Specification. The following table summarizes the new API
+functionality. These resource endpoints and their payloads are described in
+detail in [APIs for Admin
+Console](https://github.com/Ed-Fi-Alliance-OSS/AdminAPI-2.x/blob/main/docs/design/adminconsole/APIS-FOR-ADMIN-CONSOLE.md).
+
+| Resource                    | Verb   | Notes                                                   |
+| --------------------------- | ------ | ------------------------------------------------------- |
+| tenants                     | GET    | Retrieve tenant list stored in the appsettings          |
+| odsInstances                | _all_  | Specialized endpoint for Admin Console user interaction |
+| instances                   | GET    | Instance list for use by the worker processes           |
+| instances/{id}/completed    | POST   | Sets an instance's status to `COMPLETED`                |
+| instances/{id}/deleted      | POST   | Sets an instance's status to `DELETED`                  |
+| instances/{id}/deleteFailed | POST   | Sets an instance's status to `DELETED_FAILED`           |
+| instances/{id}/renamed      | POST   | Sets an instance's status to `COMPLETED`                |
+| instances/{id}/renameFailed | POST   | Sets an instance's status to `RENAME_FAILED`            |
+| healthcheck                 | POST   | Insert new healthcheck data into Admin API              |
 
 #### Instance Management Worker
 
@@ -128,7 +146,7 @@ environment variables can override the file contents.
 
 The ODS/API ties client credentials to a tenant; thus multi-tenancy is an
 implied part of the data authorization scheme. In this release of Admin API,
-multi-tenancy is an administrative feature, not an authorization feature. 
+multi-tenancy is an administrative feature, not an authorization feature.
 
 > [TIP]
 > Due to limitations in the current database design, an Admin API client can
@@ -157,7 +175,7 @@ Admin API.
 ...
 
 Resource authorization will be based on the
-_scope_ claim. 
+_scope_ claim.
 
 * Admin Console 1.0 users will use scope `edfi_admin_api/full_access`, giving
   access to all resources (endpoints).
@@ -168,13 +186,11 @@ _scope_ claim.
   * `/adminconsole/instances`
   * `/adminconsole/healthcheck`
 
-
 Prior versions of Admin API supported a single scope:
 `edfi_admin_api/full_access`. This new version of Admin API will support a more
 limited access scope, `edfi_admin_api/worker`, which will be used for the client
 credentials used by the two worker processes. This "worker" scope provides
 access only to the endpoints required to operate these applications.
-
 
 This test strategy will only cover
 the integration points between the Ed-Fi system and Keycloak; for example, we
@@ -185,7 +201,7 @@ being kept for backwards compatibility with automation scripts that work
 directly with the Admin API. The Admin Console only supports use of Keycloak for
 authentication.
 
-With 
+With
 
 > [!WARNING] SF notes to self:
 >
@@ -265,7 +281,7 @@ will help identify:
 
 * Priority areas for enhancing code coverage.
 * Opportunities to refactor code to lower the code's [CRAP score]
-  (https://blog.ndepend.com/crap-metric-thing-tells-risk-code/) (a combination
+  (<https://blog.ndepend.com/crap-metric-thing-tells-risk-code/>) (a combination
   of cyclomatic complexity and code coverage).
 
 ## Functional Testing
@@ -343,7 +359,7 @@ applications.
 ## Non-Functional Testing
 
 > [!WARNING]
-> 
+>
 > The sections below were created by Microsoft 365 Copilot and with very little
 > editing applied yet.
 
