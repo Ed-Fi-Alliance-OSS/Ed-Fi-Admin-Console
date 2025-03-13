@@ -8,11 +8,14 @@ functionality. The goal is to ensure the quality, reliability, and performance
 of the Admin API and its interactions with the Admin Console and associated
 worker applications.
 
-## Context
+## Test Basis
 
 The following C4 Context diagram depicts the systems and relationships covered
 by this testing strategy. Below it are sub-sections summarizing the
-functionality for each application.
+functionality for each application. This work is based on the functional
+requirements and technical designs found in the [AdminAPI-2
+repository](https://github.com/Ed-Fi-Alliance-OSS/AdminAPI-2.x/tree/main/docs/design/adminconsole)
+and in Jira work items (private / staff and contractors only).
 
 ```mermaid
 C4Context
@@ -51,7 +54,9 @@ C4Context
     UpdateLayoutConfig($c4ShapeInRow="2", $c4BoundaryInRow="2")
 ```
 
-### ODS/API
+### Ed-Fi Applications
+
+#### ODS/API
 
 The ODS/API is a REST API application for system-to-system exchange of
 educational data. The administrative tooling described below exists to support
@@ -61,14 +66,17 @@ Testing with the ODS/API will be limited to the integration points with the
 system described in this document. The following ODS/API versions need to be
 tested with this solution: 7.1, 7.2, and 7.3.
 
-### Admin Console
+#### Admin Console
 
 The Admin Console is a web-based user interface. In version 1.0, its primary
 functionality includes:
 
 * Management of ODS/API client credentials.
+  * Supported by _Admnin API_ below.
 * Deployment of ODS database instances.
+  * Supported by Admin API and the _Instance Management Worker_ below.
 * Health check monitoring of ODS/API instances.
+  * Supported by Admin API and the _Health Check Worker_ below.
 
 Only one user role will be included in 1.0, that of a system administrator who
 is allowed to take all available actions. Multiple system administrator users
@@ -80,7 +88,7 @@ can be created for a given Admin Console deployment.
 >   additional copies of the Admin and Security databases.
 > * Do we need to cover the SDK in this document?
 
-### Admin API
+#### Admin API
 
 Admin API is a REST API application that will serve as the Backend-for-frontend
 (BFF) supporting Admin Console. In other words, the Admin Console will retrieve
@@ -89,35 +97,86 @@ all necessary data from Admin API.
 Additionally, Admin API will provide data management for the two worker
 processes described below.
 
-### Instance Management Worker
+#### Instance Management Worker
 
 This is a command line application that runs on a schedule. It supports
 creation, deletion, and renaming of ODS database instances. These are discrete
-databases on a given server. The ODS/API auto-discovers the list of available
-instances and uses URL routes to shunt incoming HTTP traffic to the correct
-database instance.
+databases on a given server. The ODS/API auto-discovers this connection
+information at runtime.
 
-> [!WARNING] SF notes to self:
->
-> * Multi-tenancy?
-> * Does the ODS/API look these up automatically, and is there a wait time? Or
->   do we need to restart?
-
-### Health Check Worker
+#### Health Check Worker
 
 This is a command line application that runs on a schedule. It queries all of
 the instances created for a given ODS/API runtime, checking (a) for uptime of
 the ODS/API itself and (b) reporting document counts for a small number of Ed-Fi
 API resources (e.g. students).
 
-> [!WARNING] SF notes to self:
->
-> * Multi-tenancy?
+### Supporting Tools and Concepts
 
-#### Keycloak
+#### Multi-tenancy
 
-Keycloak is a third-party, open source, component that serves as an Open ID
-Connect compatible _identity provider_ (IdP). This test strategy will only cover
+The ODS/API and Admin API support multi-tenancy through database segregation.
+That is, a single runtime installation of the application can access tenant
+information stored in separate databases. These database instances can be stored
+on different database servers, potentially with different credentials.
+
+At present there is no unified "tenancy database" that provides tenant
+definitions and database connectivity. Instead, each application's `appSettings`
+file contains a list of tenants along with connection string information for the
+`EdFi_Admin` and `EdFi_Security` databases. As with other app settings values,
+environment variables can override the file contents.
+
+The ODS/API ties client credentials to a tenant; thus multi-tenancy is an
+implied part of the data authorization scheme. In this release of Admin API,
+multi-tenancy is an administrative feature, not an authorization feature. 
+
+> [TIP]
+> Due to limitations in the current database design, an Admin API client can
+> be created in any of the tenants. However, since this is not a security
+> feature of the Admin API, that client can access _all_ tenants. This may be
+> changed in a future release of Admin API, when/if the Alliance introduces
+> tenant-specific users / clients.
+
+#### Authentication and Authorization
+
+Keycloak is a third-party, open source, application that serves as an Open ID
+Connect compatible _identity provider_ (IdP). Admin Console users will
+authenticate with Keycloak, receiving a JSON Web Token (JWT) on successful
+sign-in. All requests to Admin API must include this token; the application will
+claims in the  token to determine if the requesting client application has
+permission to access the application (client authorization) and permission to
+access the given endpoint (resource authorization).
+
+Client authorization requires both a valid token, and that token must have an
+appropriate _role_ as a claim. In the JWT, this claim will be represented by
+`http://schemas.microsoft.com/ws/2008/06/identity/claims/role` as the key, and
+its value will be an array of roles. Role `adminconsole-user` will be required
+for access to Admin Console, and role `adminapi-client` required for access to
+Admin API.
+
+...
+
+Resource authorization will be based on the
+_scope_ claim. 
+
+* Admin Console 1.0 users will use scope `edfi_admin_api/full_access`, giving
+  access to all resources (endpoints).
+* Legacy client credentials for system integration with Admin API will also
+  continue to use `edfi_admin_api/full_access`.
+* The worker applications will use scope `edfi_admin_api/worker`, which will
+  only provide them access to the required resources:
+  * `/adminconsole/instances`
+  * `/adminconsole/healthcheck`
+
+
+Prior versions of Admin API supported a single scope:
+`edfi_admin_api/full_access`. This new version of Admin API will support a more
+limited access scope, `edfi_admin_api/worker`, which will be used for the client
+credentials used by the two worker processes. This "worker" scope provides
+access only to the endpoints required to operate these applications.
+
+
+This test strategy will only cover
 the integration points between the Ed-Fi system and Keycloak; for example, we
 will not perform detailed functional or useability testing of Keycloak.
 
@@ -125,6 +184,8 @@ Admin API also has a legacy, internal, authentication system. That system is
 being kept for backwards compatibility with automation scripts that work
 directly with the Admin API. The Admin Console only supports use of Keycloak for
 authentication.
+
+With 
 
 > [!WARNING] SF notes to self:
 >
@@ -199,12 +260,13 @@ the level of source code:
 
 These review processes, except for Dependabot, occur for every pull request.
 
-> [!WARNING] SF notes to self:
->
-> * Periodic review of code coverage to make sure we don't have gaps on important
->   functionality.
-> * Is 80% the right number? Are we going to enforce that automatically or
->   through periodic review?
+In addition, periodic manual reviews will analyze code coverage results, which
+will help identify:
+
+* Priority areas for enhancing code coverage.
+* Opportunities to refactor code to lower the code's [CRAP score]
+  (https://blog.ndepend.com/crap-metric-thing-tells-risk-code/) (a combination
+  of cyclomatic complexity and code coverage).
 
 ## Functional Testing
 
@@ -216,12 +278,14 @@ Isolated code-level tests without external dependencies.
 
 * Automation: Fully automated and integrated with the source code.
 * Tools: NUnit
-* Coverage: Minimum 80% code coverage.
+* Coverage: Minimum 80% branch coverage.
   * Typical exceptions in the 20% include:
-  * HTTP handlers ("controller")
-  * ORM layer ("repository")
-  * Minimize business logic in these layers so that business logic can be
-  fully tested.
+    * HTTP handlers ("controller")
+    * ORM layer ("repository")
+    * Minimize business logic in these layers so that business logic can be
+      fully tested.
+  * This value is not set as a hard-gate on pull requests. The product needs to
+    reach 80% by the time it is ready for release.
 * Scope:
   * Admin API
   * Instance Management Worker
