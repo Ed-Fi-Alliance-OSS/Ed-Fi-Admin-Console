@@ -115,7 +115,7 @@ services:
       SwaggerSettings__DefaultTenant: ${SWAGGER_DEFAULT_TENANT:-tenant1}
       ENABLE_ADMIN_CONSOLE: ${ENABLE_ADMIN_CONSOLE:-true}
       USE_SELF_CONTAINED_AUTH: ${USE_SELF_CONTAINED_AUTH:-true}
-      OIDC_AUTHORITY: "${OIDC_AUTHORITY:-http://ed-fi-idp-keycloak:8080/realms/myrealm}"
+      OIDC_AUTHORITY: "${OIDC_AUTHORITY:-http://ed-fi-idp-keycloak:8080/realms/edfi-admin-console}"
       OIDC_REQUIRE_METADATA: "${OIDC_REQUIRE_METADATA:-false}"
       OIDC_ENABLE_SERVER_CERTIFICATE: "${OIDC_ENABLE_SERVER_CERTIFICATE:-true}"
       ENABLE_CORS: ${ADMINCONSOLE_ENABLE_CORS:-true}
