@@ -228,11 +228,6 @@ Requests](https://docs.github.com/en/pull-requests). No developer is able to
 merge code into the `main` branch, from whence releases are created, without
 passing through the pull request review process.
 
-> [!WARNING] SF notes to self:
->
-> * When will we execute full manual / regression testing? Not with every pull
->   request of course. But when?
-
 ### Static Testing
 
 Static testing first occurs through peer review of design documents, application
@@ -264,6 +259,8 @@ the level of source code:
    Dependabot](https://docs.github.com/en/code-security/dependabot/working-with-dependabot)
    detects runs nightly to detect vulnerabilities in the packages that are
    already in use.
+4. [Trivy](https://trivy.dev/) detects vulnerabilities in OS packages in Docker
+   images.
 
 These review processes, except for Dependabot, occur for every pull request.
 
@@ -277,7 +274,13 @@ will help identify:
 
 ## Functional Testing
 
-Our functional testing approach includes the following levels of testing:
+Our functional testing approach includes the following levels of testing,
+described in more detail below:
+
+* Unit
+* Integration
+* System
+* System Integration
 
 ### Unit Testing
 
@@ -349,23 +352,67 @@ applications.
 
 ## Non-Functional Testing
 
-> [!WARNING]
->
-> The sections below were created by Microsoft 365 Copilot and with very little
-> editing applied yet.
+### Security Testing
+
+Identify vulnerabilities and ensure the system is secure against attacks. The
+[Static Analysis](#static-testing) section describes automated testing applied
+to source code and Docker images, using CodeQL, the dependency review action,
+and Trivy.
+
+* Automation: mix of manual and automated
+* Tools:
+  * System testing, e.g. with missing or invalid credentials
+  * (Potentially) [Zap](https://www.zaproxy.org/)
+  * Independent penetration testing
+* Scope:
+  * Admin Console
+  * Admin API
 
 ### Performance Testing
 
-Ensure the system performs well under expected and peak loads.
+Ensure the systems perform well under expected and peak loads. Peak load is not
+expected to be substantially different than "expected" load, due to the low user
+count for a given installation. A high load situation would probably represent
+an active attack on the software. 
 
-* Types: Load testing, stress testing, and scalability testing.
-* Tools: JMeter, LoadRunner, Gatling.
+Web gateway / reverse proxy / load balancing software is expected to be used in production, help.... REWORD THIS PASSIVE STRUCTURE.
 
-### Security Testing
+Each application needs to be assessed separately.
 
-* Objective: Identify vulnerabilities and ensure the system is secure against attacks.
-* Types: Penetration testing, vulnerability scanning, and security code reviews.
-* Tools: OWASP ZAP, Burp Suite, Nessus.
+#### Admin Console Performance
+
+* Application type: web site
+* Expected load: 1 user
+* Peak load: 2 users
+* Key performance characteristics:
+  * **Page speed**: Web pages should load "quickly". Because of the limited
+    usage of the application, there is no benchmark requirement for page speed
+    at this time. This should pass the "eyeball" test.
+
+##### Admin API Performance
+
+* Application type: web API
+* Expected load: 1 to 3 clients
+* Peak load: 5 clients
+* Key performance characteristics:
+  * **Response time**: 90% of requests should complete in under 2 seconds under
+    peak load.
+
+> [!TIP]
+> These peak load values are laughably low. Why bother? To emphasize the true
+> low traffic nature of these applications. Heavy traffic could cause a denial
+> of service; in all likelihood this would require several orders of magnitude
+> more traffic. The Ed-Fi Alliance _might_ perform load testing to characterize
+> the impact in more detail. To be determined.
+
+##### Instance Management Worker Performance
+
+TBD
+
+#### Health Check Worker Performance
+
+TBD
+
 
 ### Usability Testing
 
