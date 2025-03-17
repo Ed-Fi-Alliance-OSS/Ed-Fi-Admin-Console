@@ -4,6 +4,6 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 export const userinfo = {
-  'username': 'myuser',
+  'username': 'adminconsole-user',
   'password': 'admin'
 } 

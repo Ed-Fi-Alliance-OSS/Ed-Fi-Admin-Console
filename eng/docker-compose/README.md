@@ -49,7 +49,7 @@ This is an important process because we have to make sure keycloak has created t
 > [!IMPORTANT]
 > **Default users/passwords**
 > * Admin Console user
->   * _Username:_ **myuser**
+>   * _Username:_ **adminconsole-user**
 >   * _Password:_ **123456**
 > * Keycloak administrator
 >   * _Username:_ **admin**
