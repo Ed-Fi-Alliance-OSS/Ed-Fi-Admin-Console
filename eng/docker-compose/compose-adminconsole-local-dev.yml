@@ -18,7 +18,7 @@ services:
       EG_api__useAdminApiAuthentication: ${ADMIN_CONSOLE_USE_ADMIN_API_AUTH:-true}
       EG_api__apiKey: ${ADMIN_CONSOLE_API_KEY:-true}
       EG_api__apiSecret: ${ADMIN_CONSOLE_API_SECRET:-true}
-      EG_auth__authority: http://localhost:28080/realms/myrealm/
+      EG_auth__authority: http://localhost:28080/realms/edfi-admin-console/
       EG_auth__redirectUri: http://localhost:8598/callback
       EG_auth__silentRedirectUri: http://localhost:8598/silent-renew
       EG_auth__postLogoutRedirectUri: http://localhost:8598

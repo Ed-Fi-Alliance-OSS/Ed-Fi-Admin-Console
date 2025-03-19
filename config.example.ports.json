@@ -20,8 +20,8 @@
     "test-plugin"
   ],
   "auth": {
-    "authority": "http://localhost:28080/realms/myrealm/",
-    "clientId": "ac",
+    "authority": "http://localhost:28080/realms/edfi-admin-console/",
+    "clientId": "admin-console",
     "redirectUri": "http://localhost:8598/callback",
     "silentRedirectUri": "http://localhost:8598/silent-renew",
     "postLogoutRedirectUri": "http://localhost:8598",
