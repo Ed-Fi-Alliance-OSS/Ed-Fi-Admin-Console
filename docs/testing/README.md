@@ -8,6 +8,10 @@ functionality. The goal is to ensure the quality, reliability, and performance
 of the Admin API and its interactions with the Admin Console and associated
 worker applications.
 
+> [!TIP]
+> Also see: [Admin Console 1.0 Test Plan](./PLAN.md) for implementation and
+> execution planning.
+
 ## Test Basis
 
 The following C4 Context diagram depicts the systems and relationships covered
