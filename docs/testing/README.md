@@ -316,7 +316,10 @@ database servers).
 * Tools: NUnit
 * Coverage: not determined
 * Scope:
+  * Admin API
 * Out of Scope:
+  * Admin Console
+* To be determined: worker processes.
 
 ### System Testing
 
@@ -464,6 +467,12 @@ example, do not use burst-mode VPCUs that have unpredictable performance.
 * Objective: Ensure the application is user-friendly and meets the needs of its
   users.
 * Methods: User interviews and [heuristic evaluations](https://www.nngroup.com/articles/how-to-conduct-a-heuristic-evaluation/).
+* Scope:
+  * Admin Console
+* Out of Scope:
+  * Admin API
+  * Instance Management Worker
+  * Health Check Worker
 * Tools: [10 Usability Heuristics for User Interface Design](https://www.nngroup.com/articles/ten-usability-heuristics/).
 
 ### Compatibility Testing
@@ -478,6 +487,12 @@ example, do not use burst-mode VPCUs that have unpredictable performance.
   browsers used in Windows and Mac OS X. Mobile device usability is
   nice-to-have, but not required. Evaluate mobile devices for user documentation
   purposes.
+* Scope:
+  * Admin Console
+* Out of Scope:
+  * Admin API
+  * Instance Management Worker
+  * Health Check Worker
 * Tools:
   * Windows: Microsoft Edge, Google Chrome
   * Mac OS X: Safari, Google Chrome
@@ -489,19 +504,33 @@ example, do not use burst-mode VPCUs that have unpredictable performance.
 * Standards: WCAG (Web Content Accessibility Guidelines).
 * Requirement: there is no fixed requirement beyond assessing and understanding
   the accessibility level and looking for opportunities to improve.
+* Scope:
+  * Admin Console
+* Out of Scope:
+  * Admin API
+  * Instance Management Worker
+  * Health Check Worker
 * Tools:
   [Lighthouse](https://learn.microsoft.com/en-us/microsoft-edge/devtools-guide-chromium/accessibility/lighthouse).
 
-### Monitoring and Logging
+### Operational Useability
 
 * Automation: manual.
-* Objective: Ensure the applications provide appropriate logging to help system
-  administrators detect and remediate runtime problems.
-* Requirement: Messages should be logged at an appropriate level (DEBUG, INFO,
-  WARNING, ERROR, FATAL/CRITICAL). For example, client errors are logged with
-  DEBUG or INFO, while system errors are logged with WARNING or higher.
-* Tools: manual review of log messages with user reporting based on the same
-  tools as the useability heuristics testing.
+* Objective: Ensure the integrated system is sufficiently useable from an operational perspective.
+* Heuristics:
+  * Operationally stable running in Docker Desktop in a local environment.
+  * Able to deploy and operate in a cloud environment with relative ease.
+  * Provides appropriate logging to help system administrators detect and
+    remediate runtime problems.
+  * Messages should be logged at an appropriate level (DEBUG, INFO, WARNING,
+    ERROR, FATAL/CRITICAL). For example, client errors are logged with DEBUG or
+    INFO, while system errors are logged with WARNING or higher.
+* Scope:
+  * Admin Console
+  * Admin API
+  * Instance Management Worker
+  * Health Check Worker
+* Tools: user reporting with similar tools as the useability heuristics testing.
 
 ## Implementation
 
