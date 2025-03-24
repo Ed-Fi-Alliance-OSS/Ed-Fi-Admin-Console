@@ -370,33 +370,53 @@ and Trivy.
 
 ### Performance Testing
 
-Ensure the systems perform well under expected and peak loads. Peak load is not
-expected to be substantially different than "expected" load, due to the low user
+Ensure the systems perform well under average and peak loads. Peak load is not
+expected to be substantially different than "average" load, due to the low user
 count for a given installation. A high load situation would probably represent
-an active attack on the software. 
+an active attack on the software.
 
-Web gateway / reverse proxy / load balancing software is expected to be used in production, help.... REWORD THIS PASSIVE STRUCTURE.
+Production deployments should utilize a reverse proxy web server for optimal
+performance and security. The two web-based applications need to be tested under
+similar conditions.
 
 Each application needs to be assessed separately.
 
+For meaningful statistics, all tests procedures need to run multiple times:
+ideally thirty times when fully automated and not cost prohibitive, with a
+minimum of five executions (thirty is the "magic number" for normal distribution
+statistics). Record the results of each run and provide summary statistics
+including: mean, standard deviation, and percentiles (25%, 50%, 75%, 90%).
+
+The applications need to be running in a standardized environment with low
+overhead, for example in one or more virtual machines in a cloud environment.
+Virtual machines used for this testing need fixed resource allocations; for
+example, do not use burst-mode VPCUs that have unpredictable performance.
+
 #### Admin Console Performance
 
-* Application type: web site
-* Expected load: 1 user
-* Peak load: 2 users
+* Automation: manual.
+* Application type: web site.
+* Expected load: 1 user.
+* Peak load: 2 users with 2000 instances in a single tenant.
 * Key performance characteristics:
   * **Page speed**: Web pages should load "quickly". Because of the limited
     usage of the application, there is no benchmark requirement for page speed
     at this time. This should pass the "eyeball" test.
+* Tools: [Microsoft Edge performance tool](https://learn.microsoft.com/en-us/microsoft-edge/devtools-guide-chromium/evaluate-performance/).
 
 ##### Admin API Performance
 
-* Application type: web API
-* Expected load: 1 to 3 clients
-* Peak load: 5 clients
+* Automation: automated.
+* Application type: web API.
+* Expected load: 1 to 3 clients.
+* Peak load: 5 clients with 2000 instances in a single tenant.
 * Key performance characteristics:
-  * **Response time**: 90% of requests should complete in under 2 seconds under
+  * **Response time**: 90% of requests should complete in under 1 seconds under
     peak load.
+* Additional testing: the API should also be subject to much higher volume load
+  testing in order to assess potential breaking point. Set default rate limiting
+  based on this volume.
+* Tools: [Locust](https://locust.io/)
 
 > [!TIP]
 > These peak load values are laughably low. Why bother? To emphasize the true
@@ -407,57 +427,89 @@ Each application needs to be assessed separately.
 
 ##### Instance Management Worker Performance
 
-TBD
+* Automation: manual.
+* Application type: command line utility.
+* Expected load: 1 new database instance at a time.
+* Peak load: 5 new database instances.
+* Key performance characteristics:
+  * **Throughput**: complete creation of 5 new instances on a single server in
+    under 10 minutes.
+* Additional testing: try a more complex scenario, even if unlikely. For
+  example, could include several rename and deletion operations at the same time
+  as a large number of creations.
+* Tools: no prescribed tools.
+
+> [!NOTE]
+> If performance is lower than expected, evaluate carefully to see if this is
+> an environmental limitation vs. a problem with the code.
 
 #### Health Check Worker Performance
 
-TBD
+* Automation: manual.
+* Application type: command line utility.
+* Expected load: monitor up to 5 instances.
+* Peak load: monitoring up to 2000 instances.
+* Key performance characteristics:
+  * **Throughput**: expect to complete health checks at peak load in under 10
+    minutes.
+* Tools: no prescribed tools.
 
+> [!NOTE]
+> If performance is lower than expected, evaluate carefully to see if this is
+> an environmental limitation vs. a problem with the code.
 
 ### Usability Testing
 
-* Objective: Ensure the application is user-friendly and meets the needs of its users.
-* Methods: User interviews, A/B testing, and heuristic evaluations.
-* Tools: UserTesting, Hotjar, Crazy Egg.
+* Automation: manual.
+* Objective: Ensure the application is user-friendly and meets the needs of its
+  users.
+* Methods: User interviews and [heuristic evaluations](https://www.nngroup.com/articles/how-to-conduct-a-heuristic-evaluation/).
+* Tools: [10 Usability Heuristics for User Interface Design](https://www.nngroup.com/articles/ten-usability-heuristics/).
 
 ### Compatibility Testing
 
+* Automation: manual.
 * Objective: Ensure the application works across different devices, browsers,
   and operating systems.
-* Types: Cross-browser testing, cross-device testing.
-* Tools: BrowserStack, Sauce Labs, CrossBrowserTesting.
+* Types: Cross-browser testing, simulated cross-device testing (use developer
+  tools in the browser to assess compatibility on table and current phone
+  devices).
+* Requirement: the web site must be fully functional in the two most common
+  browsers used in Windows and Mac OS X. Mobile device usability is
+  nice-to-have, but not required. Evaluate mobile devices for user documentation
+  purposes.
+* Tools:
+  * Windows: Microsoft Edge, Google Chrome
+  * Mac OS X: Safari, Google Chrome
 
 ### Accessibility Testing
 
+* Automation: automated.
 * Objective: Ensure the application is accessible to users with disabilities.
 * Standards: WCAG (Web Content Accessibility Guidelines).
-* Tools: Axe, WAVE, Lighthouse.
-
-### Data Integrity Testing
-
-* Objective: Ensure data is accurately stored, retrieved, and maintained.
-* Methods: Data validation, data migration testing.
-* Tools: Custom scripts, database testing tools.
-
-### Continuous Integration/Continuous Deployment (CI/CD) Testing
-
-* Objective: Integrate testing into the CI/CD pipeline to catch issues early.
-* Practices: Automated testing, continuous monitoring.
-* Tools: Jenkins, GitLab CI, CircleCI.
+* Requirement: there is no fixed requirement beyond assessing and understanding
+  the accessibility level and looking for opportunities to improve.
+* Tools:
+  [Lighthouse](https://learn.microsoft.com/en-us/microsoft-edge/devtools-guide-chromium/accessibility/lighthouse).
 
 ### Monitoring and Logging
 
-* Objective: Monitor the application in production to catch issues early.
-* Practices: Real-time monitoring, log analysis.
-* Tools: Splunk, ELK Stack, Prometheus.
+* Automation: manual.
+* Objective: Ensure the applications provide appropriate logging to help system
+  administrators detect and remediate runtime problems.
+* Requirement: Messages should be logged at an appropriate level (DEBUG, INFO,
+  WARNING, ERROR, FATAL/CRITICAL). For example, client errors are logged with
+  DEBUG or INFO, while system errors are logged with WARNING or higher.
+* Tools: manual review of log messages with user reporting based on the same
+  tools as the useability heuristics testing.
 
 ## Implementation
 
 ### Test Environment Management
 
 * Objective: Ensure consistent and reliable test environments.
-* Practices: Environment provisioning, configuration management.
-* Tools: Docker, Kubernetes, Terraform.
+* Tools: services should run as Docker containers on virtual machines or within
+  managed container services on a cloud provider.
 
 ### Test Case Management and Reporting
 
@@ -469,8 +521,7 @@ TBD
 ### Test Data Management
 
 * Objective: Ensure the availability of relevant and realistic test data.
-* Practices: Data masking, synthetic data generation.
-* Tools: Delphix, TDM tools.
+* Tools: database backup / restore procedures.
 
 ## Test Case Development
 
