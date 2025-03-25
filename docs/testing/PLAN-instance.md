@@ -2,7 +2,24 @@
 
 ## Context
 
-Show system interactions with Admin Console, Admin API, ODS/API
+The following sequence diagram summarizes the interactions between systems. For
+more detail, see the [Instance
+Management](https://github.com/Ed-Fi-Alliance-OSS/AdminAPI-2.x/blob/main/docs/design/adminconsole/INSTANCE-MANAGEMENT.md)
+design document.
+
+```mermaid
+sequenceDiagram
+    participant Worker
+    participant AdminAPI
+    participant RDBMS
+
+    Worker ->> AdminAPI: GET instances
+
+    loop Each Instance
+        Worker ->> RDBMS: manage database
+        Worker ->> AdminAPI: POST instance status
+    end
+```
 
 ## Functional Testing
 
@@ -44,10 +61,10 @@ Integration testing of this form will not be performed in the current project.
 
 ### System
 
-System testing would run the entire application, not just a specific module,
-with live links to real or simulated external services. In addition, System
-testing can include execution of the application in failure scenarios to test
-the error handling.
+System testing runs the entire application, not just a specific module, with
+live links to real or simulated external services. In addition, System testing
+can include execution of the application in failure scenarios to test the error
+handling.
 
 Automated system testing should be performed in the scope of the current
 project, time permitting. This will require starting a running instance of Admin
@@ -70,11 +87,13 @@ For each test case, ensure that:
 #### System Test Cases - Negative
 
 1. Admin API is inaccessible.
-2. The database server is inaccessible to the worker (but accessible to Admin
+2. Keycloak is inaccessible.
+3. Admin API credentials are invalid.
+4. The database server is inaccessible to the worker (but accessible to Admin
    API).
-3. Create operation with a database name that already exists.
-4. Rename operation on a database that is locked.
-5. Delete operation on a database that is locked.
+5. Create operation with a database name that already exists.
+6. Rename operation on a database that is locked.
+7. Delete operation on a database that is locked.
 
 For each test case, ensure that:
 
