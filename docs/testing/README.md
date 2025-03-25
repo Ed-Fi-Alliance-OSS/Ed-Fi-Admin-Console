@@ -331,7 +331,7 @@ Tests that interact with the entire installed  application. Also known as
 end-to-end or E2E tests.
 
 * Automation: Automated when possible.
-* Tools: Postman, Playwright
+* Tools: Postman, Playwright, PowerShell, etc.
 * Coverage: to be determined
 
 > [!NOTE]
@@ -341,10 +341,12 @@ end-to-end or E2E tests.
 
 * Scope:
   * Admin API
+  * Instance Management Worker
+  * Health Check Worker
 * Out of Scope:
   * Admin Console
 
-For both _System_ and _System Integration_ tests: manual testing will be
+For both _System_ and _System Integration_ tests: manual testing may be
 required for more complex scenarios, with a goal to increase automation over
 time.
 
