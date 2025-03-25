@@ -30,12 +30,75 @@ These tests will run on every pull request in GitHub.
 
 ### Integration
 
-TBD - will this tool have any database-integrated tests?
+This tool interacts with a database server for database creation, deletion, and
+renaming operations. It also interacts with Admin API for receiving information
+about what actions to perform.
+
+Integration testing, as opposed to the System testing listed below, would select
+a module or class that interacts with one of these systems. It would establish a
+live link to a running system or a test harness simulation, and then execute
+that module with the live link. This would cover aspects of the source code that
+are not practical to unit test.
+
+Integration testing of this form will not be performed in the current project.
 
 ### System
 
-TBD - will this tool have any tests integrated with all systems (Admin API,
-database)?
+System testing would run the entire application, not just a specific module,
+with live links to real or simulated external services. In addition, System
+testing can include execution of the application in failure scenarios to test
+the error handling.
+
+Automated system testing should be performed in the scope of the current
+project, time permitting. This will require starting a running instance of Admin
+API and orchestrating appropriate scenarios.
+
+#### System Test Cases - Happy Path
+
+1. Create a new instance.
+2. Rename an existing instance.
+3. Delete an existing instance.
+4. Create two instances at the same time.
+5. Perform all three commands at the same time.
+
+For each test case, ensure that:
+
+1. The database instance is in the proper state (created, renamed, deleted).
+2. Admin API has been updated correctly.
+3. Exit code from the application is 0.
+
+#### System Test Cases - Negative
+
+1. Admin API is inaccessible.
+2. The database server is inaccessible to the worker (but accessible to Admin
+   API).
+3. Create operation with a database name that already exists.
+4. Rename operation on a database that is locked.
+5. Delete operation on a database that is locked.
+
+For each test case, ensure that:
+
+1. Admin API, if it is running, has been updated with correct Failure status.
+2. Exit code from the application is not zero.
+
+#### System Test Execution
+
+One possible approach, using a PowerShell script or C# project:
+
+1. Start environment in Docker using Compose.
+2. Run SQL script to setup initial state for the test case.
+3. Start a timer.
+4. Call `docker exec` to run the worker immediately, instead of waiting for
+   schedule. Don't use `--rm` to remove, as we need the logs
+5. When it comes back:
+   1. Stop the timer
+   2. Collect logs and write to disk
+   3. Report the duration taken.
+   4. Remove the "exec" container.
+6. Stop the docker environment.
+
+If using PowerShell, can use Pester to write assertions. Ideally, these tests
+would run on pull requests.
 
 ### System Integration
 
@@ -46,23 +109,14 @@ Console](./PLAN-console.md) test plan document.
 
 ### Performance Testing
 
-Write an orchestration suite in PowerShell to:
+Using the System Test framework, add the following test cases. These can be run
+automatically or manually. Favor automatic execution if the timing is very
+quick.
 
-1. Start environment in Docker using Compose.
-1. Run SQL script to setup initial state for the test case.
-1. Start a timer.
-1. Call `docker exec` to run the worker immediately, instead of waiting for
-   schedule. Don't use `--rm` to remove, as we need the logs
-1. When it comes back:
-   1. Stop the timer
-   1. Collect logs and write to disk
-   1. Report the duration taken.
-   1. Remove the "exec" container.
-1. Stop the docker environment.
-
-Test cases:
+#### Performance Test Cases
 
 1. Expected peak load: create five instances.
+   1. Assert that the duration is less than 10 minutes.
 2. Complex scenario:
    1. Pre-create four instances manually (simple `CREATE DATABASE` statements).
    2. Now inject five new creations, two deletions, and two renames.
@@ -75,7 +129,7 @@ Heuristics worksheet to be developed.
 Performed by the support team rather than the development team, in coordination
 with Ed-Fi Customer Success.
 
-Test cases:
+#### Operational Test Cases
 
 1. Admin API is not running.
 2. Unable to connect to destination database. The database server must be
