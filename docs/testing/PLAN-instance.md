@@ -10,9 +10,11 @@ design document.
 ```mermaid
 sequenceDiagram
     participant Worker
+    participant Keycloak
     participant AdminAPI
     participant RDBMS
 
+    Worker ->> Keycloak: authenticate
     Worker ->> AdminAPI: GET instances
 
     loop Each Instance
