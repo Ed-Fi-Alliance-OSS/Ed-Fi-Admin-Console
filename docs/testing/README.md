@@ -150,7 +150,7 @@ The ODS/API ties client credentials to a tenant; thus multi-tenancy is an
 implied part of the data authorization scheme. In this release of Admin API,
 multi-tenancy is an administrative feature, not an authorization feature.
 
-> [TIP]
+> [!TIP]
 > Due to limitations in the current database design, an Admin API client can
 > be created in any of the tenants. However, since this is not a security
 > feature of the Admin API, that client can access _all_ tenants. This may be
@@ -303,9 +303,9 @@ Isolated code-level tests without external dependencies.
 * Out of Scope:
   * Admin Console
 
-    > [!NOTE]
-    > Unit tests in the Admin Console web application code may be added in a
-    > future release.
+> [!NOTE]
+> Unit tests in the Admin Console web application code may be added in a
+> future release.
 
 ### Integration Testing
 
@@ -327,10 +327,10 @@ end-to-end or E2E tests.
 * Tools: Postman, Playwright
 * Coverage: to be determined
 
-  > [!NOTE]
-  > Calculating coverage means we need to identify test cases and then
-  > determine what percentage of them are covered by the Postman tests. This
-  > is a manual process.
+> [!NOTE]
+> Calculating coverage means we need to identify test cases and then
+> determine what percentage of them are covered by the Postman tests. This
+> is a manual process.
 
 * Scope:
   * Admin API
