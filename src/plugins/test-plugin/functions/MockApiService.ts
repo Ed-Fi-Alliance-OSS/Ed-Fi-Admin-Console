@@ -16,6 +16,8 @@ import { EdfiVendor } from '../../../core/Edfi/EdfiVendors'
 import {
   CreateEdfiApplicationRequest, UpdateEdfiApplicationRequest
 } from '../../../services/AdminActions/Edfi/Applications/EdfiApplicationService.requests'
+import { GetDataHealthDistrictDetailsResponse, HealthCheckResponse } from '../../../services/DataHealth/DataHealthService.responses'
+import { HttpServiceResponse } from '@edfi/admin-console-shared-sdk/dist/services/HttpService/HttpService.response.types'
 
 export interface IApiServices {
   tenants: {
@@ -54,6 +56,9 @@ export interface IApiServices {
     getAll: () => Promise<EdfiClaimSet[]>
     get: (claimSetId: string) => Promise<EdfiClaimSet>
   }
+  healthCheck: {
+    getByInstanceId: (instanceId: number) => Promise<HealthCheckResponse>
+  }
 }
 
 export function MockApiService(config: EdxAppConfig, apiService: typeof useApiService): IApiServices {
@@ -66,9 +71,9 @@ export function MockApiService(config: EdxAppConfig, apiService: typeof useApiSe
       get: (tenantId) => adminConsoleApi.get(`/adminconsole/tenants/${tenantId}`).then(resp => resp.data),
     },
     instances: {
-      getAll: () => adminConsoleApi.get('/v2/odsinstances').then(resp => resp.data),
-      get: (instanceId) => adminConsoleApi.get(`/v2/odsinstances/${instanceId}`).then(resp => resp.data),
-      create: (instance) => adminConsoleApi.post('/v2/odsinstances', instance).then(resp => resp.data),
+      getAll: () => adminConsoleApi.get('/adminconsole/odsinstances').then(resp => resp.data),
+      get: (instanceId) => adminConsoleApi.get(`/adminconsole/odsinstances/${instanceId}`).then(resp => resp.data),
+      create: (instance) => adminConsoleApi.post('/adminconsole/odsinstances', instance).then(resp => resp.data),
     },
     users: {
       getAll: () => api.get(`${baseUrl}/users`).then(resp => resp.data),
@@ -92,6 +97,28 @@ export function MockApiService(config: EdxAppConfig, apiService: typeof useApiSe
     claimSets: {
       getAll: () => adminConsoleApi.get('/v2/claimSets').then(resp => resp.data),
       get: (claimSetId) => adminConsoleApi.get(`/v2/claimSets/${claimSetId}`)
+    },
+    healthCheck: {
+      getByInstanceId: (instanceId) => adminConsoleApi.get(`/adminconsole/healthcheck/${instanceId}`)
+        .then(resp => {
+          const { document } = resp.data;
+          if (!document) {
+            throw new Error('Invalid response: Missing "document" field');
+          }
+          const result = document as GetDataHealthDistrictDetailsResponse
+          return {
+            type: 'Response',
+            data: result,
+          } as HealthCheckResponse;
+        })
+        .catch((error) => {
+          console.error('Error in getDataHealthInfo:', error)
+          return {
+            type: 'Error',
+            error: error instanceof Error ? error.message : 'Unknown error occurred',
+          };
+        })
+        ,
     }
   }
 }

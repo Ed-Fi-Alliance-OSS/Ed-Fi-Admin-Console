@@ -19,3 +19,9 @@ export interface GetDataHealthDistrictDetailsResponse {
     reportingPeriodExts: number	
     healthy: boolean
 }
+
+export interface HealthCheckResponse {
+    type: 'Response' | 'Error';
+    data?: GetDataHealthDistrictDetailsResponse;
+    error?: string;
+  };
