@@ -61,7 +61,7 @@ export interface IApiServices {
   }
 }
 
-export function MockApiService(config: EdxAppConfig, apiService: typeof useApiService): IApiServices {
+export function ApiService(config: EdxAppConfig, apiService: typeof useApiService): IApiServices {
   const baseUrl = window.location.origin.includes('localhost') ? 'http://localhost:3000/api' : config.app.basePath + '/api'
   const { api } = apiService('')
   const { api: adminConsoleApi } = apiService(config.api.edfiAdminApiBaseUri)
