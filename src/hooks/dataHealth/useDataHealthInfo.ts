@@ -61,7 +61,7 @@ const useDataHealthInfo = ({ instance, usingSchoolYear }: UseDataHealthInfoProps
       let result: HttpServiceResponse<GetDataHealthDistrictDetailsResponse> | HttpServiceRequestError | null = null
 
       if (!usingSchoolYear) {
-        result = await getDataHealthInfo(adminConfig.actionParams)
+        result = (await getDataHealthInfo(instance?.id)) ?? null
       }
 
       if (usingSchoolYear && instance) {

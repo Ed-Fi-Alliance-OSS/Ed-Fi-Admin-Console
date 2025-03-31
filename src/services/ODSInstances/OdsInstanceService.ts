@@ -35,21 +35,13 @@ const useOdsInstanceService = () => {
     if (request.filter) {
       queryParams = `${queryParams}&filter=${request.filter}`
     }
-        
+
     if (request.orderBy) {
       queryParams = `${queryParams}&orderBy=${request.orderBy}`
     }
     const url = actionParams.config.api?.useLocalMockData ?? true
       ? `${config?.app.basePath}/mockdata/adminapi/data-odsinstances.json`
       : `${baseUrl}/adminconsole/odsinstances`
-
-    /*await getAsync<GetOdsInstancesListResponse>({
-      url,
-      access_token: actionParams.token,
-      actionName: 'Get Instances List',
-      apiConfig: actionParams.config.api
-    })*/
-    
     return apiService.instances.getAll();
   }
 

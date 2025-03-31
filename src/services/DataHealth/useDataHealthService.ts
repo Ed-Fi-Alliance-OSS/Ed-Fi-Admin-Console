@@ -15,10 +15,9 @@ const useDataHealthService = () => {
   const { config } = useConfig()
   const { functionalities } = usePluginContext()
   const apiService = functionalities.ApiService?.(config, useApiService)
-  const getDataHealthInfo = async(actionParams: ActionParams) =>{
-    // TODO: Change parameter to use the instanceId
-    const result = await apiService?.healthCheck.getByInstanceId(1);
-    return result;
+  const getDataHealthInfo = async(instanceId: number | undefined) =>{
+      const result = await apiService?.healthCheck.getByInstanceId(instanceId ?? 0);
+      return result;
   } 
 
   const getOdsInstanceDataHealthInfo = async (actionParams: ActionParams, year: number): GetDataHealthDistrictDetailsResult => {
@@ -31,7 +30,6 @@ const useDataHealthService = () => {
       access_token: actionParams.token,
       apiConfig: actionParams.config.api
     })
-    console.log('getOdsInstanceDataHealthInfo', result)
     return result
   }
 
