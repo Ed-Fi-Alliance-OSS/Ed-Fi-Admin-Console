@@ -101,9 +101,13 @@ export function ApiService(config: EdxAppConfig, apiService: typeof useApiServic
     healthCheck: {
       getByInstanceId: (instanceId) => adminConsoleApi.get(`/adminconsole/healthcheck/${instanceId}`)
         .then(resp => {
+          console.log('Response from health check:', resp);
           const { document } = resp.data;
           if (!document) {
-            throw new Error('Invalid response: Missing "document" field');
+            return {
+              type: 'Response',
+              data: {} as GetDataHealthDistrictDetailsResponse,
+            } as HealthCheckResponse;
           }
           const result = document as GetDataHealthDistrictDetailsResponse
           return {
@@ -112,6 +116,14 @@ export function ApiService(config: EdxAppConfig, apiService: typeof useApiServic
           } as HealthCheckResponse;
         })
         .catch((error) => {
+          // Check if the response status is 404
+          // If it is, return an empty object 
+          if(error.status === 404) {
+            return {
+              type: 'Response',
+              data:  {} as GetDataHealthDistrictDetailsResponse,
+            } as HealthCheckResponse;
+          }
           console.error('Error in getDataHealthInfo:', error)
           return {
             type: 'Error',
