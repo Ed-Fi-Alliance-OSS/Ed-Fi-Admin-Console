@@ -1,0 +1,32 @@
+# SPDX-License-Identifier: Apache-2.0
+# Licensed to the Ed-Fi Alliance under one or more agreements.
+# The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
+# See the LICENSE and NOTICES files in the project root for more information.
+
+services:
+  instance-management-service:
+    image: edfialliance/admin-console-instance-management-worker-process:${INSTANCEMANAGEMENT_WORKER_TAG}
+    environment:
+      EdFi_AdminConsole_AppSettings__DatabaseEngine: ${DATABASE_ENGINE:-PostgreSQL}
+      EdFi_AdminConsole_AppSettings__PathBase: ${PATHBASE:-""}
+      EdFi_AdminConsole_AppSettings__DefaultPageSizeOffset: 0
+      EdFi_AdminConsole_AppSettings__DefaultPageSizeLimit: 25
+      EdFi_AdminConsole_AppSettings__OverrideExistingDatabase: ${OVERRIDE_EXISTING_DATABASE:-false}
+      EdFi_AdminConsole_AppSettings__IgnoresCertificateErrors: ${IGNORES_CERTIFICATE_ERRORS:-true}
+      EdFi_AdminConsole_ConnectionStrings__EdFi_Master: ${EDFI_MASTER:-host=host.docker.internal;port={POSTGRES_PORT};username=${POSTGRES_USER};password=${POSTGRES_PASSWORD};database=postgres;pooling=false;}
+      EdFi_AdminConsole_ConnectionStrings__EdFi_Ods: ${EDFI_ODS:-host=host.docker.internal;port={POSTGRES_PORT};username=${POSTGRES_USER};password=${POSTGRES_PASSWORD};database={0};pooling=false;}
+      EdFi_AdminConsole_AdminApiSettings__AccessTokenUrl: ${ACCESS_TOKEN_URL:-http://host.docker.internal:28080/realms/edfi-admin-console/protocol/openid-connect/token}
+      EdFi_AdminConsole_AdminApiSettings__AdminConsoleTenantsURL: ${ADMINCONSOLE_TENANTS_URL:-http://host.docker.internal:8282/adminconsole/tenants}
+      EdFi_AdminConsole_AdminApiSettings__AdminConsoleInstancesURL: ${ADMINCONSOLE_INSTANCES_URL:-http://host.docker.internal:8282/adminconsole/instances?status={0}}
+      EdFi_AdminConsole_AdminApiSettings__AdminConsoleCompleteInstancesURL: ${ADMINCONSOLE_COMPLETE_INSTANCES_URL:-http://host.docker.internal:8282/adminconsole/instances/{0}/completed}
+      EdFi_AdminConsole_AdminApiSettings__Username: ${USERNAME}
+      EdFi_AdminConsole_AdminApiSettings__ClientSecret: ${CLIENT_SECRET:-7tpYh5eZtL0ct99cmfCXUY3q5o2KxUTU}
+      EdFi_AdminConsole_AdminApiSettings__Password: ${PASSWORD}
+      EdFi_AdminConsole_AdminApiSettings__GrantType: ${GRANTTYPE:-client_credentials}
+      EdFi_AdminConsole_AdminApiSettings__Scope: ${SCOPE:-edfi_admin_api/full_access}
+    volumes:
+      - service-logs:/var/log/acinstancesvc
+
+volumes:
+  service-logs:
+    name: instance-management-service-logs
