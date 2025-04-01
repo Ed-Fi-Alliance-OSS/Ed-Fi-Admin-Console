@@ -14,7 +14,8 @@
     "basePath": "",
     "helpLinkUrl": "/docs/index",
     "termsUrl": "/docs/terms",
-    "multiTenancy": true
+    "multiTenancy": true,
+    "showDataHealth": true
   },
   "plugins": [
     "test-plugin"
