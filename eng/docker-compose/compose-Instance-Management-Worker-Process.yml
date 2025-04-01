@@ -13,13 +13,14 @@ services:
       EdFi_AdminConsole_AppSettings__DefaultPageSizeLimit: 25
       EdFi_AdminConsole_AppSettings__OverrideExistingDatabase: ${OVERRIDE_EXISTING_DATABASE:-false}
       EdFi_AdminConsole_AppSettings__IgnoresCertificateErrors: ${IGNORES_CERTIFICATE_ERRORS:-true}
-      EdFi_AdminConsole_ConnectionStrings__EdFi_Master: ${EDFI_MASTER:-host=host.docker.internal;port={POSTGRES_PORT};username=${POSTGRES_USER};password=${POSTGRES_PASSWORD};database=postgres;pooling=false;}
-      EdFi_AdminConsole_ConnectionStrings__EdFi_Ods: ${EDFI_ODS:-host=host.docker.internal;port={POSTGRES_PORT};username=${POSTGRES_USER};password=${POSTGRES_PASSWORD};database={0};pooling=false;}
+      EdFi_AdminConsole_ConnectionStrings__EdFi_Master: ${EDFI_MASTER:-host=pb-ods-tenant1;port=6432;username=postgres;password=P@ssw0rd;database=postgres;pooling=false;}
+      EdFi_AdminConsole_ConnectionStrings__EdFi_Ods: ${EDFI_ODS:-host=pb-ods-tenant1;port=6432;username=postgres;password=P@ssw0rd;database={0};pooling=false;}
       EdFi_AdminConsole_AdminApiSettings__AccessTokenUrl: ${ACCESS_TOKEN_URL:-http://host.docker.internal:28080/realms/edfi-admin-console/protocol/openid-connect/token}
       EdFi_AdminConsole_AdminApiSettings__AdminConsoleTenantsURL: ${ADMINCONSOLE_TENANTS_URL:-http://host.docker.internal:8282/adminconsole/tenants}
       EdFi_AdminConsole_AdminApiSettings__AdminConsoleInstancesURL: ${ADMINCONSOLE_INSTANCES_URL:-http://host.docker.internal:8282/adminconsole/instances?status={0}}
       EdFi_AdminConsole_AdminApiSettings__AdminConsoleCompleteInstancesURL: ${ADMINCONSOLE_COMPLETE_INSTANCES_URL:-http://host.docker.internal:8282/adminconsole/instances/{0}/completed}
       EdFi_AdminConsole_AdminApiSettings__Username: ${USERNAME}
+      EdFi_AdminConsole_AdminApiSettings__ClientId: ${CLIENTID:-adminconsole-worker-client}
       EdFi_AdminConsole_AdminApiSettings__ClientSecret: ${CLIENT_SECRET:-7tpYh5eZtL0ct99cmfCXUY3q5o2KxUTU}
       EdFi_AdminConsole_AdminApiSettings__Password: ${PASSWORD}
       EdFi_AdminConsole_AdminApiSettings__GrantType: ${GRANTTYPE:-client_credentials}

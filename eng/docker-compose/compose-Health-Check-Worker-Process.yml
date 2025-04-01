@@ -13,6 +13,7 @@ services:
       EdFi_AdminConsole_AdminApiSettings__AdminConsoleInstancesURL: ${ADMINCONSOLE_INSTANCES_URL:-http://host.docker.internaL:8282/adminconsole/instances?status={0}}
       EdFi_AdminConsole_AdminApiSettings__AdminConsoleHealthCheckURL: ${ADMINCONSOLE_HEALTHCHECK_URL:-http://host.docker.internal:8282/adminconsole/instances/{0}/completed}
       EdFi_AdminConsole_AdminApiSettings__Username: ${USER_NAME}
+      EdFi_AdminConsole_AdminApiSettings__ClientId: ${CLIENTID:-adminconsole-worker-client}
       EdFi_AdminConsole_AdminApiSettings__ClientSecret: ${CLIENT_SECRET:-7tpYh5eZtL0ct99cmfCXUY3q5o2KxUTU}
       EdFi_AdminConsole_AdminApiSettings__Password: ${PASSWORD}
       EdFi_AdminConsole_AdminApiSettings__GrantType: ${GRANTTYPE:-client_credentials}
