@@ -14,7 +14,8 @@
     "showDataHealth": false,
     "showAdvancedTabs": true,
     "allowDebug": true,
-    "notificationsApplicationId": "z2WFYMjyRNEI"
+    "notificationsApplicationId": "z2WFYMjyRNEI",
+    "showDataHealth": true
   },
   "auth": {
     "authority": "https://login.txedexchange.dev",
