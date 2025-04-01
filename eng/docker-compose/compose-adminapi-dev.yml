@@ -109,7 +109,6 @@ services:
       AppSettings__DefaultPageSizeLimit: ${PAGING_LIMIT:-25}
       AppSettings__MultiTenancy: ${MULTITENANCY_ENABLED:-true}
       AppSettings__DatabaseEngine: PostgreSQL
-      AppSettings__UseSelfcontainedAuthorization: false
       ASPNETCORE_ENVIRONMENT: multitenantdocker
       Authentication__AllowRegistration: 'true'
       SwaggerSettings__EnableSwagger: 'true'
@@ -120,7 +119,7 @@ services:
       OIDC_REQUIRE_METADATA: "${OIDC_REQUIRE_METADATA:-false}"
       OIDC_ENABLE_SERVER_CERTIFICATE: "${OIDC_ENABLE_SERVER_CERTIFICATE:-true}"
       ENABLE_CORS: ${ADMINCONSOLE_ENABLE_CORS:-true}
-      AdminConsoleSettings__CorsSettings__AllowedOrigins__0: ${ADMINCONSOLE_ALLOWED_ORIGINS:-http://localhost}
+      AdminConsoleSettings__CorsSettings__AllowedOrigins__0: ${ADMINCONSOLE_ALLOWED_ORIGINS:-http://localhost:8598}
     volumes:
       - ./edfi/appsettings.dockertemplate.json:/app/appsettings.dockertemplate.json
     entrypoint:
