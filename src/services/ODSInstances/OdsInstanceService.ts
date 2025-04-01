@@ -29,31 +29,20 @@ const useOdsInstanceService = () => {
   const apiService = functionalities.ApiService?.(config, useApiService)
 
   const getOdsInstancesList = async (actionParams: ActionParams, request: GetOdsInstancesListRequest): GetOdsInstancesListResult => {
-    const baseUrl = actionParams.edxApiUrl
+    const baseUrl = config.api.edfiAdminApiBaseUri
     let queryParams = `pageIndex=${request.pageIndex}&pageSize=${request.pageSize}`
         
     if (request.filter) {
       queryParams = `${queryParams}&filter=${request.filter}`
     }
-        
+
     if (request.orderBy) {
       queryParams = `${queryParams}&orderBy=${request.orderBy}`
     }
-        
-    // const url = `${baseUrl}/${odsInstancesActionRoutes.getInstancesList(actionParams.tenantId)}?${queryParams}`
-    // const url = '/data-odsinstances.json'
     const url = actionParams.config.api?.useLocalMockData ?? true
       ? `${config?.app.basePath}/mockdata/adminapi/data-odsinstances.json`
       : `${baseUrl}/adminconsole/odsinstances`
-
-    const result = await getAsync<GetOdsInstancesListResponse>({
-      url,
-      access_token: actionParams.token,
-      actionName: 'Get Instances List',
-      apiConfig: actionParams.config.api
-    })
-    
-    return result
+    return apiService.instances.getAll();
   }
 
   const getOdsInstanceById = async (instanceId: string): Promise<ODSInstance> => {

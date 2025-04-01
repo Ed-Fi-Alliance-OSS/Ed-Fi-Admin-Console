@@ -4,12 +4,12 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import { BasePlugin } from '../BasePlugin'
-import { MockApiService } from './functions/MockApiService'
+import { ApiService } from './functions/ApiService'
 
 export default {
   name: 'test-plugin',
   strings: { 'app': { 'ODS_INSTANCES': 'Instances', } },
   register: (registry) => {
-    registry.registerFunctionality('ApiService', MockApiService)
+    registry.registerFunctionality('ApiService', ApiService)
   },
 } as BasePlugin

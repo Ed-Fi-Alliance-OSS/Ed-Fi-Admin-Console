@@ -7,7 +7,7 @@ import {
   EdxAppConfig,
   useApiService
 } from '@edfi/admin-console-shared-sdk'
-import { IApiServices } from './test-plugin/functions/MockApiService'
+import { IApiServices } from './test-plugin/functions/ApiService'
 
 export interface BasePluginFunction {
   'ApiService': (config: EdxAppConfig, apiService: typeof useApiService) => IApiServices,
