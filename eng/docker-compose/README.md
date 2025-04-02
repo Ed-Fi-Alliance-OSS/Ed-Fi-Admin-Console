@@ -14,6 +14,8 @@ start up different configurations:
 3. `compose-adminconsole-published.yml` runs the latest Admin Console `pre` tag as published to Docker Hub.
 4. `compose-keycloak-dev.yml` runs KeyCloak (identity provider). It uses 28080 tcp port by default.
 5. `compose-ods-multi-tenant-dev.yml` covers ODS/API multitenant with databases using pgbouncer. It uses 8181 tcp port by default.
+6. `compose-Health-Check-Worker-Process.yml` runs [Ed-Fi-Admin-Console-Health-Check-Worker-Process](https://github.com/Ed-Fi-Alliance-OSS/Ed-Fi-Admin-Console-Health-Check-Worker-Process).
+7. `compose-Health-Check-Worker-Process.yml` runs [Ed-Fi-Admin-Console-Instance-Management-Worker-Process](https://github.com/Ed-Fi-Alliance-OSS/Ed-Fi-Admin-Console-Instance-Management-Worker-Process).
 
 Convenience PowerShell scripts have been included in the directory, which
 startup the appropriate services.  
@@ -23,8 +25,9 @@ startup the appropriate services.
 Before running these, create a `.env` file. The `.env.example` is a good
 starting point. Also you can use `.env.otp.example` for a Keycloak with an OTP Configuration.
 
-* `start-all-services-dev.ps1` launches `compose-adminapi-dev.yml`, `compose-keycloak-dev.yml`, `compose-adminconsole-local-dev.yml`,  and
-  `compose-ods-multi-tenant-dev.yml`, ready to check adminconsole website
+* `start-all-services-dev.ps1` launches `compose-adminapi-dev.yml`, `compose-keycloak-dev.yml`, `compose-adminconsole-local-dev.yml`,
+  `compose-Health-Check-Worker-Process.yml`, `compose-Health-Check-Worker-Process.yml`  and `compose-ods-multi-tenant-dev.yml`, 
+  ready to check adminconsole website
 
 ```pwsh
 # Start everything
@@ -45,6 +48,9 @@ This is an important process because we have to make sure keycloak has created t
 * Admin API: [http://localhost:8282](http://localhost:8282)
 * ODS/API: [http://localhost:8181](http://localhost:8181)
 * Keycloak: [http://localhost:28080](http://localhost:28080)
+
+Since `Ed-Fi-Admin-Console-Health-Check-Worker-Process` and `Ed-Fi-Admin-Console-Instance-Management-Worker-Process`
+are console applications they are not exposed on any ports.
 
 > [!IMPORTANT]
 > **Default users/passwords**
@@ -82,3 +88,24 @@ To delete volumes, also append `-v`. Examples:
 # Stop and remove everything
 ./stop-all-services-dev.ps1 -v
 ```
+
+### Containers and their ports
+
+| Contaner | Name | Port |
+| -------- | ------- | ------- |
+| Ods Api | ed-fi-ods-api | [8181](http://localhost:8181/) |
+| Ods Api database tenant 1 | ed-fi-db-ods-tenant1 | `none` |
+| Ods Api database tenant 2 | ed-fi-db-ods-tenant2 | `none` |
+| Ods Api database pgbouncer tenant 1 | ed-fi-pb-ods-tenant1 | [5403](http://localhost:5403/) |
+| Ods Api database pgbouncer tenant 2 | ed-fi-pb-ods-tenant2 | [5204](http://localhost:5204/) |
+| Admin Api database tenant 1 | ed-fi-db-admin-tenant1 | `none` |
+| Admin Api database tenant 2 | ed-fi-db-admin-tenant2 | `none` |
+| Admin Api database pgbouncer tenant 1 | ed-fi-pb-admin-tenant1 | [5401](http://localhost:5401/) |
+| Admin Api database pgbouncer tenant 2 | ed-fi-pb-admin-tenant2 | [5402](http://localhost:5402/) |
+| Admin Api | ed-fi-adminapi | [8282](http://localhost:8282/) |
+| Keycloak | ed-fi-idp-keycloak | [28080](http://localhost:28080/) |
+| Keycloak database pgbouncer | ed-fi-pb-idp-keycloak | `none` |
+| Keycloak database | ed-fi-db-idp-keycloak | `none` |
+| Instance-Management-Worker-Process | adminconsole-local-dev-instance-management-service-1 | `none` |
+| Health-Check-Worker-Process | adminconsole-local-dev-healthcheck-service-1 |  |
+| Adminconsole application | ed-fi-adminconsole | [8598](http://localhost:8598/) |
