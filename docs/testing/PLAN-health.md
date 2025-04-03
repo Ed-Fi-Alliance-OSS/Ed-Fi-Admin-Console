@@ -80,11 +80,18 @@ API and orchestrating appropriate scenarios.
 
 #### System Test Cases - Happy Path
 
-1. ... ?
+1. Start environment in Docker using Compose.
+2. Run SQL script to setup initial state for the test case.
+3. Call `docker exec` to run the worker immediately, instead of waiting for
+   schedule.
+4. The instance is found and a new HealthCheck is created.
+5. Obtain the HealthCheck and validate that it is formatted correctly and 
+   contains the correct information.
+6. Stop the docker environment.
 
 For each test case, ensure that:
 
-1. ... ?
+1. At least one instance has been created
 
 #### System Test Cases - Negative
 
@@ -96,7 +103,7 @@ For each test case, ensure that:
 
 For each test case, ensure that:
 
-1. ... ?
+1. No instances are created in the application
 2. Exit code from the application is not zero.
 
 #### System Test Execution

@@ -18,7 +18,7 @@ sequenceDiagram
     participant AdminDB
     participant SecurityDB
 
-    rect rgb(191, 223, 255)
+    rect rgb(0, 76, 153)
         SysAdmin ->> Keycloak: Authenticate
     end
 
@@ -37,7 +37,7 @@ sequenceDiagram
     participant AdminDB
     participant SecurityDB
 
-    rect rgb(191, 223, 255)
+    rect rgb(0, 76, 153)
         SysAdmin ->> AdminAPI: Authenticate
     end
     
@@ -102,20 +102,67 @@ the modified code.
 #### System Test Cases - Happy Path
 
 > [!WARNING]
-> To be documented elsewhere? Need to pull from existing Postman test suite.
 > Consider the needs of both auth mechanisms. May need to create a smaller
-> test suite with Keycloak integration.
+> test suite with Keycloak integration. These tests now run without keycloak authentication.
+
+| | Endpoints | Status | Validation Schema |
+|---|---|---|---|
+| GET  | `\UserProfile` | 200  | Yes |
+| POST | `\UserProfile` | 200  | Yes |
+| GET  | `\UserProfile\{tenantId}\{id}` | 200  | Yes |
+| GET  | `\UserProfile\{tenantId}` | 200  | Yes  |
+| GET  | `\Tenants` | 200  | Yes |
+| POST | `\Tenants` | 200  | Yes |
+| GET  | `\Steps` | 200  | Yes |
+| POST | `\Steps` | 200  | Yes |
+| GET  | `\Permissions` | 200  | Yes |
+| POST | `\Permissions` | 200  | Yes |
+| GET  | `\Permissions/\{tenantId}\/{id}` | 200  | Yes |
+| GET  | `\Permissions/\{tenantId}` | 200  | Yes  |
+| POST | `\HealthCheck` | 200  | Yes |
+| GET  | `\HealthCheck` | 200  | Yes |
+| GET  | `\HealthCheck\{tenantId}` | 200  | Yes  |
 
 #### System Test Cases - Negative
 
-> [!WARNING]
-> To be documented elsewhere? Need to pull from existing Postman test suite.
+| | Endpoints | Status | Validation |
+|---|---|---|---|
+| GET  | `\UserProfile` | 400  | Invalid Path |
+| POST | `\UserProfile` | 400  | Invalid Body |
+| GET  | `\UserProfile\{tenantId}\{id}` | 400  | Invalid Tenant Id |
+| GET  | `\UserProfile\{tenantId}\{id}` | 400  | Invalid Id |
+| GET  | `\UserProfile\{tenantId}` | 400  | Invalid Tenant Id |
+| GET  | `\Tenants` | 400  | Invalid Path |
+| POST | `\Tenants` | 400  | Invalid Body |
+| GET  | `\Steps` | 400  | Invalid Path |
+| POST | `\Steps` | 400  | Invalid Body |
+| GET  | `\Permissions` | 400  | Invalid Path |
+| POST | `\Permissions` | 400  | Invalid Body |
+| GET  | `\Permissions/\{tenantId}\/{id}` | 400  | Invalid Tenant Id |
+| GET  | `\Permissions/\{tenantId}\/{id}` | 400  | Invalid Id |
+| GET  | `\Permissions/\{tenantId}` | 400  | Invalid Tenant Id |
+| POST | `\HealthCheck` | 400  | Invalid Path |
+| GET  | `\HealthCheck` | 400  | Invalid Body |
+| GET  | `\HealthCheck\{tenantId}` | 400  | Invalid Tenant Id |
 
 #### System Test Execution
 
-> [!WARNING]
-> Describe the current framework. Consider changing to make this a Docker-first
-> test kit.
+Currently the entire testing environment is created in Docker.
+
+```mermaid
+mindmap
+  root((Docker Compoe))
+    Nginx
+      Proxy Configuration
+    AdminApi
+      Single Tenant
+      Multi Tenant
+    DB AdminApi
+      Single Tenant
+      Multi Tenant
+    PB AdminApi
+      PgSql Connection Manager
+```
 
 ### System Integration
 
@@ -160,4 +207,6 @@ with Ed-Fi Customer Success.
    running the worker from the container host OS or in an alternate Docker
    network, so that it can (a) access Admin API but (b) cannot access the RDBMS.
 2. Keycloak is down - cannot lookup RSA public key for signature verification.
-3. ...
+3. AdminApi cannot start due to missing configuration in SIGNING_KEY
+4. It is not possible to register users because the AllowRegistration flag is disabled.
+5. It is not possible to consume any endpoint due to a misconfiguration of the tenants.
