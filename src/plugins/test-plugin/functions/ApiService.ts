@@ -18,6 +18,8 @@ import {
 } from '../../../services/AdminActions/Edfi/Applications/EdfiApplicationService.requests'
 import { GetDataHealthDistrictDetailsResponse, HealthCheckResponse } from '../../../services/DataHealth/DataHealthService.responses'
 import { HttpServiceResponse } from '@edfi/admin-console-shared-sdk/dist/services/HttpService/HttpService.response.types'
+import { CreateOdsInstanceRequest } from '../../../services/ODSInstances/CreateODSInstanceService.request'
+import { CreateODSInstanceResponse } from '../../../services/ODSInstances/CreateODSInstanceService.response'
 
 export interface IApiServices {
   tenants: {
@@ -27,11 +29,7 @@ export interface IApiServices {
   instances: {
     getAll: () => Promise<any>
     get: (instanceId: string) => Promise<any>
-    create: (instance: {
-      name: string
-      instanceType: string
-      connectionString: string
-    }) => Promise<any>
+    create: (instance: CreateOdsInstanceRequest) => Promise<CreateODSInstanceResponse>
   }
   users: {
     getAll: () => Promise<any>
