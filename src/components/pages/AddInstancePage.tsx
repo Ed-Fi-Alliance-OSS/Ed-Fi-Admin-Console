@@ -32,7 +32,7 @@ const AddInstancePage = () => {
   const { config } = useConfig()
   const apiService = functionalities.ApiService?.(config, useApiService)
   const { getCurrentTenant } = useTenantInfo()
-  const useNewInstanceForm = config?.app.useNewInstanceForm ?? true; 
+  const useNewInstanceForm = config?.app.useNewCreateInstanceForm ?? true; 
   const handleSaveChanges = async (data: AddInstanceFormProps) => {
     const instance: CreateOdsInstanceRequest = {
       name: data.name,
