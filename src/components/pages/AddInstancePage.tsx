@@ -17,7 +17,7 @@ import AddInstanceForm from '../common/Instance/AddInstanceForm'
 import TabContentWrapper from '../common/TabContentWrapper'
 import TabHeading from '../common/TabHeading'
 import AddInstanceFormV2, { AddInstanceFormProps } from '../common/Instance/AddInstanceFormV2'
-import { CreateOdsInstanceRequest } from '../../services/ODSInstances/CreateODSInstanceService.request'
+import { CreateOdsInstanceRequest } from '../../services/ODSInstances/CreateOdsInstanceService.request'
 import ErrorList from '../common/ErrorList'
 import useTenantInfo from '../../hooks/useTenantInfo'
 
