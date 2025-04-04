@@ -5,12 +5,10 @@
 
 import { Flex } from '@chakra-ui/react'
 import {
-  ODSInstance,
   useApiService, useConfig
 } from '@edfi/admin-console-shared-sdk'
-import { useContext, useState } from 'react'
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useMockData } from '../../context/mockDataContext'
 import routes from '../../core/routes'
 import useEDXToast from '../../hooks/common/useEDXToast'
 import { usePluginContext } from '../../plugins/BasePlugin'
@@ -18,18 +16,15 @@ import BackToLink from '../common/BackToLink'
 import AddInstanceForm from '../common/Instance/AddInstanceForm'
 import TabContentWrapper from '../common/TabContentWrapper'
 import TabHeading from '../common/TabHeading'
-import AddInstanceFormV2 from '../common/Instance/AddInstanceFormV2'
+import AddInstanceFormV2, { AddInstanceFormProps } from '../common/Instance/AddInstanceFormV2'
 import { CreateOdsInstanceRequest } from '../../services/ODSInstances/CreateODSInstanceService.request'
 import ErrorList from '../common/ErrorList'
-import { adminConsoleContext } from '../../context/adminConsoleContext'
 import useTenantInfo from '../../hooks/useTenantInfo'
 
 const AddInstancePage = () => {
-  const mock = useMockData()
-  const [ instanceName, setInstanceName ] = useState('')
-  const [ instanceType, setInstanceType ] = useState('')
-  const [ connectionString, setConnectionString ] = useState('')
-  const mock = useMockData()
+  const [ instanceName ] = useState('')
+  const [ instanceType ] = useState('')
+  const [ connectionString ] = useState('')
   const [errorMessages, setErrorMessages] = useState<Record<string, string[]> | null>(null);
   const { successToast } = useEDXToast()
   const nav = useNavigate()
@@ -38,7 +33,15 @@ const AddInstancePage = () => {
   const apiService = functionalities.ApiService?.(config, useApiService)
   const { getCurrentTenant } = useTenantInfo()
   const useNewInstanceForm = config?.app.useNewInstanceForm ?? true; 
-  const handleSaveChanges = async (instance: CreateOdsInstanceRequest) => {
+  const handleSaveChanges = async (data: AddInstanceFormProps) => {
+    const instance: CreateOdsInstanceRequest = {
+      name: data.name,
+      instanceType: data.instanceType,
+      odsInstanceContexts: data.odsInstanceContexts,
+      odsInstanceDerivatives: data.odsInstanceDerivatives,
+      tenantId: getCurrentTenant()?.tenantId || -1,
+      tenantName: getCurrentTenant()?.document.name || '',
+    };
     try {
       const currentTenant = getCurrentTenant();
       if (currentTenant) {
