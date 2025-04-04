@@ -26,18 +26,18 @@ import useTenantInfo from '../../hooks/useTenantInfo'
 
 const AddInstancePage = () => {
   const mock = useMockData()
-  const [errorMessages, setErrorMessages] = useState<Record<string, string[]> | null>(null); 
   const [ instanceName, setInstanceName ] = useState('')
   const [ instanceType, setInstanceType ] = useState('')
-  const [ odsInstanceContexts, setOdsInstanceContexts ] = useState([] as ODSInstance[])
-  const [ odsInstanceDerivatives, setOdsInstanceDerivatives ] = useState([] as ODSInstance[])
+  const [ connectionString, setConnectionString ] = useState('')
+  const mock = useMockData()
+  const [errorMessages, setErrorMessages] = useState<Record<string, string[]> | null>(null);
   const { successToast } = useEDXToast()
   const nav = useNavigate()
   const { functionalities } = usePluginContext()
   const { config } = useConfig()
   const apiService = functionalities.ApiService?.(config, useApiService)
   const { getCurrentTenant } = useTenantInfo()
-  
+  const useNewInstanceForm = config?.app.useNewInstanceForm ?? true; 
   const handleSaveChanges = async (instance: CreateOdsInstanceRequest) => {
     try {
       const currentTenant = getCurrentTenant();
@@ -54,7 +54,7 @@ const AddInstancePage = () => {
         successToast(`Instance created successfully, Instance: ${instance.name}, Type: ${instance.instanceType}, Connection String: ${instance.tenantName}`)
         setErrorMessages(null);
         nav(-1);
-      }  
+      }
     } catch (error: any) {
       if (error.response?.data?.errors) {
         setErrorMessages(error.response.data.errors);
@@ -71,8 +71,8 @@ const AddInstancePage = () => {
       flexDir='column'
       w='full'
     >
-      <BackToLink 
-        text='Back to Tech Console Home' 
+      <BackToLink
+        text='Back to Tech Console Home'
         url={routes.home.url}
       />
 
@@ -81,26 +81,41 @@ const AddInstancePage = () => {
         w='full'
       >
         <TabContentWrapper>
-          <Flex w='200px'>
+          <Flex w='150px'>
             <TabHeading text="Create Instance" />
           </Flex>
 
           <Flex
-            maxW='800px'
+            maxW='1000px'
             mt='16px'
             mx='auto'
             w='full'
+            flexDir='column'
           >
-            <AddInstanceFormV2 
-              name=""
-              instanceType=""
-              odsInstanceContexts={[]}
-              odsInstanceDerivatives={[]}
-              onSaveChanges={handleSaveChanges}
+            <Flex w='full' justifyContent='space-between'>
+              <Flex flex='1.5' mr='8px'>
+              { useNewInstanceForm ? (
+                <AddInstanceFormV2
+                  name=""
+                  instanceType=""
+                  odsInstanceContexts={[]}
+                  odsInstanceDerivatives={[]}
+                  onSaveChanges={handleSaveChanges}
+                />
+              ) : (
+                <AddInstanceForm
+              connectionString={connectionString}
+              name={instanceName}
+              type={instanceType}
+              onSaveChanges={handleSaveChanges} 
             />
+              ) }
+              </Flex>
+              <Flex flex='0.6' ml='8px'>
+                {errorMessages ? <ErrorList errors={errorMessages} /> : <></>}
+              </Flex>
+            </Flex>
           </Flex>
-
-          {errorMessages ? <ErrorList errors={errorMessages} /> : <></>}
         </TabContentWrapper>
       </Flex>
     </Flex>
