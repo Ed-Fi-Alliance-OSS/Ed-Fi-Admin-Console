@@ -1,0 +1,26 @@
+# SPDX-License-Identifier: Apache-2.0
+# Licensed to the Ed-Fi Alliance under one or more agreements.
+# The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
+# See the LICENSE and NOTICES files in the project root for more information.
+
+services:
+  healthcheck-service:
+    image: edfialliance/admin-console-healthcheck:${HEALTHCHECK_WORKER_TAG}
+    environment:
+      EdFi_AdminConsole_AppSettings__IgnoresCertificateErrors: true
+      EdFi_AdminConsole_AdminApiSettings__AccessTokenUrl: ${ACCESS_TOKEN_URL:-http://host.docker.internal:28080/realms/edfi-admin-console/protocol/openid-connect/token}
+      EdFi_AdminConsole_AdminApiSettings__AdminConsoleTenantsURL: ${ADMINCONSOLE_TENANTS_URL:-http://host.docker.internal:8282/adminconsole/tenants}
+      EdFi_AdminConsole_AdminApiSettings__AdminConsoleInstancesURL: ${ADMINCONSOLE_INSTANCES_URL:-http://host.docker.internaL:8282/adminconsole/instances?status={0}}
+      EdFi_AdminConsole_AdminApiSettings__AdminConsoleHealthCheckURL: ${ADMINCONSOLE_HEALTHCHECK_URL:-http://host.docker.internal:8282/adminconsole/instances/{0}/completed}
+      EdFi_AdminConsole_AdminApiSettings__Username: ${USER_NAME}
+      EdFi_AdminConsole_AdminApiSettings__ClientId: ${CLIENTID:-adminconsole-worker-client}
+      EdFi_AdminConsole_AdminApiSettings__ClientSecret: ${CLIENT_SECRET:-7tpYh5eZtL0ct99cmfCXUY3q5o2KxUTU}
+      EdFi_AdminConsole_AdminApiSettings__Password: ${PASSWORD}
+      EdFi_AdminConsole_AdminApiSettings__GrantType: ${GRANTTYPE:-client_credentials}
+      EdFi_AdminConsole_AdminApiSettings__Scope: ${SCOPE:-edfi_admin_api/full_access}
+    volumes:
+      - service-logs:/var/log/achealthsvc
+
+volumes:
+  service-logs:
+    name: health-check-service-logs
