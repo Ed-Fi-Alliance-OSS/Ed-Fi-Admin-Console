@@ -4,10 +4,9 @@ import {
   Formik
 } from 'formik'
 import { Button, Flex, Input, Box, Text } from "@chakra-ui/react";
-import { CustomFormHeader, CustomSelect, useApiService, useConfig } from "@edfi/admin-console-shared-sdk";
+import { CustomFormHeader, CustomSelect } from "@edfi/admin-console-shared-sdk";
 import * as Yup from 'yup'
 import AppInput from "../../AppInput";
-
 
 export interface AddInstanceFormProps {
   name: string;
@@ -162,8 +161,6 @@ const AddInstanceFormV2: React.FC<AddInstanceFormProps> = ({
                             );
                           }}
                           placeholder="Select an option"
-                          size="xs"
-                          required
                         />
                         <Button
                           colorScheme="red"
