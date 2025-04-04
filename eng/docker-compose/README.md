@@ -15,7 +15,7 @@ start up different configurations:
 4. `compose-keycloak-dev.yml` runs KeyCloak (identity provider). It uses 28080 tcp port by default.
 5. `compose-ods-multi-tenant-dev.yml` covers ODS/API multitenant with databases using pgbouncer. It uses 8181 tcp port by default.
 6. `compose-Health-Check-Worker-Process.yml` runs [Ed-Fi-Admin-Console-Health-Check-Worker-Process](https://github.com/Ed-Fi-Alliance-OSS/Ed-Fi-Admin-Console-Health-Check-Worker-Process).
-7. `compose-Health-Check-Worker-Process.yml` runs [Ed-Fi-Admin-Console-Instance-Management-Worker-Process](https://github.com/Ed-Fi-Alliance-OSS/Ed-Fi-Admin-Console-Instance-Management-Worker-Process).
+7. `compose-Instance-Management-Worker-Process.yml` runs [Ed-Fi-Admin-Console-Instance-Management-Worker-Process](https://github.com/Ed-Fi-Alliance-OSS/Ed-Fi-Admin-Console-Instance-Management-Worker-Process).
 
 Convenience PowerShell scripts have been included in the directory, which
 startup the appropriate services.  
@@ -26,7 +26,7 @@ Before running these, create a `.env` file. The `.env.example` is a good
 starting point. Also you can use `.env.otp.example` for a Keycloak with an OTP Configuration.
 
 * `start-all-services-dev.ps1` launches `compose-adminapi-dev.yml`, `compose-keycloak-dev.yml`, `compose-adminconsole-local-dev.yml`,
-  `compose-Health-Check-Worker-Process.yml`, `compose-Health-Check-Worker-Process.yml`  and `compose-ods-multi-tenant-dev.yml`, 
+  `compose-Health-Check-Worker-Process.yml`, `compose-Instance-Management-Worker-Process.yml`  and `compose-ods-multi-tenant-dev.yml`,
   ready to check adminconsole website
 
 ```pwsh
