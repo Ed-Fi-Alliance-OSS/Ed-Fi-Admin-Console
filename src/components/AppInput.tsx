@@ -10,16 +10,19 @@ import {
   FormLabel, Input
 } from '@chakra-ui/react'
 import { Field } from 'formik'
+import { ChangeEvent } from 'react'
 
 interface AppInputProps {
   fieldName: string
   label: string
   required?: boolean
-  description?: string
+  description?: string,
+  placeholder?: string,
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void
   // validateField: (value: any) => string | boolean | undefined
 }
 
-export default function AppInput({ required, label, fieldName, description }: AppInputProps) {
+export default function AppInput({ required, label, fieldName, description, placeholder, onChange }: AppInputProps) {
   return <Field name={fieldName}>
     {({ field, form }) => (
       <FormControl
@@ -39,6 +42,7 @@ export default function AppInput({ required, label, fieldName, description }: Ap
         <Input
           {...field}
           id={fieldName}
+          placeholder={placeholder}
           size='xs'
         />
 

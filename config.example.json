@@ -15,7 +15,8 @@
     "helpLinkUrl": "/docs/index",
     "termsUrl": "/docs/terms",
     "multiTenancy": true,
-    "showDataHealth": true
+    "showDataHealth": true,
+    "useNewCreateInstanceForm": true
   },
   "plugins": [
     "test-plugin"
