@@ -5,28 +5,28 @@ Below are the test cases for Admin Console and using Gherkin to define the test 
 > [!TIP]
 > Some scenarios may change depending on future changes planned for the application.
 
-# Feature: Login/Logout without MFA configuration
+## Feature: Login/Logout without MFA configuration
 
-## Rule: Keycloak without MFA configuration
+### Rule: Keycloak without MFA configuration
 
-### Scenario Outline: User login successfully
+#### Scenario Outline: User login successfully
 
-* Given user loads the admin console page 
+* Given user loads the admin console page
 * And user enters valid credentials on keycloak with MFA disable
 * When user clicks on login
 * Then user is redirected to the admin console main page
 
-### Scenario Outline: User login failure
+#### Scenario Outline: User login failure
 
-* Given user loads the admin console page 
+* Given user loads the admin console page
 * And user enters an invalid credentials on keycloak with MFA disable
 * When user clicks on login
 * Then user is denied access to Admin Console
 * And a appropriate error message is displayed
 
-### Scenario Outline: User logout successfully
+#### Scenario Outline: User logout successfully
 
-* Given user loads the admin console page 
+* Given user loads the admin console page
 * And user enters a valid credentials on keycloak with MFA disable
 * When user clicks on login
 * And user is redirected to the admin console main page
@@ -34,9 +34,9 @@ Below are the test cases for Admin Console and using Gherkin to define the test 
 * And user clicks on Logout button
 * Then user is redirect to keycloak login page
 
-### Scenario Outline: Account Information
+#### Scenario Outline: Account Information
 
-* Given user loads the admin console page 
+* Given user loads the admin console page
 * And user enters a valid credentials on keycloak with MFA disable
 * When user clicks on login
 * And user is redirected to the admin console main page
@@ -44,9 +44,9 @@ Below are the test cases for Admin Console and using Gherkin to define the test 
 * Then page is redirect to keycloak
 * And all the information related with the user is loaded
 
-### Scenario Outline: Get Help Icon
+#### Scenario Outline: Get Help Icon
 
-* Given user loads the admin console page 
+* Given user loads the admin console page
 * And user enters a valid credentials on keycloak with MFA disable
 * When user clicks on login
 * And user is redirected to the admin console main page
@@ -54,22 +54,22 @@ Below are the test cases for Admin Console and using Gherkin to define the test 
 * And page is reloaded
 * Then the help page should be displayed
 
-# Feature: Login/Logout witho MFA configuration
+## Feature: Login/Logout witho MFA configuration
 
-## Rule: Keycloak with MFA configuration
+### Rule: Keycloak with MFA configuration
 
-### Scenario Outline: User login successfully
+#### Scenario Outline: User login successfully
 
-* Given user loads the admin console page 
+* Given user loads the admin console page
 * And user enters valid credentials on keycloak with MFA disable
 * When user clicks on login
 * And user enters the generated PIN
 * And user click on login again
 * Then user is redirected to the admin console main page
 
-### Scenario Outline: User login failure
+#### Scenario Outline: User login failure
 
-* Given user loads the admin console page 
+* Given user loads the admin console page
 * And user enters an invalid credentials on keycloak with MFA disable
 * When user clicks on login
 * And user enters a invalid PIN
@@ -77,9 +77,9 @@ Below are the test cases for Admin Console and using Gherkin to define the test 
 * Then user is denied access to Admin Console
 * And a appropriate error message is displayed
 
-### Scenario Outline: User logout successfully
+#### Scenario Outline: User logout successfully
 
-* Given user loads the admin console page 
+* Given user loads the admin console page
 * And user enters a valid credentials on keycloak with MFA disable
 * When user clicks on login
 * And user enters a invalid PIN
@@ -89,51 +89,54 @@ Below are the test cases for Admin Console and using Gherkin to define the test 
 * And user clicks on Logout button
 * Then user is redirect to keycloak login page
 
-# Feature: Instances by Tenant
+## Feature: Instances by Tenant
 
-## Rule: User already logged on Admin Console
+### Rule: User already logged on Admin Console
 
-### Scenario Outline: Tenant Instance filter displayed
+#### Scenario Outline: Tenant Instance filter displayed
 
-* Given user is on admin console page 
-* And user check that tools are displayed in the upper right corner 
+* Given user is on admin console page
+* And user check that tools are displayed in the upper right corner
 * Then tenant instance filter is displayed in the upper right corner
 
-### Scenario Outline: Tenant Instance filter
+#### Scenario Outline: Tenant Instance filter
 
-* Given user is on admin console page 
+* Given user is on admin console page
 * When user select the <tenantId>
-* And page is reloaded 
+* And page is reloaded
 * Then all the instances created for that <tenantId> is displayed
 * And tenant instances settings continue displayed in the page
- 
-#### Examples:
+
+##### Examples
+
   | tenantId |
   | -------- |
   | tenant1  |
   | tenant2  |
 
-### Scenario Outline: Tenant Instance Settings
+#### Scenario Outline: Tenant Instance Settings
 
-* Given user is on admin console page 
+* Given user is on admin console page
 * When user select the <tenantId>
-* And page is reloaded 
+* And page is reloaded
 * When user click on tenant instances settings
 * Then the name of the tenant <tenantId> should be displayed
 * And the base url set on tha instances
- 
-#### Examples:
+
+##### Examples
+
   | tenantId |
   | -------- |
   | tenant1  |
   | tenant2  |
 
-# Feature: Instances
+## Feature: Instances
 
-## Rule: User already logged on Admin Console 
+### Rule: User already logged on Admin Console
 
-### Scenario Outline: New Instances
-* Given user is on admin console page 
+#### Scenario Outline: New Instances
+
+* Given user is on admin console page
 * When user select the <tenantId>
 * And user clicks on Add instance button
 * When user fill all the required fields
@@ -142,14 +145,16 @@ Below are the test cases for Admin Console and using Gherkin to define the test 
 * Then a new instances should be created
 * And displayed on the table of instances
 
-#### Examples:
+##### Examples
+
   | tenantId |
   | -------- |
   | tenant1  |
   | tenant2  |
 
-### Scenario Outline: Not should be possible edit Instances
-* Given user is on admin console page 
+#### Scenario Outline: Not should be possible edit Instances
+
+* Given user is on admin console page
 * When user select the <tenantId>
 * And user clicks on Add instance button
 * When user fill all the required fields
@@ -159,63 +164,70 @@ Below are the test cases for Admin Console and using Gherkin to define the test 
 * Then Instances should be loaded
 * And not should be possible to edit the instances
 
-#### Examples:
+##### Examples
+
   | tenantId |
   | -------- |
   | tenant1  |
   | tenant2  |
 
-### Scenario Outline: Instances Summary Data Preview
-* Given user is on admin console page 
+#### Scenario Outline: Instances Summary Data Preview
+
+* Given user is on admin console page
 * When user select the <tenantId>
 * And user select the first instances from the table
 * And user click on Summary tab
 * Then the summary page is displayed
 * And should be displayed the instances data
 * And should be displayed the data preview from current instances
- 
-#### Examples:
+
+##### Examples
+
   | tenantId |
   | -------- |
   | tenant1  |
   | tenant2  |
 
-### Scenario Outline: Instances Summary Navigation
-* Given user is on admin console page 
+#### Scenario Outline: Instances Summary Navigation
+
+* Given user is on admin console page
 * When user select the <tenantId>
 * And the first option <instanceOption> should be enable
 * And user select the first option <instanceOption> from the table
 * And user click on Summary tab
 * Then the summary page is displayed
 * And should be displayed the instances data
- 
-#### Examples:
+
+##### Examples
+
   | tenantId | instanceOption |
   | -------- | ---------------|
   | tenant1  | instance name  |
   | tenant2  | manage button  |
 
-### Scenario Outline: Instances Data Preview
-* Given user is on admin console page 
+#### Scenario Outline: Instances Data Preview
+
+* Given user is on admin console page
 * When user select the <tenantId>
 * And user select the first instances from the table
 * And user click on Summary tab
 * And user click on refresh icon from data preview
 * Then the data preview should be refreshed
- 
-#### Examples:
+
+##### Examples
+
   | tenantId |
   | -------- |
   | tenant1  |
   | tenant2  |
 
-# Feature: Vendor & Applications
+## Feature: Vendor & Applications
 
-## Rule: User already logged on Admin Console 
+### Rule: User already logged on Admin Console
 
-### Scenario Outline: New Vendor
+#### Scenario Outline: New Vendor
 
-* Given user is on admin console page 
+* Given user is on admin console page
 * When user select the <tenantId>
 * And user select the first instances from the table
 * And user click on Vendor Applications tab
@@ -224,16 +236,17 @@ Below are the test cases for Admin Console and using Gherkin to define the test 
 * And user click on save
 * Then a popup should be displayed that the record is success
 * And the vendor should be displayed on vendor table
- 
-#### Examples:
+
+##### Examples
+
   | tenantId |
   | -------- |
   | tenant1  |
   | tenant2  |
 
-### Scenario Outline: Edit Vendor
+#### Scenario Outline: Edit Vendor
 
-* Given user is on admin console page 
+* Given user is on admin console page
 * When user select the <tenantId>
 * And user select the first instances from the table
 * And user click on Vendor Applications tab
@@ -246,15 +259,16 @@ Below are the test cases for Admin Console and using Gherkin to define the test 
 * Then a popup should be displayed that the record is success
 * And the vendor should be updated with the new name updated
 
-#### Examples:
+##### Examples
+
   | tenantId |
   | -------- |
   | tenant1  |
   | tenant2  |
 
-### Scenario Outline: Delete Vendor
+#### Scenario Outline: Delete Vendor
 
-* Given user is on admin console page 
+* Given user is on admin console page
 * When user select the <tenantId>
 * And user select the first instances from the table
 * And user click on Vendor Applications tab
@@ -266,29 +280,31 @@ Below are the test cases for Admin Console and using Gherkin to define the test 
 * Then a popup should be displayed that the vendor is removed
 * And the vendor should be removed from vendor table
 
-#### Examples:
+##### Examples
+
   | tenantId |
   | -------- |
   | tenant1  |
   | tenant2  |
 
-### Scenario Outline: Not Application without Vendor
+#### Scenario Outline: Not Application without Vendor
 
-* Given user is on admin console page 
+* Given user is on admin console page
 * When user select the <tenantId>
 * And user select the first instances from the table
 * And user click on Vendor Applications tab
 * Then application button not should be displayed
 
-#### Examples:
+##### Examples
+
   | tenantId |
   | -------- |
   | tenant1  |
   | tenant2  |
 
-### Scenario Outline: New Application
+#### Scenario Outline: New Application
 
-* Given user is on admin console page 
+* Given user is on admin console page
 * When user select the <tenantId>
 * And user select the first instances from the table
 * And user click on Vendor Applications tab
@@ -302,15 +318,16 @@ Below are the test cases for Admin Console and using Gherkin to define the test 
 * Then a popup should be displayed that the record is success
 * And the application should be displayed on vendor table
 
-#### Examples:
+##### Examples
+
   | tenantId |
   | -------- |
   | tenant1  |
   | tenant2  |
 
-### Scenario Outline: Edit Application
+#### Scenario Outline: Edit Application
 
-* Given user is on admin console page 
+* Given user is on admin console page
 * When user select the <tenantId>
 * And user select the first instances from the table
 * And user click on Vendor Applications tab
@@ -327,15 +344,16 @@ Below are the test cases for Admin Console and using Gherkin to define the test 
 * Then a popup should be displayed that the record is success
 * And the application should be update with the new name
 
-#### Examples:
+##### Examples
+
   | tenantId |
   | -------- |
   | tenant1  |
   | tenant2  |
 
-### Scenario Outline: Delete Application
+#### Scenario Outline: Delete Application
 
-* Given user is on admin console page 
+* Given user is on admin console page
 * When user select the <tenantId>
 * And user select the first instances from the table
 * And user click on Vendor Applications tab
@@ -351,7 +369,8 @@ Below are the test cases for Admin Console and using Gherkin to define the test 
 * Then a popup should be displayed that the record is removed
 * And the application not should be displayed on vendor table
 
-#### Examples:
+##### Examples
+
   | tenantId |
   | -------- |
   | tenant1  |
