@@ -11,7 +11,7 @@
     "name": "The Exchange",
     "subtitle": "Tech Console",
     "basePath": "",
-    "showDataHealth": false,
+    "showDataHealth": true,
     "showAdvancedTabs": true,
     "allowDebug": true,
     "notificationsApplicationId": "z2WFYMjyRNEI",
