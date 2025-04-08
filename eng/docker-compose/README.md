@@ -33,6 +33,13 @@ starting point. Also you can use `.env.otp.example` for a Keycloak with an OTP C
 # Start everything
 ./start-all-services-dev.ps1
 ```
+
+Append `$true` if you want to ignore deploying admin console image:
+```pwsh
+# Ignores the admin console image
+./start-all-services-dev.ps1 $true
+```
+
 You will see the docker's log while running the script.
 
 > [!CAUTION]
