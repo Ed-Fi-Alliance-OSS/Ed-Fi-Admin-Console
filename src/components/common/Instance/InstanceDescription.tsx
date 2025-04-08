@@ -10,6 +10,7 @@ import { useTenantContext } from '../../../context/tenantContext'
 import { ODSInstance } from '../../../core/ODSInstance.types'
 import ODSInstanceEdFiVersion from '../ODS/ODSInstaceEdFiVersion'
 import ODSInstanceEdFiStatus from '../ODS/ODSInstanceEdFiStatus'
+import ODSInstanceWorkerStatus from '../ODS/ODSInstanceWorkerStatus'
 import ODSInstanceDataModelsLabel from '../ODS/ODSInstanceTSDSVersion'
 import InstanceDescriptionField from './InstanceDescriptionField'
 
@@ -39,6 +40,10 @@ const InstanceDescription = ({ instance }: InstanceDescriptionProps) => {
           title='Instance Type'
         />
         
+        <InstanceDescriptionField 
+            content={<ODSInstanceWorkerStatus status={instance.status} />}
+            title="Instance Management Worker Status"
+          />
       
         {metaDataLoading ? <Spinner /> : <Flex
           flexDir="column"

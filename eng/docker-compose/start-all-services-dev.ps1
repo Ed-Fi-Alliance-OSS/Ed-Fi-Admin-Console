@@ -3,6 +3,13 @@
 # The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 # See the LICENSE and NOTICES files in the project root for more information.
 
+[CmdletBinding()]
+param (
+    # Developer flag to ignore the admin console docker image
+    [bool]
+    $ignoreAdminConsole = $false
+)
+
 $composeFilePath = Join-Path $PSScriptRoot compose-keycloak-dev.yml
 $composeOds = Join-Path $PSScriptRoot compose-ods-multi-tenant-dev.yml
 $composeLocalAdminApi = Join-Path $PSScriptRoot compose-adminapi-dev.yml
@@ -22,8 +29,12 @@ $params = @(
     "--remove-orphans"
 )
 
-# Add all files
-$params = $params[0..1] + "-f" + $composeLocalAdminConsole + "-f" + $composeLocalAdminApi + "-f" + $composeOds + "-f" + $composeHealthCheckWorker + "-f" + $composeInstanceManagementWorker + $params[2..9]
+# Add all files to run
+switch ($ignoreAdminConsole)
+{
+    $false { $params = $params[0..1] + "-f" + $composeLocalAdminConsole + "-f" + $composeLocalAdminApi + "-f" + $composeOds + "-f" + $composeHealthCheckWorker + "-f" + $composeInstanceManagementWorker + $params[2..9] }
+    $true { $params = $params[0..1] + "-f" + $composeLocalAdminApi + "-f" + $composeOds + "-f" + $composeHealthCheckWorker + "-f" + $composeInstanceManagementWorker + $params[2..9] }
+}
 
 Write-Output "Starting EdFi Services..."
 write-output $params

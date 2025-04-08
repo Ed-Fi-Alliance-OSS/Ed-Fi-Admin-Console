@@ -22,6 +22,15 @@ We welcome contributions and feedback, but please use this project at your own r
 
 ## Developer Notes
 
+* Follow the guide [Docker Compose Test and Demonstration Configurations](/eng/docker-compose/README.md) and run the script:
+```pwsh
+# Ignores the admin console image
+./start-all-services-dev.ps1 $true
+```
+* Open a terminal and install the dependencies using ```npm i``` 
+* Create a new file called `config.json` based on `config.example.ports.json`
+* Execute the command ```npm run dev``` 
+
 ## Frameworks and Libraries
 
 The frameworks and libraries used are the following:

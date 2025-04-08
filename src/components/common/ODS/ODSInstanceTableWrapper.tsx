@@ -159,6 +159,16 @@ const ODSInstanceTableWrapper = ({ tenants, tableMode, pickedInstance, onSelectI
             }}
             />,
             <ControlTableHeader headerData={{
+              text: 'Worker Status',
+              fieldName: 'WorkerStatus',
+              sortedByField: orderBy.field,
+              showSorting: true,
+              sortingType: orderBy.order,
+              onSortAsc: () => onOrderBy('WorkerStatus', 'asc'),
+              onSortDesc: () => onOrderBy('WorkerStatus', 'desc') 
+            }}
+            />,
+            <ControlTableHeader headerData={{
               text: '',
               fieldName: '',
               sortedByField: orderBy.field,

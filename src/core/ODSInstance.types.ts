@@ -10,6 +10,19 @@ export interface InstanceEdfiStatus {
 
 export type InstanceOperationStatus = 'Operational' | 'Offline'
 
+export const InstanceWorkerStatus = {
+  'Pending': 'Pending to create',
+  'InProgress': 'In progress',
+  'Completed': 'Completed',
+  'Pending_Delete': 'Pending to delete',
+  'Deleted': "Deleted",
+  'Delete_Failed': 'Delete failed',
+  'Pending_Rename': 'Pending to rename',
+  'Renamed' : 'Renamed',
+  'Rename_Failed': 'Rename failed',
+  'Error': 'Error'
+}
+
 export interface ODSInstanceContext {
   contextKey: 'schoolYearFromRoute'
   contextValue: string
@@ -108,6 +121,7 @@ export interface AvailableInstance {
   instanceYear: string
   edfiVersion: string
   edfiStatus: InstanceEdfiStatus
+  workerStatus: string
 }
 
 export interface InstanceDescription {
@@ -117,6 +131,7 @@ export interface InstanceDescription {
   edfiExtension: string
   edfiVersion: string
   edfiStatus: InstanceEdfiStatus
+  workerStatus: string
   tsdsVersion: string
   educationOrgId: string
   stateOrgId: string
