@@ -37,7 +37,8 @@ import useApplicationFormValidation from './useApplicationFormValidation'
 type UseApplicationFormMode = 'add' | 'edit'
 
 interface UseApplicationFormProps {
-  instanceId: number
+  instanceId: number,
+  instanceWorkerStatus: string,
   mode: UseApplicationFormMode
   editApplicationData?: EdfiApplication
   onFinishSave: () => void
@@ -79,7 +80,7 @@ const selectInitialFormData = (mode: UseApplicationFormMode, selectedTenant?: Te
   return initialData
 }
 
-const useApplicationForm = ({ mode, onFinishSave, editApplicationData, instanceId }: UseApplicationFormProps) => {
+const useApplicationForm = ({ mode, onFinishSave, editApplicationData, instanceId, instanceWorkerStatus }: UseApplicationFormProps) => {
   const { edxAppConfig, auth } = useContext(TEEAuthDataContext)
   const { userProfile } = useContext(UserProfileContext)
   const adminConfig = useContext(adminConsoleContext)
@@ -191,17 +192,22 @@ const useApplicationForm = ({ mode, onFinishSave, editApplicationData, instanceI
       console.log('data to send', applicationData)
 
       setIsSaving(true)
-
+      
       if (mode === 'add') {
         if (validApplicationData(applicationData)) {
           try {
-
+            
+            if(instanceWorkerStatus != 'Completed'){
+              setIsSaving(false);
+              errorToast('Instance status requires to be completed before creating new applications.');
+              return;
+            }
 
             const result = await api?.applications.create({
               applicationName: applicationData.applicationName,
               vendorId: applicationData.vendorId,
               claimSetName: applicationData.claimSetName,
-              educationOrganizationIds: applicationData.educationOrganizationIds,
+              educationOrganizationIds: edOrgs,
               odsInstanceIds: [ instanceId ]
             })
 

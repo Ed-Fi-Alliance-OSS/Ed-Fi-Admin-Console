@@ -21,6 +21,7 @@ import EdFiModalForm from './EdFiModalForm'
 
 interface ApplicationFormProps {
     instance: ODSInstance | null
+
     mode: 'add' | 'edit'
     editApplicationData?: EdfiApplication
     onFinishSave: () => void
@@ -47,6 +48,7 @@ const ApplicationForm = ({ instance, mode, editApplicationData, onFinishSave }: 
     edOrgs
   } = useApplicationForm({ 
     instanceId: instance?.id ?? 0,
+    instanceWorkerStatus: instance?.status ?? '',
     mode, 
     editApplicationData, 
     onFinishSave 
