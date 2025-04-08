@@ -22,6 +22,7 @@ import { UpdatingIsDefaultStatus } from '../../../hooks/odsInstances/useOdsInsta
 import ManageInstanceBtn from './ManageInstanceBtn'
 import ODSInstanceEdFiVersion from './ODSInstaceEdFiVersion'
 import ODSInstanceEdFiStatus from './ODSInstanceEdFiStatus'
+import ODSInstanceWorkerStatus from './ODSInstanceWorkerStatus'
 import { ODSInstanceTableMode } from './ODSInstanceTable.types'
 import ODSInstanceDataModelsLabel from './ODSInstanceTSDSVersion'
 import SetUpInstanceBtn from './SetUpInstanceBtn'
@@ -103,6 +104,12 @@ const ODSInstanceManagementTableRowItem = ({  tableMode, selectedInstance, insta
 
       <Td>
         {metaDataLoading ? <Spinner /> : <ODSInstanceEdFiStatus status={edFiStatus ?? ''} />}
+        
+      </Td>
+
+      <Td>
+        {metaDataLoading ? <Spinner /> : <ODSInstanceWorkerStatus status={instance.status ?? 'Error'} />}
+        
       </Td>
 
       {tableMode == 'Display' && <>
