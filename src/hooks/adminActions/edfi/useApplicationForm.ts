@@ -197,7 +197,6 @@ const useApplicationForm = ({ mode, onFinishSave, editApplicationData, instanceI
         if (validApplicationData(applicationData)) {
           try {
             
-            console.log(instanceWorkerStatus);
             if(instanceWorkerStatus != 'Completed'){
               setIsSaving(false);
               errorToast('Instance status requires to be completed before creating new applications.');
