@@ -179,9 +179,6 @@ const useApplicationForm = ({ mode, onFinishSave, editApplicationData, instanceI
       }
 
       return
-
-
-
     }
 
     return null
@@ -240,7 +237,7 @@ const useApplicationForm = ({ mode, onFinishSave, editApplicationData, instanceI
               applicationName: applicationData.applicationName,
               claimSetName: applicationData.claimSetName,
               vendorId: applicationData.vendorId,
-              educationOrganizationIds: educationOrganizationIds,
+              educationOrganizationIds: edOrgs,
               odsInstanceIds: [ instanceId ]
             })
 

@@ -84,7 +84,7 @@ const PartnerForm = ({ initialData, schoolYear, mode, onFinishSave }: PartnerFor
               <MultiInput
                 // id="namespacePrefixes"
                 label='Add Namespace Prefixes'
-                values={partnerData.namespacePrefixes?.trim()?.split(',') ?? []}
+                values={partnerData.namespacePrefixes ? partnerData.namespacePrefixes.trim().split(',') : []}
                 onChange={onChangeNamespacePrefixes}
               />
             </Flex>
