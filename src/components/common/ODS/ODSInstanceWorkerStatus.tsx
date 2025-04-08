@@ -22,14 +22,14 @@ const ODSInstanceWorkerStatus = ({ status }: ODSInstanceWorkerStatusProps) => {
       {status ? <Flex
         alignItems='center'
         border='1px'
-        borderColor='blue.400'
+        borderColor='gray.400'
         borderRadius='4px'
         h='32px'
         justifyContent='center'
-        w='180px'
+        w='170px'
       >
         <Text
-          color='blue.400'
+          color='gray.400'
           fontWeight='400'
           size='md'
         >
@@ -37,7 +37,7 @@ const ODSInstanceWorkerStatus = ({ status }: ODSInstanceWorkerStatusProps) => {
         </Text>
       </Flex> : <Flex
         h='32px'
-        w='180px'
+        w='170px'
       >
         <Spinner
           color='gray.500'
