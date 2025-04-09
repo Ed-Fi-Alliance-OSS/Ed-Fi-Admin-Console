@@ -111,7 +111,8 @@ const usePartnerForm = ({ schoolYear, onFinishSave, initialData, mode }: UsePart
           validationResult.isValid = false;
           validationResult.errors.namespacePrefixes = { message: 'Namespace Prefixes is required.' };
           errorToast('Namespace Prefixes is required.')
-            return
+          setIsSaving(false)
+          return
         }
         if (isEditing) {
           if (!partnerData.id) {
@@ -123,13 +124,12 @@ const usePartnerForm = ({ schoolYear, onFinishSave, initialData, mode }: UsePart
           try {
             await api?.vendors.update(partnerData.id, partnerData)
             successToast('Updated Vendor')
+            onFinishSave();
           } catch (e) {
             errorToast('Failed to Update Vendor')
           } finally {
             setIsSaving(false)
-            onFinishSave()
           }
-
           return
         }
 
@@ -142,11 +142,11 @@ const usePartnerForm = ({ schoolYear, onFinishSave, initialData, mode }: UsePart
         try {
           await api?.vendors.create(partnerData)
           successToast('Added Vendor')
+          onFinishSave();
         } catch (e) {
           errorToast('Failed to Add Vendor')
         } finally {
           setIsSaving(false)
-          onFinishSave()
         }
       }
       else {

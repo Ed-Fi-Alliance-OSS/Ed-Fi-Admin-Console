@@ -46,7 +46,6 @@ const PartnerForm = ({ initialData, schoolYear, mode, onFinishSave }: PartnerFor
 
   function onPSave() {
     onSave()
-    onFinishSave()
   }
 
   return (isSaving ? <Spinner /> : <EdFiModalForm
