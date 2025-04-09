@@ -66,7 +66,7 @@ function MultiInput<T extends string | number>({ filterInput, fieldName, label, 
       onChange(arr)
     }
   
-    arr = sortedUniq(arr)
+    arr = sortedUniq(arr).filter(item => item !== '')
     return arr
   }, [])
 
@@ -150,12 +150,14 @@ function MultiInput<T extends string | number>({ filterInput, fieldName, label, 
             variant="filled"
             onKeyUp={filterInput}
           >
-            {values.map((tag, tid) => <AutoCompleteTag
-              key={tid}
-              label={tag}
-              variant='solid'
-              onRemove={() => rmVal(tag)}
-            />)}
+            {values.filter(tag => tag !== '').map((tag, tid) => ( 
+              <AutoCompleteTag
+                key={tid}
+                label={tag}
+                variant='solid'
+                onRemove={() => rmVal(tag)}
+              />
+            ))}
           </AutoCompleteInput>
 
 

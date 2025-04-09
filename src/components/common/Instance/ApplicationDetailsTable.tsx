@@ -84,7 +84,8 @@ const ApplicationDetailsTable = ({ applicationsList, isDeleting, onEditApplicati
                 fontFamily='Poppins'
                 fontSize='14px'
                 fontWeight='400'
-              >{application.educationOrganizationId? 1 : 0}
+                textAlign='center'
+                >{application.educationOrganizationIds ? application.educationOrganizationIds.length : 0}
               </Td>
 
               <Td>
