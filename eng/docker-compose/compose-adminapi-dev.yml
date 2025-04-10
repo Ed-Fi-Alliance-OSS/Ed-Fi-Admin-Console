@@ -108,7 +108,7 @@ services:
       AppSettings__DefaultPageSizeOffset: ${PAGING_OFFSET:-0}
       AppSettings__DefaultPageSizeLimit: ${PAGING_LIMIT:-25}
       AppSettings__MultiTenancy: ${MULTITENANCY_ENABLED:-true}
-      AppSettings__IgnoresCertificateErrors: true
+      AppSettings__IgnoresCertificateErrors: ${IGNORES_CERTIFICATE_ERRORS:-true}
       AppSettings__DatabaseEngine: PostgreSQL
       ASPNETCORE_ENVIRONMENT: multitenantdocker
       Authentication__AllowRegistration: 'true'
