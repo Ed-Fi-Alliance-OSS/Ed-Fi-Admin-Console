@@ -108,6 +108,7 @@ services:
       AppSettings__DefaultPageSizeOffset: ${PAGING_OFFSET:-0}
       AppSettings__DefaultPageSizeLimit: ${PAGING_LIMIT:-25}
       AppSettings__MultiTenancy: ${MULTITENANCY_ENABLED:-true}
+      AppSettings__IgnoresCertificateErrors: ${IGNORES_CERTIFICATE_ERRORS:-true}
       AppSettings__DatabaseEngine: PostgreSQL
       ASPNETCORE_ENVIRONMENT: multitenantdocker
       Authentication__AllowRegistration: 'true'
@@ -120,7 +121,7 @@ services:
       OIDC_ENABLE_SERVER_CERTIFICATE: "${OIDC_ENABLE_SERVER_CERTIFICATE:-true}"
       ENABLE_CORS: ${ADMINCONSOLE_ENABLE_CORS:-true}
       AdminConsoleSettings__CorsSettings__AllowedOrigins__0: ${ADMINCONSOLE_ALLOWED_ORIGINS:-http://localhost:8598}
-      EDFI_API_DISCOVERY_URL: "${EDFI_API_DISCOVERY_URL:-https://api.ed-fi.org/v7.2/api/}"
+      EDFI_API_DISCOVERY_URL: "${EDFI_API_DISCOVERY_URL:-http://host.docker.internal:8181/api/}"
     volumes:
       - ./edfi/appsettings.dockertemplate.json:/app/appsettings.dockertemplate.json
     entrypoint:
