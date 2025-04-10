@@ -95,13 +95,15 @@ const ApplicationForm = ({ instance, mode, editApplicationData, onFinishSave }: 
     if(evt.target.value) {
       evt.target.value = evt.target.value.replace(/[^0-9]/g, '')
     }
-    // var charCode = (evt.which) ? evt.which : evt.keyCode
+  }
 
-    // if (charCode > 31 && (charCode < 48 || charCode > 57)) {
-    //   return false 
-    // }
-
-    // return true
+  const handleSave = () => {
+    if (!isSaving && !showApplicationAPIData()) {
+      onSave()
+    }
+    else if(showApplicationAPIData()) {
+      onFinishSave()
+    }
   }
 
   return (
@@ -152,11 +154,11 @@ const ApplicationForm = ({ instance, mode, editApplicationData, onFinishSave }: 
           </Flex>
         </Flex>
       </Flex>}
-      actionText="Save"
+      actionText={mode === 'add' && showApplicationAPIData() ? 'Close' : 'Save'}
       headerText={mode === 'add'? 'Add Application' : 'Edit Application'}
       isSaving={isSaving}
       onClose={onFinishSave}
-      onSave={onSave}
+      onSave={handleSave}
     />
   )
 }
