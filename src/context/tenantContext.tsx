@@ -62,6 +62,11 @@ export const TenantsContextProvider: FC<TenantsContextProviderProps> = ({ childr
     }
 
     try {
+      // We need to replace host.docker.internal with localhost for the API call to work on docker.
+      if (selectedTenant.document.edfiApiDiscoveryUrl?.includes('host.docker.internal')) {
+        selectedTenant.document.edfiApiDiscoveryUrl = selectedTenant.document.edfiApiDiscoveryUrl.replace('host.docker.internal', 'localhost');
+      }
+
       setMetaDataLoading(true)
       const metadata = await api.get(selectedTenant.document.edfiApiDiscoveryUrl).then(resp => resp.data)
       setEdFiStatus('Operational')
