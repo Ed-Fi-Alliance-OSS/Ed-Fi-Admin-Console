@@ -49,7 +49,7 @@ const useOdsInstanceService = () => {
     return apiService.instances.get(instanceId)
   }
     
-  const deleteInstance = async (instanceId: string) => {
+  const deleteInstanceById = async (instanceId: string) => {
     return apiService.instances.delete(instanceId)
   }
 
@@ -93,7 +93,7 @@ const useOdsInstanceService = () => {
     updateInstanceIsDefault,
     createInstanceOnboardingStep,
     updateInstanceOnboardingStep,
-    deleteInstance
+    deleteInstanceById
   }
 }
 

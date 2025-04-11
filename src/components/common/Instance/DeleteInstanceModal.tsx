@@ -4,7 +4,7 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import {
-  Button, Flex, FormControl, Input, Text
+  Button, Flex, FormControl, Text
 } from '@chakra-ui/react'
 import { ODSInstance } from '../../../core/ODSInstance.types'
 import useDeleteInstanceModal from '../../../hooks/odsInstances/useDeleteInstanceModal'
@@ -12,11 +12,7 @@ import EDXCustomModal from '../EDXCustomModal'
 import useEDXToast from '../../../hooks/common/useEDXToast'
 import { useNavigate } from 'react-router-dom'
 import routes from '../../../core/routes'
-import {
-  CustomFormLabel,
-  CustomInput
-} from '@edfi/admin-console-shared-sdk'
-import { FormDataErrors } from '../../../core/validation/FormValidations.types'
+import { CustomInput } from '@edfi/admin-console-shared-sdk'
 
 
 interface DeleteInstanceModalProps {
@@ -35,12 +31,19 @@ const DeleteInstanceModal = ({ instance, show, onCloseModal }: DeleteInstanceMod
     onResetDeleteInstanceModal } = useDeleteInstanceModal(instance)
 
   const navigate = useNavigate()
+  const { successToast, errorToast } = useEDXToast()
+
 
   const onConfirm = () => {
-    onConfirmDeleteInstanceModal()
-    // if (!showErrorDeleteInstanceModal && !showValidationErrorDeleteInstanceModal) {
-    //   navigate(`${routes.home.url}`)
-    // }
+    var success = onConfirmDeleteInstanceModal()
+    if (success) {
+      navigate(`${routes.home.url}`)
+      return successToast("The Instance has been set 'Pending to delete'. Wait for the instance management worker to process the request")
+    }
+    else
+    {
+      return errorToast("Error trying to delete the instance")
+    }
   }
 
   const onClose = () => {

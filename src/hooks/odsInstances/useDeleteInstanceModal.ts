@@ -5,43 +5,40 @@
 
 import { useState } from 'react'
 import { ODSInstance } from '../../core/ODSInstance.types'
-import useOdsInstanceData from '../../hooks/odsInstances/useOdsInstanceData'
+import useOdsInstanceService from '../../services/ODSInstances/OdsInstanceService'
 import { ChangeEvent } from 'react'
-import useEDXToast from '../../hooks/common/useEDXToast'
 
 const useDeleteIntanceModal = (instanceData: ODSInstance) => {
-  const { successToast, errorToast } = useEDXToast()
   const [ showErrorDeleteInstanceModal, setShowErrorDeleteIntanceModal ] = useState(false)
   const [ showValidationErrorDeleteInstanceModal, setShowValidationErrorDeleteIntanceModal ] = useState(false)
 
   const [ instanceNameToDelete, setInstanceName ] = useState('')
 
-  const {  
-    deleteInstanceById 
-  } = useOdsInstanceData({instanceId: instanceData.id.toString()})
+  const {
+    deleteInstanceById
+  } = useOdsInstanceService()
 
   const onConfirmDeleteInstanceModal = () => {
-    console.log(instanceNameToDelete)
-    console.log(instanceData.name)
     //call the endpoint to delete an instance
-    if ((instanceNameToDelete === instanceData.name))
+    if (instanceNameToDelete === instanceData.name)
     {
-      deleteInstanceById(instanceData.id.toString())
+      return deleteInstanceById(instanceData.id.toString())
       .then(() => {
-        setShowErrorDeleteIntanceModal(true)
-        return successToast("The Instance has been set 'Pending to delete'. Wait for the instance management worker to process the request")
+        setShowErrorDeleteIntanceModal(false)
+        setShowValidationErrorDeleteIntanceModal(false)
+        return true
       })
       .catch((reason) => {
         setShowErrorDeleteIntanceModal(true)
-        //show toast
-        return errorToast("Error trying to delete the instance")
+        console.error(reason)
+        return false
       })
     }
     else 
     {
       //show validation error
       setShowValidationErrorDeleteIntanceModal(true)
-      return errorToast("Error trying to delete the instance")
+      return false
     }
   }
 

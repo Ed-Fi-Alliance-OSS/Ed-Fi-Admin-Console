@@ -72,7 +72,7 @@ export function ApiService(config: EdxAppConfig, apiService: typeof useApiServic
     instances: {
       getAll: () => adminConsoleApi.get('/adminconsole/odsinstances').then(resp => resp.data),
       get: (instanceId) => adminConsoleApi.get(`/adminconsole/odsinstances/${instanceId}`).then(resp => resp.data),
-      delete: (instanceId) => adminConsoleApi.get(`/adminconsole/odsinstances/${instanceId}`).then(resp => resp.data),
+      delete: (instanceId) => adminConsoleApi.delete(`/adminconsole/odsinstances/${instanceId}`).then(resp => resp.data),
       create: (instance) => adminConsoleApi.post('/adminconsole/odsinstances', instance).then(resp => resp.data),
     },
     users: {
