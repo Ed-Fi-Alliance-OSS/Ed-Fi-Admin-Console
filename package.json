@@ -31,7 +31,7 @@
     "@novu/notification-center": "2.0.0-canary.0",
     "@types/json-server": "^0.14.8",
     "axios": "1.7.7",
-    "compression": "1.7.4",
+    "compression": "1.8.0",
     "cors": "2.8.5",
     "express": "^4.21.2",
     "formik": "^2.4.6",
