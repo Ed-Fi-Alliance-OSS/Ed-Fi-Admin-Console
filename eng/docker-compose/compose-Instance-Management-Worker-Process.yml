@@ -19,6 +19,8 @@ services:
       EdFi_AdminConsole_AdminApiSettings__AdminConsoleTenantsURL: ${ADMINCONSOLE_TENANTS_URL:-http://host.docker.internal:8282/adminconsole/tenants}
       EdFi_AdminConsole_AdminApiSettings__AdminConsoleInstancesURL: ${ADMINCONSOLE_INSTANCES_STATUS_URL:-http://host.docker.internal:8282/adminconsole/instances?status={0}}
       EdFi_AdminConsole_AdminApiSettings__AdminConsoleCompleteInstancesURL: ${ADMINCONSOLE_COMPLETE_INSTANCES_URL:-http://host.docker.internal:8282/adminconsole/instances/{0}/completed}
+      EdFi_AdminConsole_AdminApiSettings__AdminConsoleInstanceDeletedURL: ${ADMINCONSOLE_DELETED_INSTANCES_URL:-http://host.docker.internal:8282/adminconsole/instances/{0}/deleted}
+      EdFi_AdminConsole_AdminApiSettings__AdminConsoleInstanceDeleteFailedURL: ${ADMINCONSOLE_DELETE_FAILED_INSTANCES_URL:-http://host.docker.internal:8282/adminconsole/instances/{0}/deletefailed}
       EdFi_AdminConsole_AdminApiSettings__Username: ${USERNAME}
       EdFi_AdminConsole_AdminApiSettings__ClientId: ${CLIENTID:-adminconsole-worker-client}
       EdFi_AdminConsole_AdminApiSettings__ClientSecret: ${CLIENT_SECRET:-7tpYh5eZtL0ct99cmfCXUY3q5o2KxUTU}
