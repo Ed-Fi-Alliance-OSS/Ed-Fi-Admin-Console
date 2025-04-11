@@ -29,6 +29,7 @@ export interface IApiServices {
   instances: {
     getAll: () => Promise<any>
     get: (instanceId: string) => Promise<any>
+    delete: (instanceId: string) => Promise<any>
     create: (instance: CreateOdsInstanceRequest) => Promise<CreateOdsInstanceResponse>
   }
   users: {
@@ -71,6 +72,7 @@ export function ApiService(config: EdxAppConfig, apiService: typeof useApiServic
     instances: {
       getAll: () => adminConsoleApi.get('/adminconsole/odsinstances').then(resp => resp.data),
       get: (instanceId) => adminConsoleApi.get(`/adminconsole/odsinstances/${instanceId}`).then(resp => resp.data),
+      delete: (instanceId) => adminConsoleApi.get(`/adminconsole/odsinstances/${instanceId}`).then(resp => resp.data),
       create: (instance) => adminConsoleApi.post('/adminconsole/odsinstances', instance).then(resp => resp.data),
     },
     users: {

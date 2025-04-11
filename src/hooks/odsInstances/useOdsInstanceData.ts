@@ -29,7 +29,8 @@ const useOdsInstanceData = ({ instanceId }: useOdsInstanceDataProps) => {
   const {
     getOdsInstancesList,
     getOdsInstanceById,
-    updateInstanceIsDefault
+    updateInstanceIsDefault,
+    deleteInstance
   } = useOdsInstanceService()
 
   const { 
@@ -59,6 +60,15 @@ const useOdsInstanceData = ({ instanceId }: useOdsInstanceDataProps) => {
     setInstance(response)
     setIsFetchingData(false)
         
+  }
+
+  const deleteInstanceById = async (instanceId: string) => {
+    if (!adminConfig) {
+      return
+    } 
+    setIsFetchingData(true)
+    const response = await deleteInstance(instanceId)
+    setIsFetchingData(false)
   }
 
   // const fetchInstanceByYear = async () => {
@@ -154,6 +164,7 @@ const useOdsInstanceData = ({ instanceId }: useOdsInstanceDataProps) => {
     onSetIsDefault,
     onCloseConfirmSetDefaultModal,
     onShowConfirmSetDefaultModal,
+    deleteInstanceById
   }
 }
 

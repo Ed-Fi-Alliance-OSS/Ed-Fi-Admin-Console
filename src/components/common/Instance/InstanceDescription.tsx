@@ -13,6 +13,9 @@ import ODSInstanceEdFiStatus from '../ODS/ODSInstanceEdFiStatus'
 import ODSInstanceWorkerStatus from '../ODS/ODSInstanceWorkerStatus'
 import ODSInstanceDataModelsLabel from '../ODS/ODSInstanceTSDSVersion'
 import InstanceDescriptionField from './InstanceDescriptionField'
+import DeleteInstanceBtn from './DeleteInstanceBtn'
+import useDeleteIntanceBtn from '../../../hooks/odsInstances/useDeleteInstanceBtn'
+
 
 interface InstanceDescriptionProps {
     instance: ODSInstance
@@ -21,6 +24,11 @@ interface InstanceDescriptionProps {
 const InstanceDescription = ({ instance }: InstanceDescriptionProps) => {
   
   const { edFiStatus, edfiMetadata, metaDataLoading, selectedTenant } = useTenantContext()
+  const {
+    showDeleteInstanceModal,
+    onShowDeleteInstanceModal,
+    onCloseDeleteIntanceModal
+  } = useDeleteIntanceBtn()
 
   return (
     <Flex>
@@ -63,6 +71,16 @@ const InstanceDescription = ({ instance }: InstanceDescriptionProps) => {
             content={<ODSInstanceEdFiStatus status={edFiStatus} />}
             title="Ed-Fi Status"
           />
+
+          <InstanceDescriptionField 
+            content={<DeleteInstanceBtn 
+              instance={instance} 
+              showDeleteInstanceModal={showDeleteInstanceModal}
+              onShowDeleteInstanceModal={onShowDeleteInstanceModal}
+              onCloseDeleteIntanceModal={onCloseDeleteIntanceModal} />}
+            title=" "
+          />
+          
         </Flex>}
       </Flex>
     </Flex>

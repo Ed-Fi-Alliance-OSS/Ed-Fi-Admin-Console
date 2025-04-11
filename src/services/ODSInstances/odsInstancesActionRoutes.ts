@@ -9,6 +9,7 @@ const odsInstancePrefix = (tenantId: string) =>  'adminconsole/odsinstances'
 const odsInstancesActionRoutes = {
   getInstancesList: (tenantId: string) => `${odsInstancePrefix(tenantId)}`,
   putInstanceIsDefault: (tenantId: string, instanceId: string) => `${odsInstancePrefix(tenantId)}/${instanceId}/default`,
+  deleteInstance: (tenantId: string, instanceId: string) => `${odsInstancePrefix(tenantId)}/${instanceId}`,
   postInstanceOnboardingStep: (tenantId: string, instanceId: string) => `${odsInstancePrefix(tenantId)}/${instanceId}/onboardingsteps`,
   putInstanceOnboardingStep: (tenantId: string, instanceId: string, step: number) => `${odsInstancePrefix(tenantId)}/${instanceId}/onboardingsteps/${step}`
 }
