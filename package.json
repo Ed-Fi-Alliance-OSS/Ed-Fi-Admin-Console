@@ -31,7 +31,7 @@
     "@novu/notification-center": "2.0.0-canary.0",
     "@types/json-server": "^0.14.8",
     "axios": "1.7.7",
-    "compression": "1.7.4",
+    "compression": "1.8.0",
     "cors": "2.8.5",
     "express": "^4.21.2",
     "formik": "^2.4.6",
@@ -47,7 +47,7 @@
     "react-player": "2.16.0",
     "react-router-dom": "6.23.1",
     "react-use": "^17.6.0",
-    "swagger-ui-react": "5.19.0",
+    "swagger-ui-react": "^5.20.0",
     "ts-node": "10.9.2",
     "ws": "8.18.0",
     "yup": "^1.5.0"
@@ -60,7 +60,7 @@
     "@types/node": "20.12.12",
     "@types/react": "18.3.16",
     "@types/react-dom": "18.3.5",
-    "@types/swagger-ui-react": "4.18.3",
+    "@types/swagger-ui-react": "^5.18.0",
     "@vitejs/plugin-react-swc": "3.8.1",
     "connect-history-api-fallback": "2.0.0",
     "dotenv": "16.4.5",
@@ -70,10 +70,10 @@
     "globals": "^15.12.0",
     "helmet": "6.2.0",
     "lodash-es": "4.17.21",
-    "sass": "^1.80.6",
+    "sass": "^1.86.3",
     "typescript": "4.9.5",
     "typescript-eslint": "^8.13.0",
-    "vite": "6.2.3"
+    "vite": "6.2.6"
   },
   "resolutions": {
     "ws": "8.18.0"
@@ -85,5 +85,8 @@
   },
   "engines": {
     "node": ">=20.9.0"
+  },
+  "scarfSettings": {
+    "enabled": false
   }
 }
