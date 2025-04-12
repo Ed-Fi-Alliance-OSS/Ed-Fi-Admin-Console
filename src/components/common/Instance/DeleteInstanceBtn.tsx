@@ -11,10 +11,10 @@ import { ODSInstance } from '../../../core/ODSInstance.types'
 import DeleteInstanceModal from './DeleteInstanceModal'
 
 interface DeleteInstanceBtnProps {
-    instance: ODSInstance,
-    showDeleteInstanceModal: boolean,
-    onShowDeleteInstanceModal: () => void,
-    onCloseDeleteIntanceModal: () => void
+  instance: ODSInstance,
+  showDeleteInstanceModal: boolean,
+  onShowDeleteInstanceModal: () => void,
+  onCloseDeleteIntanceModal: () => void
 }
 
 const checkInstanceStatus = (instance: ODSInstance) => {

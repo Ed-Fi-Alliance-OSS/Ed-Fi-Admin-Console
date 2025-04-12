@@ -9,37 +9,36 @@ import useOdsInstanceService from '../../services/ODSInstances/OdsInstanceServic
 import { ChangeEvent } from 'react'
 
 const useDeleteIntanceModal = (instanceData: ODSInstance) => {
-  const [ showErrorDeleteInstanceModal, setShowErrorDeleteIntanceModal ] = useState(false)
-  const [ showValidationErrorDeleteInstanceModal, setShowValidationErrorDeleteIntanceModal ] = useState(false)
+  const [showErrorDeleteInstanceModal, setShowErrorDeleteIntanceModal] = useState(false)
+  const [showValidationErrorDeleteInstanceModal, setShowValidationErrorDeleteIntanceModal] = useState(false)
 
-  const [ instanceNameToDelete, setInstanceName ] = useState('')
+  const [instanceNameToDelete, setInstanceName] = useState('')
 
   const {
     deleteInstanceById
   } = useOdsInstanceService()
 
-  const onConfirmDeleteInstanceModal = () => {
+  const onConfirmDeleteInstanceModal = async () => {
     //call the endpoint to delete an instance
-    if (instanceNameToDelete === instanceData.name)
-    {
-      return deleteInstanceById(instanceData.id.toString())
-      .then(() => {
-        setShowErrorDeleteIntanceModal(false)
-        setShowValidationErrorDeleteIntanceModal(false)
-        return true
-      })
-      .catch((reason) => {
-        setShowErrorDeleteIntanceModal(true)
-        console.error(reason)
-        return false
-      })
+    let result = false;
+    if (instanceNameToDelete === instanceData.name) {
+      result = await deleteInstanceById(instanceData.id.toString())
+        .then(async () => {
+          setShowErrorDeleteIntanceModal(false)
+          setShowValidationErrorDeleteIntanceModal(false)
+          return true
+        })
+        .catch((reason) => {
+          setShowErrorDeleteIntanceModal(true)
+          console.error(reason)
+          return false
+        })
     }
-    else 
-    {
+    else {
       //show validation error
       setShowValidationErrorDeleteIntanceModal(true)
-      return false
     }
+    return result
   }
 
   const onChangeInstanceName = (event: ChangeEvent<HTMLInputElement>) => {
@@ -47,8 +46,7 @@ const useDeleteIntanceModal = (instanceData: ODSInstance) => {
     setShowValidationErrorDeleteIntanceModal(false)
   }
 
-  const onResetDeleteInstanceModal = () => 
-  {
+  const onResetDeleteInstanceModal = () => {
     setShowErrorDeleteIntanceModal(false);
     setInstanceName('')
     setShowValidationErrorDeleteIntanceModal(false)

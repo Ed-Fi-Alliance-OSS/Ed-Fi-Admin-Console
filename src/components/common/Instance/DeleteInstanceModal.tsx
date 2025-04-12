@@ -8,11 +8,13 @@ import {
 } from '@chakra-ui/react'
 import { ODSInstance } from '../../../core/ODSInstance.types'
 import useDeleteInstanceModal from '../../../hooks/odsInstances/useDeleteInstanceModal'
+import useOdsInstanceTable from '../../../hooks/odsInstances/useOdsInstanceTable'
 import EDXCustomModal from '../EDXCustomModal'
 import useEDXToast from '../../../hooks/common/useEDXToast'
+import { CustomInput } from '@edfi/admin-console-shared-sdk'
 import { useNavigate } from 'react-router-dom'
 import routes from '../../../core/routes'
-import { CustomInput } from '@edfi/admin-console-shared-sdk'
+
 
 
 interface DeleteInstanceModalProps {
@@ -23,26 +25,29 @@ interface DeleteInstanceModalProps {
 
 const DeleteInstanceModal = ({ instance, show, onCloseModal }: DeleteInstanceModalProps) => {
   const {
-    showErrorDeleteInstanceModal,
     showValidationErrorDeleteInstanceModal,
     instanceNameToDelete,
     onConfirmDeleteInstanceModal,
     onChangeInstanceName,
     onResetDeleteInstanceModal } = useDeleteInstanceModal(instance)
 
+  const {
+    paginatedData
+  } = useOdsInstanceTable()
+
+  const { successToast, errorToast } = useEDXToast(5000)
+
   const navigate = useNavigate()
-  const { successToast, errorToast } = useEDXToast()
 
-
-  const onConfirm = () => {
-    var success = onConfirmDeleteInstanceModal()
+  const onConfirm = async () => {
+    var success = await onConfirmDeleteInstanceModal()
     if (success) {
+      onClose()
       navigate(`${routes.home.url}`)
-      return successToast("The Instance has been set 'Pending to delete'. Wait for the instance management worker to process the request")
+      successToast(`The Instance ${instance.name} has been set \'Pending to delete\'. Wait for the instance management worker to process the request`)
     }
-    else
-    {
-      return errorToast("Error trying to delete the instance")
+    else {
+      errorToast('Error trying to delete the instance')
     }
   }
 

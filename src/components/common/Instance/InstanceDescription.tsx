@@ -18,11 +18,11 @@ import useDeleteIntanceBtn from '../../../hooks/odsInstances/useDeleteInstanceBt
 
 
 interface InstanceDescriptionProps {
-    instance: ODSInstance
+  instance: ODSInstance
 }
 
 const InstanceDescription = ({ instance }: InstanceDescriptionProps) => {
-  
+
   const { edFiStatus, edfiMetadata, metaDataLoading, selectedTenant } = useTenantContext()
   const {
     showDeleteInstanceModal,
@@ -42,19 +42,19 @@ const InstanceDescription = ({ instance }: InstanceDescriptionProps) => {
           content={instance.name}
           title='Instance Name'
         />
-        
+
         <InstanceDescriptionField
           content={instance.instanceType}
           title='Instance Type'
         />
-        
-        <InstanceDescriptionField 
-            content={<ODSInstanceWorkerStatus status={instance.status} />}
-            title="Instance Management Worker Status"
-          />
-      
+
+        <InstanceDescriptionField
+          content={<ODSInstanceWorkerStatus status={instance.status} />}
+          title='Instance Management Worker Status'
+        />
+
         {metaDataLoading ? <Spinner /> : <Flex
-          flexDir="column"
+          flexDir='column'
           mt={5}
         >
           <InstanceDescriptionField
@@ -64,23 +64,23 @@ const InstanceDescription = ({ instance }: InstanceDescriptionProps) => {
 
           <InstanceDescriptionField
             content={<ODSInstanceDataModelsLabel dataModels={edfiMetadata?.dataModels} />}
-            title="Ed-Fi Data Models"
+            title='Ed-Fi Data Models'
           />
 
-          <InstanceDescriptionField 
+          <InstanceDescriptionField
             content={<ODSInstanceEdFiStatus status={edFiStatus} />}
-            title="Ed-Fi Status"
+            title='Ed-Fi Status'
           />
 
-          <InstanceDescriptionField 
-            content={<DeleteInstanceBtn 
-              instance={instance} 
+          <InstanceDescriptionField
+            content={<DeleteInstanceBtn
+              instance={instance}
               showDeleteInstanceModal={showDeleteInstanceModal}
               onShowDeleteInstanceModal={onShowDeleteInstanceModal}
               onCloseDeleteIntanceModal={onCloseDeleteIntanceModal} />}
-            title=" "
+            title=' '
           />
-          
+
         </Flex>}
       </Flex>
     </Flex>
