@@ -41,6 +41,7 @@ const PartnersAndApplicationTabContent = ({ instance, schoolYear }: PartnersAndA
 
   const { vendorsWithApplicationsList,
     onSelectPartner,
+    isFetchingData,
     onRefreshVendorsWithApplications } = usePartnersAndApplicationsAccordion({ schoolYear })
 
   const [ , refreshComponent ] = useState(Date.now())
@@ -162,6 +163,7 @@ const PartnersAndApplicationTabContent = ({ instance, schoolYear }: PartnersAndA
             onEditApplication={onEditApplication}
             onEditVendor={onEditVendor}
             onSelectVendor={onSelectPartner}
+            loading={isFetchingData ?? false}
           />
         </Flex>
       </Flex>
