@@ -153,7 +153,7 @@ const useOdsInstanceData = ({ instanceId }: useOdsInstanceDataProps) => {
     onCloseSetUpWizardModal,
     onSetIsDefault,
     onCloseConfirmSetDefaultModal,
-    onShowConfirmSetDefaultModal,
+    onShowConfirmSetDefaultModal
   }
 }
 

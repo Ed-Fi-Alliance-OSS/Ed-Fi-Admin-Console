@@ -10,11 +10,9 @@ import {
   useContext, useEffect, useState
 } from 'react'
 import { adminConsoleContext } from '../../context/adminConsoleContext'
-import { useMockData } from '../../context/mockDataContext'
 import { useTenantContext } from '../../context/tenantContext'
 import { ODSInstance } from '../../core/ODSInstance.types'
 import { usePluginContext } from '../../plugins/BasePlugin'
-import useEDXToast from '../common/useEDXToast'
 import useControlTable from '../controlTable/useControlTable'
 import useConfirmSetDefaultModal from './useConfirmSetDefaultModal'
 import { UpdatingIsDefaultStatus } from './useOdsInstanceTable.types'
@@ -23,7 +21,6 @@ import useValidateSetAsDefault from './useValidateSetAsDefault'
 
 const useOdsInstanceTable = () => {
   const adminConfig = useContext(adminConsoleContext)
-  const mock = useMockData()
 
   const {
     paginatedData,
@@ -45,11 +42,6 @@ const useOdsInstanceTable = () => {
     loading: false
   })
 
-  // const {
-  //   getOdsInstancesList,
-  //   updateInstanceIsDefault
-  // } = useOdsInstanceService()
-
   const {
     showConfirmSetDefaultModal,
     onShowConfirmSetDefaultModal,
@@ -67,10 +59,6 @@ const useOdsInstanceTable = () => {
     canSetAsDefault
   } = useValidateSetAsDefault()
 
-  const {
-    errorToast
-  } = useEDXToast(7000)
-
   const { selectedTenant } = useTenantContext()
   const { config } = useConfig()
   const { functionalities } = usePluginContext()
@@ -85,15 +73,14 @@ const useOdsInstanceTable = () => {
       return
     }
 
-
     setIsFetchingData(true)
     const instancesResp = await apiService?.instances.getAll()
-    console.log('instances getAll resp', instancesResp)
+    const instanceRespNoDeleted = instancesResp.filter(element => element.status !== "Deleted")
     setPaginatedData({
       pageIndex: 0,
       pageSize: 100,
       count: 100,
-      data: instancesResp
+      data: instanceRespNoDeleted
     })
 
     setIsFetchingData(false)
