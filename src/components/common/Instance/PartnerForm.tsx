@@ -4,7 +4,7 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import {
-  Flex, FormControl,
+  Box, Flex, FormControl,
   Spinner
 } from '@chakra-ui/react'
 import {
@@ -16,23 +16,23 @@ import MultiInput from '../../MultiInput'
 import EdFiModalForm from './EdFiModalForm'
 
 interface PartnerFormProps {
-    schoolYear: number 
-    mode: 'add' | 'edit'
-    onFinishSave: () => void
-    initialData: EdfiVendor | undefined
+  schoolYear: number
+  mode: 'add' | 'edit'
+  onFinishSave: () => void
+  initialData: EdfiVendor | undefined
 }
 
 const PartnerForm = ({ initialData, schoolYear, mode, onFinishSave }: PartnerFormProps) => {
-  const { 
-    partnerData, 
+  const {
+    partnerData,
     isSaving,
     setIsSaving,
     errors,
     hasTriedSubmit,
     onChangeParnerData,
     onChangeNamespacePrefixes,
-    onSave 
-  } = usePartnerForm({ 
+    onSave
+  } = usePartnerForm({
     mode,
     schoolYear,
     onFinishSave,
@@ -54,7 +54,7 @@ const PartnerForm = ({ initialData, schoolYear, mode, onFinishSave }: PartnerFor
         flexDir='column'
         w='full'
       >
-        { Object.keys(errors).length > 0 && hasTriedSubmit && <CompleteFormErrorMessage /> }
+        {Object.keys(errors).length > 0 && hasTriedSubmit && <CompleteFormErrorMessage />}
 
         <Flex
           flexDir='column'
@@ -62,11 +62,11 @@ const PartnerForm = ({ initialData, schoolYear, mode, onFinishSave }: PartnerFor
         >
           <FormControl>
             <CustomFormLabel
-              htmlFor="partnerName" 
+              htmlFor="partnerName"
               text="Vendor Name"
             />
 
-            <CustomInput 
+            <CustomInput
               error={errors && errors['partnerName'] && errors['partnerName'].message}
               id="partnerName"
               value={partnerData.company}
@@ -74,18 +74,26 @@ const PartnerForm = ({ initialData, schoolYear, mode, onFinishSave }: PartnerFor
             />
           </FormControl>
 
-          <FormControl mt='24px'>
+          <FormControl mt="24px">
             <Flex
-              flexDir="column"
-              w='full'
+              direction="column"
+              w="full"
+              maxW="100%"
             >
-              {/* error={errors && errors['namespacePrefixes'] && errors['namespacePrefixes'].message} */}
-              <MultiInput
-                // id="namespacePrefixes"
-                label='Add Namespace Prefixes'
-                values={partnerData.namespacePrefixes ? partnerData.namespacePrefixes.trim().split(',') : []}
-                onChange={onChangeNamespacePrefixes}
-              />
+              <Box
+                w="100%"
+                maxW="100%"
+              >
+                <MultiInput
+                  label="Add Namespace Prefixes"
+                  values={
+                    partnerData.namespacePrefixes
+                      ? partnerData.namespacePrefixes.trim().split(',')
+                      : []
+                  }
+                  onChange={onChangeNamespacePrefixes}
+                />
+              </Box>
             </Flex>
 
             {/* <Flex
@@ -104,9 +112,9 @@ const PartnerForm = ({ initialData, schoolYear, mode, onFinishSave }: PartnerFor
       </Flex>
     </Flex>}
     actionText="Save"
-    headerText={mode === 'add'? 'Add Vendor' : 'Edit Vendor'}
+    headerText={mode === 'add' ? 'Add Vendor' : 'Edit Vendor'}
     isSaving={isSaving}
-    onClose={onPClose} 
+    onClose={onPClose}
     onSave={onPSave}
   />
   )
