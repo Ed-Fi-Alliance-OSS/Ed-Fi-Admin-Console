@@ -22,7 +22,8 @@ interface UsePartnersAndApplicationsAccordionProps {
 const usePartnersAndApplicationsAccordion = (props?: UsePartnersAndApplicationsAccordionProps) => {
   const { edxAppConfig, auth } = useContext(TEEAuthDataContext)
   const adminConfig = useContext(adminConsoleContext)
-  const [ vendorsWithApplicationsList, setVendorsWithApplicationsList ] = useState<EdfiVendorWithApplications[]>([])
+  const [ vendorsWithApplicationsList, setVendorsWithApplicationsList ] = useState<EdfiVendorWithApplications[] | undefined>(undefined)
+  const [ isFetchingData, setIsFetchingData ] = useState(false)
   const [ selectedPartnerId, setSelectedPartnerId ] = useState<number | null>()
   const { config } = useConfig()
   const { functionalities } = usePluginContext()
@@ -35,8 +36,9 @@ const usePartnersAndApplicationsAccordion = (props?: UsePartnersAndApplicationsA
   const fetchVendorsWithApplicationsList = async () => {
     if (edxAppConfig && auth && auth.user && adminConfig) {
       // const vendorsListData = await getVendorsListForSchoolYear(adminConfig.actionParams, schoolYear)
+      setIsFetchingData(true)
       const vendorsListData = await api?.vendors.getAll() ?? []
-
+      setIsFetchingData(false)
       console.log('vendors list', vendorsListData)
 
   
@@ -134,7 +136,8 @@ const usePartnersAndApplicationsAccordion = (props?: UsePartnersAndApplicationsA
     fetchVendorsWithApplications,
     selectedPartnerId,
     onSelectPartner,
-    onRefreshVendorsWithApplications
+    onRefreshVendorsWithApplications,
+    isFetchingData
   }
 }
 

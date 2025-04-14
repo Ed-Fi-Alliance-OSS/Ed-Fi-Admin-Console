@@ -26,7 +26,8 @@ import ApplicationDetailsTable from './ApplicationDetailsTable'
 import PartnersAndApplicationAccordionHeader from './PartnersAndApplicationAccordionHeader'
 
 interface PartnersAndApplicationAccordionProps {
-    vendorsWithApplicationsList: EdfiVendorWithApplications[]
+    vendorsWithApplicationsList: EdfiVendorWithApplications[] | undefined
+    loading: boolean 
     isDeletingVendor: DeletingState 
     isDeletingApplication: DeletingState
     onSelectVendor: (partnerId: number) => void
@@ -37,7 +38,7 @@ interface PartnersAndApplicationAccordionProps {
     onAddApplication: () => void
 }
 
-const PartnersAndApplicationAccordion = ({ vendorsWithApplicationsList, isDeletingApplication, isDeletingVendor: isDeletingPartner, onSelectVendor: onSelectPartner, onEditVendor, onDeleteVendor, onDeleteApplication, onEditApplication, onAddApplication }: PartnersAndApplicationAccordionProps) => {
+const PartnersAndApplicationAccordion = ({ vendorsWithApplicationsList, loading, isDeletingApplication, isDeletingVendor: isDeletingPartner, onSelectVendor: onSelectPartner, onEditVendor, onDeleteVendor, onDeleteApplication, onEditApplication, onAddApplication }: PartnersAndApplicationAccordionProps) => {
   const adminConfig = useContext(adminConsoleContext)
 
   const {
@@ -48,7 +49,7 @@ const PartnersAndApplicationAccordion = ({ vendorsWithApplicationsList, isDeleti
     sortNumericAsc,
     sortedByField,
     sortingType
-  } = useControlTableSorting({ data: vendorsWithApplicationsList })
+  } = useControlTableSorting({ data: vendorsWithApplicationsList ?? []})
 
   const {
     currentPage,
@@ -69,142 +70,129 @@ const PartnersAndApplicationAccordion = ({ vendorsWithApplicationsList, isDeleti
   } = useControlTablePagination({ data: sortedData })
 
   return (
-    <Flex 
-      border='1px'
-      borderColor='gray.300'
-      borderRadius='4px' 
-      flexDir='column' 
-      w='full'
-    >
-      <PartnersAndApplicationAccordionHeader
+    <> 
+      {!loading && vendorsWithApplicationsList?.length === 0 ? (
+      <Flex justifyContent="center" padding="16px">
+        <Text color="gray.500">No vendors available.</Text>
+      </Flex>
+      ) : (
+      <Flex 
+        border='1px'
+        borderColor='gray.300'
+        borderRadius='4px' 
+        flexDir='column' 
+        w='full'
+      >
+        <PartnersAndApplicationAccordionHeader
         sortByPartnerAsc={sortTextAsc}
         sortByPartnerDesc={sortTextDesc}
         sortingType={sortingType}
-      />
+        />
 
-      <Accordion
+        <Accordion
         allowToggle
         w='full'
-      >
+        >
         {paginatedItems.map((partner, index) => 
           <AccordionItem
-            key={index}
-            padding='16px'
+          key={index}
+          padding='16px'
           >
-            <Flex
-              alignItems='center'
-              w='full'
+          <Flex
+            alignItems='center'
+            w='full'
+          >
+            <AccordionButton
+            w='250px'
+            onClick={() => onSelectPartner(partner.vendorId ?? 0)}
             >
-              <AccordionButton
-                w='250px'
-                onClick={() => onSelectPartner(partner.vendorId ?? 0)}
-              >
-                <AccordionIcon
-                  aria-hidden="true"
-                  focusable="false"
-                />
+            <AccordionIcon
+              aria-hidden="true"
+              focusable="false"
+            />
 
-                <Text
-                  color='blue.600'
-                  noOfLines={15}
-                >
-                  {partner.company}
-                </Text>
-              </AccordionButton>
+            <Text
+              color='blue.600'
+              noOfLines={15}
+            >
+              {partner.company}
+            </Text>
+            </AccordionButton>
 
-              <Flex
-                ml='45px'
-                w='500px'
-              >
-                <Text noOfLines={15}>
-                  {partner.namespacePrefixes}
-                </Text>
-              </Flex>
-
-              <Flex
-                justifyContent='flex-end'
-                w='250px'
-              >
-                <Text
-                  color='gray.700'
-                  size='sm'
-                >
-                  {partner.applications.length}
-                </Text>
-              </Flex>
-
-              <Flex
-                justifyContent='center'
-                ml='auto'
-                w='150px'
-              >
-                <Button 
-                  // borderRadius='4px 0px 0px 4px'
-                  minW='39px'
-                  size='xs'
-                  variant='primaryBlue600'
-                  onClick={() => onEditVendor(partner)}
-                >
-                  Edit
-                </Button>
-
-                {/* <Button 
-                  _hover={{ background: 'red.600' }}
-                  aria-labelledby="delete-partner-btn"
-                  bg='red.600'
-                  color='white'
-                  h='20px'
-                  isLoading={isDeletingPartner.deleting && isDeletingPartner.id === partner.vendorId?.toString()}
-                  maxW='20px'
-                  minW='20px'
-                  w='20px'
-                  onClick={() => onDeleteVendor(partner.vendorId? partner.vendorId.toString() : 'x')}
-                >
-                  <span
-                    hidden
-                    id="delete-partner-btn"
-                  >Close
-                  </span>
-
-                  <CloseIcon
-                    aria-hidden="true"
-                    focusable="false"
-                  />
-                </Button> */}
-              </Flex>
+            <Flex
+            ml='45px'
+            w='500px'
+            >
+            <Text noOfLines={15}>
+              {partner.namespacePrefixes}
+            </Text>
             </Flex>
 
-            <AccordionPanel pb={4}>
-              <Flex
-                flexDir='column'
-                mt='16px'
-                w='full'
-              >
-                <Flex
-                  justifyContent='flex-end'
-                  mb='18px'
-                  w='full'
-                >
-                  <Button
-                    size='xs'
-                    variant='primaryBlue600'
-                    w='151px'
-                    onClick={onAddApplication}
-                  >Add Application
-                  </Button>
-                </Flex>
+            <Flex
+            justifyContent='flex-end'
+            w='250px'
+            >
+            <Text
+              color='gray.700'
+              size='sm'
+            >
+              {partner.applications.length}
+            </Text>
+            </Flex>
 
-                <ApplicationDetailsTable 
-                  applicationsList={partner.applications}
-                  isDeleting={isDeletingApplication}
-                  onDeleteApplication={onDeleteApplication}
-                  onEditApplication={onEditApplication}
-                />
-              </Flex>
-            </AccordionPanel>
+            <Flex
+            justifyContent='center'
+            ml='auto'
+            w='150px'
+            >
+            <Button 
+              minW='39px'
+              size='xs'
+              variant='primaryBlue600'
+              onClick={() => onEditVendor(partner)}
+            >
+              Edit
+            </Button>
+            </Flex>
+          </Flex>
+
+          <AccordionPanel pb={4}>
+            <Flex
+            flexDir='column'
+            mt='16px'
+            w='full'
+            >
+            <Flex
+              justifyContent='flex-end'
+              mb='18px'
+              w='full'
+            >
+              <Button
+              size='xs'
+              variant='primaryBlue600'
+              w='151px'
+              onClick={onAddApplication}
+              >Add Application
+              </Button>
+            </Flex>
+
+            <ApplicationDetailsTable 
+              applicationsList={partner.applications}
+              isDeleting={isDeletingApplication}
+              onDeleteApplication={onDeleteApplication}
+              onEditApplication={onEditApplication}
+            />
+            </Flex>
+          </AccordionPanel>
           </AccordionItem>)}
 
-        <AccordionItemSkeleton itemsCount={vendorsWithApplicationsList.length} />
+        <AccordionItemSkeleton 
+          itemsCount={
+            !loading 
+            ? vendorsWithApplicationsList?.length ?? -1 
+            : 0
+          } 
+        />
 
         <Flex 
           alignItems='flex-end'
@@ -214,29 +202,31 @@ const PartnersAndApplicationAccordion = ({ vendorsWithApplicationsList, isDeleti
           padding='20px'
         >
           <Flex 
-            ml='auto'
-            w='auto'
+          ml='auto'
+          w='auto'
           >
-            <TablePagination 
-              canNextPage={canNextPage}
-              canPreviousPage={canPreviousPage}
-              currentPage={currentPage}
-              goToInitialPage={goToInitialPage}
-              goToLastPage={gotToLastPage}
-              goToNextPage={goToNextPage}
-              goToPreviousPage={goToPreviousPage}
-              maxPageSize={maxPerPage}
-              minPageSize={minPerPage}
-              pageSize={pageSize}
-              totalPages={totalPages}
-              onChangePageSize={onChangePageSize}
-              onDecrementPageSize={onDecrementPageSize}
-              onIncrementPageSize={onIncrementPageSize}
-            />
+          <TablePagination 
+            canNextPage={canNextPage}
+            canPreviousPage={canPreviousPage}
+            currentPage={currentPage}
+            goToInitialPage={goToInitialPage}
+            goToLastPage={gotToLastPage}
+            goToNextPage={goToNextPage}
+            goToPreviousPage={goToPreviousPage}
+            maxPageSize={maxPerPage}
+            minPageSize={minPerPage}
+            pageSize={pageSize}
+            totalPages={totalPages}
+            onChangePageSize={onChangePageSize}
+            onDecrementPageSize={onDecrementPageSize}
+            onIncrementPageSize={onIncrementPageSize}
+          />
           </Flex>
         </Flex>
-      </Accordion>
-    </Flex>
+        </Accordion>
+      </Flex>
+      )}
+    </>
   )
 }
 
