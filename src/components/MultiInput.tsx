@@ -35,37 +35,37 @@ interface MultiInputProps<T> {
 }
 
 function MultiInput<T extends string | number>({ filterInput, fieldName, label, values: initialVals, onChange, transformText }: MultiInputProps<T>) {
-  const [ snapshot, setSnapshot ] = useReducer((state, action) => JSON.stringify(state) === JSON.stringify(action) ? state : action, {})
+  const [snapshot, setSnapshot] = useReducer((state, action) => JSON.stringify(state) === JSON.stringify(action) ? state : action, {})
 
-  const [ values, dispatch ] = useReducer((state, action: {type: 'set' | 'add' | 'rm', data: string | string[]}) => {
-    let arr = [ ...state ]
+  const [values, dispatch] = useReducer((state, action: { type: 'set' | 'add' | 'rm', data: string | string[] }) => {
+    let arr = [...state]
 
-    let data = isFunction(transformText) 
-      ? isArray(action.data) 
-        ? action.data.map(p => transformText(p)) 
-        :  transformText(action.data)
+    let data = isFunction(transformText)
+      ? isArray(action.data)
+        ? action.data.map(p => transformText(p))
+        : transformText(action.data)
       : action.data as T
 
-    if(action.type === 'rm') {
+    if (action.type === 'rm') {
       arr = arr.filter(e => e !== data)
       onChange(arr)
     }
-    
-    if(data === 0) {
+
+    if (data === 0) {
       return arr
     }
-  
-    if(action.type === 'add') {
+
+    if (action.type === 'add') {
       arr.push(data)
       onChange(arr)
     }
-  
 
-    if(action.type === 'set') {
-      arr = isArray(data) ? [ ...data ] : [ data ]
+
+    if (action.type === 'set') {
+      arr = isArray(data) ? [...data] : [data]
       onChange(arr)
     }
-  
+
     arr = sortedUniq(arr).filter(item => item !== '')
     return arr
   }, [])
@@ -73,29 +73,29 @@ function MultiInput<T extends string | number>({ filterInput, fieldName, label, 
   function addVal(data: string) {
     dispatch({
       type: 'add',
-      data 
+      data
     })
 
   }
-  
+
   function rmVal(data: string) {
     dispatch({
       type: 'rm',
-      data 
+      data
     })
   }
 
   useEffect(() => {
     console.log('🚘 BEFORE: setting initial vals', initialVals, snapshot)
-    if(snapshot === JSON.stringify(initialVals)) {
-      return
-    }
-    
-    if(!isArray(initialVals)) {
+    if (snapshot === JSON.stringify(initialVals)) {
       return
     }
 
-    if(initialVals.length === 0) {
+    if (!isArray(initialVals)) {
+      return
+    }
+
+    if (initialVals.length === 0) {
       return
     }
 
@@ -109,7 +109,7 @@ function MultiInput<T extends string | number>({ filterInput, fieldName, label, 
 
     setSnapshot(JSON.stringify(initialVals))
 
-  }, [ initialVals ])
+  }, [initialVals])
 
   return (
     <Flex
@@ -149,13 +149,19 @@ function MultiInput<T extends string | number>({ filterInput, fieldName, label, 
             size='xs'
             variant="filled"
             onKeyUp={filterInput}
+            wordBreak="break-word"
           >
-            {values.filter(tag => tag !== '').map((tag, tid) => ( 
+            {values.filter(tag => tag !== '').map((tag, tid) => (
               <AutoCompleteTag
                 key={tid}
                 label={tag}
-                variant='solid'
+                variant="solid"
                 onRemove={() => rmVal(tag)}
+                maxW="100%"
+                whiteSpace="normal"
+                wordBreak="break-word"
+                px={2}
+                py={1}
               />
             ))}
           </AutoCompleteInput>
@@ -166,7 +172,10 @@ function MultiInput<T extends string | number>({ filterInput, fieldName, label, 
               {({ value }) => (<Flex gap={2}>Add <Tag
                 paddingX={2}
                 size="xs"
-              >{isFunction(transformText)? transformText?.(value) : value}
+                whiteSpace="normal"
+                wordBreak="break-word"
+                maxWidth="100%"
+              >{isFunction(transformText) ? transformText?.(value) : value}
               </Tag> as option...
               </Flex>)}
             </AutoCompleteCreatable>
