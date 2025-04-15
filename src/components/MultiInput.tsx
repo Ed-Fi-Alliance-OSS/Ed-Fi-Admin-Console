@@ -149,7 +149,7 @@ function MultiInput<T extends string | number>({ filterInput, fieldName, label, 
             size='xs'
             variant="filled"
             onKeyUp={filterInput}
-            wordBreak="break-word"
+            wordBreak="break-all"
           >
             {values.filter(tag => tag !== '').map((tag, tid) => (
               <AutoCompleteTag
@@ -159,7 +159,7 @@ function MultiInput<T extends string | number>({ filterInput, fieldName, label, 
                 onRemove={() => rmVal(tag)}
                 maxW="100%"
                 whiteSpace="normal"
-                wordBreak="break-word"
+                wordBreak="break-all"
                 px={2}
                 py={1}
               />
@@ -173,7 +173,7 @@ function MultiInput<T extends string | number>({ filterInput, fieldName, label, 
                 paddingX={2}
                 size="xs"
                 whiteSpace="normal"
-                wordBreak="break-word"
+                wordBreak="break-all"
                 maxWidth="100%"
               >{isFunction(transformText) ? transformText?.(value) : value}
               </Tag> as option...
