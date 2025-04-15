@@ -25,6 +25,7 @@ const useOdsInstanceData = ({ instanceId }: useOdsInstanceDataProps) => {
   const [ instance, setInstance ] = useState<ODSInstance | null>(null)
   const [ fetchingData, setIsFetchingData ] = useState(false)
   const [ updatingInstance, setIsUpdatingInstance ] = useState(false)
+  const [ instanceNotFound, setInstanceNotFound ] = useState(false)
 
   const {
     getOdsInstancesList,
@@ -54,11 +55,18 @@ const useOdsInstanceData = ({ instanceId }: useOdsInstanceDataProps) => {
     } 
 
     setIsFetchingData(true)
-    const response = await getOdsInstanceById(instanceId)
-
-    setInstance(response)
+    try {
+      const response = await getOdsInstanceById(instanceId)
+      setInstance(response)
+    } catch (error: any) {
+      if (error.response?.status === 404) {
+        setInstanceNotFound(true);
+      } else {
+      errorToast('An error occurred while fetching the instance.')
+      }
+      setInstance(null)
+    }  
     setIsFetchingData(false)
-        
   }
 
   // const fetchInstanceByYear = async () => {
@@ -153,7 +161,8 @@ const useOdsInstanceData = ({ instanceId }: useOdsInstanceDataProps) => {
     onCloseSetUpWizardModal,
     onSetIsDefault,
     onCloseConfirmSetDefaultModal,
-    onShowConfirmSetDefaultModal
+    onShowConfirmSetDefaultModal,
+    instanceNotFound
   }
 }
 

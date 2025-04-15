@@ -9,6 +9,7 @@ import {
 import {
   createContext, FC, ReactNode, useContext,
   useEffect,
+  useRef,
   useState
 } from 'react'
 import { useSessionStorage } from 'react-use'
@@ -16,6 +17,7 @@ import { InstanceOperationStatus } from '../core/ODSInstance.types'
 import { Tenant } from '../core/Tenant.types'
 import { EdFiMetadata } from '../hooks/useEdfiUrls.types'
 import { usePluginContext } from '../plugins/BasePlugin'
+import { useNavigate } from 'react-router-dom'
 
 // Define the type for our context data structure
 interface TenantsContextType {
@@ -41,6 +43,7 @@ export const TenantsContextProvider: FC<TenantsContextProviderProps> = ({ childr
   const { config } = useConfig()
   const { functionalities } = usePluginContext()
   const apiService = functionalities.ApiService?.(config, useApiService)
+  const navigate = useNavigate()
   const [ tenants, setTenants ] = useState<Tenant[]>()
   const [ selectedTenant, setSelectedTenant ] = useState<Tenant>()
   const [ selectedTenantName, setSelectedTenantName ] = useSessionStorage('selectedTenant', '', true)
@@ -144,7 +147,14 @@ export const TenantsContextProvider: FC<TenantsContextProviderProps> = ({ childr
     }
   }, [ tenants ])
 
+  const previousTenantIdRef = useRef<number | undefined>(selectedTenantId);
 
+  useEffect(() => {
+    if (selectedTenantId && previousTenantIdRef.current !== selectedTenantId) {
+      navigate('/', { replace: true });
+    }
+    previousTenantIdRef.current = selectedTenantId;
+  }, [selectedTenantId, navigate]);
 
   // Context value with both data and utility functions
   const contextValue: TenantsContextType = {
