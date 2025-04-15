@@ -17,7 +17,6 @@ import {
 import useEDXToast from '../../../hooks/common/useEDXToast'
 import useFormValidationErrors from '../../../hooks/validations/useFormValidationErrors'
 import useTenantService from '../../../services/AdminActions/Tenant/TenantService'
-import useTenantInfo from '../../../hooks/useTenantInfo'
 
 export function TenantInstanceForm() {
   const { errors, handleAllErrors, handleSingleError } = useFormValidationErrors()
@@ -25,8 +24,7 @@ export function TenantInstanceForm() {
   const { getTenantById } = useTenantService()
   const [ loading, setLoading ] = useState(false)
   const { successToast } = useEDXToast(1000)
-  const { getCurrentTenant } = useTenantInfo()
-  const TenantId = getCurrentTenant()?.tenantId.toString() ?? '1'
+  const TenantId = '1'
 
   useEffect(() => {
     setLoading(true)
