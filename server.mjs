@@ -6,44 +6,49 @@
 import history from 'connect-history-api-fallback'
 import 'dotenv/config'
 import express from 'express'
-import jsonServer from 'json-server'
+import path from 'path'
 import { cloneDeep } from 'lodash-es'
 import defaultConfig from './app.config.json' assert { type: 'json' }
 import { mergeEnvVars } from './merge-env-vars.mjs'
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const app = express()
 const originalConfig = mergeEnvVars(defaultConfig)
 let config = cloneDeep(originalConfig)
 const staticFileMiddleware = express.static('dist')
 
-app.use(`${config.app.basePath}/config.json`, (_, res) => {
+
+app.use(staticFileMiddleware)
+
+// This code makes sure that any request that does not matches a static file
+// in the dist folder, will just serve index.html. Client side routing is
+// going to make sure that the correct content will be loaded.
+app.use((req, res, next) => {
+  if (/(.ico|.js|.css|.jpg|.png|.map|.json)$/i.test(req.path)) {
+      next();
+  } else {
+      res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
+      res.header('Expires', '-1');
+      res.header('Pragma', 'no-cache');
+      res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+  }
+});
+
+app.use(`/config.json`, (_, res) => {
   res.json(config)
 })
 
-app.use(`${config.app.basePath}/api`, (req, res, next) => {
-  req.body = req.body || {}
-  req.body = {
-    ...req.body,
-    id: Date.now() + '-' + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15),
-  }
-
-  next()
-}, jsonServer.defaults({
-  bodyParser: true,
-  logger: true,
-  noCors: true 
-}), jsonServer.router('./mockdata/adminapi/db.json'))
 
 app.use(history({
   disableDotRule: true,
-  index: `${config.app.basePath}/index.html`,
-  verbose: true,
-  rewrites: [
-    {from: /\/config.json/, to: `${config.app.basePath}/config.json`}
-  ]
+  index: `/index.html`,
+  verbose: true
 }))
 
-app.use(config.app.basePath, staticFileMiddleware)
 
 app.listen(process.env.PORT || 8598, () => {
   console.table(config.api)
