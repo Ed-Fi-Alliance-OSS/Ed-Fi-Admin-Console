@@ -116,3 +116,12 @@ To delete volumes, also append `-v`. Examples:
 | Instance-Management-Worker-Process | adminconsole-local-dev-instance-management-service-1 | `none` |
 | Health-Check-Worker-Process | adminconsole-local-dev-healthcheck-service-1 |  |
 | Adminconsole application | ed-fi-adminconsole | [8598](http://localhost:8598/) |
+
+### Troubleshooting
+
+#### /bin/sh: bad interpreter: Permission denied
+Make sure the .sh files have the right permission to execute. To do it run the following command line per file:
+
+- MACOSX
+
+  ```chmod +x init_template.sh```
