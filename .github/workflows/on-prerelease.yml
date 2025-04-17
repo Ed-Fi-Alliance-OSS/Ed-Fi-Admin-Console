@@ -194,7 +194,7 @@ jobs:
           cache-from: type=registry,ref=${{ env.IMAGE_NAME }}:pre
           cache-to: type=inline
           build-args: ML_VERSION=${{ steps.prepare-tags.outputs.NPM_VERSION }}
-          file: docker/Dockerfile
+          file: Dockerfile
           tags: ${{ steps.prepare-tags.outputs.TAGS }}
           labels: ${{ steps.meta.outputs.labels }}
           push: true
