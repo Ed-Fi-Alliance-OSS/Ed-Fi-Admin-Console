@@ -1,30 +1,32 @@
 {
   "api": {
-    "edfiApiBaseUri": "https://localhost/api",
-    "edfiAdminApiBaseUri": "https://localhost/adminapi",
+    "edfiApiBaseUri": "http://localhost:8181",
+    "edfiAdminApiBaseUri": "http://localhost:8282",
     "useLocalMockData": false,
     "useAdminApiAuthentication": true,
-    "apiKey": "test1",
-    "apiSecret": "Aj<.(6{L?i;nScSW>ADMzb1TGSPr<[Q8"
+    "apiKey": "",
+    "apiSecret": ""
   },
   "app": {
     "title": "AppName",
     "subtitle": "Subtitle",
     "logo": "/assets/logo-test.png",
-    "basePath": "adminconsole",
+    "basePath": "",
     "helpLinkUrl": "/docs/index",
     "termsUrl": "/docs/terms",
-    "multiTenancy": true
+    "multiTenancy": true,
+    "showDataHealth": true,
+    "useNewCreateInstanceForm": true
   },
   "plugins": [
     "test-plugin"
   ],
   "auth": {
-    "authority": "https://localhost/auth/realms/edfi-admin-console/",
+    "authority": "http://localhost:28080/realms/edfi-admin-console/",
     "clientId": "admin-console",
-    "redirectUri": "https://localhost/adminconsole/callback",
-    "silentRedirectUri": "https://localhost/adminconsole/silent-renew",
-    "postLogoutRedirectUri": "https://localhost/adminconsole",
+    "redirectUri": "http://localhost:8598/callback",
+    "silentRedirectUri": "http://localhost:8598/silent-renew",
+    "postLogoutRedirectUri": "http://localhost:8598",
     "scope": "openid edfi_admin_api/full_access",
     "responseType": "code",
     "loadUserInfo": true,

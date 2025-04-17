@@ -20,7 +20,7 @@ RUN npm run build:prod
 
 COPY mockdata/* /dist/mockdata/ 
 COPY public/* /dist/ 
-COPY config.example.json /dist/config.json
+COPY config.example.ports.json /dist/app.config.json
 
 # Remove unnecessary files and folders
 RUN rm -rf .github .npmrc docker eng docs e2e
