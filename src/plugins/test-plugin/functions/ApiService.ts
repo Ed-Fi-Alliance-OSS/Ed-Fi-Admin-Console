@@ -99,7 +99,7 @@ export function ApiService(config: EdxAppConfig, apiService: typeof useApiServic
       get: (claimSetId) => adminConsoleApi.get(`/v2/claimSets/${claimSetId}`)
     },
     healthCheck: {
-      getByInstanceId: (instanceId) => adminConsoleApi.get(`/adminconsole/healthcheck/${instanceId}`)
+      getByInstanceId: (instanceId) => adminConsoleApi.get(`/adminapi/adminconsole/healthcheck/${instanceId}`)
         .then(resp => {
           console.log('Response from health check:', resp);
           const { document } = resp.data;
