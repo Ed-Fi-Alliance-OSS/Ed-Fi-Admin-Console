@@ -14,6 +14,7 @@ services:
       TPDM_ENABLED: ${TPDM_ENABLED:-true}
     volumes:
       - vol-db-ods-tenant1:/var/lib/postgresql/data
+      - ./edfi/init_template.sh:/docker-entrypoint-initdb.d/2-init_template.sh
     restart: always
     container_name: ed-fi-db-ods-tenant1
     healthcheck:
@@ -31,7 +32,8 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       TPDM_ENABLED: ${TPDM_ENABLED:-true}
     volumes:
-      - vol-db-ods-tenant2:/var/lib/postgresql/data
+      - vol-db-ods-tenant2:/var/lib/postgresql/data  
+      - ./edfi/init_template.sh:/docker-entrypoint-initdb.d/2-init_template.sh
     restart: always
     container_name: ed-fi-db-ods-tenant2
     healthcheck:

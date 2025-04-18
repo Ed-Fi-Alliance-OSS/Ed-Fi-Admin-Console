@@ -40,7 +40,7 @@ interface ODSInstanceManagementTableRowItemProps {
   onOpenSetUpModal: (instanceId: string) => void
 }
 
-const ODSInstanceManagementTableRowItem = ({  tableMode, selectedInstance, instance, canSetAsDefault, updatingIsDefault, onSelectInstance, onOpenSetDefaultModal, onOpenSetUpModal }: ODSInstanceManagementTableRowItemProps) => {
+const ODSInstanceManagementTableRowItem = ({ tableMode, selectedInstance, instance, canSetAsDefault, updatingIsDefault, onSelectInstance, onOpenSetDefaultModal, onOpenSetUpModal }: ODSInstanceManagementTableRowItemProps) => {
   const showSetupBtn = () => {
     return false
   }
@@ -71,23 +71,22 @@ const ODSInstanceManagementTableRowItem = ({  tableMode, selectedInstance, insta
         </RadioGroup>
       </Td>}
 
-      <Td width={400}>
-        <Flex
-          flexDir='column'
-          flexWrap='wrap'
-          h='auto'
-          w='250px'
-        >
+      <Td maxW="250px" overflow="hidden" px={4} py={2}>
+        <Flex direction="column" w="100%" overflow="hidden">
           <Link
-            as={RouterLink} 
-            color='blue.600'
-            fontFamily='Poppins'
-            fontWeight='700'
-            lineHeight='22px'
-            size='md'
-            state={{ instanceId: instance.id }}
+            as={RouterLink}
             to={getOdsInstanceLink(instance)}
-            w="100px"
+            state={{ instanceId: instance.id }}
+            color="blue.600"
+            fontFamily="Poppins"
+            fontWeight="700"
+            lineHeight="22px"
+            fontSize="md"
+            display="block"
+            overflow="hidden"
+            textOverflow="ellipsis"
+            whiteSpace="nowrap"
+            title={instance.name}
           >
             {instance.name}
           </Link>
@@ -95,21 +94,21 @@ const ODSInstanceManagementTableRowItem = ({  tableMode, selectedInstance, insta
       </Td>
 
       <Td>
-        {metaDataLoading ? <Spinner /> : <ODSInstanceEdFiVersion version={edfiMetadata?.version} /> }
+        {metaDataLoading ? <Spinner /> : <ODSInstanceEdFiVersion version={edfiMetadata?.version} />}
       </Td>
 
       <Td>
-        {metaDataLoading ? <Spinner /> : <ODSInstanceDataModelsLabel dataModels={edfiMetadata?.dataModels} /> }
+        {metaDataLoading ? <Spinner /> : <ODSInstanceDataModelsLabel dataModels={edfiMetadata?.dataModels} />}
       </Td>
 
       <Td>
         {metaDataLoading ? <Spinner /> : <ODSInstanceEdFiStatus status={edFiStatus ?? ''} />}
-        
+
       </Td>
 
       <Td>
         {metaDataLoading ? <Spinner /> : <ODSInstanceWorkerStatus status={instance.status ?? 'Error'} />}
-        
+
       </Td>
 
       {tableMode == 'Display' && <>
@@ -119,7 +118,7 @@ const ODSInstanceManagementTableRowItem = ({  tableMode, selectedInstance, insta
               instance={instance}
               updatingIsDefault={updatingIsDefault}
               onOpenSetUpModal={onOpenSetUpModal}
-            /> : 
+            /> :
             <ManageInstanceBtn instance={instance} />}
         </Td>
       </>}

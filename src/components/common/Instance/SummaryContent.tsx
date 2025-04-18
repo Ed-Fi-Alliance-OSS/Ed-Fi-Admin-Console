@@ -10,21 +10,34 @@ import DataHealthDataGrid from '../OnBoarding/DataHealthDataGrid'
 import InstanceDataPreview from './InstanceDataPreview'
 
 interface SummaryContentProps {
-    instance: ODSInstance 
+  instance: ODSInstance
 }
 
 const SummaryContent = ({ instance }: SummaryContentProps) => {
+
   return (
-    <>
-      <Flex>
+    <Flex
+      wrap="wrap"
+      direction={{ base: 'column', md: 'row' }}
+      w="100%"
+    >
+      <Flex
+        w={{ base: '100%', md: '60%' }}
+        pr={{ base: 0, md: 6 }}
+        mb={{ base: 4, md: 0 }}
+      >
         <InstanceDescription instance={instance} />
       </Flex>
-      <Flex ml='auto'>
-        <InstanceDataPreview 
-              instance={instance} 
-            />
+
+      <Flex
+        w={{ base: '100%', md: '40%' }}
+        alignItems={{ base: 'flex-start', md: 'flex-end' }}
+        justifyContent={{ base: 'flex-start', md: 'flex-end' }}
+      >
+        <InstanceDataPreview instance={instance} />
       </Flex>
-    </>
+    </Flex>
+
   )
 }
 
