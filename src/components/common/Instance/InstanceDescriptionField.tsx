@@ -32,6 +32,7 @@ const InstanceDescriptionField = ({ title, content }: InstanceDescriptionFieldPr
           fontFamily='Poppins'
           fontWeight='700'
           size='lg'
+          wordBreak="break-all"
         >
           {content}
         </Text>
