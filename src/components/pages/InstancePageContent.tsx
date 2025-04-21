@@ -3,7 +3,7 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import { Flex } from '@chakra-ui/react'
+import { Flex, Heading } from '@chakra-ui/react'
 import useOdsInstanceData from '../../hooks/odsInstances/useOdsInstanceData'
 import useOdsInstancePageContent from '../../hooks/odsInstances/useOdsInstancePageContent'
 import useSetUpWizardModal from '../../hooks/odsInstances/useSetUpWizardModal'
@@ -11,16 +11,18 @@ import InstancePageHeader from '../common/Instance/InstancePageHeader'
 import InstanceTabsMenu from '../common/Instance/InstanceTabsMenu'
 
 interface InstancePageContentProps {
-    instanceId: string  
+  instanceId: string
 }
 
 const InstancePageContent = ({ instanceId }: InstancePageContentProps) => {
-  const { instance, 
+  const { instance,
     updatingInstance,
     onSetIsDefault,
     showConfirmSetDefaultModal,
     onShowConfirmSetDefaultModal,
-    onCloseConfirmSetDefaultModal } = useOdsInstanceData({ instanceId })
+    onCloseConfirmSetDefaultModal,
+    instanceNotFound
+  } = useOdsInstanceData({ instanceId })
 
   const {
     showSetUpWizardModal,
@@ -31,26 +33,37 @@ const InstancePageContent = ({ instanceId }: InstancePageContentProps) => {
   const {
     availableSetDefault
   } = useOdsInstancePageContent({ instance })
-    
+
   return (
     <Flex
       flexDir='column'
       w='full'
     >
       <InstancePageHeader />
-
-      <InstanceTabsMenu 
-        canSetAsDefault={availableSetDefault}
-        instance={instance}
-        showConfirmSetDefaultModal={showConfirmSetDefaultModal}
-        showSetUpWizardModal={showSetUpWizardModal}
-        updatingInstance={updatingInstance}
-        onCloseConfirmSetDefaultModal={onCloseConfirmSetDefaultModal}
-        onCloseSetUpWizardModal={onCloseSetUpWizardModal} 
-        onSetIsDefault={onSetIsDefault} 
-        onShowConfirmSetDefaultModal={onShowConfirmSetDefaultModal} 
-        onShowSetUpWizardModal={onShowSetUpWizardModal}
-      />
+      {instanceNotFound ? (
+        <Flex
+          flexDir='column'
+          w='full'
+          h='full'
+          justifyContent='center'
+          alignItems='center'
+        >
+          <Heading
+            mt='5px'
+            size='lg'>Instance not found</Heading>
+        </Flex>) : (<InstanceTabsMenu
+          canSetAsDefault={availableSetDefault}
+          instance={instance}
+          showConfirmSetDefaultModal={showConfirmSetDefaultModal}
+          showSetUpWizardModal={showSetUpWizardModal}
+          updatingInstance={updatingInstance}
+          onCloseConfirmSetDefaultModal={onCloseConfirmSetDefaultModal}
+          onCloseSetUpWizardModal={onCloseSetUpWizardModal}
+          onSetIsDefault={onSetIsDefault}
+          onShowConfirmSetDefaultModal={onShowConfirmSetDefaultModal}
+          onShowSetUpWizardModal={onShowSetUpWizardModal}
+        />
+      )}
     </Flex>
   )
 }
