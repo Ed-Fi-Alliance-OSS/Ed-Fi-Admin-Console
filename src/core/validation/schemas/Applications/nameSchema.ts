@@ -7,7 +7,7 @@ import Joi from 'joi'
 import ErrorMessagesGenerator from '../../ErrorMessagesGenerator'
 
 const applicationNameField = 'Application Name'
-const maxNameLength = 63
+const maxNameLength = 50
 const minNameLength = 2
 
 const applicationNameSchema = Joi
