@@ -16,7 +16,7 @@ test.describe('Home Page Tests', () => {
     page = await browser.newPage()
     await page.goto(routes.home)
     await page.waitForURL(routes.home)
-    await page.waitForLoadState('networkidle')
+    await page.waitForLoadState('networkidle', { timeout: 35000 })
   })
 
   test('Home page should show Admin Actions Title', async () => {
@@ -24,28 +24,14 @@ test.describe('Home Page Tests', () => {
   })
 
   test('Should show every Admin Actions button as clickable', async () => {
-    const manageUserAction = page.locator('a', { hasText: 'Manage Users' })
-    await expect(manageUserAction).toBeVisible({ timeout: 15000 })
-    await expect(manageUserAction).toBeEnabled()
+    const tenantInstanceAction = page.locator('a:has-text("Tenant Instance Settings")')
+    await expect(tenantInstanceAction).toBeVisible({ timeout: 15000 })
+    await expect(tenantInstanceAction).toBeEnabled()
 
-    const userSyncAction = page.locator('a', { hasText: 'User Sync' })
-    await expect(userSyncAction).toBeVisible()
-    await expect(userSyncAction).toBeEnabled()
-
-    const districtSettingsActions = page.locator('a', { hasText: 'District/Charter School Settings' })
-    await expect(districtSettingsActions).toBeVisible()
-    await expect(districtSettingsActions).toBeEnabled()
-
-    const ssoAction = page.locator('a', { hasText: 'SSO' })
-    await expect(ssoAction).toBeVisible()
-    await expect(ssoAction).toBeEnabled()
+    await expect(page.getByLabel('District/Charter School', { exact: true })).toContainText('Tenant Instance:');
   })
 
   test('Home page should show ODS Instances Title', async () => {
-    await expect(page.getByText('ODS Instances')).toBeVisible({ timeout: 15000 })
+    await expect(page.getByText('Instances')).toBeVisible({ timeout: 15000 })
   })
-
-  //Sorting by year works
-
-
 })

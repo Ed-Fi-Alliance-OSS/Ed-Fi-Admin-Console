@@ -17,7 +17,7 @@ const openPartnerForm =  async (page: Page) => {
 }
 
 const clickAddPartnerBtn = async (page: Page) => await page.getByRole('button', { name: 'Add Vendor' }).click()
-/*
+
 test.beforeAll(async ({ browser }) => {
   page = await browser.newPage()
 
@@ -29,7 +29,7 @@ test.beforeAll(async ({ browser }) => {
 });
 
 
-test("Add Vendor Form - Adds the partner", async () => {
+test("Add Vendor Form - Adds the vendor", async () => {
   const testPartnerName = "eetestpartner"
 
   await fillAddPartnerForm({
@@ -97,4 +97,4 @@ test.describe("Add Vendor Form - Prefixes", () => {
       expect(page.getByText("Please correct the errors below and resubmit the form.")).toBeVisible()
       expect(page.getByText("Namespace Prefixes should have at least 2 letters.")).toBeVisible()
     })
-}) */
+})
