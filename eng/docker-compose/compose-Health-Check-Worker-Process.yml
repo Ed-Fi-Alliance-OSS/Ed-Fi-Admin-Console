@@ -19,8 +19,8 @@ services:
       EdFi_AdminConsole_AdminApiSettings__GrantType: ${GRANTTYPE:-client_credentials}
       EdFi_AdminConsole_AdminApiSettings__Scope: ${SCOPE:-edfi_admin_api/full_access}
     volumes:
-      - service-logs:/var/log/achealthsvc
+      - vol-svc-healthcheck-logs:/var/log/achealthsvc
 
 volumes:
-  service-logs:
-    name: health-check-service-logs
+  vol-svc-healthcheck-logs:
+    name: vol-svc-healthcheck-logs
