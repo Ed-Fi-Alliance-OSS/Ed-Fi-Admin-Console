@@ -73,20 +73,9 @@ const ApplicationForm = ({ instance, mode, editApplicationData, onFinishSave }: 
 
   const showApplicationAPIData = () => applicationAuthData.key && applicationAuthData.secret
 
-  const getLocalEducationOrgId = () => {
-    const currentTenant = getCurrentTenant()
-
-    if (currentTenant) {
-      return `Id: ${currentTenant.tenantId}`
-    }
-
-    return '...'
-  }
-
   useEffect(() => {
-    if(applicationData.educationOrganizationIds){
-      console.log('setting edorgs', applicationData.educationOrganizationIds)
-      setEdorgs(applicationData.educationOrganizationIds)
+    if(!applicationData.educationOrganizationIds){
+      setEdorgs(edOrgs)
     }
   }, [ applicationData ])
 
