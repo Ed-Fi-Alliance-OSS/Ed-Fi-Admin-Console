@@ -21,20 +21,27 @@ import useTenantInfo from '../../../hooks/useTenantInfo'
 
 export function TenantInstanceForm() {
   const { errors, handleAllErrors, handleSingleError } = useFormValidationErrors()
-  const [ tenantInstanceData, setTenantInstanceData ] = useState<Tenant>()
+  const [tenantInstanceData, setTenantInstanceData] = useState<Tenant>()
   const { getTenantById } = useTenantService()
-  const [ loading, setLoading ] = useState(false)
-  const { successToast } = useEDXToast(1000)
+  const [loading, setLoading] = useState(false)
+  const { successToast, errorToast } = useEDXToast(1000)
   const { getCurrentTenant } = useTenantInfo();
-  const TenantId = getCurrentTenant()?.tenantId.toString() ?? '1';
+  const tenantId = getCurrentTenant()?.tenantId?.toString() ?? '1'; //it defaults to `'1'` as the fallback value since tenants start at 1 by default.
+  
+
 
   useEffect(() => {
     setLoading(true)
-    getTenantById(TenantId).then((tenant) => {
-      setLoading(false)
-      setTenantInstanceData(tenant)
-    })
-  }, [TenantId])
+    getTenantById(tenantId)
+      .then((tenant) => {
+        setLoading(false)
+        setTenantInstanceData(tenant)
+      })
+      .catch((error) => {
+        setLoading(false)
+        errorToast(`Error fetching tenant data: ${error.message}`)
+      })
+  }, [tenantId])
 
   function onSave() {
     // console.log('the data is saving')
@@ -50,14 +57,14 @@ export function TenantInstanceForm() {
   }
 
   function onInputChange(val) {
-  //   if(!isUrl) {
-  //     handleSingleError({
-  //       field: 'edfiApiDiscoveryUrl',
-  //       error: { message: 'Please enter a valid URL' } 
-  //     })
-  //   }
+    //   if(!isUrl) {
+    //     handleSingleError({
+    //       field: 'edfiApiDiscoveryUrl',
+    //       error: { message: 'Please enter a valid URL' } 
+    //     })
+    //   }
 
-  //   setTenantInstanceData({ })
+    //   setTenantInstanceData({ })
   }
 
   return (
@@ -68,34 +75,34 @@ export function TenantInstanceForm() {
       {loading && <Spinner />}
 
       <FormControl>
-        <CustomFormLabel 
-          htmlFor='name' 
+        <CustomFormLabel
+          htmlFor='name'
           text='Tenant Name'
         />
 
-        <CustomInput 
+        <CustomInput
           readOnly
           error={errors && errors['name'] && errors['name'].message}
           id='name'
           value={tenantInstanceData?.document.name}
-          onChange={() => {}}
+          onChange={() => { }}
         />
 
         <Flex
           flexDir='column'
           mt={4}
         >
-          <CustomFormLabel 
+          <CustomFormLabel
             htmlFor='edfiApiDiscoveryUrl'
             text='Ed-Fi Base URL'
           />
 
-          <CustomInput 
+          <CustomInput
             readOnly
             error={errors && errors['edfiApiDiscoveryUrl'] && errors['edfiApiDiscoveryUrl'].message}
             id='edfiApiDiscoveryUrl'
             value={tenantInstanceData?.document.edfiApiDiscoveryUrl}
-            onChange={() => {}}
+            onChange={() => { }}
           />
         </Flex>
       </FormControl>
@@ -104,7 +111,7 @@ export function TenantInstanceForm() {
 }
 
 export function TenantInstanceTab() {
-  const [ isSaving, setIsSaving ] = useState(false)
+  const [isSaving, setIsSaving] = useState(false)
 
   return (
     <Flex
