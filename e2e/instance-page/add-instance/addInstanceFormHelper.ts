@@ -10,20 +10,22 @@ import { Page } from '@playwright/test';
  * @param page - The Playwright page object.
  * @param instanceData - The data to populate the form fields.
  */
+export type MockInstanceData = {
+  name: string;
+  instanceType: string;
+  odsInstanceContexts: { key: string; value: string }[] | null;
+  odsInstanceDerivatives: string[] | null;
+};
+
 export const addInstanceFormHelper = async (
   page: Page,
-  instanceData: {
-    name: string;
-    instanceType: string;
-    odsInstanceContexts: { key: string; value: string }[] | null;
-    odsInstanceDerivatives: string[] | null;
-  }
+  instanceData: MockInstanceData
 ) => {
   if (instanceData.name) {
-    await page.getByLabel('Name').fill(instanceData.name)
+    await page.getByLabel('Name').fill(instanceData.name);
   }
   if (instanceData.instanceType) {
-    await page.getByLabel('Instance Type').fill(instanceData.instanceType)
+    await page.getByLabel('Instance Type').fill(instanceData.instanceType);
   }
   if (instanceData.odsInstanceContexts) {
     for (let i = 0; i < instanceData.odsInstanceContexts.length; i++) {

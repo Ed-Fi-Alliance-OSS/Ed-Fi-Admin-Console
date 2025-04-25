@@ -5,7 +5,7 @@
 
 import { test, expect, Page } from '@playwright/test';
 import { routes } from '../../core/routes';
-import { addInstanceFormHelper } from './AddInstanceFormHelper';
+import { addInstanceFormHelper, MockInstanceData } from './AddInstanceFormHelper';
 
 let page: Page;
 
@@ -45,18 +45,21 @@ test.describe('Add Instance Form E2E Tests', () => {
     // Use the helper to fill out the form
     const uniqueSuffix = Date.now().toString(); // Use timestamp as a unique suffix
     const uniqueName = `Test Instance ${uniqueSuffix}`;
-    await addInstanceFormHelper(page, {
+    const instanceData : MockInstanceData = {
       name: uniqueName,
       instanceType: 'Type A',
       odsInstanceContexts: [
         { key: 'Context1', value: 'Value1' },
       ],
-      odsInstanceDerivatives: ['ReadReplica'],
-    });
+      odsInstanceDerivatives: ['ReadReplica']
+    };
+
+    await addInstanceFormHelper(page, instanceData);
 
     // Click the Save Changes button
     await page.getByRole('button', { name: addInstanceSaveButton }).click();
-    await page.getByText('Success').click()
+    await page.waitForLoadState("networkidle");
+    await expect(page.locator('tbody')).toContainText(uniqueName);
 
   });
   
@@ -64,7 +67,7 @@ test.describe('Add Instance Form E2E Tests', () => {
     // Use the helper to fill out the form
     const uniqueSuffix = Date.now().toString(); // Use timestamp as a unique suffix
     const uniqueName = `Test Instance ${uniqueSuffix}`;
-    await addInstanceFormHelper(page, {
+    const instanceData : MockInstanceData = {
       name: uniqueName,
       instanceType: 'Type A',
       odsInstanceContexts: [
@@ -72,31 +75,35 @@ test.describe('Add Instance Form E2E Tests', () => {
         { key: 'Context2', value: 'Value2' },
         { key: 'Context3', value: 'Value3' },
       ],
-      odsInstanceDerivatives: ['ReadReplica'],
-    });
+      odsInstanceDerivatives: ['ReadReplica']
+    }
+    await addInstanceFormHelper(page, instanceData);
 
     // Click the Save Changes button
     await page.getByRole('button', { name: addInstanceSaveButton }).click();
-    await page.getByText('Success').click()
-
+    await page.waitForLoadState("networkidle");
+    await expect(page.locator('tbody')).toContainText(uniqueName);
   });
 
   test('should successfully create a new instance with multiple derivatives', async () => {
     // Use the helper to fill out the form
     const uniqueSuffix = Date.now().toString(); // Use timestamp as a unique suffix
     const uniqueName = `Test Instance ${uniqueSuffix}`;
-    await addInstanceFormHelper(page, {
+    const instanceData : MockInstanceData = {
       name: uniqueName,
       instanceType: 'Type A',
       odsInstanceContexts: [
         { key: 'Context1', value: 'Value1' },
       ],
-      odsInstanceDerivatives: ['ReadReplica', 'Snapshot'],
-    });
+      odsInstanceDerivatives: ['ReadReplica', 'Snapshot']
+    };
+
+    await addInstanceFormHelper(page, instanceData);
 
     // Click the Save Changes button
     await page.getByRole('button', { name: addInstanceSaveButton }).click();
-    await page.getByText('Success').click()
+    await page.waitForLoadState("networkidle");
+    await expect(page.locator('tbody')).toContainText(uniqueName);
 
   });
 
@@ -104,32 +111,34 @@ test.describe('Add Instance Form E2E Tests', () => {
     // Use the helper to fill out the form
     const uniqueSuffix = Date.now().toString(); // Use timestamp as a unique suffix
     const uniqueName = `Test Instance ${uniqueSuffix}`;
-    await addInstanceFormHelper(page, {
+    const instanceData : MockInstanceData = {
       name: uniqueName,
       instanceType: 'Type A',
       odsInstanceContexts: null,
       odsInstanceDerivatives: null,
-    });
+    };
+    await addInstanceFormHelper(page, instanceData);
 
     // Click the Save Changes button
     await page.getByRole('button', { name: addInstanceSaveButton }).click();
-    await page.getByText('Success').click()
+    await page.waitForLoadState("networkidle");
+    await expect(page.locator('tbody')).toContainText(uniqueName);
 
   });
-
 
   test('should failed if instance name exists', async () => {
     // Use the helper to fill out the form
     const uniqueSuffix = Date.now().toString(); // Use timestamp as a unique suffix
     const uniqueName = `Test-Instance-${uniqueSuffix}`;
-    await addInstanceFormHelper(page, {
+    const instanceData : MockInstanceData = {
       name: uniqueName,
       instanceType: 'Type A',
       odsInstanceContexts: [
         { key: 'Context1', value: 'Value1' },
       ],
       odsInstanceDerivatives: ['ReadReplica'],
-    });
+    };
+    await addInstanceFormHelper(page, instanceData);
 
     // Click the Save Changes button
     await page.getByRole('button', { name: addInstanceSaveButton }).click();
@@ -137,14 +146,7 @@ test.describe('Add Instance Form E2E Tests', () => {
     //Go to add Instance page again
     await openAddInstanceForm(page)
     // use the same payload
-    await addInstanceFormHelper(page, {
-      name: uniqueName,
-      instanceType: 'Type A',
-      odsInstanceContexts: [
-        { key: 'Context1', value: 'Value1' },
-      ],
-      odsInstanceDerivatives: ['ReadReplica'],
-    });
+    await addInstanceFormHelper(page, instanceData);
 
     // Click the Save Changes button
     await page.getByRole('button', { name: addInstanceSaveButton }).click();
@@ -153,12 +155,13 @@ test.describe('Add Instance Form E2E Tests', () => {
   });
 
   test('should display error messages for empty input', async () => {
-    await addInstanceFormHelper(page, {
+    const instanceData : MockInstanceData = {
       name: '',
       instanceType: '',
       odsInstanceContexts: null,
       odsInstanceDerivatives: null,
-    });
+    };
+    await addInstanceFormHelper(page, instanceData);
     await page.getByRole('button', { name: 'Add Derivative' }).click();
     // Leave the form empty and click Save Changes
     await page.getByRole('button', { name: addInstanceSaveButton }).click();
@@ -169,10 +172,46 @@ test.describe('Add Instance Form E2E Tests', () => {
     await expect(page.locator('form')).toContainText('Derivative Type is required');
   });
 
+  test('should validate that an instance name stays within the 100-character limit', async () => {
+    // Use the helper to fill out the form
+    const uniqueSuffix = Date.now().toString(); // Use timestamp as a unique suffix
+    const uniqueName = 'DatadrivenInteroperableStandardizedUnifiedEducationalFrameworkConnectingSystemsForActionableStudentSuccessInsights';
+    const instanceData : MockInstanceData = {
+      name: uniqueName,
+      instanceType: 'Type A',
+      odsInstanceContexts: null,
+      odsInstanceDerivatives: null,
+    };
+    await addInstanceFormHelper(page, instanceData);
+
+    // Click the Save Changes button
+    await page.getByRole('button', { name: addInstanceSaveButton }).click();
+    await expect(page.getByRole('main')).toContainText('The length of \'Name\' must be 100 characters or fewer. You entered 114 characters.');
+
+  });
+
+  test('should ensure that an instance type does not exceed 100 characters', async () => {
+    // Use the helper to fill out the form
+    const uniqueSuffix = Date.now().toString(); // Use timestamp as a unique suffix
+    const uniqueName = `Test Instance ${uniqueSuffix}`;
+    const instanceData : MockInstanceData = {
+      name: uniqueName,
+      instanceType: 'EnvironmentDefinedScalableConfigurableMultiTenantDataArchitectureOptimizedForSecureInteroperableEdTechDeployments',
+      odsInstanceContexts: null,
+      odsInstanceDerivatives: null,
+    };
+    await addInstanceFormHelper(page, instanceData);
+
+    // Click the Save Changes button
+    await page.getByRole('button', { name: addInstanceSaveButton }).click();
+    await expect(page.getByRole('main')).toContainText('Validation Errors:');
+    await expect(page.getByRole('main')).toContainText('InstanceType:');
+    await expect(page.getByRole('main')).toContainText('The length of \'Instance Type\' must be 100 characters or fewer. You entered 113 characters');
+  });
+
   test('should navigate back to home when clicking "Back to Tech Console Home"', async () => {
     // Click the "Back to Tech Console Home" link
     await page.getByRole('link', { name: 'Back to Tech Console Home' }).click();
-
     // Verify that the URL is the expected home page
     await expect(page).toHaveURL(routes.home);
   });

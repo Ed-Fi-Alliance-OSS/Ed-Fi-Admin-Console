@@ -6,95 +6,185 @@
 import {
   test, expect, Page 
 } from '@playwright/test'
-import { fillAddPartnerForm } from './addPartnerFormHelpers'
+import { fillAddVendorPartnerForm } from './addPartnerFormHelpers'
 import { routes } from '../core/routes'
+import { addInstanceFormHelper } from './add-instance/AddInstanceFormHelper';
+
+const addInstanceButton = 'Add Instance';
+const addInstanceSaveButton = 'Create Instance';
+const addVendorButton = 'Add Vendor';
+const uniqueSuffix = Date.now().toString(); // Use timestamp as a unique suffix
+const uniqueInstanceName = `Test Instance ${uniqueSuffix}`;
+const instanceData = {
+  name: uniqueInstanceName,
+  instanceType: 'Type A',
+  odsInstanceContexts: [
+    { key: 'Context1', value: 'Value1' },
+  ],
+  odsInstanceDerivatives: ['ReadReplica'],
+};
+
+const openAddInstanceForm = async (page: Page) => {
+  await page.getByRole('button', { name: addInstanceButton }).click();
+};
 
 let page: Page
 const partnersTabName = 'Vendors & Applications'
 
-const openPartnerForm =  async (page: Page) => {
-  await page.getByRole('button', { name: 'Add Vendor' }).click()
+const openVendorForm =  async (page: Page) => {
+  await page.getByRole('button', { name: addVendorButton }).click();
+}
+const openVendorsTab =  async (page: Page) => {
+  await page.getByRole('tab', { name: 'Vendors & Applications' }).click();
 }
 
-const clickAddPartnerBtn = async (page: Page) => await page.getByRole('button', { name: 'Add Vendor' }).click()
+const clickAddVendorBtn = async (page: Page) => await page.getByTestId('add-user-btn').click();
 
 test.beforeAll(async ({ browser }) => {
   page = await browser.newPage()
-
-  await page.goto(routes.instance)
-  await page.waitForURL(routes.instance)
-
-  await page.getByText(partnersTabName).click()
-  await openPartnerForm(page)
+  await page.goto(routes.home)
+  await page.waitForURL(routes.home)
+  await page.waitForLoadState('networkidle', { timeout: 35000 })
+  await openAddInstanceForm(page)
+  // Create a new instance
+  await addInstanceFormHelper(page, instanceData);
+  await page.getByRole('button', { name: addInstanceSaveButton }).click();
+  await page.waitForLoadState("networkidle");
 });
 
-
-test("Add Vendor Form - Adds the vendor", async () => {
-  const testPartnerName = "eetestpartner"
-
-  await fillAddPartnerForm({
-    page,
-    partnerName: testPartnerName,
-    nameSpacePrefixes: "test"
-  })
-
-  await clickAddPartnerBtn(page)
-  await page.waitForLoadState("networkidle")
-  expect(page.getByText("success")).toBeVisible()
-  
-  expect(page.getByText(partnersTabName)).toBeVisible()
-  await page.waitForLoadState("networkidle")
-  expect(page.getByRole("paragraph", { name: partnersTabName })).toBeVisible()
-  expect(page.getByText(testPartnerName))
+test.beforeEach(async ({ browser }) => {
+  page = await browser.newPage()
+  await page.goto(routes.home)
+  await page.waitForURL(routes.home)
+  await page.waitForLoadState('networkidle', { timeout: 35000 })
+  // Open the instance page
+  await page.getByRole('link', { name: uniqueInstanceName, exact: true }).click();
+  await page.waitForLoadState("networkidle");
 })
 
+test.afterEach(async () => {
+  await page.close();
+});
+
+test.afterAll(async ({ browser }) => {
+  await browser.close();
+});
+
+test("Add Vendor Form - Adds the vendor", async () => {
+  const uniqueVendorSuffix = Date.now().toString(); // Use timestamp as a unique suffix
+  const uniqueVendorName = `Vendor ${uniqueVendorSuffix}`;
+  await expect(page.getByRole('tablist')).toContainText('Vendors & Applications');
+  openVendorsTab(page);
+  await page.waitForLoadState("networkidle");
+  await expect(page.getByLabel('Vendors & Applications').getByRole('heading')).toContainText('Vendors & Applications');
+  // Open the Add Vendor form
+  await openVendorForm(page);
+  await page.waitForLoadState("networkidle");
+  await expect(page.getByRole('heading')).toContainText('Add Vendor');
+  await fillAddVendorPartnerForm({
+    page,
+    vendorName: uniqueVendorName,
+    nameSpacePrefixes: [`http://vendor${uniqueVendorSuffix}.org`]
+  })
+  // Click the Add Vendor button
+  await clickAddVendorBtn(page);
+  await page.waitForLoadState("networkidle");
+  await expect(page.getByLabel('Vendors & Applications').getByRole('heading')).toContainText('Vendors & Applications');
+  await expect(page.getByRole('status')).toContainText('Added Vendor');
+ })
 
 test.describe("Add Vendor Form - Vendor Name", () => {
   test("Vendor Name should not be empty", async () => {
-    await fillAddPartnerForm({
+    const uniqueVendorSuffix = Date.now().toString(); // Use timestamp as a unique suffix
+    openVendorsTab(page);
+    await page.waitForLoadState("networkidle");
+    // Open the Add Vendor form
+    await openVendorForm(page);
+    await page.waitForLoadState("networkidle");
+    await fillAddVendorPartnerForm({
       page,
-      nameSpacePrefixes: "prefix"
+      vendorName: '',
+      nameSpacePrefixes: [`http://vendor${uniqueVendorSuffix}.org`]
     })
-
-    await clickAddPartnerBtn(page)
-    expect(page.getByText("Please correct the errors below and resubmit the form.")).toBeVisible()
-    expect(page.getByText("Vendor Name should not be empty.")).toBeVisible()
+    // Click the Add Vendor button
+    await clickAddVendorBtn(page);
+    await page.waitForLoadState("networkidle");
+    await expect(page.locator('form')).toContainText('Vendor Name should not be empty.');
   })
 
   test("Vendor Name should have at least 2 letters/digits", async () => {
-    await fillAddPartnerForm({
-        page,
-        partnerName: "a",
-        nameSpacePrefixes: "prefix"
+    const uniqueVendorSuffix = Date.now().toString(); // Use timestamp as a unique suffix
+    openVendorsTab(page);
+    await page.waitForLoadState("networkidle");
+    // Open the Add Vendor form
+    await openVendorForm(page);
+    await page.waitForLoadState("networkidle");
+    await fillAddVendorPartnerForm({
+      page,
+      vendorName: 'a',
+      nameSpacePrefixes: [`http://vendor${uniqueVendorSuffix}.org`]
     })
-
-    await page.getByRole("button", { name: "Add Vendor" }).click()
-    expect(page.getByText("Please correct the errors below and resubmit the form.")).toBeVisible()
-    expect(page.getByText("Vendor Name should have at least 2 letters.")).toBeVisible()
+    // Click the Add Vendor button
+    await clickAddVendorBtn(page);
+    await page.waitForLoadState("networkidle");
+    await expect(page.getByRole('status')).toContainText('ErrorVendor Name should have at least 2 letters.');
+  })
+  test("Vendor Name should have at least only letters/digits", async () => {
+    const uniqueVendorSuffix = Date.now().toString(); // Use timestamp as a unique suffix
+    openVendorsTab(page);
+    await page.waitForLoadState("networkidle");
+    // Open the Add Vendor form
+    await openVendorForm(page);
+    await page.waitForLoadState("networkidle");
+    await fillAddVendorPartnerForm({
+      page,
+      vendorName: 'vendor-1234',
+      nameSpacePrefixes: [`http://vendor${uniqueVendorSuffix}.org`]
+    })
+    // Click the Add Vendor button
+    await clickAddVendorBtn(page);
+    await page.waitForLoadState("networkidle");
+    await expect(page.locator('form')).toContainText('Field must only contain alpha-numeric characters and/or spaces');
   })
 })
 
 test.describe("Add Vendor Form - Prefixes", () => {
     test("Namespace Prefixes should not be empty", async () => {
-      await fillAddPartnerForm({
+      const uniqueVendorSuffix = Date.now().toString(); // Use timestamp as a unique suffix
+      const uniqueVendorName = `Vendor ${uniqueVendorSuffix}`;
+      openVendorsTab(page);
+      await page.waitForLoadState("networkidle");
+      // Open the Add Vendor form
+      await openVendorForm(page);
+      await page.waitForLoadState("networkidle");
+      await fillAddVendorPartnerForm({
         page,
-        partnerName: "partner"
+        vendorName: uniqueVendorName,
+        nameSpacePrefixes: null
       })
-
-      await page.getByRole("button", { name: "Add Vendor" }).click()
-      expect(page.getByText("Please correct the errors below and resubmit the form.")).toBeVisible()
-      expect(page.getByText("Namespace Prefixes should not be empty.")).toBeVisible()
+      // Click the Add Vendor button
+      await clickAddVendorBtn(page);
+      await page.waitForLoadState("networkidle");
+      await expect(page.getByRole('status')).toContainText('Namespace Prefixes is required.');
     })
-
-    test("Namespace Prefixes Name should have at least 2 letters/digits", async () => {
-      await fillAddPartnerForm({
+    
+    test("Namespace Prefixes Name should fail with invalid url", async () => {
+      const uniqueVendorSuffix = Date.now().toString(); // Use timestamp as a unique suffix
+      const uniqueVendorName = `Vendor ${uniqueVendorSuffix}`;
+      openVendorsTab(page);
+      await page.waitForLoadState("networkidle");
+      // Open the Add Vendor form
+      await openVendorForm(page);
+      await page.waitForLoadState("networkidle");
+      await fillAddVendorPartnerForm({
         page,
-        partnerName: "partner",
-        nameSpacePrefixes: "a"
+        vendorName: uniqueVendorName,
+        nameSpacePrefixes: ["prefix"]
       })
-
-      await page.getByRole("button", { name: "Add Vendor" }).click()
+      // Click the Add Vendor button
+      await clickAddVendorBtn(page);
+      await page.waitForLoadState("networkidle");
       expect(page.getByText("Please correct the errors below and resubmit the form.")).toBeVisible()
-      expect(page.getByText("Namespace Prefixes should have at least 2 letters.")).toBeVisible()
+      await expect(page.getByRole('status')).toContainText('Invalid url')
     })
 })
