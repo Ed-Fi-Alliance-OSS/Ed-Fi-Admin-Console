@@ -28,8 +28,6 @@ export function TenantInstanceForm() {
   const { getCurrentTenant } = useTenantInfo();
   const tenantId = getCurrentTenant()?.tenantId?.toString() ?? '1'; //it defaults to `'1'` as the fallback value since tenants start at 1 by default.
   
-
-
   useEffect(() => {
     setLoading(true)
     getTenantById(tenantId)
@@ -42,30 +40,6 @@ export function TenantInstanceForm() {
         errorToast(`Error fetching tenant data: ${error.message}`)
       })
   }, [tenantId])
-
-  function onSave() {
-    // console.log('the data is saving')
-    // console.log(tenantInstanceData)
-    // setLoading(true)
-    // updateTenant(TenantId, {
-    //   document: { edfiApiDiscoveryUrl: tenantInstanceData.edfiApiDiscoveryUrl ?? '' },
-    //   tenantId: TenantId
-    // }).then(() => {
-    //   setLoading(false)
-    //   successToast('Tenant Instance updated successfully')
-    // })
-  }
-
-  function onInputChange(val) {
-    //   if(!isUrl) {
-    //     handleSingleError({
-    //       field: 'edfiApiDiscoveryUrl',
-    //       error: { message: 'Please enter a valid URL' } 
-    //     })
-    //   }
-
-    //   setTenantInstanceData({ })
-  }
 
   return (
     <Flex
