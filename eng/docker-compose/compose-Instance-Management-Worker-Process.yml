@@ -28,8 +28,8 @@ services:
       EdFi_AdminConsole_AdminApiSettings__GrantType: ${GRANTTYPE:-client_credentials}
       EdFi_AdminConsole_AdminApiSettings__Scope: ${SCOPE:-edfi_admin_api/full_access}
     volumes:
-      - service-logs:/var/log/acinstancesvc
+      - vol-svc-instance-logs:/var/log/acinstancesvc
 
 volumes:
-  service-logs:
-    name: instance-management-service-logs
+  vol-svc-instance-logs:
+    name: vol-svc-instance-logs

@@ -10,7 +10,7 @@ import {
 import { IApiServices } from './test-plugin/functions/ApiService'
 
 export interface BasePluginFunction {
-  'ApiService': (config: EdxAppConfig, apiService: typeof useApiService) => IApiServices,
+  'ApiService': (config: EdxAppConfig, createApiService: (baseUrl: string) => ReturnType<typeof useApiService>) => IApiServices,
 }
 
 export type BasePluginFunctionNames = keyof BasePluginFunction
