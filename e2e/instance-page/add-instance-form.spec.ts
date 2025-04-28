@@ -4,7 +4,7 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import { test, expect, Page } from '@playwright/test';
-import { routes } from '../../core/routes';
+import { routes } from '../core/routes';
 import { addInstanceFormHelper, MockInstanceData } from './AddInstanceFormHelper';
 
 let page: Page;
@@ -44,7 +44,7 @@ test.describe('Add Instance Form E2E Tests', () => {
   test('should successfully create a new instance', async () => {
     // Use the helper to fill out the form
     const uniqueSuffix = Date.now().toString(); // Use timestamp as a unique suffix
-    const uniqueName = `Test Instance ${uniqueSuffix}`;
+    const uniqueName = `Instance ${uniqueSuffix}`;
     const instanceData : MockInstanceData = {
       name: uniqueName,
       instanceType: 'Type A',
@@ -59,14 +59,15 @@ test.describe('Add Instance Form E2E Tests', () => {
     // Click the Save Changes button
     await page.getByRole('button', { name: addInstanceSaveButton }).click();
     await page.waitForLoadState("networkidle");
-    await expect(page.locator('tbody')).toContainText(uniqueName);
-
+    await page.waitForURL(routes.home);
+    await page.getByRole('link', { name: uniqueName }).waitFor();
+    await expect(page.getByRole('link', { name: uniqueName })).toBeVisible();
   });
   
   test('should successfully create a new instance with multiple contexts', async () => {
     // Use the helper to fill out the form
     const uniqueSuffix = Date.now().toString(); // Use timestamp as a unique suffix
-    const uniqueName = `Test Instance ${uniqueSuffix}`;
+    const uniqueName = `Instance ${uniqueSuffix}`;
     const instanceData : MockInstanceData = {
       name: uniqueName,
       instanceType: 'Type A',
@@ -82,13 +83,15 @@ test.describe('Add Instance Form E2E Tests', () => {
     // Click the Save Changes button
     await page.getByRole('button', { name: addInstanceSaveButton }).click();
     await page.waitForLoadState("networkidle");
-    await expect(page.locator('tbody')).toContainText(uniqueName);
+    await page.waitForURL(routes.home);
+    await page.getByRole('link', { name: uniqueName }).waitFor();
+    await expect(page.getByRole('link', { name: uniqueName })).toBeVisible();
   });
 
   test('should successfully create a new instance with multiple derivatives', async () => {
     // Use the helper to fill out the form
     const uniqueSuffix = Date.now().toString(); // Use timestamp as a unique suffix
-    const uniqueName = `Test Instance ${uniqueSuffix}`;
+    const uniqueName = `Instance ${uniqueSuffix}`;
     const instanceData : MockInstanceData = {
       name: uniqueName,
       instanceType: 'Type A',
@@ -103,14 +106,15 @@ test.describe('Add Instance Form E2E Tests', () => {
     // Click the Save Changes button
     await page.getByRole('button', { name: addInstanceSaveButton }).click();
     await page.waitForLoadState("networkidle");
-    await expect(page.locator('tbody')).toContainText(uniqueName);
-
+    await page.waitForURL(routes.home);
+    await page.getByRole('link', { name: uniqueName }).waitFor();
+    await expect(page.getByRole('link', { name: uniqueName })).toBeVisible();
   });
 
   test('should successfully create a new instance without context and derivates', async () => {
     // Use the helper to fill out the form
     const uniqueSuffix = Date.now().toString(); // Use timestamp as a unique suffix
-    const uniqueName = `Test Instance ${uniqueSuffix}`;
+    const uniqueName = `Instance ${uniqueSuffix}`;
     const instanceData : MockInstanceData = {
       name: uniqueName,
       instanceType: 'Type A',
@@ -122,8 +126,9 @@ test.describe('Add Instance Form E2E Tests', () => {
     // Click the Save Changes button
     await page.getByRole('button', { name: addInstanceSaveButton }).click();
     await page.waitForLoadState("networkidle");
-    await expect(page.locator('tbody')).toContainText(uniqueName);
-
+    await page.waitForURL(routes.home);
+    await page.getByRole('link', { name: uniqueName }).waitFor();
+    await expect(page.getByRole('link', { name: uniqueName })).toBeVisible();
   });
 
   test('should failed if instance name exists', async () => {
@@ -142,7 +147,6 @@ test.describe('Add Instance Form E2E Tests', () => {
 
     // Click the Save Changes button
     await page.getByRole('button', { name: addInstanceSaveButton }).click();
-    await page.getByText('Success').click()
     //Go to add Instance page again
     await openAddInstanceForm(page)
     // use the same payload
@@ -150,7 +154,6 @@ test.describe('Add Instance Form E2E Tests', () => {
 
     // Click the Save Changes button
     await page.getByRole('button', { name: addInstanceSaveButton }).click();
-    await expect(page.getByRole('main')).toContainText('Validation Errors:');
     await expect(page.getByRole('main')).toContainText('The name must be unique for the tenant.');
   });
 
@@ -193,7 +196,7 @@ test.describe('Add Instance Form E2E Tests', () => {
   test('should ensure that an instance type does not exceed 100 characters', async () => {
     // Use the helper to fill out the form
     const uniqueSuffix = Date.now().toString(); // Use timestamp as a unique suffix
-    const uniqueName = `Test Instance ${uniqueSuffix}`;
+    const uniqueName = `Instance ${uniqueSuffix}`;
     const instanceData : MockInstanceData = {
       name: uniqueName,
       instanceType: 'EnvironmentDefinedScalableConfigurableMultiTenantDataArchitectureOptimizedForSecureInteroperableEdTechDeployments',

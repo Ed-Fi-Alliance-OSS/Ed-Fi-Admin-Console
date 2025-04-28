@@ -6,9 +6,9 @@
 import {
   test, expect, Page 
 } from '@playwright/test'
-import { fillAddVendorPartnerForm } from './addPartnerFormHelpers'
+import { fillAddVendorPartnerForm } from './addVendorFormHelpers'
 import { routes } from '../core/routes'
-import { addInstanceFormHelper } from './add-instance/AddInstanceFormHelper';
+import { addInstanceFormHelper } from './AddInstanceFormHelper';
 
 const addInstanceButton = 'Add Instance';
 const addInstanceSaveButton = 'Create Instance';
