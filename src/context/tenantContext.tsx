@@ -42,7 +42,15 @@ interface TenantsContextProviderProps {
 export const TenantsContextProvider: FC<TenantsContextProviderProps> = ({ children }) => {
   const { config } = useConfig()
   const { functionalities } = usePluginContext()
-  const apiService = functionalities.ApiService?.(config, useApiService)
+  const adminApi = useApiService(config.api.edfiAdminApiBaseUri)
+  const apiService = functionalities.ApiService?.(config, () => ({
+    api: adminApi.api,
+    handleAxiosError: adminApi.handleAxiosError,
+    createDefaultError: adminApi.createDefaultError,
+    get: adminApi.get,
+    post: adminApi.post,
+    put: adminApi.put
+  }))
   const navigate = useNavigate()
   const [ tenants, setTenants ] = useState<Tenant[]>()
   const [ selectedTenant, setSelectedTenant ] = useState<Tenant>()

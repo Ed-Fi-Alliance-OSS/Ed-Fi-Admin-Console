@@ -17,48 +17,32 @@ import {
 import useEDXToast from '../../../hooks/common/useEDXToast'
 import useFormValidationErrors from '../../../hooks/validations/useFormValidationErrors'
 import useTenantService from '../../../services/AdminActions/Tenant/TenantService'
+import useTenantInfo from '../../../hooks/useTenantInfo'
 
 export function TenantInstanceForm() {
   const { errors, handleAllErrors, handleSingleError } = useFormValidationErrors()
-  const [ tenantInstanceData, setTenantInstanceData ] = useState<Tenant>()
+  const [tenantInstanceData, setTenantInstanceData] = useState<Tenant>()
   const { getTenantById } = useTenantService()
-  const [ loading, setLoading ] = useState(false)
-  const { successToast } = useEDXToast(1000)
-  const TenantId = '1'
-
+  const [loading, setLoading] = useState(false)
+  const { successToast, errorToast } = useEDXToast(1000)
+  const { getCurrentTenant } = useTenantInfo();
+  const tenantId = getCurrentTenant()?.tenantId?.toString() ?? '1'; //it defaults to `'1'` as the fallback value since tenants start at 1 by default.
+  
   useEffect(() => {
     setLoading(true)
-    getTenantById(TenantId).then((tenant) => {
-      setLoading(false)
-      setTenantInstanceData(tenant)
-    })
-  }, [])
-
-  function onSave() {
-    // console.log('the data is saving')
-    // console.log(tenantInstanceData)
-    // setLoading(true)
-    // updateTenant(TenantId, {
-    //   document: { edfiApiDiscoveryUrl: tenantInstanceData.edfiApiDiscoveryUrl ?? '' },
-    //   tenantId: TenantId
-    // }).then(() => {
-    //   setLoading(false)
-    //   successToast('Tenant Instance updated successfully')
-    // })
-  }
-
-  function onInputChange(val) {
-  //   if(!isUrl) {
-  //     handleSingleError({
-  //       field: 'edfiApiDiscoveryUrl',
-  //       error: { message: 'Please enter a valid URL' } 
-  //     })
-  //   }
-
-  //   setTenantInstanceData({ })
-  }
+    getTenantById(tenantId)
+      .then((tenant) => {
+        setLoading(false)
+        setTenantInstanceData(tenant)
+      })
+      .catch((error) => {
+        setLoading(false)
+        errorToast(`Error fetching tenant data: ${error.message}`)
+      })
+  }, [tenantId])
 
   return (
+    
     <Flex
       flexDir="column"
       w="full"
@@ -66,34 +50,34 @@ export function TenantInstanceForm() {
       {loading && <Spinner />}
 
       <FormControl>
-        <CustomFormLabel 
-          htmlFor='name' 
+        <CustomFormLabel
+          htmlFor='name'
           text='Tenant Name'
         />
 
-        <CustomInput 
+        <CustomInput
           readOnly
           error={errors && errors['name'] && errors['name'].message}
           id='name'
           value={tenantInstanceData?.document.name}
-          onChange={() => {}}
+          onChange={() => { }}
         />
 
         <Flex
           flexDir='column'
           mt={4}
         >
-          <CustomFormLabel 
+          <CustomFormLabel
             htmlFor='edfiApiDiscoveryUrl'
             text='Ed-Fi Base URL'
           />
 
-          <CustomInput 
+          <CustomInput
             readOnly
             error={errors && errors['edfiApiDiscoveryUrl'] && errors['edfiApiDiscoveryUrl'].message}
             id='edfiApiDiscoveryUrl'
             value={tenantInstanceData?.document.edfiApiDiscoveryUrl}
-            onChange={() => {}}
+            onChange={() => { }}
           />
         </Flex>
       </FormControl>
@@ -102,7 +86,7 @@ export function TenantInstanceForm() {
 }
 
 export function TenantInstanceTab() {
-  const [ isSaving, setIsSaving ] = useState(false)
+  const [isSaving, setIsSaving] = useState(false)
 
   return (
     <Flex
