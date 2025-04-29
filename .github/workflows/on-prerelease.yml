@@ -293,7 +293,7 @@ jobs:
   docker-compose-zip:
     name: Create Docker Compose Zip Asset
     runs-on: ubuntu-latest
-    needs: azure-publish # Ensure it runs after initial setup/versioning if needed
+    # needs: azure-publish # Ensure it runs after initial setup/versioning if needed
     permissions:
       contents: write # Needed to upload release assets
     steps:
