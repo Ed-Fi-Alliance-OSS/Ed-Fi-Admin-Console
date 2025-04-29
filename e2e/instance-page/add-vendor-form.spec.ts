@@ -14,7 +14,7 @@ const addInstanceButton = 'Add Instance';
 const addInstanceSaveButton = 'Create Instance';
 const addVendorButton = 'Add Vendor';
 const uniqueSuffix = Date.now().toString(); // Use timestamp as a unique suffix
-const uniqueInstanceName = `Test Instance ${uniqueSuffix}`;
+const uniqueInstanceName = `Instance ${uniqueSuffix}`;
 const instanceData = {
   name: uniqueInstanceName,
   instanceType: 'Type A',

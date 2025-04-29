@@ -189,7 +189,8 @@ test.describe('Add Instance Form E2E Tests', () => {
 
     // Click the Save Changes button
     await page.getByRole('button', { name: addInstanceSaveButton }).click();
-    await expect(page.getByRole('main')).toContainText('The length of \'Name\' must be 100 characters or fewer. You entered 114 characters.');
+    await page.waitForLoadState('networkidle');
+    await expect(page.getByRole('main')).toContainText('The name must not exceed 58 characters');
 
   });
 
