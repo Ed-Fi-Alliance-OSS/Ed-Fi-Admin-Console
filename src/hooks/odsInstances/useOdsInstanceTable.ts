@@ -97,6 +97,10 @@ const useOdsInstanceTable = () => {
     onShowConfirmSetDefaultModal()
   }
 
+  const onFetchInstancesData = async () => {
+    await fetchInstancesList();
+  }
+
   const onOpenSetUpModal = (instanceId: number) => {
     const instanceById = paginatedData.data.find(i => i.id == instanceId)
 
@@ -127,7 +131,8 @@ const useOdsInstanceTable = () => {
     onShowSetUpWizardModal,
     onCloseSetUpWizardModal,
     onOpenSetUpModal,
-    onSetIsDefault: () => {}
+    onSetIsDefault: () => {},
+    onFetchInstancesData
   }
 }
 

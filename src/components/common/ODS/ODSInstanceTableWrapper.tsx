@@ -20,11 +20,11 @@ import ODSInstanceManagementTable from './ODSIntanceManagementTable'
 import SetUpInstanceModal from './SetUpInstanceModal'
 
 interface ODSInstanceTableWrapperProps {
-    tableMode: ODSInstanceTableMode
-    tenants: Tenant[]
-    pickedInstance: ODSInstance | null
-    onSelectInstance: (instance: ODSInstance) => void
-    onUpdateInstancesCount: (count: number) => void
+  tableMode: ODSInstanceTableMode
+  tenants: Tenant[]
+  pickedInstance: ODSInstance | null
+  onSelectInstance: (instance: ODSInstance) => void
+  onUpdateInstancesCount: (count: number) => void
 }
 
 const ODSInstanceTableWrapper = ({ tenants, tableMode, pickedInstance, onSelectInstance, onUpdateInstancesCount }: ODSInstanceTableWrapperProps) => {
@@ -39,7 +39,8 @@ const ODSInstanceTableWrapper = ({ tenants, tableMode, pickedInstance, onSelectI
     onCloseConfirmSetDefaultModal,
     showSetUpWizardModal,
     onCloseSetUpWizardModal,
-    onOpenSetUpModal
+    onOpenSetUpModal,
+    onFetchInstancesData
   } = useOdsInstanceTable()
 
   const {
@@ -53,29 +54,33 @@ const ODSInstanceTableWrapper = ({ tenants, tableMode, pickedInstance, onSelectI
 
   useEffect(() => {
     onUpdateInstancesCount(paginatedData.data?.length ?? 0)
-  }, [ paginatedData.data ])
+  }, [paginatedData.data])
 
   function onAddBtnClick() {
     nav('/addinstance')
   }
 
+  function onRefreshBtnClick() {
+    onFetchInstancesData();
+  }
+
   return (
-    <> 
-      { selectedInstance && <ConfirmSetDefaultInstanceModal
+    <>
+      {selectedInstance && <ConfirmSetDefaultInstanceModal
         instance={selectedInstance}
         show={showConfirmSetDefaultModal}
         updatingInstance={updatingIsDefault.loading}
         onClose={onCloseConfirmSetDefaultModal}
         onSetIsDefault={onSetIsDefault}
-      /> }
+      />}
 
-      { selectedInstance && <SetUpInstanceModal 
-        instance={selectedInstance} 
-        show={showSetUpWizardModal} 
+      {selectedInstance && <SetUpInstanceModal
+        instance={selectedInstance}
+        show={showSetUpWizardModal}
         onClose={onCloseSetUpWizardModal}
-      /> }
+      />}
 
-      { tableMode == 'Display' && <Flex
+      {tableMode == 'Display' && <Flex
         alignItems='center'
         justifyContent='space-between'
       >
@@ -88,25 +93,44 @@ const ODSInstanceTableWrapper = ({ tenants, tableMode, pickedInstance, onSelectI
             {getString('app.ODS_INSTANCES')}
           </Heading>
 
-          <Button
-            border='1px'
-            borderColor='blue.400'
-            color='blue.600'
-            ml='16px'
-            padding='10px'
-            size='sm'
-            onClick={onAddBtnClick}
+          <Flex
+            alignItems='flex-end'
+            justifyContent='end'
+            width='full'
           >
-            Add Instance
-          </Button>
+            <Button
+              border='1px'
+              borderColor='blue.400'
+              color='blue.600'
+              ml='16px'
+              padding='10px'
+              size='sm'
+              onClick={onRefreshBtnClick}
+            >
+              Refresh
+            </Button>
+
+            <Button
+              border='1px'
+              borderColor='blue.400'
+              color='blue.600'
+              ml='16px'
+              padding='10px'
+              size='sm'
+              onClick={onAddBtnClick}
+            >
+              Add Instance
+            </Button>
+          </Flex>
+
         </Flex>
-      </Flex> }  
-            
+      </Flex>}
+
       <Flex
         mt='16px'
         w='full'
       >
-        <ODSInstanceManagementTable 
+        <ODSInstanceManagementTable
           tableHeaders={[
             <ControlTableHeader headerData={{
               text: '',
@@ -115,7 +139,7 @@ const ODSInstanceTableWrapper = ({ tenants, tableMode, pickedInstance, onSelectI
               showSorting: false,
               sortingType: orderBy.order,
               onSortAsc: () => onOrderBy('Year', 'asc'),
-              onSortDesc: () => onOrderBy('Year', 'desc') 
+              onSortDesc: () => onOrderBy('Year', 'desc')
             }}
             />,
             <ControlTableHeader headerData={{
@@ -125,7 +149,7 @@ const ODSInstanceTableWrapper = ({ tenants, tableMode, pickedInstance, onSelectI
               showSorting: true,
               sortingType: orderBy.order,
               onSortAsc: () => onOrderBy('InstanceName', 'asc'),
-              onSortDesc: () => onOrderBy('InstanceName', 'desc') 
+              onSortDesc: () => onOrderBy('InstanceName', 'desc')
             }}
             />,
             <ControlTableHeader headerData={{
@@ -135,7 +159,7 @@ const ODSInstanceTableWrapper = ({ tenants, tableMode, pickedInstance, onSelectI
               showSorting: true,
               sortingType: orderBy.order,
               onSortAsc: () => onOrderBy('EdFiVersion', 'asc'),
-              onSortDesc: () => onOrderBy('EdFiVersion', 'desc') 
+              onSortDesc: () => onOrderBy('EdFiVersion', 'desc')
             }}
             />,
             <ControlTableHeader headerData={{
@@ -145,7 +169,7 @@ const ODSInstanceTableWrapper = ({ tenants, tableMode, pickedInstance, onSelectI
               showSorting: true,
               sortingType: orderBy.order,
               onSortAsc: () => onOrderBy('EdFiDataModels', 'asc'),
-              onSortDesc: () => onOrderBy('EdFiDataModels', 'desc') 
+              onSortDesc: () => onOrderBy('EdFiDataModels', 'desc')
             }}
             />,
             <ControlTableHeader headerData={{
@@ -155,7 +179,7 @@ const ODSInstanceTableWrapper = ({ tenants, tableMode, pickedInstance, onSelectI
               showSorting: true,
               sortingType: orderBy.order,
               onSortAsc: () => onOrderBy('Status', 'asc'),
-              onSortDesc: () => onOrderBy('Status', 'desc') 
+              onSortDesc: () => onOrderBy('Status', 'desc')
             }}
             />,
             <ControlTableHeader headerData={{
@@ -165,7 +189,7 @@ const ODSInstanceTableWrapper = ({ tenants, tableMode, pickedInstance, onSelectI
               showSorting: true,
               sortingType: orderBy.order,
               onSortAsc: () => onOrderBy('WorkerStatus', 'asc'),
-              onSortDesc: () => onOrderBy('WorkerStatus', 'desc') 
+              onSortDesc: () => onOrderBy('WorkerStatus', 'desc')
             }}
             />,
             <ControlTableHeader headerData={{
@@ -175,7 +199,7 @@ const ODSInstanceTableWrapper = ({ tenants, tableMode, pickedInstance, onSelectI
               showSorting: true,
               sortingType: orderBy.order,
               onSortAsc: () => onOrderBy('Year', 'asc'),
-              onSortDesc: () => onOrderBy('Year', 'desc') 
+              onSortDesc: () => onOrderBy('Year', 'desc')
             }}
             />
           ]}
@@ -183,7 +207,7 @@ const ODSInstanceTableWrapper = ({ tenants, tableMode, pickedInstance, onSelectI
           loading={isFetchingData}
           selectedInstance={pickedInstance}
           tableMode={tableMode}
-          tenants={tenants} 
+          tenants={tenants}
           updatingIsDefault={updatingIsDefault}
           onOpenSetDefaultModal={onOpenSetDefaultModal}
           onOpenSetUpModal={onOpenSetUpModal}
