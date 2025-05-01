@@ -22,7 +22,7 @@ export default defineConfig(({ mode }) => {
       //   key: fs.readFileSync('./eng/docker-compose/ssl/server.key'),
       //   cert: fs.readFileSync('./eng/docker-compose/ssl/server.crt')
       // },
-      host: !isProd,
+      host: true,
       port: +(process.env.PORT || 8598),
       watch: {
         ignored: [
