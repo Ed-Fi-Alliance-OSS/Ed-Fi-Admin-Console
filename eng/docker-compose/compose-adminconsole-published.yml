@@ -29,3 +29,6 @@ services:
     container_name: ed-fi-adminconsole
     ports:
       - "${ADMIN_CONSOLE_PORT:-8598}:${ADMIN_CONSOLE_PORT:-8598}"
+
+volumes:
+  shared_data:
