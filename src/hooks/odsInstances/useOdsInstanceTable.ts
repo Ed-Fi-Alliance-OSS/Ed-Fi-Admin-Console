@@ -98,7 +98,7 @@ const useOdsInstanceTable = () => {
   }
 
   const onFetchInstancesData = async () => {
-    await fetchInstancesList();
+    await fetchInstancesList()
   }
 
   const onOpenSetUpModal = (instanceId: number) => {

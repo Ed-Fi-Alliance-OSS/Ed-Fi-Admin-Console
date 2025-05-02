@@ -60,8 +60,8 @@ const ODSInstanceTableWrapper = ({ tenants, tableMode, pickedInstance, onSelectI
     nav('/addinstance')
   }
 
-  function onRefreshBtnClick() {
-    onFetchInstancesData();
+  async function onRefreshBtnClick() {
+    await onFetchInstancesData();
   }
 
   return (
@@ -100,14 +100,14 @@ const ODSInstanceTableWrapper = ({ tenants, tableMode, pickedInstance, onSelectI
           >
             <Button
               border='1px'
-              borderColor='blue.400'
-              color='blue.600'
+              borderColor= { isFetchingData ? 'gray.400' : 'blue.400'}
+              color={ isFetchingData ? 'gray.600' : 'blue.600'}
               ml='16px'
               padding='10px'
               size='sm'
               onClick={onRefreshBtnClick}
             >
-              Refresh
+              { isFetchingData ? 'Loading...' : 'Refresh' }
             </Button>
 
             <Button
