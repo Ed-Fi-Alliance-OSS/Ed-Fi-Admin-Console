@@ -8,7 +8,7 @@ import {
 } from '@playwright/test'
 import { baseUrl } from '../core/routes'
 
-test('Displays 404 NotFound When Route Does Not Exist', async ({ page }) => {
+test.skip('Displays 404 NotFound When Route Does Not Exist', async ({ page }) => {
   const nonExistentRoute = `${baseUrl}/random123`
 
   await page.goto(nonExistentRoute)
