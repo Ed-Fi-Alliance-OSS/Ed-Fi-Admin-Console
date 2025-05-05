@@ -26,7 +26,7 @@
     "@emotion/react": "11.14.0",
     "@emotion/styled": "11.11.0",
     "@fontsource/archivo-narrow": "4.5.12",
-    "@fontsource/open-sans": "4.5.14",
+    "@fontsource/open-sans": "5.2.5",
     "@fontsource/poppins": "5.2.6",
     "@novu/notification-center": "2.0.0-canary.0",
     "@types/json-server": "^0.14.8",
