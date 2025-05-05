@@ -13,7 +13,7 @@
     "dev:docker": "set VITE_ENV=local && vite",
     "build": "vite build --mode development",
     "build:prod": "vite build --mode production",
-    "preview": "vite preview",
+    "preview": "vite preview --port 8598 --host",
     "tests": "playwright test",
     "lint": "eslint . --quiet",
     "lint:fix": "eslint . --quiet --fix"

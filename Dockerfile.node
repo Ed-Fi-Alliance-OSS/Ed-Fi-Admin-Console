@@ -18,12 +18,15 @@ COPY . /app
 
 RUN npm run build:prod
 
-COPY config.example.ports.json /app/dist/config.json
+COPY mockdata/* /dist/mockdata/ 
+COPY public/* /dist/ 
+COPY config.example.ports.json /dist/app.config.json
 
 # Remove unnecessary files and folders
-RUN rm -rf .github .npmrc docker eng docs e2e src
+RUN rm -rf .github .npmrc docker eng docs e2e
 
 EXPOSE 8598
 
-# This server is using Vite to serve ths dist folder.
-CMD ["npm", "run", "preview", "--host"]
+# Use node directly
+# https://stackoverflow.com/questions/51191378/what-is-the-point-of-using-pm2-and-docker-together
+CMD ["node", "server.mjs", "--max-http-header-size=16384"]
