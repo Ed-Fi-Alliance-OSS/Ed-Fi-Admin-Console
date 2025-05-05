@@ -267,7 +267,7 @@ jobs:
           path: ${{ env.MANIFEST_FILE }}
           sha256: "${{ needs.sbom-create.outputs.sbom-hash-code }}"
 
-      - name: Attach to release
+      - name: Attach SBOM to release
         shell: pwsh
         run: |
           $release = "${{ env.REF }}"
@@ -289,6 +289,47 @@ jobs:
               -Uri "$($url)?name=$($uploadName)" `
               -Headers $gh_headers `
               -InFile $uploadName
+
+  docker-compose-zip:
+    name: Create Docker Compose Zip Asset
+    runs-on: ubuntu-latest
+    # needs: azure-publish # Ensure it runs after initial setup/versioning if needed
+    permissions:
+      contents: write # Needed to upload release assets
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
+      - name: Create Docker Compose Zip
+        run: zip -r AdminConsole.DockerCompose.zip ./eng/docker-compose
+
+      - name: Upload Docker Compose Zip to Release
+        shell: pwsh
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          $release = "${{ env.REF }}"
+          $repo = "${{ github.repository }}"
+          $token = $env:GITHUB_TOKEN
+          $file = "AdminConsole.DockerCompose.zip"
+          $uploadName = "AdminConsole.DockerCompose.zip"
+          $url = "https://api.github.com/repos/$repo/releases/tags/$release"
+          $gh_headers = @{
+              "Accept"        = "application/vnd.github+json"
+              "Authorization" = "Bearer $token"
+          }
+          Write-Host "Fetching release ID for tag $release..."
+          $response = Invoke-RestMethod -Uri $url -Headers $gh_headers
+          $releaseId = $response.id
+          Write-Host "Found release ID: $releaseId"
+          $uploadUrl = "https://uploads.github.com/repos/$repo/releases/$releaseId/assets?name=$($uploadName)"
+          $gh_headers["Content-Type"] = "application/zip"
+          Write-Host "Uploading $file to $uploadUrl..."
+          Invoke-RestMethod -Method POST `
+              -Uri $uploadUrl `
+              -Headers $gh_headers `
+              -InFile $file
+          Write-Host "Upload complete."
 
   provenance-create:
     name: Create Provenance
