@@ -8,7 +8,7 @@ import { Page } from '@playwright/test'
 interface FillAddApplicationFormParams {
     page: Page
     applicationName?: string
-    vendor?: 'test'
+    vendor: string | null
     claimSet: boolean 
 }
 
@@ -16,8 +16,7 @@ const fillAddApplicationForm = async ({ page, applicationName, vendor, claimSet 
   if (applicationName) {
     await page.getByLabel('Application Name').fill(applicationName)
   }
- 
-  await page.getByLabel('Vendor').selectOption(vendor? '7' : '0')
+  await page.getByLabel('Vendor', { exact: true }).selectOption(vendor? vendor : 'Select Option');
   await page.getByLabel('Claim Set').selectOption(claimSet? 'AB Connect' : 'Select Option')
 }
 

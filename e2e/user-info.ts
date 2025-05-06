@@ -5,5 +5,5 @@
 
 export const userinfo = {
   'username': 'adminconsole-user',
-  'password': 'admin'
+  'password': '123456'
 } 
