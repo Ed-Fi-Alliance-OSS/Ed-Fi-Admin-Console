@@ -8,7 +8,7 @@ import {
 } from '@playwright/test'
 import { fillAddVendorPartnerForm } from './addVendorFormHelpers'
 import { routes } from '../core/routes'
-import { addInstanceFormHelper } from './AddInstanceFormHelper';
+import { addInstanceFormHelper } from './addInstanceFormHelper';
 
 const defaultInstanceName = 'tenant1 ODS';
 const addInstanceButton = 'Add Instance';
