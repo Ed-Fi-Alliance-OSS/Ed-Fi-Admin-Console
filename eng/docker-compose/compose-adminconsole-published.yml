@@ -21,7 +21,7 @@ services:
       EG_auth__postLogoutRedirectUri: https://localhost/${ADMIN_CONSOLE_VIRTUAL_NAME:-adminconsole}
       EG_auth__clientId: ${ADMIN_CONSOLE_CLIENT_ID:-ac}
       EG_auth__scope: ${ADMIN_CONSOLE_SCOPE:-edfi_admin_api/full_access}
-      EG_app__basePath: ${ADMIN_CONSOLE_VIRTUAL_NAME:-adminconsole}
+      EG_app__basePath: ${ADMIN_CONSOLE_VIRTUAL_NAME}
     volumes:
       - shared_data:/app
     restart: always
@@ -29,3 +29,6 @@ services:
     container_name: ed-fi-adminconsole
     ports:
       - "${ADMIN_CONSOLE_PORT:-8598}:${ADMIN_CONSOLE_PORT:-8598}"
+
+volumes:
+  shared_data:
