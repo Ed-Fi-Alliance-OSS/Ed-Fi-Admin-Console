@@ -83,6 +83,9 @@ jobs:
       - name: Run the build
         run: npm run build
 
+      - name: Run ESLint
+        run: npm run lint
+
       # No unit tests to run yet, and linter is broken. SF 2/10/2025
 
   docker-analysis:
