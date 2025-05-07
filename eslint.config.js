@@ -53,7 +53,7 @@ export default [
           when: 'multiline' 
         }
       ],
-      'react/jsx-first-prop-new-line': [ 'error', 'multiprop' ],
+      'react/jsx-first-prop-new-line': [ 'error', 'multiline-multiprop' ],
       'react/jsx-equals-spacing': [ 'error', 'never' ],
       'react/jsx-sort-props': [
         'error', {

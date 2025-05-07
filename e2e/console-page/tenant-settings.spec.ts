@@ -20,26 +20,26 @@ test.describe('Home Page Tests', () => {
   })
 
   test('Home page should show Tenant Settings', async () => {
-    await expect(page.getByRole('link', { name: 'Tenant Instance Settings' })).toBeVisible();
+    await expect(page.getByRole('link', { name: 'Tenant Instance Settings' })).toBeVisible()
   })
 
   test('Should show go to Tenant Setting Page', async () => {
     const tenantInstanceAction = page.locator('a:has-text("Tenant Instance Settings")')
-    await page.getByRole('link', { name: 'Tenant Instance Settings' }).click();
+    await page.getByRole('link', { name: 'Tenant Instance Settings' }).click()
 
-    await expect(page.getByRole('tab')).toContainText('Tenant Instance Settings');
-    await page.getByText('Tenant Name').click();
-    await expect(page.getByRole('group')).toContainText('Tenant Name');
-    await expect(page.getByRole('group')).toContainText('Ed-Fi Base URL');
+    await expect(page.getByRole('tab')).toContainText('Tenant Instance Settings')
+    await page.getByText('Tenant Name').click()
+    await expect(page.getByRole('group')).toContainText('Tenant Name')
+    await expect(page.getByRole('group')).toContainText('Ed-Fi Base URL')
   })
 
-    test('should navigate back to home when clicking "Back to Tech Console Home"', async () => {
-      const tenantInstanceAction = page.locator('a:has-text("Tenant Instance Settings")')
-      await page.getByRole('link', { name: 'Tenant Instance Settings' }).click();
-      await page.waitForLoadState('networkidle')
-      // Click the "Back to Tech Console Home" link
-      await page.getByRole('link', { name: 'Back to Tech Console Home' }).click();
-      // Verify that the URL is the expected home page
-      await expect(page).toHaveURL(routes.home);
-    });
+  test('should navigate back to home when clicking "Back to Tech Console Home"', async () => {
+    const tenantInstanceAction = page.locator('a:has-text("Tenant Instance Settings")')
+    await page.getByRole('link', { name: 'Tenant Instance Settings' }).click()
+    await page.waitForLoadState('networkidle')
+    // Click the "Back to Tech Console Home" link
+    await page.getByRole('link', { name: 'Back to Tech Console Home' }).click()
+    // Verify that the URL is the expected home page
+    await expect(page).toHaveURL(routes.home)
+  })
 })

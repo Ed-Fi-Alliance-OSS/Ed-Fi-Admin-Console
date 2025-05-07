@@ -195,9 +195,9 @@ const useApplicationForm = ({ mode, onFinishSave, editApplicationData, instanceI
           try {
             
             if(instanceWorkerStatus != 'Completed'){
-              setIsSaving(false);
-              errorToast('Instance status requires to be completed before creating new applications.');
-              return;
+              setIsSaving(false)
+              errorToast('Instance status requires to be completed before creating new applications.')
+              return
             }
 
             const result = await api?.applications.create({

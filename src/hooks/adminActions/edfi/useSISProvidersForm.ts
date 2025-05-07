@@ -5,26 +5,26 @@
 
 import { TEEAuthDataContext } from '@edfi/admin-console-shared-sdk'
 import {
-    ChangeEvent,
-    useContext,
-    useEffect,
-    useState
+  ChangeEvent,
+  useContext,
+  useEffect,
+  useState
 } from 'react'
 import {
-    AdminConsoleConfig, adminConsoleContext
+  AdminConsoleConfig, adminConsoleContext
 } from '../../../context/adminConsoleContext'
 import { EdfiApplicationAuthData } from '../../../core/Edfi/EdfiApplications'
 import { SISProviderConnectionState } from '../../../core/sisProviders/SISProviders.types'
 import { EdfiActionParams } from '../../../services/AdminActions/adminAction.types'
 import {
-    CreateEdfiApplicationRequest, ResetEdfiApplicationCredentialsRequest
+  CreateEdfiApplicationRequest, ResetEdfiApplicationCredentialsRequest
 } from '../../../services/AdminActions/Edfi/Applications/EdfiApplicationService.requests'
 import useEdfiApplicationsService from '../../../services/AdminActions/Edfi/Applications/EdfiApplicationsService'
 import useEdfiVendorsService from '../../../services/AdminActions/Edfi/Vendors/EdfiVendorsService'
 import useEDXToast from '../../common/useEDXToast'
 import useTenantInfo from '../../useTenantInfo'
 import {
-    CheckEdfiApplicationResult, OptionalProvidersOption, SISProvidersOption
+  CheckEdfiApplicationResult, OptionalProvidersOption, SISProvidersOption
 } from './useSISProvidersForm.types'
 
 const sisProviders: SISProvidersOption[] = [

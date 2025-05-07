@@ -77,20 +77,20 @@ const PartnerForm = ({ initialData, schoolYear, mode, onFinishSave }: PartnerFor
           <FormControl mt="24px">
             <Flex
               direction="column"
-              w="full"
               maxW="100%"
+              w="full"
             >
               <Box
-                w="100%"
                 maxW="100%"
+                w="100%"
               >
                 <MultiInput
-                  label="Add Namespace Prefixes"
                   values={
                     partnerData.namespacePrefixes
                       ? partnerData.namespacePrefixes.trim().split(',')
                       : []
                   }
+                  label="Add Namespace Prefixes"
                   onChange={onChangeNamespacePrefixes}
                 />
               </Box>

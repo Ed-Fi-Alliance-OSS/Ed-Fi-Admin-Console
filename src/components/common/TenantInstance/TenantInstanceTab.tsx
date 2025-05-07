@@ -21,12 +21,12 @@ import useTenantInfo from '../../../hooks/useTenantInfo'
 
 export function TenantInstanceForm() {
   const { errors, handleAllErrors, handleSingleError } = useFormValidationErrors()
-  const [tenantInstanceData, setTenantInstanceData] = useState<Tenant>()
+  const [ tenantInstanceData, setTenantInstanceData ] = useState<Tenant>()
   const { getTenantById } = useTenantService()
-  const [loading, setLoading] = useState(false)
+  const [ loading, setLoading ] = useState(false)
   const { successToast, errorToast } = useEDXToast(1000)
-  const { getCurrentTenant } = useTenantInfo();
-  const tenantId = getCurrentTenant()?.tenantId?.toString() ?? '1'; //it defaults to `'1'` as the fallback value since tenants start at 1 by default.
+  const { getCurrentTenant } = useTenantInfo()
+  const tenantId = getCurrentTenant()?.tenantId?.toString() ?? '1' //it defaults to `'1'` as the fallback value since tenants start at 1 by default.
   
   useEffect(() => {
     setLoading(true)
@@ -39,7 +39,7 @@ export function TenantInstanceForm() {
         setLoading(false)
         errorToast(`Error fetching tenant data: ${error.message}`)
       })
-  }, [tenantId])
+  }, [ tenantId ])
 
   return (
     
@@ -86,7 +86,7 @@ export function TenantInstanceForm() {
 }
 
 export function TenantInstanceTab() {
-  const [isSaving, setIsSaving] = useState(false)
+  const [ isSaving, setIsSaving ] = useState(false)
 
   return (
     <Flex

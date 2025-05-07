@@ -24,6 +24,7 @@ interface InstanceDescriptionProps {
 const InstanceDescription = ({ instance }: InstanceDescriptionProps) => {
 
   const { edFiStatus, edfiMetadata, metaDataLoading, selectedTenant } = useTenantContext()
+
   const {
     showDeleteInstanceModal,
     onShowDeleteInstanceModal,
@@ -76,8 +77,9 @@ const InstanceDescription = ({ instance }: InstanceDescriptionProps) => {
             content={<DeleteInstanceBtn
               instance={instance}
               showDeleteInstanceModal={showDeleteInstanceModal}
+              onCloseDeleteIntanceModal={onCloseDeleteIntanceModal}
               onShowDeleteInstanceModal={onShowDeleteInstanceModal}
-              onCloseDeleteIntanceModal={onCloseDeleteIntanceModal} />}
+            />}
             title=' '
           />
 

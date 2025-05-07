@@ -46,8 +46,7 @@ export default function AppInput({ required, label, fieldName, description, plac
           size='xs'
         />
 
-        {!form.errors[fieldName] && description && <FormHelperText
-        >{description}
+        {!form.errors[fieldName] && description && <FormHelperText >{description}
         </FormHelperText>}
 
         <FormErrorMessage>{form.errors[fieldName]}</FormErrorMessage>

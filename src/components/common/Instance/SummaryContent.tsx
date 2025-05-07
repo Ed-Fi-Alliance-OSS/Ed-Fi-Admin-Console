@@ -17,22 +17,43 @@ const SummaryContent = ({ instance }: SummaryContentProps) => {
 
   return (
     <Flex
-      wrap="wrap"
-      direction={{ base: 'column', md: 'row' }}
+      direction={{
+        base: 'column',
+        md: 'row' 
+      }}
       w="100%"
+      wrap="wrap"
     >
       <Flex
-        w={{ base: '100%', md: '60%' }}
-        pr={{ base: 0, md: 6 }}
-        mb={{ base: 4, md: 0 }}
+        mb={{
+          base: 4,
+          md: 0 
+        }}
+        pr={{
+          base: 0,
+          md: 6 
+        }}
+        w={{
+          base: '100%',
+          md: '60%' 
+        }}
       >
         <InstanceDescription instance={instance} />
       </Flex>
 
       <Flex
-        w={{ base: '100%', md: '40%' }}
-        alignItems={{ base: 'flex-start', md: 'flex-end' }}
-        justifyContent={{ base: 'flex-start', md: 'flex-end' }}
+        alignItems={{
+          base: 'flex-start',
+          md: 'flex-end' 
+        }}
+        justifyContent={{
+          base: 'flex-start',
+          md: 'flex-end' 
+        }}
+        w={{
+          base: '100%',
+          md: '40%' 
+        }}
       >
         <InstanceDataPreview instance={instance} />
       </Flex>

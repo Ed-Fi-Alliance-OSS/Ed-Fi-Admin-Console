@@ -43,6 +43,7 @@ export const TenantsContextProvider: FC<TenantsContextProviderProps> = ({ childr
   const { config } = useConfig()
   const { functionalities } = usePluginContext()
   const adminApi = useApiService(config.api.edfiAdminApiBaseUri)
+
   const apiService = functionalities.ApiService?.(config, () => ({
     api: adminApi.api,
     handleAxiosError: adminApi.handleAxiosError,
@@ -51,6 +52,7 @@ export const TenantsContextProvider: FC<TenantsContextProviderProps> = ({ childr
     post: adminApi.post,
     put: adminApi.put
   }))
+
   const navigate = useNavigate()
   const [ tenants, setTenants ] = useState<Tenant[]>()
   const [ selectedTenant, setSelectedTenant ] = useState<Tenant>()
@@ -75,7 +77,7 @@ export const TenantsContextProvider: FC<TenantsContextProviderProps> = ({ childr
     try {
       // We need to replace host.docker.internal with localhost for the API call to work on docker.
       if (selectedTenant.document.edfiApiDiscoveryUrl?.includes('host.docker.internal')) {
-        selectedTenant.document.edfiApiDiscoveryUrl = selectedTenant.document.edfiApiDiscoveryUrl.replace('host.docker.internal', 'localhost');
+        selectedTenant.document.edfiApiDiscoveryUrl = selectedTenant.document.edfiApiDiscoveryUrl.replace('host.docker.internal', 'localhost')
       }
 
       setMetaDataLoading(true)
@@ -155,14 +157,15 @@ export const TenantsContextProvider: FC<TenantsContextProviderProps> = ({ childr
     }
   }, [ tenants ])
 
-  const previousTenantIdRef = useRef<number | undefined>(selectedTenantId);
+  const previousTenantIdRef = useRef<number | undefined>(selectedTenantId)
 
   useEffect(() => {
     if (selectedTenantId && previousTenantIdRef.current !== selectedTenantId) {
-      navigate('/', { replace: true });
+      navigate('/', { replace: true })
     }
-    previousTenantIdRef.current = selectedTenantId;
-  }, [selectedTenantId, navigate]);
+
+    previousTenantIdRef.current = selectedTenantId
+  }, [ selectedTenantId, navigate ])
 
   // Context value with both data and utility functions
   const contextValue: TenantsContextType = {

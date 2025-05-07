@@ -3,12 +3,12 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-export type OdsInstanceContext {
+export type OdsInstanceContext = {
     contextKey: string;
     contextValue: string;
   }
   
-export type OdsInstanceDerivative {
+export type OdsInstanceDerivative ={
     derivativeType: string;
 }
 

@@ -60,12 +60,14 @@ const useOdsInstanceData = ({ instanceId }: useOdsInstanceDataProps) => {
       setInstance(response)
     } catch (error: any) {
       if (error.response?.status === 404) {
-        setInstanceNotFound(true);
+        setInstanceNotFound(true)
       } else {
-      errorToast('An error occurred while fetching the instance.')
+        errorToast('An error occurred while fetching the instance.')
       }
+
       setInstance(null)
-    }  
+    }
+  
     setIsFetchingData(false)
   }
 

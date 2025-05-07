@@ -16,7 +16,9 @@ import { EdfiVendor } from '../../../core/Edfi/EdfiVendors'
 import {
   CreateEdfiApplicationRequest, UpdateEdfiApplicationRequest
 } from '../../../services/AdminActions/Edfi/Applications/EdfiApplicationService.requests'
-import { GetDataHealthDistrictDetailsResponse, HealthCheckResponse } from '../../../services/DataHealth/DataHealthService.responses'
+import {
+  GetDataHealthDistrictDetailsResponse, HealthCheckResponse 
+} from '../../../services/DataHealth/DataHealthService.responses'
 import { HttpServiceResponse } from '@edfi/admin-console-shared-sdk/dist/services/HttpService/HttpService.response.types'
 import { CreateOdsInstanceRequest } from '../../../services/ODSInstances/CreateOdsInstanceService.request'
 import { CreateODSInstanceResponse } from '../../../services/ODSInstances/CreateOdsInstanceService.response'
@@ -61,9 +63,7 @@ export interface IApiServices {
 }
 
 export function ApiService(config: EdxAppConfig, createApiService: (baseUrl: string) => ReturnType<typeof useApiService>): IApiServices {
-  const baseUrl = window.location.origin.includes('localhost') ? 'http://localhost:3000/api' : config.app.basePath + '/api'
-  
-  const edfiBaseApi = createApiService('')
+  const baseUrl = window.location.origin.includes('localhost') ? 'http://localhost:3000/api' : config.app.basePath + '/api'  const edfiBaseApi = createApiService('')
   const adminConsoleApi = createApiService(config.api.edfiAdminApiBaseUri)
   
   return {
@@ -103,19 +103,21 @@ export function ApiService(config: EdxAppConfig, createApiService: (baseUrl: str
     healthCheck: {
       getByInstanceId: (instanceId) => adminConsoleApi.api.get(`/adminapi/adminconsole/healthcheck/${instanceId}`)
         .then(resp => {
-          console.log('Response from health check:', resp);
-          const { document } = resp.data;
+          console.log('Response from health check:', resp)
+          const { document } = resp.data
+
           if (!document) {
             return {
               type: 'Response',
               data: {} as GetDataHealthDistrictDetailsResponse,
-            } as HealthCheckResponse;
+            } as HealthCheckResponse
           }
+
           const result = document as GetDataHealthDistrictDetailsResponse
           return {
             type: 'Response',
             data: result,
-          } as HealthCheckResponse;
+          } as HealthCheckResponse
         })
         .catch((error) => {
           // Check if the response status is 404
@@ -124,15 +126,16 @@ export function ApiService(config: EdxAppConfig, createApiService: (baseUrl: str
             return {
               type: 'Response',
               data:  {} as GetDataHealthDistrictDetailsResponse,
-            } as HealthCheckResponse;
+            } as HealthCheckResponse
           }
+
           console.error('Error in getDataHealthInfo:', error)
           return {
             type: 'Error',
             error: error instanceof Error ? error.message : 'Unknown error occurred',
-          };
+          }
         })
-        ,
+      ,
     }
   }
 }

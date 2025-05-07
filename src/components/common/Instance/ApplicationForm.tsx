@@ -89,8 +89,7 @@ const ApplicationForm = ({ instance, mode, editApplicationData, onFinishSave }: 
   const handleSave = () => {
     if (!isSaving && !showApplicationAPIData()) {
       onSave()
-    }
-    else if(showApplicationAPIData()) {
+    } else if(showApplicationAPIData()) {
       onFinishSave()
     }
   }

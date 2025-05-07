@@ -28,7 +28,7 @@ test.describe('Home Page Tests', () => {
     await expect(tenantInstanceAction).toBeVisible({ timeout: 15000 })
     await expect(tenantInstanceAction).toBeEnabled()
 
-    await expect(page.getByLabel('District/Charter School', { exact: true })).toContainText('Tenant Instance:');
+    await expect(page.getByLabel('District/Charter School', { exact: true })).toContainText('Tenant Instance:')
   })
 
   test('Home page should show ODS Instances Title', async () => {

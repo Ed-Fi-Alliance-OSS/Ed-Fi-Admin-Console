@@ -18,10 +18,11 @@ interface DeleteInstanceBtnProps {
 }
 
 const checkInstanceStatus = (instance: ODSInstance) => {
-  if (instance.status === 'Completed')
-    return 'flex'
-  else
-    return 'none'
+  if (instance.status === 'Completed') {
+    return 'flex' 
+  } else {
+    return 'none' 
+  }
 }
 
 const DeleteInstanceBtn = ({ instance, showDeleteInstanceModal, onShowDeleteInstanceModal, onCloseDeleteIntanceModal }: DeleteInstanceBtnProps) => {
@@ -30,13 +31,13 @@ const DeleteInstanceBtn = ({ instance, showDeleteInstanceModal, onShowDeleteInst
     <Box display={checkInstanceStatus(instance)}>
       <Button
         alignItems='center'
-        variant='solid'
-        colorScheme='red'
         border='red.600'
+        colorScheme='red'
         display='flex'
         maxW='auto'
         minW='auto'
         padding='5'
+        variant='solid'
         w='170px'
         onClick={onShowDeleteInstanceModal}
       >

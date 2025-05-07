@@ -8,7 +8,7 @@ import { EdfiApplicationAuthData } from '../core/Edfi/EdfiApplications'
 import { SISProviderConnectionState } from '../core/sisProviders/SISProviders.types'
 import useSISProvidersForm from '../hooks/adminActions/edfi/useSISProvidersForm'
 import {
-    OptionalProvidersOption, SISProvidersOption
+  OptionalProvidersOption, SISProvidersOption
 } from '../hooks/adminActions/edfi/useSISProvidersForm.types'
 
 export interface OnBoardigConnectSISContextData {

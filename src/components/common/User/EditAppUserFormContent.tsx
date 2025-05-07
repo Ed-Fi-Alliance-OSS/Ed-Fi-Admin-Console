@@ -3,7 +3,9 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import { Flex, Tab, TabIndicator, TabList, TabPanel, TabPanels, Tabs } from '@chakra-ui/react'
+import {
+  Flex, Tab, TabIndicator, TabList, TabPanel, TabPanels, Tabs 
+} from '@chakra-ui/react'
 import {
   ChangeEvent, useContext
 } from 'react'

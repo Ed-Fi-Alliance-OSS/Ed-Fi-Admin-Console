@@ -29,13 +29,13 @@ import VerifiedDomainInfoTable from './VerifiedDomainInfoTable'
 
 
 interface FinalizeTabContentProps {
-    connectedSISProvidersList: SISProviderInfo[]
-    verifiedDomainList: VerifiedDomainInfo[]
-    invitationsList: Invitation[]
-    connectedODS: EdFiConnectionFormData
-    verificationStatus: EdFiConnectionVerificationStatus
-    selectedInstance: ExtendedODSInstance | null         
-    onSelectInstance: (instance: ExtendedODSInstance) => void                         
+  connectedSISProvidersList: SISProviderInfo[]
+  verifiedDomainList: VerifiedDomainInfo[]
+  invitationsList: Invitation[]
+  connectedODS: EdFiConnectionFormData
+  verificationStatus: EdFiConnectionVerificationStatus
+  selectedInstance: ExtendedODSInstance | null
+  onSelectInstance: (instance: ExtendedODSInstance) => void
 }
 
 const FinalizeTabContent = ({ connectedSISProvidersList, verifiedDomainList, connectedODS, verificationStatus, invitationsList, selectedInstance, onSelectInstance }: FinalizeTabContentProps) => {
@@ -50,12 +50,12 @@ const FinalizeTabContent = ({ connectedSISProvidersList, verifiedDomainList, con
         fontWeight='400'
         w='730px'
       >
-        You’re almost ready to complete the onboarding process! Review the information below and make sure everything is correct. If not, go back and edit or 
-        <Link 
-          aria-label="contact support" 
-          color='blue.500' 
-          href="https://txedexchange.atlassian.net/servicedesk/customer/portals" 
-          ml='2px' 
+        You’re almost ready to complete the onboarding process! Review the information below and make sure everything is correct. If not, go back and edit or
+        <Link
+          aria-label="contact support"
+          color='blue.500'
+          href="https://txedexchange.atlassian.net/servicedesk/customer/portals"
+          ml='2px'
           referrerPolicy='no-referrer'
           target='_blank'
         >contact support
@@ -85,7 +85,7 @@ const FinalizeTabContent = ({ connectedSISProvidersList, verifiedDomainList, con
             fontWeight='400'
             ml='16px'
           >
-            Remember: you’ll add other, non-admin users later. 
+            Remember: you’ll add other, non-admin users later.
           </Text>
         </Flex>
 
@@ -97,7 +97,7 @@ const FinalizeTabContent = ({ connectedSISProvidersList, verifiedDomainList, con
             invitationsList={invitationsList}
             isLoading={false}
           />
-        </Flex> 
+        </Flex>
       </Flex>
 
       <Flex
@@ -120,7 +120,7 @@ const FinalizeTabContent = ({ connectedSISProvidersList, verifiedDomainList, con
           w='full'
         >
           <TrainingModuleList trainingCompleted={true} />
-        </Flex> 
+        </Flex>
       </Flex>
 
       <Flex
@@ -143,10 +143,10 @@ const FinalizeTabContent = ({ connectedSISProvidersList, verifiedDomainList, con
           w='full'
         >
           <VerifiedDomainInfoTable verifiedDomainsList={verifiedDomainList} />
-        </Flex> 
+        </Flex>
       </Flex>
 
-      { !externalODS.isExternalODS? <Flex
+      {!externalODS.isExternalODS ? <Flex
         alignItems='baseline'
         flexDir='column'
         mt='42px'
@@ -165,8 +165,8 @@ const FinalizeTabContent = ({ connectedSISProvidersList, verifiedDomainList, con
           mt='16px'
           w='full'
         >
-          <SelectedInstancesTable 
-            selectedInstance={selectedInstance} 
+          <SelectedInstancesTable
+            selectedInstance={selectedInstance}
             settingAsDefault={false}
             showConfirmInstanceModal={false}
             tableMode="Show Selected"
@@ -175,8 +175,8 @@ const FinalizeTabContent = ({ connectedSISProvidersList, verifiedDomainList, con
             onSelectInstance={onSelectInstance}
             onUpdateInstancesCount={() => null}
           />
-        </Flex> 
-      </Flex> : <></> }
+        </Flex>
+      </Flex> : <></>}
 
       <Flex
         alignItems='baseline'
@@ -190,20 +190,19 @@ const FinalizeTabContent = ({ connectedSISProvidersList, verifiedDomainList, con
           fontSize='20px'
           fontWeight='700'
         >
-          Connected {`${externalODS.isExternalODS? 'ODS' : 'Source Provider(s)'}`}
+          Connected {`${externalODS.isExternalODS ? 'ODS' : 'Source Provider(s)'}`}
         </Text>
 
         <Flex
           mt='16px'
           w='full'
         >
-          { externalODS.isExternalODS? <ConnectedEdFiTable 
+          {externalODS.isExternalODS ? <ConnectedEdFiTable
             connectedODS={connectedODS}
             verificationStatus={verificationStatus}
-          /> : 
-          <ConnectedSISProvidersTable connectedSISProvidersList={connectedSISProvidersList} />}
-        </Flex> 
-      </Flex> 
+          /> : <ConnectedSISProvidersTable connectedSISProvidersList={connectedSISProvidersList} />}
+        </Flex>
+      </Flex>
 
       <Flex
         alignItems='baseline'
@@ -224,8 +223,8 @@ const FinalizeTabContent = ({ connectedSISProvidersList, verifiedDomainList, con
           mt='16px'
           w='full'
         >
-          { adminConfig && adminConfig.showDataHealth? 
-            <DataHealthDetails 
+          {adminConfig && adminConfig.showDataHealth ?
+            <DataHealthDetails
               isReview={true}
               showReload={true}
             /> : <Text
@@ -235,8 +234,8 @@ const FinalizeTabContent = ({ connectedSISProvidersList, verifiedDomainList, con
               w='730px'
             >
               Coming Soon
-            </Text> }
-        </Flex> 
+            </Text>}
+        </Flex>
       </Flex>
 
       <Flex
@@ -270,7 +269,7 @@ const FinalizeTabContent = ({ connectedSISProvidersList, verifiedDomainList, con
           w='full'
         >
           <SelectSSOMethodTable showSelect={false} />
-        </Flex> 
+        </Flex>
 
         <Flex mt='16px'>
           <FinalizeTabBlurb />

@@ -24,8 +24,7 @@ interface DeleteInstanceModalProps {
 }
 
 const DeleteInstanceModal = ({ instance, show, onCloseModal }: DeleteInstanceModalProps) => {
-  const {
-    showValidationErrorDeleteInstanceModal,
+  const { showValidationErrorDeleteInstanceModal,
     instanceNameToDelete,
     onConfirmDeleteInstanceModal,
     onChangeInstanceName,
@@ -35,18 +34,16 @@ const DeleteInstanceModal = ({ instance, show, onCloseModal }: DeleteInstanceMod
     paginatedData
   } = useOdsInstanceTable()
 
-  const { successToast, errorToast } = useEDXToast(5000)
-
-  const navigate = useNavigate()
+  const { successToast, errorToast } = useEDXToast(5000)  const navigate = useNavigate()
 
   const onConfirm = async () => {
     var success = await onConfirmDeleteInstanceModal()
+
     if (success) {
       onClose()
       navigate(`${routes.home.url}`)
       successToast(`The Instance ${instance.name} has been set \'Pending to delete\'. Wait for the instance management worker to process the request`)
-    }
-    else {
+    } else {
       errorToast('Error trying to delete the instance')
     }
   }
@@ -67,8 +64,8 @@ const DeleteInstanceModal = ({ instance, show, onCloseModal }: DeleteInstanceMod
             To confirm deletion, type the name of the instance.
           </Text>
           <CustomInput
+            error={showValidationErrorDeleteInstanceModal ? 'Error: The Instance name doesn\'t match' : ''}
             id='isntanceName'
-            error={showValidationErrorDeleteInstanceModal ? "Error: The Instance name doesn't match" : ''}
             value={instanceNameToDelete}
             onChange={onChangeInstanceName}
           />
