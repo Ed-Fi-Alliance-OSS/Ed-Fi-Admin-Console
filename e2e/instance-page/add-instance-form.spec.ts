@@ -5,7 +5,7 @@
 
 import { test, expect, Page } from '@playwright/test';
 import { routes } from '../core/routes';
-import { addInstanceFormHelper, MockInstanceData } from './AddInstanceFormHelper';
+import { addInstanceFormHelper, MockInstanceData } from './addInstanceFormHelper';
 
 let page: Page;
 

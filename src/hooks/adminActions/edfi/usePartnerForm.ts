@@ -53,49 +53,57 @@ const usePartnerForm = ({ schoolYear, onFinishSave, initialData, mode }: UsePart
         id: initialData.id ?? undefined,
         company: initialData.company ?? '',
         namespacePrefixes: initialData.namespacePrefixes ?? '',
+        contactName: initialData.contactName ?? '',
+        contactEmailAddress:  initialData.contactEmailAddress ?? ''
       })
     }
   }, [initialData, mode])
 
-  const onChangeParnerData = (e: ChangeEvent<HTMLInputElement>) => {
-    const nparnerData = { ...partnerData }
+  const onChangePartnerData = (e: ChangeEvent<HTMLInputElement>) => {
+    const npartnerData = { ...partnerData }
 
     if (e.target.id === 'partnerName') {
-      nparnerData.company = e.target.value
-      nparnerData.contactName = e.target.value
-      nparnerData.contactEmailAddress = `${e.target.value}@gmail.com`
+      npartnerData.contactName = e.target.value
+    } else if (e.target.id === 'company') {
+      npartnerData.company = e.target.value
+    } else if (e.target.id === 'contactEmailAddress') {
+      npartnerData.contactEmailAddress = e.target.value
     }
 
     // if (e.target.id === 'namespacePrefixes') {
-    //   nparnerData.namespacePrefixes = e.target.value.join(',')
+    //   npartnerData.namespacePrefixes = e.target.value.join(',')
     // }
 
     if (hasTriedSubmit) {
       if (e.target.id === 'partnerName') {
-        validateInputChange('partnerName', nparnerData)
+        validateInputChange('partnerName', npartnerData)
+      } else if (e.target.id === 'company') {
+        validateInputChange('company', npartnerData)
+      } else if (e.target.id === 'contactEmailAddress') {
+        validateInputChange('contactEmailAddress', npartnerData)
       } else {
-        validateInputChange('namespacePrefixes', nparnerData)
+        validateInputChange('namespacePrefixes', npartnerData)
       }
     }
 
     if (partnerData.id) {
-      nparnerData.id = partnerData.id
+      npartnerData.id = partnerData.id
     }
 
-    setPartnerData(nparnerData)
+    setPartnerData(npartnerData)
   }
 
   const onChangeNamespacePrefixes = (prefixes: string[]) => {
-    const nparnerData: EdfiVendor = {
+    const npartnerData: EdfiVendor = {
       ...partnerData,
       namespacePrefixes: prefixes.join(',')
     }
 
     if (hasTriedSubmit) {
-      validateInputChange('namespacePrefixes', nparnerData)
+      validateInputChange('namespacePrefixes', npartnerData)
     }
 
-    setPartnerData(nparnerData)
+    setPartnerData(npartnerData)
   }
 
   const onSave = async () => {
@@ -126,14 +134,14 @@ const usePartnerForm = ({ schoolYear, onFinishSave, initialData, mode }: UsePart
             successToast('Updated Vendor')
             onFinishSave();
           } catch (e) {
-            errorToast('Failed to Update Vendor')
+            errorToast('Failed to Update Vendor> '+e)
           } finally {
             setIsSaving(false)
           }
           return
         }
 
-        if (vendorList.some(vendor => vendor.contactName === partnerData.contactName)) {
+        if (vendorList.some(vendor => vendor.company === partnerData.company)) {
           errorToast('A Vendor with this name already exists. Please choose a unique name and try again.')
           setIsSaving(false)
           return
@@ -166,7 +174,7 @@ const usePartnerForm = ({ schoolYear, onFinishSave, initialData, mode }: UsePart
     errors,
     hasTriedSubmit,
     onChangeNamespacePrefixes,
-    onChangeParnerData,
+    onChangePartnerData,
     onSave
   }
 }

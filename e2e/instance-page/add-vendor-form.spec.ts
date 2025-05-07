@@ -8,7 +8,7 @@ import {
 } from '@playwright/test'
 import { fillAddVendorPartnerForm } from './addVendorFormHelpers'
 import { routes } from '../core/routes'
-import { addInstanceFormHelper } from './AddInstanceFormHelper';
+import { addInstanceFormHelper } from './addInstanceFormHelper';
 
 const defaultInstanceName = 'tenant1 ODS';
 const addInstanceButton = 'Add Instance';
@@ -74,7 +74,6 @@ test.afterAll(async ({ browser }) => {
   await browser.close();
 });
 
-
 test("Add Vendor Form - Adds the vendor", async () => {
   await expect(page.getByRole('tablist')).toContainText('Vendors & Applications');
   openVendorsTab(page);
@@ -87,6 +86,8 @@ test("Add Vendor Form - Adds the vendor", async () => {
   await fillAddVendorPartnerForm({
     page,
     vendorName: uniqueVendorName,
+    company: `Test Company${uniqueVendorSuffix}`,
+    contactEmail: `test${uniqueVendorSuffix}@test.test`,
     nameSpacePrefixes: [`http://vendor${uniqueVendorSuffix}.org`]
   })
   // Click the Add Vendor button
@@ -107,6 +108,8 @@ test.describe("Add Vendor Form - Vendor Name", () => {
     await fillAddVendorPartnerForm({
       page,
       vendorName: '',
+      company: `Test Company${uniqueVendorSuffix}`,
+      contactEmail: `test${uniqueVendorSuffix}@test.test`,
       nameSpacePrefixes: [`http://vendor${uniqueVendorSuffix}.org`]
     })
     // Click the Add Vendor button
@@ -125,6 +128,8 @@ test.describe("Add Vendor Form - Vendor Name", () => {
     await fillAddVendorPartnerForm({
       page,
       vendorName: 'a',
+      company: `Test Company${uniqueVendorSuffix}`,
+      contactEmail: `test${uniqueVendorSuffix}@test.test`,
       nameSpacePrefixes: [`http://vendor${uniqueVendorSuffix}.org`]
     })
     // Click the Add Vendor button
@@ -143,6 +148,8 @@ test.describe("Add Vendor Form - Vendor Name", () => {
     await fillAddVendorPartnerForm({
       page,
       vendorName: 'vendor-1234',
+      company: `Test Company${uniqueVendorSuffix}`,
+      contactEmail: `test${uniqueVendorSuffix}@test.test`,
       nameSpacePrefixes: [`http://vendor${uniqueVendorSuffix}.org`]
     })
     // Click the Add Vendor button
@@ -162,6 +169,8 @@ test.describe("Add Vendor Form - Prefixes", () => {
     await fillAddVendorPartnerForm({
       page,
       vendorName: uniqueVendorName,
+      company: `Test Company${uniqueVendorSuffix}`,
+      contactEmail: `test${uniqueVendorSuffix}@test.test`,
       nameSpacePrefixes: null
     })
     // Click the Add Vendor button
@@ -179,6 +188,8 @@ test.describe("Add Vendor Form - Prefixes", () => {
     await fillAddVendorPartnerForm({
       page,
       vendorName: uniqueVendorName,
+      company: `Test Company${uniqueVendorSuffix}`,
+      contactEmail: `test${uniqueVendorSuffix}@test.test`,
       nameSpacePrefixes: ["prefix"]
     })
     // Click the Add Vendor button
@@ -187,6 +198,67 @@ test.describe("Add Vendor Form - Prefixes", () => {
     expect(page.getByText("Please correct the errors below and resubmit the form.")).toBeVisible()
     await expect(page.getByRole('status')).toContainText('Invalid url')
   })
+})
+
+test.describe("Add Vendor Form - Company Name", () => {
+  test("Company name should not be empty", async () => {
+    openVendorsTab(page);
+    await page.waitForLoadState("networkidle");
+    // Open the Add Vendor form
+    await openVendorForm(page);
+    await page.waitForLoadState("networkidle");
+    await fillAddVendorPartnerForm({
+      page,
+      vendorName: uniqueVendorName,
+      company: '',
+      contactEmail: `test${uniqueVendorSuffix}@test.test`,
+      nameSpacePrefixes: [`http://vendor${uniqueVendorSuffix}.org`]
+    })
+    // Click the Add Vendor button
+    await clickAddVendorBtn(page);
+    await page.waitForLoadState("networkidle");
+    await expect(page.getByRole('status')).toContainText('Company is required.');
+  })
+})
+test.describe("Add Vendor Form - Contact Email", () => {
+  test("E-mail should not be empty", async () => {
+    openVendorsTab(page);
+    await page.waitForLoadState("networkidle");
+    // Open the Add Vendor form
+    await openVendorForm(page);
+    await page.waitForLoadState("networkidle");
+    await fillAddVendorPartnerForm({
+      page,
+      vendorName: uniqueVendorName,
+      company: `Test Company${uniqueVendorSuffix}`,
+      contactEmail: '',
+      nameSpacePrefixes: [`http://vendor${uniqueVendorSuffix}.org`]
+    })
+    // Click the Add Vendor button
+    await clickAddVendorBtn(page);
+    await page.waitForLoadState("networkidle");
+    await expect(page.getByRole('status')).toContainText('Contact Email is required.');
+  })
+
+  test("E-mail should have correct format", async () => {
+    openVendorsTab(page);
+    await page.waitForLoadState("networkidle");
+    // Open the Add Vendor form
+    await openVendorForm(page);
+    await page.waitForLoadState("networkidle");
+    await fillAddVendorPartnerForm({
+      page,
+      vendorName: uniqueVendorName,
+      company: `Test Company${uniqueVendorSuffix}`,
+      contactEmail: `test${uniqueVendorSuffix}test.test`,
+      nameSpacePrefixes: [`http://vendor${uniqueVendorSuffix}.org`]
+    })
+    // Click the Add Vendor button
+    await clickAddVendorBtn(page);
+    await page.waitForLoadState("networkidle");
+    await expect(page.getByRole('status')).toContainText('Invalid email format.');
+  })
+
 })
 
 test.describe("Add Vendor Form - Edit Vendor Name", () => {
@@ -209,8 +281,11 @@ test.describe("Add Vendor Form - Edit Vendor Name", () => {
     await fillAddVendorPartnerForm({
       page,
       vendorName: uniqueVendorToEdit,
+      company: `Company${uniqueVendorToEdit}`,
+      contactEmail: `test${uniqueVendorSuffix}@test.test`,
       nameSpacePrefixes: [`http://vendor-to-edit-${uniqueVendorSuffix}.org`]
     })
+    //await page.waitForTimeout(8000);
     // Click the Add Vendor button
     await clickAddVendorBtn(page);
     await page.waitForLoadState("networkidle");
@@ -223,6 +298,7 @@ test.describe("Add Vendor Form - Edit Vendor Name", () => {
     await page.waitForLoadState('networkidle', { timeout: 35000 })
     // Open the instance page
     await page.getByRole('link', { name: defaultInstanceName, exact: true }).click();
+    console
     await page.waitForLoadState("networkidle");
     openVendorsTab(page);
     await page.waitForLoadState("networkidle");
@@ -230,10 +306,11 @@ test.describe("Add Vendor Form - Edit Vendor Name", () => {
     await page.getByLabel('Page Index').fill('99');
     await page.waitForLoadState("networkidle");
   })
-  // TODO: Vendors Form has a bug, if you don't change the vendor name, it will show an error (AC-233). 
-  test.skip("Edit Vendor without change should be successful", async () => {
+  
+  test("Edit Vendor without change should be successful", async () => {
     await expect(page.getByLabel('Vendors & Applications').getByRole('heading')).toContainText('Vendors & Applications');
-    const selectedRow = await page.getByRole('button', { name: uniqueVendorToEdit }).locator('..');
+    await page.waitForTimeout(3000);
+    const selectedRow = await page.getByRole('button', { name: `Company${uniqueVendorToEdit}` }).locator('..');
     await page.waitForLoadState("networkidle");
     await selectedRow.getByRole('button', { name: 'Edit' }).click();
     await page.waitForLoadState("networkidle");
@@ -241,6 +318,8 @@ test.describe("Add Vendor Form - Edit Vendor Name", () => {
     await fillAddVendorPartnerForm({
       page,
       vendorName: uniqueVendorToEdit,
+      company: `Company${uniqueVendorToEdit}`,
+      contactEmail: `test${uniqueVendorSuffix}@test.test`,
       nameSpacePrefixes: [`http://vendor${uniqueVendorSuffix}.org`]
     })
     // Click the Add Vendor button
@@ -250,12 +329,11 @@ test.describe("Add Vendor Form - Edit Vendor Name", () => {
     await expect(page.getByText('SuccessUpdated Vendor')).toBeVisible();
     await expect(page.getByLabel('Vendors & Applications').getByRole('heading')).toContainText('Vendors & Applications');
   })
-  // TODO: Vendors Form has a bug, if you don't change the vendor name, it will show an error(AC-233)
-  test.skip("Edit Vendor change namespace prefixes should be successful", async () => {
+  
+  test("Edit Vendor change namespace prefixes should be successful", async () => {
     await page.waitForLoadState("networkidle");
     await expect(page.getByLabel('Vendors & Applications').getByRole('heading')).toContainText('Vendors & Applications');
-    //await page.waitForSelector(`button:has-text("${uniqueVendorToEdit}")`);
-    const selectedRow = await page.getByRole('button', { name: uniqueVendorToEdit }).locator('..'); 
+    const selectedRow = await page.getByRole('button', { name: `Company${uniqueVendorToEdit}` }).locator('..'); 
     await page.waitForLoadState("networkidle");
     await selectedRow.getByRole('button', { name: 'Edit' }).click();
     await page.waitForLoadState("networkidle");
@@ -263,6 +341,8 @@ test.describe("Add Vendor Form - Edit Vendor Name", () => {
     await fillAddVendorPartnerForm({
       page,
       vendorName: uniqueVendorToEdit,
+      company: `Company${uniqueVendorToEdit}`,
+      contactEmail: `test${uniqueVendorSuffix}@test.test`,
       nameSpacePrefixes: [`http://vendor-edited-${uniqueVendorSuffix}.org`]
     })
     // Click the Add Vendor button
@@ -275,8 +355,8 @@ test.describe("Add Vendor Form - Edit Vendor Name", () => {
   test("Edit Vendor change vendor name should be successful", async () => {
     await page.waitForLoadState("networkidle");
     await expect(page.getByLabel('Vendors & Applications').getByRole('heading')).toContainText('Vendors & Applications');
-    await page.waitForSelector(`button:has-text("${uniqueVendorToEdit}")`);
-    const selectedRow = await page.getByRole('button', { name: uniqueVendorToEdit }).locator('..'); 
+    await page.waitForSelector(`button:has-text("Company${uniqueVendorToEdit}")`);
+    const selectedRow = await page.getByRole('button', { name: `Company${uniqueVendorToEdit}` }).locator('..'); 
     await page.waitForLoadState("networkidle");
     await selectedRow.getByRole('button', { name: 'Edit' }).click();
     await page.waitForLoadState("networkidle");
@@ -284,6 +364,52 @@ test.describe("Add Vendor Form - Edit Vendor Name", () => {
     await fillAddVendorPartnerForm({
       page,
       vendorName: `EditedVendor${uniqueVendorSuffix}`,
+      company: `Company${uniqueVendorToEdit}`,
+      contactEmail: `test${uniqueVendorSuffix}@test.test`,
+      nameSpacePrefixes: [`http://vendor-edited-${uniqueVendorSuffix}.org`]
+    })
+    // Click the Add Vendor button
+    await clickAddVendorBtn(page);
+    await page.waitForLoadState("networkidle");
+    await expect(page.getByText('SuccessUpdated Vendor')).toBeVisible();
+    await expect(page.getByLabel('Vendors & Applications').getByRole('heading')).toContainText('Vendors & Applications');
+  })
+  test("Edit Vendor change contact e-mail should be successful", async () => {
+    await page.waitForLoadState("networkidle");
+    await expect(page.getByLabel('Vendors & Applications').getByRole('heading')).toContainText('Vendors & Applications');
+    await page.waitForSelector(`button:has-text("Company${uniqueVendorToEdit}")`);
+    const selectedRow = await page.getByRole('button', { name: `Company${uniqueVendorToEdit}` }).locator('..'); 
+    await page.waitForLoadState("networkidle");
+    await selectedRow.getByRole('button', { name: 'Edit' }).click();
+    await page.waitForLoadState("networkidle");
+    await expect(page.getByRole('heading')).toContainText('Edit Vendor');
+    await fillAddVendorPartnerForm({
+      page,
+      vendorName: `Vendor${uniqueVendorSuffix}`,
+      company: `Company${uniqueVendorToEdit}`,
+      contactEmail: `test${uniqueVendorSuffix}@test.org`
+    })
+    // Click the Add Vendor button
+    await clickAddVendorBtn(page);
+    await page.waitForLoadState("networkidle");
+    await expect(page.getByText('SuccessUpdated Vendor')).toBeVisible();
+    await expect(page.getByLabel('Vendors & Applications').getByRole('heading')).toContainText('Vendors & Applications');
+  })
+
+  test("Edit Vendor change company should be successful", async () => {
+    await page.waitForLoadState("networkidle");
+    await expect(page.getByLabel('Vendors & Applications').getByRole('heading')).toContainText('Vendors & Applications');
+    await page.waitForSelector(`button:has-text("Company${uniqueVendorToEdit}")`);
+    const selectedRow = await page.getByRole('button', { name: `Company${uniqueVendorToEdit}` }).locator('..'); 
+    await page.waitForLoadState("networkidle");
+    await selectedRow.getByRole('button', { name: 'Edit' }).click();
+    await page.waitForLoadState("networkidle");
+    await expect(page.getByRole('heading')).toContainText('Edit Vendor');
+    await fillAddVendorPartnerForm({
+      page,
+      vendorName: `Vendor${uniqueVendorSuffix}`,
+      company: `EditCompany${uniqueVendorToEdit}`,
+      contactEmail: `test${uniqueVendorSuffix}@test.test`,
       nameSpacePrefixes: [`http://vendor-edited-${uniqueVendorSuffix}.org`]
     })
     // Click the Add Vendor button
