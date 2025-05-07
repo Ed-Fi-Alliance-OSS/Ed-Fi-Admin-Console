@@ -12,28 +12,43 @@ import defaultConfig from './app.config.json' assert { type: 'json' }
 import { mergeEnvVars } from './merge-env-vars.mjs'
 import { fileURLToPath } from 'url'
 import { dirname } from 'path'
+import rateLimit from 'express-rate-limit'
 
 const __filename = fileURLToPath(import.meta.url)
-const __dirname = dirname(__filename)const app = express()
+const __dirname = dirname(__filename)
+const app = express()
 const originalConfig = mergeEnvVars(defaultConfig)
 let config = cloneDeep(originalConfig)
 const staticFileMiddleware = express.static('dist')
 
+const spaLimiter = rateLimit({
+  windowMs: 60 * 1000,
+  max: 30,
+  message: 'Too many requests, please try again later.',
+  standardHeaders: true,
+  legacyHeaders: false,
+})
 
 app.use(staticFileMiddleware)
 
+app.use(spaLimiter)
 // This code makes sure that any request that does not matches a static file
 // in the dist folder, will just serve index.html. Client side routing is
 // going to make sure that the correct content will be loaded.
 app.use((req, res, next) => {
-  if (/(.ico|.js|.css|.jpg|.png|.map|.json)$/i.test(req.path)) {
-    next()
-  } else {
-    res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate')
-    res.header('Expires', '-1')
-    res.header('Pragma', 'no-cache')
-    res.sendFile(path.join(__dirname, 'dist', 'index.html'))
+  const ext = path.extname(req.path)
+  const isStatic = ['.ico', '.js', '.css', '.jpg', '.png', '.map', '.json'].includes(ext.toLowerCase())
+  
+  if (isStatic) {
+    return next()
   }
+
+  res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate')
+  res.header('Expires', '-1')
+  res.header('Pragma', 'no-cache')
+  res.sendFile(path.join(__dirname, 'dist', 'index.html'), (err) => {
+    if (err) next(err)
+  })
 })
 
 app.use('/config.json', (_, res) => {
