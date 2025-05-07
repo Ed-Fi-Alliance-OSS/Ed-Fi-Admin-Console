@@ -74,7 +74,6 @@ test.afterAll(async ({ browser }) => {
   await browser.close();
 });
 
-/*
 test("Add Vendor Form - Adds the vendor", async () => {
   await expect(page.getByRole('tablist')).toContainText('Vendors & Applications');
   openVendorsTab(page);
@@ -260,7 +259,7 @@ test.describe("Add Vendor Form - Contact Email", () => {
     await expect(page.getByRole('status')).toContainText('Invalid email format.');
   })
 
-})*/
+})
 
 test.describe("Add Vendor Form - Edit Vendor Name", () => {
   const uniqueVendorSuffix = Date.now().toString(); // Use timestamp as a unique suffix
