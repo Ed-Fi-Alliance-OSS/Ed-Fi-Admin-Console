@@ -1,12 +1,16 @@
-import React, { useState } from "react";
+import React, { useState } from 'react'
 import {
   Form,
   Formik
 } from 'formik'
-import { Button, Flex, Input, Box, Text } from "@chakra-ui/react";
-import { CustomFormHeader, CustomSelect } from "@edfi/admin-console-shared-sdk";
+import {
+  Button, Flex, Input, Box, Text 
+} from '@chakra-ui/react'
+import {
+  CustomFormHeader, CustomSelect 
+} from '@edfi/admin-console-shared-sdk'
 import * as Yup from 'yup'
-import AppInput from "../../AppInput";
+import AppInput from '../../AppInput'
 
 export interface AddInstanceFormProps {
   name: string;
@@ -28,26 +32,27 @@ const AddInstanceFormV2: React.FC<AddInstanceFormProps> = ({
   odsInstanceDerivatives,
   onSaveChanges,
 }) => {
-  const [formData, setFormData] = useState<AddInstanceFormProps>({
+  const [ formData, setFormData ] = useState<AddInstanceFormProps>({
     name,
     instanceType,
     odsInstanceContexts,
     odsInstanceDerivatives,
     onSaveChanges
-  });
+  })
 
   const validationSchema = Yup.object({
     name: Yup.string().required('Name is required'),
     instanceType: Yup.string().required('Instance Type is required'),
-  });
+  })
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value } = e.target
+
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
-    }));
-  };
+    }))
+  }
 
   return (
     <Flex
@@ -55,7 +60,6 @@ const AddInstanceFormV2: React.FC<AddInstanceFormProps> = ({
       w='full'
     >
       <Formik
-        validationSchema={validationSchema}
         initialValues={{
           name: formData.name,
           instanceType: formData.instanceType,
@@ -63,7 +67,9 @@ const AddInstanceFormV2: React.FC<AddInstanceFormProps> = ({
           odsInstanceDerivatives: formData.odsInstanceDerivatives,
           onSaveChanges,
         }}
-        onSubmit={onSaveChanges}>
+        validationSchema={validationSchema}
+        onSubmit={onSaveChanges}
+      >
         {({ values, setFieldValue }) => (
           <>
             <CustomFormHeader text="Instance Details" />
@@ -86,14 +92,19 @@ const AddInstanceFormV2: React.FC<AddInstanceFormProps> = ({
                   label='Instance Type'
                   onChange={handleChange}
                 />
-                <Text fontFamily='Poppins'
+                <Text
+                  fontFamily='Poppins'
                   fontSize='14px'
                   fontWeight='700'
-                  lineHeight='20px'>ODS Instance Contexts:</Text>
+                  lineHeight='20px'
+                >ODS Instance Contexts:
+                </Text>
                 {values.odsInstanceContexts.map((context, index) => (
-                  <Flex key={index} mb="8px" alignItems="center">
+                  <Flex key={index} alignItems="center" mb="8px">
                     <Input
+                      required
                       placeholder="Context Key"
+                      size='xs'
                       value={context.contextKey}
                       onChange={(e) =>
                         setFieldValue(
@@ -101,11 +112,11 @@ const AddInstanceFormV2: React.FC<AddInstanceFormProps> = ({
                           e.target.value
                         )
                       }
-                      required
-                      size='xs'
                     />
                     <Input
+                      required
                       placeholder="Context Value"
+                      size='xs'
                       value={context.contextValue}
                       onChange={(e) =>
                         setFieldValue(
@@ -113,70 +124,82 @@ const AddInstanceFormV2: React.FC<AddInstanceFormProps> = ({
                           e.target.value
                         )
                       }
-                      required
-                      size='xs'
                     />
                     <Button
                       colorScheme="red"
                       onClick={() => {
-                        const updatedContexts = values.odsInstanceContexts.filter(
-                          (_, i) => i !== index
-                        );
-                        setFieldValue("odsInstanceContexts", updatedContexts);
+                        const updatedContexts = values.odsInstanceContexts.filter((_, i) => i !== index)
+
+                        setFieldValue('odsInstanceContexts', updatedContexts)
                       }}
                     >
                       Remove
                     </Button>
                   </Flex>
                 ))}
-                <Button colorScheme="blue" onClick={() =>
-                  setFieldValue("odsInstanceContexts", [
-                    ...values.odsInstanceContexts,
-                    { contextKey: "", contextValue: "" },
-                  ])
-                }>
+                <Button
+                  colorScheme="blue"
+                  onClick={() =>
+                    setFieldValue('odsInstanceContexts', [
+                      ...values.odsInstanceContexts,
+                      {
+                        contextKey: '',
+                        contextValue: '' 
+                      },
+                    ])
+                  }
+                >
                   Add Context
                 </Button>
                 <Box mb="16px">
-                  <Text fontFamily='Poppins'
+                  <Text
+                    fontFamily='Poppins'
                     fontSize='14px'
                     fontWeight='700'
-                    lineHeight='20px'>ODS Instance Derivatives:</Text>
+                    lineHeight='20px'
+                  >ODS Instance Derivatives:
+                  </Text>
                   {values.odsInstanceDerivatives.map((derivative, index) => (
-                    <Flex key={index} mb="8px" flexDir="column">
+                    <Flex key={index} flexDir="column" mb="8px">
                       <Flex alignItems="center">
                         <CustomSelect
                           options={[
-                            { text: "ReadReplica", value: "ReadReplica" },
-                            { text: "Snapshot", value: "Snapshot" },
+                            {
+                              text: 'ReadReplica',
+                              value: 'ReadReplica' 
+                            },
+                            {
+                              text: 'Snapshot',
+                              value: 'Snapshot' 
+                            },
                           ]}
                           disabled={false}
                           id={`derivative-${index}`}
+                          placeholder="Select an option"
                           value={derivative.derivativeType}
                           onChange={(e) => {
-                            const selectedValue = e.target.value;
+                            const selectedValue = e.target.value
+
                             setFieldValue(
                               `odsInstanceDerivatives[${index}].derivativeType`,
                               selectedValue
-                            );
+                            )
                           }}
-                          placeholder="Select an option"
                         />
                         <Button
                           colorScheme="red"
                           ml="8px"
                           onClick={() => {
                             const updatedDerivatives =
-                              values.odsInstanceDerivatives.filter(
-                                (_, i) => i !== index
-                              );
-                            setFieldValue("odsInstanceDerivatives", updatedDerivatives);
+                              values.odsInstanceDerivatives.filter((_, i) => i !== index)
+
+                            setFieldValue('odsInstanceDerivatives', updatedDerivatives)
                           }}
                         >
                           Remove
                         </Button>
                       </Flex>
-                      {derivative.derivativeType === "" && (
+                      {derivative.derivativeType === '' && (
                         <Text color="red.500" fontSize="xs" mt="4px">
                           Derivative Type is required
                         </Text>
@@ -184,13 +207,16 @@ const AddInstanceFormV2: React.FC<AddInstanceFormProps> = ({
                     </Flex>
 
                   ))}
-                  <Button colorScheme="blue" onClick={() => {
-                    setFieldValue("odsInstanceDerivatives", [
-                      ...values.odsInstanceDerivatives,
-                      { derivativeType: "" },
-                    ])
-                  }
-                  }>
+                  <Button
+                    colorScheme="blue"
+                    onClick={() => {
+                      setFieldValue('odsInstanceDerivatives', [
+                        ...values.odsInstanceDerivatives,
+                        { derivativeType: '' },
+                      ])
+                    }
+                    }
+                  >
                     Add Derivative
                   </Button>
                 </Box>
@@ -211,7 +237,7 @@ const AddInstanceFormV2: React.FC<AddInstanceFormProps> = ({
         )}
       </Formik>
     </Flex>
-  );
-};
+  )
+}
 
-export default AddInstanceFormV2;
+export default AddInstanceFormV2

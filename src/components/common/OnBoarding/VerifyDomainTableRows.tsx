@@ -6,7 +6,9 @@
 import {
   Td, Text
 } from '@chakra-ui/react'
-import { CopyTextBtn, UserProfileContext } from '@edfi/admin-console-shared-sdk'
+import {
+  CopyTextBtn, UserProfileContext 
+} from '@edfi/admin-console-shared-sdk'
 import {
   ChangeEvent, useContext
 } from 'react'

@@ -14,7 +14,7 @@ import DataHealthDetails from './DataHealthDetails'
 import OnBoardingTabContentWrapper from './OnBoardingTabContentWrapper'
 
 interface ReviewDataTabContentProps {
-    setupWizard?: boolean 
+  setupWizard?: boolean
 }
 
 const ReviewDataTabContent = ({ setupWizard }: ReviewDataTabContentProps) => {
@@ -22,34 +22,33 @@ const ReviewDataTabContent = ({ setupWizard }: ReviewDataTabContentProps) => {
 
   return (
     <OnBoardingTabContentWrapper>
-      {adminConfig && adminConfig.showDataHealth? <>
+      {adminConfig && adminConfig.showDataHealth ? <>
         <Text
           fontFamily='Poppins'
           fontWeight='400'
           w='730px'
         >
-          Use the data preview to see whether the number of records submitted by your SIS landed in the ODS { setupWizard? 'for this school year' : '' }. The preview displays the total counts for each resource identified. Green tiles indicate that data exists and gray tiles indicate that data does not exist for that particular resource. If something here looks incorrect, you’ll need to troubleshoot within your SIS or access support resources.
+          Use the data preview to see whether the number of records submitted by your SIS landed in the ODS {setupWizard ? 'for this school year' : ''}. The preview displays the total counts for each resource identified. Green tiles indicate that data exists and gray tiles indicate that data does not exist for that particular resource. If something here looks incorrect, you’ll need to troubleshoot within your SIS or access support resources.
         </Text>
 
         <Flex
           mt='32px'
           w='full'
         >
-          <DataHealthDetails 
+          <DataHealthDetails
             isReview={false}
             showReload={true}
           />
         </Flex>
-      </> : 
-      <Text
-          fontFamily='Poppins'
-          fontSize='24px'
-          fontWeight='600'
-          w='730px'
-        >
-          Coming Soon
-        </Text>}
-
+      </> : <Text
+        fontFamily='Poppins'
+        fontSize='24px'
+        fontWeight='600'
+        w='730px'
+      >
+        Coming Soon
+      </Text>
+      }
       <Flex
         justifyContent='space-between'
         mt='32px'

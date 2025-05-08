@@ -54,14 +54,14 @@ const ODSInstanceTableWrapper = ({ tenants, tableMode, pickedInstance, onSelectI
 
   useEffect(() => {
     onUpdateInstancesCount(paginatedData.data?.length ?? 0)
-  }, [paginatedData.data])
+  }, [ paginatedData.data ])
 
   function onAddBtnClick() {
     nav('/addinstance')
   }
 
   async function onRefreshBtnClick() {
-    await onFetchInstancesData();
+    await onFetchInstancesData()
   }
 
   return (
@@ -100,8 +100,8 @@ const ODSInstanceTableWrapper = ({ tenants, tableMode, pickedInstance, onSelectI
           >
             <Button
               border='1px'
-              borderColor= { isFetchingData ? 'gray.400' : 'blue.400'}
-              color={ isFetchingData ? 'gray.600' : 'blue.600'}
+              borderColor={isFetchingData ? 'gray.400' : 'blue.400'}
+              color={isFetchingData ? 'gray.600' : 'blue.600'}
               ml='16px'
               padding='10px'
               size='sm'

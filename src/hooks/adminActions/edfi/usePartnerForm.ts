@@ -29,15 +29,15 @@ const usePartnerForm = ({ schoolYear, onFinishSave, initialData, mode }: UsePart
   const { edxAppConfig, auth } = useContext(TEEAuthDataContext)
   const adminConfig = useContext(adminConsoleContext)
   // const { createVendorForSchoolYear, getVendorsListForSchoolYear } = useEdfiVendorService()
-  const [partnerData, setPartnerData] = useState<EdfiVendor>({ ...initialPartnerData })
-  const [isSaving, setIsSaving] = useState(false)
-  const [hasTriedSubmit, setHasTriedSubmit] = useState(false)
+  const [ partnerData, setPartnerData ] = useState<EdfiVendor>({ ...initialPartnerData })
+  const [ isSaving, setIsSaving ] = useState(false)
+  const [ hasTriedSubmit, setHasTriedSubmit ] = useState(false)
   const { errors, validPartnerData, validateInputChange } = usePartnerFormValidation()
   const { successToast, errorToast } = useEDXToast(7000)
   const { config } = useConfig()
   const { functionalities } = usePluginContext()
   const api = functionalities.ApiService?.(config, useApiService)
-  const [isEditing, setIsEditing] = useState(false)
+  const [ isEditing, setIsEditing ] = useState(false)
 
   // check if initialData is passed and set it to partnerData
   useEffect(() => {
@@ -57,7 +57,7 @@ const usePartnerForm = ({ schoolYear, onFinishSave, initialData, mode }: UsePart
         contactEmailAddress:  initialData.contactEmailAddress ?? ''
       })
     }
-  }, [initialData, mode])
+  }, [ initialData, mode ])
 
   const onChangePartnerData = (e: ChangeEvent<HTMLInputElement>) => {
     const npartnerData = { ...partnerData }
@@ -108,20 +108,22 @@ const usePartnerForm = ({ schoolYear, onFinishSave, initialData, mode }: UsePart
 
   const onSave = async () => {
     if (edxAppConfig && auth && auth.user && adminConfig) {
-      const validationResult = validPartnerData(partnerData);
+      const validationResult = validPartnerData(partnerData)
 
       if (validationResult.isValid) {
-        setIsSaving(true);
+        setIsSaving(true)
 
         // const vendorList = await getVendorsListForSchoolYear(adminConfig.actionParams, schoolYear)
         const vendorList = await api?.vendors.getAll() ?? []
+
         if (!partnerData.namespacePrefixes || partnerData.namespacePrefixes.trim() === '') {
-          validationResult.isValid = false;
-          validationResult.errors.namespacePrefixes = { message: 'Namespace Prefixes is required.' };
+          validationResult.isValid = false
+          validationResult.errors.namespacePrefixes = { message: 'Namespace Prefixes is required.' }
           errorToast('Namespace Prefixes is required.')
           setIsSaving(false)
           return
         }
+
         if (isEditing) {
           if (!partnerData.id) {
             console.log('Vendor ID is missing', partnerData)
@@ -132,12 +134,13 @@ const usePartnerForm = ({ schoolYear, onFinishSave, initialData, mode }: UsePart
           try {
             await api?.vendors.update(partnerData.id, partnerData)
             successToast('Updated Vendor')
-            onFinishSave();
+            onFinishSave()
           } catch (e) {
             errorToast('Failed to Update Vendor> '+e)
           } finally {
             setIsSaving(false)
           }
+
           return
         }
 
@@ -150,19 +153,19 @@ const usePartnerForm = ({ schoolYear, onFinishSave, initialData, mode }: UsePart
         try {
           await api?.vendors.create(partnerData)
           successToast('Added Vendor')
-          onFinishSave();
+          onFinishSave()
         } catch (e) {
           errorToast('Failed to Add Vendor')
         } finally {
           setIsSaving(false)
         }
-      }
-      else {
+      } else {
         Object.values(validationResult.errors).forEach((errorMessages) => {
-          errorToast(errorMessages.message);
-        });
-        setIsSaving(false);
-        setHasTriedSubmit(true);
+          errorToast(errorMessages.message)
+        })
+
+        setIsSaving(false)
+        setHasTriedSubmit(true)
       }
     }
   }

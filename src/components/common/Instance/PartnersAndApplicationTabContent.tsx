@@ -156,6 +156,7 @@ const PartnersAndApplicationTabContent = ({ instance, schoolYear }: PartnersAndA
           <PartnersAndApplicationAccordion
             isDeletingApplication={isDeletingApplication}
             isDeletingVendor={isDeletingVendor}
+            loading={isFetchingData ?? false}
             vendorsWithApplicationsList={vendorsWithApplicationsList}
             onAddApplication={onAddApplication}
             onDeleteApplication={handleDeleteApplication}
@@ -163,7 +164,6 @@ const PartnersAndApplicationTabContent = ({ instance, schoolYear }: PartnersAndA
             onEditApplication={onEditApplication}
             onEditVendor={onEditVendor}
             onSelectVendor={onSelectPartner}
-            loading={isFetchingData ?? false}
           />
         </Flex>
       </Flex>

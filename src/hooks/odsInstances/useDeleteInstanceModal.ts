@@ -9,10 +9,8 @@ import useOdsInstanceService from '../../services/ODSInstances/OdsInstanceServic
 import { ChangeEvent } from 'react'
 
 const useDeleteIntanceModal = (instanceData: ODSInstance) => {
-  const [showErrorDeleteInstanceModal, setShowErrorDeleteIntanceModal] = useState(false)
-  const [showValidationErrorDeleteInstanceModal, setShowValidationErrorDeleteIntanceModal] = useState(false)
-
-  const [instanceNameToDelete, setInstanceName] = useState('')
+  const [ showErrorDeleteInstanceModal, setShowErrorDeleteIntanceModal ] = useState(false)
+  const [ showValidationErrorDeleteInstanceModal, setShowValidationErrorDeleteIntanceModal ] = useState(false)  const [ instanceNameToDelete, setInstanceName ] = useState('')
 
   const {
     deleteInstanceById
@@ -20,7 +18,8 @@ const useDeleteIntanceModal = (instanceData: ODSInstance) => {
 
   const onConfirmDeleteInstanceModal = async () => {
     //call the endpoint to delete an instance
-    let result = false;
+    let result = false
+
     if (instanceNameToDelete === instanceData.name) {
       result = await deleteInstanceById(instanceData.id.toString())
         .then(async () => {
@@ -33,11 +32,11 @@ const useDeleteIntanceModal = (instanceData: ODSInstance) => {
           console.error(reason)
           return false
         })
-    }
-    else {
+    } else {
       //show validation error
       setShowValidationErrorDeleteIntanceModal(true)
     }
+
     return result
   }
 
@@ -47,7 +46,7 @@ const useDeleteIntanceModal = (instanceData: ODSInstance) => {
   }
 
   const onResetDeleteInstanceModal = () => {
-    setShowErrorDeleteIntanceModal(false);
+    setShowErrorDeleteIntanceModal(false)
     setInstanceName('')
     setShowValidationErrorDeleteIntanceModal(false)
   }

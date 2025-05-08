@@ -3,7 +3,7 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import { Page } from '@playwright/test';
+import { Page } from '@playwright/test'
 
 /**
  * Helper function to fill out the Add Instance form.
@@ -22,24 +22,27 @@ export const addInstanceFormHelper = async (
   instanceData: MockInstanceData
 ) => {
   if (instanceData.name) {
-    await page.getByLabel('Name').fill(instanceData.name);
+    await page.getByLabel('Name').fill(instanceData.name)
   }
+
   if (instanceData.instanceType) {
-    await page.getByLabel('Instance Type').fill(instanceData.instanceType);
+    await page.getByLabel('Instance Type').fill(instanceData.instanceType)
   }
+
   if (instanceData.odsInstanceContexts) {
     for (let i = 0; i < instanceData.odsInstanceContexts.length; i++) {
-      const context = instanceData.odsInstanceContexts[i];
-      await page.getByRole('button', { name: 'Add Context' }).click();
-      await page.getByPlaceholder('Context Key').nth(i).fill(context.key);
-      await page.getByPlaceholder('Context Value').nth(i).fill(context.value);
+      const context = instanceData.odsInstanceContexts[i]
+      await page.getByRole('button', { name: 'Add Context' }).click()
+      await page.getByPlaceholder('Context Key').nth(i).fill(context.key)
+      await page.getByPlaceholder('Context Value').nth(i).fill(context.value)
     }
   }
+
   if (instanceData.odsInstanceDerivatives) {
     for (let i = 0; i < instanceData.odsInstanceDerivatives.length; i++) {
-      const derivative = instanceData.odsInstanceDerivatives[i];
-      await page.getByRole('button', { name: 'Add Derivative' }).click();
-      await page.locator(`#derivative-${i}`).selectOption(derivative);
+      const derivative = instanceData.odsInstanceDerivatives[i]
+      await page.getByRole('button', { name: 'Add Derivative' }).click()
+      await page.locator(`#derivative-${i}`).selectOption(derivative)
     }
   }
-};
+}

@@ -3,7 +3,9 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import { Flex, Heading } from '@chakra-ui/react'
+import {
+  Flex, Heading
+} from '@chakra-ui/react'
 import useOdsInstanceData from '../../hooks/odsInstances/useOdsInstanceData'
 import useOdsInstancePageContent from '../../hooks/odsInstances/useOdsInstancePageContent'
 import useSetUpWizardModal from '../../hooks/odsInstances/useSetUpWizardModal'
@@ -21,8 +23,7 @@ const InstancePageContent = ({ instanceId }: InstancePageContentProps) => {
     showConfirmSetDefaultModal,
     onShowConfirmSetDefaultModal,
     onCloseConfirmSetDefaultModal,
-    instanceNotFound
-  } = useOdsInstanceData({ instanceId })
+    instanceNotFound } = useOdsInstanceData({ instanceId })
 
   const {
     showSetUpWizardModal,
@@ -42,16 +43,19 @@ const InstancePageContent = ({ instanceId }: InstancePageContentProps) => {
       <InstancePageHeader />
       {instanceNotFound ? (
         <Flex
+          alignItems='center'
           flexDir='column'
-          w='full'
           h='full'
           justifyContent='center'
-          alignItems='center'
+          w='full'
         >
           <Heading
             mt='5px'
-            size='lg'>Instance not found</Heading>
-        </Flex>) : (<InstanceTabsMenu
+            size='lg'
+          >Instance not found
+          </Heading>
+        </Flex>) :
+        (<InstanceTabsMenu
           canSetAsDefault={availableSetDefault}
           instance={instance}
           showConfirmSetDefaultModal={showConfirmSetDefaultModal}
@@ -63,7 +67,7 @@ const InstancePageContent = ({ instanceId }: InstancePageContentProps) => {
           onShowConfirmSetDefaultModal={onShowConfirmSetDefaultModal}
           onShowSetUpWizardModal={onShowSetUpWizardModal}
         />
-      )}
+        )}
     </Flex>
   )
 }

@@ -14,14 +14,14 @@ let page: Page
 const partnersTabName = 'Vendors & Applications'
 
 const openVendorsTab =  async (page: Page) => {
-  await page.getByRole('tab', { name: 'Vendors & Applications' }).click();
+  await page.getByRole('tab', { name: 'Vendors & Applications' }).click()
 }
 
 const openDefaultVendors =  async (page: Page) => {
-  await page.getByRole('button', { name: 'Ed-Fi Administrative Tools' }).click();
+  await page.getByRole('button', { name: 'Ed-Fi Administrative Tools' }).click()
 }
 
-const clickAddVendorBtn = async (page: Page) => await page.getByTestId('add-user-btn').click();
+const clickAddVendorBtn = async (page: Page) => await page.getByTestId('add-user-btn').click()
 
 const openApplicationForm =  async (page: Page) => {
   await page.getByText('Texas Exchange').click()
@@ -35,36 +35,36 @@ test.beforeEach(async ({ browser }) => {
   await page.goto(routes.home)
   await page.waitForURL(routes.home)
   await page.waitForLoadState('networkidle', { timeout: 35000 })
-  await page.getByRole('link', { name: 'tenant1 ODS' }).click();
+  await page.getByRole('link', { name: 'tenant1 ODS' }).click()
   await page.waitForLoadState('networkidle', { timeout: 35000 })
   openVendorsTab(page)
-  await page.waitForLoadState('networkidle');
-  openDefaultVendors(page);
-  await page.waitForLoadState('networkidle');
-  await page.getByRole('button', { name: 'Add Application' }).click();
-  await page.waitForLoadState('networkidle');
+  await page.waitForLoadState('networkidle')
+  openDefaultVendors(page)
+  await page.waitForLoadState('networkidle')
+  await page.getByRole('button', { name: 'Add Application' }).click()
+  await page.waitForLoadState('networkidle')
 })
 
-test("Application form has fields", async () => {
-  await page.getByText('Claim Sets').click();
-  await page.getByText('EdOrgs', { exact: true }).click();
-  await page.getByText('Application Details').click();
-  await page.getByRole('heading', { name: 'Add Application' }).click();
+test('Application form has fields', async () => {
+  await page.getByText('Claim Sets').click()
+  await page.getByText('EdOrgs', { exact: true }).click()
+  await page.getByText('Application Details').click()
+  await page.getByRole('heading', { name: 'Add Application' }).click()
 })
 
-test.describe("Add Application Form - Application Name", () => {
+test.describe('Add Application Form - Application Name', () => {
   
-  test("Application Name should not be empty", async () => {
+  test('Application Name should not be empty', async () => {
     await fillAddApplicationForm({
       page,
       vendor: '1',
       claimSet: true
     })
 
-    await page.getByRole("button", { name: "Save" }).click()
-    await page.waitForLoadState('networkidle');
-    await expect(page.getByText('Please correct the errors')).toBeVisible();
-    await expect(page.getByText('Application Name should not')).toBeVisible();
+    await page.getByRole('button', { name: 'Save' }).click()
+    await page.waitForLoadState('networkidle')
+    await expect(page.getByText('Please correct the errors')).toBeVisible()
+    await expect(page.getByText('Application Name should not')).toBeVisible()
   })
 
   /*test("Application Name should have at least 2 letters/digits", async () => {
@@ -80,33 +80,33 @@ test.describe("Add Application Form - Application Name", () => {
   })*/
 })
 
-test.describe("Add Application Form - Vendor", () => {
-  test("Application Name should not be empty", async () => {
+test.describe('Add Application Form - Vendor', () => {
+  test('Application Name should not be empty', async () => {
     await fillAddApplicationForm({
       page,
-      applicationName: "application",
+      applicationName: 'application',
       vendor: null,
       claimSet: true
     })
 
-    await page.getByRole("button", { name: "Save" }).click()
-    await page.waitForLoadState('networkidle');
-    await expect(page.getByText("Select a Vendor")).toBeVisible()
+    await page.getByRole('button', { name: 'Save' }).click()
+    await page.waitForLoadState('networkidle')
+    await expect(page.getByText('Select a Vendor')).toBeVisible()
   })
 })
 
-test.describe("Add Application Form - Claim Set", () => {
-  test("Application Name should not be empty", async () => {
+test.describe('Add Application Form - Claim Set', () => {
+  test('Application Name should not be empty', async () => {
     await fillAddApplicationForm({
       page,
-      applicationName: "application",
+      applicationName: 'application',
       vendor: '1',
       claimSet: false
     })
 
-    await page.getByRole("button", { name: "Save" }).click()
-    await page.waitForLoadState('networkidle');
-    await expect(page.getByText('Select a Claim Set')).toBeVisible();
+    await page.getByRole('button', { name: 'Save' }).click()
+    await page.waitForLoadState('networkidle')
+    await expect(page.getByText('Select a Claim Set')).toBeVisible()
   })
 })
 

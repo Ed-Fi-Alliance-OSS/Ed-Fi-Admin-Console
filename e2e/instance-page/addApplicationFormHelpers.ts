@@ -16,7 +16,8 @@ const fillAddApplicationForm = async ({ page, applicationName, vendor, claimSet 
   if (applicationName) {
     await page.getByLabel('Application Name').fill(applicationName)
   }
-  await page.getByLabel('Vendor', { exact: true }).selectOption(vendor? vendor : 'Select Option');
+
+  await page.getByLabel('Vendor', { exact: true }).selectOption(vendor? vendor : 'Select Option')
   await page.getByLabel('Claim Set').selectOption(claimSet? 'AB Connect' : 'Select Option')
 }
 

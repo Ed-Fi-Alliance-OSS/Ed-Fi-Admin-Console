@@ -9,7 +9,7 @@ import 'dotenv/config'
 import { defineConfig } from 'vite'
 import defaultConfig from './app.config.json' assert { type: 'json' }
 import { mergeEnvVars } from './merge-env-vars.mjs'
-import fs from 'fs';
+import fs from 'fs'
 
 export default defineConfig(({ mode }) => {
   const isProd = mode === 'production'

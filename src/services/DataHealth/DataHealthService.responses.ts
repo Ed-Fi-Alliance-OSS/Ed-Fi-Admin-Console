@@ -3,7 +3,7 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import { ApiResponse } from "../Responses/ApiResponse"
+import { ApiResponse } from '../Responses/ApiResponse'
 
 export interface GetDataHealthDistrictDetailsResponse {
     localEducationAgencyId: number

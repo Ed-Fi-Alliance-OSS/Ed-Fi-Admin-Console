@@ -72,21 +72,21 @@ const ODSInstanceManagementTableRowItem = ({ tableMode, selectedInstance, instan
       </Td>}
 
       <Td maxW="250px" overflow="hidden" px={4} py={2}>
-        <Flex direction="column" w="100%" overflow="hidden">
+        <Flex direction="column" overflow="hidden" w="100%">
           <Link
             as={RouterLink}
-            to={getOdsInstanceLink(instance)}
-            state={{ instanceId: instance.id }}
             color="blue.600"
+            display="block"
             fontFamily="Poppins"
+            fontSize="md"
             fontWeight="700"
             lineHeight="22px"
-            fontSize="md"
-            display="block"
             overflow="hidden"
+            state={{ instanceId: instance.id }}
             textOverflow="ellipsis"
-            whiteSpace="nowrap"
             title={instance.name}
+            to={getOdsInstanceLink(instance)}
+            whiteSpace="nowrap"
           >
             {instance.name}
           </Link>

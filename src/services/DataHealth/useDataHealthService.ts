@@ -3,7 +3,9 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import { useApiService, useConfig } from '@edfi/admin-console-shared-sdk'
+import {
+  useApiService, useConfig 
+} from '@edfi/admin-console-shared-sdk'
 import useHttpService from '../../hooks/http/useHttpService'
 import { ActionParams } from '../AdminActions/adminAction.types'
 import { GetDataHealthDistrictDetailsResponse } from './DataHealthService.responses'
@@ -15,9 +17,10 @@ const useDataHealthService = () => {
   const { config } = useConfig()
   const { functionalities } = usePluginContext()
   const apiService = functionalities.ApiService?.(config, useApiService)
+
   const getDataHealthInfo = async(instanceId: number | undefined) =>{
-      const result = await apiService?.healthCheck.getByInstanceId(instanceId ?? 0);
-      return result;
+    const result = await apiService?.healthCheck.getByInstanceId(instanceId ?? 0)
+    return result
   } 
 
   const getOdsInstanceDataHealthInfo = async (actionParams: ActionParams, year: number): GetDataHealthDistrictDetailsResult => {
@@ -30,6 +33,7 @@ const useDataHealthService = () => {
       access_token: actionParams.token,
       apiConfig: actionParams.config.api
     })
+
     return result
   }
 

@@ -35,10 +35,10 @@ interface MultiInputProps<T> {
 }
 
 function MultiInput<T extends string | number>({ filterInput, fieldName, label, values: initialVals, onChange, transformText }: MultiInputProps<T>) {
-  const [snapshot, setSnapshot] = useReducer((state, action) => JSON.stringify(state) === JSON.stringify(action) ? state : action, {})
+  const [ snapshot, setSnapshot ] = useReducer((state, action) => JSON.stringify(state) === JSON.stringify(action) ? state : action, {})
 
-  const [values, dispatch] = useReducer((state, action: { type: 'set' | 'add' | 'rm', data: string | string[] }) => {
-    let arr = [...state]
+  const [ values, dispatch ] = useReducer((state, action: { type: 'set' | 'add' | 'rm', data: string | string[] }) => {
+    let arr = [ ...state ]
 
     let data = isFunction(transformText)
       ? isArray(action.data)
@@ -62,7 +62,7 @@ function MultiInput<T extends string | number>({ filterInput, fieldName, label, 
 
 
     if (action.type === 'set') {
-      arr = isArray(data) ? [...data] : [data]
+      arr = isArray(data) ? [ ...data ] : [ data ]
       onChange(arr)
     }
 
@@ -109,7 +109,7 @@ function MultiInput<T extends string | number>({ filterInput, fieldName, label, 
 
     setSnapshot(JSON.stringify(initialVals))
 
-  }, [initialVals])
+  }, [ initialVals ])
 
   return (
     <Flex
@@ -148,20 +148,20 @@ function MultiInput<T extends string | number>({ filterInput, fieldName, label, 
             placeholder={label}
             size='xs'
             variant="filled"
-            onKeyUp={filterInput}
             wordBreak="break-all"
+            onKeyUp={filterInput}
           >
             {values.filter(tag => tag !== '').map((tag, tid) => (
               <AutoCompleteTag
                 key={tid}
                 label={tag}
-                variant="solid"
-                onRemove={() => rmVal(tag)}
                 maxW="100%"
-                whiteSpace="normal"
-                wordBreak="break-all"
                 px={2}
                 py={1}
+                variant="solid"
+                whiteSpace="normal"
+                wordBreak="break-all"
+                onRemove={() => rmVal(tag)}
               />
             ))}
           </AutoCompleteInput>
@@ -170,11 +170,11 @@ function MultiInput<T extends string | number>({ filterInput, fieldName, label, 
           <AutoCompleteList fontSize={10}>
             <AutoCompleteCreatable>
               {({ value }) => (<Flex gap={2}>Add <Tag
+                maxWidth="100%"
                 paddingX={2}
                 size="xs"
                 whiteSpace="normal"
                 wordBreak="break-all"
-                maxWidth="100%"
               >{isFunction(transformText) ? transformText?.(value) : value}
               </Tag> as option...
               </Flex>)}

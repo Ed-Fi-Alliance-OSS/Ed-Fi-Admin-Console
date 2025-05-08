@@ -15,7 +15,7 @@ export const InstanceWorkerStatus = {
   'InProgress': 'In progress',
   'Completed': 'Completed',
   'Pending_Delete': 'Pending to delete',
-  'Deleted': "Deleted",
+  'Deleted': 'Deleted',
   'Delete_Failed': 'Delete failed',
   'Pending_Rename': 'Pending to rename',
   'Renamed' : 'Renamed',

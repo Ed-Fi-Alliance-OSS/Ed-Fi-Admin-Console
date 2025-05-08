@@ -68,6 +68,7 @@ export class PartnerValidator {
     if (!value.trim()) {
       return { message: 'Company is required.' }
     }
+
     return null
   }
 
@@ -75,10 +76,13 @@ export class PartnerValidator {
     if (!value.trim()) {
       return { message: 'Contact Email is required.' }
     }
+
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
     if (!emailRegex.test(value)) {
       return { message: 'Invalid email format.' }
     }
+
     return null
   }
 

@@ -6,14 +6,16 @@
 import {
   Flex, Spinner, Text
 } from '@chakra-ui/react'
-import { InstanceOperationStatus, InstanceWorkerStatus } from '../../../core/ODSInstance.types'
+import {
+  InstanceOperationStatus, InstanceWorkerStatus 
+} from '../../../core/ODSInstance.types'
 
 interface ODSInstanceWorkerStatusProps {
   status: string
 }
 
 const getStatus = (status: string) => {
-  return InstanceWorkerStatus[status] || InstanceWorkerStatus["Error"]
+  return InstanceWorkerStatus[status] || InstanceWorkerStatus['Error']
 }
 
 const ODSInstanceWorkerStatus = ({ status }: ODSInstanceWorkerStatusProps) => {

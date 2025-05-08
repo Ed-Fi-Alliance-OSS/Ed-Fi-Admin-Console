@@ -75,7 +75,8 @@ const useOdsInstanceTable = () => {
 
     setIsFetchingData(true)
     const instancesResp = await apiService?.instances.getAll()
-    const instanceRespNoDeleted = instancesResp.filter(element => element.status !== "Deleted")
+    const instanceRespNoDeleted = instancesResp.filter(element => element.status !== 'Deleted')
+
     setPaginatedData({
       pageIndex: 0,
       pageSize: 100,
