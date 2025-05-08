@@ -37,7 +37,10 @@ app.use(spaLimiter)
 // going to make sure that the correct content will be loaded.
 app.use((req, res, next) => {
   const ext = path.extname(req.path)
-  const isStatic = ['.ico', '.js', '.css', '.jpg', '.png', '.map', '.json'].includes(ext.toLowerCase())
+
+  const isStatic = [
+    '.ico', '.js', '.css', '.jpg', '.png', '.map', '.json' 
+  ].includes(ext.toLowerCase())
   
   if (isStatic) {
     return next()
@@ -47,7 +50,9 @@ app.use((req, res, next) => {
   res.header('Expires', '-1')
   res.header('Pragma', 'no-cache')
   res.sendFile(path.join(__dirname, 'dist', 'index.html'), (err) => {
-    if (err) next(err)
+    if (err) {
+      next(err) 
+    }
   })
 })
 

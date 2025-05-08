@@ -17,12 +17,15 @@ const fillAddVendorPartnerForm = async ({ page, vendorName, company, contactEmai
   if (vendorName) {
     await page.getByLabel('Vendor Name').fill(vendorName)
   }
+
   if(company) {
-    await page.getByLabel('Company',  { exact: true }).fill(company);
+    await page.getByLabel('Company',  { exact: true }).fill(company)
   }
+
   if(contactEmail) {
-    await page.locator('#contactEmailAddress').fill(contactEmail);
+    await page.locator('#contactEmailAddress').fill(contactEmail)
   }
+
   if (nameSpacePrefixes && nameSpacePrefixes.length > 0) {
     for (const prefix of nameSpacePrefixes) {
       await page.getByLabel('Add Namespace Prefixes').fill(prefix)
