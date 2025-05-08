@@ -7,7 +7,7 @@ import {
   test, expect, Page
 } from '@playwright/test'
 import { routes } from '../core/routes'
-import { addInstanceFormHelper } from './AddInstanceFormHelper'
+import { addInstanceFormHelper } from './addInstanceFormHelper'
 
 const addInstanceButton = 'Add Instance'
 const addInstanceSaveButton = 'Create Instance'

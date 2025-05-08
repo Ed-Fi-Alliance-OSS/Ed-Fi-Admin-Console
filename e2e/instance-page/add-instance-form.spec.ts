@@ -3,51 +3,48 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import {
-  test, expect, Page 
-} from '@playwright/test'
-import { routes } from '../core/routes'
-import {
-  addInstanceFormHelper, MockInstanceData 
-} from './AddInstanceFormHelper'
+import { test, expect, Page } from '@playwright/test';
+import { routes } from '../core/routes';
+import { addInstanceFormHelper, MockInstanceData } from './addInstanceFormHelper';
 
-let page: Pageconst addInstanceTitle = 'Create Instance'
-const addInstanceSaveButton = 'Create Instance'
-const addInstanceSubTitle = 'Instance Details'
-const addInstanceButton = 'Add Instance'
+let page: Page;
+
+const addInstanceTitle = 'Create Instance';
+const addInstanceSaveButton = 'Create Instance';
+const addInstanceSubTitle = 'Instance Details';
+const addInstanceButton = 'Add Instance';
 
 const openAddInstanceForm = async (page: Page) => {
-  await page.getByRole('button', { name: addInstanceButton }).click()
-}
+  await page.getByRole('button', { name: addInstanceButton }).click();
+};
 
 test.describe('Add Instance Form E2E Tests', () => {
   test.beforeEach(async ({ browser }) => {
-    page = await browser.newPage()
-    await page.goto(routes.home)
-    await page.waitForURL(routes.home)
-    await page.waitForLoadState('networkidle', { timeout: 35000 })
-    await openAddInstanceForm(page)
-  })
+      page = await browser.newPage()
+      await page.goto(routes.home)
+      await page.waitForURL(routes.home)
+      await page.waitForLoadState('networkidle', { timeout: 35000 })
+      await openAddInstanceForm(page)
+    })
 
   test('Add Instance page should show Create Instance Title', async () => {
-    await expect(page.getByRole('heading')).toContainText(addInstanceTitle)
+    await expect(page.getByRole('heading')).toContainText(addInstanceTitle);
   })
   
   test('Add Instance page should show Create Instance SubTitle', async () => {
-    await expect(page.getByRole('main')).toContainText(addInstanceSubTitle)
+    await expect(page.getByRole('main')).toContainText(addInstanceSubTitle);
   })
 
   test('should display the Add Instance form and inputs', async () => {
     // Check if the inputs are visible
-    await expect(page.getByLabel('Name')).toBeVisible()
-    await expect(page.getByLabel('Instance Type')).toBeVisible()
-  })
+    await expect(page.getByLabel('Name')).toBeVisible();
+    await expect(page.getByLabel('Instance Type')).toBeVisible();
+  });
 
   test('should successfully create a new instance', async () => {
     // Use the helper to fill out the form
-    const uniqueSuffix = Date.now().toString() // Use timestamp as a unique suffix
-    const uniqueName = `Instance ${uniqueSuffix}`
-
+    const uniqueSuffix = Date.now().toString(); // Use timestamp as a unique suffix
+    const uniqueName = `Instance ${uniqueSuffix}`;
     const instanceData : MockInstanceData = {
       name: uniqueName,
       instanceType: 'Type A',

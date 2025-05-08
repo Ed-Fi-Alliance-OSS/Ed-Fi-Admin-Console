@@ -11,7 +11,7 @@ import partnerNameSchema from '../schemas/Vendors/nameSchema'
 import namespacePrefixesSchema from '../schemas/Vendors/namespacePrefixesSchema'
 import ValidationErrorsMapper from './ValidationErrorsMapper'
 
-export type PartnerValidatorFields = 'partnerName' | 'namespacePrefixes'
+export type PartnerValidatorFields = 'partnerName' | 'contactEmailAddress' | 'namespacePrefixes' | 'company';
 
 export class PartnerValidator {
   public static validateField({ data, field }: ValidateFieldParams<EdfiVendor, PartnerValidatorFields>): FieldError | null {
@@ -19,6 +19,10 @@ export class PartnerValidator {
       return this.validateName(data.contactName ?? '')
     } else if (field === 'namespacePrefixes') {
       return this.validateNamespacePrefixes(data.namespacePrefixes)
+    } else if (field === 'company') {
+      return this.validateCompany(data.company ?? '')
+    } else if (field === 'contactEmailAddress') {
+      return this.validateContactEmail(data.contactEmailAddress ?? '')
     }
 
     return null
@@ -57,6 +61,24 @@ export class PartnerValidator {
       }
     }
 
+    return null
+  }
+
+  private static validateCompany(value: string): FieldError | null {
+    if (!value.trim()) {
+      return { message: 'Company is required.' }
+    }
+    return null
+  }
+
+  private static validateContactEmail(value: string): FieldError | null {
+    if (!value.trim()) {
+      return { message: 'Contact Email is required.' }
+    }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!emailRegex.test(value)) {
+      return { message: 'Invalid email format.' }
+    }
     return null
   }
 

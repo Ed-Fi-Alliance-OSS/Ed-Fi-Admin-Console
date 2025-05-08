@@ -29,7 +29,7 @@ const PartnerForm = ({ initialData, schoolYear, mode, onFinishSave }: PartnerFor
     setIsSaving,
     errors,
     hasTriedSubmit,
-    onChangeParnerData,
+    onChangePartnerData,
     onChangeNamespacePrefixes,
     onSave
   } = usePartnerForm({
@@ -69,8 +69,34 @@ const PartnerForm = ({ initialData, schoolYear, mode, onFinishSave }: PartnerFor
             <CustomInput
               error={errors && errors['partnerName'] && errors['partnerName'].message}
               id="partnerName"
+              value={partnerData.contactName}
+              onChange={onChangePartnerData}
+            />
+          </FormControl>
+
+          <FormControl mt="24px">
+            <CustomFormLabel
+              htmlFor="company"
+              text="Company"
+            />
+            <CustomInput
+              error={errors && errors['company'] && errors['company'].message}
+              id="company"
               value={partnerData.company}
-              onChange={onChangeParnerData}
+              onChange={onChangePartnerData}
+            />
+          </FormControl>
+
+          <FormControl mt="24px">
+            <CustomFormLabel
+              htmlFor="contactEmail"
+              text="Contact Email"
+            />
+            <CustomInput
+              error={errors && errors['contactEmailAddress'] && errors['contactEmailAddress'].message}
+              id="contactEmailAddress"
+              value={partnerData.contactEmailAddress}
+              onChange={onChangePartnerData}
             />
           </FormControl>
 
@@ -104,7 +130,7 @@ const PartnerForm = ({ initialData, schoolYear, mode, onFinishSave }: PartnerFor
                 error={errors && errors['namespacePrefixes'] && errors['namespacePrefixes'].message}
                 id="namespacePrefixes"
                 value={partnerData.namespacePrefixes} 
-                onChange={onChangeParnerData}
+                onChange={onChangePartnerData}
               />
             </Flex> */}
           </FormControl>

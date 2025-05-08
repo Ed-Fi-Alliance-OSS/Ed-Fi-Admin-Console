@@ -30,6 +30,16 @@ const usePartnerFormValidation = () => {
       field: 'partnerName' 
     })
 
+    const companyError = PartnerValidator.validateField({
+      data,
+      field: 'company' 
+    })
+
+    const contactEmailAddressError = PartnerValidator.validateField({
+      data,
+      field: 'contactEmailAddress' 
+    })
+    
     const namespacePrefixes = PartnerValidator.validateField({
       data,
       field: 'namespacePrefixes' 
@@ -39,6 +49,14 @@ const usePartnerFormValidation = () => {
 
     if (nameError) {
       formDataErrors['partnerName'] = nameError
+    }
+
+    if (companyError) {
+      formDataErrors['company'] = companyError
+    }
+
+    if (contactEmailAddressError) {
+      formDataErrors['contactEmailAddress'] = contactEmailAddressError
     }
 
     if (namespacePrefixes) {
