@@ -309,8 +309,6 @@ test.describe('Add Vendor Form - Edit Vendor Name', () => {
       contactEmail: `test${uniqueVendorSuffix}@test.test`,
       nameSpacePrefixes: [ `http://vendor-to-edit-${uniqueVendorSuffix}.org` ]
     })
-
-    //await page.waitForTimeout(8000);
     // Click the Add Vendor button
     await clickAddVendorBtn(page)
     await page.waitForLoadState('networkidle')
@@ -397,7 +395,7 @@ test.describe('Add Vendor Form - Edit Vendor Name', () => {
       vendorName: `EditedVendor${uniqueVendorSuffix}`,
       company: `Company${uniqueVendorToEdit}`,
       contactEmail: `test${uniqueVendorSuffix}@test.test`,
-      nameSpacePrefixes: [ `http://vendor-edited-${uniqueVendorSuffix}.org` ]
+      nameSpacePrefixes: [ `http://edited-vendor/name${uniqueVendorSuffix}.org` ]
     })
 
     // Click the Add Vendor button
