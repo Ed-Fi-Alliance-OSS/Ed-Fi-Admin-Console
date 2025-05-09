@@ -309,6 +309,7 @@ test.describe('Add Vendor Form - Edit Vendor Name', () => {
       contactEmail: `test${uniqueVendorSuffix}@test.test`,
       nameSpacePrefixes: [ `http://vendor-to-edit-${uniqueVendorSuffix}.org` ]
     })
+    
     // Click the Add Vendor button
     await clickAddVendorBtn(page)
     await page.waitForLoadState('networkidle')
@@ -325,7 +326,6 @@ test.describe('Add Vendor Form - Edit Vendor Name', () => {
       exact: true 
     }).click()
 
-    console
     await page.waitForLoadState('networkidle')
     openVendorsTab(page)
     await page.waitForLoadState('networkidle')
