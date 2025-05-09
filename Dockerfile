@@ -3,8 +3,9 @@
 # The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 # See the LICENSE and NOTICES files in the project root for more information.
 
+# Node 20.x
 FROM node@sha256:c628bdc7ebc7f95b1b23249a445eb415ce68ae9def8b68364b35ee15e3065b0f AS build
-RUN apk --upgrade --no-cache add dos2unix=~7 bash=~5 gettext=~0 icu=~74 curl=~8 go=~1.23.8
+RUN apk --upgrade --no-cache add dos2unix=~7 bash=~5 gettext=~0 icu=~74 curl=~8 go=1.23.8-r0
 ENV mode=production
 
 WORKDIR /app
