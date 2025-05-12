@@ -9,7 +9,7 @@
   },
   "license": "Apache-2.0",
   "scripts": {
-    "dev": "set VITE_ENV=local && vite --open",
+    "dev": "set VITE_ENV=local && vite",
     "dev:docker": "set VITE_ENV=local && vite",
     "build": "vite build --mode development",
     "build:prod": "vite build --mode production",
@@ -22,7 +22,7 @@
     "@chakra-ui/icons": "2.2.4",
     "@chakra-ui/react": "2.8.2",
     "@choc-ui/chakra-autocomplete": "^5.8.0",
-    "@edfi/admin-console-shared-sdk": "2.2.10-alpha.12",
+    "@edfi/admin-console-shared-sdk": "2.2.10-pre",
     "@emotion/react": "11.14.0",
     "@emotion/styled": "11.11.0",
     "@fontsource/archivo-narrow": "4.5.12",
@@ -30,13 +30,13 @@
     "@fontsource/poppins": "5.2.6",
     "@novu/notification-center": "2.0.0-canary.0",
     "@types/json-server": "^0.14.8",
-    "axios": "1.7.7",
+    "axios": "^1.8.2",
     "compression": "1.8.0",
     "cors": "2.8.5",
     "express": "^4.21.2",
     "express-rate-limit": "^7.5.0",
     "formik": "^2.4.6",
-    "framer-motion": "12.7.4",
+    "framer-motion": "^12.7.4",
     "joi": "17.13.3",
     "json-server": "^0.17.4",
     "lodash-es": "^4.17.21",
@@ -80,7 +80,6 @@
     "ws": "8.18.0"
   },
   "overrides": {
-    "axios": "1.7.7",
     "esbuild": "0.19.12",
     "types-ramda": "0.29.4"
   },
