@@ -9,7 +9,7 @@
   },
   "license": "Apache-2.0",
   "scripts": {
-    "dev": "set VITE_ENV=local && vite",
+    "dev": "set VITE_ENV=local && vite --open",
     "dev:docker": "set VITE_ENV=local && vite",
     "build": "vite build --mode development",
     "build:prod": "vite build --mode production",
