@@ -4,8 +4,18 @@
 # See the LICENSE and NOTICES files in the project root for more information.
 
 # Node 20.x
-FROM node@sha256:c628bdc7ebc7f95b1b23249a445eb415ce68ae9def8b68364b35ee15e3065b0f AS build
-RUN apk --upgrade --no-cache add dos2unix=~7 bash=~5 gettext=~0 icu=~74 curl=~8 go=~1.23.9-r0
+FROM node:20.19.1-alpine3.21@sha256:c628bdc7ebc7f95b1b23249a445eb415ce68ae9def8b68364b35ee15e3065b0f AS build
+
+RUN apk --upgrade --no-cache add dos2unix=~7 bash=~5 gettext=~0 icu=~74 curl=~8 && \
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash && \
+    echo 'export NVM_DIR="$HOME/.nvm"' >> ~/.bashrc && \
+    echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' >> ~/.bashrc && \
+    source ~/.bashrc && \
+    nvm install 20.9.0 && \
+    nvm use 20.9.0 && \
+    npm install -g npm@latest
+
+
 ENV mode=production
 
 WORKDIR /app
