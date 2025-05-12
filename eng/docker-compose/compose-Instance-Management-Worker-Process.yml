@@ -13,6 +13,7 @@ services:
       EdFi_AdminConsole_AppSettings__DefaultPageSizeLimit: 25
       EdFi_AdminConsole_AppSettings__OverrideExistingDatabase: ${OVERRIDE_EXISTING_DATABASE:-false}
       EdFi_AdminConsole_AppSettings__IgnoresCertificateErrors: ${IGNORES_CERTIFICATE_ERRORS:-true}
+      EdFi_AdminConsole_AppSettings__MaxRetryAttempts: ${MAX_RETRY_ATTEMPTS:-5}
       EdFi_AdminConsole_Tenants__tenant1__ConnectionStrings__EdFi_Master: ${TENANT1_EDFI_MASTER:-host=host.docker.internal;port=6432;username=postgres;password=P@ssw0rd;database=postgres;pooling=false;}
       EdFi_AdminConsole_Tenants__tenant1__ConnectionStrings__EdFi_Ods: ${TENANT1_EDFI_ODS:-host=host.docker.internal;port=6432;username=postgres;password=P@ssw0rd;database={0};pooling=false;}
       EdFi_AdminConsole_Tenants__tenant2__ConnectionStrings__EdFi_Master: ${TENANT2_EDFI_MASTER:-host=host.docker.internal;port=6432;username=postgres;password=P@ssw0rd;database=postgres;pooling=false;}
