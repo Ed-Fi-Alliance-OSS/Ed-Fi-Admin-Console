@@ -65,11 +65,11 @@ function MultiInput<T extends string | number>({ filterInput, fieldName, label, 
 
     arr = sortedUniq(arr).filter(item => item !== '')
     return arr
-  }, []);
+  }, [])
 
   useEffect(() => {
-    onChange(values);
-  }, [values]);
+    onChange(values)
+  }, [ values ])
 
   function addVal(data: string) {
     dispatch({
