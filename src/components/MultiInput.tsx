@@ -48,7 +48,6 @@ function MultiInput<T extends string | number>({ filterInput, fieldName, label, 
 
     if (action.type === 'rm') {
       arr = arr.filter(e => e !== data)
-      onChange(arr)
     }
 
     if (data === 0) {
@@ -57,18 +56,20 @@ function MultiInput<T extends string | number>({ filterInput, fieldName, label, 
 
     if (action.type === 'add') {
       arr.push(data)
-      onChange(arr)
     }
 
 
     if (action.type === 'set') {
       arr = isArray(data) ? [ ...data ] : [ data ]
-      onChange(arr)
     }
 
     arr = sortedUniq(arr).filter(item => item !== '')
     return arr
-  }, [])
+  }, []);
+
+  useEffect(() => {
+    onChange(values);
+  }, [values]);
 
   function addVal(data: string) {
     dispatch({
