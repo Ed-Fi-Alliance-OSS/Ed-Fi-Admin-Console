@@ -3,7 +3,7 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import { InfoIcon } from '@chakra-ui/icons'
+import { MdInfoOutline } from 'react-icons/md'
 import { Tooltip } from '@chakra-ui/react'
 
 interface CommonTooltipProps {
@@ -29,7 +29,7 @@ const CommonTooltip = ({ bg, iconColor, label, size }: CommonTooltipProps) => {
         textAlign='center'
         w='250px'
       >
-        <InfoIcon 
+        <MdInfoOutline 
           aria-label="info tooltip"
           color={iconColor}
           focusable="true"

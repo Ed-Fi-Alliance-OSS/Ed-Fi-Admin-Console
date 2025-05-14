@@ -3,7 +3,7 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import { ChevronDownIcon } from '@chakra-ui/icons'
+import { MdKeyboardArrowDown } from 'react-icons/md'
 import {
   Button, Flex 
 } from '@chakra-ui/react'
@@ -48,7 +48,7 @@ const ManageSubscribersControls = ({ applicationName, subscriptionId, onManageSu
         >{`Show ${applicationName} options`}
         </span>
 
-        <ChevronDownIcon 
+        <MdKeyboardArrowDown 
           aria-hidden="true"
           focusable="false" 
           fontSize='18px'

@@ -3,7 +3,7 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import { RepeatIcon } from '@chakra-ui/icons'
+import { MdRefresh } from 'react-icons/md'
 import {
   Button, Flex, keyframes, Tooltip 
 } from '@chakra-ui/react'
@@ -69,7 +69,7 @@ const RefreshBtn = ({ id, fontSize, asFlex, isRefreshing, iconColor, onAction }:
           >Refresh
           </span>
 
-          <RepeatIcon 
+          <MdRefresh 
             aria-hidden="true" 
             color={iconColor ?? 'blue.600'}
             focusable='false'
@@ -106,7 +106,7 @@ const RefreshBtn = ({ id, fontSize, asFlex, isRefreshing, iconColor, onAction }:
         >Refresh
         </span>
 
-        <RepeatIcon 
+        <MdRefresh 
           animation={isRefreshing? spinAnimation : 'none'}
           aria-label="refresh"
           color={iconColor ?? 'blue.600'}

@@ -3,7 +3,7 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import { DeleteIcon } from '@chakra-ui/icons'
+import { MdDelete } from 'react-icons/md'
 import {
   Button, Text, Box
 } from '@chakra-ui/react'
@@ -41,7 +41,7 @@ const DeleteInstanceBtn = ({ instance, showDeleteInstanceModal, onShowDeleteInst
         w='170px'
         onClick={onShowDeleteInstanceModal}
       >
-        <DeleteIcon
+        <MdDelete
           aria-hidden="true"
           color='white.600'
           focusable="false"

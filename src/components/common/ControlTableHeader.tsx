@@ -4,8 +4,8 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import {
-  TriangleDownIcon, TriangleUpIcon
-} from '@chakra-ui/icons'
+  MdArrowDropUp, MdArrowDropDown
+} from 'react-icons/md'
 import {
   Button, Flex, Text
 } from '@chakra-ui/react'
@@ -60,7 +60,7 @@ const ControlTableHeader = ({ headerData, justifyContent }: ControlTableHeaderPr
             >Sort ascending
             </span>
 
-            <TriangleUpIcon 
+            <MdArrowDropUp 
               aria-label="Sort field ascending"
               focusable="true"
               fontSize='10px'
@@ -82,7 +82,7 @@ const ControlTableHeader = ({ headerData, justifyContent }: ControlTableHeaderPr
             >Sort descending
             </span>
 
-            <TriangleDownIcon 
+            <MdArrowDropDown 
               aria-label="Sort field descending" 
               focusable="true"
               fontSize='10px'

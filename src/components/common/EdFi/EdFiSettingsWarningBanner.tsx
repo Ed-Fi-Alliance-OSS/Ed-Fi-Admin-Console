@@ -3,9 +3,7 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import {
-  CloseIcon, InfoIcon
-} from '@chakra-ui/icons'
+import { MdClose, MdInfo } from 'react-icons/md'
 import {
   Button, Flex, Link, Text
 } from '@chakra-ui/react'
@@ -31,7 +29,7 @@ const EdFiSettingsWarningBanner = () => {
           w='full'
         >
           <Flex alignItems='center'>
-            <InfoIcon color='orange.500' />
+            <MdInfo color='orange.500' />
 
             <Text
               color='gray.800' 
@@ -46,7 +44,7 @@ const EdFiSettingsWarningBanner = () => {
 
           <Flex ml='auto'>
             <Button minW='auto'>
-              <CloseIcon 
+              <MdClose 
                 fontSize='12px'
                 onClick={() => setShow(false)}
               />

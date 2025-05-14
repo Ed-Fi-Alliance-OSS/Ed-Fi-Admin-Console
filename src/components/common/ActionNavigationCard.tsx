@@ -3,7 +3,7 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import { ArrowForwardIcon } from '@chakra-ui/icons'
+import { MdArrowForward } from 'react-icons/md'
 import {
   Flex, Img, Link, Text 
 } from '@chakra-ui/react'
@@ -64,7 +64,7 @@ const ActionNavigationCard = ({ data, index }: ActionNavigationCardProps) => {
           alignItems='center'
           h='20px'
         >
-          <ArrowForwardIcon 
+          <MdArrowForward 
             aria-hidden="true"
             focusable="false"
             ml='10px'

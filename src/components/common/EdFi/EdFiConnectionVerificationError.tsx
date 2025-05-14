@@ -3,7 +3,7 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import { WarningIcon } from '@chakra-ui/icons'
+import { MdWarning } from 'react-icons/md'
 import {
   Flex, Text
 } from '@chakra-ui/react'
@@ -51,7 +51,7 @@ const EdFiConnectionVerificationError = ({ status }: EdFiConnectionVerificationE
         w='full'
       >
         <Flex alignItems='center'>
-          <WarningIcon color='red.600' />
+          <MdWarning color='red.600' />
 
           <Text
             fontFamily='Poppins'
