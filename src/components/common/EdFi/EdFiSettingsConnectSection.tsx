@@ -3,7 +3,7 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import { WarningTwoIcon } from '@chakra-ui/icons'
+import { MdWarning } from 'react-icons/md'
 import {
   Button, Flex, Text
 } from '@chakra-ui/react'
@@ -24,7 +24,7 @@ const EdFiSettingsConnectSection = ({ onConnect }: EdFiSettingsConnectSectionPro
       p="32px"
       w='full'
     >
-      <WarningTwoIcon fontSize='24px' />
+      <MdWarning fontSize='24px' />
 
       <Text
         fontFamily='Poppins'

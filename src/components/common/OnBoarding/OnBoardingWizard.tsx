@@ -3,7 +3,7 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import { CheckIcon } from '@chakra-ui/icons'
+import { MdCheck } from 'react-icons/md'
 import {
   Flex, Tab, TabList, TabPanel, TabPanels, Tabs
 } from '@chakra-ui/react'
@@ -367,7 +367,7 @@ const OnBoardingWizard = ({ completedSteps, lastInProgress, currentStepIndex, la
               <Flex alignItems='center'>
                 {step.tabName}
 
-                <CheckIcon 
+                <MdCheck 
                   aria-hidden="true" 
                   bg='blue.100'
                   borderRadius='full'

@@ -3,7 +3,7 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import { CloseIcon } from '@chakra-ui/icons'
+import { MdClose } from 'react-icons/md'
 import {
   Button, Flex,
   FormControl,
@@ -111,7 +111,7 @@ const AddDomainForm = ({ districtData, onAfterSave }: AddDomainFormProps) => {
           >Close
           </span>
 
-          <CloseIcon
+          <MdClose
             aria-hidden="true"
             focusable="false"
           />

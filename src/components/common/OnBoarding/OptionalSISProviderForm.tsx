@@ -3,7 +3,7 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import { AddIcon } from '@chakra-ui/icons'
+import { MdAdd } from 'react-icons/md'
 import {
   Button, Flex, FormControl, Text
 } from '@chakra-ui/react'
@@ -95,7 +95,7 @@ const OptionalSISProviderForm = ({ authenticationUrl,
           onClick={onShowOptionalForm}
         >
           <Flex>
-            <AddIcon />
+            <MdAdd />
           </Flex>
 
           <Text

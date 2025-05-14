@@ -3,7 +3,7 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import { AddIcon } from '@chakra-ui/icons'
+import { MdAdd } from 'react-icons/md'
 import {
   Button, Flex, Text 
 } from '@chakra-ui/react'
@@ -34,7 +34,7 @@ const DomainSelect = ({ domains }: DomainSelectProps) => {
       >
         <span id="add-btn">Add</span>
 
-        <AddIcon 
+        <MdAdd 
           aria-hidden="true"
           focusable="false"
           fontSize='10px' 

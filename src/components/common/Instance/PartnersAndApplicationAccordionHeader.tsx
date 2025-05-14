@@ -4,8 +4,9 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import {
-  TriangleDownIcon, TriangleUpIcon
-} from '@chakra-ui/icons'
+  MdArrowDropDown as TriangleDownIcon,
+  MdArrowDropUp as TriangleUpIcon
+} from 'react-icons/md'
 import {
   Button, Flex, Text
 } from '@chakra-ui/react'

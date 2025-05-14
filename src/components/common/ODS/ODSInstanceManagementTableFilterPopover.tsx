@@ -3,7 +3,7 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import { SearchIcon } from '@chakra-ui/icons'
+import { MdSearch } from 'react-icons/md'
 import {
   Popover,
   PopoverTrigger,
@@ -42,7 +42,7 @@ const ODSInstanceManagementTableFilterPopover = ({ textFilter, selectedOption, o
           >Search
           </span>
 
-          <SearchIcon 
+          <MdSearch 
             aria-hidden="true"
             color='gray.700'
             focusable="false"

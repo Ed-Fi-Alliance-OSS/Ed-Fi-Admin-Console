@@ -3,7 +3,7 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import { EditIcon } from '@chakra-ui/icons'
+import { MdEdit } from 'react-icons/md'
 import {
   Button, Text
 } from '@chakra-ui/react'
@@ -24,7 +24,7 @@ const EditInstanceBtn = ({ onClick }: EditInstanceBtnProps) => {
       w='170px'
       onClick={onClick}
     >
-      <EditIcon
+      <MdEdit
         aria-hidden="true"
         color='blue.600'
         focusable="false"
