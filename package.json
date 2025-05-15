@@ -74,7 +74,7 @@
     "sass": "^1.86.3",
     "typescript": "5.8.3",
     "typescript-eslint": "8.31.1",
-    "vite": "^6.3.5"
+    "vite": "6.3.5"
   },
   "resolutions": {
     "ws": "8.18.0"
