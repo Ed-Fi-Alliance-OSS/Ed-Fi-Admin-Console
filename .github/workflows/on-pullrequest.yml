@@ -105,7 +105,6 @@ jobs:
         dockerfile:
           [
             { name: "development", path: "Dockerfile.dev", type: "local" },
-            { name: "distribution", path: "Dockerfile", type: "local" },
             { name: "admin-console-local", path: "Dockerfile", type: "local" }
           ]
     steps:
