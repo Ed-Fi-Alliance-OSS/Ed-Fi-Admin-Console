@@ -33,6 +33,7 @@
     "axios": "^1.8.2",
     "compression": "1.8.0",
     "cors": "2.8.5",
+    "cross-spawn": "^7.0.5",
     "express": "^4.21.2",
     "express-rate-limit": "^7.5.0",
     "formik": "^2.4.6",
@@ -80,7 +81,7 @@
     "ws": "8.18.0"
   },
   "overrides": {
-    "esbuild": "0.25.0",
+    "esbuild": "0.25.4",
     "types-ramda": "0.29.4"
   },
   "engines": {
