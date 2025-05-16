@@ -80,7 +80,7 @@
     "ws": "8.18.0"
   },
   "overrides": {
-    "esbuild": "0.25.0",
+    "esbuild": "0.25.4",
     "types-ramda": "0.29.4"
   },
   "engines": {
