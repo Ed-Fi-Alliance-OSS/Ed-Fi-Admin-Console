@@ -51,7 +51,7 @@
     "react-use": "^17.6.0",
     "swagger-ui-react": "^5.20.0",
     "ts-node": "10.9.2",
-    "ws": "8.18.0",
+    "ws": "8.18.2",
     "yup": "^1.5.0"
   },
   "devDependencies": {
@@ -78,7 +78,7 @@
     "vite": "6.3.5"
   },
   "resolutions": {
-    "ws": "8.18.0"
+    "ws": "8.18.2"
   },
   "overrides": {
     "esbuild": "0.25.4",
