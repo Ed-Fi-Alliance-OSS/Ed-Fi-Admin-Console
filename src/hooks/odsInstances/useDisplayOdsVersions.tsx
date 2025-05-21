@@ -25,7 +25,7 @@ const useDisplayOdsVersions = ({ instanceOdsMetadata }: UseDisplayOdsVersionsPro
     // return <Flex gridGap={2}>
     //   {instanceOdsMetadata?.dataModels?.map(dataModel => {
     //     return <>
-    //       <Tag>{dataModel.name} ({dataModel.version})</Tag>
+    //       <Badge>{dataModel.name} ({dataModel.version})</Bd1>
     //     </>
     //   })}
     // </Flex>

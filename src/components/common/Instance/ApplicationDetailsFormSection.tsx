@@ -5,7 +5,7 @@
 
 import {
   Flex,
-  FormControl,
+  Field,
   Text
 } from '@chakra-ui/react'
 import {
@@ -51,7 +51,7 @@ const ApplicationDetailsFormSection = ({ applicationData, mode, errors, operatio
       <Text fontWeight='700'>Application Details</Text>
 
       <Flex flexDir='column'>
-        <FormControl mt='16px'>
+        <Field.Root mt='16px'>
           <CustomFormLabel
             htmlFor="applicationName" 
             text="Application Name"
@@ -64,9 +64,9 @@ const ApplicationDetailsFormSection = ({ applicationData, mode, errors, operatio
             value={applicationData.applicationName} 
             onChange={onInputChange}
           />
-        </FormControl>
+        </Field.Root>
 
-        <FormControl mt='16px'>
+        <Field.Root mt='16px'>
           <CustomFormLabel
             htmlFor="vendor" 
             text="Vendor"
@@ -83,9 +83,9 @@ const ApplicationDetailsFormSection = ({ applicationData, mode, errors, operatio
             value={applicationData.vendorId} 
             onChange={(e) => onSelectVendor(parseInt(e.target.value))}
           />
-        </FormControl>
+        </Field.Root>
 
-        <FormControl mt='16px'>
+        <Field.Root mt='16px'>
           <CustomFormLabel
             htmlFor="claimset" 
             text="Claim Sets"
@@ -102,7 +102,7 @@ const ApplicationDetailsFormSection = ({ applicationData, mode, errors, operatio
             value={applicationData.claimSetName}
             onChange={(e) => onSelectClaimSet(e.target.value)}
           />
-        </FormControl>
+        </Field.Root>
       </Flex>
     </Flex>
   )

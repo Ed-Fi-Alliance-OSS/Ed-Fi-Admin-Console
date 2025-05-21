@@ -5,7 +5,7 @@
 
 import { MdAdd } from 'react-icons/md'
 import {
-  Button, Flex, FormControl, Text
+  Button, Flex, Field, Text
 } from '@chakra-ui/react'
 import {
   CustomFormLabel, CustomSelect
@@ -126,7 +126,7 @@ const OptionalSISProviderForm = ({ authenticationUrl,
         </Flex> 
 
         <Flex mt={!hasSelectedProvider? '12px' : '0'}>
-          { !hasSelectedProvider && <FormControl w='300px'>
+          { !hasSelectedProvider && <Field.Root w='300px'>
             <CustomFormLabel 
               htmlFor="providerFunction"
               text="Source Provider Function"
@@ -138,7 +138,7 @@ const OptionalSISProviderForm = ({ authenticationUrl,
               value={source}
               onChange={onChangeOptionalSource}
             />
-          </FormControl> }
+          </Field.Root> }
         </Flex>
 
         <Flex

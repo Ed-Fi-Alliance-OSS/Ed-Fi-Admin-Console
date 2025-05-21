@@ -4,7 +4,7 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import {
-  Button, Flex, FormControl, Text
+  Button, Flex, Field, Text
 } from '@chakra-ui/react'
 import { ODSInstance } from '../../../core/ODSInstance.types'
 import useDeleteInstanceModal from '../../../hooks/odsInstances/useDeleteInstanceModal'
@@ -34,7 +34,8 @@ const DeleteInstanceModal = ({ instance, show, onCloseModal }: DeleteInstanceMod
     paginatedData
   } = useOdsInstanceTable()
 
-  const { successToast, errorToast } = useEDXToast(5000)  const navigate = useNavigate()
+  const { successToast, errorToast } = useEDXToast(5000)
+  const navigate = useNavigate()
 
   const onConfirm = async () => {
     var success = await onConfirmDeleteInstanceModal()
@@ -59,7 +60,7 @@ const DeleteInstanceModal = ({ instance, show, onCloseModal }: DeleteInstanceMod
         flexDir='column'
         mt='12px'
       >
-        <FormControl mt='16px'>
+        <Field.Root mt='16px'>
           <Text>
             To confirm deletion, type the name of the instance.
           </Text>
@@ -69,7 +70,7 @@ const DeleteInstanceModal = ({ instance, show, onCloseModal }: DeleteInstanceMod
             value={instanceNameToDelete}
             onChange={onChangeInstanceName}
           />
-        </FormControl>
+        </Field.Root>
       </Flex>}
       footer={<Flex
         alignItems='flex-start'

@@ -4,7 +4,7 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import {
-  Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel, Flex, Text
+  Accordion, Flex, Text
 } from '@chakra-ui/react'
 import usePermissionsAccordion from '../../../hooks/adminActions/ods/usePermissionsAccordion'
 import AccordionItemSkeleton from '../AccordionItemSkeleton'
@@ -29,14 +29,14 @@ const PermissionsAccordion = () => {
         Claim Set
       </Text>
 
-      <Accordion   
+      <Accordion.Root   
         border='1px'
         borderColor='gray.300'
         p='0'
         w='full'
       >
         {permissions.map((permissionInfo, index) => 
-          <AccordionItem   
+          <Accordion.Item   
             key={index}
             border='1px' 
             borderColor='gray.300'
@@ -45,11 +45,11 @@ const PermissionsAccordion = () => {
               alignItems='center'
               w='full'
             >
-              <AccordionButton
+              <Accordion.ItemTrigger
                 border='none'
                 w='full'
               >
-                <AccordionIcon
+                <Accordion.ItemIndicator
                   aria-hidden="true"
                   focusable="false"
                 />
@@ -62,10 +62,10 @@ const PermissionsAccordion = () => {
                 >
                   {permissionInfo.name}
                 </Text>
-              </AccordionButton>
+              </Accordion.ItemTrigger>
             </Flex>
 
-            <AccordionPanel
+            <Accordion.ItemIndicator
               px='50px'
               w='full'
             >
@@ -90,11 +90,11 @@ const PermissionsAccordion = () => {
                 }}
                 />
               </Flex>
-            </AccordionPanel>
-          </AccordionItem>)}
+            </Accordion.ItemIndicator>
+          </Accordion.Item>)}
 
         <AccordionItemSkeleton itemsCount={permissions.length} />
-      </Accordion>
+      </Accordion.Root>
     </Flex>
   )
 }

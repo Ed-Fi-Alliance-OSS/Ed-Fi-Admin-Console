@@ -6,7 +6,7 @@
 import { MdClose } from 'react-icons/md'
 import {
   Button, Flex,
-  FormControl,
+  Field,
   Text
 } from '@chakra-ui/react'
 import {
@@ -45,7 +45,7 @@ const AddDomainForm = ({ districtData, onAfterSave }: AddDomainFormProps) => {
           flexDir='column'
           padding='0 16px'
         >
-          <FormControl mt='16px'>
+          <Field.Root mt='16px'>
             <CustomFormLabel
               htmlFor="domainName" 
               text="Domain"
@@ -57,7 +57,7 @@ const AddDomainForm = ({ districtData, onAfterSave }: AddDomainFormProps) => {
               value={domainName} 
               onChange={onInputChange}
             />
-          </FormControl>
+          </Field.Root>
         </Flex>
 
         <Flex

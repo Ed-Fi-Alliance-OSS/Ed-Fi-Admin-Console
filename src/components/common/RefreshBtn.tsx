@@ -5,9 +5,10 @@
 
 import { MdRefresh } from 'react-icons/md'
 import {
-  Button, Flex, keyframes, Tooltip 
+  Button, Flex, Tooltip 
 } from '@chakra-ui/react'
 import { useState } from 'react'
+import { system } from "../../theme";
 
 interface RefreshBtnProps {
     id: string
@@ -35,13 +36,7 @@ const RefreshBtn = ({ id, fontSize, asFlex, isRefreshing, iconColor, onAction }:
       setTooltipMessage(refreshMessage)
     }
   }
-
-  const spin = keyframes`  
-        from {transform: rotate(0deg);}   
-        to {transform: rotate(360deg)} 
-    `
-
-  const spinAnimation = `${spin} infinite 2s linear`   
+  // const spinAnimation = `${spin} infinite 2s linear`   
 
   if (asFlex) {
     return (
@@ -107,7 +102,7 @@ const RefreshBtn = ({ id, fontSize, asFlex, isRefreshing, iconColor, onAction }:
         </span>
 
         <MdRefresh 
-          animation={isRefreshing? spinAnimation : 'none'}
+          animation={isRefreshing? "spin" : 'none'}
           aria-label="refresh"
           color={iconColor ?? 'blue.600'}
           focusable='true'

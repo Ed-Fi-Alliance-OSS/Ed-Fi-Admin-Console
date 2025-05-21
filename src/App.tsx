@@ -4,8 +4,9 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import {
-  ChakraProvider, ColorModeScript
+  ChakraProvider
 } from '@chakra-ui/react'
+import { ColorModeProvider } from "./components/ui/color-mode"
 import {
   baseTheme, EdxConfigProvider, LoadingScreen, TEEAuthContextProvider, useSaveInitialRoute
 } from '@edfi/admin-console-shared-sdk'
@@ -20,6 +21,7 @@ import routes from './core/routes'
 import {
   loadPlugins, PluginLoader, PluginProvider
 } from './plugins/BasePlugin'
+import { system } from "./theme";
 
 interface AppProps {
   appConfig: any
@@ -37,44 +39,42 @@ function App({ appConfig }: AppProps) {
 
   return (
     <div className="App">
-      
-      <ColorModeScript initialColorMode={baseTheme.config.initialColorMode} />
+      <ChakraProvider theme={system}>
+        <ColorModeProvider>
 
-      <ChakraProvider theme={baseTheme}>
+          <LoadingScreen
+            delay={0.5}
+            loading={!appConfig ? true : false}
+            state='loading...'
+          />
 
-
-        <LoadingScreen
-          delay={0.5}
-          loading={!appConfig ? true : false}
-          state='loading...'
-        />
-
-        <HelmetProvider>
-          {appConfig &&
-            <EdxConfigProvider config={appConfig}>
-              <MockDataProvider>
-                <PluginProvider>
-                  <PluginLoader
-                    enabled={appConfig.plugins || []}
-                    plugins={loadPlugins()}
-                  />
+          <HelmetProvider>
+            {appConfig &&
+              <EdxConfigProvider config={appConfig}>
+                <MockDataProvider>
+                  <PluginProvider>
+                    <PluginLoader
+                      enabled={appConfig.plugins || []}
+                      plugins={loadPlugins()}
+                    />
 
 
-                  <TEEAuthContextProvider edxAppConfig={appConfig}>
-                    <OnBoardingWizardProvider>
-                      <AdminConsoleConfigProvider config={appConfig}>
-                        <HttpServiceContextProvider redirectOnError={true}>
-                          <TenantsContextProvider>
-                            <LayoutWrapper />
-                          </TenantsContextProvider>
-                        </HttpServiceContextProvider>
-                      </AdminConsoleConfigProvider>
-                    </OnBoardingWizardProvider>
-                  </TEEAuthContextProvider>
-                </PluginProvider>
-              </MockDataProvider>
-            </EdxConfigProvider>}
-        </HelmetProvider>
+                    <TEEAuthContextProvider edxAppConfig={appConfig}>
+                      <OnBoardingWizardProvider>
+                        <AdminConsoleConfigProvider config={appConfig}>
+                          <HttpServiceContextProvider redirectOnError={true}>
+                            <TenantsContextProvider>
+                              <LayoutWrapper />
+                            </TenantsContextProvider>
+                          </HttpServiceContextProvider>
+                        </AdminConsoleConfigProvider>
+                      </OnBoardingWizardProvider>
+                    </TEEAuthContextProvider>
+                  </PluginProvider>
+                </MockDataProvider>
+              </EdxConfigProvider>}
+          </HelmetProvider>
+        </ColorModeProvider>
       </ChakraProvider>
     </div>
   )

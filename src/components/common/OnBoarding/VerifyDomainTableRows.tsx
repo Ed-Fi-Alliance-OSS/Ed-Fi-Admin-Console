@@ -4,7 +4,7 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import {
-  Td, Text
+  Table, Text
 } from '@chakra-ui/react'
 import {
   CopyTextBtn, UserProfileContext 
@@ -27,7 +27,7 @@ const VerifyDomainTableRows = ({ verifyDomainList, onCheck }: VerifyDomainTableR
     <>
       {verifyDomainList.map((verifyDomain, index) => 
         <ControlTableRow key={index}>
-          <Td display='flex'>
+          <Table.Cell display='flex'>
             <Text
               fontFamily='Poppins'
               fontWeight='400'
@@ -35,9 +35,9 @@ const VerifyDomainTableRows = ({ verifyDomainList, onCheck }: VerifyDomainTableR
             >
               {verifyDomain.type}
             </Text>
-          </Td>
+          </Table.Cell>
 
-          <Td>
+          <Table.Cell>
             <Text
               fontFamily='Poppins'
               fontWeight='400'
@@ -45,9 +45,9 @@ const VerifyDomainTableRows = ({ verifyDomainList, onCheck }: VerifyDomainTableR
             >
               {verifyDomain.name}
             </Text>
-          </Td>
+          </Table.Cell>
 
-          <Td display='flex'>
+          <Table.Cell display='flex'>
             <Text
               fontFamily='Poppins'
               fontWeight='400'
@@ -61,9 +61,9 @@ const VerifyDomainTableRows = ({ verifyDomainList, onCheck }: VerifyDomainTableR
               value={userProfile? userProfile.tenantId : ''}
               withoutBorder={true}
             />
-          </Td>
+          </Table.Cell>
 
-          <Td>
+          <Table.Cell>
             <Text
               fontFamily='Poppins'
               fontWeight='400'
@@ -71,7 +71,7 @@ const VerifyDomainTableRows = ({ verifyDomainList, onCheck }: VerifyDomainTableR
             >
               {verifyDomain.ttl}
             </Text>
-          </Td>
+          </Table.Cell>
         </ControlTableRow>)}
     </>
   )

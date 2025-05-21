@@ -4,7 +4,7 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import {
-  Button, Flex, FormControl 
+  Button, Flex, Field 
 } from '@chakra-ui/react'
 import {
   CustomFormLabel, CustomSwitch, CustomInput 
@@ -27,7 +27,7 @@ const TenantSettingsForm = () => {
         flexDir='column'
         w='full'
       >
-        <FormControl>
+        <Field.Root>
           <CustomFormLabel 
             htmlFor="organizationName"
             text="Organization Name"
@@ -38,10 +38,10 @@ const TenantSettingsForm = () => {
             value='Grand Bend ISD'
             onChange={() => null}
           />
-        </FormControl>
+        </Field.Root>
 
         <Flex mt='16px'>
-          <FormControl>
+          <Field.Root>
             <CustomFormLabel 
               htmlFor="organizationId"
               text="Organization ID"
@@ -52,11 +52,11 @@ const TenantSettingsForm = () => {
               value='255901'
               onChange={() => null}
             />
-          </FormControl>
+          </Field.Root>
         </Flex>
 
         <Flex mt='16px'>
-          <FormControl>
+          <Field.Root>
             <CustomFormLabel 
               htmlFor="organizationType"
               text="Organization Type"
@@ -67,11 +67,11 @@ const TenantSettingsForm = () => {
               value='LEA'
               onChange={() => null}
             />
-          </FormControl>
+          </Field.Root>
         </Flex>
 
         <Flex mt='16px'>
-          <FormControl>
+          <Field.Root>
             <CustomFormLabel 
               htmlFor="organizationType"
               text="Tenant ID"
@@ -82,11 +82,11 @@ const TenantSettingsForm = () => {
               value='00000000-0000-0000-0000-000000000001'
               onChange={() => null}
             />
-          </FormControl>
+          </Field.Root>
         </Flex>
 
         <Flex mt='16px'>
-          <FormControl>
+          <Field.Root>
             <CustomFormLabel 
               htmlFor="state"
               text="State"
@@ -97,11 +97,11 @@ const TenantSettingsForm = () => {
               value='Tx'
               onChange={() => null}
             />
-          </FormControl>
+          </Field.Root>
         </Flex>
 
         <Flex mt='16px'>
-          <FormControl>
+          <Field.Root>
             <CustomFormLabel 
               htmlFor="isDemo"
               text="Is Demo"
@@ -111,18 +111,18 @@ const TenantSettingsForm = () => {
               id="toggleTenant"
               isChecked={false}
             />
-          </FormControl>
+          </Field.Root>
         </Flex>
 
         <Flex mt='16px'>
-          <FormControl>
+          <Field.Root>
             <CustomFormLabel 
               htmlFor="domains"
               text="Domains"
             />
 
             <DomainSelect domains={domains} />
-          </FormControl>
+          </Field.Root>
         </Flex>
 
         <Flex mt='32px'>

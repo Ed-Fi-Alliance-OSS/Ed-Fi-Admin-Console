@@ -4,7 +4,7 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import {
-  Flex, Tab, TabIndicator, TabList, TabPanel, TabPanels, Tabs 
+  Flex, Tabs 
 } from '@chakra-ui/react'
 import {
   ChangeEvent, useContext
@@ -72,15 +72,15 @@ const EditAppUserFormContent = ({ userData, edOrgHookData, mode, isImplicit, isF
       flexDir='column'
       w='full'
     >
-      <Tabs   
+      <Tabs.Root  
         isFitted 
         position="relative"
         variant="unstyled"
         w='full'
       >
-        <TabList>
+        <Tabs.List>
           {tabsList.filter(tab => showEdOrgTab(tab)).map((tab, index) => 
-            <Tab 
+            <Tabs.Content
               key={index}
               _notFirst={{ ml: '32px' }}
               _selected={{ color: 'blue.600' }}
@@ -91,21 +91,21 @@ const EditAppUserFormContent = ({ userData, edOrgHookData, mode, isImplicit, isF
               textAlign='center'
               onClick={() => handleTabChange(tab)}
             >{tab}
-            </Tab>)}
-        </TabList>
+            </Tabs.Content>)}
+        </Tabs.List>
 
-        <TabIndicator  
+        <Tabs.Indicator  
           bg="blue.600"
           borderRadius="1px"
           height="2px"
           mt="5px"
         />
 
-        <TabPanels
+        <Tabs.Content
           mt='35px'
           padding='0'
         >
-          <TabPanel padding='0'>
+          <Tabs.Content padding='0'>
             <AppUserDetailsForm
               errors={errors}
               mode={mode}
@@ -115,15 +115,15 @@ const EditAppUserFormContent = ({ userData, edOrgHookData, mode, isImplicit, isF
               onSelectChange={onRoleSelect}
               onToggleIsAdmin={onToggleIsAdmin}
             />
-          </TabPanel>
+          </Tabs.Content>
 
-          {adminConfig && adminConfig.showEdOrgsTab && <TabPanel padding='0'>
+          {adminConfig && adminConfig.showEdOrgsTab && <Tabs.Content padding='0'>
             <UserOrganizationsForm 
               editMode={edOrgEditMode}
               formHookData={edOrgHookData}
               onUpdateEditEdOrgMode={onUpdateEditEdOrgMode}
             />
-          </TabPanel>}
+          </Tabs.Content>}
 
           <TabPanel padding='0'>
             <AppUserSubscriptionsForm
@@ -133,9 +133,9 @@ const EditAppUserFormContent = ({ userData, edOrgHookData, mode, isImplicit, isF
               onSelectRoleForUser={onSelectApplicationRoleForUser}
               onSubscriptionToggle={onSubscriptionToggle}
             />
-          </TabPanel>
-        </TabPanels>
-      </Tabs>
+          </Tabs.Content>
+        </Tabs.Content>
+      </Tabs.Root>
     </Flex>
   )
 }

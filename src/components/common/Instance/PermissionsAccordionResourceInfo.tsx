@@ -4,7 +4,7 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import {
-  Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel, Flex, Text
+  Accordion, Flex, Text
 } from '@chakra-ui/react'
 
 interface ResourceInfoData {
@@ -27,8 +27,8 @@ interface PermissionsAccordionResourceInfoProps {
 
 const PermissionsAccordionResourceInfo = ({ resourceInfoData }: PermissionsAccordionResourceInfoProps) => {
   return (
-    <Accordion w='full'>
-      <AccordionItem
+    <Accordion.Root w='full'>
+      <Accordion.Item
         border='none'
         w='full'
       >
@@ -36,7 +36,7 @@ const PermissionsAccordionResourceInfo = ({ resourceInfoData }: PermissionsAccor
           alignItems='center'
           w='full'
         >
-          <AccordionButton
+          <Accordion.ItemTrigger
             border='none'
             px='0'
             w='full'
@@ -46,7 +46,7 @@ const PermissionsAccordionResourceInfo = ({ resourceInfoData }: PermissionsAccor
               w='full'
             >
               <Flex w='full'>
-                <AccordionIcon
+                <Accordion.ItemIndicator
                   aria-hidden="true"
                   focusable="false"
                 />
@@ -61,7 +61,7 @@ const PermissionsAccordionResourceInfo = ({ resourceInfoData }: PermissionsAccor
                 </Text>
               </Flex>
             </Flex>
-          </AccordionButton>
+          </Accordion.ItemTrigger>
         </Flex>
 
         <AccordionPanel
@@ -70,8 +70,8 @@ const PermissionsAccordionResourceInfo = ({ resourceInfoData }: PermissionsAccor
         >
           {resourceInfoData.name}
         </AccordionPanel>
-      </AccordionItem>
-    </Accordion>
+      </Accordion.Item>
+    </Accordion.Root>
   )
 }
 

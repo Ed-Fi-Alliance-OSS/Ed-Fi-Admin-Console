@@ -4,7 +4,7 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import {
-  Td, Text
+  Table, Text
 } from '@chakra-ui/react'
 import { Descriptor } from '../../../services/AdminActions/Ods/ODSService.results'
 import ControlTableRow from '../ControlTableRow'
@@ -24,7 +24,7 @@ const DescriptorsTableRows = ({ descriptorsList }: DescriptorsTableRowsProps) =>
     <>
       {descriptorsList.map((descriptor, index) => 
         <ControlTableRow key={index}>
-          <Td>
+          <Table.Cell>
             <Text
               color='gray.700'
               fontFamily='Poppins'
@@ -33,9 +33,9 @@ const DescriptorsTableRows = ({ descriptorsList }: DescriptorsTableRowsProps) =>
             >
               {descriptor.namespace}
             </Text>
-          </Td>
+          </Table.Cell>
 
-          <Td>
+          <Table.Cell>
             <Text
               color='blue.600'
               fontFamily='Poppins'
@@ -44,9 +44,9 @@ const DescriptorsTableRows = ({ descriptorsList }: DescriptorsTableRowsProps) =>
             >
               {descriptor.namespace.split('/')[2].length > 15? descriptor.namespace.split('/')[2].slice(0, 15) + '...' : descriptor.namespace.split('/')[2]}
             </Text>
-          </Td>
+          </Table.Cell>
 
-          <Td>
+          <Table.Cell>
             <Text
               color='gray.700'
               fontFamily='Poppins'
@@ -55,9 +55,9 @@ const DescriptorsTableRows = ({ descriptorsList }: DescriptorsTableRowsProps) =>
             >
               {extractDescription(descriptor.namespace.split('/')[2])}
             </Text>
-          </Td>
+          </Table.Cell>
 
-          <Td>
+          <Table.Cell>
             <Text
               color='gray.700'
               fontFamily='Poppins'
@@ -66,7 +66,7 @@ const DescriptorsTableRows = ({ descriptorsList }: DescriptorsTableRowsProps) =>
             >
               { index }
             </Text>
-          </Td>
+          </Table.Cell>
         </ControlTableRow>)}
     </>
   )

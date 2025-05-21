@@ -10,7 +10,7 @@ import {
   PopoverContent,
   PopoverBody,
   Button,
-  FormControl,
+  Field,
   Flex,
 } from '@chakra-ui/react'
 import { ChangeEvent } from 'react'
@@ -75,7 +75,7 @@ const ControlTableFilterPopover = ({ textFilter, selectedOption, options, select
         w='200px'
       >
         <PopoverBody padding='16px'>
-          <FormControl>
+          <Field.Root>
             <CustomFormLabel
               htmlFor="filter"
               text="Filter for"
@@ -103,7 +103,7 @@ const ControlTableFilterPopover = ({ textFilter, selectedOption, options, select
                 onChange={onChangeFilterOption}
               />
             </Flex>
-          </FormControl>
+          </Field.Root>
 
           <Button
             isDisabled={disableFilterBtn()}

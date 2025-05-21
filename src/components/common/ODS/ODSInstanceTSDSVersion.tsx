@@ -4,7 +4,7 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import {
-  Flex, Tag
+  Flex, Badge
 } from '@chakra-ui/react'
 import { EdFiMetadata } from '../../../hooks/useEdfiUrls.types'
 
@@ -14,14 +14,14 @@ interface ODSInstanceTSDSVersionProps {
 
 const ODSInstanceDataModelsLabel = ({ dataModels }: ODSInstanceTSDSVersionProps) => {
   return dataModels?.map((model, i) => <Flex key={JSON.stringify(model) + i}>
-    <Tag
+    <Badge
       colorScheme='blue'
       mb={1}
       mr={1}
       size='md'
     >
       {model.name} ({model.version})
-    </Tag>
+    </Badge>
 
     <br />
   </Flex>)

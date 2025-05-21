@@ -5,9 +5,8 @@
 
 import {
   Flex, Skeleton,
-  Table, TableContainer, Tbody,
+  Table, Box,
   Text,
-  Th, Thead, Tr
 } from '@chakra-ui/react'
 import { ControlTableRowList } from '../../core/controlTable'
 
@@ -28,18 +27,18 @@ const generateSkeletonArray = () => {
 
 const ControlTable = ({ headers, rows, thPadding, itemsCount, loading, pagination }: ControlTableProps) => {
   return (
-    <TableContainer 
+    <Box 
       bg='white'
       border='1px' 
       borderColor='gray.300'
       borderRadius='4px'
       w='full'
     >
-      <Table variant='simple'>
-        <Thead>
-          <Tr>
+      <Table.Root variant='simple'>
+        <Table.Header>
+          <Table.Row>
             {headers.map((header, index) => 
-              <Th 
+              <Table.ColumnHeader 
                 key={index}
                 aria-hidden={header !== null}
                 borderBottom='1px'
@@ -47,14 +46,14 @@ const ControlTable = ({ headers, rows, thPadding, itemsCount, loading, paginatio
                 padding={thPadding}
               >
                 {header}
-              </Th>)}
-          </Tr>
-        </Thead>
+              </Table.ColumnHeader>)}
+          </Table.Row>
+        </Table.Header>
 
-        <Tbody>
+        <Table.Body>
           {rows}
-        </Tbody>
-      </Table>
+        </Table.Body>
+      </Table.Root>
 
       {itemsCount === 0 && loading && <Flex
         flexDir='column'
@@ -107,7 +106,7 @@ const ControlTable = ({ headers, rows, thPadding, itemsCount, loading, paginatio
           {pagination}
         </Flex>
       </Flex>}
-    </TableContainer>
+    </Box>
   )
 }
 

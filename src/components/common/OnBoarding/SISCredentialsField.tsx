@@ -4,7 +4,7 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import {
-  Button, Flex, FormControl
+  Button, Flex, Field
 } from '@chakra-ui/react'
 import {
   CopyTextBtn,
@@ -28,7 +28,7 @@ const SISCredentialsField = ({ credentialsKey, credentialsSecret, isLoadingCrede
       flexDir='column'
       mt='10px'
     >
-      <FormControl>   
+      <Field.Root>   
         <CustomFormLabel
           htmlFor="key"
           text="Key"
@@ -49,9 +49,9 @@ const SISCredentialsField = ({ credentialsKey, credentialsSecret, isLoadingCrede
             />
           </Flex>
         </Flex>
-      </FormControl>
+      </Field.Root>
 
-      <FormControl mt='16px'>
+      <Field.Root mt='16px'>
         <CustomFormLabel
           htmlFor="secret"
           text="Secret"
@@ -73,7 +73,7 @@ const SISCredentialsField = ({ credentialsKey, credentialsSecret, isLoadingCrede
             />
           </Flex>
         </Flex>
-      </FormControl>
+      </Field.Root>
 
       <Flex
         justifyContent='flex-start'

@@ -5,7 +5,7 @@
 
 import { MdCheck } from 'react-icons/md'
 import {
-  Flex, Tab, TabList, TabPanel, TabPanels, Tabs
+  Flex, Tabs
 } from '@chakra-ui/react'
 import {
   useContext, useEffect, useState
@@ -337,16 +337,16 @@ const OnBoardingWizard = ({ completedSteps, lastInProgress, currentStepIndex, la
   }
 
   return (<>
-    <Tabs
-      isLazy
+    <Tabs.Root
+      lazyMount
       index={currentStepIndex}
       variant='enclosed'
       w='full'
       onChange={(index) => onTabChange(index)}
     >
-      <TabList justifyContent='start'>
+      <Tabs.List justifyContent='start'>
         {onboardingStepsData.tabsData.map((step, index) => 
-          <Tab 
+          <Tabs.Content
             key={index}
             _selected={{
               color: 'blue.600',
@@ -380,13 +380,13 @@ const OnBoardingWizard = ({ completedSteps, lastInProgress, currentStepIndex, la
                 />
               </Flex>
               : step.tabName}
-          </Tab>)}
-      </TabList>
+          </Tab.Content>)}
+      </Tabs.List>
 
       
 
-      <TabPanels padding='0'>
-        <TabPanel padding='0'>
+      <Tabs.Content padding='0'>
+        <Tabs.Content padding='0'>
           <OnBoardingTabsWrapper
             canNext={canNext}
             canPrev={canPrev}
@@ -398,9 +398,9 @@ const OnBoardingWizard = ({ completedSteps, lastInProgress, currentStepIndex, la
           >
             <InviteUsersTabContent onCompleteStep={onCompletedStep} />
           </OnBoardingTabsWrapper>
-        </TabPanel>
+        </Tabs.Content>
 
-        <TabPanel padding='0'>
+        <Tabs.Content padding='0'>
           <OnBoardingTabsWrapper
             canNext={canNext}
             canPrev={canPrev}
@@ -421,14 +421,14 @@ const OnBoardingWizard = ({ completedSteps, lastInProgress, currentStepIndex, la
               onUpdateInstancesCount={onUpdateInstancesCount}
             />
           </OnBoardingTabsWrapper>
-        </TabPanel>
+        </Tabs.Content>
 
         <OnBoardingConnectSISContextProvider
           schoolYear={defaultInstance? getInstanceYear(defaultInstance) : 0}
           onSelectSISProvider={onSelectSISProvider}
           onUnselectSISProvider={onUnselectSISProvider}
         >
-          <TabPanel padding='0'>
+          <Tabs.Content padding='0'>
             <OnBoardingTabsWrapper
               canNext={canNext}
               canPrev={canPrev}
@@ -443,10 +443,10 @@ const OnBoardingWizard = ({ completedSteps, lastInProgress, currentStepIndex, la
                 odsResourcesUrl={defaultInstance? defaultInstance.resourcesUrl : ''}
               />
             </OnBoardingTabsWrapper>
-          </TabPanel>
+          </Tabs.Content>
         </OnBoardingConnectSISContextProvider> 
 
-        <TabPanel padding='0'>
+        <Tabs.Content padding='0'>
           <OnBoardingTabsWrapper
             canNext={canNext}
             canPrev={canPrev}
@@ -458,9 +458,9 @@ const OnBoardingWizard = ({ completedSteps, lastInProgress, currentStepIndex, la
           >
             <SelectSSOMethodTabContent />
           </OnBoardingTabsWrapper>
-        </TabPanel>
+        </Tabs.Content>
 
-        {/* <TabPanel padding='0'>
+        {/* <Tabs.Content padding='0'>
           <OnBoardingTabsWrapper
             canNext={canNext}
             canPrev={canPrev}
@@ -472,11 +472,11 @@ const OnBoardingWizard = ({ completedSteps, lastInProgress, currentStepIndex, la
           >
             <ReviewDataTabContent />
           </OnBoardingTabsWrapper>
-        </TabPanel> */}
+        </Tabs.Content> */}
 
         
 
-        <TabPanel padding='0'>
+        <Tabs.Content padding='0'>
           <OnBoardingTabsWrapper
             canNext={canNext}
             canPrev={canPrev}
@@ -496,9 +496,9 @@ const OnBoardingWizard = ({ completedSteps, lastInProgress, currentStepIndex, la
               onSelectInstance={onSelectInstance}
             />
           </OnBoardingTabsWrapper>
-        </TabPanel>
-      </TabPanels>
-    </Tabs>
+        </Tabs.Content>
+      </Tabs.Content>
+    </Tabs.Root>
   </>
   )
 }

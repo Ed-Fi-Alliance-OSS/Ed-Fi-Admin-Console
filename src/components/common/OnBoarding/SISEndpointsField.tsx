@@ -5,7 +5,7 @@
 
 import { ChangeEvent } from 'react'
 import {
-  Flex, FormControl 
+  Flex, Field 
 } from '@chakra-ui/react'
 import {
   CustomFormLabel, CopyTextBtn, CustomInput 
@@ -23,7 +23,7 @@ const SISEndpointsField = ({ edfiAuthtenticationUrl, edfiResourcesUrl, onChangeE
       flexDir='column'
       mt='10px'
     >
-      <FormControl>   
+      <Field.Root>   
         <CustomFormLabel
           htmlFor="authenticationUrl"
           text="Ed-Fi Authentication URL"
@@ -43,9 +43,9 @@ const SISEndpointsField = ({ edfiAuthtenticationUrl, edfiResourcesUrl, onChangeE
             />
           </Flex>
         </Flex>
-      </FormControl>
+      </Field.Root>
 
-      <FormControl mt='16px'>
+      <Field.Root mt='16px'>
         <CustomFormLabel
           htmlFor="resourcesUrl"
           text="Ed-Fi Resources URL"
@@ -65,7 +65,7 @@ const SISEndpointsField = ({ edfiAuthtenticationUrl, edfiResourcesUrl, onChangeE
             />
           </Flex>
         </Flex>
-      </FormControl>
+      </Field.Root>
     </Flex>
   )
 }

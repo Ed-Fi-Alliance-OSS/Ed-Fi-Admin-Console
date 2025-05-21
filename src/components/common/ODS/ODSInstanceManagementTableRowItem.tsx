@@ -8,7 +8,7 @@ import {
   Link,
   RadioGroup,
   Spinner,
-  Td
+  Table
 } from '@chakra-ui/react'
 import {
   CustomRadio, Tenant
@@ -58,7 +58,7 @@ const ODSInstanceManagementTableRowItem = ({ tableMode, selectedInstance, instan
 
   return (
     <>
-      {tableMode != 'Display' && <Td w='80px'>
+      {tableMode != 'Display' && <Table.Cell w='80px'>
         <RadioGroup
           value={selectedInstance?.id ?? ''}
           onChange={() => onSelectInstance(instance)}
@@ -69,9 +69,9 @@ const ODSInstanceManagementTableRowItem = ({ tableMode, selectedInstance, instan
             value={instance.id}
           />
         </RadioGroup>
-      </Td>}
+      </Table.Cell>}
 
-      <Td maxW="250px" overflow="hidden" px={4} py={2}>
+      <Table.Cell maxW="250px" overflow="hidden" px={4} py={2}>
         <Flex direction="column" overflow="hidden" w="100%">
           <Link
             as={RouterLink}
@@ -91,28 +91,28 @@ const ODSInstanceManagementTableRowItem = ({ tableMode, selectedInstance, instan
             {instance.name}
           </Link>
         </Flex>
-      </Td>
+      </Table.Cell>
 
-      <Td>
+      <Table.Cell>
         {metaDataLoading ? <Spinner /> : <ODSInstanceEdFiVersion version={edfiMetadata?.version} />}
-      </Td>
+      </Table.Cell>
 
-      <Td>
+      <Table.Cell>
         {metaDataLoading ? <Spinner /> : <ODSInstanceDataModelsLabel dataModels={edfiMetadata?.dataModels} />}
-      </Td>
+      </Table.Cell>
 
-      <Td>
+      <Table.Cell>
         {metaDataLoading ? <Spinner /> : <ODSInstanceEdFiStatus status={edFiStatus ?? ''} />}
 
-      </Td>
+      </Table.Cell>
 
-      <Td>
+      <Table.Cell>
         {metaDataLoading ? <Spinner /> : <ODSInstanceWorkerStatus status={instance.status ?? 'Error'} />}
 
-      </Td>
+      </Table.Cell>
 
       {tableMode == 'Display' && <>
-        <Td>
+        <Table.Cell>
           {showSetupBtn() ?
             <SetUpInstanceBtn
               instance={instance}
@@ -120,7 +120,7 @@ const ODSInstanceManagementTableRowItem = ({ tableMode, selectedInstance, instan
               onOpenSetUpModal={onOpenSetUpModal}
             /> :
             <ManageInstanceBtn instance={instance} />}
-        </Td>
+        </Table.Cell>
       </>}
     </>
   )

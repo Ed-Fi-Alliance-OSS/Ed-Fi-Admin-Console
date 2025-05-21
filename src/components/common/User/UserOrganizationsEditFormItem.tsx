@@ -4,7 +4,7 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import {
-  Button, Flex, FormControl, Select 
+  Button, Flex, Field, Select 
 } from '@chakra-ui/react'
 import {
   CustomErrorField, CustomFormLabel 
@@ -49,7 +49,7 @@ const UserOrganizationsEditFormItem = ({ organizationsList, staffClassifications
         flexDir='column'
         w='320px'
       >
-        <FormControl w='full'>
+        <Field.Root w='full'>
           <CustomFormLabel
             htmlFor="educationOrganizationName"
             text="Organization Name"
@@ -71,9 +71,9 @@ const UserOrganizationsEditFormItem = ({ organizationsList, staffClassifications
                 {org.nameOfInstitution}
               </option>)}
           </Select> 
-        </FormControl>
+        </Field.Root>
 
-        <FormControl
+        <Field.Root
           mt='16px'
           w='full'
         >
@@ -99,7 +99,7 @@ const UserOrganizationsEditFormItem = ({ organizationsList, staffClassifications
                 {staffClassification.shortDescription}
               </option>)}
           </Select>
-        </FormControl>
+        </Field.Root>
 
         {!isValidData() && !isCurrentSelection() && <CustomErrorField errorMessage="One organization with this id and role already exists" />}
       </Flex>

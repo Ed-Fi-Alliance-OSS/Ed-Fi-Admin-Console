@@ -3,7 +3,7 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import { Tr } from '@chakra-ui/react'
+import { Table } from '@chakra-ui/react'
 
 interface ControlTableRowProps {
     children: JSX.Element | JSX.Element[]
@@ -12,7 +12,7 @@ interface ControlTableRowProps {
 
 const ControlTableRow = ({ children, removeBorders }: ControlTableRowProps) => {
   return (
-    <Tr 
+    <Table.Row 
       _notLast={{
         borderBottom: removeBorders? '0px' : '2px',
         borderBottomColor: 'gray.300' 
@@ -23,7 +23,7 @@ const ControlTableRow = ({ children, removeBorders }: ControlTableRowProps) => {
       w='full'
     >
       {children}
-    </Tr>
+    </Table.Row>
   )
 }
 

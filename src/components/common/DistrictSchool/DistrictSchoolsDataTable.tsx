@@ -4,7 +4,7 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import {
-  Table, TableContainer, Tbody, Td, Th, Thead, Tr
+  Box, Table
 } from '@chakra-ui/react'
 import { Organization } from '../../../core/Tenant.types'
 
@@ -14,20 +14,20 @@ interface DistrictSchoolsDataTableProps {
 
 const DistrictSchoolsDataTable = ({ schools }: DistrictSchoolsDataTableProps) => {
   return (
-    <TableContainer borderRadius='4px'>
-      <Table
+    <Box borderRadius='4px'>
+      <Table.Root
         border='1px'
         borderColor='gray.300'
         borderRadius='4px'
         overflow='hidden'
         variant='simple'
       >
-        <Thead bg='gray.100'>
-          <Tr
+        <Table.Header bg='gray.100'>
+          <Table.Row
             borderRadius='4px'
             p='0'
           >
-            <Th 
+            <Table.ColumnHeader 
               color='gray.700'
               fontFamily='Poppins'
               fontSize='14px'
@@ -35,9 +35,9 @@ const DistrictSchoolsDataTable = ({ schools }: DistrictSchoolsDataTableProps) =>
               textTransform='none'
             >
               Identifier
-            </Th>
+            </Table.ColumnHeader>
 
-            <Th
+            <Table.ColumnHeader
               color='gray.700'
               fontFamily='Poppins'
               fontSize='14px'
@@ -45,9 +45,9 @@ const DistrictSchoolsDataTable = ({ schools }: DistrictSchoolsDataTableProps) =>
               textTransform='none'
             >
               Organization Name
-            </Th>
+            </Table.ColumnHeader>
 
-            <Th
+            <Table.ColumnHeader
               color='gray.700'
               fontFamily='Poppins'
               fontSize='14px'
@@ -55,33 +55,33 @@ const DistrictSchoolsDataTable = ({ schools }: DistrictSchoolsDataTableProps) =>
               textTransform='none'
             >
               Source
-            </Th>
-          </Tr>
-        </Thead>
+            </Table.ColumnHeader>
+          </Table.Row>
+        </Table.Header>
 
-        <Tbody>
+        <Table.Body>
           {schools.map(school => 
-            <Tr
+            <Table.Row
               key={school.identifierValue}
               border='2px'
               borderColor='gray.300'
               padding='0'
             >
-              <Td paddingY='0'>
+              <Table.Cell paddingY='0'>
                 {school.identifierValue}
-              </Td>
+              </Table.Cell>
 
-              <Td>
+              <Table.Cell>
                 {school.nameOfInstitution}
-              </Td>
+              </Table.Cell>
 
-              <Td>    
+              <Table.Cell>    
                 {school.source}
-              </Td>
-            </Tr>)}
-        </Tbody>
-      </Table>
-    </TableContainer>
+              </Table.Cell>
+            </Table.Row>)}
+        </Table.Body>
+      </Table.Root>
+    </Box>
   )   
 }
 

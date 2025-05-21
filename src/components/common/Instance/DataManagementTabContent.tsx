@@ -4,7 +4,7 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import {
-  Button, Flex, FormControl, Text
+  Button, Flex, Field, Text
 } from '@chakra-ui/react'
 import {
   CustomFormLabel, CustomSelect
@@ -49,7 +49,7 @@ const DataManagementTabContent = () => {
           ml='50px'
           w='700px'
         >
-          <FormControl mt='16px'>
+          <Field.Root mt='16px'>
             <CustomFormLabel
               htmlFor='selectDataSource'
               text='Select Data to Load'
@@ -64,7 +64,7 @@ const DataManagementTabContent = () => {
               value={selectedDataSource}
               onChange={handleDataSourceChange}
             />
-          </FormControl>
+          </Field.Root>
 
           {false && <Button
             maxW='200px'

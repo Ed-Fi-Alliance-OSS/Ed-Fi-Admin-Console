@@ -5,7 +5,7 @@
 
 import { MdClose } from 'react-icons/md'
 import {
-  Button, Flex, FormControl, Text
+  Button, Flex, Field, Text
 } from '@chakra-ui/react'
 import { CustomSelect } from '@edfi/admin-console-shared-sdk'
 import { ChangeEvent } from 'react'
@@ -33,7 +33,7 @@ interface SISProviderConnectionFieldProps {
 const SISProviderConnectionField = ({ id, providerFunction, sisProviderOptions, selectedProvider, hasSelectedProvider, connectionState, onChangeSISProvider, onRemoveProvider }: SISProviderConnectionFieldProps) => {
   if (!hasSelectedProvider) {
     return (
-      <FormControl
+      <Field.Root
         fontFamily='Poppins'
         w='300px'
       >
@@ -43,7 +43,7 @@ const SISProviderConnectionField = ({ id, providerFunction, sisProviderOptions, 
           value={selectedProvider}
           onChange={onChangeSISProvider}
         />
-      </FormControl> 
+      </Field.Root> 
     )
   }
 

@@ -4,7 +4,7 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import {
-  Flex, FormControl, FormLabel, Text
+  Flex, Field, Text
 } from '@chakra-ui/react'
 import {
   CustomCheckbox,
@@ -32,7 +32,7 @@ const AppUserDetailsForm = ({ mode, userData, isEmailDisabled, roleOptions, erro
   const showUserName = false
 
   /*
-    {mode === 'Add' && <FormControl mt='24px'>
+    {mode === 'Add' && <Field.Root mt='24px'>
     <CustomFormLabel 
         htmlFor='role' 
         text='Role' />
@@ -40,13 +40,13 @@ const AppUserDetailsForm = ({ mode, userData, isEmailDisabled, roleOptions, erro
         options={roleOptions.map(role => ({ value: role, text: role === 'Tenant.Admin'? ' District Admin' : 'District User' }) )} 
         value={userData.role}
         onChange={onSelectChange} />
-</FormControl>}
+</Field.Root>}
 
 */
 
   return (
     <>
-      {(mode === 'Add' || mode === 'Edit') && <FormControl>
+      {(mode === 'Add' || mode === 'Edit') && <Field.Root>
         { showUserName &&  <>
           <CustomFormLabel 
             htmlFor='userName' 
@@ -59,9 +59,9 @@ const AppUserDetailsForm = ({ mode, userData, isEmailDisabled, roleOptions, erro
             onChange={onInputChange}
           />
         </>}
-      </FormControl>}
+      </Field.Root>}
 
-      <FormControl mt={mode === 'Add' || mode === 'Edit'? '0px' : '0px'}>
+      <Field.Root mt={mode === 'Add' || mode === 'Edit'? '0px' : '0px'}>
         <CustomFormLabel 
           htmlFor='firstName' 
           text='First Name'
@@ -74,9 +74,9 @@ const AppUserDetailsForm = ({ mode, userData, isEmailDisabled, roleOptions, erro
           value={userData.firstName}
           onChange={onInputChange}
         />
-      </FormControl>
+      </Field.Root>
 
-      <FormControl mt='24px'>
+      <Field.Root mt='24px'>
         <CustomFormLabel 
           htmlFor='lastName' 
           text='Last Name'
@@ -89,9 +89,9 @@ const AppUserDetailsForm = ({ mode, userData, isEmailDisabled, roleOptions, erro
           value={userData.lastName}
           onChange={onInputChange}
         />
-      </FormControl>
+      </Field.Root>
 
-      <FormControl mt='24px'>
+      <Field.Root mt='24px'>
         <CustomFormLabel 
           htmlFor='email' 
           text='Email'
@@ -105,9 +105,9 @@ const AppUserDetailsForm = ({ mode, userData, isEmailDisabled, roleOptions, erro
           value={userData.email}
           onChange={onInputChange}
         />
-      </FormControl>
+      </Field.Root>
 
-      <FormControl mt='24px'>
+      <Field.Root mt='24px'>
         <Text 
           fontSize='14px'
           fontWeight='700'
@@ -125,14 +125,14 @@ const AppUserDetailsForm = ({ mode, userData, isEmailDisabled, roleOptions, erro
             onCheck={() => onToggleIsAdmin()}
           />
 
-          <FormLabel
+          <Field.Label
             fontSize='12px'
             htmlFor="setAsAdmin"
             ml='6px'
             mt='2px'
           >
             Yes, grant System Administrator access.
-          </FormLabel>
+          </Field.Label>
         </Flex>
 
         <Text
@@ -143,7 +143,7 @@ const AppUserDetailsForm = ({ mode, userData, isEmailDisabled, roleOptions, erro
         >  
           NOTE: System Administrators have the highest level of access in the Tech Console. By granting this user System Administrator access, you will be giving them access to manage instances, users, and licenses, as well as update District/Charter School settings.
         </Text>
-      </FormControl>
+      </Field.Root>
     </>
   )
 }

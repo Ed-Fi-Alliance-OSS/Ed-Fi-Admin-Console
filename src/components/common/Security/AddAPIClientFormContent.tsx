@@ -4,7 +4,7 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import {
-  Flex, FormControl 
+  Flex, Field 
 } from '@chakra-ui/react'
 import {
   CustomFormLabel, CustomSelect, CustomInput 
@@ -17,7 +17,7 @@ const AddAPIClientFormContent = () => {
       flexDir='column'
       w='full'
     >
-      <FormControl>
+      <Field.Root>
         <CustomFormLabel 
           htmlFor='clientName' 
           text='Client Name'
@@ -28,10 +28,10 @@ const AddAPIClientFormContent = () => {
           value=''
           onChange={() => null}
         />
-      </FormControl>
+      </Field.Root>
 
       <Flex mt='24px'>
-        <FormControl>
+        <Field.Root>
           <CustomFormLabel 
             htmlFor='expirtationDate' 
             text='Select Expiry Date for API Secret'
@@ -47,7 +47,7 @@ const AddAPIClientFormContent = () => {
             value=''  
             onChange={() => null}
           />
-        </FormControl>
+        </Field.Root>
       </Flex>
 
       <Flex

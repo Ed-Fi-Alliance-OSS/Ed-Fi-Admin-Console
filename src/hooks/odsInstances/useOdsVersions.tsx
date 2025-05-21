@@ -4,7 +4,7 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import {
-  Flex, Tag
+  Flex, Badge
 } from '@chakra-ui/react'
 import { EdFiMetadata } from '../useEdfiUrls.types'
 
@@ -14,40 +14,40 @@ const useOdsVersions = () => {
       return '-'
     }
 
-    return <Tag
+    return <Badge
       colorScheme='blue'
       size='lg'
     >Suite {metadata.suite} v{metadata.version}
-    </Tag>
+    </Badge>
   }
 
   const getTSDSVersionFromMetadata = (metadata: EdFiMetadata | null): React.JSX.Element | string => {
     if (!metadata) {
-      return <Tag
+      return <Badge
         colorScheme='blue'
         fontFamily='Poppins'
         size='lg'
       >Core
-      </Tag>
+      </Badge>
     }
 
     if (!metadata.dataModels) {
-      return <Tag
+      return <Badge
         colorScheme='blue'
         fontFamily='Poppins'
         size='lg'
       >Core
-      </Tag>
+      </Badge>
     }
 
     return <Flex gridGap={1}>{metadata.dataModels.map(dataModel => {
-      return <Tag
+      return <Badge
         key={dataModel.name}
         colorScheme='blue'
         fontFamily='Poppins'
         size='lg'
       >{dataModel.name} ({dataModel.version})
-      </Tag>
+      </Badge>
     })}
     </Flex>
   }
