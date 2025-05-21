@@ -3,7 +3,9 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import { test, expect } from '@playwright/test'
+import {
+  test, expect
+} from '@playwright/test'
 import { routes } from '../core/routes'
 import { addInstanceFormHelper } from './addInstanceFormHelper'
 
@@ -19,7 +21,7 @@ const instanceData = {
       value: 'Value1'
     },
   ],
-  odsInstanceDerivatives: ['ReadReplica'],
+  odsInstanceDerivatives: [ 'ReadReplica' ],
 }
 
 const openAddInstanceForm = async (page) => {
@@ -33,7 +35,11 @@ const createNewInstance = async (page) => {
   await addInstanceFormHelper(page, instanceData)
   await page.getByRole('button', { name: 'Create Instance' }).click()
   await page.waitForLoadState('networkidle')
-  await page.getByRole('link', { name: uniqueInstanceName, exact: true }).click()
+  await page.getByRole('link', {
+    name: uniqueInstanceName,
+    exact: true
+  }).click()
+
   await page.waitForLoadState('networkidle')
 }
 
@@ -53,7 +59,12 @@ test('Should show Summary Tab', async ({ page }) => {
 
 test.skip('Should show instance data if Onboarding Wizard has been finished', async ({ page }) => {
   await page.goto(routes.home)
-  await page.getByRole('link', { name: uniqueInstanceName, exact: true }).click()
+
+  await page.getByRole('link', {
+    name: uniqueInstanceName,
+    exact: true
+  }).click()
+
   await page.waitForLoadState('networkidle')
 
   await page.getByRole('tab', { name: 'Summary' }).click()

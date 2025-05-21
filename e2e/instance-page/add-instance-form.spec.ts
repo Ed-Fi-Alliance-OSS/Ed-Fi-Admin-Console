@@ -4,11 +4,11 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import {
-  test, expect, Page 
+  test, expect, Page
 } from '@playwright/test'
 import { routes } from '../core/routes'
 import {
-  addInstanceFormHelper, MockInstanceData 
+  addInstanceFormHelper, MockInstanceData
 } from './addInstanceFormHelper'
 
 let page: Page
@@ -31,9 +31,9 @@ test.describe('Add Instance Form E2E Tests', () => {
   })
 
   test('Add Instance page should show Create Instance Title', async () => {
-    await expect(page.getByRole('heading', { name: addInstanceTitle })).toBeVisible();
+    await expect(page.getByRole('heading', { name: addInstanceTitle })).toBeVisible()
   })
-  
+
   test('Add Instance page should show Create Instance SubTitle', async () => {
     await expect(page.getByRole('main')).toContainText(addInstanceSubTitle)
   })
@@ -49,14 +49,14 @@ test.describe('Add Instance Form E2E Tests', () => {
     const uniqueSuffix = Date.now().toString() // Use timestamp as a unique suffix
     const uniqueName = `Instance ${uniqueSuffix}`
 
-    const instanceData : MockInstanceData = {
+    const instanceData: MockInstanceData = {
       name: uniqueName,
       instanceType: 'Type A',
       odsInstanceContexts: [
         {
           key: 'Context1',
-          value: 'Value1' 
-        }, 
+          value: 'Value1'
+        },
       ],
       odsInstanceDerivatives: [ 'ReadReplica' ]
     }
@@ -70,27 +70,27 @@ test.describe('Add Instance Form E2E Tests', () => {
     await page.getByRole('link', { name: uniqueName }).waitFor()
     await expect(page.getByRole('link', { name: uniqueName })).toBeVisible()
   })
-  
+
   test('should successfully create a new instance with multiple contexts', async () => {
     // Use the helper to fill out the form
     const uniqueSuffix = Date.now().toString() // Use timestamp as a unique suffix
     const uniqueName = `Instance ${uniqueSuffix}`
 
-    const instanceData : MockInstanceData = {
+    const instanceData: MockInstanceData = {
       name: uniqueName,
       instanceType: 'Type A',
       odsInstanceContexts: [
         {
           key: 'Context1',
-          value: 'Value1' 
+          value: 'Value1'
         },
         {
           key: 'Context2',
-          value: 'Value2' 
+          value: 'Value2'
         },
         {
           key: 'Context3',
-          value: 'Value3' 
+          value: 'Value3'
         },
       ],
       odsInstanceDerivatives: [ 'ReadReplica' ]
@@ -111,16 +111,16 @@ test.describe('Add Instance Form E2E Tests', () => {
     const uniqueSuffix = Date.now().toString() // Use timestamp as a unique suffix
     const uniqueName = `Instance ${uniqueSuffix}`
 
-    const instanceData : MockInstanceData = {
+    const instanceData: MockInstanceData = {
       name: uniqueName,
       instanceType: 'Type A',
       odsInstanceContexts: [
         {
           key: 'Context1',
-          value: 'Value1' 
-        }, 
+          value: 'Value1'
+        },
       ],
-      odsInstanceDerivatives: [ 'ReadReplica', 'Snapshot' ]
+      odsInstanceDerivatives: [ 'ReadReplica', 'Snapshot'  ]
     }
 
     await addInstanceFormHelper(page, instanceData)
@@ -138,7 +138,7 @@ test.describe('Add Instance Form E2E Tests', () => {
     const uniqueSuffix = Date.now().toString() // Use timestamp as a unique suffix
     const uniqueName = `Instance ${uniqueSuffix}`
 
-    const instanceData : MockInstanceData = {
+    const instanceData: MockInstanceData = {
       name: uniqueName,
       instanceType: 'Type A',
       odsInstanceContexts: null,
@@ -160,14 +160,14 @@ test.describe('Add Instance Form E2E Tests', () => {
     const uniqueSuffix = Date.now().toString() // Use timestamp as a unique suffix
     const uniqueName = `Test-Instance-${uniqueSuffix}`
 
-    const instanceData : MockInstanceData = {
+    const instanceData: MockInstanceData = {
       name: uniqueName,
       instanceType: 'Type A',
       odsInstanceContexts: [
         {
           key: 'Context1',
-          value: 'Value1' 
-        }, 
+          value: 'Value1'
+        },
       ],
       odsInstanceDerivatives: [ 'ReadReplica' ],
     }
@@ -187,7 +187,7 @@ test.describe('Add Instance Form E2E Tests', () => {
   })
 
   test('should display error messages for empty input', async () => {
-    const instanceData : MockInstanceData = {
+    const instanceData: MockInstanceData = {
       name: '',
       instanceType: '',
       odsInstanceContexts: null,
@@ -210,7 +210,7 @@ test.describe('Add Instance Form E2E Tests', () => {
     const uniqueSuffix = Date.now().toString() // Use timestamp as a unique suffix
     const uniqueName = 'DatadrivenInteroperableStandardizedUnifiedEducationalFrameworkConnectingSystemsForActionableStudentSuccessInsights'
 
-    const instanceData : MockInstanceData = {
+    const instanceData: MockInstanceData = {
       name: uniqueName,
       instanceType: 'Type A',
       odsInstanceContexts: null,
@@ -231,7 +231,7 @@ test.describe('Add Instance Form E2E Tests', () => {
     const uniqueSuffix = Date.now().toString() // Use timestamp as a unique suffix
     const uniqueName = `Instance ${uniqueSuffix}`
 
-    const instanceData : MockInstanceData = {
+    const instanceData: MockInstanceData = {
       name: uniqueName,
       instanceType: 'EnvironmentDefinedScalableConfigurableMultiTenantDataArchitectureOptimizedForSecureInteroperableEdTechDeployments',
       odsInstanceContexts: null,
