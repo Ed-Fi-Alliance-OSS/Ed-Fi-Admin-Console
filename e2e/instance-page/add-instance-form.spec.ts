@@ -11,7 +11,8 @@ import {
   addInstanceFormHelper, MockInstanceData 
 } from './addInstanceFormHelper'
 
-let page: Pageconst addInstanceTitle = 'Create Instance'
+let page: Page
+const addInstanceTitle = 'Create Instance'
 const addInstanceSaveButton = 'Create Instance'
 const addInstanceSubTitle = 'Instance Details'
 const addInstanceButton = 'Add Instance'
@@ -30,7 +31,7 @@ test.describe('Add Instance Form E2E Tests', () => {
   })
 
   test('Add Instance page should show Create Instance Title', async () => {
-    await expect(page.getByRole('heading')).toContainText(addInstanceTitle)
+    await expect(page.getByRole('heading', { name: addInstanceTitle })).toBeVisible();
   })
   
   test('Add Instance page should show Create Instance SubTitle', async () => {

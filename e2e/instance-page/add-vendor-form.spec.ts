@@ -78,9 +78,9 @@ test.afterEach(async () => {
   await page.close()
 })
 
-test.afterAll(async ({ browser }) => {
-  await browser.close()
-})
+// test.afterAll(async ({ browser }) => {
+//   await browser.close()
+// })
 
 test('Add Vendor Form - Adds the vendor', async () => {
   await expect(page.getByRole('tablist')).toContainText('Vendors & Applications')

@@ -6,12 +6,10 @@
 name: Admin Console E2E Tests
 
 on:
-  # push:
-  #  branches: [main]
   workflow_dispatch:
-  # pull_request:
-  # branches:
-  #    - main
+  pull_request:
+    branches:
+      - main
 
 permissions: read-all
 
@@ -25,27 +23,29 @@ jobs:
 
       - name: Set environment
         run: mv .env.example .env
-        working-directory: ./main/docker/Compose/
+        working-directory: ./main/eng/docker-compose
 
-      - name: Run Admin Console 
+      - name: Run Admin Console
         run: |
-          docker compose -f docker/Compose/compose-build-dev.yml --env-file docker/Compose/.env up -d
-        working-directory: ./main/
+          sudo apt-get install -y powershell
+          sudo su
+          pwsh ./start-all-services-dev.ps1
+        working-directory: ./main/eng/docker-compose
 
       - name: Setup node
         uses: actions/setup-node@1d0ff469b7ec7b3cb9d8673fde0c81c44821de2a # v4.2.0
         with:
           node-version: ">=20.9.0"
-          
+
       - name: Intall project dependencies
         run: npm install
         working-directory: ./main/
 
       - name: Install playwright dependencies
-        run: npx playwright install
+        run: npx playwright install --with-deps chromium
         working-directory: ./main/
 
-      - name: Run test
+      - name: Run E2E tests
         run: npm run tests
         working-directory: ./main/
 
@@ -61,4 +61,12 @@ jobs:
         with:
           name: docker-logs
           path: docker-logs/
-          retention-days: 10
+          retention-days: 5
+
+      - name: Upload e2e logs
+        if: always()
+        uses: actions/upload-artifact@65c4c4a1ddee5b72f698fdd19549f0f0fb45cf08 # v4.6.0
+        with:
+          name: report-e2e
+          path: ./main/playwright-report/
+          retention-days: 5
