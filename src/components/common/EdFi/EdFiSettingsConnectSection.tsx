@@ -46,7 +46,8 @@ const EdFiSettingsConnectSection = ({ onConnect }: EdFiSettingsConnectSectionPro
       <Button
         mt='12px'
         size='xs'
-        variant='primaryBlue600'
+        color='primaryBlue600'
+        variant={'solid'}
         onClick={() => onConnect()}
       >
         Connect to Ed-Fi

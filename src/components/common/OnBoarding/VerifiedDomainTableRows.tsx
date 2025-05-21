@@ -24,7 +24,7 @@ const VerifiedDomainTableRows = ({ verifiedDomains }: VerifiedDomainTableRowsPro
               color='blue.600'
               fontFamily='Poppins'
               fontWeight='700'
-              size='md'
+              fontSize='md'
             >
               {verifiedDomainInfo.lea}
             </Text>
@@ -35,7 +35,7 @@ const VerifiedDomainTableRows = ({ verifiedDomains }: VerifiedDomainTableRowsPro
               color='blue.600'
               fontFamily='Poppins'
               fontWeight='700'
-              size='md'
+              fontSize='md'
             >
               {verifiedDomainInfo.domain}
             </Text>

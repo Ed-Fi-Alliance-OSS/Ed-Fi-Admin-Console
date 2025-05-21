@@ -24,10 +24,11 @@ const EdFiSettingsConnectionsControlBtn = ({ connectionId, isDeleting, isDisable
     >
       <Button 
         borderRadius='4px'
-        isDisabled={isDisabled}
+        disabled={isDisabled}
         minW='39px'
         size='xs'
-        variant='primaryBlue600'
+        color='primaryBlue600'
+        variant={'solid'}
         onClick={() => onEdit(connectionId)}
       >
         Edit

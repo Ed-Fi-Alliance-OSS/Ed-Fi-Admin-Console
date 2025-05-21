@@ -45,7 +45,7 @@ const SelectedInstancesTableModal = ({ selectedInstance, settingAsDefault, showC
           border='1px' 
           borderColor='gray.300'
           color='gray.800' 
-          isDisabled={settingAsDefault} 
+          disabled={settingAsDefault} 
           size='sm'
           onClick={onClose}
         >
@@ -56,7 +56,7 @@ const SelectedInstancesTableModal = ({ selectedInstance, settingAsDefault, showC
           _hover={{ _loading: { bg: 'gray.800' } }} 
           bg='gray.800'
           color='white' 
-          isLoading={settingAsDefault} 
+          loading={settingAsDefault} 
           ml='10px'
           size='sm'
           onClick={onContinue}

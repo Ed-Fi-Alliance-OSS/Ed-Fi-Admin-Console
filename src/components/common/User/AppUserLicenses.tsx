@@ -22,7 +22,7 @@ const AppUserLicenses = ({ licenses }: AppUserLicensesProps) => {
       <Text
         fontFamily='Poppins'
         fontWeight='400'
-        size='md'
+        fontSize='md'
         w='auto'
         whiteSpace='initial'
       >

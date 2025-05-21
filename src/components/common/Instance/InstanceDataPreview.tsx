@@ -63,7 +63,7 @@ const InstanceDataPreview = ({ instance }: InstanceDataPreviewProps) => {
               fontFamily='Open sans'
               fontStyle='italic'
               mt='10px'
-              size='xs'
+              fontSize='xs'
             >
               {dataHealthDate}
             </Text>
@@ -140,7 +140,7 @@ const InstanceDataPreview = ({ instance }: InstanceDataPreviewProps) => {
         fontFamily='Open sans'
         fontWeight='700'
         mt='16px'
-        size='sm'
+        fontSize='sm'
         w='350px'
       >
         Something looks off? View this data in Data Health Check to start

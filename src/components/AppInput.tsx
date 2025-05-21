@@ -5,6 +5,7 @@
 
 import {
   Field,
+  Flex,
   Input
 } from '@chakra-ui/react'
 import { Field as FormikField } from 'formik'
@@ -28,12 +29,13 @@ export default function AppInput({ required, label, fieldName, description, plac
         mb={4}
       >
         <Field.Label
-          fontFamily='Poppins'
-          fontSize='14px'
-          fontWeight='700'
-          htmlFor={fieldName}
+          /*htmlFor={fieldName}*/
         >
+          <Flex fontFamily='Poppins'
+          fontSize='14px'
+          fontWeight='700'>
           {label} {required && <span style={{ color: 'red' }}>*</span>}
+          </Flex>
         </Field.Label>
 
         <Input

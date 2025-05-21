@@ -27,7 +27,7 @@ const ApplicationDetailsTable = ({ applicationsList, isDeleting, onEditApplicati
       borderColor='gray.300'
       borderRadius='4px'
     >
-      <Table.Root variant='simple'>
+      <Table.Root>
         <Table.Header bg='gray.100'>
           <Table.Row>
             <Table.ColumnHeader
@@ -107,7 +107,8 @@ const ApplicationDetailsTable = ({ applicationsList, isDeleting, onEditApplicati
                     // borderRadius='4px 0px 0px 4px'
                     minW='39px'
                     size='xs'
-                    variant='primaryBlue600'
+                    color='primaryBlue600'
+                    variant='solid'
                     onClick={() => onEditApplication(application)}
                   >
                     Edit

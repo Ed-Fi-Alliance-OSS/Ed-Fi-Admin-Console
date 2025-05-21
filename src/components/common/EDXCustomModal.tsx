@@ -5,17 +5,18 @@
 
 import {
   Dialog,
+  Flex,
   Text
 } from '@chakra-ui/react'
-import { useColorModeValue } from "../ui/color-mode";
+import { useColorModeValue } from '../ui/color-mode'
 
 interface InformationModalProps {
-    type: 'alert' | 'confirmation' | 'information'
-    content: JSX.Element | string
-    header: JSX.Element | string
-    footer: JSX.Element
-    isOpen: boolean
-    onClose: () => void
+  type: 'alert' | 'confirmation' | 'information'
+  content: JSX.Element | string
+  header: JSX.Element | string
+  footer: JSX.Element
+  isOpen: boolean
+  onClose: () => void
 }
 
 const EDXCustomModal = ({ type, header, content, footer, isOpen, onClose }: InformationModalProps) => {
@@ -34,45 +35,49 @@ const EDXCustomModal = ({ type, header, content, footer, isOpen, onClose }: Info
   }
 
   return (
-    <Dialog.Root open={isOpen} onOpenChange={onClose}
+    <Dialog.Root
+      open={isOpen}
+      onOpenChange={onClose}
     >
       <Dialog.Backdrop />
 
-      <Dialog.Content 
-        bg={bgColor}
-        border='10px solid'
-        borderBottom='0px' 
-        borderColor={selectModalTopColor()}
-        borderLeft='0px'
-        borderRadius="4px"
-        borderRight='0px'
-        h='auto'
-        minW='517px'
-        my='auto'
-        w='auto'
-      >
-        <Dialog.Title fontSize="24px" paddingBottom="0px">
-          { header }
-        </Dialog.Title>
+      <Dialog.Content>
+        <Flex bg={bgColor}
+          border='10px solid'
+          borderBottom='0px'
+          borderColor={selectModalTopColor()}
+          borderLeft='0px'
+          borderRadius="4px"
+          borderRight='0px'
+          h='auto'
+          minW='517px'
+          my='auto'
+          w='auto'>
+          <Dialog.Title>
+            <Flex fontSize="24px" paddingBottom="0px">
+              {header}
+            </Flex>
+          </Dialog.Title>
 
-        <Dialog.Close />
+          <Dialog.CloseTrigger />
 
-        <Dialog.Description 
-          marginBottom='10px' 
-          paddingTop='0px' 
-          w=''
-        >
-          { typeof(content) === 'string'? 
-            <Text fontFamily='Poppins'>{ content }
-            </Text> : content } 
-        </Dialog.Description>
+          <Dialog.Description>
+            <Flex marginBottom='10px'
+              paddingTop='0px'
+              w=''>
+              {typeof (content) === 'string' ?
+                <Text fontFamily='Poppins'>{content}
+                </Text> : content}
+            </Flex>
+          </Dialog.Description>
 
-        <Dialog.Footer paddingBottom='35px'>
-          { footer }
-        </Dialog.Footer>
+          <Dialog.Footer paddingBottom='35px'>
+            {footer}
+          </Dialog.Footer>
+        </Flex>
       </Dialog.Content>
     </Dialog.Root>
   )
 }
-  
+
 export default EDXCustomModal

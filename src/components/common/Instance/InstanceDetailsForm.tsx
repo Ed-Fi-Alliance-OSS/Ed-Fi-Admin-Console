@@ -107,7 +107,8 @@ const InstanceDetailsForm = ({ mode, instance }: InstanceDetailsFormProps) => {
         disabled={true}
         mt='33px'
         size='lg'
-        variant='primaryBlue600'
+        color='primaryBlue600'
+        variant={'solid'}
         w={mode === 'add'? '242px' : '189px'}
       >
         {mode === 'add'? 'Create Instance' : 'Save Edits'}

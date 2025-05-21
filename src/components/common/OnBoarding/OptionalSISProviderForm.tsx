@@ -91,7 +91,8 @@ const OptionalSISProviderForm = ({ authenticationUrl,
           minW='80px'
           mt='12px'
           size='sm'
-          variant='primaryBlue600'
+          color='primaryBlue600'
+          variant='solid'
           onClick={onShowOptionalForm}
         >
           <Flex>
@@ -205,7 +206,7 @@ const OptionalSISProviderForm = ({ authenticationUrl,
           <Flex mt='16px'>
             <Text 
               fontFamily='Poppins'
-              size='sm'
+              fontSize='sm'
             >
               For help connecting, reach out to your source provider's support services or read through their provided documentation.
             </Text>

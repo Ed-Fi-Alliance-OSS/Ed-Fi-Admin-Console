@@ -23,7 +23,8 @@ const PartnersAndApplicationControls = ({ onAddPartner, onRefresh }: PartnersAnd
           minW='5px'
           p='0 25px'
           size='xs'
-          variant='secondaryBlue600'
+          color='secondaryBlue600'
+          variant={'solid'}
           onClick={onRefresh}
         >
           Refresh List
@@ -34,7 +35,8 @@ const PartnersAndApplicationControls = ({ onAddPartner, onRefresh }: PartnersAnd
           ml='8px'
           p='0 25px'
           size='xs'
-          variant='primaryBlue600'
+          variant='solid'
+          color='primaryBlue600'
           onClick={onAddPartner}
         >
           Add Vendor

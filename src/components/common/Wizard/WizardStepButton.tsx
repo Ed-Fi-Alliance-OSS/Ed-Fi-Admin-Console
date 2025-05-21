@@ -33,7 +33,7 @@ const WizardStepButton = ({ isCurrent, isDisabled, stepData, onClick }: OnBoardi
       display='flex'
       flexDir='column'
       h='100px'
-      isDisabled={isDisabled}
+      disabled={isDisabled}
       justifyContent='flex-start'
       minW='351px'
       paddingLeft='20px'
@@ -43,7 +43,7 @@ const WizardStepButton = ({ isCurrent, isDisabled, stepData, onClick }: OnBoardi
         color={isCurrent? 'blue.500' : 'black'}
         fontFamily='Poppins'
         fontWeight='700'
-        size='lg'
+        fontSize='lg'
         whiteSpace='initial'
       >
         Step {stepData.index + 1}: {stepData.name}
@@ -54,7 +54,7 @@ const WizardStepButton = ({ isCurrent, isDisabled, stepData, onClick }: OnBoardi
         fontFamily='Poppins'
         fontWeight='400'
         mt='5px'
-        size='sm'
+        fontSize='sm'
         textAlign='start'
         whiteSpace='normal'
       >

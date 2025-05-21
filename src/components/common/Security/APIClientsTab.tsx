@@ -45,7 +45,7 @@ const APIClientsTab = () => {
             <Text 
               fontFamily='Poppins'
               fontWeight='400'
-              size='md'
+              fontSize='md'
             >
               No results found - Try adding a new item or adjust your filter to find what you’re looking for.
             </Text> 
@@ -53,7 +53,7 @@ const APIClientsTab = () => {
             <Text
               fontFamily='Poppins'
               fontWeight='400'
-              size='md'
+              fontSize='md'
             >
               Not sure where to start? Visit our documentation site to learn more.
             </Text>

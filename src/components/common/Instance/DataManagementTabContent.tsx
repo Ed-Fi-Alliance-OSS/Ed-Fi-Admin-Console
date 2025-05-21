@@ -71,7 +71,8 @@ const DataManagementTabContent = () => {
             minW='200px'
             mt='32px'
             size='lg'
-            variant='primaryBlue600'
+            color='primaryBlue600'
+            variant='solid'
             onClick={() => setShowLoadedData(true)}
           >
             Load Data

@@ -35,7 +35,7 @@ const EducationOrganizationsTableRows = ({ organizationsList }: EducationOrganiz
               color='gray.700'
               fontFamily='Poppins'
               fontWeight='400'
-              size='md'
+              fontSize='md'
             >
               {organization.id}
             </Text>
@@ -46,7 +46,7 @@ const EducationOrganizationsTableRows = ({ organizationsList }: EducationOrganiz
               color='blue.600'
               fontFamily='Poppins'
               fontWeight='700'
-              size='md'
+              fontSize='md'
             >
               {organization.nameOfInstitution}
             </Text>
@@ -57,7 +57,7 @@ const EducationOrganizationsTableRows = ({ organizationsList }: EducationOrganiz
               color='gray.700'
               fontFamily='Poppins'
               fontWeight='400'
-              size='md'
+              fontSize='md'
             >
               {organization.shortNameOfInstitution}
             </Text>
@@ -68,7 +68,7 @@ const EducationOrganizationsTableRows = ({ organizationsList }: EducationOrganiz
               color='gray.700'
               fontFamily='Poppins'
               fontWeight='400'
-              size='md'
+              fontSize='md'
             >
               {extractCategory(organization.categories[0].educationOrganizationCategoryDescriptor)}
             </Text>
@@ -79,7 +79,7 @@ const EducationOrganizationsTableRows = ({ organizationsList }: EducationOrganiz
               color='gray.700'
               fontFamily='Poppins'
               fontWeight='400'
-              size='md'
+              fontSize='md'
             >
               {extractLea(organization.localEducationAgencyCategoryDescriptor)}
             </Text>

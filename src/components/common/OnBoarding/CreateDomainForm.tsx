@@ -44,13 +44,14 @@ const CreateDomainForm = ({ domainName, isSaving, isValidData, errors, onAddDoma
 
         <Button
           alignSelf='flex-end'
-          isDisabled={!isValidData()}
-          isLoading={isSaving}
+          disabled={!isValidData()}
+          loading={isSaving}
           minW='25px'
           ml='10px'
           paddingX='16px'
           size='xs'
-          variant='primaryBlue500'
+          color='primaryBlue500'
+          variant='solid'
           w='auto'
           onClick={() => onAddDomain(domainName)}
         >

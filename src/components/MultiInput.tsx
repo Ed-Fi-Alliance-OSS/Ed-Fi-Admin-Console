@@ -123,13 +123,11 @@ function MultiInput<T extends string | number>({ filterInput, fieldName, label, 
         id={fieldName}
         w="full"
       >
-        <Field.Label
-          fontFamily='Poppins'
+        <Field.Label><Flex fontFamily='Poppins'
           fontSize='14px'
           fontWeight='700'
-          htmlFor={fieldName}
-          lineHeight='20px'
-        >{label}
+          //htmlFor={fieldName}
+          lineHeight='20px'>{label}</Flex>
         </Field.Label>
 
         <AutoComplete
@@ -138,7 +136,7 @@ function MultiInput<T extends string | number>({ filterInput, fieldName, label, 
           focusInputOnSelect
           multiple
           defaultValues={values}
-          id={fieldName}
+          //id={fieldName}
           openOnFocus={false}
           suggestWhenEmpty={false}
           onSelectOption={({ item }) => addVal(item.value)}
@@ -148,7 +146,7 @@ function MultiInput<T extends string | number>({ filterInput, fieldName, label, 
             enterKeyHint='enter'
             placeholder={label}
             size='xs'
-            variant="filled"
+            variant="flushed"
             wordBreak="break-all"
             onKeyUp={filterInput}
           >

@@ -64,7 +64,7 @@ const OnBoardingWizardBanner = ({ currentStepStatus, currentStepName, currentSte
             color='white'
             fontFamily='Poppins'
             fontWeight='400'
-            size='sm'
+            fontSize='sm'
           >
             {`You're on Step ${currentStepNumber} of ${totalSteps}: `}
           </Text>
@@ -89,11 +89,12 @@ const OnBoardingWizardBanner = ({ currentStepStatus, currentStepName, currentSte
         justifyContent='center'
         ml='87px'
         padding='0'
-        size='lg'
+        fontSize='lg'
         textDecor='none'
         textDecoration='none'
-        to={routes.onBoardingWizard.url}
-        variant='primaryWhite'
+        //to={routes.onBoardingWizard.url}
+        color='primaryWhite'
+        variant='solid'
         w='198px' 
         zIndex={2}
       >

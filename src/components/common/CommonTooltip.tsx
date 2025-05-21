@@ -4,7 +4,7 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import { MdInfoOutline } from 'react-icons/md'
-import { Tooltip } from '@chakra-ui/react'
+import { Box } from '@chakra-ui/react'
 
 interface CommonTooltipProps {
     bg: string
@@ -15,28 +15,49 @@ interface CommonTooltipProps {
 
 const CommonTooltip = ({ bg, iconColor, label, size }: CommonTooltipProps) => {
   return (
-    <div>
-      <Tooltip 
-        hasArrow 
-        bg={bg}
-        fontFamily='Poppins'
-        fontSize={size}
-        fontWeight='400'
-        h='auto'
-        label={label}
-        padding='2px 8px'
-        placement='top'
-        textAlign='center'
-        w='250px'
+    <Box css={{ position: "relative", display: "inline-block" }}>
+      <Box 
+        as={MdInfoOutline} 
+        aria-label="info tooltip"
+        color={iconColor}
+        tabIndex={0}
+        css={{
+          '&:hover + div': {
+            display: 'block',
+          }
+        }}
+      />
+      <Box
+        css={{
+          position: 'absolute',
+          bottom: '100%',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          background: bg,
+          fontFamily: 'Poppins',
+          fontSize: size,
+          fontWeight: '400',
+          padding: '2px 8px',
+          textAlign: 'center',
+          width: '250px',
+          borderRadius: 'md',
+          zIndex: '9999',
+          display: 'none',
+          '&:after': {
+            content: '""',
+            position: 'absolute',
+            top: '100%',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            borderWidth: '6px',
+            borderStyle: 'solid',
+            borderColor: `${bg} transparent transparent transparent`
+          }
+        }}
       >
-        <MdInfoOutline 
-          aria-label="info tooltip"
-          color={iconColor}
-          focusable="true"
-          tabIndex={0}
-        />
-      </Tooltip>
-    </div>
+        {label}
+      </Box>
+    </Box>
   )
 }
 

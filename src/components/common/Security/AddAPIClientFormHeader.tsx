@@ -30,7 +30,8 @@ const AddAPIClientFormHeader = ({ onClose }: AddAPIClientFormHeaderProps) => {
         <Button
           padding='0 25px'
           size='xs'
-          variant='secondaryBlue600'
+          variant={'solid'}
+          color='secondaryBlue600'
           onClick={onClose}
         >Cancel
         </Button>
@@ -39,7 +40,8 @@ const AddAPIClientFormHeader = ({ onClose }: AddAPIClientFormHeaderProps) => {
           ml='10px'
           padding='0 25px'
           size='xs'
-          variant='primaryBlue600'
+          variant='solid'
+          color='primaryBlue600'
         >Add
         </Button>
       </Flex>

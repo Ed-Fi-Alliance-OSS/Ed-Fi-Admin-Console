@@ -22,7 +22,7 @@ const DomainTag = ({ domain }: DomainTagProps) => {
       height='28px'
       justifyContent='center'
       padding='0 12px'
-      size='md'
+      fontSize='md'
       textAlign='center'
     >
       {domain}

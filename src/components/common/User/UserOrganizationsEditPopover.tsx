@@ -27,7 +27,7 @@ const UserOrganizationsEditPopover = ({ onCancelEdit }: UserOrganizationsFormSav
           maxW='24px'
           minW='24px'
           ml='1px'
-          size='xs'
+          fontSize='xs'
           variant='primaryBlue600'
           onClick={() => console.log('User education organizations control popover')}
         >
@@ -67,7 +67,7 @@ const UserOrganizationsEditPopover = ({ onCancelEdit }: UserOrganizationsFormSav
               fontFamily='Poppins'
               isLoading={false}
               minW='80px'
-              size='xs'
+              fontSize='xs'
               onClick={onCancelEdit}
             >
               Cancel

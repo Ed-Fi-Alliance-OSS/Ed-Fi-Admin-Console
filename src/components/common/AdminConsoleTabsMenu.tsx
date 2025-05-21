@@ -27,7 +27,7 @@ const AdminConsoleTabsMenu = ({ children, tabsList, initialIndex, contentMt, inc
       lazyMount
       index={index}
       position="relative"
-      variant="unstyled" 
+      variant="plain" 
       w='full' 
       onChange={(nindex) => setIndex(nindex)}
     >
@@ -38,15 +38,17 @@ const AdminConsoleTabsMenu = ({ children, tabsList, initialIndex, contentMt, inc
         <Flex w='full'>
           <Tabs.List>
             {tabsList.map(tab => 
-              <Tabs.Content 
+              <Tabs.Tab
                 key={tab}
                 _notFirst={{ ml: '32px' }}
                 _selected={{ color: 'blue.600' }}
                 fontFamily='Poppins'
                 fontWeight='bold'
                 padding='0'
-              >{tab}
-              </Tabs.Content>)}
+              >
+                {tab}
+              </Tabs.Tab>
+            )}
           </Tabs.List>
         </Flex>
 

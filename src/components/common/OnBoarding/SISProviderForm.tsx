@@ -134,7 +134,7 @@ const SISProviderForm = ({ sisProvidersOptionList, selectedProviderId, connectio
         <Flex mt='16px'>
           <Text 
             fontFamily='Poppins'
-            size='sm'
+            fontSize='sm'
           >
             Find your SIS Provider in the Ed-Fi Tech Docs and follow the “Enablement  & Configuration Guide” in the “Notes & Support Resources” column for the full steps to connect.
           </Text>

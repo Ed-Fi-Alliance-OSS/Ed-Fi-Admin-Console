@@ -39,10 +39,11 @@ const UserOrganizationsFormControlBtn = ({ educationOrganizationId, staffClassif
       >
         <Button 
           borderRadius='4px 0px 0px 4px'
-          isDisabled={!canModify() || isDisabled}
+          disabled={!canModify() || isDisabled}
           minW='39px'
-          size='xs'
-          variant='primaryBlue600'
+          fontSize='xs'
+          variant='solid'
+          color='primaryBlue600'
           onClick={() => onEdit(educationOrganizationId, staffClassification, index)}
         >
           Edit

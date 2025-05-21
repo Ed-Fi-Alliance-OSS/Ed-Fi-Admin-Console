@@ -27,8 +27,9 @@ const UserOrganizationsFormSavePopover = ({ onCancelAdd }: UserOrganizationsForm
           maxW='24px'
           minW='24px'
           ml='1px'
-          size='xs'
-          variant='primaryBlue600'
+          fontSize='xs'
+          variant='solid'
+          color='primaryBlue600'
           onClick={() => console.log('User education organizations control popover')}
         >
           <span
@@ -65,9 +66,9 @@ const UserOrganizationsFormSavePopover = ({ onCancelAdd }: UserOrganizationsForm
               color='black'
               display='flex'
               fontFamily='Poppins'
-              isLoading={false}
+              loading={false}
               minW='80px'
-              size='xs'
+              fontSize='xs'
               onClick={onCancelAdd}
             >
               Cancel

@@ -99,11 +99,12 @@ const SetupWizardDebugMenu = ({ currentResetStep, currentUpdateStep, showTesting
         w='670'
       >
         <Button
-          isLoading={updatingStep}
+          loading={updatingStep}
           mb='10px'
           mt='16px'
           size='sm'
-          variant='primaryBlue600'
+          color='primaryBlue600'
+          variant={'solid'}
           w='300px'
           zIndex='100'
           onClick={onUpdateOBStep}
@@ -122,9 +123,10 @@ const SetupWizardDebugMenu = ({ currentResetStep, currentUpdateStep, showTesting
         w='650'
       >
         <Button
-          isLoading={resetingAllSteps}
+          loading={resetingAllSteps}
           size='sm'
-          variant='primaryBlue600'
+          color='primaryBlue600'
+          variant='solid'
           w='220px'
           zIndex='100'
           onClick={onResetAllOBSteps}

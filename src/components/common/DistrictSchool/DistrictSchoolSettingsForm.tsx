@@ -31,7 +31,7 @@ const DistrictSchoolSettingsForm = ({ districtSchoolName, districtSchoolId, tsds
         color='gray.700'
         fontFamily='Poppins'
         fontWeight='400'
-        size='md'
+        fontSize='md'
       >
         District/Charter School Name (Read-Only)
       </Text>
@@ -39,7 +39,7 @@ const DistrictSchoolSettingsForm = ({ districtSchoolName, districtSchoolId, tsds
       <Text
         fontFamily='Poppins'
         fontWeight='700'
-        size='md'
+        fontSize='md'
       >
         {districtSchoolName}
       </Text>
@@ -52,7 +52,7 @@ const DistrictSchoolSettingsForm = ({ districtSchoolName, districtSchoolId, tsds
           color='gray.700'
           fontFamily='Poppins'
           fontWeight='400'
-          size='md'
+          fontSize='md'
         >
           District/Charter School ID (Read-Only)
         </Text>
@@ -60,7 +60,7 @@ const DistrictSchoolSettingsForm = ({ districtSchoolName, districtSchoolId, tsds
         <Text
           fontFamily='Poppins'
           fontWeight='700'
-          size='md'
+          fontSize='md'
         >
           {districtSchoolId}
         </Text>
@@ -74,7 +74,7 @@ const DistrictSchoolSettingsForm = ({ districtSchoolName, districtSchoolId, tsds
           color='gray.700'
           fontFamily='Poppins'
           fontWeight='400'
-          size='md'
+          fontSize='md'
         >
           TSDS ID (Read-Only)
         </Text>
@@ -82,7 +82,7 @@ const DistrictSchoolSettingsForm = ({ districtSchoolName, districtSchoolId, tsds
         <Text
           fontFamily='Poppins'
           fontWeight='700'
-          size='md'
+          fontSize='md'
         >
           {tsdsId}
         </Text>
@@ -95,7 +95,7 @@ const DistrictSchoolSettingsForm = ({ districtSchoolName, districtSchoolId, tsds
         <Text
           fontFamily='Poppins'
           fontWeight='700'
-          size='md'
+          fontSize='md'
         >
           Your Domain(s)
         </Text>
@@ -128,7 +128,8 @@ const DistrictSchoolSettingsForm = ({ districtSchoolName, districtSchoolId, tsds
             maxW='30px'
             minWidth='30px'
             mt='5px'
-            variant='secondaryBlue600'
+            color='secondaryBlue600'
+            variant={'solid'}
             w='auto'
           >
             <span
@@ -151,7 +152,8 @@ const DistrictSchoolSettingsForm = ({ districtSchoolName, districtSchoolId, tsds
         minW='150px'
         mt='32px'
         size='lg'
-        variant='primaryBlue600'
+        color='primaryBlue600'
+        value={'solid'}
       >
         Save Edits
       </Button>

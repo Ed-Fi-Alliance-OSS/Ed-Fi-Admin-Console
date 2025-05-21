@@ -37,7 +37,7 @@ const SelectInstancesTableRows = ({ instancesList, showChecked, onSelectInstance
                 fontFamily='Poppins'
                 fontWeight='400'
                 ml={showChecked? '10px' : '0px'}
-                size='md'
+                fontSize='md'
               >
                 {instance.district}
               </Text>
@@ -49,7 +49,7 @@ const SelectInstancesTableRows = ({ instancesList, showChecked, onSelectInstance
               color='blue.600'
               fontFamily='Poppins'
               fontWeight='700'
-              size='md'
+              fontSize='md'
             >
               {instance.instanceYear}
             </Text>
@@ -60,7 +60,7 @@ const SelectInstancesTableRows = ({ instancesList, showChecked, onSelectInstance
               color='gray.700'
               fontFamily='Poppins'
               fontWeight='400'
-              size='md'
+              fontSize='md'
             >
               {instance.edfiVersion}
             </Text>

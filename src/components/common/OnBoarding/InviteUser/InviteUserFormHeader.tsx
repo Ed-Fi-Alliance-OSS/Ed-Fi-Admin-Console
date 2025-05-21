@@ -30,17 +30,19 @@ const InviteUserFormHeader = ({ isSavingChanges, onSave, onClose }: InviteUserFo
         <Button
           padding='0 25px'
           size='xs'
-          variant='secondaryBlue600'
+          color='secondaryBlue600'
+          variant='solid'
           onClick={onClose}
         >Cancel
         </Button>
 
         <Button
-          isLoading={isSavingChanges}
+          loading={isSavingChanges}
           ml='10px'
           padding='0 25px'
           size='xs'
-          variant='primaryBlue600'
+          color='primaryBlue600'
+          variant='solid'
           onClick={onSave}
         >Invite User
         </Button>

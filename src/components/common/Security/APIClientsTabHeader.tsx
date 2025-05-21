@@ -24,8 +24,9 @@ const APIClientsTabHeader = ({ onAddAPIClient }: APIClientsTabHeaderProps) => {
         <Button
           minW='5px'
           p='0 25px'
-          size='xs'
-          variant='secondaryBlue600'
+          fontSize='xs'
+          variant={'solid'}
+          color='secondaryBlue600'
         >
           Refresh List
         </Button>
@@ -34,8 +35,9 @@ const APIClientsTabHeader = ({ onAddAPIClient }: APIClientsTabHeaderProps) => {
           minW='5px'
           ml='8px'
           p='0 25px'
-          size='xs'
-          variant='primaryBlue600'
+          fontSize='xs'
+          variant={'solid'}
+          color='primaryBlue600'
           onClick={onAddAPIClient}
         >
           Add Subscription

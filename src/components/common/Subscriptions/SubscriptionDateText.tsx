@@ -14,7 +14,7 @@ const SubscriptionDateText = ({ date }: SubscriptionDateTextProps) => {
     <Text
       fontFamily='Poppins'
       fontWeight='400'
-      size='md'
+      fontSize='md'
     >
       {date}
     </Text>

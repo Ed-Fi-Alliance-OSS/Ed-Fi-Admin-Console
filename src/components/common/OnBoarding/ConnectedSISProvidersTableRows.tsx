@@ -24,7 +24,7 @@ const ConnectedSISProvidersTableRows = ({ connectedSISProvidersList }: Connected
               color='blue.600'
               fontFamily='Poppins'
               fontWeight='700'
-              size='md'
+              fontSize='md'
             >
               {provider.name}
             </Text>

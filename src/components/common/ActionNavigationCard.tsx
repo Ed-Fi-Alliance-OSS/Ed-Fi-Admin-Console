@@ -33,9 +33,9 @@ const ActionNavigationCard = ({ data, index }: ActionNavigationCardProps) => {
       justifyContent='flex-start'
       mr='16px'
       padding='15px 14px 0px 14px'
-      state={{ consoleActionIndex: index }}
+      //state={{ consoleActionIndex: index }}
       style={{ textDecoration: 'none' }}
-      to={routes.console.url}
+      href={routes.console.url}      
       w='20%'
     >
       {typeof(data.icon) === 'string'? 
@@ -63,11 +63,11 @@ const ActionNavigationCard = ({ data, index }: ActionNavigationCardProps) => {
         <Flex
           alignItems='center'
           h='20px'
+          ml='10px'
         >
           <MdArrowForward 
             aria-hidden="true"
             focusable="false"
-            ml='10px'
           />
         </Flex>
       </Flex>

@@ -63,8 +63,9 @@ const ManageUserControlPopover = ({ userId, user, status, isDeleting, isDeleting
           maxW='24px'
           minW='24px'
           ml='1px'
-          size='xs'
-          variant='primaryBlue600'
+          fontSize='xs'
+          variant='solid'
+          color='primaryBlue600'
           onClick={() => console.log('manage user control popover')}
         >
           <span
@@ -128,7 +129,7 @@ const ManageUserControlPopover = ({ userId, user, status, isDeleting, isDeleting
               justifyContent='start'
               minW='30px'
               padding='0'
-              size='xs'
+              fontSize='xs'
               textAlign='start'
               w='auto'
               onClick={() => onEditInvitation(user)}
@@ -142,11 +143,11 @@ const ManageUserControlPopover = ({ userId, user, status, isDeleting, isDeleting
               display='flex'
               fontFamily='Poppins'
               fontWeight='400'
-              isLoading={isDeleting}
+              loading={isDeleting}
               justifyContent='start'
               minW='30px'
               padding='0'
-              size='xs'
+              fontSize='xs'
               textAlign='start'
               w='auto'
               onClick={() => onDelete(userId)}

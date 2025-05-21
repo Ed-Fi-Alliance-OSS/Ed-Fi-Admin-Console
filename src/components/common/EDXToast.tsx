@@ -42,7 +42,7 @@ const EDXToast = ({ content, type }: EDXToastProps) => {
           fontFamily='Poppins'
           fontWeight='600'
           lineHeight='20px'
-          size='md'
+          fontSize='md'
         >
           {type === 'Success'? 'Success' : 'Error'}
         </Text>

@@ -42,7 +42,7 @@ const OnBoardingTabsWrapper = ({ children, stepName, currentStep, lastStep, canN
           color='gray.500'
           fontFamily='Poppins'
           fontWeight='400'
-          size='sm'
+          fontSize='sm'
         >
           Step {currentStep} of {lastStep}
         </Text>
@@ -106,10 +106,11 @@ const OnBoardingTabsWrapper = ({ children, stepName, currentStep, lastStep, canN
         >
           <Button
             border='1px'
-            isDisabled={!canPrev}
+            disabled={!canPrev}
             minW='175PX'
-            size='lg'
-            variant='secondaryBlue600'
+            fontSize='lg'
+            color='secondaryBlue600'
+            variant='solid'
             onClick={onPrev}
           >
             Previous
@@ -118,10 +119,11 @@ const OnBoardingTabsWrapper = ({ children, stepName, currentStep, lastStep, canN
           <Button
             _hover={{ backgroundColor: currentStep === lastStep? 'green.600' : (canNext? 'blue.900' : 'blue.600') }}
             bg={currentStep === lastStep? 'green.600' : 'blue.600'}
-            isDisabled={!canNext}
+            disabled={!canNext}
             minW='138px'
-            size='lg'
-            variant={currentStep === lastStep? 'primaryGreen500' : 'primaryBlue600'}
+            fontSize='lg'
+            variant='solid'
+            color={currentStep === lastStep? 'primaryGreen500' : 'primaryBlue600'}
             onClick={onNext}
           >
             {currentStep === lastStep? 'Finalize' : 'Next'}
