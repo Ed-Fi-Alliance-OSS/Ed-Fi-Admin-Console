@@ -130,12 +130,13 @@ const EdFiConnectionForm = ({ formData, errors, mode, inOnboarding, verification
       >
         <Button
           alignSelf='flex-end'
-          isDisabled={disabledVerification}
-          isLoading={isSaving || isverifying}
+          disabled={disabledVerification}
+          loading={isSaving || isverifying}
           minW='25px'
           paddingX='16px'
           size='xs'
-          variant='primaryBlue500'
+          color='primaryBlue500'
+          variant={'solid'}
           w='auto'
           onClick={onVerifyConnection}
         >

@@ -32,9 +32,9 @@ const ODSInstanceYear = ({ instance }: ODSInstanceYearProps) => {
         fontFamily='Poppins'
         fontWeight='700'
         lineHeight='22px'
-        size='md'
-        state={{ instanceId: instance.instanceId }}
-        to={getOdsInstanceLink(instance)}
+        fontSize='md'
+        //state={{ instanceId: instance.instanceId }}
+        href={getOdsInstanceLink(instance)}
         w="100px"
       >
         { getDisplayYear(instance) }

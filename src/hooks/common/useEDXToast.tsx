@@ -14,7 +14,7 @@ const useEDXToast = (initialDuration?: number) => {
   })*/
 
   const successToast = (content: EDXToastContent) => {
-    return "";/*toast({
+    return ''/*toast({
       render: () => <EDXToast
         content={content}
         type='Success'
@@ -23,7 +23,7 @@ const useEDXToast = (initialDuration?: number) => {
   }
 
   const errorToast = (content: EDXToastContent) => {
-    return "";/*toast({
+    return ''/*toast({
       render: () => <EDXToast
         content={content}
         type='Error'

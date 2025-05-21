@@ -37,7 +37,7 @@ const SelectSSOMethodTabContent = () => {
           color='blue.500'
           fontFamily='Poppins'
           fontWeight='700'
-          size='md'
+          fontSize='md'
         >
           Not seeing what you were expecting? Get help here.
         </Text>}

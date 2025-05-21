@@ -48,7 +48,7 @@ const BulkEditRoleFormContent = ({ selectedUsersList, selectedRole, onSelectUser
                 color='blue.600'
                 fontFamily='Poppins'
                 fontWeight='700'
-                size='sm'
+                fontSize='sm'
               >
                 {`${user.firstName} ${user.lastName}`}
               </Text>
@@ -57,7 +57,7 @@ const BulkEditRoleFormContent = ({ selectedUsersList, selectedRole, onSelectUser
                 color='gray.700'
                 fontFamily='Poppins'
                 fontWeight='400'
-                size='xs'
+                fontSize='xs'
               >
                 {user.email}
               </Text>

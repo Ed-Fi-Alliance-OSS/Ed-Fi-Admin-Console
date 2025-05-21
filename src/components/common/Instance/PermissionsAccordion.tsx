@@ -24,7 +24,7 @@ const PermissionsAccordion = () => {
         fontFamily='Poppins'
         fontWeight='700'
         padding='10px 50px'
-        size='sm'
+        fontSize='sm'
       >
         Claim Set
       </Text>
@@ -78,7 +78,7 @@ const PermissionsAccordion = () => {
                   fontFamily='Poppins'
                   fontWeight='700'
                   mb='16px'
-                  size='lg'
+                  fontSize='lg'
                 >
                   Resources
                 </Text>

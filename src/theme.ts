@@ -3,22 +3,29 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import { createSystem, defaultConfig, defineConfig } from "@chakra-ui/react";
+import {
+  createSystem, defaultConfig, defineConfig 
+} from '@chakra-ui/react'
 
 const config = defineConfig({
   theme: {
     keyframes: {
       spin: {
-        "0%": { transform: "rotate(0deg)" },
-        "100%": { transform: "rotate(360deg)" },
+        '0%': { transform: 'rotate(0deg)' },
+        '100%': { transform: 'rotate(360deg)' },
+      },
+      fadeIn: {
+        'from': { opacity: 0 },
+        'to': { opacity: 1 },
       },
     },
-    tokens: {
-      animations: {
-        spin: { value: "spin 1s linear infinite" },
-      },
+    tokens: { 
+      animations: { 
+        spin: { value: 'spin 1s linear infinite' },
+        fadeIn: { value: 'fadeIn 0.5s forwards' },
+      }, 
     },
   },
-});
+})
 
-export const system = createSystem(defaultConfig, config);
+export const system = createSystem(defaultConfig, config)

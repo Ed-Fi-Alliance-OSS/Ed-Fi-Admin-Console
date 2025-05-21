@@ -31,7 +31,7 @@ const VerifyDomainTableRows = ({ verifyDomainList, onCheck }: VerifyDomainTableR
             <Text
               fontFamily='Poppins'
               fontWeight='400'
-              size='md'
+              fontSize='md'
             >
               {verifyDomain.type}
             </Text>
@@ -41,7 +41,7 @@ const VerifyDomainTableRows = ({ verifyDomainList, onCheck }: VerifyDomainTableR
             <Text
               fontFamily='Poppins'
               fontWeight='400'
-              size='md'
+              fontSize='md'
             >
               {verifyDomain.name}
             </Text>
@@ -51,7 +51,7 @@ const VerifyDomainTableRows = ({ verifyDomainList, onCheck }: VerifyDomainTableR
             <Text
               fontFamily='Poppins'
               fontWeight='400'
-              size='md'
+              fontSize='md'
               w='380px'
             >
               {`${verifyDomain.value}${userProfile? userProfile.tenantId : ''}`}
@@ -67,7 +67,7 @@ const VerifyDomainTableRows = ({ verifyDomainList, onCheck }: VerifyDomainTableR
             <Text
               fontFamily='Poppins'
               fontWeight='400'
-              size='md'
+              fontSize='md'
             >
               {verifyDomain.ttl}
             </Text>

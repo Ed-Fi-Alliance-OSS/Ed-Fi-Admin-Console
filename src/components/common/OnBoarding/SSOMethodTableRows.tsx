@@ -27,7 +27,7 @@ const SSOMethodTableRows = ({ ssoMethodsList, showOnlySelected, onToggleSSOMetho
               color='blue.600'
               fontFamily='Poppins'
               fontWeight='700'
-              size='md'
+              fontSize='md'
             >
               {ssoMethod.name}
             </Text>

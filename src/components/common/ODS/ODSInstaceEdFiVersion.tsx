@@ -14,7 +14,7 @@ const ODSInstanceEdFiVersion = ({ version }: ODSInstanceEdFiVersionProps) => {
     <Text
       fontFamily='Poppins'
       fontWeight='400'
-      size='md'
+      fontSize='md'
     >
       { version }
     </Text>

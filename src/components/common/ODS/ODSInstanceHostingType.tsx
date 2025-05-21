@@ -20,7 +20,7 @@ const ODSInstanceHostingType = ({ instance }: ODSInstanceHostingTypeProps) => {
     <Text
       fontFamily='Poppins'
       fontWeight='400'
-      size='md'
+      fontSize='md'
     >
       { getHostingType(instance) }
     </Text>

@@ -47,7 +47,8 @@ const SetUpWizardStart = ({ currentStepIndex, lastInProgress, completedSteps, on
         <Button
           minW='138px'
           size='lg'
-          variant='primaryBlue600'
+          variant='solid'
+          color='primaryBlue600'
           onClick={() => onGoToStep(completedSteps === 0? 0 : completedSteps)}
         >
           { completedSteps > 0? 'Continue' : 'Start' }

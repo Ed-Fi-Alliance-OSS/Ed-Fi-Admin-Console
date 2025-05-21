@@ -47,7 +47,7 @@ const APIClientSubscriptionsForm = () => {
               fontFamily='Poppins'
               fontWeight='700'
               ml='15px'
-              size='sm'
+              fontSize='sm'
             >
               {option}
             </Text>

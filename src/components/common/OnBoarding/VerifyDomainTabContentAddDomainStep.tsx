@@ -33,7 +33,6 @@ const VerifyDomainTabContentAddDomainStep = ({ domainName, errors, isValidData, 
           fontFamily='Poppins'
           fontSize='18px'
           fontWeight='700'
-          size='md'
         >
           Step 1: Add a Domain
           <Text

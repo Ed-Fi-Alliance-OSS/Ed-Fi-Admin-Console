@@ -26,7 +26,8 @@ const ManageSubscribersControls = ({ applicationName, subscriptionId, onManageSu
         data-testid={`manage-${applicationName}-btn`}
         minW='39px'
         size='xs'
-        variant='primaryBlue600'
+        variant='solid'
+        color='primaryBlue600'
         onClick={() => onManageSubscribers(subscriptionId)}
       >
         Manage Licenses
@@ -39,7 +40,8 @@ const ManageSubscribersControls = ({ applicationName, subscriptionId, onManageSu
         minW='24px'
         ml='1px'
         size='xs'
-        variant='primaryBlue600'
+        variant='solid'
+        color='primaryBlue600'
         onClick={() => onManageSubscribers(subscriptionId)}
       >
         <span

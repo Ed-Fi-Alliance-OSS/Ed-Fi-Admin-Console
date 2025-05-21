@@ -23,7 +23,8 @@ const ManageInstanceBtn = ({ instance }: ManageInstanceBtnProps) => {
       <Button 
         minW='67px'
         size='xs'
-        variant='primaryBlue600'
+        color='primaryBlue600'
+        variant={'solid'}
         onClick={() => navigate(getOdsInstanceLink(instance))}
       >
         Manage

@@ -33,7 +33,7 @@ const SecurityTabContent = () => {
       >
         <Tabs.Root
           position="relative" 
-          variant="unstyled"
+          variant="plain"
           w='full'
         >
           <Tab.List>

@@ -36,37 +36,34 @@ const ApplicationAPIFormSection = ({ instance, applicationClientData, mode, isRe
 
   return (
     <Flex
-      flexDir='column'
-      w='full'
+      css={{
+        flexDirection: 'column',
+        width: 'full'
+      }}
     > 
       {showTabs() && (
         <Flex
-          flexDir="column"
-          mt={mode === 'edit' ? '16px' : '0'}
-          opacity={0}
-          animation="fadeIn 0.5s forwards"
-          sx={{
-        '@keyframes fadeIn': {
-          from: { opacity: 0 },
-          to: { opacity: 1 },
-        },
+          css={{
+            animation: 'fadeIn',
+            flexDirection: 'column',
+            marginTop: mode === 'edit' ? '16px' : '0'
           }}
         >
-          <Flex flexDir="column">
-        <Text fontWeight="bold">API Client</Text>
+          <Flex css={{ flexDirection: 'column' }}>
+            <Text css={{ fontWeight: 'bold' }}>API Client</Text>
 
-        <ApplicationAPIFormClientTabContent
-          clientData={applicationClientData}
-          isRegeneratingCredentials={isRegeneratingCredentials}
-          mode={mode}
-          onRegenerateCredentials={onRegenerateCredentials}
-        />
+            <ApplicationAPIFormClientTabContent
+              clientData={applicationClientData}
+              isRegeneratingCredentials={isRegeneratingCredentials}
+              mode={mode}
+              onRegenerateCredentials={onRegenerateCredentials}
+            />
 
-        <Text fontWeight="bold" mt="32px">
-          API Endpoints
-        </Text>
+            <Text css={{ fontWeight: 'bold', marginTop: '32px' }}>
+              API Endpoints
+            </Text>
 
-        <ApplicationAPIEndpointsTabContent instance={instance} />
+            <ApplicationAPIEndpointsTabContent instance={instance} />
           </Flex>
         </Flex>
       )}

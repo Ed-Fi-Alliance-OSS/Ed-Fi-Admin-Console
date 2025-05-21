@@ -42,7 +42,7 @@ const GoToInstanceStatusDetails = ({ status }: GoToInstanceStatusDetailsProps) =
         fontFamily='Archivo Narrow'
         fontWeight='400'
         padding='5px 0'
-        size='sm'
+        fontSize='sm'
         textAlign='center'
         w='93px'
       >

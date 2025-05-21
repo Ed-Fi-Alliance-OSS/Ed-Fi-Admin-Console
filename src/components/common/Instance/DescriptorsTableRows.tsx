@@ -29,7 +29,7 @@ const DescriptorsTableRows = ({ descriptorsList }: DescriptorsTableRowsProps) =>
               color='gray.700'
               fontFamily='Poppins'
               fontWeight='400'
-              size='md'
+              fontSize='md'
             >
               {descriptor.namespace}
             </Text>
@@ -40,7 +40,7 @@ const DescriptorsTableRows = ({ descriptorsList }: DescriptorsTableRowsProps) =>
               color='blue.600'
               fontFamily='Poppins'
               fontWeight='700'
-              size='md'
+              fontSize='md'
             >
               {descriptor.namespace.split('/')[2].length > 15? descriptor.namespace.split('/')[2].slice(0, 15) + '...' : descriptor.namespace.split('/')[2]}
             </Text>
@@ -51,7 +51,7 @@ const DescriptorsTableRows = ({ descriptorsList }: DescriptorsTableRowsProps) =>
               color='gray.700'
               fontFamily='Poppins'
               fontWeight='400'
-              size='md'
+              fontSize='md'
             >
               {extractDescription(descriptor.namespace.split('/')[2])}
             </Text>
@@ -62,7 +62,7 @@ const DescriptorsTableRows = ({ descriptorsList }: DescriptorsTableRowsProps) =>
               color='gray.700'
               fontFamily='Poppins'
               fontWeight='400'
-              size='md'
+              fontSize='md'
             >
               { index }
             </Text>

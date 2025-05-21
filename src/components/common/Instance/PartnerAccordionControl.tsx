@@ -19,7 +19,8 @@ const PartnerAccordionControl = ({ onEditPartner }: PartnerAccordionControlProps
         borderRadius='4px 0px 0px 4px'
         minW='39px'
         size='xs'
-        variant='primaryBlue600'
+        color='primaryBlue600'
+        variant='solid'
         onClick={onEditPartner}
       >
         Edit
@@ -31,7 +32,8 @@ const PartnerAccordionControl = ({ onEditPartner }: PartnerAccordionControlProps
         minW='24px'
         ml='1px'
         size='xs'
-        variant='primaryBlue600'
+        color='primaryBlue600'
+        variant='solid'
       >
         <span
           hidden

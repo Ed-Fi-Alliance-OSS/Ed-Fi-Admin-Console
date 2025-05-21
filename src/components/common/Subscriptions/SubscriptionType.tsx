@@ -19,7 +19,7 @@ const SubscriptionType = ({ type }: SubscriptionTypeProps) => {
       fontFamily='Archivo Narrow'
       fontWeight='400'
       padding='6px 6px'
-      size='md'
+      fontSize='md'
       textAlign='center'
       w='50px'
     >

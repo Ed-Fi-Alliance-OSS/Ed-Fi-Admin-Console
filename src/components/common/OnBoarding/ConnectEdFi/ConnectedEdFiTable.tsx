@@ -33,7 +33,7 @@ const ConnectedEdFiTable = ({ connectedODS, verificationStatus }: ConnectedEdFiT
               color='blue.600'
               fontFamily='Poppins'
               fontWeight='700'
-              size='md'
+              fontSize='md'
             >
               {connectedODS.baseUrl}
             </Text>

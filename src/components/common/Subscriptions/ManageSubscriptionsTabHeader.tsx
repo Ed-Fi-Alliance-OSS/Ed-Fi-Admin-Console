@@ -96,8 +96,9 @@ const ManageSubscriptionsTabHeader = ({ filterOptionsList, filterValue, selected
         <Button
           minW='5px'
           p='0 25px'
-          size='xs'
-          variant='secondaryBlue600'
+          fontSize='xs'
+          variant='solid'
+          color='secondaryBlue600'
           onClick={onRefreshData}
         >
           Refresh List
@@ -107,8 +108,9 @@ const ManageSubscriptionsTabHeader = ({ filterOptionsList, filterValue, selected
           minW='5px'
           ml='8px'
           p='0 25px'
-          size='xs'
-          variant='primaryBlue600'
+          fontSize='xs'
+          variant='solid'
+          color='primaryBlue600'
           onClick={onAddSubscription}
         >
           Add License

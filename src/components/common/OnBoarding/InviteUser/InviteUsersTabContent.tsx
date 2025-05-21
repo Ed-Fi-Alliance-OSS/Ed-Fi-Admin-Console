@@ -65,7 +65,8 @@ const InviteUsersTabContent = ({ onCompleteStep }: InviteUsersTabContentProps) =
         <Button
           minW='130px'
           size='xs'
-          variant='primaryBlue500'
+          color='primaryBlue500'
+          variant='solid'
           onClick={handleShowInviteModal}
         >
           Invite Technical Admin Users

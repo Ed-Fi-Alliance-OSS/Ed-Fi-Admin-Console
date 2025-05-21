@@ -34,7 +34,7 @@ const ControlTable = ({ headers, rows, thPadding, itemsCount, loading, paginatio
       borderRadius='4px'
       w='full'
     >
-      <Table.Root variant='simple'>
+      <Table.Root variant='outline'>
         <Table.Header>
           <Table.Row>
             {headers.map((header, index) => 

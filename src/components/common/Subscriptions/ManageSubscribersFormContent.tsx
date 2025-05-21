@@ -36,7 +36,7 @@ const ManageSubscribersFormContent = ({ selectedSubscription, subscriptionRoleOp
       <Text
         fontFamily='Poppins'
         fontWeight='700'
-        size='lg'
+        fontSize='lg'
       >
         {selectedSubscription? selectedSubscription.applicationName : ''}
       </Text>
@@ -94,7 +94,7 @@ const ManageSubscribersFormContent = ({ selectedSubscription, subscriptionRoleOp
                 color='blue.600'
                 fontFamily='Poppins'
                 fontWeight='700'
-                size='md'
+                fontSize='md'
               >{user.name}
               </Text>
 
@@ -102,7 +102,7 @@ const ManageSubscribersFormContent = ({ selectedSubscription, subscriptionRoleOp
                 color='gray.700'
                 fontFamily='Poppins'
                 fontWeight='400'
-                size='sm'
+                fontSize='sm'
               >{user.email}
               </Text>
             </Flex>

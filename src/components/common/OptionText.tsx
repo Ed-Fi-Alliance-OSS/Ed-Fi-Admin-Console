@@ -17,7 +17,7 @@ const OptionText = ({ text }: OptionTextProps) => {
       fontWeight='400'
       mb='2px' 
       ml='10px'
-      size='sm'
+      fontSize='sm'
     >{text}
     </Text>
   )

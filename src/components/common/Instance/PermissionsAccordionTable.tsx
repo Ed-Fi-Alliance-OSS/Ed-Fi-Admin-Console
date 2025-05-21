@@ -39,7 +39,6 @@ const PermissionsAccordionTable = ({ resourceInfo }: PermissionsAccordionTablePr
         border='1px'
         borderColor='gray.300' 
         overflow='hidden'
-        variant='simple'
       >
         <Table.Header bg='gray.100'>
           <Table.Row p='0'>

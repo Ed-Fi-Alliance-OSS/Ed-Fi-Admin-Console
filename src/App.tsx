@@ -3,10 +3,8 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import {
-  ChakraProvider
-} from '@chakra-ui/react'
-import { ColorModeProvider } from "./components/ui/color-mode"
+import { ChakraProvider } from '@chakra-ui/react'
+import { ColorModeProvider } from './components/ui/color-mode'
 import {
   baseTheme, EdxConfigProvider, LoadingScreen, TEEAuthContextProvider, useSaveInitialRoute
 } from '@edfi/admin-console-shared-sdk'
@@ -21,7 +19,7 @@ import routes from './core/routes'
 import {
   loadPlugins, PluginLoader, PluginProvider
 } from './plugins/BasePlugin'
-import { system } from "./theme";
+import { system } from './theme'
 
 interface AppProps {
   appConfig: any
@@ -39,7 +37,7 @@ function App({ appConfig }: AppProps) {
 
   return (
     <div className="App">
-      <ChakraProvider theme={system}>
+      <ChakraProvider value={system}>
         <ColorModeProvider>
 
           <LoadingScreen

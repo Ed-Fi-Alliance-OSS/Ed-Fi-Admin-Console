@@ -20,7 +20,7 @@ const DistrictSchoolsDataTable = ({ schools }: DistrictSchoolsDataTableProps) =>
         borderColor='gray.300'
         borderRadius='4px'
         overflow='hidden'
-        variant='simple'
+        variant='outline'
       >
         <Table.Header bg='gray.100'>
           <Table.Row

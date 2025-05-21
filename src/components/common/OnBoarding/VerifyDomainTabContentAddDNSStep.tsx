@@ -24,7 +24,6 @@ const VerifyDomainTabContentAddDNSStep = () => {
           fontFamily='Poppins'
           fontSize='18px'
           fontWeight='700'
-          size='md'
         >
           Step 2: Copy the TXT Record Below and Add it to Your DNS
         </Text>

@@ -14,7 +14,7 @@ const ODSInstanceEdFiExtension = ({ extension }: ODSInstanceEdFiExtensionProps) 
     <Text
       fontFamily='Poppins'
       fontWeight='400'
-      size='md'
+      fontSize='md'
     >
       {extension}
     </Text>

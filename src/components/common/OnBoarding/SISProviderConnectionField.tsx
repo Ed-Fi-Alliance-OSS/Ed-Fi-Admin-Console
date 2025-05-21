@@ -56,14 +56,14 @@ const SISProviderConnectionField = ({ id, providerFunction, sisProviderOptions, 
         fontFamily='Archivo Narrow'
         fontWeight='400'
         padding='5px 10px'
-        size='sm'
+        fontSize='sm'
       >
         {`${sisProviderOptions.find(option => option.value === selectedProvider)?.text} ${providerFunction? `(${providerFunction})` : '' }`}
 
         <Button
           aria-labelledby='close-btn'
           minW='auto'
-          variant='simple'
+          variant='solid'
           onClick={onRemoveProvider}
         >
           <span
@@ -72,12 +72,13 @@ const SISProviderConnectionField = ({ id, providerFunction, sisProviderOptions, 
           >Close
           </span>
 
-          <MdClose 
-            aria-hidden="true" 
-            focusable="false"
-            fontSize='10px' 
-            ml='10px'
-          />
+          <span style={{ marginLeft: '10px' }}>
+            <MdClose 
+              aria-hidden="true" 
+              focusable="false"
+              fontSize='10px' 
+            />
+          </span>
         </Button>
       </Text>
 
