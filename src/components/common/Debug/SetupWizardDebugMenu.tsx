@@ -4,7 +4,7 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import {
-  Button, Flex, FormControl, Text 
+  Button, Flex, Field, Text 
 } from '@chakra-ui/react'
 import {
   CustomFormLabel, CustomSelect 
@@ -60,7 +60,7 @@ const SetupWizardDebugMenu = ({ currentResetStep, currentUpdateStep, showTesting
       flexDir='column'
       w='full'
     >
-      <FormControl zIndex={100}>
+      <Field.Root zIndex={100}>
         <Flex flexDir='column'>
           <CustomFormLabel
             htmlFor="selectStep"
@@ -91,7 +91,7 @@ const SetupWizardDebugMenu = ({ currentResetStep, currentUpdateStep, showTesting
             onChange={onChangeSelect}
           />
         </Flex>
-      </FormControl>
+      </Field.Root>
 
       <Flex
         alignItems='center'

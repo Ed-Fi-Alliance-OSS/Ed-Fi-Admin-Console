@@ -4,7 +4,7 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import {
-  Button, Flex, FormControl, Select 
+  Button, Flex, Field, Select 
 } from '@chakra-ui/react'
 import { ChangeEvent } from 'react'
 import ControlTableFilterPopover from '../ControlTableFilterPopover'
@@ -60,7 +60,7 @@ const ManageUsersTabHeader = ({  filterValue, selectedFilter, filterOptionsList,
           flexDir='column'
           id="selectMode"
         >
-          <FormControl>
+          <Field.Root>
             <Select
               aria-labelledby="selectMode"
               border='none'
@@ -77,7 +77,7 @@ const ManageUsersTabHeader = ({  filterValue, selectedFilter, filterOptionsList,
               >Users
               </option>
             </Select>
-          </FormControl>
+          </Field.Root>
         </Flex>
 
         <Flex

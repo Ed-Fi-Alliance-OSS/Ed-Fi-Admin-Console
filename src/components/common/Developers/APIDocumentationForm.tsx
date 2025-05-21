@@ -4,7 +4,7 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import {
-  Flex, FormControl 
+  Flex, Field 
 } from '@chakra-ui/react'
 import { ChangeEvent } from 'react'
 import {
@@ -23,7 +23,7 @@ const APIDocumentationForm = ({ selectedDocumentation, documentationOptions, onS
       flexDir='column'
       w='733px'
     >
-      <FormControl>
+      <Field.Root>
         <CustomFormLabel 
           htmlFor="apiClient"
           text="Select Documentation to Load"
@@ -37,7 +37,7 @@ const APIDocumentationForm = ({ selectedDocumentation, documentationOptions, onS
           value={selectedDocumentation}
           onChange={onSelectDocumentation}
         />
-      </FormControl>
+      </Field.Root>
     </Flex>
   )
 }

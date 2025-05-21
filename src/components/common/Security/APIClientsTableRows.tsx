@@ -4,7 +4,7 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import {
-  Flex, Td, Text 
+  Flex, Table, Text 
 } from '@chakra-ui/react'
 import ControlTableRow from '../ControlTableRow'
 
@@ -17,9 +17,9 @@ const APIClientsTableRows = ({ apiClientList }: APIClientsTableRowsProps) => {
     <>
       {apiClientList.map((client, index) => 
         <ControlTableRow key={index}>
-          <Td w='917px'>
+          <Table.Cell w='917px'>
             {client}
-          </Td>
+          </Table.Cell>
         </ControlTableRow>)}
     </>
   )

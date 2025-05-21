@@ -5,7 +5,7 @@
 
 import React from 'react'
 import {
-  Box, Text, UnorderedList, ListItem 
+  Box, Text, List, 
 } from '@chakra-ui/react'
 
 interface ErrorListProps {
@@ -18,18 +18,18 @@ const ErrorList: React.FC<ErrorListProps> = ({ errors }) => {
       <Text color="red.600" fontWeight="bold" mb="8px">
         Validation Errors:
       </Text>
-      <UnorderedList>
+      <List.Root as="ol">
         {Object.entries(errors).map(([ field, messages ]) => (
-          <ListItem key={field}>
+          <List.Item key={field}>
             <Text fontWeight="bold">{field}:</Text>
-            <UnorderedList>
+            <List.Root>
               {messages.map((message, index) => (
-                <ListItem key={index}>{message}</ListItem>
+                <List.Item key={index}>{message}</List.Item>
               ))}
-            </UnorderedList>
-          </ListItem>
+            </List.Root>
+          </List.Item>
         ))}
-      </UnorderedList>
+      </List.Root>
     </Box>
   )
 }

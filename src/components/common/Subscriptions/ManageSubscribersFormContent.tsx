@@ -4,7 +4,7 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import {
-  Flex, FormControl, Text
+  Flex, Field, Text
 } from '@chakra-ui/react'
 import {
   CustomFormLabel,
@@ -41,7 +41,7 @@ const ManageSubscribersFormContent = ({ selectedSubscription, subscriptionRoleOp
         {selectedSubscription? selectedSubscription.applicationName : ''}
       </Text>
 
-      <FormControl mt='16px'>
+      <Field.Root mt='16px'>
         <CustomFormLabel
           htmlFor="userName"
           text="Search for User"
@@ -52,7 +52,7 @@ const ManageSubscribersFormContent = ({ selectedSubscription, subscriptionRoleOp
           value={searchText}
           onChange={onSearchUser}
         />
-      </FormControl>
+      </Field.Root>
 
       <Flex 
         bg='gray.300'

@@ -4,7 +4,7 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import {
-  Td, Text
+  Table, Text
 } from '@chakra-ui/react'
 import { EducationOrganization } from '../../../services/AdminActions/Ods/ODSService.results'
 import ControlTableRow from '../ControlTableRow'
@@ -30,7 +30,7 @@ const EducationOrganizationsTableRows = ({ organizationsList }: EducationOrganiz
     <>
       {organizationsList.map((organization, index) => 
         <ControlTableRow key={index}>
-          <Td>
+          <Table.Cell>
             <Text
               color='gray.700'
               fontFamily='Poppins'
@@ -39,9 +39,9 @@ const EducationOrganizationsTableRows = ({ organizationsList }: EducationOrganiz
             >
               {organization.id}
             </Text>
-          </Td>
+          </Table.Cell>
 
-          <Td>
+          <Table.Cell>
             <Text
               color='blue.600'
               fontFamily='Poppins'
@@ -50,9 +50,9 @@ const EducationOrganizationsTableRows = ({ organizationsList }: EducationOrganiz
             >
               {organization.nameOfInstitution}
             </Text>
-          </Td>
+          </Table.Cell>
 
-          <Td>
+          <Table.Cell>
             <Text
               color='gray.700'
               fontFamily='Poppins'
@@ -61,9 +61,9 @@ const EducationOrganizationsTableRows = ({ organizationsList }: EducationOrganiz
             >
               {organization.shortNameOfInstitution}
             </Text>
-          </Td>
+          </Table.Cell>
 
-          <Td>
+          <Table.Cell>
             <Text
               color='gray.700'
               fontFamily='Poppins'
@@ -72,9 +72,9 @@ const EducationOrganizationsTableRows = ({ organizationsList }: EducationOrganiz
             >
               {extractCategory(organization.categories[0].educationOrganizationCategoryDescriptor)}
             </Text>
-          </Td>
+          </Table.Cell>
 
-          <Td>
+          <Table.Cell>
             <Text
               color='gray.700'
               fontFamily='Poppins'
@@ -83,7 +83,7 @@ const EducationOrganizationsTableRows = ({ organizationsList }: EducationOrganiz
             >
               {extractLea(organization.localEducationAgencyCategoryDescriptor)}
             </Text>
-          </Td>
+          </Table.Cell>
         </ControlTableRow>)}
     </>
   )

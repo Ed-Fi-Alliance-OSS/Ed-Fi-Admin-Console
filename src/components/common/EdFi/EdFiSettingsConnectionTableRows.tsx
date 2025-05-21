@@ -3,7 +3,7 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import { Td } from '@chakra-ui/react'
+import { Table } from '@chakra-ui/react'
 import { EdFiAdminConnection } from '../../../core/EdFiAdmin/EdFiAdmin.types'
 import { EdFiSettingsConnectionsTableItem } from '../../../hooks/adminActions/externalods/useEdFiSettingsConnectionsTable.types'
 import ControlTableRow from '../ControlTableRow'
@@ -34,20 +34,20 @@ const EdFiSettingsConnectionTableRows = ({ connections, connectionStatusList, is
     <>
       {connections.map((connection, index) => 
         <ControlTableRow key={index}>
-          <Td
+          <Table.Cell
             color='gray.800'
             fontFamily='Poppins'
             fontWeight='400'
             pl='15px'
             w='600px'
           >{connection.connectionName}
-          </Td>
+          </Table.Cell>
 
-          <Td pl='15px'>
+          <Table.Cell pl='15px'>
             <EdFiConnectionStatus status={selecteItemsStatus(index, isLoadingConnectionStatus)} />
-          </Td>
+          </Table.Cell>
 
-          <Td>
+          <Table.Cell>
             <EdFiSettingsConnectionsControlBtn
               isDeleting={{
                 id: '',
@@ -57,7 +57,7 @@ const EdFiSettingsConnectionTableRows = ({ connections, connectionStatusList, is
               isDisabled={false}
               onEdit={onShowConnectionModal}
             />
-          </Td>
+          </Table.Cell>
         </ControlTableRow>)}
     </>
   )

@@ -4,7 +4,7 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import {
-  Flex, FormControl, List, ListItem, Text
+  Flex, Field, List, ListItem, Text
 } from '@chakra-ui/react'
 import {
   CustomFormLabel, CustomSelect
@@ -25,7 +25,7 @@ const BulkEditRoleFormContent = ({ selectedUsersList, selectedRole, onSelectUser
       flexDir='column'
       w='full'
     >
-      <FormControl>
+      <Field.Root>
         <CustomFormLabel 
           htmlFor="users"
           text="Selected Users"
@@ -63,9 +63,9 @@ const BulkEditRoleFormContent = ({ selectedUsersList, selectedRole, onSelectUser
               </Text>
             </ListItem>)}
         </List>
-      </FormControl>
+      </Field.Root>
 
-      <FormControl mt='32px'>
+      <Field.Root mt='32px'>
         <CustomFormLabel 
           htmlFor="roles" 
           text="Role for all Users Above"
@@ -77,7 +77,7 @@ const BulkEditRoleFormContent = ({ selectedUsersList, selectedRole, onSelectUser
           value={selectedRole}
           onChange={onSelectUserRole}
         />
-      </FormControl>
+      </Field.Root>
     </Flex>
   )
 }

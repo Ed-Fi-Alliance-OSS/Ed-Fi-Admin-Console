@@ -4,7 +4,7 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import {
-  Flex, FormControl
+  Flex, Field
 } from '@chakra-ui/react'
 import {
   CopyTextBtn,
@@ -30,7 +30,7 @@ const ApplicationAPIEndpointsTabContent = ({ instance }: ApplicationAPIEndpoints
       flexDir='column'
       w='full'
     >
-      <FormControl>
+      <Field.Root>
         <CustomFormLabel 
           htmlFor="baseUrl" 
           text="Base URL"
@@ -47,9 +47,9 @@ const ApplicationAPIEndpointsTabContent = ({ instance }: ApplicationAPIEndpoints
             <CopyTextBtn value={selectedTenant?.document.edfiApiDiscoveryUrl ? selectedTenant?.document.edfiApiDiscoveryUrl : ''} />
           </Flex>
         </Flex>
-      </FormControl>
+      </Field.Root>
 
-      <FormControl mt={4}>
+      <Field.Root mt={4}>
         <CustomFormLabel 
           htmlFor="dataManagementApi" 
           text="Resources URL"
@@ -66,9 +66,9 @@ const ApplicationAPIEndpointsTabContent = ({ instance }: ApplicationAPIEndpoints
             <CopyTextBtn value={edfiMetadata?.urls ? edfiMetadata.urls.dataManagementApi : ''} />
           </Flex>
         </Flex>
-      </FormControl>
+      </Field.Root>
 
-      <FormControl mt={4}>
+      <Field.Root mt={4}>
         <CustomFormLabel 
           htmlFor="authenticationUrl" 
           text="Authorization URL"
@@ -85,7 +85,7 @@ const ApplicationAPIEndpointsTabContent = ({ instance }: ApplicationAPIEndpoints
             <CopyTextBtn value={edfiMetadata?.urls? edfiMetadata.urls.oauth : ''} />
           </Flex>
         </Flex>
-      </FormControl>
+      </Field.Root>
 
       <Flex
         bg='gray.300'

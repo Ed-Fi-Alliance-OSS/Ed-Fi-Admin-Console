@@ -5,7 +5,7 @@
 
 import { MdArrowForward } from 'react-icons/md'
 import {
-  Flex, Img, Link, Text 
+  Flex, Image, Link, Text 
 } from '@chakra-ui/react'
 import { useConfig } from '@edfi/admin-console-shared-sdk'
 import { Link as RouterLink } from 'react-router-dom'
@@ -39,7 +39,7 @@ const ActionNavigationCard = ({ data, index }: ActionNavigationCardProps) => {
       w='20%'
     >
       {typeof(data.icon) === 'string'? 
-        <Img 
+        <Image 
           alt={data.name}
           h='32px' 
           src={data.icon}

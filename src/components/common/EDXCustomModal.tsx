@@ -4,16 +4,10 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import {
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
-  ModalOverlay,
-  Text,
-  useColorModeValue
+  Dialog,
+  Text
 } from '@chakra-ui/react'
+import { useColorModeValue } from "../ui/color-mode";
 
 interface InformationModalProps {
     type: 'alert' | 'confirmation' | 'information'
@@ -40,13 +34,11 @@ const EDXCustomModal = ({ type, header, content, footer, isOpen, onClose }: Info
   }
 
   return (
-    <Modal
-      isOpen={isOpen}
-      onClose={onClose}
+    <Dialog.Root open={isOpen} onOpenChange={onClose}
     >
-      <ModalOverlay />
+      <Dialog.Backdrop />
 
-      <ModalContent 
+      <Dialog.Content 
         bg={bgColor}
         border='10px solid'
         borderBottom='0px' 
@@ -59,16 +51,13 @@ const EDXCustomModal = ({ type, header, content, footer, isOpen, onClose }: Info
         my='auto'
         w='auto'
       >
-        <ModalHeader 
-          fontSize='24px'
-          paddingBottom='0px'
-        >
+        <Dialog.Title fontSize="24px" paddingBottom="0px">
           { header }
-        </ModalHeader>
+        </Dialog.Title>
 
-        <ModalCloseButton />
+        <Dialog.Close />
 
-        <ModalBody 
+        <Dialog.Description 
           marginBottom='10px' 
           paddingTop='0px' 
           w=''
@@ -76,13 +65,13 @@ const EDXCustomModal = ({ type, header, content, footer, isOpen, onClose }: Info
           { typeof(content) === 'string'? 
             <Text fontFamily='Poppins'>{ content }
             </Text> : content } 
-        </ModalBody>
+        </Dialog.Description>
 
-        <ModalFooter paddingBottom='35px'>
+        <Dialog.Footer paddingBottom='35px'>
           { footer }
-        </ModalFooter>
-      </ModalContent>
-    </Modal>
+        </Dialog.Footer>
+      </Dialog.Content>
+    </Dialog.Root>
   )
 }
   

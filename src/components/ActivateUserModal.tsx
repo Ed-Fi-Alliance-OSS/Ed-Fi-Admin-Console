@@ -17,59 +17,69 @@ interface DeactivateUserModalProps {
     onClose: () => void
 }
 
-const ActivateUserModal = ({ user, isActivatingUser, show, onActivateUser, onClose }: DeactivateUserModalProps) => {
+const ActivateUserModal = ({
+  user,
+  isActivatingUser,
+  show,
+  onActivateUser,
+  onClose
+}: DeactivateUserModalProps) => {
   return (
     <EDXCustomModal  
-      content={<Flex
-        flexDir='column'
-        mt='12px'
-      >
-        <Text w='400px'>
-          You are attempting to activate the following user:
-        </Text>
-
-        <Text 
-          fontFamily='Poppins'
-          fontWeight='700'
+      content={
+        <Flex
+          direction="column" // v3: use 'direction' instead of 'flexDir'
+          mt="12px"
         >
-          {`${user.firstName} ${user.lastName}`}
-        </Text>
+          <Text width="400px"> {/* v3: use 'width' instead of 'w' */}
+            You are attempting to activate the following user:
+          </Text>
 
-        <Text mt='32px'>
-          They will once again have access to their existing account on Acme Service Center. 
-          Are you sure you want to continue?
-        </Text>
-      </Flex>}
-      footer={<Flex
-        alignItems='flex-start'
-        w='full'
-      >
-        <Button
-          border='1px'
-          borderColor='gray.400'
-          color='red.600'
-          isDisabled={isActivatingUser}
-          padding='10px'
-          size='sm'
-          onClick={onClose}
-        >
-          No, Cancel
-        </Button>
+          <Text 
+            fontFamily="Poppins"
+            fontWeight="700"
+          >
+            {`${user.firstName} ${user.lastName}`}
+          </Text>
 
-        <Button
-          bg='#dd3827'
-          border='1px'
-          borderColor='gray.400'
-          color='white'
-          isLoading={isActivatingUser}
-          ml='10px'
-          padding='10px'
-          size='sm'
-          onClick={() => onActivateUser(user.userId)}
+          <Text mt="32px">
+            They will once again have access to their existing account on Acme Service Center. 
+            Are you sure you want to continue?
+          </Text>
+        </Flex>
+      }
+      footer={
+        <Flex
+          alignItems="flex-start"
+          width="full" // v3: use 'width' instead of 'w'
         >
-          Yes, Mark as Active
-        </Button>
-      </Flex>}
+          <Button
+            border="1px"
+            borderColor="gray.400"
+            color="red.600"
+            disabled={isActivatingUser} // v3: use 'disabled' instead of 'isDisabled'
+            padding="10px"
+            size="sm"
+            onClick={onClose}
+          >
+            No, Cancel
+          </Button>
+
+          <Button
+            bg="#dd3827"
+            border="1px"
+            borderColor="gray.400"
+            color="white"
+            loading={isActivatingUser} // still valid in v3
+            ml="10px"
+            padding="10px"
+            size="sm"
+            onClick={() => onActivateUser(user.userId)}
+          >
+            Yes, Mark as Active
+          </Button>
+        </Flex>
+      }
       header="Mark user as active?"
       isOpen={show}
       type="alert"

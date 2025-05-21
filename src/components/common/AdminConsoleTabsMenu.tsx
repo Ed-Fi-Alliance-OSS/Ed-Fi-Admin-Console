@@ -5,9 +5,6 @@
 
 import {
   Flex,
-  Tab, TabIndicator,
-  TabList,
-  TabPanel, TabPanels,
   Tabs
 } from '@chakra-ui/react'
 import { useState } from 'react'
@@ -26,8 +23,8 @@ const AdminConsoleTabsMenu = ({ children, tabsList, initialIndex, contentMt, inc
   const [ index, setIndex ] = useState(initialIndex? initialIndex : 0)
 
   return (
-    <Tabs 
-      isLazy
+    <Tabs.Root 
+      lazyMount
       index={index}
       position="relative"
       variant="unstyled" 
@@ -39,9 +36,9 @@ const AdminConsoleTabsMenu = ({ children, tabsList, initialIndex, contentMt, inc
         w='full'
       >
         <Flex w='full'>
-          <TabList>
+          <Tabs.List>
             {tabsList.map(tab => 
-              <Tab 
+              <Tabs.Content 
                 key={tab}
                 _notFirst={{ ml: '32px' }}
                 _selected={{ color: 'blue.600' }}
@@ -49,23 +46,23 @@ const AdminConsoleTabsMenu = ({ children, tabsList, initialIndex, contentMt, inc
                 fontWeight='bold'
                 padding='0'
               >{tab}
-              </Tab>)}
-          </TabList>
+              </Tabs.Content>)}
+          </Tabs.List>
         </Flex>
 
         { actionControl }
       </Flex>
 
-      <TabIndicator
+      <Tabs.Indicator
         bg="blue.600"
         borderRadius="1px"
         height="2px"
         mt="5px"
       />
 
-      <TabPanels padding='0'>
+      <Tabs.Content padding='0'>
         {children.map((child, index) => 
-          <TabPanel
+          <Tabs.Content
             key={index}
             mt={contentMt? contentMt : '45px'}
             padding='0'
@@ -73,12 +70,12 @@ const AdminConsoleTabsMenu = ({ children, tabsList, initialIndex, contentMt, inc
           >
             {includeWrapper === false? 
               child  : 
-              <TabContentWrapper>
+              <Tabs.Content>
                 {child}
-              </TabContentWrapper> }
-          </TabPanel>)}
-      </TabPanels>
-    </Tabs>
+              </Tabs.Content> }
+          </Tabs.Content>)}
+      </Tabs.Content>
+    </Tabs.Root>
   )
 }
 

@@ -4,7 +4,7 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import {
-  Alert, AlertIcon, Flex, FormControl, Text
+  Alert, Flex, Field, Text
 } from '@chakra-ui/react'
 import {
   CopyTextBtn, CustomFormLabel, CustomInput
@@ -40,18 +40,18 @@ const ApplicationAPIFormClientTabContent = ({ clientData, mode, isRegeneratingCr
       mt='0px'
       w='full'
     >
-      {clientData.key !== 'applicationKey' && <Alert
+      {clientData.key !== 'applicationKey' && <Alert.Root
         fontFamily='Poppins'
         fontSize='12px'
         mt='10px'
         padding='10px'
         status="info"
       >
-        <AlertIcon />
+        <Alert.Indicator  />
         Be sure to make note of the Key and Secret values. You will not be able to obtain these later without regenerating the values.
-      </Alert>}
+      </Alert.Root>}
 
-      <FormControl mt='12px'>
+      <Field.Root mt='12px'>
         <CustomFormLabel 
           htmlFor="apiClientKey" 
           text="Key"
@@ -68,9 +68,9 @@ const ApplicationAPIFormClientTabContent = ({ clientData, mode, isRegeneratingCr
 
           { clientData.key !== 'applicationKey' && <CopyTextBtn value={clientData.key} /> }
         </Flex>
-      </FormControl>
+      </Field.Root>
 
-      <FormControl mt='16px'> 
+      <Field.Root mt='16px'> 
         <CustomFormLabel 
           htmlFor="apiClientSecret" 
           text="Secret"
@@ -87,7 +87,7 @@ const ApplicationAPIFormClientTabContent = ({ clientData, mode, isRegeneratingCr
 
           { clientData.secret !== 'applicationSecret' && <CopyTextBtn value={clientData.secret} /> }
         </Flex>
-      </FormControl>
+      </Field.Root>
 
       { mode === 'edit' && <Flex flexDir='column'>
         <Flex>
@@ -105,16 +105,16 @@ const ApplicationAPIFormClientTabContent = ({ clientData, mode, isRegeneratingCr
           />
         </Flex>
 
-        <Alert
+        <Alert.Root
           fontFamily='Poppins'
           fontSize='12px'
           mt='10px'
           padding='10px'
           status='warning'
         >
-          <AlertIcon />
+          <Alert.Indicator />
           Regenerating credentials will cause applications that used the previous values to not function.
-        </Alert>
+        </Alert.Root>
       </Flex>}
     </Flex>
   )

@@ -4,7 +4,7 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import {
-  Flex, FormControl 
+  Flex, Field 
 } from '@chakra-ui/react'
 import {
   CustomFormLabel, CustomSelect, CustomErrorField, CompleteFormErrorMessage, CustomSwitch, CustomNumberInput, SelectDateFromTo 
@@ -41,7 +41,7 @@ const SubscriptionFormContent = ({ subscriptionData, mode, applicationOptions, h
     >
       {Object.keys(errors).length > 0 && hasTriedSubmit && <CompleteFormErrorMessage />}
 
-      <FormControl w='full'>
+      <Field.Root w='full'>
         <CustomFormLabel 
           htmlFor='subscriptionDuration' 
           text='License Duration (Start and End Date)'
@@ -55,10 +55,10 @@ const SubscriptionFormContent = ({ subscriptionData, mode, applicationOptions, h
           onUpdateEndDate={onChangeEndDate}
           onUpdateStartDate={onChangeStartDate}
         />
-      </FormControl>
+      </Field.Root>
 
       <Flex mt='24px'>
-        <FormControl>
+        <Field.Root>
           <CustomFormLabel 
             htmlFor='selectApplication' 
             text='Select Application'
@@ -75,11 +75,11 @@ const SubscriptionFormContent = ({ subscriptionData, mode, applicationOptions, h
             value={applicationOptions.find(option => option.applicationId === subscriptionData.applicationId)?.applicationId}  
             onChange={onSelectApplication}
           />
-        </FormControl>
+        </Field.Root>
       </Flex>
 
       <Flex mt='24px'>
-        <FormControl>
+        <Field.Root>
           <CustomFormLabel
             htmlFor='gracePeriod'
             text='Grace Period'
@@ -94,7 +94,7 @@ const SubscriptionFormContent = ({ subscriptionData, mode, applicationOptions, h
             value={subscriptionData.gracePeriod}
             onChange={onChangeGracePeriod}
           />
-        </FormControl>
+        </Field.Root>
       </Flex>
 
       <Flex
@@ -102,7 +102,7 @@ const SubscriptionFormContent = ({ subscriptionData, mode, applicationOptions, h
         mt='24px'
         w='full'
       >
-        <FormControl w='150px'>
+        <Field.Root w='150px'>
           <CustomFormLabel
             htmlFor='numberOfLicenses'
             text='No. of Licenses'
@@ -118,9 +118,9 @@ const SubscriptionFormContent = ({ subscriptionData, mode, applicationOptions, h
             value={subscriptionData.numberOfLicenses}
             onChange={onChangeLicensesAmount}
           />
-        </FormControl>
+        </Field.Root>
 
-        <FormControl w='90px'>
+        <Field.Root w='90px'>
           <CustomFormLabel
             htmlFor='unlimitedLicense'
             text='Unlimited'
@@ -131,9 +131,9 @@ const SubscriptionFormContent = ({ subscriptionData, mode, applicationOptions, h
             isChecked={subscriptionData.unlimitedLicenses}
             onCheck={onToggleLicenseType}
           />
-        </FormControl>
+        </Field.Root>
 
-        <FormControl w='150px'>
+        <Field.Root w='150px'>
           <CustomFormLabel
             htmlFor='autoAssignLicense'
             text='Auto Assign License'
@@ -144,7 +144,7 @@ const SubscriptionFormContent = ({ subscriptionData, mode, applicationOptions, h
             isChecked={subscriptionData.autoAssign}
             onCheck={onToggleAutoAssign}
           />
-        </FormControl>
+        </Field.Root>
       </Flex>
     </Flex>
   )

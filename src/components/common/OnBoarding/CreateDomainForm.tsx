@@ -4,7 +4,7 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import {
-  Button, Flex, FormControl, FormLabel 
+  Button, Flex, Field 
 } from '@chakra-ui/react'
 import { ChangeEvent } from 'react'
 import {
@@ -23,15 +23,15 @@ interface AddDomainFormProps {
 
 const CreateDomainForm = ({ domainName, isSaving, isValidData, errors, onAddDomain, onInputChange }: AddDomainFormProps) => {
   return (
-    <FormControl>
+    <Field.Root>
       <Flex w='340px'>
-        <FormControl w='full'>
-          <FormLabel
+        <Field.Root w='full'>
+          <Field.Label
             hidden={true}
             htmlFor="addDomain"
           >
             Domain
-          </FormLabel>
+          </Field.Label>
 
           <CustomInput
             error={errors && errors['addDomain'] && errors['addDomain'].message}
@@ -40,7 +40,7 @@ const CreateDomainForm = ({ domainName, isSaving, isValidData, errors, onAddDoma
             value={domainName}
             onChange={onInputChange}
           />
-        </FormControl>
+        </Field.Root>
 
         <Button
           alignSelf='flex-end'
@@ -57,7 +57,7 @@ const CreateDomainForm = ({ domainName, isSaving, isValidData, errors, onAddDoma
           Submit
         </Button>
       </Flex>
-    </FormControl>
+    </Field.Root>
   )
 }
 

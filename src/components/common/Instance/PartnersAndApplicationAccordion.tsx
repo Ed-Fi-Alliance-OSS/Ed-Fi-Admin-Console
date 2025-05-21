@@ -5,11 +5,6 @@
 
 import {
   Accordion,
-  AccordionButton,
-  AccordionIcon,
-  AccordionItem,
-  AccordionPanel,
-  Button,
   Flex,
   Text,
 } from '@chakra-ui/react'
@@ -89,12 +84,12 @@ const PartnersAndApplicationAccordion = ({ vendorsWithApplicationsList, loading,
             sortingType={sortingType}
           />
 
-          <Accordion
-            allowToggle
+          <Accordion.Root
+            collapsible
             w='full'
           >
             {paginatedItems.map((partner, index) => 
-              <AccordionItem
+              <Accordion.Item
                 key={index}
                 padding='16px'
               >
@@ -102,11 +97,11 @@ const PartnersAndApplicationAccordion = ({ vendorsWithApplicationsList, loading,
                   alignItems='center'
                   w='full'
                 >
-                  <AccordionButton
+                  <Accordion.ItemTrigger
                     w='250px'
                     onClick={() => onSelectPartner(partner.vendorId ?? 0)}
                   >
-                    <AccordionIcon
+                    <Accordion.ItemTrigger
                       aria-hidden="true"
                       focusable="false"
                     />
@@ -117,7 +112,7 @@ const PartnersAndApplicationAccordion = ({ vendorsWithApplicationsList, loading,
                     >
                       {partner.company}
                     </Text>
-                  </AccordionButton>
+                  </Accordion.ItemTrigger>
 
                   <Flex
                     ml='45px'
@@ -156,7 +151,7 @@ const PartnersAndApplicationAccordion = ({ vendorsWithApplicationsList, loading,
                   </Flex>
                 </Flex>
 
-                <AccordionPanel pb={4}>
+                <Accordion.ItemBody pb={4}>
                   <Flex
                     flexDir='column'
                     mt='16px'
@@ -183,8 +178,8 @@ const PartnersAndApplicationAccordion = ({ vendorsWithApplicationsList, loading,
                       onEditApplication={onEditApplication}
                     />
                   </Flex>
-                </AccordionPanel>
-              </AccordionItem>)}
+                </Accordion.ItemBody>
+              </Accordion.Item>)}
 
             <AccordionItemSkeleton 
               itemsCount={
@@ -223,7 +218,7 @@ const PartnersAndApplicationAccordion = ({ vendorsWithApplicationsList, loading,
                 />
               </Flex>
             </Flex>
-          </Accordion>
+          </Accordion.Root>
         </Flex>
       )}
     </>

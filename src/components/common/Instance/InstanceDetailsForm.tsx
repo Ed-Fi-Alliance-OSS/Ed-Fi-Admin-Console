@@ -4,7 +4,7 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import {
-  Button, Flex, FormControl
+  Button, Flex, Field
 } from '@chakra-ui/react'
 import {
   CustomFormHeader, CustomFormLabel, CustomInput, CustomSelect, UserProfileContext
@@ -46,7 +46,7 @@ const InstanceDetailsForm = ({ mode, instance }: InstanceDetailsFormProps) => {
         paddingLeft='16px'
         w='full'
       >
-        <FormControl mt='16px'>
+        <Field.Root mt='16px'>
           <CustomFormLabel 
             htmlFor="instanceName" 
             text="Instance Name"
@@ -58,9 +58,9 @@ const InstanceDetailsForm = ({ mode, instance }: InstanceDetailsFormProps) => {
             value={instance?.name ?? ''}
             onChange={() => null}
           />
-        </FormControl>
+        </Field.Root>
 
-        <FormControl mt='16px'>
+        <Field.Root mt='16px'>
           <CustomFormLabel 
             htmlFor="instanceDescription" 
             text="Description"
@@ -72,7 +72,7 @@ const InstanceDetailsForm = ({ mode, instance }: InstanceDetailsFormProps) => {
             value=''
             onChange={() => null}
           />
-        </FormControl>
+        </Field.Root>
       </Flex>
 
       <Flex
@@ -83,7 +83,7 @@ const InstanceDetailsForm = ({ mode, instance }: InstanceDetailsFormProps) => {
       </Flex>
 
       <Flex paddingLeft='16px'>
-        <FormControl mt='16px'>
+        <Field.Root mt='16px'>
           <CustomFormLabel 
             htmlFor="schoolYear" 
             text="School Year"
@@ -100,7 +100,7 @@ const InstanceDetailsForm = ({ mode, instance }: InstanceDetailsFormProps) => {
             value='2023'
             onChange={() => null}
           />
-        </FormControl>
+        </Field.Root>
       </Flex>
 
       <Button 

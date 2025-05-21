@@ -4,9 +4,9 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import {
-  Flex, FormControl,
-  FormLabel,
-  Tag
+  Flex, 
+  Field,
+  Badge
 } from '@chakra-ui/react'
 import {
   AutoComplete,
@@ -119,18 +119,18 @@ function MultiInput<T extends string | number>({ filterInput, fieldName, label, 
       justify="center"
       w="full"
     >
-      <FormControl
+      <Field.Root
         id={fieldName}
         w="full"
       >
-        <FormLabel
+        <Field.Label
           fontFamily='Poppins'
           fontSize='14px'
           fontWeight='700'
           htmlFor={fieldName}
           lineHeight='20px'
         >{label}
-        </FormLabel>
+        </Field.Label>
 
         <AutoComplete
           closeOnSelect
@@ -170,19 +170,19 @@ function MultiInput<T extends string | number>({ filterInput, fieldName, label, 
 
           <AutoCompleteList fontSize={10}>
             <AutoCompleteCreatable>
-              {({ value }) => (<Flex gap={2}>Add <Tag
+              {({ value }) => (<Flex gap={2}>Add <Badge
                 maxWidth="100%"
                 paddingX={2}
                 size="xs"
                 whiteSpace="normal"
                 wordBreak="break-all"
               >{isFunction(transformText) ? transformText?.(value) : value}
-              </Tag> as option...
+              </Badge> as option...
               </Flex>)}
             </AutoCompleteCreatable>
           </AutoCompleteList>
         </AutoComplete>
-      </FormControl>
+      </Field.Root>
     </Flex>
   )
 }

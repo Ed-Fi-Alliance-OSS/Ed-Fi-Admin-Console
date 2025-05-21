@@ -5,7 +5,7 @@
 
 import { MdCheckCircle } from 'react-icons/md'
 import {
-  Flex, Tab, TabList, TabPanel, TabPanels, Tabs
+  Flex, Tabs
 } from '@chakra-ui/react'
 import { useState } from 'react'
 import OnBoardingConnectSISContextProvider from '../../../context/onBoardingConnectSISContext'
@@ -112,19 +112,19 @@ const SetUpWizard = ({ instance, setupWizardData, completedSteps, lastInProgress
   }
 
   return (
-    <Tabs
-      isLazy
+    <Tabs.Root
+      lazyMount
       index={currentStepIndex}
       variant='enclosed'
       w='full'
       onChange={(index) => onTabChange(index)}
     >
-      <TabList
+      <Tabs.List
         justifyContent='space-between'
         w='480px'
       >
         {setUpWizardStepsMetadata.tabsData.map((step, index) => 
-          <Tab 
+          <Tabs.Content
             key={index}
             _selected={{
               color: 'blue.600',
@@ -158,16 +158,16 @@ const SetUpWizard = ({ instance, setupWizardData, completedSteps, lastInProgress
                 />
               </Flex>
               : step.tabName}
-          </Tab>)}
-      </TabList>
+          </Tabs.Content>)}
+      </Tab.List>
 
-      <TabPanels padding='0'>
+      <Tabs.Content padding='0'>
         <OnBoardingConnectSISContextProvider
           schoolYear={getInstanceYear(instance) ?? 0}
           onSelectSISProvider={onSelectSISProvider}
           onUnselectSISProvider={onUnselectSISProvider}
         >
-          <TabPanel padding='0'>
+          <Tabs.Content padding='0'>
             <OnBoardingTabsWrapper
               canNext={canNext}
               canPrev={canPrev}
@@ -183,10 +183,10 @@ const SetUpWizard = ({ instance, setupWizardData, completedSteps, lastInProgress
                 setupWizard={true}
               />
             </OnBoardingTabsWrapper>
-          </TabPanel>
+          </Tabs.Content>
         </OnBoardingConnectSISContextProvider>
 
-        <TabPanel padding='0'>
+        <Tabs.Content padding='0'>
           <OnBoardingTabsWrapper
             canNext={canNext}
             canPrev={canPrev}
@@ -198,9 +198,9 @@ const SetUpWizard = ({ instance, setupWizardData, completedSteps, lastInProgress
           >
             <ReviewDataTabContent setupWizard={true} />
           </OnBoardingTabsWrapper>
-        </TabPanel>
+        </Tabs.Content>
 
-        <TabPanel padding='0'>
+        <Tabs.Content padding='0'>
           <OnBoardingTabsWrapper
             canNext={canNext}
             canPrev={canPrev}
@@ -215,9 +215,9 @@ const SetUpWizard = ({ instance, setupWizardData, completedSteps, lastInProgress
               instance={instance}
             />
           </OnBoardingTabsWrapper>
-        </TabPanel>
-      </TabPanels>
-    </Tabs>
+        </Tabs.Content>
+      </Tabs.Content>
+    </Tabs.Root>
   )
 }
 

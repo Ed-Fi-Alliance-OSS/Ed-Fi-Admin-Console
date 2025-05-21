@@ -4,7 +4,7 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import {
-  Flex, FormControl,
+  Flex, Field,
   Spinner
 } from '@chakra-ui/react'
 import {
@@ -49,7 +49,7 @@ export function TenantInstanceForm() {
     >
       {loading && <Spinner />}
 
-      <FormControl>
+      <Field.Root>
         <CustomFormLabel
           htmlFor='name'
           text='Tenant Name'
@@ -80,7 +80,7 @@ export function TenantInstanceForm() {
             onChange={() => { }}
           />
         </Flex>
-      </FormControl>
+      </Field.Root>
     </Flex>
   )
 }

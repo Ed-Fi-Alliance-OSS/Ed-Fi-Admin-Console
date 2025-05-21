@@ -10,7 +10,7 @@ import {
   PopoverContent,
   PopoverBody,
   Button,
-  FormControl,
+  Field,
   Flex,
 } from '@chakra-ui/react'
 import { ChangeEvent } from 'react'
@@ -53,7 +53,7 @@ const ODSInstanceManagementTableFilterPopover = ({ textFilter, selectedOption, o
 
       <PopoverContent w='200px'>
         <PopoverBody padding='16px'>
-          <FormControl>
+          <Field.Root>
             <CustomFormLabel
               htmlFor="filter"
               text="Filter for"
@@ -76,7 +76,7 @@ const ODSInstanceManagementTableFilterPopover = ({ textFilter, selectedOption, o
                 onChange={onChangeFilterOption}
               />
             </Flex>
-          </FormControl>
+          </Field.Root>
 
           <Button
             mt='10px'

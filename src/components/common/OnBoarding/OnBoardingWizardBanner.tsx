@@ -4,7 +4,7 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import {
-  Button, Flex, Heading, Img, Text
+  Button, Flex, Heading, Image, Text
 } from '@chakra-ui/react'
 import { Link as RouterLink } from 'react-router-dom'
 import { OnBoardingStepStatus } from '../../../core/onBoardingWizard/onBoardingWizard.types'
@@ -100,7 +100,7 @@ const OnBoardingWizardBanner = ({ currentStepStatus, currentStepName, currentSte
         {currentStepNumber === 1? 'Start Setup' : 'Continue'}
       </Button>
 
-      <Img 
+      <Image 
         alt="exchange-symbol"
         position='absolute'
         right='-60px'

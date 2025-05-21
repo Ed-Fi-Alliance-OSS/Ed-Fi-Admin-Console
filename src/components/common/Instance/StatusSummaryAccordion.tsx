@@ -5,10 +5,6 @@
 
 import {
   Accordion,
-  AccordionButton,
-  AccordionIcon,
-  AccordionItem,
-  AccordionPanel,
   Flex,
   Text,
 } from '@chakra-ui/react'
@@ -35,9 +31,9 @@ interface StatusSummaryAccordionProps {
 
 const StatusSummaryAccordion = ({ instanceList }: StatusSummaryAccordionProps) => {
   return (
-    <Accordion w='full'>
+    <Accordion.Root w='full'>
       {instanceList.map((instance, index) => 
-        <AccordionItem 
+        <Accordion.Item 
           key={index} 
           _notFirst={{ mt: '24px' }} 
           bg='white'
@@ -45,12 +41,12 @@ const StatusSummaryAccordion = ({ instanceList }: StatusSummaryAccordionProps) =
           borderColor='gray.300'
           borderRadius='4px'
         >
-          <AccordionButton
+          <Accordion.ItemTrigger
             alignItems='center'
             display='flex'
             h='64px'
           >
-            <AccordionIcon
+            <Accordion.ItemIndicator
               aria-hidden="true"
               focusable="false"
               ml='30px'
@@ -69,7 +65,7 @@ const StatusSummaryAccordion = ({ instanceList }: StatusSummaryAccordionProps) =
             <Flex ml='50px'>
               <ODSInstanceEdFiStatus status={instance.status} />
             </Flex>
-          </AccordionButton>
+          </Accordion.ItemTrigger>
 
           <AccordionPanel padding='45px 30px'>
             {instance.healthList.map((service, sindex) => 
@@ -78,8 +74,8 @@ const StatusSummaryAccordion = ({ instanceList }: StatusSummaryAccordionProps) =
                 serviceHealth={service}
               />)}
           </AccordionPanel>
-        </AccordionItem>)}
-    </Accordion>
+        </Accordion.Item>)}
+    </Accordion.Root>
   )
 }
 
