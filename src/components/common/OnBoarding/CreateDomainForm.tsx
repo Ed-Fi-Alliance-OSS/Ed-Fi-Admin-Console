@@ -27,10 +27,12 @@ const CreateDomainForm = ({ domainName, isSaving, isValidData, errors, onAddDoma
       <Flex w='340px'>
         <Field.Root w='full'>
           <Field.Label
-            hidden={true}
-            htmlFor="addDomain"
+            //hidden={true}
+            //htmlFor="addDomain"
           >
+            <Flex>
             Domain
+            </Flex>
           </Field.Label>
 
           <CustomInput

@@ -5,6 +5,7 @@
 
 import {
   Accordion,
+  Box,
   Flex,
   Text,
 } from '@chakra-ui/react'
@@ -31,51 +32,57 @@ interface StatusSummaryAccordionProps {
 
 const StatusSummaryAccordion = ({ instanceList }: StatusSummaryAccordionProps) => {
   return (
-    <Accordion.Root w='full'>
-      {instanceList.map((instance, index) => 
-        <Accordion.Item 
-          key={index} 
+    <Flex direction="column" width="full">
+      {instanceList.map((instance, index) => (
+        <Box 
+          key={index}
           _notFirst={{ mt: '24px' }} 
           bg='white'
           border='1px'
           borderColor='gray.300'
           borderRadius='4px'
         >
-          <Accordion.ItemTrigger
-            alignItems='center'
-            display='flex'
-            h='64px'
-          >
-            <Accordion.ItemIndicator
-              aria-hidden="true"
-              focusable="false"
-              ml='30px'
-            />
-
-            <Text 
-              color='blue.600'
-              fontFamily='Poppins'
-              fontWeight='700'
-              ml='10px'
-              size='16px'
-            >
-              {instance.name}
-            </Text>
-
-            <Flex ml='50px'>
-              <ODSInstanceEdFiStatus status={instance.status} />
-            </Flex>
-          </Accordion.ItemTrigger>
-
-          <AccordionPanel padding='45px 30px'>
-            {instance.healthList.map((service, sindex) => 
-              <InstanceServiceHealthBar
-                key={sindex}
-                serviceHealth={service}
-              />)}
-          </AccordionPanel>
-        </Accordion.Item>)}
-    </Accordion.Root>
+          <Accordion.Root allowToggle>
+            <Accordion.Item>
+              <Flex 
+                alignItems="center"
+                height="64px"
+              >
+                <Accordion.ItemTrigger>
+                  <Flex  _hover={{ bg: 'transparent' }} alignItems="center">
+                    <Box ml="30px" mr="10px">
+                      <Accordion.ItemIndicator />
+                    </Box>
+                    
+                    <Text 
+                      color='blue.600'
+                      fontFamily='Poppins'
+                      fontWeight='700'
+                      fontSize='16px'
+                    >
+                      {instance.name}
+                    </Text>
+                    
+                    <Flex ml='50px'>
+                      <ODSInstanceEdFiStatus status={instance.status.operationStatus} />
+                    </Flex>
+                  </Flex>
+                </Accordion.ItemTrigger>
+              </Flex>
+              
+              <Accordion.ItemBody padding='45px 30px'>
+                {instance.healthList.map((service, sindex) => (
+                  <InstanceServiceHealthBar
+                    key={sindex}
+                    serviceHealth={service}
+                  />
+                ))}
+              </Accordion.ItemBody>
+            </Accordion.Item>
+          </Accordion.Root>
+        </Box>
+      ))}
+    </Flex>
   )
 }
 

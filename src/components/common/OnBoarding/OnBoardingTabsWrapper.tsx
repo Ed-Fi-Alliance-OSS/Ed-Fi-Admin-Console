@@ -4,21 +4,21 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import {
-  Button, Flex, Link, Text, Tooltip
+  Button, Flex, Link, Text, Tooltip, Box
 } from '@chakra-ui/react'
 import { MdHelpOutline } from 'react-icons/md'
 import useHelpLinks from '../../../hooks/useHelpLinks'
 import WizardContentWrapper from '../Wizard/WizardContentWrapper'
 
 interface OnBoardingTabsWrapperProps {
-    children: JSX.Element
-    stepName: string 
-    currentStep: number
-    lastStep: number
-    canPrev: boolean 
-    canNext: boolean
-    onPrev: () => void
-    onNext: () => void
+  children: JSX.Element
+  stepName: string
+  currentStep: number
+  lastStep: number
+  canPrev: boolean
+  canNext: boolean
+  onPrev: () => void
+  onNext: () => void
 }
 
 const OnBoardingTabsWrapper = ({ children, stepName, currentStep, lastStep, canNext, canPrev, onNext, onPrev }: OnBoardingTabsWrapperProps) => {
@@ -29,7 +29,7 @@ const OnBoardingTabsWrapper = ({ children, stepName, currentStep, lastStep, canN
 
     // console.log('links', links, links[currentStep -1].knowledgeBaseUrl)
 
-    return links[currentStep -1].knowledgeBaseUrl
+    return links[currentStep - 1].knowledgeBaseUrl
   }
 
   return (
@@ -38,7 +38,7 @@ const OnBoardingTabsWrapper = ({ children, stepName, currentStep, lastStep, canN
         flexDir='column'
         w='full'
       >
-        <Text   
+        <Text
           color='gray.500'
           fontFamily='Poppins'
           fontWeight='400'
@@ -56,35 +56,40 @@ const OnBoardingTabsWrapper = ({ children, stepName, currentStep, lastStep, canN
             fontWeight='700'
             position='relative'
           >
-            {currentStep === lastStep? 'Review and Finalize' : stepName}
+            {currentStep === lastStep ? 'Review and Finalize' : stepName}
           </Text>
 
-          <Tooltip
-            hasArrow
-            bg='blue.700'
-            borderRadius='4px'
-            label='Get Help Here'
-            ml='5px'
-            placement="top"
-          >
-            <span style={{ marginLeft: '5px' }}>
-              <Link
-                aria-label="help link"
-                href={getCurrentStepHelpLink()}
-                id="help link"
-                referrerPolicy="no-referrer"
-                target='_blank'
-              >
-                <MdHelpOutline 
+          <Tooltip.Root openDelay={0} closeDelay={0} positioning={{ placement: "top" }}>
+            <Tooltip.Trigger>
+              <span style={{ marginLeft: '5px' }}>
+                <Link
                   aria-label="help link"
-                  focusable="true"
-                  fontSize='25px'
-                  height='15px'
-                  width='15px'
-                />
-              </Link>
-            </span>
-          </Tooltip>
+                  href={getCurrentStepHelpLink()}
+                  id="help link"
+                  referrerPolicy="no-referrer"
+                  target='_blank'
+                >
+                  <MdHelpOutline
+                    aria-label="help link"
+                    focusable="true"
+                    fontSize='25px'
+                    height='15px'
+                    width='15px'
+                  />
+                </Link>
+              </span>
+            </Tooltip.Trigger>
+            <Tooltip.Positioner>
+              <Tooltip.Content>
+                <Flex style={{ background: 'var(--chakra-colors-blue-700)', borderRadius: '4px' }}>
+                  <Tooltip.Arrow>
+                    <Tooltip.ArrowTip />
+                  </Tooltip.Arrow>
+                  Get Help Here
+                </Flex>
+              </Tooltip.Content>
+            </Tooltip.Positioner>
+          </Tooltip.Root>
         </Flex>
       </Flex>
 
@@ -117,19 +122,19 @@ const OnBoardingTabsWrapper = ({ children, stepName, currentStep, lastStep, canN
           </Button>
 
           <Button
-            _hover={{ backgroundColor: currentStep === lastStep? 'green.600' : (canNext? 'blue.900' : 'blue.600') }}
-            bg={currentStep === lastStep? 'green.600' : 'blue.600'}
+            _hover={{ backgroundColor: currentStep === lastStep ? 'green.600' : (canNext ? 'blue.900' : 'blue.600') }}
+            bg={currentStep === lastStep ? 'green.600' : 'blue.600'}
             disabled={!canNext}
             minW='138px'
             fontSize='lg'
             variant='solid'
-            color={currentStep === lastStep? 'primaryGreen500' : 'primaryBlue600'}
+            color={currentStep === lastStep ? 'primaryGreen500' : 'primaryBlue600'}
             onClick={onNext}
           >
-            {currentStep === lastStep? 'Finalize' : 'Next'}
+            {currentStep === lastStep ? 'Finalize' : 'Next'}
           </Button>
         </Flex>
-      </Flex> 
+      </Flex>
     </WizardContentWrapper>
   )
 }
