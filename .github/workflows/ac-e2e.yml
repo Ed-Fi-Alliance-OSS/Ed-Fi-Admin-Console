@@ -15,7 +15,7 @@ permissions: read-all
 
 jobs:
   setup-environment:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
@@ -42,7 +42,7 @@ jobs:
         working-directory: ./main/
 
       - name: Install playwright dependencies
-        run: npx playwright install --with-deps chromium
+        run: npx playwright install
         working-directory: ./main/
 
       - name: Run E2E tests
