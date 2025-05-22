@@ -16,7 +16,7 @@ import {
 import { useEffect } from 'react'
 import { Link as RouterLink } from 'react-router-dom'
 import { useTenantContext } from '../../../context/tenantContext'
-import { ODSInstance } from '../../../core/ODSInstance.types'
+import { InstanceOperationStatus, ODSInstance } from '../../../core/ODSInstance.types'
 import useOdsInstanceLink from '../../../hooks/odsInstances/useOdsInstanceLink'
 import { UpdatingIsDefaultStatus } from '../../../hooks/odsInstances/useOdsInstanceTable.types'
 import ManageInstanceBtn from './ManageInstanceBtn'
@@ -57,9 +57,8 @@ const ODSInstanceManagementTableRowItem = ({ tableMode, selectedInstance, instan
   }, [])
 
   return (
-    <>
-      {tableMode != 'Display' && <Table.Cell w='80px'>
-        <RadioGroup
+    <>{tableMode != 'Display' && <Table.Cell w='80px'>
+        <RadioGroup.Root
           value={selectedInstance?.id ?? ''}
           onChange={() => onSelectInstance(instance)}
         >
@@ -68,7 +67,7 @@ const ODSInstanceManagementTableRowItem = ({ tableMode, selectedInstance, instan
             text=""
             value={instance.id}
           />
-        </RadioGroup>
+        </RadioGroup.Root>
       </Table.Cell>}
 
       <Table.Cell maxW="250px" overflow="hidden" px={4} py={2}>
@@ -82,10 +81,10 @@ const ODSInstanceManagementTableRowItem = ({ tableMode, selectedInstance, instan
             fontWeight="700"
             lineHeight="22px"
             overflow="hidden"
-            state={{ instanceId: instance.id }}
+            //state={{ instanceId: instance.id }}
             textOverflow="ellipsis"
             title={instance.name}
-            to={getOdsInstanceLink(instance)}
+            href={getOdsInstanceLink(instance)}
             whiteSpace="nowrap"
           >
             {instance.name}

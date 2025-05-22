@@ -3,12 +3,8 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import {
-  Flex,
-  Tabs
-} from '@chakra-ui/react'
+import { Box, Flex, Tabs } from '@chakra-ui/react'
 import { useState } from 'react'
-import TabContentWrapper from './TabContentWrapper'
 
 interface AdminConsoleTabsMenuProps {
     tabsList: string[]
@@ -20,65 +16,71 @@ interface AdminConsoleTabsMenuProps {
 }
 
 const AdminConsoleTabsMenu = ({ children, tabsList, initialIndex, contentMt, includeWrapper, actionControl }: AdminConsoleTabsMenuProps) => {
-  const [ index, setIndex ] = useState(initialIndex? initialIndex : 0)
+  const [index, setIndex] = useState(initialIndex ?? 0)
 
   return (
-    <Tabs.Root 
-      lazyMount
-      index={index}
-      position="relative"
-      variant="plain" 
-      w='full' 
-      onChange={(nindex) => setIndex(nindex)}
-    >
-      <Flex
-        justifyContent='space-between'
-        w='full'
+    <Box position="relative" w="full">
+      <Tabs.Root 
+        defaultIndex={index}
+        variant="plain" 
+        w='full' 
+        onChange={(newIndex) => setIndex(newIndex)}
       >
-        <Flex w='full'>
-          <Tabs.List>
-            {tabsList.map(tab => 
-              <Tabs.Tab
-                key={tab}
-                _notFirst={{ ml: '32px' }}
-                _selected={{ color: 'blue.600' }}
-                fontFamily='Poppins'
-                fontWeight='bold'
-                padding='0'
-              >
-                {tab}
-              </Tabs.Tab>
-            )}
-          </Tabs.List>
+        <Flex
+          justifyContent='space-between'
+          w='full'
+        >
+          <Flex w='full'>
+            <Tabs.List>
+              {tabsList.map((tab) => (
+                <Tabs.Trigger>
+                  <Flex key={tab}
+                  _notFirst={{ marginLeft: '32px' }}
+                  _selected={{ color: 'blue.600' }}
+                  fontFamily='Poppins'
+                  fontWeight='bold'
+                  padding='0'>
+                  {tab}
+                  </Flex>
+                </Tabs.Trigger>
+              ))}
+            </Tabs.List>
+          </Flex>
+
+          {actionControl}
         </Flex>
 
-        { actionControl }
-      </Flex>
+        <Tabs.Indicator>
+          <Box style={{
+            backgroundColor: "var(--chakra-colors-blue-600)",
+            borderRadius: "1px",
+            height: "2px",
+            marginTop: "5px"
+          }}/>
+        </Tabs.Indicator>
 
-      <Tabs.Indicator
-        bg="blue.600"
-        borderRadius="1px"
-        height="2px"
-        mt="5px"
-      />
-
-      <Tabs.Content padding='0'>
-        {children.map((child, index) => 
-          <Tabs.Content
-            key={index}
-            mt={contentMt? contentMt : '45px'}
-            padding='0'
-            w='full'
-          >
-            {includeWrapper === false? 
-              child  : 
-              <Tabs.Content>
-                {child}
-              </Tabs.Content> }
-          </Tabs.Content>)}
-      </Tabs.Content>
-    </Tabs.Root>
+        <Tabs.Content>
+          {children.map((child, idx) => (
+            <Tabs.Content>
+              <Flex key={idx} style={{
+                marginTop: contentMt ?? '45px',
+                padding: '0',
+                width: '100%'
+              }}>
+              {includeWrapper === false ? 
+                child : 
+                <Flex>
+                  {child}
+                </Flex>
+              }
+              </Flex>
+            </Tabs.Content>
+          ))}
+        </Tabs.Content>
+      </Tabs.Root>
+    </Box>
   )
 }
+
 
 export default AdminConsoleTabsMenu

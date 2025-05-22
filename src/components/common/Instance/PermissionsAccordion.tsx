@@ -29,49 +29,43 @@ const PermissionsAccordion = () => {
         Claim Set
       </Text>
 
-      <Accordion.Root   
+      <Accordion.Root
         border='1px'
         borderColor='gray.300'
         p='0'
         w='full'
       >
-        {permissions.map((permissionInfo, index) => 
-          <Accordion.Item   
-            key={index}
-            border='1px' 
-            borderColor='gray.300'
-          >
+        {permissions.map((permissionInfo, index) =>
+          <Accordion.Item>
             <Flex
+              border='1px'
+              borderColor='gray.300'
               alignItems='center'
               w='full'
             >
-              <Accordion.ItemTrigger
-                border='none'
-                w='full'
-              >
-                <Accordion.ItemIndicator
-                  aria-hidden="true"
-                  focusable="false"
-                />
-
-                <Text 
-                  color='blue.600'
-                  fontFamily='Poppins'
-                  fontWeight='700'
-                  ml='10px'
-                >
-                  {permissionInfo.name}
-                </Text>
+              <Accordion.ItemTrigger>
+                <Flex border='none'
+                  w='full'>
+                  <Accordion.ItemIndicator />
+                  <Flex aria-hidden="true">
+                    <Text
+                      color='blue.600'
+                      fontFamily='Poppins'
+                      fontWeight='700'
+                      ml='10px'
+                    >
+                      {permissionInfo.name}
+                    </Text>
+                  </Flex>
+                </Flex>
               </Accordion.ItemTrigger>
             </Flex>
 
-            <Accordion.ItemIndicator
-              px='50px'
-              w='full'
-            >
+            <Accordion.ItemIndicator>
               <Flex
                 flexDir='column'
                 w='full'
+                px='50px'
               >
                 <Text
                   color='blue.600'
@@ -83,8 +77,8 @@ const PermissionsAccordion = () => {
                   Resources
                 </Text>
 
-                <PermissionsAccordionTable resourceInfo={{ 
-                  systemDescriptors: { name: permissionInfo.name  }, 
+                <PermissionsAccordionTable resourceInfo={{
+                  systemDescriptors: { name: permissionInfo.name },
                   types: { name: 'Types' },
                   educationOrganizations: { name: 'Education Organizations' }
                 }}

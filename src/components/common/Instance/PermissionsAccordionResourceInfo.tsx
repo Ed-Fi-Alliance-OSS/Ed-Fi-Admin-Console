@@ -28,27 +28,22 @@ interface PermissionsAccordionResourceInfoProps {
 const PermissionsAccordionResourceInfo = ({ resourceInfoData }: PermissionsAccordionResourceInfoProps) => {
   return (
     <Accordion.Root w='full'>
-      <Accordion.Item
-        border='none'
-        w='full'
-      >
+      <Accordion.Item>
         <Flex
+        border='none'
           alignItems='center'
           w='full'
         >
-          <Accordion.ItemTrigger
-            border='none'
-            px='0'
-            w='full'
-          >
+          <Accordion.ItemTrigger>
             <Flex
               justifyContent='space-between'
               w='full'
+              border='none'
+              px='0'
             >
               <Flex w='full'>
                 <Accordion.ItemIndicator
                   aria-hidden="true"
-                  focusable="false"
                 />
 
                 <Text 
@@ -64,12 +59,12 @@ const PermissionsAccordionResourceInfo = ({ resourceInfoData }: PermissionsAccor
           </Accordion.ItemTrigger>
         </Flex>
 
-        <AccordionPanel
-          border='none'
-          pl='30px'
-        >
+        <Accordion.ItemIndicator>
+          <Flex border='none'
+          pl='30px'>
           {resourceInfoData.name}
-        </AccordionPanel>
+          </Flex>
+        </Accordion.ItemIndicator>
       </Accordion.Item>
     </Accordion.Root>
   )

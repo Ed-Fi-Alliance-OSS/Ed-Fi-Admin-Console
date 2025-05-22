@@ -20,7 +20,7 @@ const BackToLink = ({ url, text }: BackToLinkProps) => {
       alignItems='center' 
       as={RouterLink}
       display='flex' 
-      to={url}
+      href={url}
       w='230px'
     >
       <MdArrowBack 
@@ -36,7 +36,7 @@ const BackToLink = ({ url, text }: BackToLinkProps) => {
         fontFamily='Poppins'
         fontWeight='400'
         ml='10px'
-        size='sm'
+        fontSize='sm'
       >{text}
       </Text>
     </Link>
