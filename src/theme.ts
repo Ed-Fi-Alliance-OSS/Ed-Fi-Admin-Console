@@ -8,6 +8,8 @@ import {
 } from '@chakra-ui/react'
 
 const config = defineConfig({
+  initialColorMode: 'system',
+  useSystemColorMode: true,
   theme: {
     keyframes: {
       spin: {
@@ -34,7 +36,8 @@ const config = defineConfig({
           _dark: { value: "{colors.blue.800.value}" }
         }
       }
-    },    semanticTokens: {
+    },
+    semanticTokens: {
       colors: {
         "chakra-body-text": { value: "{colors.bodyColor}" },
         "chakra-body-bg": { value: "{colors.bodyBg}" }

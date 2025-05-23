@@ -4,8 +4,9 @@ import type {
   IconButtonProps, SpanProps 
 } from '@chakra-ui/react'
 import {
-  ClientOnly, IconButton, Skeleton, Span 
+  IconButton, Skeleton, Box as Span
 } from '@chakra-ui/react'
+// Remove direct imports from Chakra hooks as they're causing context errors
 import {
   ThemeProvider, useTheme 
 } from 'next-themes'
@@ -15,11 +16,17 @@ import {
   LuMoon, LuSun 
 } from 'react-icons/lu'
 
-export interface ColorModeProviderProps extends ThemeProviderProps {}
+export interface ColorModeProviderProps {
+  children: React.ReactNode;
+  defaultColorMode?: string;
+  [key: string]: any;
+}
 
-export function ColorModeProvider(props: ColorModeProviderProps) {
+export function ColorModeProvider({ children, ...props }: ColorModeProviderProps) {
   return (
-    <ThemeProvider disableTransitionOnChange attribute="class" {...props} />
+    <ThemeProvider disableTransitionOnChange attribute="class" {...props}>
+      {children}
+    </ThemeProvider>
   )
 }
 
@@ -32,6 +39,7 @@ export interface UseColorModeReturn {
 }
 
 export function useColorMode(): UseColorModeReturn {
+  // Use next-themes built-in hook
   const { resolvedTheme, setTheme } = useTheme()
 
   const toggleColorMode = () => {
@@ -39,8 +47,8 @@ export function useColorMode(): UseColorModeReturn {
   }
 
   return {
-    colorMode: resolvedTheme as ColorMode,
-    setColorMode: setTheme,
+    colorMode: (resolvedTheme || 'light') as ColorMode,
+    setColorMode: (mode) => setTheme(mode),
     toggleColorMode,
   }
 }
@@ -63,7 +71,7 @@ export const ColorModeButton = React.forwardRef<
 >(function ColorModeButton(props, ref) {
   const { toggleColorMode } = useColorMode()
   return (
-    <ClientOnly fallback={<Skeleton boxSize="8" />}>
+    <React.Suspense fallback={<Skeleton boxSize="8" />}>
       <IconButton
         ref={ref}
         aria-label="Toggle color mode"
@@ -71,16 +79,10 @@ export const ColorModeButton = React.forwardRef<
         variant="ghost"
         onClick={toggleColorMode}
         {...props}
-        css={{
-          _icon: {
-            width: '5',
-            height: '5',
-          },
-        }}
       >
         <ColorModeIcon />
       </IconButton>
-    </ClientOnly>
+    </React.Suspense>
   )
 })
 
