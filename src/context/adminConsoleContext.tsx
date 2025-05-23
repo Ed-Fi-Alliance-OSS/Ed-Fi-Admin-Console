@@ -7,7 +7,7 @@ import {
   TEEAuthDataContext, UserProfileContext 
 } from '@edfi/admin-console-shared-sdk'
 import {
-  createContext, useContext 
+  createContext, useContext, useState, useEffect 
 } from 'react'
 import {
   ActionParams, EdfiActionParams 
@@ -37,28 +37,50 @@ interface AdminConsoleConfigProviderProps {
 
 const AdminConsoleConfigProvider = ({ children, config }: AdminConsoleConfigProviderProps) => {
   const { edxAppConfig, auth } = useContext(TEEAuthDataContext)
-  const { userProfile } = useContext(UserProfileContext)
+  const { userProfile } = useContext(UserProfileContext)  
+  const [ resolvedUser, setResolvedUser ] = useState<any | null>(null)
+
+  // Resolve the user asynchronously
+  useEffect(() => {
+    const resolveUser = async () => {
+      try {
+        if (!auth || !auth.user) {
+          console.error('Auth or user is not defined')
+          return
+        }
+
+        const user = await auth.user // Resolve the user promise
+        console.log('Resolved user:', user)
+        setResolvedUser(user) // Store the resolved user in state
+      } catch (error) {
+        console.error('Error resolving user:', error)
+        setResolvedUser(null)// Set to null if resolving fails
+      }
+    }
+
+    resolveUser()
+  }, [ auth ])// Re-run if `auth` changes
 
   const getActionParams = (): ActionParams | null => {
-    if (auth && auth.user && userProfile && edxAppConfig) {
+    if (resolvedUser && userProfile && edxAppConfig) {
       return {
-        tenantId: userProfile.tenantId,
-        token: auth.user.access_token,
+        tenantId: 'tenant1',
+        token: resolvedUser.access_token, // Use the resolved user object
         config: edxAppConfig,
-        edxApiUrl: config.api.edxApiUri
+        edxApiUrl: config.api.edxApiUri,
       }
     }
 
     return null
-  }
+  };
 
   const getEdfiActionParams = (): EdfiActionParams | null => {
-    if (auth && auth.user && userProfile && edxAppConfig) {
+    if (resolvedUser && userProfile && edxAppConfig) {
       return {
-        token: auth.user.access_token,
+        token: resolvedUser.access_token, // Use the resolved user object
         config: edxAppConfig,
         edxApiUrl: config.api.edxApiUri,
-        tenantId: userProfile.tenantId
+        tenantId: 'tenant1',
       }
     }
 
@@ -66,15 +88,15 @@ const AdminConsoleConfigProvider = ({ children, config }: AdminConsoleConfigProv
   }
 
   const getEdfiUrl = () => config.app.odsApiInstance ?? ''
-  const getShowCompositeUrls = () => config.app.showCompositeUrls? config.app.showCompositeUrls : false
-  const getShowDataHealth = () => config.app.showDataHealth? config.app.showDataHealth : false
-  const getShowAdvancedTabs = () => config.app.showAdvancedTabs? config.app.showAdvancedTabs : false
-  const getAllowDebug = () => config.app.allowDebug? config.app.allowDebug : false
-  const getUseDataHealthWithSchoolYear = () => config.app.useDataHealthWithSchoolYear? config.app.useDataHealthWithSchoolYear : false
-  const getShowUserDelete = () => config.app.showUserDelete? config.app.showUserDelete : false
-  const getShowEdfiPartnerDelete = () => config.app.showEdfiPartnerDelete? config.app.showEdfiPartnerDelete : false
-  const getShowEdfiApplicationDelete = () => config.app.showEdfiApplicationDelete? config.app.showEdfiApplicationDelete : false
-  const getShowEdOrgsTab = () => config.app.showEdOrgsTab? config.app.showEdOrgsTab : false
+  const getShowCompositeUrls = () => config.app.showCompositeUrls ? config.app.showCompositeUrls : false
+  const getShowDataHealth = () => config.app.showDataHealth ? config.app.showDataHealth : false
+  const getShowAdvancedTabs = () => config.app.showAdvancedTabs ? config.app.showAdvancedTabs : false
+  const getAllowDebug = () => config.app.allowDebug ? config.app.allowDebug : false
+  const getUseDataHealthWithSchoolYear = () => config.app.useDataHealthWithSchoolYear ? config.app.useDataHealthWithSchoolYear : false
+  const getShowUserDelete = () => config.app.showUserDelete ? config.app.showUserDelete : false
+  const getShowEdfiPartnerDelete = () => config.app.showEdfiPartnerDelete ? config.app.showEdfiPartnerDelete : false
+  const getShowEdfiApplicationDelete = () => config.app.showEdfiApplicationDelete ? config.app.showEdfiApplicationDelete : false
+  const getShowEdOrgsTab = () => config.app.showEdOrgsTab ? config.app.showEdOrgsTab : false
 
   const getAdminConsoleConfig = (): AdminConsoleConfig | null => {
     const actionParams = getActionParams()
@@ -89,11 +111,11 @@ const AdminConsoleConfigProvider = ({ children, config }: AdminConsoleConfigProv
     const useDataHealthWithSchoolYear = getUseDataHealthWithSchoolYear()
 
     if (actionParams && edfiActionParams) {
-      return { 
-        actionParams, 
-        edfiActionParams, 
-        showDataHealth, 
-        allowDebug, 
+      return {
+        actionParams,
+        edfiActionParams,
+        showDataHealth,
+        allowDebug,
         showAdvancedTabs,
         edfiEndpoint: getEdfiUrl(),
         showCompositeUrls: getShowCompositeUrls(),
@@ -101,7 +123,7 @@ const AdminConsoleConfigProvider = ({ children, config }: AdminConsoleConfigProv
         showEdfiApplicationDelete,
         showEdfiPartnerDelete,
         showEdOrgsTab,
-        useDataHealthWithSchoolYear
+        useDataHealthWithSchoolYear,
       }
     }
 
