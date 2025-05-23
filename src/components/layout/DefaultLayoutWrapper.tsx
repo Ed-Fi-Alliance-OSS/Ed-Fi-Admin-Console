@@ -5,10 +5,9 @@
 
 import { Flex } from '@chakra-ui/react'
 import {
-  AppsMenuMoreOption, Content, DefaultLayout, EdxAppConfig, ExternalAppsContext, Footer, NotificationBar, TEEAuthDataContext, TopBar, TopBarLeft, TopBarRight, useAuthActions, useConfig, useNotificationsBar, UserProfileContext
+  AppsMenuMoreOption, Content, DefaultLayout, EdxAppConfig, ExternalAppsContext, Footer, NotificationBar, TEEAuthDataContext, TopBar, TopBarLeft, TopBarRight, useAuthActions, useConfig, useNotificationsBar, UserProfileContext, AuthContextProps
 } from '@edfi/admin-console-shared-sdk'
 import { useContext } from 'react'
-import { AuthContextProps } from 'react-oidc-context'
 import { useNavigate } from 'react-router-dom'
 import { useTenantContext } from '../../context/tenantContext'
 import useTenantService from '../../services/AdminActions/Tenant/TenantService'

@@ -4,10 +4,9 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import { Flex } from '@chakra-ui/react'
-import { AuthContextProps } from 'react-oidc-context'
 import { useLocation } from 'react-router-dom'
 import {
-  EdxAppConfig, useRouteLayoutSelector 
+  EdxAppConfig, useRouteLayoutSelector, AuthContextProps
 } from '@edfi/admin-console-shared-sdk'
 import useScrollTop from '../../hooks/useScrollTop'
 import DefaultLayoutWrapper from './DefaultLayoutWrapper'
