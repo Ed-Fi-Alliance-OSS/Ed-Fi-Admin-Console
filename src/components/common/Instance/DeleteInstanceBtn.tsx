@@ -51,9 +51,9 @@ const DeleteInstanceBtn = ({ instance, showDeleteInstanceModal, onShowDeleteInst
         <Text
           color='white.600'
           fontFamily='Poppins'
+          fontSize='md'
           fontWeight='400'
           ml='5px'
-          fontSize='md'
         >Delete Instance
         </Text>
       </Button>

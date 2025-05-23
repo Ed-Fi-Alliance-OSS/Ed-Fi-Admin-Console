@@ -145,8 +145,8 @@ const VerifyDomainTabContent = ({ domainsList, isAddingDomain, isRemovingDomain,
         {false && <Text
           color='blue.500'
           fontFamily='Poppins'
-          fontWeight='700'
           fontSize='md'
+          fontWeight='700'
         >
           Not sure how to proceed? Get help here. 
         </Text>}

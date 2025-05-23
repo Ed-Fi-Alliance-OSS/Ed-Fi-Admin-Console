@@ -36,7 +36,8 @@ const ControlTableFilterPopover = ({ textFilter, selectedOption, options, select
     if (selectedOption) {
       if (selectedOption.toLocaleLowerCase().includes('selected')) {
         return true
-      } 
+      }
+ 
       return false
     }
 
@@ -53,27 +54,21 @@ const ControlTableFilterPopover = ({ textFilter, selectedOption, options, select
     >
       {/* Trigger Button */}
       <Button
-        aria-labelledby="search-btn"
         css={{
           minWidth: 'auto',
           background: 'transparent',
           padding: '8px',
-          '&:hover': {
-            background: 'rgba(0, 0, 0, 0.05)'
-          },
-          '&:focus': {
-            boxShadow: 'none'
-          },
-          '&[aria-expanded="true"] + div': {
-            display: 'block'
-          }
+          '&:hover': { background: 'rgba(0, 0, 0, 0.05)' },
+          '&:focus': { boxShadow: 'none' },
+          '&[aria-expanded="true"] + div': { display: 'block' }
         }}
+        aria-labelledby="search-btn"
         data-state="closed"
         onClick={(e) => {
-          const btn = e.currentTarget;
-          const expanded = btn.getAttribute('aria-expanded') === 'true';
-          btn.setAttribute('aria-expanded', expanded ? 'false' : 'true');
-          btn.setAttribute('data-state', expanded ? 'closed' : 'open');
+          const btn = e.currentTarget
+          const expanded = btn.getAttribute('aria-expanded') === 'true'
+          btn.setAttribute('aria-expanded', expanded ? 'false' : 'true')
+          btn.setAttribute('data-state', expanded ? 'closed' : 'open')
         }}
       >
         <span
@@ -84,12 +79,10 @@ const ControlTableFilterPopover = ({ textFilter, selectedOption, options, select
         </span>
 
         <Box 
-          as={MdSearch}
           aria-hidden="true"
+          as={MdSearch}
           color="gray.700"
-          css={{
-            fontSize: '18px'
-          }}
+          css={{ fontSize: '18px' }}
         />
       </Button>
 
@@ -124,10 +117,8 @@ const ControlTableFilterPopover = ({ textFilter, selectedOption, options, select
 
           <Flex
             aria-label="Select Field to Filter"
+            css={{ marginTop: '10px' }}
             id="selectFilterField"
-            css={{
-              marginTop: '10px'
-            }}
           >
             <CustomSelect 
               options={options.map(option => ({
@@ -142,21 +133,19 @@ const ControlTableFilterPopover = ({ textFilter, selectedOption, options, select
         </Field.Root>
 
         <Button
-          disabled={disableFilterBtn()}
           css={{
             marginTop: '10px',
             width: '100%',
             size: 'sm',
             background: '#0066cc',
             color: 'white',
-            '&:hover:not(:disabled)': {
-              background: '#0055aa'
-            },
+            '&:hover:not(:disabled)': { background: '#0055aa' },
             '&:disabled': {
               opacity: 0.6,
               cursor: 'not-allowed'
             }
           }}
+          disabled={disableFilterBtn()}
           onClick={onFilter}
         >
           Filter
@@ -170,9 +159,7 @@ const ControlTableFilterPopover = ({ textFilter, selectedOption, options, select
             border: '1px solid #0066cc',
             color: '#0066cc',
             background: 'transparent',
-            '&:hover': {
-              background: 'rgba(0, 102, 204, 0.1)'
-            }
+            '&:hover': { background: 'rgba(0, 102, 204, 0.1)' }
           }}
           onClick={onResetFilter}
         >

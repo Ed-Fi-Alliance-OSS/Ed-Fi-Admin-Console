@@ -105,9 +105,9 @@ const ApplicationDetailsTable = ({ applicationsList, isDeleting, onEditApplicati
                 >
                   <Button 
                     // borderRadius='4px 0px 0px 4px'
+                    color='primaryBlue600'
                     minW='39px'
                     size='xs'
-                    color='primaryBlue600'
                     variant='solid'
                     onClick={() => onEditApplication(application)}
                   >

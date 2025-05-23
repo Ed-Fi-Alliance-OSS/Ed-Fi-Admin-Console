@@ -28,21 +28,21 @@ const ManageSubscribersFormHeader = ({ isSavingChanges, onSave, onClose }: Manag
 
       <Flex alignItems='flex-start'>
         <Button
-          padding='0 25px'
-          fontSize='xs'
-          variant='solid'
           color='secondaryBlue600'
+          fontSize='xs'
+          padding='0 25px'
+          variant='solid'
           onClick={onClose}
         >Cancel
         </Button>
 
         <Button
+          color='primaryBlue600'
+          fontSize='xs'
           loading={isSavingChanges}
           ml='10px'
           padding='0 25px'
-          fontSize='xs'
           variant='solid'
-          color='primaryBlue600'
           onClick={onSave}
         >Update
         </Button>

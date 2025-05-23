@@ -102,11 +102,11 @@ const OnBoardingWizardDebugMenu = ({ currentResetStep, currentUpdateStep, showTe
         w='670'
       >
         <Button
+          color='primaryBlue600'
           loading={updatingStep}
           mb='10px'
           mt='16px'
           size='sm'
-          color='primaryBlue600'
           variant='solid'
           w='300px'
           zIndex='100'
@@ -126,9 +126,9 @@ const OnBoardingWizardDebugMenu = ({ currentResetStep, currentUpdateStep, showTe
         w='650'
       >
         <Button
+          color='primaryBlue600'
           loading={resetingAllSteps}
           size='sm'
-          color='primaryBlue600'
           variant='solid'
           w='220px'
           zIndex='100'

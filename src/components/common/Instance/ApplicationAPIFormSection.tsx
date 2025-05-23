@@ -59,7 +59,11 @@ const ApplicationAPIFormSection = ({ instance, applicationClientData, mode, isRe
               onRegenerateCredentials={onRegenerateCredentials}
             />
 
-            <Text css={{ fontWeight: 'bold', marginTop: '32px' }}>
+            <Text css={{
+              fontWeight: 'bold',
+              marginTop: '32px' 
+            }}
+            >
               API Endpoints
             </Text>
 

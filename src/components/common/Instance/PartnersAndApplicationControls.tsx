@@ -20,23 +20,23 @@ const PartnersAndApplicationControls = ({ onAddPartner, onRefresh }: PartnersAnd
         mt='5px'
       >
         <Button
+          color='secondaryBlue600'
           minW='5px'
           p='0 25px'
           size='xs'
-          color='secondaryBlue600'
-          variant={'solid'}
+          variant="solid"
           onClick={onRefresh}
         >
           Refresh List
         </Button>
 
         <Button
+          color='primaryBlue600'
           minW='5px'
           ml='8px'
           p='0 25px'
           size='xs'
           variant='solid'
-          color='primaryBlue600'
           onClick={onAddPartner}
         >
           Add Vendor

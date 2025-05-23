@@ -24,12 +24,12 @@ const UserOrganizationsFormSavePopover = ({ onCancelAdd }: UserOrganizationsForm
         <Button 
           aria-labelledby="show-save-option}"
           borderRadius='0px 4px 4px 0px'
+          color='primaryBlue600'
+          fontSize='xs'
           maxW='24px'
           minW='24px'
           ml='1px'
-          fontSize='xs'
           variant='solid'
-          color='primaryBlue600'
           onClick={() => console.log('User education organizations control popover')}
         >
           <span
@@ -66,9 +66,9 @@ const UserOrganizationsFormSavePopover = ({ onCancelAdd }: UserOrganizationsForm
               color='black'
               display='flex'
               fontFamily='Poppins'
+              fontSize='xs'
               loading={false}
               minW='80px'
-              fontSize='xs'
               onClick={onCancelAdd}
             >
               Cancel

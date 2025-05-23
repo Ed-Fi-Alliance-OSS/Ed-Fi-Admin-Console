@@ -17,9 +17,9 @@ const SubscriptionType = ({ type }: SubscriptionTypeProps) => {
       borderRadius='4px'
       color='gray.600'
       fontFamily='Archivo Narrow'
+      fontSize='md'
       fontWeight='400'
       padding='6px 6px'
-      fontSize='md'
       textAlign='center'
       w='50px'
     >

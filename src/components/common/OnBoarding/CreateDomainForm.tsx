@@ -26,12 +26,9 @@ const CreateDomainForm = ({ domainName, isSaving, isValidData, errors, onAddDoma
     <Field.Root>
       <Flex w='340px'>
         <Field.Root w='full'>
-          <Field.Label
-            //hidden={true}
-            //htmlFor="addDomain"
-          >
+          <Field.Label >
             <Flex>
-            Domain
+              Domain
             </Flex>
           </Field.Label>
 
@@ -46,13 +43,13 @@ const CreateDomainForm = ({ domainName, isSaving, isValidData, errors, onAddDoma
 
         <Button
           alignSelf='flex-end'
+          color='primaryBlue500'
           disabled={!isValidData()}
           loading={isSaving}
           minW='25px'
           ml='10px'
           paddingX='16px'
           size='xs'
-          color='primaryBlue500'
           variant='solid'
           w='auto'
           onClick={() => onAddDomain(domainName)}

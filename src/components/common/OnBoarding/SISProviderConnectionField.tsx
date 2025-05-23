@@ -54,9 +54,9 @@ const SISProviderConnectionField = ({ id, providerFunction, sisProviderOptions, 
         borderRadius='4px'
         color='gray.700'
         fontFamily='Archivo Narrow'
+        fontSize='sm'
         fontWeight='400'
         padding='5px 10px'
-        fontSize='sm'
       >
         {`${sisProviderOptions.find(option => option.value === selectedProvider)?.text} ${providerFunction? `(${providerFunction})` : '' }`}
 

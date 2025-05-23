@@ -123,11 +123,14 @@ function MultiInput<T extends string | number>({ filterInput, fieldName, label, 
         id={fieldName}
         w="full"
       >
-        <Field.Label><Flex fontFamily='Poppins'
+        <Field.Label><Flex
+          fontFamily='Poppins'
           fontSize='14px'
           fontWeight='700'
           //htmlFor={fieldName}
-          lineHeight='20px'>{label}</Flex>
+          lineHeight='20px'
+        >{label}
+        </Flex>
         </Field.Label>
 
         <AutoComplete

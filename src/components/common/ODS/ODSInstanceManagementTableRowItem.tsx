@@ -16,7 +16,9 @@ import {
 import { useEffect } from 'react'
 import { Link as RouterLink } from 'react-router-dom'
 import { useTenantContext } from '../../../context/tenantContext'
-import { InstanceOperationStatus, ODSInstance } from '../../../core/ODSInstance.types'
+import {
+  InstanceOperationStatus, ODSInstance 
+} from '../../../core/ODSInstance.types'
 import useOdsInstanceLink from '../../../hooks/odsInstances/useOdsInstanceLink'
 import { UpdatingIsDefaultStatus } from '../../../hooks/odsInstances/useOdsInstanceTable.types'
 import ManageInstanceBtn from './ManageInstanceBtn'
@@ -58,69 +60,67 @@ const ODSInstanceManagementTableRowItem = ({ tableMode, selectedInstance, instan
 
   return (
     <>{tableMode != 'Display' && <Table.Cell w='80px'>
-        <RadioGroup.Root
-          value={selectedInstance?.id ?? ''}
-          onChange={() => onSelectInstance(instance)}
-        >
-          <CustomRadio
-            isChecked={selectedInstance?.id == instance.id}
-            text=""
-            value={instance.id}
-          />
-        </RadioGroup.Root>
-      </Table.Cell>}
+      <RadioGroup.Root
+        value={selectedInstance?.id ?? ''}
+        onChange={() => onSelectInstance(instance)}
+      >
+        <CustomRadio
+          isChecked={selectedInstance?.id == instance.id}
+          text=""
+          value={instance.id}
+        />
+      </RadioGroup.Root>
+    </Table.Cell>}
 
       <Table.Cell maxW="250px" overflow="hidden" px={4} py={2}>
-        <Flex direction="column" overflow="hidden" w="100%">
+      <Flex direction="column" overflow="hidden" w="100%">
           <Link
-            as={RouterLink}
-            color="blue.600"
-            display="block"
-            fontFamily="Poppins"
-            fontSize="md"
-            fontWeight="700"
-            lineHeight="22px"
-            overflow="hidden"
-            //state={{ instanceId: instance.id }}
-            textOverflow="ellipsis"
-            title={instance.name}
-            href={getOdsInstanceLink(instance)}
-            whiteSpace="nowrap"
-          >
-            {instance.name}
-          </Link>
+          color="blue.600"
+          display="block"
+          fontFamily="Poppins"
+          fontSize="md"
+          fontWeight="700"
+          href={`${getOdsInstanceLink(instance)}`}
+          lineHeight="22px"
+          overflow="hidden"
+          textOverflow="ellipsis"
+          title={instance.name}
+          whiteSpace="nowrap"
+        >
+          {instance.name}
+        </Link>
         </Flex>
-      </Table.Cell>
+    </Table.Cell>
 
       <Table.Cell>
-        {metaDataLoading ? <Spinner /> : <ODSInstanceEdFiVersion version={edfiMetadata?.version} />}
-      </Table.Cell>
+      {metaDataLoading ? <Spinner /> : <ODSInstanceEdFiVersion version={edfiMetadata?.version} />}
+    </Table.Cell>
 
       <Table.Cell>
-        {metaDataLoading ? <Spinner /> : <ODSInstanceDataModelsLabel dataModels={edfiMetadata?.dataModels} />}
-      </Table.Cell>
+      {metaDataLoading ? <Spinner /> : <ODSInstanceDataModelsLabel dataModels={edfiMetadata?.dataModels} />}
+    </Table.Cell>
 
       <Table.Cell>
-        {metaDataLoading ? <Spinner /> : <ODSInstanceEdFiStatus status={edFiStatus ?? ''} />}
+      {metaDataLoading ? <Spinner /> : <ODSInstanceEdFiStatus status={edFiStatus ?? ''} />}
 
-      </Table.Cell>
+    </Table.Cell>
 
       <Table.Cell>
-        {metaDataLoading ? <Spinner /> : <ODSInstanceWorkerStatus status={instance.status ?? 'Error'} />}
+      {metaDataLoading ? <Spinner /> : <ODSInstanceWorkerStatus status={instance.status ?? 'Error'} />}
 
-      </Table.Cell>
+    </Table.Cell>
 
       {tableMode == 'Display' && <>
-        <Table.Cell>
+      <Table.Cell>
           {showSetupBtn() ?
-            <SetUpInstanceBtn
+          <SetUpInstanceBtn
               instance={instance}
               updatingIsDefault={updatingIsDefault}
               onOpenSetUpModal={onOpenSetUpModal}
             /> :
             <ManageInstanceBtn instance={instance} />}
         </Table.Cell>
-      </>}
+    </>}
     </>
   )
 }

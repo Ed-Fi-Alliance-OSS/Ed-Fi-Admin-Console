@@ -41,8 +41,8 @@ const OnBoardingTabsWrapper = ({ children, stepName, currentStep, lastStep, canN
         <Text
           color='gray.500'
           fontFamily='Poppins'
-          fontWeight='400'
           fontSize='sm'
+          fontWeight='400'
         >
           Step {currentStep} of {lastStep}
         </Text>
@@ -59,7 +59,7 @@ const OnBoardingTabsWrapper = ({ children, stepName, currentStep, lastStep, canN
             {currentStep === lastStep ? 'Review and Finalize' : stepName}
           </Text>
 
-          <Tooltip.Root openDelay={0} closeDelay={0} positioning={{ placement: "top" }}>
+          <Tooltip.Root closeDelay={0} openDelay={0} positioning={{ placement: 'top' }}>
             <Tooltip.Trigger>
               <span style={{ marginLeft: '5px' }}>
                 <Link
@@ -81,7 +81,11 @@ const OnBoardingTabsWrapper = ({ children, stepName, currentStep, lastStep, canN
             </Tooltip.Trigger>
             <Tooltip.Positioner>
               <Tooltip.Content>
-                <Flex style={{ background: 'var(--chakra-colors-blue-700)', borderRadius: '4px' }}>
+                <Flex style={{
+                  background: 'var(--chakra-colors-blue-700)',
+                  borderRadius: '4px' 
+                }}
+                >
                   <Tooltip.Arrow>
                     <Tooltip.ArrowTip />
                   </Tooltip.Arrow>
@@ -111,10 +115,10 @@ const OnBoardingTabsWrapper = ({ children, stepName, currentStep, lastStep, canN
         >
           <Button
             border='1px'
-            disabled={!canPrev}
-            minW='175PX'
-            fontSize='lg'
             color='secondaryBlue600'
+            disabled={!canPrev}
+            fontSize='lg'
+            minW='175PX'
             variant='solid'
             onClick={onPrev}
           >
@@ -124,11 +128,11 @@ const OnBoardingTabsWrapper = ({ children, stepName, currentStep, lastStep, canN
           <Button
             _hover={{ backgroundColor: currentStep === lastStep ? 'green.600' : (canNext ? 'blue.900' : 'blue.600') }}
             bg={currentStep === lastStep ? 'green.600' : 'blue.600'}
-            disabled={!canNext}
-            minW='138px'
-            fontSize='lg'
-            variant='solid'
             color={currentStep === lastStep ? 'primaryGreen500' : 'primaryBlue600'}
+            disabled={!canNext}
+            fontSize='lg'
+            minW='138px'
+            variant='solid'
             onClick={onNext}
           >
             {currentStep === lastStep ? 'Finalize' : 'Next'}

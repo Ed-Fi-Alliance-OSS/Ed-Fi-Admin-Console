@@ -60,12 +60,12 @@ const ManageUserControlPopover = ({ userId, user, status, isDeleting, isDeleting
         <Button 
           aria-labelledby={`show-options-${userId}`}
           borderRadius={selectBorderRadius()}
+          color='primaryBlue600'
+          fontSize='xs'
           maxW='24px'
           minW='24px'
           ml='1px'
-          fontSize='xs'
           variant='solid'
-          color='primaryBlue600'
           onClick={() => console.log('manage user control popover')}
         >
           <span
@@ -125,11 +125,11 @@ const ManageUserControlPopover = ({ userId, user, status, isDeleting, isDeleting
               color="gray.600"
               display='flex'
               fontFamily='Poppins'
+              fontSize='xs'
               fontWeight='400'
               justifyContent='start'
               minW='30px'
               padding='0'
-              fontSize='xs'
               textAlign='start'
               w='auto'
               onClick={() => onEditInvitation(user)}
@@ -142,12 +142,12 @@ const ManageUserControlPopover = ({ userId, user, status, isDeleting, isDeleting
               color="red.600"
               display='flex'
               fontFamily='Poppins'
+              fontSize='xs'
               fontWeight='400'
-              loading={isDeleting}
               justifyContent='start'
+              loading={isDeleting}
               minW='30px'
               padding='0'
-              fontSize='xs'
               textAlign='start'
               w='auto'
               onClick={() => onDelete(userId)}

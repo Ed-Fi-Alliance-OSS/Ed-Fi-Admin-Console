@@ -49,20 +49,20 @@ const UserOrganizationsEditFormItem = ({ organizationsList, staffClassifications
         w='320px'
       >
         <Field.Root w='full'>
-          <CustomFormLabel
+        <CustomFormLabel
             htmlFor="educationOrganizationName"
             id="educationOrganizationName-label"
             text="Organization Name"
           />
 
-          <Box aria-label="Organization Name Select">
+        <Box aria-label="Organization Name Select">
             <NativeSelect.Root
-              bg='white'
-              borderRadius='4px'
-              disabled={true}
-              fontSize='xs'
-            >
-              <NativeSelect.Field 
+            bg='white'
+            borderRadius='4px'
+            disabled={true}
+            fontSize='xs'
+          >
+            <NativeSelect.Field 
                 aria-label="Organization Name"
                 id="educationOrganizationName"
                 name="educationOrganizationName"
@@ -71,7 +71,7 @@ const UserOrganizationsEditFormItem = ({ organizationsList, staffClassifications
                 onChange={onSelectEducationOrganizationName}
               >
                 {organizationsList.map((org, index) => 
-                  <option
+                <option
                     key={index}
                     title={org.nameOfInstitution}
                     value={org.identifierValue}
@@ -79,22 +79,22 @@ const UserOrganizationsEditFormItem = ({ organizationsList, staffClassifications
                     {org.nameOfInstitution}
                   </option>)}
               </NativeSelect.Field>
-              <NativeSelect.Indicator />
-            </NativeSelect.Root>
+            <NativeSelect.Indicator />
+          </NativeSelect.Root>
           </Box>
-        </Field.Root>
+      </Field.Root>
 
         <Field.Root
-          mt='16px'
-          w='full'
-        >
-          <CustomFormLabel
+        mt='16px'
+        w='full'
+      >
+        <CustomFormLabel
             htmlFor="staffClassificationDescriptor"
             id="staffClassificationDescriptor-label"
             text="Role"
           />
 
-          <NativeSelect.Root
+        <NativeSelect.Root
             aria-describedby="staffClassificationDescriptor-label"
             aria-labelledby="staffClassificationDescriptor-label"
             bg='white'
@@ -104,27 +104,27 @@ const UserOrganizationsEditFormItem = ({ organizationsList, staffClassifications
             fontSize='xs'
           >
             <NativeSelect.Field 
-              aria-label="Staff Classification Role"
-              aria-describedby="staffClassificationDescriptor-label"
-              aria-labelledby="staffClassificationDescriptor-label"
-              id="staffClassificationDescriptor"
-              name="staffClassificationDescriptor"
-              title="Staff Classification Role"
-              value={staffClassificationDescriptor}
-              onChange={onSelectStaffClassificationDescriptor}
-            >
-              {staffClassificationsList.map((staffClassification, index) => 
+            aria-describedby="staffClassificationDescriptor-label"
+            aria-label="Staff Classification Role"
+            aria-labelledby="staffClassificationDescriptor-label"
+            id="staffClassificationDescriptor"
+            name="staffClassificationDescriptor"
+            title="Staff Classification Role"
+            value={staffClassificationDescriptor}
+            onChange={onSelectStaffClassificationDescriptor}
+          >
+            {staffClassificationsList.map((staffClassification, index) => 
                 <option
-                  key={index}
-                  title={staffClassification.shortDescription}
-                  value={`${staffClassification.varNamespace}#${staffClassification.codeValue}`}
-                >
-                  {staffClassification.shortDescription}
-                </option>)}
-            </NativeSelect.Field>
+                key={index}
+                title={staffClassification.shortDescription}
+                value={`${staffClassification.varNamespace}#${staffClassification.codeValue}`}
+              >
+                {staffClassification.shortDescription}
+              </option>)}
+          </NativeSelect.Field>
             <NativeSelect.Indicator />
           </NativeSelect.Root>
-        </Field.Root>
+      </Field.Root>
 
         {!isValidData() && !isCurrentSelection() && <CustomErrorField errorMessage="One organization with this id and role already exists" />}
       </Flex>
@@ -136,12 +136,12 @@ const UserOrganizationsEditFormItem = ({ organizationsList, staffClassifications
       >
         <Button 
           borderRadius='4px 0px 0px 4px'
+          colorPalette='blue'
           disabled={!isValidData()}
+          fontSize='xs'
           loading={isUpdatingEducationOrganization}
           minW='39px'
-          fontSize='xs'
           variant='solid'
-          colorPalette='blue'
           onClick={() => onUpdate(edOrgToEdit.educationOrganizationId as any, edOrgToEdit.staffClassification)}
         >
           Save

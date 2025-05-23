@@ -17,9 +17,9 @@ const PartnerAccordionControl = ({ onEditPartner }: PartnerAccordionControlProps
     <Flex w='80px'>
       <Button 
         borderRadius='4px 0px 0px 4px'
+        color='primaryBlue600'
         minW='39px'
         size='xs'
-        color='primaryBlue600'
         variant='solid'
         onClick={onEditPartner}
       >
@@ -29,10 +29,10 @@ const PartnerAccordionControl = ({ onEditPartner }: PartnerAccordionControlProps
       <Button 
         aria-labelledby="show-options-btn"
         borderRadius='0px 4px 4px 0px'
+        color='primaryBlue600'
         minW='24px'
         ml='1px'
         size='xs'
-        color='primaryBlue600'
         variant='solid'
       >
         <span

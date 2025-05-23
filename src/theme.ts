@@ -23,8 +23,23 @@ const config = defineConfig({
       animations: { 
         spin: { value: 'spin 1s linear infinite' },
         fadeIn: { value: 'fadeIn 0.5s forwards' },
-      }, 
-    },
+      },
+      colors: {
+        bodyColor: {
+          value: "{colors.black.value}",
+          _dark: { value: "white" }
+        },
+        bodyBg: {
+          value: "{colors.gray.50.value}",
+          _dark: { value: "{colors.blue.800.value}" }
+        }
+      }
+    },    semanticTokens: {
+      colors: {
+        "chakra-body-text": { value: "{colors.bodyColor}" },
+        "chakra-body-bg": { value: "{colors.bodyBg}" }
+      }
+    }
   },
 })
 

@@ -28,13 +28,13 @@ export default function AppInput({ required, label, fieldName, description, plac
         isInvalid={form.errors[fieldName] && form.touched[fieldName]}
         mb={4}
       >
-        <Field.Label
-          /*htmlFor={fieldName}*/
-        >
-          <Flex fontFamily='Poppins'
-          fontSize='14px'
-          fontWeight='700'>
-          {label} {required && <span style={{ color: 'red' }}>*</span>}
+        <Field.Label >
+          <Flex
+            fontFamily='Poppins'
+            fontSize='14px'
+            fontWeight='700'
+          >
+            {label} {required && <span style={{ color: 'red' }}>*</span>}
           </Flex>
         </Field.Label>
 

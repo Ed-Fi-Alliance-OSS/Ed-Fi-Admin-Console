@@ -24,7 +24,6 @@ const ApplicationDetailsControl = ({ data, isDeleting, onDelete }: ApplicationDe
     <Popover.Root>
       <Popover.Trigger>
         <Button
-          aria-labelledby={`show-options-${data.applicationName}`}
           css={{
             minWidth: '24px',
             marginLeft: '1px',
@@ -32,13 +31,10 @@ const ApplicationDetailsControl = ({ data, isDeleting, onDelete }: ApplicationDe
             borderRadius: '0px 4px 4px 0px',
             bg: 'blue.600',
             color: 'white',
-            _hover: {
-              bg: 'blue.700',
-            },
-            _active: {
-              bg: 'blue.800',
-            }
+            _hover: { bg: 'blue.700', },
+            _active: { bg: 'blue.800', }
           }}
+          aria-labelledby={`show-options-${data.applicationName}`}
         >
           <span
             hidden
@@ -47,11 +43,9 @@ const ApplicationDetailsControl = ({ data, isDeleting, onDelete }: ApplicationDe
           </span>
 
           <Box
-            as={MdKeyboardArrowDown}
             aria-hidden="true"
-            css={{
-              fontSize: '18px'
-            }}
+            as={MdKeyboardArrowDown}
+            css={{ fontSize: '18px' }}
           />
         </Button>
       </Popover.Trigger>
@@ -69,9 +63,7 @@ const ApplicationDetailsControl = ({ data, isDeleting, onDelete }: ApplicationDe
                     justifyContent: 'center',
                     fontSize: 'xs',
                     width: '100px',
-                    _hover: {
-                      bg: 'red.700'
-                    }
+                    _hover: { bg: 'red.700' }
                   }}
                   loading={isDeleting}
                   onClick={() => onDelete(data.id.toString())}

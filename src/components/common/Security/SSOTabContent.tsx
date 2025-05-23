@@ -21,10 +21,10 @@ const SSOTabContent = () => {
 
           <Text 
             fontFamily='Poppins'
+            fontSize='md'
             fontWeight='400'
             lineHeight='22px'
             mt='16px'
-            fontSize='md'
           >
             Select the methods you’d like to allow users within your District/Charter School to use to log in. Some configuration for the methods you select will need to be done outside of the Tech Console. Once those processes are complete, the “Consent Status” will update.
           </Text>

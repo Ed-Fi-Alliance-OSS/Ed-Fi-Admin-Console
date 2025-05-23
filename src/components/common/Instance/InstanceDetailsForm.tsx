@@ -104,11 +104,11 @@ const InstanceDetailsForm = ({ mode, instance }: InstanceDetailsFormProps) => {
       </Flex>
 
       <Button 
+        color='primaryBlue600'
         disabled={true}
         mt='33px'
         size='lg'
-        color='primaryBlue600'
-        variant={'solid'}
+        variant="solid"
         w={mode === 'add'? '242px' : '189px'}
       >
         {mode === 'add'? 'Create Instance' : 'Save Edits'}

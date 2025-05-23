@@ -30,13 +30,13 @@ const UserOrganizationsFormControlPopover = ({ educationOrganizationId, staffCla
         <Button 
           aria-labelledby={`show-options-${educationOrganizationId}`}
           borderRadius='0px 4px 4px 0px'
+          color='primaryBlue600'
           disabled={isDisabled}
+          fontSize='xs'
           maxW='24px'
           minW='24px'
           ml='1px'
-          fontSize='xs'
           variant='solid'
-          color='primaryBlue600'
           onClick={() => console.log('User education organizations control popover')}
         >
           <span
@@ -74,9 +74,9 @@ const UserOrganizationsFormControlPopover = ({ educationOrganizationId, staffCla
               color='red.600'
               display='flex'
               fontFamily='Poppins'
+              fontSize='xs'
               loading={isDeleting.deleting && isDeleting.id === educationOrganizationId}
               minW='80px'
-              fontSize='xs'
               onClick={() => onDelete(educationOrganizationId, staffClassification)}
             >
               Delete

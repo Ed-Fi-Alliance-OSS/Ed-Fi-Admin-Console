@@ -50,8 +50,8 @@ const SISProviderConnectionTag = ({ status }: SISProviderConnectionTagProps) => 
       <Text
         color={selectTextColor(status)}
         fontFamily='Archivo Narrow'
-        fontWeight='400'
         fontSize='md'
+        fontWeight='400'
       >
         {status}
       </Text>

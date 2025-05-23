@@ -14,10 +14,10 @@ const OptionText = ({ text }: OptionTextProps) => {
     <Text 
       color='gray.600'
       fontFamily='Poppins'
-      fontWeight='400'
-      mb='2px' 
-      ml='10px'
       fontSize='sm'
+      fontWeight='400' 
+      mb='2px'
+      ml='10px'
     >{text}
     </Text>
   )

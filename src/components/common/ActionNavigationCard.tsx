@@ -22,7 +22,6 @@ const ActionNavigationCard = ({ data, index }: ActionNavigationCardProps) => {
   return (
     <Link 
       _hover={{ borderColor: 'blue.600' }}
-      as={RouterLink}
       bg='white'
       border='1px'
       borderColor='gray.300'
@@ -30,12 +29,11 @@ const ActionNavigationCard = ({ data, index }: ActionNavigationCardProps) => {
       display='flex'
       flexDir='column' 
       h='112px'
+      href={`${routes.console.url}`}
       justifyContent='flex-start'
       mr='16px'
       padding='15px 14px 0px 14px'
-      //state={{ consoleActionIndex: index }}
       style={{ textDecoration: 'none' }}
-      href={routes.console.url}      
       w='20%'
     >
       {typeof(data.icon) === 'string'? 

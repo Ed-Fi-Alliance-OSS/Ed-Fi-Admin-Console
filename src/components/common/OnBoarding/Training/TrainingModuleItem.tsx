@@ -33,8 +33,8 @@ const TrainingModuleItem = ({ data, status, onAction }: TrainingModuleItemProps)
       <Text 
         color='blue.600'
         fontFamily='Poppins'
-        fontWeight='700'
         fontSize='md'
+        fontWeight='700'
       >
         { data.name }
       </Text>
@@ -42,18 +42,18 @@ const TrainingModuleItem = ({ data, status, onAction }: TrainingModuleItemProps)
       <Text
         color='gray.700'
         fontFamily='Poppins'
-        fontWeight='400'
         fontSize='md'
+        fontWeight='400'
         w='271px'
       >
         { data.description }
       </Text>
 
       <Button
+        color='secondaryBlue500'
         disabled={status === 'Complete'}
         fontSize='xs'
         variant='solid'
-        color='secondaryBlue500'
         w='108px'
         onClick={onAction}
       >

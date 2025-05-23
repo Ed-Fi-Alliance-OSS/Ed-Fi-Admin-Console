@@ -104,23 +104,23 @@ const ManageUsersTabHeader = ({  filterValue, selectedFilter, filterOptionsList,
         mt='5px'
       >
         <Button
+          color='secondaryBlue600'
+          fontSize='xs'
           minW='5px'
           p='0 25px'
-          fontSize='xs'
           variant='solid'
-          color='secondaryBlue600'
           onClick={onRefreshData}
         >
           Refresh List
         </Button>
 
         <Button
+          color='primaryBlue600'
+          fontSize='xs'
           minW='5px'
           ml='8px'
           p='0 25px'
-          fontSize='xs'
           variant='solid'
-          color='primaryBlue600'
           onClick={onAddUser}
         >
           Add User

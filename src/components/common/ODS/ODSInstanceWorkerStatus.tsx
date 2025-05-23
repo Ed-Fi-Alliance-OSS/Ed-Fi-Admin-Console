@@ -32,8 +32,8 @@ const ODSInstanceWorkerStatus = ({ status }: ODSInstanceWorkerStatusProps) => {
       >
         <Text
           color='gray.400'
-          fontWeight='400'
           fontSize='md'
+          fontWeight='400'
         >
           {getStatus(status)}
         </Text>

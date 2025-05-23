@@ -222,10 +222,10 @@ const AddInstanceFormV2: React.FC<AddInstanceFormProps> = ({
                 </Box>
 
                 <Button
+                  color='primaryBlue600'
                   mt='32px'
                   size='lg'
                   type='submit'
-                  color='primaryBlue600'
                   variant='solid'
                   w='250px'
                 >

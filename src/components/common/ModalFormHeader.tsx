@@ -35,22 +35,22 @@ const ModalFormHeader = ({ actionText, headerText, headerWidth, alignCenter, isD
 
       <Flex alignItems='flex-end'>
         <Button
+          color='secondaryBlue600'
           padding='0 25px'
           size='xs'
-          color='secondaryBlue600'
           variant='solid'
           onClick={onClose}
         >Cancel
         </Button>
 
         <Button
+          color='primaryBlue600'
           data-testid="add-user-btn"
           disabled={isSaving || isDisabled}
           loading={isSaving}
           ml='10px'
           padding='0 25px'
           size='xs'
-          color='primaryBlue600'
           variant='solid'
           onClick={onAction}
         >{actionText}

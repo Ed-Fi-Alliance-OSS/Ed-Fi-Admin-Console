@@ -134,9 +134,9 @@ const UserOrganizationsFormItem = ({ organizationsList, staffClassificationsList
           borderRadius='4px 0px 0px 4px'
           colorPalette='blue'
           disabled={!isValidData()}
+          fontSize='xs'
           loading={isCreatingEducationOrganization}
           minW='39px'
-          fontSize='xs'
           variant='solid'
           onClick={onCreateUserOrganization}
         >

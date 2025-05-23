@@ -24,8 +24,8 @@ const DistrictSchoolsTableHeader = () => {
       <Flex w='191px'>
         <Text
           fontFamily='Poppins'
-          fontWeight='700'
           fontSize='14px'
+          fontWeight='700'
         >District Name
         </Text>
       </Flex>
@@ -33,8 +33,8 @@ const DistrictSchoolsTableHeader = () => {
       <Flex w='231px'>
         <Text
           fontFamily='Poppins'
-          fontWeight='700'
           fontSize='14px'
+          fontWeight='700'
         >Education Organization
         </Text>
       </Flex>
@@ -42,8 +42,8 @@ const DistrictSchoolsTableHeader = () => {
       <Flex w='273px'>
         <Text
           fontFamily='Poppins'
-          fontWeight='700'
           fontSize='14px'
+          fontWeight='700'
         >Domain(s)
         </Text>
       </Flex>
@@ -51,8 +51,8 @@ const DistrictSchoolsTableHeader = () => {
       <Flex w='150px'>
         <Text
           fontFamily='Poppins'
-          fontWeight='700'
           fontSize='14px'
+          fontWeight='700'
         >School Count
         </Text>
       </Flex>

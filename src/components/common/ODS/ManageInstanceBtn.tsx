@@ -21,10 +21,10 @@ const ManageInstanceBtn = ({ instance }: ManageInstanceBtnProps) => {
   return (
     <Flex w='80px'>
       <Button 
+        color='primaryBlue600'
         minW='67px'
         size='xs'
-        color='primaryBlue600'
-        variant={'solid'}
+        variant="solid"
         onClick={() => navigate(getOdsInstanceLink(instance))}
       >
         Manage

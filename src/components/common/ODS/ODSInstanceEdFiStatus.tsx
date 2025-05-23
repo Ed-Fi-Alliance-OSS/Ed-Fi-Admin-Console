@@ -50,8 +50,8 @@ const ODSInstanceEdFiStatus = ({ status }: ODSInstanceEdFiStatusProps) => {
       >
         <Text
           color={selectTextColor(status)}
-          fontWeight='400'
           fontSize='md'
+          fontWeight='400'
         >
           {status}
         </Text>

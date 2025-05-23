@@ -20,14 +20,11 @@ interface EdFiConnectionControlPopoverProps {
 }
 
 const EdFiConnectionControlPopover = ({ connectionId, isDeleting, isDisabled, onDelete }: EdFiConnectionControlPopoverProps) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [ isOpen, setIsOpen ] = useState(false)
 
   return (
     <Box position="relative">
       <Button 
-        aria-labelledby={`show-options-${connectionId}`}
-        disabled={isDisabled}
-        aria-expanded={isOpen}
         css={{
           borderRadius: '0px 4px 4px 0px',
           maxWidth: '24px',
@@ -37,20 +34,19 @@ const EdFiConnectionControlPopover = ({ connectionId, isDeleting, isDisabled, on
           background: '#0066cc',
           color: 'white',
           padding: '0',
-          '&:hover:not(:disabled)': {
-            background: '#0055aa'
-          },
+          '&:hover:not(:disabled)': { background: '#0055aa' },
           '&:disabled': {
             opacity: 0.6,
             cursor: 'not-allowed'
           },
-          '&:focus': {
-            boxShadow: 'none'
-          }
+          '&:focus': { boxShadow: 'none' }
         }}
+        aria-expanded={isOpen}
+        aria-labelledby={`show-options-${connectionId}`}
+        disabled={isDisabled}
         onClick={() => {
-          console.log('Ed-Fi connection control popover');
-          setIsOpen(!isOpen);
+          console.log('Ed-Fi connection control popover')
+          setIsOpen(!isOpen)
         }}
       >
         <span
@@ -60,11 +56,9 @@ const EdFiConnectionControlPopover = ({ connectionId, isDeleting, isDisabled, on
         </span>
 
         <Box 
-          as={MdKeyboardArrowDown}
-          aria-hidden="true"    
-          css={{
-            fontSize: '18px'
-          }}
+          aria-hidden="true"
+          as={MdKeyboardArrowDown}    
+          css={{ fontSize: '18px' }}
         />
       </Button>
 
@@ -101,9 +95,7 @@ const EdFiConnectionControlPopover = ({ connectionId, isDeleting, isDisabled, on
                 minWidth: '80px',
                 fontSize: 'xs',
                 padding: '8px',
-                '&:hover': {
-                  background: 'white'
-                },
+                '&:hover': { background: 'white' },
                 position: 'relative',
                 '&::before': isDeleting.deleting && isDeleting.id === connectionId ? {
                   content: '""',
@@ -132,4 +124,5 @@ const EdFiConnectionControlPopover = ({ connectionId, isDeleting, isDisabled, on
     </Box>
   )
 }
+
 export default EdFiConnectionControlPopover

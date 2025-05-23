@@ -19,8 +19,8 @@ const AppUserRoles = ({ roles }: AppUserRolesProps) => {
         <Text
           key={index}
           fontFamily='Poppins'
-          fontWeight='400'
           fontSize='md'
+          fontWeight='400'
         >
           {role === 'Tenant.Admin'? 'District Admin' : 'District User'}
         </Text>)}

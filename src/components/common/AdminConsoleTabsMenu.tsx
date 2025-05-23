@@ -3,84 +3,105 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import { Box, Flex, Tabs } from '@chakra-ui/react'
-import { useState } from 'react'
+import {
+  Box, Flex, Tabs 
+} from '@chakra-ui/react'
+import {
+  ReactNode, useState, useEffect 
+} from 'react'
 
 interface AdminConsoleTabsMenuProps {
     tabsList: string[]
-    children: JSX.Element[]
-    actionControl?: JSX.Element
+    children: ReactNode[]
+    actionControl?: ReactNode
     initialIndex?: number
     contentMt?: string 
     includeWrapper?: boolean
 }
 
 const AdminConsoleTabsMenu = ({ children, tabsList, initialIndex, contentMt, includeWrapper, actionControl }: AdminConsoleTabsMenuProps) => {
-  const [index, setIndex] = useState(initialIndex ?? 0)
+  // Initialize with the tab value at initialIndex or default to first tab
+  const [ activeTabIndex, setActiveTabIndex ] = useState<number>(initialIndex ?? 0)
+  
+  // Update active tab if initialIndex changes
+  useEffect(() => {
+    if (initialIndex !== undefined) {
+      setActiveTabIndex(initialIndex)
+    }
+  }, [ initialIndex ])
+  
+  // For Tabs.Root compatibility - use the tab name for values
+  const activeTab = tabsList[activeTabIndex]
 
   return (
-    <Box position="relative" w="full">
-      <Tabs.Root 
-        defaultIndex={index}
-        variant="plain" 
-        w='full' 
-        onChange={(newIndex) => setIndex(newIndex)}
-      >
-        <Flex
-          justifyContent='space-between'
-          w='full'
-        >
-          <Flex w='full'>
-            <Tabs.List>
-              {tabsList.map((tab) => (
-                <Tabs.Trigger>
-                  <Flex key={tab}
-                  _notFirst={{ marginLeft: '32px' }}
-                  _selected={{ color: 'blue.600' }}
-                  fontFamily='Poppins'
-                  fontWeight='bold'
-                  padding='0'>
-                  {tab}
-                  </Flex>
-                </Tabs.Trigger>
-              ))}
-            </Tabs.List>
-          </Flex>
+    <Tabs.Root 
+      defaultValue={tabsList[initialIndex ?? 0]}
+      position="relative" 
+      value={activeTab}
+      variant="plain" 
+      w='full'
+      onValueChange={(value) => {
+        const newIndex = tabsList.indexOf(value)
 
-          {actionControl}
+        if (newIndex >= 0) {
+          setActiveTabIndex(newIndex)
+        }
+      }}
+    >
+      <Flex
+        justifyContent='space-between'
+        w='full'
+      >
+        <Flex w='full'>
+          <Flex role="tablist">
+            {tabsList.map((tab, idx) => (
+              <Flex
+                key={tab}
+                _notFirst={{ marginLeft: '32px' }}
+                aria-selected={idx === activeTabIndex}
+                color={idx === activeTabIndex ? 'blue.600' : 'inherit'}
+                cursor="pointer"
+                fontFamily='Poppins'
+                fontWeight='bold'
+                padding='0'
+                role="tab"
+                onClick={() => setActiveTabIndex(idx)}
+              >
+                {tab}
+              </Flex>
+            ))}
+          </Flex>
         </Flex>
 
-        <Tabs.Indicator>
-          <Box style={{
-            backgroundColor: "var(--chakra-colors-blue-600)",
-            borderRadius: "1px",
-            height: "2px",
-            marginTop: "5px"
-          }}/>
-        </Tabs.Indicator>
+        {actionControl}
+      </Flex>
 
-        <Tabs.Content>
-          {children.map((child, idx) => (
-            <Tabs.Content>
-              <Flex key={idx} style={{
-                marginTop: contentMt ?? '45px',
-                padding: '0',
-                width: '100%'
-              }}>
-              {includeWrapper === false ? 
-                child : 
-                <Flex>
-                  {child}
-                </Flex>
-              }
-              </Flex>
-            </Tabs.Content>
-          ))}
-        </Tabs.Content>
-      </Tabs.Root>
-    </Box>
+      <Tabs.Indicator>
+        <Box 
+          bg="blue.600"
+          borderRadius="1px"
+          h="2px"
+          mt="5px"
+        />
+      </Tabs.Indicator>
+
+      {/* Tabs Content */}
+      <Flex 
+        minW="100%"
+        mt={contentMt ?? '45px'}
+        p='0'
+        role="tabpanel"
+        w='100%'
+      >
+        <Box minW="100%" w="full">
+          {includeWrapper === false 
+            ? children[activeTabIndex] 
+            : <Flex w="full">{children[activeTabIndex]}</Flex>
+          }
+        </Box>
+      </Flex>
+    </Tabs.Root>
   )
 }
-
 
 export default AdminConsoleTabsMenu

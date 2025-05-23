@@ -87,11 +87,11 @@ const OptionalSISProviderForm = ({ authenticationUrl,
         </Text>
 
         <Button
+          color='primaryBlue600'
           maxW='80px'
           minW='80px'
           mt='12px'
           size='sm'
-          color='primaryBlue600'
           variant='solid'
           onClick={onShowOptionalForm}
         >

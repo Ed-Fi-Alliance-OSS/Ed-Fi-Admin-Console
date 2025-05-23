@@ -30,8 +30,8 @@ const VerifyDomainTableRows = ({ verifyDomainList, onCheck }: VerifyDomainTableR
           <Table.Cell display='flex'>
             <Text
               fontFamily='Poppins'
-              fontWeight='400'
               fontSize='md'
+              fontWeight='400'
             >
               {verifyDomain.type}
             </Text>
@@ -40,8 +40,8 @@ const VerifyDomainTableRows = ({ verifyDomainList, onCheck }: VerifyDomainTableR
           <Table.Cell>
             <Text
               fontFamily='Poppins'
-              fontWeight='400'
               fontSize='md'
+              fontWeight='400'
             >
               {verifyDomain.name}
             </Text>
@@ -50,8 +50,8 @@ const VerifyDomainTableRows = ({ verifyDomainList, onCheck }: VerifyDomainTableR
           <Table.Cell display='flex'>
             <Text
               fontFamily='Poppins'
-              fontWeight='400'
               fontSize='md'
+              fontWeight='400'
               w='380px'
             >
               {`${verifyDomain.value}${userProfile? userProfile.tenantId : ''}`}
@@ -66,8 +66,8 @@ const VerifyDomainTableRows = ({ verifyDomainList, onCheck }: VerifyDomainTableR
           <Table.Cell>
             <Text
               fontFamily='Poppins'
-              fontWeight='400'
               fontSize='md'
+              fontWeight='400'
             >
               {verifyDomain.ttl}
             </Text>

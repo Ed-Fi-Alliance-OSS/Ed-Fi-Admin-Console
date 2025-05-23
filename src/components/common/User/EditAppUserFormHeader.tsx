@@ -29,22 +29,22 @@ const EditAppUserFormHeader = ({ isSaving, isActionDisabled, onSave, onClose }: 
 
       <Flex alignItems='flex-end'>
         <Button
-          padding='0 25px'
-          fontSize='xs'
-          variant='solid'
           color='secondaryBlue600'
+          fontSize='xs'
+          padding='0 25px'
+          variant='solid'
           onClick={onClose}
         >Cancel
         </Button>
 
         <Button
+          color='primaryBlue600'
           disabled={isActionDisabled}
+          fontSize='xs'
           loading={isSaving}
           ml='10px'
           padding='0 25px'
-          fontSize='xs'
           variant='solid'
-          color='primaryBlue600'
           onClick={onSave}
         >Update User
         </Button>
