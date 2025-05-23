@@ -34,9 +34,9 @@ const EditInstanceBtn = ({ onClick }: EditInstanceBtnProps) => {
       <Text
         color='blue.600'
         fontFamily='Poppins'
+        fontSize='md'
         fontWeight='400'
         ml='5px'
-        fontSize='md'
       >Edit Instance Details
       </Text>
     </Button>

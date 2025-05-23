@@ -23,8 +23,8 @@ const VerifiedDomainTableRows = ({ verifiedDomains }: VerifiedDomainTableRowsPro
             <Text
               color='blue.600'
               fontFamily='Poppins'
-              fontWeight='700'
               fontSize='md'
+              fontWeight='700'
             >
               {verifiedDomainInfo.lea}
             </Text>
@@ -34,8 +34,8 @@ const VerifiedDomainTableRows = ({ verifiedDomains }: VerifiedDomainTableRowsPro
             <Text
               color='blue.600'
               fontFamily='Poppins'
-              fontWeight='700'
               fontSize='md'
+              fontWeight='700'
             >
               {verifiedDomainInfo.domain}
             </Text>

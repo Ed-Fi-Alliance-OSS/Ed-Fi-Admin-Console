@@ -60,8 +60,8 @@ const SelectInstancesTabContent = ({ tableMode, selectedInstance, settingAsDefau
         {false &&  <Text
           color='blue.500'
           fontFamily='Poppins'
-          fontWeight='700'
           fontSize='md'
+          fontWeight='700'
         >
           Not seeing what you were expecting? Get help here.
         </Text>}

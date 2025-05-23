@@ -44,21 +44,17 @@ const RefreshBtn = ({ id, fontSize, asFlex, isRefreshing, iconColor, onAction }:
 
   if (asFlex) {
     return (
-      <Box position="relative" display="inline-block">
+      <Box display="inline-block" position="relative">
         <Button 
-          aria-labelledby={`refresh-btn-${id}`}
           css={{
             minWidth: 'auto',
             marginLeft: '10px',
             background: 'transparent',
             padding: '8px',
-            '&:hover': {
-              background: 'rgba(0, 0, 0, 0.05)'
-            },
-            '&:focus': {
-              boxShadow: 'none'
-            }
+            '&:hover': { background: 'rgba(0, 0, 0, 0.05)' },
+            '&:focus': { boxShadow: 'none' }
           }}
+          aria-labelledby={`refresh-btn-${id}`}
           onClick={onExecuteAction}
           onMouseEnter={() => setIsOpen(true)}
           onMouseLeave={() => setIsOpen(false)}
@@ -70,12 +66,10 @@ const RefreshBtn = ({ id, fontSize, asFlex, isRefreshing, iconColor, onAction }:
           </span>
 
           <Box
-            as={MdRefresh}
             aria-hidden="true"
+            as={MdRefresh}
             color={iconColor ?? 'blue.600'}
-            css={{
-              fontSize: fontSize ?? '20px'
-            }}
+            css={{ fontSize: fontSize ?? '20px' }}
           />
         </Button>
         
@@ -114,21 +108,17 @@ const RefreshBtn = ({ id, fontSize, asFlex, isRefreshing, iconColor, onAction }:
   }
 
   return (
-    <Box position="relative" display="inline-block">
+    <Box display="inline-block" position="relative">
       <Button 
-        aria-labelledby={`refresh-btn-${id}`}
         css={{
           minWidth: 'auto',
           marginLeft: '10px',
           background: 'transparent',
           padding: '8px',
-          '&:hover': {
-            background: 'rgba(0, 0, 0, 0.05)'
-          },
-          '&:focus': {
-            boxShadow: 'none'
-          }
+          '&:hover': { background: 'rgba(0, 0, 0, 0.05)' },
+          '&:focus': { boxShadow: 'none' }
         }}
+        aria-labelledby={`refresh-btn-${id}`}
         onClick={onExecuteAction}
         onMouseEnter={() => setIsOpen(true)}
         onMouseLeave={() => setIsOpen(false)}
@@ -140,13 +130,13 @@ const RefreshBtn = ({ id, fontSize, asFlex, isRefreshing, iconColor, onAction }:
         </span>
 
         <Box
-          as={MdRefresh}
-          aria-hidden="true"
-          color={iconColor ?? 'blue.600'}
           css={{
             fontSize: fontSize ?? '20px',
             animation: isRefreshing ? 'spin 1s linear infinite' : 'none'
           }}
+          aria-hidden="true"
+          as={MdRefresh}
+          color={iconColor ?? 'blue.600'}
         />
       </Button>
       

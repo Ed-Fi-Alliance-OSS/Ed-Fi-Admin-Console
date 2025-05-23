@@ -24,13 +24,13 @@ const DomainSelect = ({ domains }: DomainSelectProps) => {
 
       <Button 
         aria-labelledby="add-btn"
+        color='secondaryBlue600'
+        fontSize='sm'
         h='28px'
         minW='28px'
         ml='10px'
         padding='0'
-        fontSize='sm'
         variant='solid'
-        color='secondaryBlue600'
         w='28px'
       >
         <span id="add-btn">Add</span>

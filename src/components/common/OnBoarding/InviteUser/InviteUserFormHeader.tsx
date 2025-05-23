@@ -28,20 +28,20 @@ const InviteUserFormHeader = ({ isSavingChanges, onSave, onClose }: InviteUserFo
 
       <Flex alignItems='center'>
         <Button
+          color='secondaryBlue600'
           padding='0 25px'
           size='xs'
-          color='secondaryBlue600'
           variant='solid'
           onClick={onClose}
         >Cancel
         </Button>
 
         <Button
+          color='primaryBlue600'
           loading={isSavingChanges}
           ml='10px'
           padding='0 25px'
           size='xs'
-          color='primaryBlue600'
           variant='solid'
           onClick={onSave}
         >Invite User

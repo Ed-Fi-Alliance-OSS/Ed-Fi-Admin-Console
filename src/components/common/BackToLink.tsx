@@ -18,7 +18,6 @@ const BackToLink = ({ url, text }: BackToLinkProps) => {
   return (
     <Link 
       alignItems='center' 
-      as={RouterLink}
       display='flex' 
       href={url}
       w='230px'
@@ -34,9 +33,9 @@ const BackToLink = ({ url, text }: BackToLinkProps) => {
       <Text
         color='gray.700'
         fontFamily='Poppins'
+        fontSize='sm'
         fontWeight='400'
         ml='10px'
-        fontSize='sm'
       >{text}
       </Text>
     </Link>

@@ -24,10 +24,10 @@ const UserOrganizationsEditPopover = ({ onCancelEdit }: UserOrganizationsFormSav
         <Button 
           aria-labelledby="show-edit-option}"
           borderRadius='0px 4px 4px 0px'
+          fontSize='xs'
           maxW='24px'
           minW='24px'
           ml='1px'
-          fontSize='xs'
           variant='primaryBlue600'
           onClick={() => console.log('User education organizations control popover')}
         >
@@ -65,9 +65,9 @@ const UserOrganizationsEditPopover = ({ onCancelEdit }: UserOrganizationsFormSav
               color='black'
               display='flex'
               fontFamily='Poppins'
+              fontSize='xs'
               isLoading={false}
               minW='80px'
-              fontSize='xs'
               onClick={onCancelEdit}
             >
               Cancel

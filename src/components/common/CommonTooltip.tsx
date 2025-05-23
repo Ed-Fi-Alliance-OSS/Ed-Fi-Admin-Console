@@ -15,17 +15,17 @@ interface CommonTooltipProps {
 
 const CommonTooltip = ({ bg, iconColor, label, size }: CommonTooltipProps) => {
   return (
-    <Box css={{ position: "relative", display: "inline-block" }}>
+    <Box css={{
+      position: 'relative',
+      display: 'inline-block' 
+    }}
+    >
       <Box 
-        as={MdInfoOutline} 
-        aria-label="info tooltip"
+        aria-label="info tooltip" 
+        as={MdInfoOutline}
         color={iconColor}
+        css={{ '&:hover + div': { display: 'block', } }}
         tabIndex={0}
-        css={{
-          '&:hover + div': {
-            display: 'block',
-          }
-        }}
       />
       <Box
         css={{

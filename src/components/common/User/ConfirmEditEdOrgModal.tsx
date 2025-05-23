@@ -37,8 +37,8 @@ const ConfirmEditEdOrgModal = ({ edOrg, show, isSavingEdOrg, onEditEdOrg, onClos
           borderColor='gray.400'
           color='red.600'
           disabled={isSavingEdOrg}
-          padding='10px'
           fontSize='sm'
+          padding='10px'
           onClick={onClose}
         >
           No, Cancel
@@ -49,10 +49,10 @@ const ConfirmEditEdOrgModal = ({ edOrg, show, isSavingEdOrg, onEditEdOrg, onClos
           border='1px'
           borderColor='gray.400'
           color='white'
+          fontSize='sm'
           loading={isSavingEdOrg}
           ml='10px'
           padding='10px'
-          fontSize='sm'
           onClick={() => onEditEdOrg(edOrg.educationOrganizationId.toString())}
         >
           Yes, Continue

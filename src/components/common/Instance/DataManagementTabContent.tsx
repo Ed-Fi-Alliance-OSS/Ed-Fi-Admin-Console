@@ -67,11 +67,11 @@ const DataManagementTabContent = () => {
           </Field.Root>
 
           {false && <Button
+            color='primaryBlue600'
             maxW='200px'
             minW='200px'
             mt='32px'
             size='lg'
-            color='primaryBlue600'
             variant='solid'
             onClick={() => setShowLoadedData(true)}
           >

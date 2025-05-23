@@ -23,11 +23,11 @@ const ManageSubscribersControls = ({ applicationName, subscriptionId, onManageSu
     >
       <Button 
         borderRadius='4px'
+        color='primaryBlue600'
         data-testid={`manage-${applicationName}-btn`}
         minW='39px'
         size='xs'
         variant='solid'
-        color='primaryBlue600'
         onClick={() => onManageSubscribers(subscriptionId)}
       >
         Manage Licenses
@@ -36,12 +36,12 @@ const ManageSubscribersControls = ({ applicationName, subscriptionId, onManageSu
       {false && <Button 
         aria-labelledby={`show-options-${subscriptionId}`}
         borderRadius='0px 4px 4px 0px'
+        color='primaryBlue600'
         maxW='24px'
         minW='24px'
         ml='1px'
         size='xs'
         variant='solid'
-        color='primaryBlue600'
         onClick={() => onManageSubscribers(subscriptionId)}
       >
         <span

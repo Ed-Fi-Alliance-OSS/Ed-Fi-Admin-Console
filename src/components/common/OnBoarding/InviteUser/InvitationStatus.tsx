@@ -62,8 +62,8 @@ const InvitationStatus = ({ status }: InvitationStatusProps) => {
       <Text
         color={selectTextColor(status)}
         fontFamily='Archivo Narrow'
-        fontWeight='400'
         fontSize='md'
+        fontWeight='400'
       >
         {selectStatusText(status)}
       </Text>

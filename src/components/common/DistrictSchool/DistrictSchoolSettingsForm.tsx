@@ -30,16 +30,16 @@ const DistrictSchoolSettingsForm = ({ districtSchoolName, districtSchoolId, tsds
       <Text
         color='gray.700'
         fontFamily='Poppins'
-        fontWeight='400'
         fontSize='md'
+        fontWeight='400'
       >
         District/Charter School Name (Read-Only)
       </Text>
 
       <Text
         fontFamily='Poppins'
-        fontWeight='700'
         fontSize='md'
+        fontWeight='700'
       >
         {districtSchoolName}
       </Text>
@@ -51,16 +51,16 @@ const DistrictSchoolSettingsForm = ({ districtSchoolName, districtSchoolId, tsds
         <Text
           color='gray.700'
           fontFamily='Poppins'
-          fontWeight='400'
           fontSize='md'
+          fontWeight='400'
         >
           District/Charter School ID (Read-Only)
         </Text>
 
         <Text
           fontFamily='Poppins'
-          fontWeight='700'
           fontSize='md'
+          fontWeight='700'
         >
           {districtSchoolId}
         </Text>
@@ -73,16 +73,16 @@ const DistrictSchoolSettingsForm = ({ districtSchoolName, districtSchoolId, tsds
         <Text
           color='gray.700'
           fontFamily='Poppins'
-          fontWeight='400'
           fontSize='md'
+          fontWeight='400'
         >
           TSDS ID (Read-Only)
         </Text>
 
         <Text
           fontFamily='Poppins'
-          fontWeight='700'
           fontSize='md'
+          fontWeight='700'
         >
           {tsdsId}
         </Text>
@@ -94,8 +94,8 @@ const DistrictSchoolSettingsForm = ({ districtSchoolName, districtSchoolId, tsds
       >
         <Text
           fontFamily='Poppins'
-          fontWeight='700'
           fontSize='md'
+          fontWeight='700'
         >
           Your Domain(s)
         </Text>
@@ -125,11 +125,11 @@ const DistrictSchoolSettingsForm = ({ districtSchoolName, districtSchoolId, tsds
 
           <Button
             aria-labelledby="add-btn"
+            color='secondaryBlue600'
             maxW='30px'
             minWidth='30px'
             mt='5px'
-            color='secondaryBlue600'
-            variant={'solid'}
+            variant="solid"
             w='auto'
           >
             <span
@@ -148,12 +148,12 @@ const DistrictSchoolSettingsForm = ({ districtSchoolName, districtSchoolId, tsds
       </Flex>
 
       <Button
+        color='primaryBlue600'
         maxW='200px'
         minW='150px'
         mt='32px'
         size='lg'
-        color='primaryBlue600'
-        value={'solid'}
+        value="solid"
       >
         Save Edits
       </Button>

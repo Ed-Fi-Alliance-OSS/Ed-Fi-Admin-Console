@@ -340,6 +340,7 @@ const OnBoardingWizard = ({ completedSteps, lastInProgress, currentStepIndex, la
     <Tabs.Root
       lazyMount
       index={currentStepIndex}
+      defaultIndex={0}
       variant='enclosed'
       w='full'
       onChange={(index) => onTabChange(index)}

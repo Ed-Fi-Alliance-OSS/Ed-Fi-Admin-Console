@@ -91,9 +91,9 @@ const PartnersAndApplicationAccordion = ({
           w='full'
         >
           <Button
+            colorScheme='blue'
             size='xs'
             variant='solid'
-            colorScheme='blue'
             w='151px'
             onClick={onAddApplication}
           >
@@ -139,8 +139,8 @@ const PartnersAndApplicationAccordion = ({
             {paginatedItems.map((partner, index) => {
               return (
                 <Accordion.Item
-                  key={`item-${index}`}
-                  value={`item-${index}`}
+                  key={index}
+                  value={index}
                 >
                   <Flex
                     alignItems='center'
@@ -157,10 +157,10 @@ const PartnersAndApplicationAccordion = ({
                       
                       <Text
                         color='blue.600'
+                        maxW='200px'
                         overflow='hidden'
                         textOverflow='ellipsis'
                         whiteSpace='nowrap'
-                        maxW='200px'
                       >
                         {partner.company}
                       </Text>
@@ -197,10 +197,10 @@ const PartnersAndApplicationAccordion = ({
                       w='150px'
                     >
                       <Button 
+                        colorScheme='blue'
                         minW='39px'
                         size='xs'
                         variant='solid'
-                        colorScheme='blue'
                         onClick={() => onEditVendor(partner)}
                       >
                         Edit

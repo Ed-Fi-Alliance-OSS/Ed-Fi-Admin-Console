@@ -171,9 +171,9 @@ const UserOrganizationsForm = ({ formHookData, editMode, onUpdateEditEdOrgMode }
             cursor: 'default',
             '_hover': { bg: 'blue.900' } 
           }}
+          color='primaryBlue600'
           disabled={formHookData.showAddItem || formHookData.isUpdatingUserEducationOrganization || editMode}
           variant='solid'
-          color='primaryBlue600'
           onClick={formHookData.onShowAddItem}
         >
           Add New
@@ -216,9 +216,9 @@ const UserOrganizationsForm = ({ formHookData, editMode, onUpdateEditEdOrgMode }
             cursor: 'default',
             '_hover': { bg: 'blue.900' } 
           }}
+          color='primaryBlue600'
           disabled={formHookData.showAddItem || formHookData.isUpdatingUserEducationOrganization || editMode}
           variant='solid'
-          color='primaryBlue600'
           onClick={formHookData.onShowAddItem}
         >
           Add New

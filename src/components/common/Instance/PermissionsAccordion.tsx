@@ -22,9 +22,9 @@ const PermissionsAccordion = () => {
         border='1px'
         borderColor='gray.300'
         fontFamily='Poppins'
+        fontSize='sm'
         fontWeight='700'
         padding='10px 50px'
-        fontSize='sm'
       >
         Claim Set
       </Text>
@@ -38,14 +38,16 @@ const PermissionsAccordion = () => {
         {permissions.map((permissionInfo, index) =>
           <Accordion.Item>
             <Flex
+              alignItems='center'
               border='1px'
               borderColor='gray.300'
-              alignItems='center'
               w='full'
             >
               <Accordion.ItemTrigger>
-                <Flex border='none'
-                  w='full'>
+                <Flex
+                  border='none'
+                  w='full'
+                >
                   <Accordion.ItemIndicator />
                   <Flex aria-hidden="true">
                     <Text
@@ -64,15 +66,15 @@ const PermissionsAccordion = () => {
             <Accordion.ItemIndicator>
               <Flex
                 flexDir='column'
-                w='full'
                 px='50px'
+                w='full'
               >
                 <Text
                   color='blue.600'
                   fontFamily='Poppins'
+                  fontSize='lg'
                   fontWeight='700'
                   mb='16px'
-                  fontSize='lg'
                 >
                   Resources
                 </Text>

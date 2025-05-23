@@ -30,16 +30,16 @@ const PermissionsAccordionResourceInfo = ({ resourceInfoData }: PermissionsAccor
     <Accordion.Root w='full'>
       <Accordion.Item>
         <Flex
-        border='none'
           alignItems='center'
+          border='none'
           w='full'
         >
           <Accordion.ItemTrigger>
             <Flex
-              justifyContent='space-between'
-              w='full'
               border='none'
+              justifyContent='space-between'
               px='0'
+              w='full'
             >
               <Flex w='full'>
                 <Accordion.ItemIndicator
@@ -60,9 +60,11 @@ const PermissionsAccordionResourceInfo = ({ resourceInfoData }: PermissionsAccor
         </Flex>
 
         <Accordion.ItemIndicator>
-          <Flex border='none'
-          pl='30px'>
-          {resourceInfoData.name}
+          <Flex
+            border='none'
+            pl='30px'
+          >
+            {resourceInfoData.name}
           </Flex>
         </Accordion.ItemIndicator>
       </Accordion.Item>

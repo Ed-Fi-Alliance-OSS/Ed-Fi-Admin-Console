@@ -42,7 +42,8 @@ const EDXCustomModal = ({ type, header, content, footer, isOpen, onClose }: Info
       <Dialog.Backdrop />
 
       <Dialog.Content>
-        <Flex bg={bgColor}
+        <Flex
+          bg={bgColor}
           border='10px solid'
           borderBottom='0px'
           borderColor={selectModalTopColor()}
@@ -52,7 +53,8 @@ const EDXCustomModal = ({ type, header, content, footer, isOpen, onClose }: Info
           h='auto'
           minW='517px'
           my='auto'
-          w='auto'>
+          w='auto'
+        >
           <Dialog.Title>
             <Flex fontSize="24px" paddingBottom="0px">
               {header}
@@ -62,9 +64,11 @@ const EDXCustomModal = ({ type, header, content, footer, isOpen, onClose }: Info
           <Dialog.CloseTrigger />
 
           <Dialog.Description>
-            <Flex marginBottom='10px'
+            <Flex
+              marginBottom='10px'
               paddingTop='0px'
-              w=''>
+              w=''
+            >
               {typeof (content) === 'string' ?
                 <Text fontFamily='Poppins'>{content}
                 </Text> : content}

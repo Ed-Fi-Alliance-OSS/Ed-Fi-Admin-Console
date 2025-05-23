@@ -127,9 +127,9 @@ const TenantSettingsForm = () => {
 
         <Flex mt='32px'>
           <Button 
+            color='primaryBlue600'
             fontSize='lg'
             variant='solid'
-            color='primaryBlue600'
             w='189px'
           >
             Save Edits

@@ -81,10 +81,10 @@ const SISCredentialsField = ({ credentialsKey, credentialsSecret, isLoadingCrede
       >
         <Button
           color='blue.500'
+          disabled={regenerateCredentialsDisabled}
           fontFamily='Poppins'
           fontSize='16px'
           fontWeight='700'
-          disabled={regenerateCredentialsDisabled}
           mt='10px'
           padding='0'
           textAlign='start'

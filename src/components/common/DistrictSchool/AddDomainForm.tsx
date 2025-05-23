@@ -70,8 +70,8 @@ const AddDomainForm = ({ districtData, onAfterSave }: AddDomainFormProps) => {
           <Flex mt='16px'>
             <Text
               fontFamily='Poppins'
-              fontWeight='400'
               fontSize='md'
+              fontWeight='400'
             >
               Your ESC Admin will need the information below  to add a DNS record with your domain provider to serve as proof of ownership. Once the record has been added, check the domain verification status on the “District/Charter School Settings Page”. This process can take up to 24 hours after the DNS record has been added. 
             </Text>
@@ -87,9 +87,9 @@ const AddDomainForm = ({ districtData, onAfterSave }: AddDomainFormProps) => {
           w='full'
         >
           <Button
+            color='primaryBlue600'
             loading={isSavingChanges}
             size='lg'
-            color='primaryBlue600'
             variant='solid'
             w='210px'
             onClick={onSave}

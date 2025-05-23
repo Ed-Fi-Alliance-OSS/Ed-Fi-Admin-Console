@@ -23,8 +23,8 @@ const InviteUsersTableRows = ({ invitationsList }: InviteUsersTableRowsProps) =>
             <Text
               color='gray.700'
               fontFamily='Poppins'
-              fontWeight='400'
               fontSize='sm'
+              fontWeight='400'
             >
               {invitation.email}
             </Text>
@@ -34,8 +34,8 @@ const InviteUsersTableRows = ({ invitationsList }: InviteUsersTableRowsProps) =>
             <Text
               color='gray.700'
               fontFamily='Poppins'
-              fontWeight='400'
               fontSize='sm'
+              fontWeight='400'
             >
               {invitation.firstName}
             </Text>
@@ -45,8 +45,8 @@ const InviteUsersTableRows = ({ invitationsList }: InviteUsersTableRowsProps) =>
             <Text
               color='gray.700'
               fontFamily='Poppins'
-              fontWeight='400'
               fontSize='sm'
+              fontWeight='400'
             >
               {invitation.lastName}
             </Text>
@@ -56,8 +56,8 @@ const InviteUsersTableRows = ({ invitationsList }: InviteUsersTableRowsProps) =>
             <Text
               color='gray.700'
               fontFamily='Poppins'
-              fontWeight='400'
               fontSize='sm'
+              fontWeight='400'
             >
               {invitation.role === 'Tenant.Admin'? 'District Admin' : 'District User'}
             </Text>

@@ -21,8 +21,8 @@ const AppUserLicenses = ({ licenses }: AppUserLicensesProps) => {
     <Flex>
       <Text
         fontFamily='Poppins'
-        fontWeight='400'
         fontSize='md'
+        fontWeight='400'
         w='auto'
         whiteSpace='initial'
       >

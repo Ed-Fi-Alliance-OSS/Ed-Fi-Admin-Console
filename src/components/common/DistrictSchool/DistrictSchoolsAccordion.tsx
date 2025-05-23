@@ -71,9 +71,12 @@ const DistrictSchoolsAccordion = ({ district, isRemovingDomain, onRemoveDomain, 
           w='full'
         >
           <Accordion.ItemTrigger>
-            <Flex w='191px' border='none'
-            display='flex'
-            justifyContent='space-between'>
+            <Flex
+              border='none'
+              display='flex'
+              justifyContent='space-between'
+              w='191px'
+            >
               <Accordion.ItemIndicator
                 aria-hidden="true"
               />
