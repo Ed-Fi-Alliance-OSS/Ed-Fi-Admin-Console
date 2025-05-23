@@ -3,11 +3,11 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import { ChakraProvider } from '@chakra-ui/react'
-import { ColorModeProvider } from './components/ui/color-mode'
+import { Provider } from './components/ui/provider'
 import {
   baseTheme, EdxConfigProvider, LoadingScreen, TEEAuthContextProvider, useSaveInitialRoute
 } from '@edfi/admin-console-shared-sdk'
+import './index.css'
 import { HelmetProvider } from 'react-helmet-async'
 import LayoutWrapper from './components/layout/LayoutWrapper'
 import AdminConsoleConfigProvider from './context/adminConsoleContext'
@@ -19,14 +19,13 @@ import routes from './core/routes'
 import {
   loadPlugins, PluginLoader, PluginProvider
 } from './plugins/BasePlugin'
-import { system } from './theme'
 
 interface AppProps {
   appConfig: any
 }
 
 function App({ appConfig }: AppProps) {
-  console.log('Tech Console started', 'UI package 2.0.99', 'June 2024')
+  console.log('Admin Console started', 'UI package 0.0.2', 'June 2025')
 
   useSaveInitialRoute({
     homeUrl: routes.home.url,
@@ -34,17 +33,14 @@ function App({ appConfig }: AppProps) {
   })
 
   // APP PAGE
-
   return (
     <div className="App">
-      <ChakraProvider value={system}>
-        <ColorModeProvider>
-
-          <LoadingScreen
-            delay={0.5}
-            loading={!appConfig ? true : false}
-            state='loading...'
-          />
+      <Provider>
+        <LoadingScreen
+          delay={0.5}
+          loading={!appConfig ? true : false}
+          state='loading...'
+        />
 
           <HelmetProvider>
             {appConfig &&
@@ -70,10 +66,8 @@ function App({ appConfig }: AppProps) {
                     </TEEAuthContextProvider>
                   </PluginProvider>
                 </MockDataProvider>
-              </EdxConfigProvider>}
-          </HelmetProvider>
-        </ColorModeProvider>
-      </ChakraProvider>
+              </EdxConfigProvider>}          </HelmetProvider>
+      </Provider>
     </div>
   )
 }
