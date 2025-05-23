@@ -38,6 +38,6 @@ switch ($ignoreAdminConsole)
 
 Write-Output "Starting EdFi Services..."
 write-output $params
-& docker compose $params
+& docker compose $params -d
 
 
