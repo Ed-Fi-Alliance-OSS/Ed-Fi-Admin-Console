@@ -39,10 +39,13 @@ const EdFiConnectionVerification = ({ mode, inOnboarding, status }: EdFiConnecti
           <Link 
             color='blue.500'
             fontFamily='Poppins'
-            href="https://txedexchange.atlassian.net/servicedesk/customer/portals" 
             ml='4px'
             target="_blank"
-          >contact support.
+            asChild
+          >
+            <RouterLink to={"http://servidesk"}>
+            contact support.
+            </RouterLink>
           </Link>
         </Text> }
 
@@ -52,10 +55,11 @@ const EdFiConnectionVerification = ({ mode, inOnboarding, status }: EdFiConnecti
           <Link 
             color='blue.500'
             fontFamily='Poppins'
-            href="https://txedexchange.atlassian.net/servicedesk/customer/portals"
             mx='4px'
             target="_blank"
-          >contact support.
+          ><RouterLink to={"http://servidesk"}>
+            contact support.
+            </RouterLink>
           </Link>
           Once connection is successful, click “Save” to return. 
         </Text> }

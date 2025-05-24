@@ -29,13 +29,14 @@ const ActionNavigationCard = ({ data, index }: ActionNavigationCardProps) => {
       display='flex'
       flexDir='column' 
       h='112px'
-      href={`${routes.console.url}`}
       justifyContent='flex-start'
       mr='16px'
       padding='15px 14px 0px 14px'
       style={{ textDecoration: 'none' }}
       w='20%'
+      asChild
     >
+      <RouterLink to={routes.console.url}>
       {typeof(data.icon) === 'string'? 
         <Image 
           alt={data.name}
@@ -69,6 +70,7 @@ const ActionNavigationCard = ({ data, index }: ActionNavigationCardProps) => {
           />
         </Flex>
       </Flex>
+      </RouterLink>
     </Link>
   )
 }

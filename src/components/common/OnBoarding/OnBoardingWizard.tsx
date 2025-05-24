@@ -360,7 +360,7 @@ const OnBoardingWizard = ({ completedSteps, lastInProgress, currentStepIndex, la
             fontSize='14px'
             fontWeight='700'
             h='54px'
-            isDisabled={isDisabledTab(index)}
+            disabled={isDisabledTab(index)}
             lineHeight='28px' 
             padding='8px 8px'
           >

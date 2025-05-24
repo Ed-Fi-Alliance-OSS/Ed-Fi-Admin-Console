@@ -37,25 +37,30 @@ const NeedHelpLinks = ({ knowledgeBaseUrl, supportUrl }: NeedHelpsLinksProps) =>
         <Link 
           color='blue.500'
           fontWeight='700'
-          href={knowledgeBaseUrl}
           ml='2px' 
           mr='2px' 
           referrerPolicy="no-referrer" 
           target='_blank'
+          as Child
         >
+          <RouterLink to={knowledgeBaseUrl}>
           Knowledge Base 
+          </RouterLink>
         </Link>
         or 
 
         <Link 
           color='blue.500'
           fontWeight='700'
-          href={supportUrl}
+          href={}
           ml='2px' 
           referrerPolicy="no-referrer" 
           target='_blank'
+          asChild
         >
+          <RouterLink to={supportUrl}>
           submit a support ticket.
+          </RouterLink>
         </Link>
       </Text>
     </Flex>

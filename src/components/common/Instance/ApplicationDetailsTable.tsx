@@ -90,10 +90,12 @@ const ApplicationDetailsTable = ({ applicationsList, isDeleting, onEditApplicati
                     fontFamily='Poppins'
                     fontSize='14px'
                     fontWeight='400'
-                    href='#'
                     textDecoration='underline'
+                    asChild
                   >
+                    <RouterLink to='#'>
                     {application.claimSetName}
+                    </RouterLink>
                   </Link>
                 </Flex>
               </Table.Cell>

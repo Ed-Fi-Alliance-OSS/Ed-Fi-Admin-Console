@@ -54,11 +54,14 @@ const FinalizeTabContent = ({ connectedSISProvidersList, verifiedDomainList, con
         <Link
           aria-label="contact support"
           color='blue.500'
-          href="https://txedexchange.atlassian.net/servicedesk/customer/portals"
           ml='2px'
           referrerPolicy='no-referrer'
           target='_blank'
-        >contact support
+          asChild
+        >
+          <RouterLink href="https://txedexchange.atlassian.net/servicedesk/customer/portals">
+          contact support
+          </RouterLink>
         </Link>. Once everything is looking good, click the “Finalize” button and your Tech Console will be ready to use!
       </Text>
 

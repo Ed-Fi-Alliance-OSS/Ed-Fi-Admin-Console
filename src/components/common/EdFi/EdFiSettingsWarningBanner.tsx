@@ -71,13 +71,15 @@ const EdFiSettingsWarningBanner = () => {
             visit our 
             <Link 
               fontWeight='700'
-              href={getAdminActionHelpLinks().knowledgeBaseUrl}
               ml='2px'
               mr='2px'  
               referrerPolicy="no-referrer" 
               target='_blank'
+              asChild
             >
+              <RouterLink to={getAdminActionHelpLinks().knowledgeBaseUrl}>
               Knowledge Base 
+              </RouterLink>
             </Link>
             or 
 
@@ -87,8 +89,11 @@ const EdFiSettingsWarningBanner = () => {
               ml='2px'
               referrerPolicy="no-referrer" 
               target='_blank'
+              asChild
             >
+              <RouterLink to={getAdminActionHelpLinks().knowledgeBaseUrl}>
               submit a support ticket
+              </RouterLink>
             </Link>.
           </Text>
         </Flex>

@@ -18,26 +18,28 @@ const BackToLink = ({ url, text }: BackToLinkProps) => {
   return (
     <Link 
       alignItems='center' 
-      display='flex' 
-      href={url}
+      display='flex'
       w='230px'
+      asChild
     >
-      <MdArrowBack 
-        aria-describedby={`${text}`} 
-        aria-hidden="true" 
-        color='gray.700' 
-        focusable="true"
-        role="img"
-      />
+      <RouterLink to={url}>
+        <MdArrowBack 
+          aria-describedby={`${text}`} 
+          aria-hidden="true" 
+          color='gray.700' 
+          focusable="true"
+          role="img"
+        />
 
-      <Text
-        color='gray.700'
-        fontFamily='Poppins'
-        fontSize='sm'
-        fontWeight='400'
-        ml='10px'
-      >{text}
-      </Text>
+        <Text
+          color='gray.700'
+          fontFamily='Poppins'
+          fontSize='sm'
+          fontWeight='400'
+          ml='10px'
+        >{text}
+        </Text>
+      </RouterLink>
     </Link>
   )
 }

@@ -65,7 +65,10 @@ const AdminConsoleTabsMenu = ({ children, tabsList, initialIndex, contentMt, inc
                 fontWeight='bold'
                 padding='0'
                 role="tab"
-                onClick={() => setActiveTabIndex(idx)}
+                onClick={(e) => {
+                  e.preventDefault(); // Prevent default navigation
+                  setActiveTabIndex(idx);
+                }}
               >
                 {tab}
               </Flex>
