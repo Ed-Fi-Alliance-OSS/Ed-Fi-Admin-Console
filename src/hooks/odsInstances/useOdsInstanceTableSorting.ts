@@ -16,51 +16,61 @@ const useOdsInstanceTableSorting = () => {
     field: 'Year',
     order: 'desc',
   })
+  
   const sortByStatus = (instances: ExtendedODSInstance[]): ExtendedODSInstance[] => {
     return instances
       .map(instance => ({ ...instance }))
       .sort((instancea, instanceb) => {
+        const statusA = instancea.edFiStatus?.operationStatus || '';
+        const statusB = instanceb.edFiStatus?.operationStatus || '';
         
         if (orderBy.order == 'desc') {
-          return instanceb.edFiStatus.operationStatus.localeCompare(instancea.edFiStatus.operationStatus)
+          return statusB.localeCompare(statusA)
         }
 
-        return instancea.edFiStatus.operationStatus.localeCompare(instanceb.edFiStatus.operationStatus)
-      })
-  }
-
+        return statusA.localeCompare(statusB)
+      })  }
+  
   const sortByEdFiVersion = (instances: ExtendedODSInstance[]): ExtendedODSInstance[] => {
     return instances
       .map(instance => ({ ...instance }))
       .sort((instancea, instanceb) => {
+        const versionA = instancea.edFiVersion?.toString() || '';
+        const versionB = instanceb.edFiVersion?.toString() || '';
+        
         if (orderBy.order == 'desc') {
-          return instanceb.edFiVersion.toString().localeCompare(instancea.edFiVersion.toString())
+          return versionB.localeCompare(versionA)
         }
 
-        return instancea.edFiVersion.toString().localeCompare(instanceb.edFiVersion.toString())
+        return versionA.localeCompare(versionB)
       })
   }
+  
   const sortByTsdsVersion = (instances: ExtendedODSInstance[]): ExtendedODSInstance[] => {
     return instances
       .map(instance => ({ ...instance }))
       .sort((instancea, instanceb) => {
+        const versionA = instancea.tsdsVersion?.toString() || '';
+        const versionB = instanceb.tsdsVersion?.toString() || '';
+        
         if (orderBy.order == 'desc') {
-          return instanceb.tsdsVersion.toString().localeCompare(instancea.tsdsVersion.toString())
+          return versionB.localeCompare(versionA)
         }
 
-        return instancea.tsdsVersion.toString().localeCompare(instanceb.tsdsVersion.toString())
+        return versionA.localeCompare(versionB)
       })
   }
-
   const sortByInstanceName = (instances: ExtendedODSInstance[]): ExtendedODSInstance[] => {
     return instances
       .map(instance => ({ ...instance }))
-      .sort((instancea, instanceb) => {
+      .sort((instancea, instanceb) => {        const nameA = instancea.instanceName || instancea.name || '';
+        const nameB = instanceb.instanceName || instanceb.name || '';
+        
         if (orderBy.order == 'desc') {
-          return instanceb.instanceName.localeCompare(instancea.instanceName)
+          return nameB.localeCompare(nameA)
         }
 
-        return instancea.instanceName.localeCompare(instanceb.instanceName)
+        return nameA.localeCompare(nameB)
       })
   }
 
