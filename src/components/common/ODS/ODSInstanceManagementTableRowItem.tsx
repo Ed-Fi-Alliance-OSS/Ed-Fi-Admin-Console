@@ -80,14 +80,16 @@ const ODSInstanceManagementTableRowItem = ({ tableMode, selectedInstance, instan
           fontFamily="Poppins"
           fontSize="md"
           fontWeight="700"
-          href={`${getOdsInstanceLink(instance)}`}
           lineHeight="22px"
           overflow="hidden"
           textOverflow="ellipsis"
           title={instance.name}
           whiteSpace="nowrap"
+          asChild
         >
+          <RouterLink to={`${getOdsInstanceLink(instance)}`}>
           {instance.name}
+          </RouterLink>
         </Link>
         </Flex>
     </Table.Cell>

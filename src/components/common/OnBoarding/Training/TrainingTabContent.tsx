@@ -25,12 +25,13 @@ const TrainingTabContent = ({ onCompleteStep }: TrainingTabContentProps) => {
         <Link 
           color="blue.500"
           fontWeight='bold'
-          href="https://txedexchange.atlassian.net/servicedesk/customer/portal/3/article/7962650"
           mx='3px' 
           referrerPolicy="no-referrer"
-          target="_blank"
+          asChild
         >
+          <RouterLink to="https://txedexchange.atlassian.net/servicedesk/customer/portal/3/article/7962650" target="_blank">
           general onboarding resources
+          </RouterLink>
         </Link> 
         in Confluence.
       </Text>

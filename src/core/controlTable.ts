@@ -39,8 +39,8 @@ export interface ControlTableHeaderField {
     sortedByField: string
     showSorting: boolean
     sortingType: ControlTableSortType
-    onSortAsc: (sortData: SortByParams) => void
-    onSortDesc: (sortData: SortByParams) => void    
+    onSortAsc: () => void
+    onSortDesc: () => void    
 }
 
 export type ControlTableRowCol = string | JSX.Element

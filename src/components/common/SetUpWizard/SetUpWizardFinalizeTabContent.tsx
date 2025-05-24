@@ -37,11 +37,9 @@ const SetUpWizardFinalizeTabContent = ({ connectedSISProvidersList, instance }: 
         <Link 
           aria-label="contact support" 
           color='blue.500' 
-          href="https://txedexchange.atlassian.net/servicedesk/customer/portals" 
           ml='2px' 
           referrerPolicy='no-referrer'
-          target='_blank'
-        >contact support
+        ><RouterLink to="https://txedexchange.atlassian.net/servicedesk/customer/portals" target='_blank'>contact support</RouterLink>
         </Link>. Once all the information appears correct, click the “Finalize” button and your Tech Console will be ready to use!
       </Text>
 

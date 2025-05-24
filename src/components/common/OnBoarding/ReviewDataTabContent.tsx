@@ -59,8 +59,11 @@ const ReviewDataTabContent = ({ setupWizard }: ReviewDataTabContentProps) => {
           fontFamily='Poppins'
           fontSize='md'
           fontWeight='700'
+          asChild
         >
+          <RouterLink to='#'>
           Not seeing what you were expecting? Get help here.
+          </RouterLink>
         </Link>}
       </Flex>
     </OnBoardingTabContentWrapper>

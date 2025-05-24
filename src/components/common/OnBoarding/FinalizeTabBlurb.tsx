@@ -33,11 +33,13 @@ const FinalizeTabBlurb = () => {
         <Link 
           color='blue.500'
           fontWeight='700'
-          href="https://txedexchange.net/terms-privacy"
           mx='5px'
           target="_blank"
+          asChild
         >
+          <RouterLink to="https://txedexchange.net/terms-privacy">
           Terms and Data Privacy Policy
+          </RouterLink>
         </Link>
         to learn more. 
       </Text>

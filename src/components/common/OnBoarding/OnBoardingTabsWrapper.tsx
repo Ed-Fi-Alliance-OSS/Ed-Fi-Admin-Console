@@ -64,18 +64,20 @@ const OnBoardingTabsWrapper = ({ children, stepName, currentStep, lastStep, canN
               <span style={{ marginLeft: '5px' }}>
                 <Link
                   aria-label="help link"
-                  href={getCurrentStepHelpLink()}
                   id="help link"
                   referrerPolicy="no-referrer"
                   target='_blank'
+                  asChild
                 >
-                  <MdHelpOutline
-                    aria-label="help link"
-                    focusable="true"
-                    fontSize='25px'
-                    height='15px'
-                    width='15px'
-                  />
+                  <RouterLink to={getCurrentStepHelpLink()}>
+                    <MdHelpOutline
+                      aria-label="help link"
+                      focusable="true"
+                      fontSize='25px'
+                      height='15px'
+                      width='15px'
+                    />
+                  </RouterLink>
                 </Link>
               </span>
             </Tooltip.Trigger>

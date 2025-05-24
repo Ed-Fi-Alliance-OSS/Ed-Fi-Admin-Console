@@ -27,17 +27,17 @@ const ODSInstanceYear = ({ instance }: ODSInstanceYearProps) => {
       w='250px'
     >
       <Link 
-        as={RouterLink} 
         color='blue.600'
         fontFamily='Poppins'
         fontWeight='700'
         lineHeight='22px'
         w="100px"
         fontSize='md'
-        //state={{ instanceId: instance.instanceId }}
-        href={getOdsInstanceLink(instance)}
+        asChild
       >
+        <RouterLink to={getOdsInstanceLink(instance)}>
         { getDisplayYear(instance) }
+        </RouterLink>
       </Link>
     </Flex>
   )

@@ -126,6 +126,7 @@ const AddInstanceFormV2: React.FC<AddInstanceFormProps> = ({
                       }
                     />
                     <Button
+                      type='button'
                       colorScheme="red"
                       onClick={() => {
                         const updatedContexts = values.odsInstanceContexts.filter((_, i) => i !== index)
@@ -138,6 +139,7 @@ const AddInstanceFormV2: React.FC<AddInstanceFormProps> = ({
                   </Flex>
                 ))}
                 <Button
+                  type='button'
                   colorScheme="blue"
                   onClick={() =>
                     setFieldValue('odsInstanceContexts', [
@@ -187,6 +189,7 @@ const AddInstanceFormV2: React.FC<AddInstanceFormProps> = ({
                           }}
                         />
                         <Button
+                          type='button'
                           colorScheme="red"
                           ml="8px"
                           onClick={() => {
@@ -208,14 +211,14 @@ const AddInstanceFormV2: React.FC<AddInstanceFormProps> = ({
 
                   ))}
                   <Button
+                    type='button'
                     colorScheme="blue"
                     onClick={() => {
                       setFieldValue('odsInstanceDerivatives', [
                         ...values.odsInstanceDerivatives,
                         { derivativeType: '' },
                       ])
-                    }
-                    }
+                    }} 
                   >
                     Add Derivative
                   </Button>
