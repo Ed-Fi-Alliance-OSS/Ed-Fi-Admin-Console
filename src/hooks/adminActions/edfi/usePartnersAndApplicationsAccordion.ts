@@ -22,7 +22,7 @@ interface UsePartnersAndApplicationsAccordionProps {
 const usePartnersAndApplicationsAccordion = (props?: UsePartnersAndApplicationsAccordionProps) => {
   const { edxAppConfig, auth } = useContext(TEEAuthDataContext)
   const adminConfig = useContext(adminConsoleContext)
-  const [ vendorsWithApplicationsList, setVendorsWithApplicationsList ] = useState<EdfiVendorWithApplications[] | undefined>(undefined)
+  const [ vendorsWithApplicationsList, setVendorsWithApplicationsList ] = useState<EdfiVendorWithApplications[]>([])
   const [ isFetchingData, setIsFetchingData ] = useState(false)
   const [ selectedPartnerId, setSelectedPartnerId ] = useState<number | null>()
   const { config } = useConfig()

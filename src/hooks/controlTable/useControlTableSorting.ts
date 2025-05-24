@@ -18,7 +18,7 @@ export interface SortByParams {
 }
 
 const useControlTableSorting = ({ data }: UseControlTableSortingProps) => {
-  const [ sortedData, setSortedData ] = useState([ ...data ])
+  const [ sortedData, setSortedData ] = useState<any[]>([])
   const [ sortedByField, setSortedByField ] = useState('')
   const [ sortingType, setSortingType ] = useState<ControlTableSortType>('asc')
 
@@ -105,7 +105,9 @@ const useControlTableSorting = ({ data }: UseControlTableSortingProps) => {
   }
 
   useEffect(() => {
-    setSortedData([ ...data ])
+    if (data && Array.isArray(data)) {
+      setSortedData([ ...data ])
+    }
   }, [ data ])
 
   return {

@@ -40,7 +40,6 @@ const ControlTable = ({ headers, rows, thPadding, itemsCount, loading, paginatio
             {headers.map((header, index) => 
               <Table.ColumnHeader 
                 key={index}
-                aria-hidden={header !== null}
                 borderBottom='1px'
                 borderBottomColor='gray.300'
                 padding={thPadding}

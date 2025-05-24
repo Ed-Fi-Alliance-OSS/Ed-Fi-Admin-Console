@@ -22,7 +22,7 @@ import ApplicationDetailsTable from './ApplicationDetailsTable'
 import PartnersAndApplicationAccordionHeader from './PartnersAndApplicationAccordionHeader'
 
 interface PartnersAndApplicationAccordionProps {
-    vendorsWithApplicationsList: EdfiVendorWithApplications[] | undefined
+    vendorsWithApplicationsList: EdfiVendorWithApplications[]
     loading: boolean 
     isDeletingVendor: DeletingState 
     isDeletingApplication: DeletingState
@@ -56,7 +56,7 @@ const PartnersAndApplicationAccordion = ({
     sortNumericAsc,
     sortedByField,
     sortingType
-  } = useControlTableSorting({ data: vendorsWithApplicationsList ?? [] })
+  } = useControlTableSorting({ data: vendorsWithApplicationsList })
 
   const {
     currentPage,
@@ -114,7 +114,7 @@ const PartnersAndApplicationAccordion = ({
   // Render the Accordion structure
   return (
     <> 
-      {!loading && vendorsWithApplicationsList?.length === 0 ? (
+      {!loading && vendorsWithApplicationsList.length === 0 ? (
         <Flex justifyContent="center" padding="16px">
           <Text color="gray.500">No vendors available.</Text>
         </Flex>
@@ -215,12 +215,11 @@ const PartnersAndApplicationAccordion = ({
               )
             })}
 
-            <AccordionItemSkeleton 
-              itemsCount={
+            <AccordionItemSkeleton              itemsCount={
                 !loading 
-                  ? vendorsWithApplicationsList?.length ?? -1 
+                  ? vendorsWithApplicationsList.length ?? -1 
                   : 0
-              } 
+              }
             />
 
             <Flex 
