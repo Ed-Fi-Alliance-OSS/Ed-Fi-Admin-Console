@@ -15,10 +15,18 @@ const useTenantService = () => {
   const apiService = functionalities.ApiService?.(config, useApiService)
 
   const getTenantById = async (tenantId: string): Promise<Tenant> => {
+    if (!apiService) {
+      throw new Error('ApiService is not available')
+    }
+
     return apiService.tenants.get(tenantId)
   }
 
   const getTenants = async (): Promise<Tenant[]> => {
+    if (!apiService) {
+      throw new Error('ApiService is not available')
+    }
+    
     return apiService.tenants.getAll()
   }
     
