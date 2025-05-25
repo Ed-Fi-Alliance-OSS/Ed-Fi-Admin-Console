@@ -50,12 +50,12 @@ const OnBoardingWizardProvider = ({ children }: OnBoardingWizardProviderProps) =
           tenantId: 'tenant1',
           token: user?.access_token || '', // Use resolved user object
           apiConfig: edxAppConfig.api,
-        });
+        })
 
         if (data) {
           if (!hasStartedOB(data) && data.steps.length < 8) {
             console.log('tenant has not started OB. Loading steps...');
-            await setupInitialOnBoardingState();
+            await setupInitialOnBoardingState()
 
             const initialOBData = await fetchOnBoardingWizardData({
               apiUrl: tenantMockUrl,
@@ -93,11 +93,11 @@ const OnBoardingWizardProvider = ({ children }: OnBoardingWizardProviderProps) =
         setIsFetchingOnBoardingWizard(false)
       }
     }
-  };
+  }
 
   const hasStartedOB = (data: OnBoardingWizardData): boolean => {
-    return data.status !== 'Pending';
-  };
+    return data.status !== 'Pending'
+  }
 
   const setupInitialOnBoardingState = async () => {
     console.log('setting initial onboarding wizard state...')
@@ -117,7 +117,7 @@ const OnBoardingWizardProvider = ({ children }: OnBoardingWizardProviderProps) =
             number: step.index + 1,
             status: 'Pending',
             apiConfig: edxAppConfig?.api,
-          });
+          })
         }
       } catch (error) {
         console.error('Error setting up initial onboarding state:', error);

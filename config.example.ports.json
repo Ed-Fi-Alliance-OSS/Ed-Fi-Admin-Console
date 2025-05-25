@@ -23,14 +23,19 @@
   ],
   "auth": {
     "authority": "http://localhost:28080/realms/edfi-admin-console/",
-    "clientId": "admin-console",
+    "clientId": "admin-console-client",
     "redirectUri": "http://localhost:8598/callback",
     "silentRedirectUri": "http://localhost:8598/silent-renew",
     "postLogoutRedirectUri": "http://localhost:8598",
     "scope": "openid edfi_admin_api/full_access",
     "responseType": "code",
     "loadUserInfo": true,
-    "automaticSilentRenew": true,
-    "automaticSilentSignin": true
+    "automaticSilentRenew": false,
+    "automaticSilentSignin": false,
+
+    "useKeycloak": true,
+    "keycloakTokenEndpoint": "http://localhost:28080/realms/edfi-admin-console/protocol/openid-connect/token",
+    "customApiTokenEndpoint": "http://localhost:8282/connect/token",
+    "clientSecret": "6PLRpJGQJdsbhLeHFkY7N1P7Azc7cQzn"
   }
 }
