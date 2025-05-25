@@ -98,9 +98,8 @@ const AddInstanceFormV2: React.FC<AddInstanceFormProps> = ({
                   fontWeight='700'
                   lineHeight='20px'
                 >ODS Instance Contexts:
-                </Text>
-                {values.odsInstanceContexts.map((context, index) => (
-                  <Flex key={index} alignItems="center" mb="8px">
+                </Text>                {values.odsInstanceContexts.map((context, index) => (
+                  <Flex key={`context-${index}-${context.contextKey || 'empty'}-${context.contextValue || 'empty'}`} alignItems="center" mb="8px">
                     <Input
                       required
                       placeholder="Context Key"
@@ -160,11 +159,9 @@ const AddInstanceFormV2: React.FC<AddInstanceFormProps> = ({
                     fontWeight='700'
                     lineHeight='20px'
                   >ODS Instance Derivatives:
-                  </Text>
-                  {values.odsInstanceDerivatives.map((derivative, index) => (
-                    <Flex key={index} flexDir="column" mb="8px">
-                      <Flex alignItems="center">
-                        <CustomSelect
+                  </Text>                  {values.odsInstanceDerivatives.map((derivative, index) => (
+                    <Flex key={`derivative-${index}-${derivative.derivativeType || 'empty'}`} flexDir="column" mb="8px">
+                      <Flex alignItems="center">                        <CustomSelect
                           options={[
                             {
                               text: 'ReadReplica',

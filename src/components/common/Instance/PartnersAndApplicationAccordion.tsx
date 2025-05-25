@@ -134,13 +134,11 @@ const PartnersAndApplicationAccordion = ({
           
           <Accordion.Root
             w='full'
-          >
-            {paginatedItems.map((partner, index) => {
+          >            {paginatedItems.map((partner, index) => {
               return (
                 <Accordion.Item
                   key={index}
                   value={index}
-                  collapsible
                 >
                   <Flex
                     alignItems='center'

@@ -26,7 +26,7 @@ const APIClientSubscriptionsForm = () => {
     >
       {subscriptions.map((option, index) => 
         <Flex 
-          key={index}
+          key={option}
           _notFirst={{ mt: '15px' }}
           alignItems='center'
           border='1px'

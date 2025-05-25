@@ -4,7 +4,8 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import {
-  Dialog, Flex 
+  Dialog,
+  Box
 } from '@chakra-ui/react'
 
 interface AddAppUserModalProps {
@@ -16,38 +17,36 @@ interface AddAppUserModalProps {
 const ConsoleModal = ({ content, show, onClose }: AddAppUserModalProps) => {
   return (
     <Dialog.Root 
-      isOpen={show} 
-      style={{ animation: 'slideInRight 0.3s ease-in-out', }}
-  
-      onClose={onClose}
+      open={show} 
+      onOpenChange={(details) => { if (!details.open) onClose() }}
     >
       <Dialog.Backdrop />
 
       <Dialog.Content>
-        <Flex
-          aria-label="Form Modal"
+        <Box
           borderRadius='0'
-          h='100vh' 
+          h='100vh'
           marginLeft='auto'
           maxW='629px'
           mt='0'
-          top='0rem' 
+          position='fixed'
+          right='0'
+          top='0'
           w='629px'
         >
+          <Dialog.CloseTrigger />
 
-        </Flex>
-        <Dialog.CloseTrigger />
-
-        <Dialog.Description>
-          <Flex
-            bg='#eff4f6'
-            left='0'
-            maxW='629px'
-            padding='111px 67px 463px 42px' 
-            w='629px'
-          >{content}
-          </Flex>
-        </Dialog.Description>
+          <Dialog.Description>
+            <Box
+              bg='#eff4f6'
+              h='full'
+              padding='111px 67px 463px 42px'
+              w='full'
+            >
+              {content}
+            </Box>
+          </Dialog.Description>
+        </Box>
       </Dialog.Content>
     </Dialog.Root>
   )

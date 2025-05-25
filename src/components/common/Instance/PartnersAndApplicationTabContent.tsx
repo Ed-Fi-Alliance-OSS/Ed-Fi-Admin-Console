@@ -49,11 +49,11 @@ const PartnersAndApplicationTabContent = ({ instance, schoolYear }: PartnersAndA
   const forceUpdate = useCallback(() => refreshComponent(Date.now() + Math.random()), [])
   const { deleteEdfiApplicationForSchoolYear } = useEdfiApplicationsService()
 
-  const [ isDeletingApplication, setIsDeletingApplication ] = useState<DeletingState>({
+    const [ isDeletingApplication, setIsDeletingApplication ] = useState<DeletingState>({
     deleting: false,
     id: ''
   })
-
+  
   const { successToast, errorToast } = useEDXToast()
   const onAddVendor = () => setElementToShow('add vendor')
   const [ selectedVendor, setSelectedVendor ] = useState<EdfiVendor | undefined>()
@@ -141,7 +141,6 @@ const PartnersAndApplicationTabContent = ({ instance, schoolYear }: PartnersAndA
     forceUpdate()
     setisLoading(false)
   }
-
   console.log('rendering...')
 
 

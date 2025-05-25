@@ -69,7 +69,7 @@ const ManageSubscribersFormContent = ({ selectedSubscription, subscriptionRoleOp
       >
         {usersList.filter(user => user.name.toLocaleLowerCase().includes(searchText.toLocaleLowerCase())).map((user, index) => 
           <Flex
-            key={index}
+            key={user.userId || `user-${index}`}
             _notFirst={{ mt: '16px' }}
             alignItems='center'
             border='1px'

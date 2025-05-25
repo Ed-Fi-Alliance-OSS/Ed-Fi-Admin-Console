@@ -71,7 +71,7 @@ const UserOrganizationsFormItem = ({ organizationsList, staffClassificationsList
               >
                 {organizationsList.map((org, index) => 
                   <option
-                    key={index}
+                    key={org.identifierValue || `org-${index}`}
                     title={org.nameOfInstitution}
                     value={org.identifierValue}
                   >
@@ -110,7 +110,7 @@ const UserOrganizationsFormItem = ({ organizationsList, staffClassificationsList
               >
                 {staffClassificationsList.map((staffClassification, index) => 
                   <option
-                    key={index}
+                    key={`${staffClassification.varNamespace}-${staffClassification.codeValue}` || `staff-${index}`}
                     title={staffClassification.shortDescription}
                     value={`${staffClassification.varNamespace}#${staffClassification.codeValue}`}
                   >
