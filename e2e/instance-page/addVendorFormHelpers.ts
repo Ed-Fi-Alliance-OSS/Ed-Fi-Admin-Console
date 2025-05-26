@@ -19,17 +19,19 @@ const fillAddVendorPartnerForm = async ({ page, vendorName, company, contactEmai
   }
 
   if (company) {
-    await page.getByLabel('Company',  { exact: true }).fill(company)
+    await page.getByLabel('Company', { exact: true }).fill(company)
   }
 
   if (contactEmail) {
     await page.locator('#contactEmailAddress').fill(contactEmail)
   }
 
-  if (nameSpacePrefixes && nameSpacePrefixes.length > 0) {
+  if (nameSpacePrefixes?.length) {
     for (const prefix of nameSpacePrefixes) {
       await page.getByLabel('Add Namespace Prefixes').fill(prefix)
-      await page.getByText(prefix, { exact: true }).first().click()
+      const option = page.locator(`text="${prefix}"`).first()
+      await option.waitFor({ state: 'visible' })
+      await option.click()
     }
   }
 }
