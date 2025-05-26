@@ -29,7 +29,6 @@ const fillAddVendorPartnerForm = async ({ page, vendorName, company, contactEmai
   if (nameSpacePrefixes && nameSpacePrefixes.length > 0) {
     for (const prefix of nameSpacePrefixes) {
       await page.getByLabel('Add Namespace Prefixes').fill(prefix)
-      await page.waitForSelector('.chakra-modal__content-container', { state: 'hidden', timeout: 10000 });
       await page.getByText(prefix, { exact: true }).first().click()
     }
   }
