@@ -32,10 +32,8 @@
     "loadUserInfo": true,
     "automaticSilentRenew": false,
     "automaticSilentSignin": false,
-
-    "useKeycloak": false,
     "keycloakTokenEndpoint": "http://localhost:28080/realms/edfi-admin-console/protocol/openid-connect/token",
     "customApiTokenEndpoint": "http://localhost:8282/connect/token",
-    "clientSecret": "6PLRpJGQJdsbhLeHFkY7N1P7Azc7cQzn@"
+    "clientSecret": "WHXZodjNHUuA3gSH759eCOQDzUBT8UZW"
   }
 }
