@@ -13,6 +13,10 @@ fi
 
 export MINIMAL_BACKUP=EdFi_Ods_Minimal_Template.sql
 
+if [[ "$ODS_POPULATED" = true ]]; then
+  export MINIMAL_BACKUP=EdFi_Ods_Populated_Template.sql
+fi
+
 echo "Creating the template for instance management workers"
 
 psql --username "$POSTGRES_USER" --port $POSTGRES_PORT --dbname "postgres" <<-EOSQL
@@ -25,5 +29,10 @@ EOSQL
 
 echo "Added the template for instance management workers"
 
-echo "Loading Minimal Template Database from backup to the worker template..."
+if [[ "$ODS_POPULATED" = true ]]; then
+  echo "Loading Populated Template Database from backup to the worker template..."
+else
+  echo "Loading Minimal Template Database from backup to the worker template..."
+fi
+
 psql --no-password --username "$POSTGRES_USER" --port $POSTGRES_PORT --dbname "Ods_Minimal_Template" --file /tmp/${MINIMAL_BACKUP}  1> /dev/null

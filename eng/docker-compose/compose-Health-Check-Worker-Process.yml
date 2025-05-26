@@ -8,6 +8,7 @@ services:
     image: edfialliance/admin-console-healthcheck:${HEALTHCHECK_WORKER_TAG}
     environment:
       EdFi_AdminConsole_AppSettings__IgnoresCertificateErrors: true
+      EdFi_AdminConsole_AppSettings__MaxRetryAttempts: ${MAX_RETRY_ATTEMPTS:-5}
       EdFi_AdminConsole_AdminApiSettings__AccessTokenUrl: ${ACCESS_TOKEN_URL:-http://host.docker.internal:28080/realms/edfi-admin-console/protocol/openid-connect/token}
       EdFi_AdminConsole_AdminApiSettings__AdminConsoleTenantsURL: ${ADMINCONSOLE_TENANTS_URL:-http://host.docker.internal:8282/adminconsole/tenants}
       EdFi_AdminConsole_AdminApiSettings__AdminConsoleInstancesURL: ${ADMINCONSOLE_INSTANCES_URL:-http://host.docker.internaL:8282/adminconsole/instances}
