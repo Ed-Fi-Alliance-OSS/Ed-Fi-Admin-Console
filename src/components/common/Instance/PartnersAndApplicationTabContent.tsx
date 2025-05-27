@@ -59,7 +59,6 @@ const PartnersAndApplicationTabContent = ({ instance, schoolYear }: PartnersAndA
   const [ selectedVendor, setSelectedVendor ] = useState<EdfiVendor | undefined>()
 
   const onEditVendor = (vendor: EdfiVendorWithApplications) => {
-    console.log('edit vendor', vendor)
     // Convert EdfiVendorWithApplications to EdfiVendor as PartnerForm expects EdfiVendor
     const vendorData: EdfiVendor = {
       id: vendor.id,
@@ -82,8 +81,6 @@ const PartnersAndApplicationTabContent = ({ instance, schoolYear }: PartnersAndA
 
   const onDeleteVendor = async (vendorId: string) => {
     if (adminConfig) {
-      console.log('vendor id', vendorId)
-
       setIsDeletingVendor({
         deleting: true,
         id: vendorId
@@ -133,7 +130,6 @@ const PartnersAndApplicationTabContent = ({ instance, schoolYear }: PartnersAndA
   }
 
   const onReturnToAccordion = async () => {
-    console.log('return to accordion')
     setElementToShow('accordion')
     setSelectedVendor(undefined)
     setisLoading(true)

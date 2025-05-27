@@ -54,8 +54,6 @@ const ODSInstanceManagementTableRowItem = ({ tableMode, selectedInstance, instan
     // if (instance.isDefault) {
     //   onSelectInstance(instance)
     // }
-
-    console.log('instance', instance)
   }, [])
 
   return (    <>{tableMode != 'Display' && <Table.Cell w='80px' bg='white'>

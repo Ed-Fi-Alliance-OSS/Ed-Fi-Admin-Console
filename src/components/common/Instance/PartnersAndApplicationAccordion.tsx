@@ -147,9 +147,8 @@ const PartnersAndApplicationAccordion = ({
                   >
                     <Accordion.ItemTrigger
                       w='250px'
-                      onClick={() => onSelectPartner(partner.vendorId ?? 0)}
-                    />
-                    
+                      onClick={() => onSelectPartner(partner.vendorId ?? 0)}>
+
                     <Flex alignItems='center'>
                       <Accordion.ItemIndicator />
                       
@@ -163,7 +162,7 @@ const PartnersAndApplicationAccordion = ({
                         {partner.company}
                       </Text>
                     </Flex>
-
+                    </Accordion.ItemTrigger>
                     <Flex
                       ml='45px'
                       w='500px'

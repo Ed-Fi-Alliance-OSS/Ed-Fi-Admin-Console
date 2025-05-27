@@ -72,10 +72,10 @@ const ApplicationForm = ({ instance, mode, editApplicationData, onFinishSave }: 
   }
 
   const showApplicationAPIData = () => applicationAuthData.key && applicationAuthData.secret
-
   useEffect(() => {
-    if(!applicationData.educationOrganizationIds){
-      setEdorgs(edOrgs)
+    if(applicationData.educationOrganizationIds && applicationData.educationOrganizationIds.length > 0){
+      // Initialize edOrgs with values from applicationData
+      setEdorgs(applicationData.educationOrganizationIds as number[])
     }
   }, [ applicationData ])
 
