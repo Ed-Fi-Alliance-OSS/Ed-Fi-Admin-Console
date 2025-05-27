@@ -3,7 +3,7 @@
     "edfiApiBaseUri": "http://localhost:8181",
     "edfiAdminApiBaseUri": "http://localhost:8282",
     "useLocalMockData": false,
-    "useAdminApiAuthentication": false,
+    "useAdminApiAuthentication": true,
     "apiKey": "",
     "apiSecret": ""
   },
@@ -22,18 +22,10 @@
     "test-plugin"
   ],
   "auth": {
-    "authority": "",
+    "TokenEndpoint": "http://localhost:28080/realms/edfi-admin-console/protocol/openid-connect/token",
     "clientId": "admin-console-client",
-    "redirectUri": "",
-    "silentRedirectUri": "",
-    "postLogoutRedirectUri": "",
-    "scope": "openid edfi_admin_api/full_access",
-    "responseType": "code",
-    "loadUserInfo": true,
-    "automaticSilentRenew": false,
-    "automaticSilentSignin": false,
-    "keycloakTokenEndpoint": "http://localhost:28080/realms/edfi-admin-console/protocol/openid-connect/token",
-    "customApiTokenEndpoint": "http://localhost:8282/connect/token",
-    "clientSecret": "WHXZodjNHUuA3gSH759eCOQDzUBT8UZW"
+    "clientSecret": "",
+    "scope": "openid edfi_admin_api/full_access",  
+    "loadUserInfo": true  
   }
 }
