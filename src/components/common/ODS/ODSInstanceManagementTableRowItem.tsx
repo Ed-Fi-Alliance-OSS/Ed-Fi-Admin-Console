@@ -17,7 +17,7 @@ import { useEffect } from 'react'
 import { Link as RouterLink } from 'react-router-dom'
 import { useTenantContext } from '../../../context/tenantContext'
 import {
-  InstanceOperationStatus, ODSInstance 
+  InstanceOperationStatus, ODSInstance
 } from '../../../core/ODSInstance.types'
 import useOdsInstanceLink from '../../../hooks/odsInstances/useOdsInstanceLink'
 import { UpdatingIsDefaultStatus } from '../../../hooks/odsInstances/useOdsInstanceTable.types'
@@ -55,67 +55,63 @@ const ODSInstanceManagementTableRowItem = ({ tableMode, selectedInstance, instan
     //   onSelectInstance(instance)
     // }
   }, [])
-
-  return (    <>{tableMode != 'Display' && <Table.Cell w='80px' bg='white'>
-      <RadioGroup.Root
-        value={selectedInstance?.id ?? ''}
-        onChange={() => onSelectInstance(instance)}
-      >
-        <CustomRadio
-          isChecked={selectedInstance?.id == instance.id}
-          text=""
-          value={instance.id}
-        />
-      </RadioGroup.Root>
-    </Table.Cell>}      <Table.Cell maxW="250px" overflow="hidden" px={4} py={2} bg='white'>
-      <Flex direction="column" overflow="hidden" w="100%">
-          <Link
-          color="blue.600"
-          display="block"
-          fontFamily="Poppins"
-          fontSize="md"
-          fontWeight="700"
-          lineHeight="22px"
-          overflow="hidden"
-          textOverflow="ellipsis"
-          title={instance.name}
-          whiteSpace="nowrap"
-          asChild
+  return (
+    <>{/* Using React.Fragment with no whitespace between elements */}
+      {tableMode != 'Display' && <Table.Cell w='80px' bg='white'>
+        <RadioGroup.Root
+          value={selectedInstance?.id ?? ''}
+          onChange={() => onSelectInstance(instance)}
         >
-          <RouterLink to={`${getOdsInstanceLink(instance)}`}>
-          {instance.name}
-          </RouterLink>
-        </Link>
+          <CustomRadio
+            isChecked={selectedInstance?.id == instance.id}
+            text=""
+            value={instance.id}
+          />
+        </RadioGroup.Root>
+      </Table.Cell>}
+      <Table.Cell maxW="250px" overflow="hidden" px={4} py={2} bg='white'>
+        <Flex direction="column" overflow="hidden" w="100%">
+          <Link
+            color="blue.600"
+            display="block"
+            fontFamily="Poppins"
+            fontSize="md"
+            fontWeight="700"
+            lineHeight="22px"
+            overflow="hidden"
+            textOverflow="ellipsis"
+            title={instance.name}
+            whiteSpace="nowrap"
+            asChild
+          >
+            <RouterLink to={`${getOdsInstanceLink(instance)}`}>
+              {instance.name}
+            </RouterLink>
+          </Link>
         </Flex>
-    </Table.Cell>      <Table.Cell>
-      {metaDataLoading ? <Spinner /> : <ODSInstanceEdFiVersion version={edfiMetadata?.version} />}
-    </Table.Cell>
-
+      </Table.Cell>
       <Table.Cell>
-      {metaDataLoading ? <Spinner /> : <ODSInstanceDataModelsLabel dataModels={edfiMetadata?.dataModels} />}
-    </Table.Cell>
-
+        {metaDataLoading ? <Spinner /> : <ODSInstanceEdFiVersion version={edfiMetadata?.version} />}
+      </Table.Cell>
       <Table.Cell>
-      {metaDataLoading ? <Spinner /> : <ODSInstanceEdFiStatus status={edFiStatus ?? ''} />}
-
-    </Table.Cell>
-
+        {metaDataLoading ? <Spinner /> : <ODSInstanceDataModelsLabel dataModels={edfiMetadata?.dataModels} />}
+      </Table.Cell>
       <Table.Cell>
-      {metaDataLoading ? <Spinner /> : <ODSInstanceWorkerStatus status={instance.status ?? 'Error'} />}
-
-    </Table.Cell>
-
-      {tableMode == 'Display' && <>
+        {metaDataLoading ? <Spinner /> : <ODSInstanceEdFiStatus status={edFiStatus ?? ''} />}
+      </Table.Cell>
       <Table.Cell>
+        {metaDataLoading ? <Spinner /> : <ODSInstanceWorkerStatus status={instance.status ?? 'Error'} />}
+      </Table.Cell>
+      {tableMode == 'Display' && (
+        <Table.Cell>
           {showSetupBtn() ?
-          <SetUpInstanceBtn
+            <SetUpInstanceBtn
               instance={instance}
               updatingIsDefault={updatingIsDefault}
               onOpenSetUpModal={onOpenSetUpModal}
             /> :
             <ManageInstanceBtn instance={instance} />}
-        </Table.Cell>
-    </>}
+        </Table.Cell>      )}
     </>
   )
 }
