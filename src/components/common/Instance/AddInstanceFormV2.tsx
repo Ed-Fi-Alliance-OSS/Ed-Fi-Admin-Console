@@ -97,9 +97,8 @@ const AddInstanceFormV2: React.FC<AddInstanceFormProps> = ({
                   fontSize='14px'
                   fontWeight='700'
                   lineHeight='20px'
-                >ODS Instance Contexts:
-                </Text>                {values.odsInstanceContexts.map((context, index) => (
-                  <Flex key={`context-${index}-${context.contextKey || 'empty'}-${context.contextValue || 'empty'}`} alignItems="center" mb="8px">
+                >ODS Instance Contexts:                </Text>                {values.odsInstanceContexts.map((context, index) => (
+                  <Flex key={`context-${index}`} alignItems="center" mb="8px">
                     <Input
                       required
                       placeholder="Context Key"
@@ -158,9 +157,8 @@ const AddInstanceFormV2: React.FC<AddInstanceFormProps> = ({
                     fontSize='14px'
                     fontWeight='700'
                     lineHeight='20px'
-                  >ODS Instance Derivatives:
-                  </Text>                  {values.odsInstanceDerivatives.map((derivative, index) => (
-                    <Flex key={`derivative-${index}-${derivative.derivativeType || 'empty'}`} flexDir="column" mb="8px">
+                  >ODS Instance Derivatives:                  </Text>                  {values.odsInstanceDerivatives.map((derivative, index) => (
+                    <Flex key={`derivative-${index}`} flexDir="column" mb="8px">
                       <Flex alignItems="center">                        <CustomSelect
                           options={[
                             {
