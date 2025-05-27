@@ -12,7 +12,7 @@ let page: Page
 
 test.describe('Home Page Tests', () => {
 
-  test.beforeAll(async ({ browser }) => {
+  test.beforeEach(async ({ browser }) => {
     page = await browser.newPage()
     await page.goto(routes.home)
     await page.waitForURL(routes.home)
@@ -35,6 +35,7 @@ test.describe('Home Page Tests', () => {
 
   test('should navigate back to home when clicking "Back to Tech Console Home"', async () => {
     const tenantInstanceAction = page.locator('a:has-text("Tenant Instance Settings")')
+    await page.waitForLoadState('networkidle')
     await page.getByRole('link', { name: 'Tenant Instance Settings' }).click()
     await page.waitForLoadState('networkidle')
     // Click the "Back to Tech Console Home" link
