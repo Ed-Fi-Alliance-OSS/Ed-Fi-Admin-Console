@@ -10,6 +10,7 @@ import {
 import {
   ThemeProvider, useTheme 
 } from 'next-themes'
+import { baseTheme } from '@edfi/admin-console-shared-sdk'
 import type { ThemeProviderProps } from 'next-themes'
 import * as React from 'react'
 import {
@@ -23,8 +24,16 @@ export interface ColorModeProviderProps {
 }
 
 export function ColorModeProvider({ children, ...props }: ColorModeProviderProps) {
+  // Get initial color mode from baseTheme if available
+  const initialColorMode = baseTheme.config?.initialColorMode || 'system';
+  
   return (
-    <ThemeProvider disableTransitionOnChange attribute="class" {...props}>
+    <ThemeProvider 
+      disableTransitionOnChange 
+      attribute="class" 
+      defaultTheme={initialColorMode}
+      {...props}
+    >
       {children}
     </ThemeProvider>
   )
@@ -39,28 +48,22 @@ export interface UseColorModeReturn {
 }
 
 export function useColorMode(): UseColorModeReturn {
-  // Use next-themes built-in hook
-  const { resolvedTheme, setTheme } = useTheme()
-
-  const toggleColorMode = () => {
-    setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')
-  }
-
+  // Always use light mode as requested
   return {
-    colorMode: (resolvedTheme || 'light') as ColorMode,
-    setColorMode: (mode) => setTheme(mode),
-    toggleColorMode,
+    colorMode: 'light' as ColorMode,
+    setColorMode: () => {}, // No-op since we're only using light mode
+    toggleColorMode: () => {}, // No-op since we're only using light mode
   }
 }
 
 export function useColorModeValue<T>(light: T, dark: T) {
-  const { colorMode } = useColorMode()
-  return colorMode === 'dark' ? dark : light
+  // Always return light value since we're only using light mode
+  return light
 }
 
 export function ColorModeIcon() {
-  const { colorMode } = useColorMode()
-  return colorMode === 'dark' ? <LuMoon /> : <LuSun />
+  // Always show sun icon for light mode
+  return <LuSun />
 }
 
 interface ColorModeButtonProps extends Omit<IconButtonProps, 'aria-label'> {}

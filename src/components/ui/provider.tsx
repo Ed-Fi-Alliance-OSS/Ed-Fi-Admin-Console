@@ -1,22 +1,26 @@
 'use client'
 
 import {
-  ChakraProvider, defaultSystem
+  ChakraProvider
 } from '@chakra-ui/react'
-import { system } from '../../theme'
+import { baseTheme } from '@edfi/admin-console-shared-sdk'
 import { ReactNode } from 'react'
+import { ColorModeProvider } from './color-mode'
+import { Toaster } from './toaster'
 
 export interface ProviderProps {
   children: ReactNode;
 }
 
 export function Provider({ children }: ProviderProps) {
-  // Use system if available, otherwise fall back to defaultSystem
-  const themeSystem = system || defaultSystem
-
+  // baseTheme from @edfi/admin-console-shared-sdk is already a v3 system
+  // so we can use it directly with ChakraProvider
   return (
-    <ChakraProvider value={themeSystem}>
-      {children}
+    <ChakraProvider value={baseTheme}>
+      <ColorModeProvider>
+        {children}
+        <Toaster />
+      </ColorModeProvider>
     </ChakraProvider>
   )
 }

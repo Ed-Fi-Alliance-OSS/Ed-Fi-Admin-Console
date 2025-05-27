@@ -123,18 +123,19 @@ const ODSInstanceTableWrapper = ({ tenants, tableMode, pickedInstance, onSelectI
           </Flex>
 
         </Flex>
-      </Flex>}
-
-      <Flex
+      </Flex>}      <Flex
         mt='16px'
         w='full'
+        boxShadow="md"
+        borderRadius="md"
+        overflow="hidden"
       >        <ODSInstanceManagementTable
           tableHeaders={[
             <ControlTableHeader headerData={{
               text: '',
               fieldName: '',
               sortedByField: orderBy.field,
-              showSorting: false,
+              showSorting: true,
               sortingType: orderBy.order,
               onSortAsc: () => {}, // No sorting for empty column
               onSortDesc: () => {}

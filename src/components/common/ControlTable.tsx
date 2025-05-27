@@ -33,16 +33,25 @@ const ControlTable = ({ headers, rows, thPadding, itemsCount, loading, paginatio
       borderColor='gray.300'
       borderRadius='4px'
       w='full'
+      boxShadow="sm"
+      overflow="hidden"
     >
       <Table.Root variant='outline'>
-        <Table.Header>
+        <Table.Header
+          bg="gray.50"
+          boxShadow="0 2px 4px rgba(0, 0, 0, 0.1)"
+          position="relative"
+          zIndex="1"
+        >
           <Table.Row>
             {headers.map((header, index) => 
               <Table.ColumnHeader 
                 key={index}
-                borderBottom='1px'
+                borderBottom='2px'
                 borderBottomColor='gray.300'
                 padding={thPadding}
+                bg='gray.50'
+                fontWeight="700"
               >
                 {header}
               </Table.ColumnHeader>)}
@@ -72,17 +81,21 @@ const ControlTable = ({ headers, rows, thPadding, itemsCount, loading, paginatio
         flexDir='column'
         padding='16px'
         w='full'
+        bg="white"
       >
         <Flex
           alignItems='center'
           h='35px'
           justifyContent='center'
           w='full'
+          borderRadius="md"
+          bg="gray.50"
         >
           <Text 
             fontFamily='Poppins'
             fontSize='16px'
             fontWeight='700'
+            color="gray.600"
           >
             There are 0 items to show
           </Text>

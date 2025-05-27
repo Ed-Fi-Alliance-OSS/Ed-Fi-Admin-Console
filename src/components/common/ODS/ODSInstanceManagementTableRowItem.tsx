@@ -58,8 +58,7 @@ const ODSInstanceManagementTableRowItem = ({ tableMode, selectedInstance, instan
     console.log('instance', instance)
   }, [])
 
-  return (
-    <>{tableMode != 'Display' && <Table.Cell w='80px'>
+  return (    <>{tableMode != 'Display' && <Table.Cell w='80px' bg='white'>
       <RadioGroup.Root
         value={selectedInstance?.id ?? ''}
         onChange={() => onSelectInstance(instance)}
@@ -70,9 +69,7 @@ const ODSInstanceManagementTableRowItem = ({ tableMode, selectedInstance, instan
           value={instance.id}
         />
       </RadioGroup.Root>
-    </Table.Cell>}
-
-      <Table.Cell maxW="250px" overflow="hidden" px={4} py={2}>
+    </Table.Cell>}      <Table.Cell maxW="250px" overflow="hidden" px={4} py={2} bg='white'>
       <Flex direction="column" overflow="hidden" w="100%">
           <Link
           color="blue.600"
@@ -92,9 +89,7 @@ const ODSInstanceManagementTableRowItem = ({ tableMode, selectedInstance, instan
           </RouterLink>
         </Link>
         </Flex>
-    </Table.Cell>
-
-      <Table.Cell>
+    </Table.Cell>      <Table.Cell>
       {metaDataLoading ? <Spinner /> : <ODSInstanceEdFiVersion version={edfiMetadata?.version} />}
     </Table.Cell>
 

@@ -25,7 +25,7 @@ export default function AppInput({ required, label, fieldName, description, plac
   return <FormikField name={fieldName}>
     {({ field, form }) => (
       <Field.Root
-        isInvalid={form.errors[fieldName] && form.touched[fieldName]}
+        invalid={form.errors[fieldName] && form.touched[fieldName]}
         mb={4}
       >
         <Field.Label >

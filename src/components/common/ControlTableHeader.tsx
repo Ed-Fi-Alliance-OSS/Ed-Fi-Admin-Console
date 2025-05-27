@@ -22,6 +22,8 @@ const ControlTableHeader = ({ headerData, justifyContent }: ControlTableHeaderPr
       alignItems='center'
       justifyContent={justifyContent ?? 'flex-start'}
       w='full'
+      p='2'
+      borderRadius='md'
     >
       <Text
         color='black'
@@ -38,20 +40,24 @@ const ControlTableHeader = ({ headerData, justifyContent }: ControlTableHeaderPr
         color='gray.600' 
         flexDir='column' 
         fontSize='12px'
-        ml='2px'
-        w='5px'
+        ml='3px'
+        alignItems='center'
       >
         <Flex
           flexDir='column'
           justifyContent='center'
+          alignItems='center'
           w='20px'
         >
           <Button 
             aria-labelledby={`sort-asc-${headerData.fieldName}`}
-            color={headerData.sortedByField === headerData.fieldName && headerData.sortingType === 'asc'? 'gray.700' : 'gray.500'}
+            color={headerData.sortedByField === headerData.fieldName && headerData.sortingType === 'asc'? 'black' : 'gray.500'}
             data-testid={`sort-asc-${headerData.fieldName}`}
-            h='3px'
-            minW='5px'
+            h='14px'
+            minW='20px'
+            p='0'
+            bg='transparent'
+            _hover={{ color: 'black' }}
             onClick={() => headerData.onSortAsc({ field: headerData.fieldName })}
           >
             <span
@@ -63,17 +69,19 @@ const ControlTableHeader = ({ headerData, justifyContent }: ControlTableHeaderPr
             <MdArrowDropUp 
               aria-label="Sort field ascending"
               focusable="true"
-              fontSize='10px'
+              fontSize='16px'
             />
           </Button>
 
           <Button 
             aria-labelledby={`sort-desc-${headerData.fieldName}`}
-            color={headerData.sortedByField === headerData.fieldName && headerData.sortingType === 'desc' ? 'gray.700' : 'gray.500'}
+            color={headerData.sortedByField === headerData.fieldName && headerData.sortingType === 'desc' ? 'black' : 'gray.500'}
             data-testid={`sort-desc-${headerData.fieldName}`}
-            h='3px'
-            minW='5px'
-            mt='5px'
+            h='14px'
+            minW='20px'
+            p='0'
+            bg='transparent'
+            _hover={{ color: 'black' }}
             onClick={() => headerData.onSortDesc({ field: headerData.fieldName })}
           >
             <span
@@ -85,7 +93,7 @@ const ControlTableHeader = ({ headerData, justifyContent }: ControlTableHeaderPr
             <MdArrowDropDown 
               aria-label="Sort field descending" 
               focusable="true"
-              fontSize='10px'
+              fontSize='16px'
             />
           </Button>
         </Flex>

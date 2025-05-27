@@ -87,7 +87,6 @@ function MultiInput<T extends string | number>({ filterInput, fieldName, label, 
   }
 
   useEffect(() => {
-    console.log('🚘 BEFORE: setting initial vals', initialVals, snapshot)
     if (snapshot === JSON.stringify(initialVals)) {
       return
     }
@@ -99,10 +98,6 @@ function MultiInput<T extends string | number>({ filterInput, fieldName, label, 
     if (initialVals.length === 0) {
       return
     }
-
-    console.log('🚘 setting initial vals', initialVals)
-
-
     dispatch({
       type: 'set',
       data: initialVals as string[]
