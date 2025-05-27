@@ -54,16 +54,19 @@ const AdminConsoleTabsMenu = ({ children, tabsList, initialIndex, contentMt, inc
       >
         <Flex w='full'>
           <Flex role="tablist">
-            {tabsList.map((tab, idx) => (
-              <Flex
+            {tabsList.map((tab, idx) => (              <Flex
                 key={tab}
                 _notFirst={{ marginLeft: '32px' }}
                 aria-selected={idx === activeTabIndex}
+                borderBottom={idx === activeTabIndex ? '2px solid' : 'none'}
+                borderColor="blue.600"
                 color={idx === activeTabIndex ? 'blue.600' : 'inherit'}
                 cursor="pointer"
                 fontFamily='Poppins'
                 fontWeight='bold'
                 padding='0'
+                paddingBottom='5px'
+                position="relative"
                 role="tab"
                 onClick={(e) => {
                   e.preventDefault(); // Prevent default navigation
@@ -77,10 +80,10 @@ const AdminConsoleTabsMenu = ({ children, tabsList, initialIndex, contentMt, inc
         </Flex>
 
         {actionControl}
-      </Flex>
-
+      </Flex>      {/* Remove or hide the default indicator since we're using direct borders */}
       <Tabs.Indicator>
         <Box 
+          display="none" /* Hide the default indicator */
           bg="blue.600"
           borderRadius="1px"
           h="2px"
