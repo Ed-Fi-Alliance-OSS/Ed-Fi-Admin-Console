@@ -27,6 +27,9 @@ We welcome contributions and feedback, but please use this project at your own r
 # Ignores the admin console image
 ./start-all-services-dev.ps1 $true
 ```
+> [!NOTE]
+> You can also test local changes of Admin API, Healthcheck and/or Instance management workers
+> to see more details: [Test local changes](/eng/docker-compose/local/README.md)
 * Open a terminal and install the dependencies using ```npm i``` 
 * Create a new file called `config.json` based on `config.example.ports.json`
 * Execute the command ```npm run dev``` 
