@@ -91,6 +91,10 @@ const PartnersAndApplicationAccordion = ({
           w='full'
         >
           <Button
+            bg='primaryBlue600'
+            color='white'
+            border='1px'
+            borderRadius='4px 0px 0px 4px'
             colorScheme='blue'
             size='xs'
             variant='solid'
@@ -195,6 +199,7 @@ const PartnersAndApplicationAccordion = ({
                     >
                       <Button 
                         colorScheme='blue'
+                        bg='primaryBlue600'
                         minW='39px'
                         size='xs'
                         variant='solid'

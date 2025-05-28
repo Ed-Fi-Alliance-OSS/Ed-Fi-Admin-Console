@@ -34,6 +34,7 @@ const Layout = ({ auth, edxAppConfig, content, notificationBarMessage, simpleLay
       minH='100vh'
       position='relative'
       w="full"
+      bg="#F7FAFC" /* Explicitly set background color */
     >
       <Flex
         className="one"

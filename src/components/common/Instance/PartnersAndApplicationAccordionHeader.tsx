@@ -24,48 +24,53 @@ const PartnersAndApplicationAccordionHeader = ({ sortByPartnerDesc, sortByPartne
       <Flex
         flexDir='column'
         justifyContent='center'
-        w='20px'
+        alignItems='center'
+        w='32px'
+        gap='2px'
       >
         <Button 
-          aria-labelledby="sort-asc-company"
-          color={sortingType === 'asc'? 'gray.700' : 'gray.500'}
+          aria-label="Sort ascending by vendor"
+          background='transparent'
+          color={sortingType === 'asc' ? 'blue.500' : 'gray.400'}
           data-testid="sort-asc-company"
-          h='3px'
-          minW='5px'
+          h='16px'
+          minW='16px'
+          p='0'
           onClick={() => sortByPartnerAsc({ field: 'company' })}
+          _hover={{
+            background: 'gray.50',
+            color: sortingType === 'asc' ? 'blue.600' : 'gray.600'
+          }}
+          _focus={{
+            boxShadow: '0 0 0 2px var(--chakra-colors-blue-500)'
+          }}
         >
-          <span
-            hidden
-            id="sort-asc-company"
-          >Sort ascending
-          </span>
-
           <TriangleUpIcon 
-            aria-label="Sort field ascending"
-            focusable="true"
-            fontSize='10px'
+            aria-hidden="true"
+            size={14}
           />
         </Button>
 
         <Button 
-          aria-labelledby="sort-desc-company"
-          color={sortingType === 'desc' ? 'gray.700' : 'gray.500'}
+          aria-label="Sort descending by vendor"
+          background='transparent'
+          color={sortingType === 'desc' ? 'blue.500' : 'gray.400'}
           data-testid="sort-desc-company"
-          h='3px'
-          minW='5px'
-          mt='5px'
+          h='16px'
+          minW='16px'
+          p='0'
           onClick={() => sortByPartnerDesc({ field: 'company' })}
+          _hover={{
+            background: 'gray.50',
+            color: sortingType === 'desc' ? 'blue.600' : 'gray.600'
+          }}
+          _focus={{
+            boxShadow: '0 0 0 2px var(--chakra-colors-blue-500)'
+          }}
         >
-          <span
-            hidden
-            id="sort-desc-company"
-          >Sort descending
-          </span>
-
           <TriangleDownIcon 
-            aria-label="Sort field descending" 
-            focusable="true"
-            fontSize='10px'
+            aria-hidden="true"
+            size={14}
           />
         </Button>
       </Flex>

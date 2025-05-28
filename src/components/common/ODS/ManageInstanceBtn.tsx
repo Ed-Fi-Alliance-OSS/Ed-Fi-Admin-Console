@@ -21,7 +21,8 @@ const ManageInstanceBtn = ({ instance }: ManageInstanceBtnProps) => {
   return (
     <Flex w='80px'>
       <Button 
-        color='primaryBlue600'
+        bg="primaryBlue600"
+        color="white"
         minW='67px'
         size='xs'
         variant="solid"

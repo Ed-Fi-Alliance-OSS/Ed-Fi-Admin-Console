@@ -14,19 +14,22 @@ const ControlTableRow = ({ children, removeBorders }: ControlTableRowProps) => {
   return (
     <Table.Row 
       _notLast={{
-        borderBottom: removeBorders? '0px' : '1px',
-        borderBottomColor: 'gray.200' 
+        borderBottom: removeBorders? '0px' : '2px',
+        borderBottomColor: 'gray.200',
+        borderBottomStyle: 'solid'
       }}
       borderTop={removeBorders? '0px' : '1px'} 
-      borderTopColor='gray.200'
+      borderTopColor='gray.300'
       position='relative'
       w='full'
       bg='white'
+      _even={{ bg: 'gray.50' }}
       _hover={{ 
-        bg: 'gray.50',
-        transition: 'background-color 0.2s'
+        bg: 'blue.50',
+        boxShadow: 'sm',
+        transition: 'all 0.2s'
       }}
-      transition="background-color 0.2s"
+      transition="all 0.2s"
     >
       {children}
     </Table.Row>

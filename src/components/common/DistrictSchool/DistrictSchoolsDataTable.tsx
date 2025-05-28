@@ -28,6 +28,7 @@ const DistrictSchoolsDataTable = ({ schools }: DistrictSchoolsDataTableProps) =>
             p='0'
           >
             <Table.ColumnHeader 
+              bg='gray.100'
               color='gray.700'
               fontFamily='Poppins'
               fontSize='14px'
@@ -38,6 +39,7 @@ const DistrictSchoolsDataTable = ({ schools }: DistrictSchoolsDataTableProps) =>
             </Table.ColumnHeader>
 
             <Table.ColumnHeader
+              bg='gray.100'
               color='gray.700'
               fontFamily='Poppins'
               fontSize='14px'
@@ -48,6 +50,7 @@ const DistrictSchoolsDataTable = ({ schools }: DistrictSchoolsDataTableProps) =>
             </Table.ColumnHeader>
 
             <Table.ColumnHeader
+              bg='gray.100'
               color='gray.700'
               fontFamily='Poppins'
               fontSize='14px'

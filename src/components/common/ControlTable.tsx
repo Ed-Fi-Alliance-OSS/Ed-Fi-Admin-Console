@@ -36,7 +36,7 @@ const ControlTable = ({ headers, rows, thPadding, itemsCount, loading, paginatio
       boxShadow="sm"
       overflow="hidden"
     >
-      <Table.Root variant='outline'>
+      <Table.Root variant='outline' width="100%">
         <Table.Header
           bg="gray.50"
           boxShadow="0 2px 4px rgba(0, 0, 0, 0.1)"
@@ -49,6 +49,9 @@ const ControlTable = ({ headers, rows, thPadding, itemsCount, loading, paginatio
                 key={index}
                 borderBottom='2px'
                 borderBottomColor='gray.300'
+                borderRight="1px"
+                borderRightColor="gray.200"
+                _last={{ borderRight: 'none' }}
                 padding={thPadding}
                 bg='gray.50'
                 fontWeight="700"
@@ -58,7 +61,10 @@ const ControlTable = ({ headers, rows, thPadding, itemsCount, loading, paginatio
           </Table.Row>
         </Table.Header>
 
-        <Table.Body>
+        <Table.Body
+          borderTop="2px"
+          borderTopColor="gray.300"
+        >
           {rows}
         </Table.Body>
       </Table.Root>

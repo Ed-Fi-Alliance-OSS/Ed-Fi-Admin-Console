@@ -44,7 +44,8 @@ const ManageUserControls = ({ userId, user, status, isDeleting, isDeletingInvita
     >
       <Button 
         borderRadius='4px 0px 0px 4px'
-        color='primaryBlue600'
+        bg='primaryBlue600'
+        color='white'
         fontSize='xs'
         loading={false}
         minW='39px'

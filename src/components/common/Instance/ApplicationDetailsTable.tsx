@@ -30,8 +30,8 @@ const ApplicationDetailsTable = ({ applicationsList, isDeleting, onEditApplicati
     >
       <Table.Root>
         <Table.Header bg='gray.100'>
-          <Table.Row>
-            <Table.ColumnHeader
+          <Table.Row>            <Table.ColumnHeader
+              bg='gray.100'
               color='gray.700'
               fontFamily='Poppins'
               fontSize='14px'
@@ -41,6 +41,7 @@ const ApplicationDetailsTable = ({ applicationsList, isDeleting, onEditApplicati
             </Table.ColumnHeader>
 
             <Table.ColumnHeader
+              bg='gray.100'
               color='gray.700'
               fontFamily='Poppins'
               fontSize='14px'
@@ -50,6 +51,7 @@ const ApplicationDetailsTable = ({ applicationsList, isDeleting, onEditApplicati
             </Table.ColumnHeader>
 
             <Table.ColumnHeader
+              bg='gray.100'
               color='gray.700'
               fontFamily='Poppins'
               fontSize='14px'
@@ -58,7 +60,7 @@ const ApplicationDetailsTable = ({ applicationsList, isDeleting, onEditApplicati
             >Permissions
             </Table.ColumnHeader>
 
-            <Table.ColumnHeader></Table.ColumnHeader>
+            <Table.ColumnHeader bg='gray.100'></Table.ColumnHeader>
           </Table.Row>
         </Table.Header>
 
@@ -108,7 +110,10 @@ const ApplicationDetailsTable = ({ applicationsList, isDeleting, onEditApplicati
                 >
                   <Button 
                     // borderRadius='4px 0px 0px 4px'
-                    color='primaryBlue600'
+                    bg='primaryBlue600'
+                    color='white'
+                    border='1px'
+                    borderRadius='4px 0px 0px 4px'
                     minW='39px'
                     size='xs'
                     variant='solid'

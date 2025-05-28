@@ -24,14 +24,13 @@ export interface ColorModeProviderProps {
 }
 
 export function ColorModeProvider({ children, ...props }: ColorModeProviderProps) {
-  // Get initial color mode from baseTheme if available
-  const initialColorMode = baseTheme.config?.initialColorMode || 'system';
-  
+  // Force light mode
   return (
-    <ThemeProvider 
-      disableTransitionOnChange 
-      attribute="class" 
-      defaultTheme={initialColorMode}
+    <ThemeProvider
+      attribute="class"
+      defaultTheme="light"
+      enableSystem={false}
+      disableTransitionOnChange
       {...props}
     >
       {children}

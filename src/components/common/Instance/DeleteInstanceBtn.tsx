@@ -28,10 +28,10 @@ const checkInstanceStatus = (instance: ODSInstance) => {
 const DeleteInstanceBtn = ({ instance, showDeleteInstanceModal, onShowDeleteInstanceModal, onCloseDeleteIntanceModal }: DeleteInstanceBtnProps) => {
 
   return (
-    <Box display={checkInstanceStatus(instance)}>
-      <Button
+    <Box display={checkInstanceStatus(instance)}>      <Button
         alignItems='center'
-        border='red.600'
+        bg='red.600'
+        border='1px solid transparent'
         colorScheme='red'
         display='flex'
         maxW='auto'
@@ -39,17 +39,18 @@ const DeleteInstanceBtn = ({ instance, showDeleteInstanceModal, onShowDeleteInst
         padding='5'
         variant='solid'
         w='170px'
+        _hover={{ bg: 'red.700' }}
+        _active={{ bg: 'red.800' }}
         onClick={onShowDeleteInstanceModal}
-      >
-        <MdDelete
+      ><MdDelete
           aria-hidden="true"
-          color='white.600'
+          color='white'
           focusable="false"
           fontSize='15px'
         />
 
         <Text
-          color='white.600'
+          color='white'
           fontFamily='Poppins'
           fontSize='md'
           fontWeight='400'

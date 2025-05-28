@@ -7,16 +7,18 @@ import { baseTheme } from '@edfi/admin-console-shared-sdk'
 import { ReactNode } from 'react'
 import { ColorModeProvider } from './color-mode'
 import { Toaster } from './toaster'
+import { system } from '../../theme'
+import { GlobalStyles } from './global-styles'
 
 export interface ProviderProps {
   children: ReactNode;
 }
 
 export function Provider({ children }: ProviderProps) {
-  // baseTheme from @edfi/admin-console-shared-sdk is already a v3 system
-  // so we can use it directly with ChakraProvider
+  // Use our local system which now merges baseTheme and local theme
   return (
-    <ChakraProvider value={baseTheme}>
+    <ChakraProvider value={system}>
+      <GlobalStyles />
       <ColorModeProvider>
         {children}
         <Toaster />

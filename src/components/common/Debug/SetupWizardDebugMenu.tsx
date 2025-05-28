@@ -99,7 +99,8 @@ const SetupWizardDebugMenu = ({ currentResetStep, currentUpdateStep, showTesting
         w='670'
       >
         <Button
-          color='primaryBlue600'
+          bg='primaryBlue600'
+          color='white'
           loading={updatingStep}
           mb='10px'
           mt='16px'
@@ -123,7 +124,8 @@ const SetupWizardDebugMenu = ({ currentResetStep, currentUpdateStep, showTesting
         w='650'
       >
         <Button
-          color='primaryBlue600'
+          bg='primaryBlue600'
+          color='white'
           loading={resetingAllSteps}
           size='sm'
           variant='solid'

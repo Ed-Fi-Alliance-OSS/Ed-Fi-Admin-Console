@@ -32,7 +32,8 @@ const APIClientsTabHeader = ({ onAddAPIClient }: APIClientsTabHeaderProps) => {
         </Button>
 
         <Button
-          color='primaryBlue600'
+          bg='primaryBlue600'
+          color='white'
           fontSize='xs'
           minW='5px'
           ml='8px'

@@ -96,26 +96,33 @@ const ODSInstanceTableWrapper = ({ tenants, tableMode, pickedInstance, onSelectI
           <Flex
             alignItems='flex-end'
             justifyContent='end'
-            width='full'
-          >            <Button
+            width='full'          >            <Button
+              bg='white'
               border='1px'
-              borderColor={isFetchingData ? 'gray.400' : 'blue.400'}
-              color={isFetchingData ? 'gray.600' : 'blue.600'}
+              borderColor={isFetchingData ? 'gray.400' : 'secondaryBlue600'}
+              boxShadow='0 0 0 3px rgba(59, 130, 246, 0.3)'
+              color={isFetchingData ? 'gray.600' : 'secondaryBlue600'}
               ml='16px'
               padding='10px'
               size='sm'
               type="button"
+              variant='outline'
+              _hover={{ bg: 'blue.50', borderColor: 'blue.600', boxShadow: '0 0 0 3px rgba(59, 130, 246, 0.5)' }}
               onClick={onRefreshBtnClick}
             >
               { isFetchingData ? 'Loading...' : 'Refresh' }
             </Button>            <Button
+              bg='white'
               border='1px'
-              borderColor='blue.400'
-              color='blue.600'
+              borderColor='primaryBlue400'
+              boxShadow='0 0 0 3px rgba(59, 130, 246, 0.3)'
+              color='primaryBlue600'
               ml='16px'
               padding='10px'
               size='sm'
               type="button"
+              variant='outline'
+              _hover={{ bg: 'blue.50', borderColor: 'blue.600', boxShadow: '0 0 0 3px rgba(59, 130, 246, 0.5)' }}
               onClick={onAddBtnClick}
             >
               Add Instance
