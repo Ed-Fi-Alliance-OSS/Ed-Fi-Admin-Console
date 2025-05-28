@@ -17,7 +17,7 @@ export interface ProviderProps {
 export function Provider({ children }: ProviderProps) {
   // Use our local system which now merges baseTheme and local theme
   return (
-    <ChakraProvider value={system}>
+    <ChakraProvider value={baseTheme}>
       <GlobalStyles />
       <ColorModeProvider>
         {children}
