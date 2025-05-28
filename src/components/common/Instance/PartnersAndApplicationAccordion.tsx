@@ -91,12 +91,21 @@ const PartnersAndApplicationAccordion = ({
           w='full'
         >
           <Button
-            bg='primaryBlue600'
-            color='white'
+            bg='blue.600'
             border='1px'
-            borderRadius='4px 0px 0px 4px'
-            colorScheme='blue'
+            borderColor='blue.600'
+            boxShadow='0 0 0 1px rgba(59, 130, 246, 0.3)'
+            color='white'
+            ml='16px'
+            padding='10px'
             size='xs'
+            type="button"
+            fontFamily='Poppins'
+            fontSize='11px'
+            fontWeight='600'
+            lineHeight='1.2'
+            _hover={{ bg: 'blue.700', borderColor: 'blue.700', boxShadow: '0 0 0 3px rgba(59, 130, 246, 0.5)' }}
+            borderRadius='4px 0px 0px 4px'
             variant='solid'
             w='151px'
             onClick={onAddApplication}
@@ -198,10 +207,22 @@ const PartnersAndApplicationAccordion = ({
                       w='150px'
                     >
                       <Button 
-                        colorScheme='blue'
-                        bg='primaryBlue600'
-                        minW='39px'
+                        bg='blue.600'
+                        border='1px'
+                        borderColor='blue.600'
+                        boxShadow='0 0 0 1px rgba(59, 130, 246, 0.3)'
+                        color='white'
+                        ml='16px'
+                        padding='10px'
                         size='xs'
+                        type="button"
+                        fontFamily='Poppins'
+                        fontSize='11px'
+                        fontWeight='600'
+                        lineHeight='1.2'
+                        _hover={{ bg: 'blue.700', borderColor: 'blue.700', boxShadow: '0 0 0 3px rgba(59, 130, 246, 0.5)' }}
+                        borderRadius='4px 0px 0px 4px'
+                        minW='39px'
                         variant='solid'
                         onClick={() => onEditVendor(partner)}
                       >

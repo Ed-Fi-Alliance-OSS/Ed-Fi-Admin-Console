@@ -110,12 +110,22 @@ const ApplicationDetailsTable = ({ applicationsList, isDeleting, onEditApplicati
                 >
                   <Button 
                     // borderRadius='4px 0px 0px 4px'
-                    bg='primaryBlue600'
-                    color='white'
+                    bg='blue.600'
                     border='1px'
+                    borderColor='blue.600'
+                    boxShadow='0 0 0 1px rgba(59, 130, 246, 0.3)'
+                    color='white'
+                    ml='16px'
+                    padding='10px'
+                    size='xs'
+                    type="button"
+                    fontFamily='Poppins'
+                    fontSize='11px'
+                    fontWeight='600'
+                    lineHeight='1.2'
+                    _hover={{ bg: 'blue.700', borderColor: 'blue.700', boxShadow: '0 0 0 3px rgba(59, 130, 246, 0.5)' }}
                     borderRadius='4px 0px 0px 4px'
                     minW='39px'
-                    size='xs'
                     variant='solid'
                     onClick={() => onEditApplication(application)}
                   >
