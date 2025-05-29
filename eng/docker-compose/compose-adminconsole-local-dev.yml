@@ -7,6 +7,8 @@ version: "3.8"
 services:
 
   admin-console:
+    # Uncomment the following line to use a pre-built image instead of building from source.
+    # image: edfialliance/admin-console-web:${ADMINCONSOLE_TAG:-pre}
     build:
       context: ../../
       dockerfile: Dockerfile.dev

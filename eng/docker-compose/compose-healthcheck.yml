@@ -6,6 +6,10 @@
 services:
   healthcheck-service:
     image: edfialliance/admin-console-healthcheck:${HEALTHCHECK_WORKER_TAG}
+    # Uncomment the following lines to build the image from a Dockerfile instead of pulling from a registry.
+    # build:
+    #   context: ../../../Ed-Fi-Admin-Console-Health-Check-Service
+    #   dockerfile: Docker/Dockerfile
     environment:
       EdFi_AdminConsole_AppSettings__IgnoresCertificateErrors: true
       EdFi_AdminConsole_AppSettings__MaxRetryAttempts: ${MAX_RETRY_ATTEMPTS:-5}
@@ -21,6 +25,9 @@ services:
       EdFi_AdminConsole_AdminApiSettings__Scope: ${SCOPE:-edfi_admin_api/full_access}
     volumes:
       - vol-svc-healthcheck-logs:/var/log/achealthsvc
+    container_name: ed-fi-healthcheck-service
+
+    
 
 volumes:
   vol-svc-healthcheck-logs:
