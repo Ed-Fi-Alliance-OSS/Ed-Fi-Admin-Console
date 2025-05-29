@@ -39,8 +39,6 @@ const useSetUpWizardGeneration = ({ instance }: UseSetUpWizardGenerationProps) =
       return
     } 
 
-    console.log('generate instance', instance.instanceId)
-    console.log('started fetching instance OB')
     setIsLoadingSetUpWizard(true)
     
     const data = instance.verificationStatus
