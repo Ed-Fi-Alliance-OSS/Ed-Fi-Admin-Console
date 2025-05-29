@@ -78,10 +78,6 @@ const InstanceDataPreview = ({ instance }: InstanceDataPreviewProps) => {
             error={dataHealthFetchError}
           /> : <>
             <InstanceDataPreviewField
-              text="Reporting Periods"
-              value={dataHealthInfo.reportingPeriodExts}
-            />
-            <InstanceDataPreviewField
               text="Sections"
               value={dataHealthInfo.sections}
             />
@@ -102,20 +98,12 @@ const InstanceDataPreview = ({ instance }: InstanceDataPreviewProps) => {
               value={dataHealthInfo.studentSchoolAttendanceEvents}
             />
             <InstanceDataPreviewField
-              text="Student Reporting Period Attendance"
-              value={dataHealthInfo.basicReportingPeriodAttendances}
-            />
-            <InstanceDataPreviewField
               text="Student Discipline Incidents"
               value={dataHealthInfo.studentDisciplineIncidentBehaviorAssociations}
             />
             <InstanceDataPreviewField
               text="Student Course History"
               value={dataHealthInfo.courseTranscripts}
-            />
-            <InstanceDataPreviewField
-              text="Staff Employment"
-              value={dataHealthInfo.staffEducationOrganizationEmploymentAssociations}
             />
             <InstanceDataPreviewField
               text="Staff Assignment (By Role)"
