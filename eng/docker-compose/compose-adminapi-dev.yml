@@ -93,6 +93,12 @@ services:
 
   adminapi:
     image: edfialliance/ods-admin-api:${ADMINAPI_TAG}
+    # Uncomment the following lines to build the image from a Dockerfile instead of pulling from a registry.
+    # build:
+    #   context: ../../../AdminAPI-2.0/Docker
+    #   additional_contexts:
+    #     assets: ../../../AdminAPI-2.0
+    #   dockerfile: dev.pgsql.Dockerfile
     profiles: ["default"]
     environment:
       ADMIN_API_VERSION: "${ADMIN_API_VERSION:-2.2.0}"

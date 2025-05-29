@@ -22,6 +22,10 @@ We welcome contributions and feedback, but please use this project at your own r
 
 ## Developer Notes
 
+> [!NOTE]
+> You can also test local changes of Admin API, Healthcheck and/or Instance management workers
+> Check the docker compose files and uncomment lines needed before running the powershell script.
+
 * Follow the guide [Docker Compose Test and Demonstration Configurations](/eng/docker-compose/README.md) and run the script:
 ```pwsh
 # Ignores the admin console image

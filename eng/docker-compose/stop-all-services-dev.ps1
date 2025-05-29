@@ -10,14 +10,14 @@ param (
     $v
 )
 
-$composeFilePath = Join-Path $PSScriptRoot 'compose-keycloak-dev.yml'
-$composeOds = Join-Path $PSScriptRoot  'compose-ods-multi-tenant-dev.yml'
-$composeLocalAdminApi = Join-Path $PSScriptRoot  'compose-adminapi-dev.yml'
-$composeLocalAdminConsole = Join-Path $PSScriptRoot  'compose-adminconsole-local-dev.yml'
-$composeHealthCheckWorker = Join-Path $PSScriptRoot compose-Health-Check-Worker-Process.yml
-$composeInstanceManagementWorker = Join-Path $PSScriptRoot compose-Instance-Management-Worker-Process.yml
+$composeFilePath = Join-Path $PSScriptRoot compose-keycloak-dev.yml
+$composeOds = Join-Path $PSScriptRoot  compose-ods-multi-tenant-dev.yml
+$composeLocalAdminApi = Join-Path $PSScriptRoot  compose-adminapi-dev.yml
+$composeLocalAdminConsole = Join-Path $PSScriptRoot  compose-adminconsole-local-dev.yml
+$composeHealthCheckWorker = Join-Path $PSScriptRoot compose-healthcheck.yml
+$composeInstanceManagementWorker = Join-Path $PSScriptRoot compose-instance-management.yml
 
-$envFilePath = Join-Path $PSScriptRoot '.env'
+$envFilePath = Join-Path $PSScriptRoot .env
 
 $params = @(
     "--profile", "default",
