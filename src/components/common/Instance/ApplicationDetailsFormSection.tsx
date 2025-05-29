@@ -72,17 +72,23 @@ const ApplicationDetailsFormSection = ({ applicationData, mode, errors, operatio
             text="Vendor"
           />
 
-          <CustomSelect 
-            options={vendorOptions.map(option => ({
-              text: option.company ?? '',
-              value: option.id ?? 0 
-            }))}
-            disabled={mode == 'edit'? true : false}
-            error={errors && errors['vendor'] && errors['vendor'].message}
-            id="vendor"
-            value={applicationData.vendorId} 
-            onChange={(e) => onSelectVendor(parseInt(e.target.value))}
-          />
+          <Flex 
+            position="relative" 
+            w="full"
+            opacity={mode === 'edit' ? 0.6 : 1}
+            pointerEvents={mode === 'edit' ? "none" : "auto"}
+          >
+            <CustomSelect 
+              options={vendorOptions.map(option => ({
+                text: option.company ?? '',
+                value: option.id ?? 0 
+              }))}
+              error={errors && errors['vendor'] && errors['vendor'].message}
+              id="vendor"
+              value={applicationData.vendorId} 
+              onChange={(e) => onSelectVendor(parseInt(e.target.value))}
+            />
+          </Flex>
         </Field.Root>
 
         <Field.Root mt='16px'>
@@ -91,17 +97,23 @@ const ApplicationDetailsFormSection = ({ applicationData, mode, errors, operatio
             text="Claim Sets"
           />
 
-          <CustomSelect 
-            options={claimSetOptions.map(option => ({
-              text: option.name,
-              value: option.name 
-            }))}
-            disabled={mode == 'edit'? true : false}
-            error={errors && errors['claimset'] && errors['claimset'].message}
-            id="claimset"
-            value={applicationData.claimSetName}
-            onChange={(e) => onSelectClaimSet(e.target.value)}
-          />
+          <Flex 
+            position="relative" 
+            w="full"
+            opacity={mode === 'edit' ? 0.6 : 1}
+            pointerEvents={mode === 'edit' ? "none" : "auto"}
+          >
+            <CustomSelect 
+              options={claimSetOptions.map(option => ({
+                text: option.name,
+                value: option.name 
+              }))}
+              error={errors && errors['claimset'] && errors['claimset'].message}
+              id="claimset"
+              value={applicationData.claimSetName}
+              onChange={(e) => onSelectClaimSet(e.target.value)}
+            />
+          </Flex>
         </Field.Root>
       </Flex>
     </Flex>

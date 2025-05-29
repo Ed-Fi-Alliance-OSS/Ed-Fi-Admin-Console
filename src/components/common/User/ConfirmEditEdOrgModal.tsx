@@ -7,7 +7,7 @@ import {
   Button, Flex, Text 
 } from '@chakra-ui/react'
 import { EdOrgViewItem } from '../../../hooks/adminActions/users/useUserEducationOrganizations.types'
-import EDXCustomModal from '../EDXCustomModal'
+import EDXCustomModal, { NoButton } from '../EDXCustomModal'
 
 interface ConfirmDeleteUserModalProps {
     show: boolean 
@@ -32,17 +32,12 @@ const ConfirmEditEdOrgModal = ({ edOrg, show, isSavingEdOrg, onEditEdOrg, onClos
         alignItems='flex-start'
         w='full'
       >
-        <Button
-          border='1px'
-          borderColor='gray.400'
-          color='red.600'
+        <NoButton
           disabled={isSavingEdOrg}
-          fontSize='sm'
-          padding='10px'
           onClick={onClose}
         >
           No, Cancel
-        </Button>
+        </NoButton>
 
         <Button
           bg='#dd3827'

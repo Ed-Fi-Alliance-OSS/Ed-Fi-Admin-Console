@@ -32,9 +32,10 @@ interface MultiInputProps<T> {
   filterInput?: KeyboardEventHandler<HTMLInputElement>
   label?: string
   fieldName?: string
+  disabled?: boolean
 }
 
-function MultiInput<T extends string | number>({ filterInput, fieldName, label, values: initialVals, onChange, transformText }: MultiInputProps<T>) {
+function MultiInput<T extends string | number>({ filterInput, fieldName, label, values: initialVals, onChange, transformText, disabled }: MultiInputProps<T>) {
   const [ snapshot, setSnapshot ] = useReducer((state, action) => JSON.stringify(state) === JSON.stringify(action) ? state : action, {})
 
   const [ values, dispatch ] = useReducer((state, action: { type: 'set' | 'add' | 'rm', data: string | string[] }) => {
@@ -72,14 +73,15 @@ function MultiInput<T extends string | number>({ filterInput, fieldName, label, 
   }, [ values ])
 
   function addVal(data: string) {
+    if (disabled) return; // Don't add values if disabled
     dispatch({
       type: 'add',
       data
     })
-
   }
 
   function rmVal(data: string) {
+    if (disabled) return; // Don't remove values if disabled
     dispatch({
       type: 'rm',
       data
@@ -127,57 +129,64 @@ function MultiInput<T extends string | number>({ filterInput, fieldName, label, 
         >{label}
         </Flex>
         </Field.Label>
-
-        <AutoComplete
-          closeOnSelect
-          creatable
-          focusInputOnSelect
-          multiple
-          defaultValues={values}
-          //id={fieldName}
-          openOnFocus={false}
-          suggestWhenEmpty={false}
-          onSelectOption={({ item }) => addVal(item.value)}
-          onTagRemoved={rmVal}
+        
+        <Flex 
+          position="relative" 
+          w="full"
+          opacity={disabled ? 0.6 : 1}
+          pointerEvents={disabled ? "none" : "auto"}
         >
-          <AutoCompleteInput
-            enterKeyHint='enter'
-            placeholder={label}
-            size='xs'
-            variant="flushed"
-            wordBreak="break-all"
-            onKeyUp={filterInput}
+          <AutoComplete
+            closeOnSelect
+            creatable
+            focusInputOnSelect
+            multiple
+            defaultValues={values}
+            //id={fieldName}
+            openOnFocus={false}
+            suggestWhenEmpty={false}
+            onSelectOption={({ item }) => addVal(item.value)}
+            onTagRemoved={rmVal}
           >
-            {values.filter(tag => tag !== '').map((tag, tid) => (
-              <AutoCompleteTag
-                key={tid}
-                label={tag}
-                maxW="100%"
-                px={2}
-                py={1}
-                variant="solid"
-                whiteSpace="normal"
-                wordBreak="break-all"
-                onRemove={() => rmVal(tag)}
-              />
-            ))}
-          </AutoCompleteInput>
+            <AutoCompleteInput
+              enterKeyHint='enter'
+              placeholder={label}
+              size='xs'
+              variant="flushed"
+              wordBreak="break-all"
+              onKeyUp={filterInput}
+            >
+              {values.filter(tag => tag !== '').map((tag, tid) => (
+                <AutoCompleteTag
+                  key={tid}
+                  label={tag}
+                  maxW="100%"
+                  px={2}
+                  py={1}
+                  variant="solid"
+                  whiteSpace="normal"
+                  wordBreak="break-all"
+                  onRemove={() => rmVal(tag)}
+                />
+              ))}
+            </AutoCompleteInput>
 
 
-          <AutoCompleteList fontSize={10}>
-            <AutoCompleteCreatable>
-              {({ value }) => (<Flex gap={2}>Add <Badge
-                maxWidth="100%"
-                paddingX={2}
-                size="xs"
-                whiteSpace="normal"
-                wordBreak="break-all"
-              >{isFunction(transformText) ? transformText?.(value) : value}
-              </Badge> as option...
-              </Flex>)}
-            </AutoCompleteCreatable>
-          </AutoCompleteList>
-        </AutoComplete>
+            <AutoCompleteList fontSize={10}>
+              <AutoCompleteCreatable>
+                {({ value }) => (<Flex gap={2}>Add <Badge
+                  maxWidth="100%"
+                  paddingX={2}
+                  size="xs"
+                  whiteSpace="normal"
+                  wordBreak="break-all"
+                >{isFunction(transformText) ? transformText?.(value) : value}
+                </Badge> as option...
+                </Flex>)}
+              </AutoCompleteCreatable>
+            </AutoCompleteList>
+          </AutoComplete>
+        </Flex>
       </Field.Root>
     </Flex>
   )

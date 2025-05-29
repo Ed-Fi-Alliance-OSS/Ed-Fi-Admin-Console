@@ -10,14 +10,17 @@ interface ModalFormProps {
     content: JSX.Element
     height: string 
     width: string 
+    maxHeight?: string
 }
 
-const ModalForm = ({ header, content, height, width }: ModalFormProps) => {
+const ModalForm = ({ header, content, height, width, maxHeight }: ModalFormProps) => {
   return (
     <form style={{
       display: 'flex',
       height,
-      width 
+      width,
+      maxHeight: maxHeight || 'none',
+      overflow: maxHeight ? 'auto' : 'visible'
     }}
     >
       <Flex 
@@ -26,6 +29,8 @@ const ModalForm = ({ header, content, height, width }: ModalFormProps) => {
         h='full'
         padding='32px 34px'
         w='full'
+        overflow="hidden"
+        display="flex"
       >
         <Flex w='full'>
           {header}
@@ -34,6 +39,8 @@ const ModalForm = ({ header, content, height, width }: ModalFormProps) => {
         <Flex
           mt='32px'
           w='full'
+          overflowY={maxHeight ? "auto" : "visible"}
+          flexGrow={1}
         >
           {content}
         </Flex>

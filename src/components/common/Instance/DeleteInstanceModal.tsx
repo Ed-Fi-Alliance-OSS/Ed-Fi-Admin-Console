@@ -9,7 +9,7 @@ import {
 import { ODSInstance } from '../../../core/ODSInstance.types'
 import useDeleteInstanceModal from '../../../hooks/odsInstances/useDeleteInstanceModal'
 import useOdsInstanceTable from '../../../hooks/odsInstances/useOdsInstanceTable'
-import EDXCustomModal from '../EDXCustomModal'
+import EDXCustomModal, { NoButton } from '../EDXCustomModal'
 import useEDXToast from '../../../hooks/common/useEDXToast'
 import { CustomInput } from '@edfi/admin-console-shared-sdk'
 import { useNavigate } from 'react-router-dom'
@@ -76,16 +76,12 @@ const DeleteInstanceModal = ({ instance, show, onCloseModal }: DeleteInstanceMod
         alignItems='flex-start'
         w='full'
       >
-        <Button
-          border='1px'
-          borderColor='gray.400'
+        <NoButton
           color='red.600'
-          padding='10px'
-          size='sm'
           onClick={onClose}
         >
           No
-        </Button>
+        </NoButton>
 
         <Button
           _hover={{ _disabled: { bg: '#DC3625' } }}

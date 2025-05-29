@@ -124,6 +124,18 @@ const AddInstanceFormV2: React.FC<AddInstanceFormProps> = ({
                       }
                     />
                     <Button
+                      bg='red.600'
+                      border='1px'
+                      borderColor='red.600'
+                      boxShadow='0 0 0 1px rgba(59, 130, 246, 0.3)'
+                      color='white'
+                      ml='8px'
+                      padding='10px'
+                      fontFamily='Poppins'
+                      fontSize='12px'
+                      fontWeight='600'
+                      lineHeight='1.2'
+                      _hover={{ bg: 'red.700', borderColor: 'red.700', boxShadow: '0 0 0 3px rgba(255, 43, 43, 0.5)' }}
                       type='button'
                       colorScheme="red"
                       onClick={() => {
@@ -137,6 +149,18 @@ const AddInstanceFormV2: React.FC<AddInstanceFormProps> = ({
                   </Flex>
                 ))}
                 <Button
+                  bg='blue.600'
+                  border='1px'
+                  borderColor='blue.600'
+                  boxShadow='0 0 0 1px rgba(59, 130, 246, 0.3)'
+                  color='white'
+                  ml='16px'
+                  padding='10px'
+                  fontFamily='Poppins'
+                  fontSize='14px'
+                  fontWeight='600'
+                  lineHeight='1.2'
+                  _hover={{ bg: 'blue.700', borderColor: 'blue.700', boxShadow: '0 0 0 3px rgba(59, 130, 246, 0.5)' }}
                   type='button'
                   colorScheme="blue"
                   onClick={() =>
@@ -184,6 +208,17 @@ const AddInstanceFormV2: React.FC<AddInstanceFormProps> = ({
                           }}
                         />
                         <Button
+                          bg='red.600'
+                          border='1px'
+                          borderColor='red.600'
+                          boxShadow='0 0 0 1px rgba(59, 130, 246, 0.3)'
+                          color='white'
+                          padding='10px'
+                          fontFamily='Poppins'
+                          fontSize='12px'
+                          fontWeight='600'
+                          lineHeight='1.2'
+                          _hover={{ bg: 'red.700', borderColor: 'red.700', boxShadow: '0 0 0 3px rgba(255, 43, 43, 0.5)' }}
                           type='button'
                           colorScheme="red"
                           ml="8px"
@@ -206,6 +241,18 @@ const AddInstanceFormV2: React.FC<AddInstanceFormProps> = ({
 
                   ))}
                   <Button
+                    bg='blue.600'
+                    border='1px'
+                    borderColor='blue.600'
+                    boxShadow='0 0 0 1px rgba(59, 130, 246, 0.3)'
+                    color='white'
+                    ml='16px'
+                    padding='10px'
+                    fontFamily='Poppins'
+                    fontSize='14px'
+                    fontWeight='600'
+                    lineHeight='1.2'
+                    _hover={{ bg: 'blue.700', borderColor: 'blue.700', boxShadow: '0 0 0 3px rgba(59, 130, 246, 0.5)' }}
                     type='button'
                     colorScheme="blue"
                     onClick={() => {
@@ -220,7 +267,18 @@ const AddInstanceFormV2: React.FC<AddInstanceFormProps> = ({
                 </Box>
 
                 <Button
-                  color='primaryBlue600'
+                  bg='blue.600'
+                  border='1px'
+                  borderColor='blue.600'
+                  boxShadow='0 0 0 1px rgba(59, 130, 246, 0.3)'
+                  color='white'
+                  ml='16px'
+                  padding='10px'
+                  fontFamily='Poppins'
+                  fontSize='14px'
+                  fontWeight='600'
+                  lineHeight='1.2'
+                  _hover={{ bg: 'blue.700', borderColor: 'blue.700', boxShadow: '0 0 0 3px rgba(59, 130, 246, 0.5)' }}
                   mt='32px'
                   size='lg'
                   type='submit'

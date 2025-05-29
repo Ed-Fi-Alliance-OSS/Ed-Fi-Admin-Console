@@ -7,7 +7,7 @@ import {
   Button, Flex, Text
 } from '@chakra-ui/react'
 import { AppUser } from '../core/AppUser.types'
-import EDXCustomModal from './common/EDXCustomModal'
+import EDXCustomModal, { NoButton } from './common/EDXCustomModal'
 
 interface DeactivateUserModalProps {
     user: AppUser
@@ -43,17 +43,12 @@ const DeactivateUserModal = ({ user, isDeactivatingUser, show, onDeactivateUser,
         alignItems='flex-start'
         w='full'
       >
-        <Button
-          border='1px'
-          borderColor='gray.400'
-          color='red.600'
+        <NoButton
           disabled={isDeactivatingUser}
-          padding='10px'
-          size='sm'
           onClick={onClose}
         >
           No, Cancel
-        </Button>
+        </NoButton>
 
         <Button
           bg='#dd3827'

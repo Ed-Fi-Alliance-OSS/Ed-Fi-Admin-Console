@@ -6,9 +6,11 @@
 import {
   Dialog,
   Flex,
-  Text
+  Text,
+  Button
 } from '@chakra-ui/react'
 import { useColorModeValue } from '../ui/color-mode'
+import React from 'react'
 
 interface InformationModalProps {
   type: 'alert' | 'confirmation' | 'information'
@@ -18,6 +20,27 @@ interface InformationModalProps {
   isOpen: boolean
   onClose: () => void
 }
+
+// Create a styled "No" button wrapper to apply consistent styling
+export const NoButton = React.forwardRef<HTMLButtonElement, any>(
+  ({ children, ...props }, ref) => {
+    return (
+      <Button
+        ref={ref}
+        bg="white"
+        border="1px"
+        borderColor="gray.300"
+        color="gray.800"
+        _hover={{ bg: 'gray.50' }}
+        padding="10px"
+        size="sm"
+        {...props}
+      >
+        {children}
+      </Button>
+    )
+  }
+)
 
 const EDXCustomModal = ({ type, header, content, footer, isOpen, onClose }: InformationModalProps) => {
   const bgColor = useColorModeValue('white', 'blue.700')
@@ -39,9 +62,31 @@ const EDXCustomModal = ({ type, header, content, footer, isOpen, onClose }: Info
       open={isOpen}
       onOpenChange={onClose}
     >
-      <Dialog.Backdrop />
+      <Dialog.Backdrop style={{
+        backgroundColor: "rgba(0, 0, 0, 0.5)",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        position: "fixed",
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0,
+        zIndex: 9998
+      }} />
 
-      <Dialog.Content>
+      <Dialog.Content style={{
+        position: "fixed",
+        top: "50%",
+        left: "50%",
+        transform: "translate(-50%, -50%)",
+        maxWidth: "90vw",
+        maxHeight: "90vh",
+        overflow: "auto",
+        width: "auto",
+        zIndex: 9999,
+        margin: "0 auto"
+      }}>
         <Flex
           bg={bgColor}
           border='10px solid'
@@ -51,31 +96,46 @@ const EDXCustomModal = ({ type, header, content, footer, isOpen, onClose }: Info
           borderRadius="4px"
           borderRight='0px'
           h='auto'
-          minW='517px'
-          my='auto'
+          minW={{ base: '90%', sm: '517px' }}
+          maxW='800px'
           w='auto'
+          flexDirection="column"
+          boxShadow="0 10px 25px rgba(0, 0, 0, 0.15)"
+          mx="auto"
         >
-          <Dialog.Title>
-            <Flex fontSize="24px" paddingBottom="0px">
-              {header}
-            </Flex>
-          </Dialog.Title>
-
-          <Dialog.CloseTrigger />
+          <Flex
+            justifyContent="space-between"
+            alignItems="center"
+            padding="20px 20px 10px 20px"
+          >
+            <Dialog.Title>
+              <Text fontSize="24px" fontWeight="semibold" margin="0">
+                {header}
+              </Text>
+            </Dialog.Title>
+            <Dialog.CloseTrigger />
+          </Flex>
 
           <Dialog.Description>
             <Flex
-              marginBottom='10px'
-              paddingTop='0px'
-              w=''
+              marginBottom='20px'
+              paddingX='20px'
+              paddingY='10px'
             >
               {typeof (content) === 'string' ?
-                <Text fontFamily='Poppins'>{content}
+                <Text fontFamily='Poppins' lineHeight="1.5">
+                  {content}
                 </Text> : content}
             </Flex>
           </Dialog.Description>
 
-          <Dialog.Footer paddingBottom='35px'>
+          <Dialog.Footer 
+            paddingX='20px'
+            paddingBottom='20px'
+            display="flex"
+            justifyContent="flex-end"
+            gap="10px"
+          >
             {footer}
           </Dialog.Footer>
         </Flex>

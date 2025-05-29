@@ -113,9 +113,7 @@ const ApplicationForm = ({ instance, mode, editApplicationData, onFinishSave }: 
             onInputChange={onChangeInput}
             onSelectClaimSet={onSelectClaim}
             onSelectVendor={onSelectVendor}
-          />
-
-          <Flex
+          />          <Flex
             mt='32px'
             w='full'
           >
@@ -125,6 +123,7 @@ const ApplicationForm = ({ instance, mode, editApplicationData, onFinishSave }: 
               transformText={transformText}
               values={edOrgs}
               onChange={setEdorgs}
+              disabled={mode === 'edit'}
             />
           </Flex>
 
