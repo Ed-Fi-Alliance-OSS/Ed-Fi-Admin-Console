@@ -61,8 +61,6 @@ const ModalFormHeader = ({ actionText, headerText, headerWidth, alignCenter, isD
           borderColor='blue.600'
           boxShadow='0 0 0 1px rgba(59, 130, 246, 0.3)'
           color='white'
-          ml='16px'
-          padding='10px'
           size='xs'
           type="button"
           fontFamily='Poppins'
@@ -76,7 +74,6 @@ const ModalFormHeader = ({ actionText, headerText, headerWidth, alignCenter, isD
           loading={isSaving}
           ml='10px'
           padding='0 25px'
-          size='xs'
           variant='solid'
           onClick={onAction}
         >{actionText}

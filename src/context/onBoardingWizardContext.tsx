@@ -39,7 +39,6 @@ const OnBoardingWizardProvider = ({ children }: OnBoardingWizardProviderProps) =
 
   const fetchOnBoardingDetails = async () => {
     if (auth && auth.user && userProfile && edxAppConfig) {
-      console.log('started fetching')
       setIsFetchingOnBoardingWizard(true)
       
       const data = await fetchOnBoardingWizardData({

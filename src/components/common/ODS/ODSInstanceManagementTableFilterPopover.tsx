@@ -28,11 +28,19 @@ interface ODSInstanceManagementTableFilterPopoverProps {
 
 const ODSInstanceManagementTableFilterPopover = ({ textFilter, selectedOption, options, onChangeFilterOption, onChangeText, onFilter, onResetFilter }: ODSInstanceManagementTableFilterPopoverProps) => {
   return (
-    <Popover.Root>
-      <Popover.Trigger>
-        <Button
+    <Popover.Root>      <Popover.Trigger>
+        <Box
+          as="div"
+          role="button"
           aria-labelledby="search-btn"
           minWidth="auto"
+          display="inline-flex"
+          justifyContent="center"
+          alignItems="center"
+          padding="8px"
+          cursor="pointer"
+          borderRadius="4px"
+          onClick={() => {}}
         >
           <span
             hidden
@@ -46,7 +54,7 @@ const ODSInstanceManagementTableFilterPopover = ({ textFilter, selectedOption, o
             focusable={false}
             fontSize="18px"
           />
-        </Button>
+        </Box>
       </Popover.Trigger>
       <Portal>
         <Popover.Content css={{ maxWidth: '200px' }}>

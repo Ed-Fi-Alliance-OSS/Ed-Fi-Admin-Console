@@ -47,21 +47,20 @@ export function TenantInstanceForm() {
       flexDir="column"
       w="full"
     >
-      {loading && <Spinner />}
-
-      <Field.Root>
+      {loading && <Spinner />}      <Field.Root>
         <CustomFormLabel
           htmlFor='name'
           text='Tenant Name'
         />
-
+        <Flex width="400px">  
         <CustomInput
           readOnly
           error={errors && errors['name'] && errors['name'].message}
           id='name'
-          value={tenantInstanceData?.document.name}
+          value={tenantInstanceData?.document.name || ''}
           onChange={() => { }}
         />
+        </Flex>
 
         <Flex
           flexDir='column'
@@ -71,14 +70,15 @@ export function TenantInstanceForm() {
             htmlFor='edfiApiDiscoveryUrl'
             text='Ed-Fi Base URL'
           />
-
+          <Flex width="400px">
           <CustomInput
             readOnly
             error={errors && errors['edfiApiDiscoveryUrl'] && errors['edfiApiDiscoveryUrl'].message}
             id='edfiApiDiscoveryUrl'
-            value={tenantInstanceData?.document.edfiApiDiscoveryUrl}
+            value={tenantInstanceData?.document.edfiApiDiscoveryUrl || ''}
             onChange={() => { }}
           />
+          </Flex>
         </Flex>
       </Field.Root>
     </Flex>

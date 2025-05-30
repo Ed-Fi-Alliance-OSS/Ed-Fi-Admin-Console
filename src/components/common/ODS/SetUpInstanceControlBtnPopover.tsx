@@ -18,19 +18,23 @@ interface SetUpInstanceControlBtnPopoverProps {
 
 const SetUpInstanceControlBtnPopover = ({ instance, updatingIsDefault, onOpenSetUpModal }: SetUpInstanceControlBtnPopoverProps) => {
   return (
-    <Popover.Root positioning={{ placement: 'bottom-end' }}>
-      <Popover.Trigger>
-        <Button 
+    <Popover.Root positioning={{ placement: 'bottom-end' }}>      <Popover.Trigger>
+        <Box
+          as="div"
+          role="button"
           aria-labelledby={`show-options-${instance.id}`}
           borderRadius='0px 4px 4px 0px'
           color='primaryBlue500'
-          disabled={updatingIsDefault.loading}
           maxW='24px'
           minW='24px'
           ml='1px'
           padding='0'
-          size='xs'
-          variant='solid'
+          cursor={updatingIsDefault.loading ? 'not-allowed' : 'pointer'}
+          display='inline-flex'
+          justifyContent='center'
+          alignItems='center'
+          fontSize='xs'
+          opacity={updatingIsDefault.loading ? 0.4 : 1}
           onClick={() => null}
         >
           <span
@@ -45,7 +49,7 @@ const SetUpInstanceControlBtnPopover = ({ instance, updatingIsDefault, onOpenSet
             focusable="false" 
             fontSize='18px'
           /> 
-        </Button>
+        </Box>
       </Popover.Trigger>
 
       <Popover.Positioner>

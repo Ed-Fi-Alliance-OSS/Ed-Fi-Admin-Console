@@ -21,9 +21,10 @@ const ApplicationDetailsControl = ({ data, isDeleting, onDelete }: ApplicationDe
   const adminConfig = useContext(adminConsoleContext)
 
   return (
-    <Popover.Root>
-      <Popover.Trigger>
-        <Button
+    <Popover.Root>      <Popover.Trigger>
+        <Box
+          as="div"
+          role="button"
           css={{
             minWidth: '24px',
             marginLeft: '1px',
@@ -32,9 +33,15 @@ const ApplicationDetailsControl = ({ data, isDeleting, onDelete }: ApplicationDe
             bg: 'blue.600',
             color: 'white',
             _hover: { bg: 'blue.700', },
-            _active: { bg: 'blue.800', }
+            _active: { bg: 'blue.800', },
+            display: 'inline-flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            padding: '8px',
+            cursor: 'pointer'
           }}
           aria-labelledby={`show-options-${data.applicationName}`}
+          onClick={() => {}}
         >
           <span
             hidden
@@ -47,7 +54,7 @@ const ApplicationDetailsControl = ({ data, isDeleting, onDelete }: ApplicationDe
             as={MdKeyboardArrowDown}
             css={{ fontSize: '18px' }}
           />
-        </Button>
+        </Box>
       </Popover.Trigger>
       <Popover.Positioner>
         <Popover.Content>

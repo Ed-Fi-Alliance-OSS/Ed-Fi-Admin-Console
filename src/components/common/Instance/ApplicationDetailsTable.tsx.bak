@@ -30,7 +30,16 @@ const ApplicationDetailsTable = ({ applicationsList, isDeleting, onEditApplicati
     >
       <Table.Root>
         <Table.Header bg='gray.100'>
-          <Table.Row>
+          <Table.Row><Table.ColumnHeader
+              bg='gray.100'
+              color='gray.700'
+              fontFamily='Poppins'
+              fontSize='14px'
+              fontWeight='700'
+              textTransform='none'
+            >Application
+            </Table.ColumnHeader>
+
             <Table.ColumnHeader
               bg='gray.100'
               color='gray.700'
@@ -38,9 +47,9 @@ const ApplicationDetailsTable = ({ applicationsList, isDeleting, onEditApplicati
               fontSize='14px'
               fontWeight='700'
               textTransform='none'
-            >
-              Application
+            >Education Organizations
             </Table.ColumnHeader>
+
             <Table.ColumnHeader
               bg='gray.100'
               color='gray.700'
@@ -48,22 +57,13 @@ const ApplicationDetailsTable = ({ applicationsList, isDeleting, onEditApplicati
               fontSize='14px'
               fontWeight='700'
               textTransform='none'
-            >
-              Education Organizations
+            >Permissions
             </Table.ColumnHeader>
-            <Table.ColumnHeader
-              bg='gray.100'
-              color='gray.700'
-              fontFamily='Poppins'
-              fontSize='14px'
-              fontWeight='700'
-              textTransform='none'
-            >
-              Permissions
-            </Table.ColumnHeader>
+
             <Table.ColumnHeader bg='gray.100'></Table.ColumnHeader>
           </Table.Row>
         </Table.Header>
+
         <Table.Body>
           {applicationsList.map((application, index) => (
             <Table.Row
@@ -74,18 +74,18 @@ const ApplicationDetailsTable = ({ applicationsList, isDeleting, onEditApplicati
               <Table.Cell
                 fontFamily='Poppins'
                 fontSize='14px'
-                fontWeight='400'
-              >
+                fontWeight='400'              >
                 {application.applicationName}
               </Table.Cell>
+
               <Table.Cell
                 fontFamily='Poppins'
                 fontSize='14px'
                 fontWeight='400'
-                textAlign='center'
-              >
+                textAlign='center'              >
                 {application.educationOrganizationIds ? application.educationOrganizationIds.length : 0}
               </Table.Cell>
+
               <Table.Cell>
                 <Flex flexDir='column'>
                   <Link
@@ -95,19 +95,20 @@ const ApplicationDetailsTable = ({ applicationsList, isDeleting, onEditApplicati
                     fontWeight='400'
                     textDecoration='underline'
                     asChild
-                  >
-                    <RouterLink to='#'>
+                  >                    <RouterLink to='#'>
                       {application.claimSetName}
                     </RouterLink>
                   </Link>
                 </Flex>
               </Table.Cell>
+
               <Table.Cell>
                 <Flex
                   justifyContent='flex-end'
                   w='full'
                 >
                   <Button 
+                    // borderRadius='4px 0px 0px 4px'
                     bg='blue.600'
                     border='1px'
                     borderColor='blue.600'
@@ -129,14 +130,14 @@ const ApplicationDetailsTable = ({ applicationsList, isDeleting, onEditApplicati
                   >
                     Edit
                   </Button>
+
                   {/* <ApplicationDetailsControl 
                     data={application}
                     isDeleting={isDeleting.deleting && isDeleting.id === application.id.toString()}
                     onDelete={onDeleteApplication}
                   /> */}
                 </Flex>
-              </Table.Cell>
-            </Table.Row>
+              </Table.Cell>            </Table.Row>
           ))}
         </Table.Body>
       </Table.Root>

@@ -273,8 +273,6 @@ const useApplicationForm = ({ mode, onFinishSave, editApplicationData, instanceI
       const vendorsListData = await api?.vendors.getAll() ?? []
       const claimsetsListData = await api?.claimSets.getAll() ?? []
 
-      console.log('claimsets list data', claimsetsListData)
-
       vendorsListData.unshift({
         id: 0,
         company: 'Select Option'
