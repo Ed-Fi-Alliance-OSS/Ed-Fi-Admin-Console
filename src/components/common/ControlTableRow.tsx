@@ -13,23 +13,23 @@ interface ControlTableRowProps {
 const ControlTableRow = ({ children, removeBorders }: ControlTableRowProps) => {
   return (
     <Table.Row 
-      _notLast={{
-        borderBottom: removeBorders? '0px' : '2px',
-        borderBottomColor: 'gray.200',
-        borderBottomStyle: 'solid'
-      }}
-      borderTop={removeBorders? '0px' : '1px'} 
-      borderTopColor='gray.300'
-      position='relative'
-      w='full'
-      bg='white'
-      _even={{ bg: 'gray.50' }}
       _hover={{ 
         bg: 'blue.50',
         boxShadow: 'sm',
         transition: 'all 0.2s'
       }}
+      _notLast={{
+        borderBottom: removeBorders? '0px' : '2px',
+        borderBottomColor: 'gray.200',
+        borderBottomStyle: 'solid'
+      }} 
+      _even={{ bg: 'gray.50' }}
+      bg='white'
+      borderTop={removeBorders? '0px' : '1px'}
+      borderTopColor='gray.300'
+      position='relative'
       transition="all 0.2s"
+      w='full'
     >
       {children}
     </Table.Row>

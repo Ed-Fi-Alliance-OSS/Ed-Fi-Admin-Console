@@ -79,6 +79,7 @@ const UserOrganizationsEditFormItem = ({ organizationsList, staffClassifications
                     {org.nameOfInstitution}
                   </option>)}
               </NativeSelect.Field>
+
             <NativeSelect.Indicator />
           </NativeSelect.Root>
           </Box>
@@ -122,6 +123,7 @@ const UserOrganizationsEditFormItem = ({ organizationsList, staffClassifications
                 {staffClassification.shortDescription}
               </option>)}
           </NativeSelect.Field>
+
             <NativeSelect.Indicator />
           </NativeSelect.Root>
       </Field.Root>

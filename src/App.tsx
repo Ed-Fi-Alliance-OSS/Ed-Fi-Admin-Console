@@ -42,31 +42,32 @@ function App({ appConfig }: AppProps) {
           state='loading...'
         />
 
-          <HelmetProvider>
-            {appConfig &&
-              <EdxConfigProvider config={appConfig}>
-                <MockDataProvider>
-                  <PluginProvider>
-                    <PluginLoader
-                      enabled={appConfig.plugins || []}
-                      plugins={loadPlugins()}
-                    />
+        <HelmetProvider>
+          {appConfig &&
+          <EdxConfigProvider config={appConfig}>
+            <MockDataProvider>
+              <PluginProvider>
+                <PluginLoader
+                  enabled={appConfig.plugins || []}
+                  plugins={loadPlugins()}
+                />
 
 
-                    <TEEAuthContextProvider edxAppConfig={appConfig}>
-                      <OnBoardingWizardProvider>
-                        <AdminConsoleConfigProvider config={appConfig}>
-                          <HttpServiceContextProvider redirectOnError={true}>
-                            <TenantsContextProvider>
-                              <LayoutWrapper />
-                            </TenantsContextProvider>
-                          </HttpServiceContextProvider>
-                        </AdminConsoleConfigProvider>
-                      </OnBoardingWizardProvider>
-                    </TEEAuthContextProvider>
-                  </PluginProvider>
-                </MockDataProvider>
-              </EdxConfigProvider>}          </HelmetProvider>
+                <TEEAuthContextProvider edxAppConfig={appConfig}>
+                  <OnBoardingWizardProvider>
+                    <AdminConsoleConfigProvider config={appConfig}>
+                      <HttpServiceContextProvider redirectOnError={true}>
+                        <TenantsContextProvider>
+                          <LayoutWrapper />
+                        </TenantsContextProvider>
+                      </HttpServiceContextProvider>
+                    </AdminConsoleConfigProvider>
+                  </OnBoardingWizardProvider>
+                </TEEAuthContextProvider>
+              </PluginProvider>
+            </MockDataProvider>
+          </EdxConfigProvider>}          
+        </HelmetProvider>
       </Provider>
     </div>
   )

@@ -42,7 +42,7 @@ const PermissionsAccordionTable = ({ resourceInfo }: PermissionsAccordionTablePr
       >
         <Table.Header bg='gray.100'>
           <Table.Row p='0'>
-            <Table.ColumnHeader w='full' bg='gray.100'></Table.ColumnHeader>
+            <Table.ColumnHeader bg='gray.100' w='full'></Table.ColumnHeader>
 
             <Table.ColumnHeader
               bg='gray.100'
@@ -54,15 +54,15 @@ const PermissionsAccordionTable = ({ resourceInfo }: PermissionsAccordionTablePr
             >Read
             </Table.ColumnHeader>
 
-            <Table.ColumnHeader w='100px' bg='gray.100'>
+            <Table.ColumnHeader bg='gray.100' w='100px'>
               Create
             </Table.ColumnHeader>
 
-            <Table.ColumnHeader w='100px' bg='gray.100'>
+            <Table.ColumnHeader bg='gray.100' w='100px'>
               Update
             </Table.ColumnHeader>
 
-            <Table.ColumnHeader w='100px' bg='gray.100'>
+            <Table.ColumnHeader bg='gray.100' w='100px'>
               Delete
             </Table.ColumnHeader>
           </Table.Row>

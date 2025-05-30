@@ -64,6 +64,7 @@ const DeleteInstanceModal = ({ instance, show, onCloseModal }: DeleteInstanceMod
           <Text>
             To confirm deletion, type the name of the instance.
           </Text>
+
           <CustomInput
             error={showValidationErrorDeleteInstanceModal ? 'Error: The Instance name doesn\'t match' : ''}
             id='isntanceName'

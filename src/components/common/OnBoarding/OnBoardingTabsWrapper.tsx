@@ -7,6 +7,7 @@ import {
   Button, Flex, Link, Text, Tooltip, Box
 } from '@chakra-ui/react'
 import { MdHelpOutline } from 'react-icons/md'
+import { Link as RouterLink } from 'react-router-dom'
 import useHelpLinks from '../../../hooks/useHelpLinks'
 import WizardContentWrapper from '../Wizard/WizardContentWrapper'
 
@@ -63,11 +64,11 @@ const OnBoardingTabsWrapper = ({ children, stepName, currentStep, lastStep, canN
             <Tooltip.Trigger>
               <span style={{ marginLeft: '5px' }}>
                 <Link
+                  asChild
                   aria-label="help link"
                   id="help link"
                   referrerPolicy="no-referrer"
                   target='_blank'
-                  asChild
                 >
                   <RouterLink to={getCurrentStepHelpLink()}>
                     <MdHelpOutline
@@ -81,6 +82,7 @@ const OnBoardingTabsWrapper = ({ children, stepName, currentStep, lastStep, canN
                 </Link>
               </span>
             </Tooltip.Trigger>
+
             <Tooltip.Positioner>
               <Tooltip.Content>
                 <Flex style={{

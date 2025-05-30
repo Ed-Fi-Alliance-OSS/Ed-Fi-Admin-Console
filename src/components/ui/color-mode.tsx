@@ -27,10 +27,10 @@ export function ColorModeProvider({ children, ...props }: ColorModeProviderProps
   // Force light mode
   return (
     <ThemeProvider
+      disableTransitionOnChange
       attribute="class"
       defaultTheme="light"
       enableSystem={false}
-      disableTransitionOnChange
       {...props}
     >
       {children}

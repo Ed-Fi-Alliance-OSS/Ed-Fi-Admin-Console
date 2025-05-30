@@ -22,65 +22,66 @@ const ApplicationDetailsControl = ({ data, isDeleting, onDelete }: ApplicationDe
 
   return (
     <Popover.Root>      <Popover.Trigger>
-        <Box
-          as="div"
-          role="button"
-          css={{
-            minWidth: '24px',
-            marginLeft: '1px',
-            fontSize: 'xs',
-            borderRadius: '0px 4px 4px 0px',
-            bg: 'blue.600',
-            color: 'white',
-            _hover: { bg: 'blue.700', },
-            _active: { bg: 'blue.800', },
-            display: 'inline-flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            padding: '8px',
-            cursor: 'pointer'
-          }}
-          aria-labelledby={`show-options-${data.applicationName}`}
-          onClick={() => {}}
-        >
-          <span
-            hidden
-            id={`show-options-${data.applicationName}`}
-          >Show Options
-          </span>
+      <Box
+        css={{
+          minWidth: '24px',
+          marginLeft: '1px',
+          fontSize: 'xs',
+          borderRadius: '0px 4px 4px 0px',
+          bg: 'blue.600',
+          color: 'white',
+          _hover: { bg: 'blue.700', },
+          _active: { bg: 'blue.800', },
+          display: 'inline-flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          padding: '8px',
+          cursor: 'pointer'
+        }}
+        aria-labelledby={`show-options-${data.applicationName}`}
+        as="div"
+        role="button"
+        onClick={() => {}}
+      >
+        <span
+          hidden
+          id={`show-options-${data.applicationName}`}
+        >Show Options
+        </span>
 
-          <Box
-            aria-hidden="true"
-            as={MdKeyboardArrowDown}
-            css={{ fontSize: '18px' }}
-          />
-        </Box>
-      </Popover.Trigger>
-      <Popover.Positioner>
+        <Box
+          aria-hidden="true"
+          as={MdKeyboardArrowDown}
+          css={{ fontSize: '18px' }}
+        />
+      </Box>
+    </Popover.Trigger>
+
+    <Popover.Positioner>
         <Popover.Content>
-          <Popover.Body padding='0'>
+        <Popover.Body padding='0'>
             <Flex>
-              {adminConfig && adminConfig.showEdfiApplicationDelete && (
-                <Button
-                  css={{
-                    bg: 'red.600',
-                    borderRadius: '4px',
-                    color: 'white',
-                    display: 'flex',
-                    justifyContent: 'center',
-                    fontSize: 'xs',
-                    width: '100px',
-                    _hover: { bg: 'red.700' }
-                  }}
-                  loading={isDeleting}
-                  onClick={() => onDelete(data.id.toString())}
-                >
-                  Delete
-                </Button>
-              )}
-            </Flex>
+            {adminConfig && adminConfig.showEdfiApplicationDelete && (
+              <Button
+                css={{
+                  bg: 'red.600',
+                  borderRadius: '4px',
+                  color: 'white',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  fontSize: 'xs',
+                  width: '100px',
+                  _hover: { bg: 'red.700' }
+                }}
+                loading={isDeleting}
+                onClick={() => onDelete(data.id.toString())}
+              >
+                Delete
+              </Button>
+            )}
+          </Flex>
           </Popover.Body>
-        </Popover.Content>
+      </Popover.Content>
       </Popover.Positioner>
     </Popover.Root>
   )

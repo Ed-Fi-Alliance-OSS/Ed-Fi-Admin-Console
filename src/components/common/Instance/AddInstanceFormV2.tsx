@@ -73,6 +73,7 @@ const AddInstanceFormV2: React.FC<AddInstanceFormProps> = ({
         {({ values, setFieldValue }) => (
           <>
             <CustomFormHeader text="Instance Details" />
+
             <Flex
               flexDir='column'
               ml='10px'
@@ -86,18 +87,21 @@ const AddInstanceFormV2: React.FC<AddInstanceFormProps> = ({
                   label='Name'
                   onChange={handleChange}
                 />
+
                 <AppInput
                   required
                   fieldName='instanceType'
                   label='Instance Type'
                   onChange={handleChange}
                 />
+
                 <Text
                   fontFamily='Poppins'
                   fontSize='14px'
                   fontWeight='700'
                   lineHeight='20px'
-                >ODS Instance Contexts:                </Text>                {values.odsInstanceContexts.map((context, index) => (
+                >ODS Instance Contexts:                
+                </Text>                {values.odsInstanceContexts.map((context, index) => (
                   <Flex key={`context-${index}`} alignItems="center" mb="8px">
                     <Input
                       required
@@ -111,6 +115,7 @@ const AddInstanceFormV2: React.FC<AddInstanceFormProps> = ({
                         )
                       }
                     />
+
                     <Input
                       required
                       placeholder="Context Value"
@@ -123,21 +128,26 @@ const AddInstanceFormV2: React.FC<AddInstanceFormProps> = ({
                         )
                       }
                     />
+
                     <Button
+                      _hover={{
+                        bg: 'red.700',
+                        borderColor: 'red.700',
+                        boxShadow: '0 0 0 3px rgba(255, 43, 43, 0.5)' 
+                      }}
                       bg='red.600'
                       border='1px'
                       borderColor='red.600'
                       boxShadow='0 0 0 1px rgba(59, 130, 246, 0.3)'
                       color='white'
-                      ml='8px'
-                      padding='10px'
+                      colorScheme="red"
                       fontFamily='Poppins'
                       fontSize='12px'
                       fontWeight='600'
                       lineHeight='1.2'
-                      _hover={{ bg: 'red.700', borderColor: 'red.700', boxShadow: '0 0 0 3px rgba(255, 43, 43, 0.5)' }}
+                      ml='8px'
+                      padding='10px'
                       type='button'
-                      colorScheme="red"
                       onClick={() => {
                         const updatedContexts = values.odsInstanceContexts.filter((_, i) => i !== index)
 
@@ -148,21 +158,26 @@ const AddInstanceFormV2: React.FC<AddInstanceFormProps> = ({
                     </Button>
                   </Flex>
                 ))}
+
                 <Button
+                  _hover={{
+                    bg: 'blue.700',
+                    borderColor: 'blue.700',
+                    boxShadow: '0 0 0 3px rgba(59, 130, 246, 0.5)' 
+                  }}
                   bg='blue.600'
                   border='1px'
                   borderColor='blue.600'
                   boxShadow='0 0 0 1px rgba(59, 130, 246, 0.3)'
                   color='white'
-                  ml='16px'
-                  padding='10px'
+                  colorScheme="blue"
                   fontFamily='Poppins'
                   fontSize='14px'
                   fontWeight='600'
                   lineHeight='1.2'
-                  _hover={{ bg: 'blue.700', borderColor: 'blue.700', boxShadow: '0 0 0 3px rgba(59, 130, 246, 0.5)' }}
+                  ml='16px'
+                  padding='10px'
                   type='button'
-                  colorScheme="blue"
                   onClick={() =>
                     setFieldValue('odsInstanceContexts', [
                       ...values.odsInstanceContexts,
@@ -175,63 +190,71 @@ const AddInstanceFormV2: React.FC<AddInstanceFormProps> = ({
                 >
                   Add Context
                 </Button>
+
                 <Box mb="16px">
                   <Text
                     fontFamily='Poppins'
                     fontSize='14px'
                     fontWeight='700'
                     lineHeight='20px'
-                  >ODS Instance Derivatives:                  </Text>                  {values.odsInstanceDerivatives.map((derivative, index) => (
+                  >ODS Instance Derivatives:                  
+                  </Text>                  {values.odsInstanceDerivatives.map((derivative, index) => (
                     <Flex key={`derivative-${index}`} flexDir="column" mb="8px">
                       <Flex alignItems="center">                        <CustomSelect
-                          options={[
-                            {
-                              text: 'ReadReplica',
-                              value: 'ReadReplica' 
-                            },
-                            {
-                              text: 'Snapshot',
-                              value: 'Snapshot' 
-                            },
-                          ]}
-                          disabled={false}
-                          id={`derivative-${index}`}
-                          placeholder="Select an option"
-                          value={derivative.derivativeType}
-                          onChange={(e) => {
-                            const selectedValue = e.target.value
+                        options={[
+                          {
+                            text: 'ReadReplica',
+                            value: 'ReadReplica' 
+                          },
+                          {
+                            text: 'Snapshot',
+                            value: 'Snapshot' 
+                          },
+                        ]}
+                        disabled={false}
+                        id={`derivative-${index}`}
+                        placeholder="Select an option"
+                        value={derivative.derivativeType}
+                        onChange={(e) => {
+                          const selectedValue = e.target.value
 
-                            setFieldValue(
-                              `odsInstanceDerivatives[${index}].derivativeType`,
-                              selectedValue
-                            )
-                          }}
-                        />
+                          setFieldValue(
+                            `odsInstanceDerivatives[${index}].derivativeType`,
+                            selectedValue
+                          )
+                        }}
+                      />
+
                         <Button
-                          bg='red.600'
-                          border='1px'
-                          borderColor='red.600'
-                          boxShadow='0 0 0 1px rgba(59, 130, 246, 0.3)'
-                          color='white'
-                          padding='10px'
-                          fontFamily='Poppins'
-                          fontSize='12px'
-                          fontWeight='600'
-                          lineHeight='1.2'
-                          _hover={{ bg: 'red.700', borderColor: 'red.700', boxShadow: '0 0 0 3px rgba(255, 43, 43, 0.5)' }}
-                          type='button'
-                          colorScheme="red"
-                          ml="8px"
-                          onClick={() => {
-                            const updatedDerivatives =
+                        _hover={{
+                          bg: 'red.700',
+                          borderColor: 'red.700',
+                          boxShadow: '0 0 0 3px rgba(255, 43, 43, 0.5)' 
+                        }}
+                        bg='red.600'
+                        border='1px'
+                        borderColor='red.600'
+                        boxShadow='0 0 0 1px rgba(59, 130, 246, 0.3)'
+                        color='white'
+                        colorScheme="red"
+                        fontFamily='Poppins'
+                        fontSize='12px'
+                        fontWeight='600'
+                        lineHeight='1.2'
+                        ml="8px"
+                        padding='10px'
+                        type='button'
+                        onClick={() => {
+                          const updatedDerivatives =
                               values.odsInstanceDerivatives.filter((_, i) => i !== index)
 
-                            setFieldValue('odsInstanceDerivatives', updatedDerivatives)
-                          }}
-                        >
-                          Remove
-                        </Button>
+                          setFieldValue('odsInstanceDerivatives', updatedDerivatives)
+                        }}
+                      >
+                        Remove
+                      </Button>
                       </Flex>
+
                       {derivative.derivativeType === '' && (
                         <Text color="red.500" fontSize="xs" mt="4px">
                           Derivative Type is required
@@ -240,21 +263,26 @@ const AddInstanceFormV2: React.FC<AddInstanceFormProps> = ({
                     </Flex>
 
                   ))}
+
                   <Button
+                    _hover={{
+                      bg: 'blue.700',
+                      borderColor: 'blue.700',
+                      boxShadow: '0 0 0 3px rgba(59, 130, 246, 0.5)' 
+                    }}
                     bg='blue.600'
                     border='1px'
                     borderColor='blue.600'
                     boxShadow='0 0 0 1px rgba(59, 130, 246, 0.3)'
                     color='white'
-                    ml='16px'
-                    padding='10px'
+                    colorScheme="blue"
                     fontFamily='Poppins'
                     fontSize='14px'
                     fontWeight='600'
                     lineHeight='1.2'
-                    _hover={{ bg: 'blue.700', borderColor: 'blue.700', boxShadow: '0 0 0 3px rgba(59, 130, 246, 0.5)' }}
+                    ml='16px'
+                    padding='10px'
                     type='button'
-                    colorScheme="blue"
                     onClick={() => {
                       setFieldValue('odsInstanceDerivatives', [
                         ...values.odsInstanceDerivatives,
@@ -267,19 +295,23 @@ const AddInstanceFormV2: React.FC<AddInstanceFormProps> = ({
                 </Box>
 
                 <Button
+                  _hover={{
+                    bg: 'blue.700',
+                    borderColor: 'blue.700',
+                    boxShadow: '0 0 0 3px rgba(59, 130, 246, 0.5)' 
+                  }}
                   bg='blue.600'
                   border='1px'
                   borderColor='blue.600'
                   boxShadow='0 0 0 1px rgba(59, 130, 246, 0.3)'
                   color='white'
-                  ml='16px'
-                  padding='10px'
                   fontFamily='Poppins'
                   fontSize='14px'
                   fontWeight='600'
                   lineHeight='1.2'
-                  _hover={{ bg: 'blue.700', borderColor: 'blue.700', boxShadow: '0 0 0 3px rgba(59, 130, 246, 0.5)' }}
+                  ml='16px'
                   mt='32px'
+                  padding='10px'
                   size='lg'
                   type='submit'
                   variant='solid'

@@ -19,46 +19,46 @@ interface SetUpInstanceControlBtnPopoverProps {
 const SetUpInstanceControlBtnPopover = ({ instance, updatingIsDefault, onOpenSetUpModal }: SetUpInstanceControlBtnPopoverProps) => {
   return (
     <Popover.Root positioning={{ placement: 'bottom-end' }}>      <Popover.Trigger>
-        <Box
-          as="div"
-          role="button"
-          aria-labelledby={`show-options-${instance.id}`}
-          borderRadius='0px 4px 4px 0px'
-          color='primaryBlue500'
-          maxW='24px'
-          minW='24px'
-          ml='1px'
-          padding='0'
-          cursor={updatingIsDefault.loading ? 'not-allowed' : 'pointer'}
-          display='inline-flex'
-          justifyContent='center'
-          alignItems='center'
-          fontSize='xs'
-          opacity={updatingIsDefault.loading ? 0.4 : 1}
-          onClick={() => null}
+      <Box
+        alignItems='center'
+        aria-labelledby={`show-options-${instance.id}`}
+        as="div"
+        borderRadius='0px 4px 4px 0px'
+        color='primaryBlue500'
+        cursor={updatingIsDefault.loading ? 'not-allowed' : 'pointer'}
+        display='inline-flex'
+        fontSize='xs'
+        justifyContent='center'
+        maxW='24px'
+        minW='24px'
+        ml='1px'
+        opacity={updatingIsDefault.loading ? 0.4 : 1}
+        padding='0'
+        role="button"
+        onClick={() => null}
+      >
+        <span
+          hidden
+          id={`show-options-${instance.id}`}
         >
-          <span
-            hidden
-            id={`show-options-${instance.id}`}
-          >
-            Show Instance Options
-          </span> 
+          Show Instance Options
+        </span> 
 
-          <MdKeyboardArrowDown 
-            aria-hidden="true"    
-            focusable="false" 
-            fontSize='18px'
-          /> 
-        </Box>
-      </Popover.Trigger>
+        <MdKeyboardArrowDown 
+          aria-hidden="true"    
+          focusable="false" 
+          fontSize='18px'
+        /> 
+      </Box>
+    </Popover.Trigger>
 
       <Popover.Positioner>
-        <Popover.Content>
+      <Popover.Content>
           <Box
-            padding='0'
-            width='160px'
-          >
-            <Button
+          padding='0'
+          width='160px'
+        >
+          <Button
               _hover={{ background: 'white' }}
               bg='white'
               borderRadius='4px'
@@ -73,11 +73,11 @@ const SetUpInstanceControlBtnPopover = ({ instance, updatingIsDefault, onOpenSet
               size='xs'
               onClick={() => onOpenSetUpModal(instance.id.toString())}
             >
-              Set as Default School Year
+            Set as Default School Year
             </Button>
-          </Box>
+        </Box>
         </Popover.Content>
-      </Popover.Positioner>
+    </Popover.Positioner>
     </Popover.Root>
   )
 }

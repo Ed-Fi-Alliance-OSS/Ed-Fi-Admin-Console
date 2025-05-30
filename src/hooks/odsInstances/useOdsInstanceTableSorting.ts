@@ -21,22 +21,23 @@ const useOdsInstanceTableSorting = () => {
     return instances
       .map(instance => ({ ...instance }))
       .sort((instancea, instanceb) => {
-        const statusA = instancea.edFiStatus?.operationStatus || '';
-        const statusB = instanceb.edFiStatus?.operationStatus || '';
+        const statusA = instancea.edFiStatus?.operationStatus || ''
+        const statusB = instanceb.edFiStatus?.operationStatus || ''
         
         if (orderBy.order == 'desc') {
           return statusB.localeCompare(statusA)
         }
 
         return statusA.localeCompare(statusB)
-      })  }
+      })  
+  }
   
   const sortByEdFiVersion = (instances: ExtendedODSInstance[]): ExtendedODSInstance[] => {
     return instances
       .map(instance => ({ ...instance }))
       .sort((instancea, instanceb) => {
-        const versionA = instancea.edFiVersion?.toString() || '';
-        const versionB = instanceb.edFiVersion?.toString() || '';
+        const versionA = instancea.edFiVersion?.toString() || ''
+        const versionB = instanceb.edFiVersion?.toString() || ''
         
         if (orderBy.order == 'desc') {
           return versionB.localeCompare(versionA)
@@ -50,8 +51,8 @@ const useOdsInstanceTableSorting = () => {
     return instances
       .map(instance => ({ ...instance }))
       .sort((instancea, instanceb) => {
-        const versionA = instancea.tsdsVersion?.toString() || '';
-        const versionB = instanceb.tsdsVersion?.toString() || '';
+        const versionA = instancea.tsdsVersion?.toString() || ''
+        const versionB = instanceb.tsdsVersion?.toString() || ''
         
         if (orderBy.order == 'desc') {
           return versionB.localeCompare(versionA)
@@ -60,11 +61,13 @@ const useOdsInstanceTableSorting = () => {
         return versionA.localeCompare(versionB)
       })
   }
+
   const sortByInstanceName = (instances: ExtendedODSInstance[]): ExtendedODSInstance[] => {
     return instances
       .map(instance => ({ ...instance }))
-      .sort((instancea, instanceb) => {        const nameA = instancea.instanceName || instancea.name || '';
-        const nameB = instanceb.instanceName || instanceb.name || '';
+      .sort((instancea, instanceb) => {
+        const nameA = instancea.instanceName || instancea.name || ''
+        const nameB = instanceb.instanceName || instanceb.name || ''
         
         if (orderBy.order == 'desc') {
           return nameB.localeCompare(nameA)
@@ -78,8 +81,8 @@ const useOdsInstanceTableSorting = () => {
     return instances
       .map(instance => ({ ...instance }))
       .sort((instancea, instanceb) => {
-        const modelsA = (instancea.edFiDataModels || []).join(',');
-        const modelsB = (instanceb.edFiDataModels || []).join(',');
+        const modelsA = (instancea.edFiDataModels || []).join(',')
+        const modelsB = (instanceb.edFiDataModels || []).join(',')
         
         if (orderBy.order == 'desc') {
           return modelsB.localeCompare(modelsA)
@@ -93,8 +96,8 @@ const useOdsInstanceTableSorting = () => {
     return instances
       .map(instance => ({ ...instance }))
       .sort((instancea, instanceb) => {
-        const statusA = instancea.workerStatus || '';
-        const statusB = instanceb.workerStatus || '';
+        const statusA = instancea.workerStatus || ''
+        const statusB = instanceb.workerStatus || ''
         
         if (orderBy.order == 'desc') {
           return statusB.localeCompare(statusA)
@@ -103,37 +106,38 @@ const useOdsInstanceTableSorting = () => {
         return statusA.localeCompare(statusB)
       })
   }
+
   const getSortedInstances = (instances: ExtendedODSInstance[]): ExtendedODSInstance[] => {
     if (!instances || instances.length === 0) {
-      return [];
+      return []
     }
     
     if (orderBy.field === 'Status') {
-      return sortByStatus(instances);
+      return sortByStatus(instances)
     }
 
     if (orderBy.field === 'EdFiVersion') {
-      return sortByEdFiVersion(instances);
+      return sortByEdFiVersion(instances)
     }
 
     if (orderBy.field === 'TsdsVersion') {
-      return sortByTsdsVersion(instances);
+      return sortByTsdsVersion(instances)
     }
 
     if (orderBy.field === 'InstanceName') {
-      return sortByInstanceName(instances);
+      return sortByInstanceName(instances)
     }
 
     if (orderBy.field === 'EdFiDataModels') {
-      return sortByEdFiDataModels(instances);
+      return sortByEdFiDataModels(instances)
     }
 
     if (orderBy.field === 'WorkerStatus') {
-      return sortByWorkerStatus(instances);
+      return sortByWorkerStatus(instances)
     }
 
     // Default sorting or Year sorting
-    return instances;
+    return instances
   }
 
   const onOrderBy = (field: ODSInstanceTableSortingField, order: ControlTableSortType) => {

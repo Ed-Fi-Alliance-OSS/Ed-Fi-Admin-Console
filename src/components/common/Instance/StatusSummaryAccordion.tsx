@@ -53,38 +53,38 @@ const StatusSummaryAccordion = ({ instanceList }: StatusSummaryAccordionProps) =
           borderColor='gray.300'
           borderRadius='4px'
         >            <Flex 
-            alignItems="center"
-            cursor="pointer"
-            height="64px"
-            onClick={() => toggleAccordion(index)}
-          >
-            <Flex _hover={{ bg: 'transparent' }} alignItems="center">
-            <Box ml="30px" mr="10px">
-                {/* Accordion icon */}
-                <Box 
-                transform={`rotate(${expandedItems[index] ? '180deg' : '0deg'})`}
-                transition="transform 0.2s"
-              >
-                <svg fill="none" height="6" viewBox="0 0 10 6" width="10" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M1 1L5 5L9 1" stroke="#2E72D2" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" />
-                  </svg>
-              </Box>
-              </Box>
+          alignItems="center"
+          cursor="pointer"
+          height="64px"
+          onClick={() => toggleAccordion(index)}
+        >
+          <Flex _hover={{ bg: 'transparent' }} alignItems="center">
+              <Box ml="30px" mr="10px">
+              {/* Accordion icon */}
+              <Box 
+                  transform={`rotate(${expandedItems[index] ? '180deg' : '0deg'})`}
+                  transition="transform 0.2s"
+                >
+                  <svg fill="none" height="6" viewBox="0 0 10 6" width="10" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1 1L5 5L9 1" stroke="#2E72D2" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" />
+                </svg>
+                </Box>
+            </Box>
               
-            <Text 
-                color='blue.600'
-                fontFamily='Poppins'
-                fontSize='16px'
-                fontWeight='700'
-              >
-                {instance.name}
-              </Text>
+              <Text 
+              color='blue.600'
+              fontFamily='Poppins'
+              fontSize='16px'
+              fontWeight='700'
+            >
+              {instance.name}
+            </Text>
               
-            <Flex ml='50px'>
-                <ODSInstanceEdFiStatus status={instance.status.operationStatus} />
-              </Flex>
-          </Flex>
-          </Flex>
+              <Flex ml='50px'>
+              <ODSInstanceEdFiStatus status={instance.status.operationStatus} />
+            </Flex>
+            </Flex>
+        </Flex>
           
           <Box 
             display={expandedItems[index] ? 'block' : 'none'} 

@@ -49,6 +49,7 @@ const InstanceDataPreview = ({ instance }: InstanceDataPreviewProps) => {
             mr='10px'
           >Data Preview
           </Text>
+
           <CommonTooltip
             bg="blue.700"
             iconColor="green.500"
@@ -56,6 +57,7 @@ const InstanceDataPreview = ({ instance }: InstanceDataPreviewProps) => {
             size="14px"
           />
         </Flex>
+
         {adminConfig && adminConfig.showDataHealth ? <>
           <Flex alignItems='center'>
             <Text
@@ -67,13 +69,16 @@ const InstanceDataPreview = ({ instance }: InstanceDataPreviewProps) => {
             >
               {dataHealthDate}
             </Text>
+
             <RefreshBtn
               fontSize="20px"
               id="data-health"
               onAction={onRefreshDataHealthInfo}
             />
           </Flex>
+
           <Flex mt='18px' />
+
           {dataHealthFetchError ? <DataHealthFetchErrorMessage
             error={dataHealthFetchError}
           /> : <>
@@ -81,46 +86,57 @@ const InstanceDataPreview = ({ instance }: InstanceDataPreviewProps) => {
               text="Reporting Periods"
               value={dataHealthInfo.reportingPeriodExts}
             />
+
             <InstanceDataPreviewField
               text="Sections"
               value={dataHealthInfo.sections}
             />
+
             <InstanceDataPreviewField
               text="Student School Enrollments"
               value={dataHealthInfo.studentSchoolAssociations}
             />
+
             <InstanceDataPreviewField
               text="Student Course Enrollments (By Section)"
               value={dataHealthInfo.studentSectionAssociations}
             />
+
             <InstanceDataPreviewField
               text="Student Special Education Program Enrollments"
               value={dataHealthInfo.studentSpecialEducationProgramAssociations}
             />
+
             <InstanceDataPreviewField
               text="Student Daily Attendance"
               value={dataHealthInfo.studentSchoolAttendanceEvents}
             />
+
             <InstanceDataPreviewField
               text="Student Reporting Period Attendance"
               value={dataHealthInfo.basicReportingPeriodAttendances}
             />
+
             <InstanceDataPreviewField
               text="Student Discipline Incidents"
               value={dataHealthInfo.studentDisciplineIncidentBehaviorAssociations}
             />
+
             <InstanceDataPreviewField
               text="Student Course History"
               value={dataHealthInfo.courseTranscripts}
             />
+
             <InstanceDataPreviewField
               text="Staff Employment"
               value={dataHealthInfo.staffEducationOrganizationEmploymentAssociations}
             />
+
             <InstanceDataPreviewField
               text="Staff Assignment (By Role)"
               value={dataHealthInfo.staffEducationOrganizationAssignmentAssociations}
             />
+
             <InstanceDataPreviewField
               text="Staff Teaching Assignment (By Section)"
               value={dataHealthInfo.staffSectionAssociations}
@@ -135,6 +151,7 @@ const InstanceDataPreview = ({ instance }: InstanceDataPreviewProps) => {
           Coming Soon
         </Text>}
       </Flex>
+
       {false && <Text
         color='blue.500'
         fontFamily='Open sans'

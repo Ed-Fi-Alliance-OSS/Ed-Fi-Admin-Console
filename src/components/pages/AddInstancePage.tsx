@@ -116,6 +116,7 @@ const AddInstancePage = () => {
                   />
                 ) }
               </Flex>
+
               <Flex flex='0.6' ml='8px'>
                 {errorMessages ? <ErrorList errors={errorMessages} /> : <></>}
               </Flex>

@@ -16,16 +16,20 @@ const PartnerAccordionControl = ({ onEditPartner }: PartnerAccordionControlProps
   return (
     <Flex w='80px'>
       <Button 
+        _hover={{
+          bg: 'blue.50',
+          borderColor: 'blue.600',
+          boxShadow: '0 0 0 3px rgba(59, 130, 246, 0.5)' 
+        }}
         bg='primaryBlue600'
         border='1px'
-        borderRadius='4px 0px 0px 4px'
         borderColor='secondaryBlue600'
+        borderRadius='4px 0px 0px 4px'
         boxShadow='0 0 0 3px rgba(59, 130, 246, 0.3)'
         color='primaryBlue600'
         minW='39px'
         size='xs'
         variant='outline'
-        _hover={{ bg: 'blue.50', borderColor: 'blue.600', boxShadow: '0 0 0 3px rgba(59, 130, 246, 0.5)' }}
         onClick={onEditPartner}
       >
         Edit

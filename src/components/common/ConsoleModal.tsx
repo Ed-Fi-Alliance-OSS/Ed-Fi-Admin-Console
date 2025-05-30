@@ -18,7 +18,11 @@ const ConsoleModal = ({ content, show, onClose }: AddAppUserModalProps) => {
   return (
     <Dialog.Root 
       open={show} 
-      onOpenChange={(details) => { if (!details.open) onClose() }}
+      onOpenChange={(details) => {
+        if (!details.open) {
+          onClose() 
+        } 
+      }}
     >
       <Dialog.Backdrop />
 

@@ -29,84 +29,85 @@ interface ODSInstanceManagementTableFilterPopoverProps {
 const ODSInstanceManagementTableFilterPopover = ({ textFilter, selectedOption, options, onChangeFilterOption, onChangeText, onFilter, onResetFilter }: ODSInstanceManagementTableFilterPopoverProps) => {
   return (
     <Popover.Root>      <Popover.Trigger>
-        <Box
-          as="div"
-          role="button"
-          aria-labelledby="search-btn"
-          minWidth="auto"
-          display="inline-flex"
-          justifyContent="center"
-          alignItems="center"
-          padding="8px"
-          cursor="pointer"
-          borderRadius="4px"
-          onClick={() => {}}
-        >
-          <span
-            hidden
-            id="search-btn"
-          >Search
-          </span>
+      <Box
+        alignItems="center"
+        aria-labelledby="search-btn"
+        as="div"
+        borderRadius="4px"
+        cursor="pointer"
+        display="inline-flex"
+        justifyContent="center"
+        minWidth="auto"
+        padding="8px"
+        role="button"
+        onClick={() => {}}
+      >
+        <span
+          hidden
+          id="search-btn"
+        >Search
+        </span>
 
-          <LuSearch 
-            aria-hidden={true}
-            color="gray.700"
-            focusable={false}
-            fontSize="18px"
-          />
-        </Box>
-      </Popover.Trigger>
-      <Portal>
+        <LuSearch 
+          aria-hidden={true}
+          color="gray.700"
+          focusable={false}
+          fontSize="18px"
+        />
+      </Box>
+    </Popover.Trigger>
+
+    <Portal>
         <Popover.Content css={{ maxWidth: '200px' }}>
-          <Popover.Body padding="16px">
+        <Popover.Body padding="16px">
             <Box as="form">
-              <CustomFormLabel
+            <CustomFormLabel
                 htmlFor="filter"
                 text="Filter for"
               />
 
-              <CustomInput
+            <CustomInput
                 id="filter"
                 placeholder="Type your search here"
                 value={textFilter}
                 onChange={onChangeText}
               />
 
-              <Flex mt="10px">
+            <Flex mt="10px">
                 <CustomSelect 
-                  options={options.map(option => ({
-                    value: option,
-                    text: option 
-                  }))}
-                  value={selectedOption}
-                  onChange={onChangeFilterOption}
-                />
+                options={options.map(option => ({
+                  value: option,
+                  text: option 
+                }))}
+                value={selectedOption}
+                onChange={onChangeFilterOption}
+              />
               </Flex>
-            </Box>
+          </Box>
 
             <Button
-              colorPalette="blue"
-              mt="10px"
-              size="sm"
-              variant="solid"
-              width="full"
-              onClick={onFilter}
-            >
-              Filter 
-            </Button>
+            colorPalette="blue"
+            mt="10px"
+            size="sm"
+            variant="solid"
+            width="full"
+            onClick={onFilter}
+          >
+            Filter 
+          </Button>
 
             <Button
-              colorPalette="blue"
-              mt="10px"
-              size="sm"
-              variant="outline"
-              width="full"
-              onClick={onResetFilter}
-            >
-              Reset Filters
-            </Button>
+            colorPalette="blue"
+            mt="10px"
+            size="sm"
+            variant="outline"
+            width="full"
+            onClick={onResetFilter}
+          >
+            Reset Filters
+          </Button>
           </Popover.Body>
-        </Popover.Content>
+      </Popover.Content>
       </Portal>
     </Popover.Root>
   )

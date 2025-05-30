@@ -29,37 +29,37 @@ const DeleteInstanceBtn = ({ instance, showDeleteInstanceModal, onShowDeleteInst
 
   return (
     <Box display={checkInstanceStatus(instance)}>      <Button
-        alignItems='center'
-        bg='red.600'
-        border='1px solid transparent'
-        colorScheme='red'
-        display='flex'
-        maxW='auto'
-        minW='auto'
-        padding='5'
-        variant='solid'
-        w='170px'
-        _hover={{ bg: 'red.700' }}
-        _active={{ bg: 'red.800' }}
-        onClick={onShowDeleteInstanceModal}
-      ><MdDelete
-          aria-hidden="true"
-          color='white'
-          focusable="false"
-          fontSize='15px'
-        />
+      _active={{ bg: 'red.800' }}
+      _hover={{ bg: 'red.700' }}
+      alignItems='center'
+      bg='red.600'
+      border='1px solid transparent'
+      colorScheme='red'
+      display='flex'
+      maxW='auto'
+      minW='auto'
+      padding='5'
+      variant='solid'
+      w='170px'
+      onClick={onShowDeleteInstanceModal}
+    ><MdDelete
+        aria-hidden="true"
+        color='white'
+        focusable="false"
+        fontSize='15px'
+      />
 
-        <Text
-          color='white'
-          fontFamily='Poppins'
-          fontSize='md'
-          fontWeight='400'
-          ml='5px'
-        >Delete Instance
-        </Text>
-      </Button>
+      <Text
+        color='white'
+        fontFamily='Poppins'
+        fontSize='md'
+        fontWeight='400'
+        ml='5px'
+      >Delete Instance
+      </Text>
+    </Button>
 
-      {instance && <DeleteInstanceModal
+    {instance && <DeleteInstanceModal
         instance={instance}
         show={showDeleteInstanceModal}
         onCloseModal={onCloseDeleteIntanceModal}

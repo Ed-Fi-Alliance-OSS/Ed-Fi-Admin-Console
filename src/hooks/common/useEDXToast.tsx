@@ -28,7 +28,8 @@ const useEDXToast = (initialDuration?: number) => {
     
     return toaster.create({
       title: 'Error',
-      description: description,      duration: duration,
+      description: description,
+      duration: duration,
       type: 'error',
       isClosable: true,
     })

@@ -25,22 +25,22 @@ const ModalForm = ({ header, content, height, width, maxHeight }: ModalFormProps
     >
       <Flex 
         bg='white'
+        display="flex"
         flexDir='column'
         h='full'
+        overflow="hidden"
         padding='32px 34px'
         w='full'
-        overflow="hidden"
-        display="flex"
       >
         <Flex w='full'>
           {header}
         </Flex>
 
         <Flex
-          mt='32px'
-          w='full'
-          overflowY={maxHeight ? "auto" : "visible"}
           flexGrow={1}
+          mt='32px'
+          overflowY={maxHeight ? 'auto' : 'visible'}
+          w='full'
         >
           {content}
         </Flex>

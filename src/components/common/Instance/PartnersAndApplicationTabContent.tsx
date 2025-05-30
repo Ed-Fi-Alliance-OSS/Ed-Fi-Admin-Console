@@ -49,7 +49,7 @@ const PartnersAndApplicationTabContent = ({ instance, schoolYear }: PartnersAndA
   const forceUpdate = useCallback(() => refreshComponent(Date.now() + Math.random()), [])
   const { deleteEdfiApplicationForSchoolYear } = useEdfiApplicationsService()
 
-    const [ isDeletingApplication, setIsDeletingApplication ] = useState<DeletingState>({
+  const [ isDeletingApplication, setIsDeletingApplication ] = useState<DeletingState>({
     deleting: false,
     id: ''
   })
@@ -137,6 +137,7 @@ const PartnersAndApplicationTabContent = ({ instance, schoolYear }: PartnersAndA
     forceUpdate()
     setisLoading(false)
   }
+
   console.log('rendering...')
 
 

@@ -1,8 +1,6 @@
 'use client'
 
-import {
-  ChakraProvider
-} from '@chakra-ui/react'
+import { ChakraProvider } from '@chakra-ui/react'
 import { baseTheme } from '@edfi/admin-console-shared-sdk'
 import { ReactNode } from 'react'
 import { ColorModeProvider } from './color-mode'
@@ -19,8 +17,10 @@ export function Provider({ children }: ProviderProps) {
   return (
     <ChakraProvider value={baseTheme}>
       <GlobalStyles />
+
       <ColorModeProvider>
         {children}
+
         <Toaster />
       </ColorModeProvider>
     </ChakraProvider>

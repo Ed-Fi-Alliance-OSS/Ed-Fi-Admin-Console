@@ -41,6 +41,7 @@ const ApplicationDetailsTable = ({ applicationsList, isDeleting, onEditApplicati
             >
               Application
             </Table.ColumnHeader>
+
             <Table.ColumnHeader
               bg='gray.100'
               color='gray.700'
@@ -51,6 +52,7 @@ const ApplicationDetailsTable = ({ applicationsList, isDeleting, onEditApplicati
             >
               Education Organizations
             </Table.ColumnHeader>
+
             <Table.ColumnHeader
               bg='gray.100'
               color='gray.700'
@@ -61,9 +63,11 @@ const ApplicationDetailsTable = ({ applicationsList, isDeleting, onEditApplicati
             >
               Permissions
             </Table.ColumnHeader>
+
             <Table.ColumnHeader bg='gray.100'></Table.ColumnHeader>
           </Table.Row>
         </Table.Header>
+
         <Table.Body>
           {applicationsList.map((application, index) => (
             <Table.Row
@@ -78,6 +82,7 @@ const ApplicationDetailsTable = ({ applicationsList, isDeleting, onEditApplicati
               >
                 {application.applicationName}
               </Table.Cell>
+
               <Table.Cell
                 fontFamily='Poppins'
                 fontSize='14px'
@@ -86,15 +91,16 @@ const ApplicationDetailsTable = ({ applicationsList, isDeleting, onEditApplicati
               >
                 {application.educationOrganizationIds ? application.educationOrganizationIds.length : 0}
               </Table.Cell>
+
               <Table.Cell>
                 <Flex flexDir='column'>
                   <Link
-                    color='blue.600' 
+                    asChild 
+                    color='blue.600'
                     fontFamily='Poppins'
                     fontSize='14px'
                     fontWeight='400'
                     textDecoration='underline'
-                    asChild
                   >
                     <RouterLink to='#'>
                       {application.claimSetName}
@@ -102,33 +108,39 @@ const ApplicationDetailsTable = ({ applicationsList, isDeleting, onEditApplicati
                   </Link>
                 </Flex>
               </Table.Cell>
+
               <Table.Cell>
                 <Flex
                   justifyContent='flex-end'
                   w='full'
                 >
                   <Button 
+                    _hover={{
+                      bg: 'blue.700',
+                      borderColor: 'blue.700',
+                      boxShadow: '0 0 0 3px rgba(59, 130, 246, 0.5)' 
+                    }}
                     bg='blue.600'
                     border='1px'
                     borderColor='blue.600'
+                    borderRadius='4px 0px 0px 4px'
                     boxShadow='0 0 0 1px rgba(59, 130, 246, 0.3)'
                     color='white'
-                    ml='16px'
-                    padding='10px'
-                    size='xs'
-                    type="button"
                     fontFamily='Poppins'
                     fontSize='11px'
                     fontWeight='600'
                     lineHeight='1.2'
-                    _hover={{ bg: 'blue.700', borderColor: 'blue.700', boxShadow: '0 0 0 3px rgba(59, 130, 246, 0.5)' }}
-                    borderRadius='4px 0px 0px 4px'
                     minW='39px'
+                    ml='16px'
+                    padding='10px'
+                    size='xs'
+                    type="button"
                     variant='solid'
                     onClick={() => onEditApplication(application)}
                   >
                     Edit
                   </Button>
+
                   {/* <ApplicationDetailsControl 
                     data={application}
                     isDeleting={isDeleting.deleting && isDeleting.id === application.id.toString()}

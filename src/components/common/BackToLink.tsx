@@ -17,10 +17,10 @@ interface BackToLinkProps {
 const BackToLink = ({ url, text }: BackToLinkProps) => {
   return (
     <Link 
-      alignItems='center' 
+      asChild 
+      alignItems='center'
       display='flex'
       w='230px'
-      asChild
     >
       <RouterLink to={url}>
         <MdArrowBack 

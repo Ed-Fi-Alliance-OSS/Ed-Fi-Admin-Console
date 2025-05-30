@@ -1,18 +1,10 @@
 // SPDX-License-Identifier: Apache-2.0
 // Licensed to the Ed-Fi Alliance under one or more agreements.
-// The Ed-Fi Alliance li          <Tabs.Content padding='0'>
-            <AppUserSubscriptionsForm
-              isFetchingProfile={isFetchingProfile}
-              isImplicit={isImplicit}
-              subscriptionsList={subscriptionOptionsList}
-              onSelectRoleForUser={onSelectApplicationRoleForUser}
-              onSubscriptionToggle={onSubscriptionToggle}
-            />
-          </Tabs.Content>is file to you under the Apache License, Version 2.0.
+// The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import {
-  Flex, Tabs 
+  Flex, Tabs
 } from '@chakra-ui/react'
 import {
   ChangeEvent, useContext
@@ -34,22 +26,22 @@ const tabsList = [
 ]
 
 interface EditAppUserFormContentProps {
-    mode: UserFormMode
-    userData: CreateUserFormData
-    edOrgHookData: UserEducationOrganizationsHook
-    errors: FormDataErrors
-    roleOptions: RoleOption[]
-    isImplicit: (applicationId: string) => boolean  
-    isFetchingProfile: boolean 
-    subscriptionOptionsList: SubscriptionOption[]
-    edOrgEditMode: boolean
-    onUpdateEditEdOrgMode: (value: boolean) => void
-    onChangeMode: (value: string) => void
-    onToggleIsAdmin: () => void
-    onInputChange: (e: ChangeEvent<HTMLInputElement>) => void
-    onRoleSelect: (e: ChangeEvent<HTMLSelectElement>) => void
-    onSelectApplicationRoleForUser: (subscriptionId: string, role: string) => void
-    onSubscriptionToggle: (applicationId: string, subscriptionId: string) => void
+  mode: UserFormMode
+  userData: CreateUserFormData
+  edOrgHookData: UserEducationOrganizationsHook
+  errors: FormDataErrors
+  roleOptions: RoleOption[]
+  isImplicit: (applicationId: string) => boolean
+  isFetchingProfile: boolean
+  subscriptionOptionsList: SubscriptionOption[]
+  edOrgEditMode: boolean
+  onUpdateEditEdOrgMode: (value: boolean) => void
+  onChangeMode: (value: string) => void
+  onToggleIsAdmin: () => void
+  onInputChange: (e: ChangeEvent<HTMLInputElement>) => void
+  onRoleSelect: (e: ChangeEvent<HTMLSelectElement>) => void
+  onSelectApplicationRoleForUser: (subscriptionId: string, role: string) => void
+  onSubscriptionToggle: (applicationId: string, subscriptionId: string) => void
 }
 
 const EditAppUserFormContent = ({ userData, edOrgHookData, mode, isImplicit, isFetchingProfile, errors, roleOptions, subscriptionOptionsList, edOrgEditMode, onUpdateEditEdOrgMode, onChangeMode, onToggleIsAdmin, onInputChange, onRoleSelect, onSelectApplicationRoleForUser, onSubscriptionToggle }: EditAppUserFormContentProps) => {
@@ -68,7 +60,7 @@ const EditAppUserFormContent = ({ userData, edOrgHookData, mode, isImplicit, isF
       if (adminConfig && adminConfig.showEdOrgsTab) {
         return true
       }
-            
+
       return false
     }
 
@@ -80,14 +72,14 @@ const EditAppUserFormContent = ({ userData, edOrgHookData, mode, isImplicit, isF
       flexDir='column'
       w='full'
     >
-      <Tabs.Root  
-        isFitted 
+      <Tabs.Root
+        isFitted
         position="relative"
         variant="unstyled"
         w='full'
       >
         <Tabs.List>
-          {tabsList.filter(tab => showEdOrgTab(tab)).map((tab, index) => 
+          {tabsList.filter(tab => showEdOrgTab(tab)).map((tab, index) =>
             <Tabs.Content
               key={index}
               _notFirst={{ ml: '32px' }}
@@ -102,7 +94,7 @@ const EditAppUserFormContent = ({ userData, edOrgHookData, mode, isImplicit, isF
             </Tabs.Content>)}
         </Tabs.List>
 
-        <Tabs.Indicator  
+        <Tabs.Indicator
           bg="blue.600"
           borderRadius="1px"
           height="2px"
@@ -126,25 +118,24 @@ const EditAppUserFormContent = ({ userData, edOrgHookData, mode, isImplicit, isF
           </Tabs.Content>
 
           {adminConfig && adminConfig.showEdOrgsTab && <Tabs.Content padding='0'>
-            <UserOrganizationsForm 
+            <UserOrganizationsForm
               editMode={edOrgEditMode}
               formHookData={edOrgHookData}
               onUpdateEditEdOrgMode={onUpdateEditEdOrgMode}
             />
           </Tabs.Content>}
 
-          <TabPanel padding='0'>
-            <AppUserSubscriptionsForm
-              isFetchingProfile={isFetchingProfile}
-              isImplicit={isImplicit}
-              subscriptionsList={subscriptionOptionsList}
-              onSelectRoleForUser={onSelectApplicationRoleForUser}
-              onSubscriptionToggle={onSubscriptionToggle}
-            />
-          </Tabs.Content>
+
+          <AppUserSubscriptionsForm
+            isFetchingProfile={isFetchingProfile}
+            isImplicit={isImplicit}
+            subscriptionsList={subscriptionOptionsList}
+            onSelectRoleForUser={onSelectApplicationRoleForUser}
+            onSubscriptionToggle={onSubscriptionToggle}
+          />
         </Tabs.Content>
       </Tabs.Root>
-    </Flex>
+    </Flex >
   )
 }
 

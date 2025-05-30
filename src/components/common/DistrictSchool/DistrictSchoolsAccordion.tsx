@@ -80,7 +80,9 @@ const DistrictSchoolsAccordion = ({ district, isRemovingDomain, onRemoveDomain, 
               <Accordion.ItemIndicator
                 aria-hidden="true"
               />
+
               <Flex>  </Flex>
+
               <Text 
                 color='blue.600'
                 fontFamily='Poppins'

@@ -1,0 +1,10 @@
+# Ignore artifacts:
+dist
+node_modules
+coverage
+public/assets
+*.svg
+*.png
+*.ico
+*.jpg
+*.jfif

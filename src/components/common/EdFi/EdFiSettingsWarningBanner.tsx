@@ -11,6 +11,7 @@ import {
 } from '@chakra-ui/react'
 import { useState } from 'react'
 import useHelpLinks from '../../../hooks/useHelpLinks'
+import { Link as RouterLink } from 'react-router-dom'
 
 const EdFiSettingsWarningBanner = () => {
   const [ show, setShow ] = useState(true)
@@ -70,29 +71,29 @@ const EdFiSettingsWarningBanner = () => {
             To enable functionality and/or learn more, 
             visit our 
             <Link 
-              fontWeight='700'
-              ml='2px'
-              mr='2px'  
-              referrerPolicy="no-referrer" 
-              target='_blank'
               asChild
+              fontWeight='700'
+              ml='2px'  
+              mr='2px' 
+              referrerPolicy="no-referrer"
+              target='_blank'
             >
               <RouterLink to={getAdminActionHelpLinks().knowledgeBaseUrl}>
-              Knowledge Base 
+                Knowledge Base 
               </RouterLink>
             </Link>
             or 
 
             <Link 
+              asChild
               fontWeight='700'
               href={getAdminActionHelpLinks().supportTicketUrl}
-              ml='2px'
-              referrerPolicy="no-referrer" 
+              ml='2px' 
+              referrerPolicy="no-referrer"
               target='_blank'
-              asChild
             >
               <RouterLink to={getAdminActionHelpLinks().knowledgeBaseUrl}>
-              submit a support ticket
+                submit a support ticket
               </RouterLink>
             </Link>.
           </Text>

@@ -79,6 +79,7 @@ const PartnerForm = ({ initialData, schoolYear, mode, onFinishSave }: PartnerFor
               htmlFor="company"
               text="Company"
             />
+
             <CustomInput
               error={errors && errors['company'] && errors['company'].message}
               id="company"
@@ -92,6 +93,7 @@ const PartnerForm = ({ initialData, schoolYear, mode, onFinishSave }: PartnerFor
               htmlFor="contactEmail"
               text="Contact Email"
             />
+
             <CustomInput
               error={errors && errors['contactEmailAddress'] && errors['contactEmailAddress'].message}
               id="contactEmailAddress"

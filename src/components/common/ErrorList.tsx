@@ -18,10 +18,12 @@ const ErrorList: React.FC<ErrorListProps> = ({ errors }) => {
       <Text color="red.600" fontWeight="bold" mb="8px">
         Validation Errors:
       </Text>
+
       <List.Root as="ol">
         {Object.entries(errors).map(([ field, messages ]) => (
           <List.Item key={field}>
             <Text fontWeight="bold">{field}:</Text>
+
             <List.Root>
               {messages.map((message, index) => (
                 <List.Item key={index}>{message}</List.Item>

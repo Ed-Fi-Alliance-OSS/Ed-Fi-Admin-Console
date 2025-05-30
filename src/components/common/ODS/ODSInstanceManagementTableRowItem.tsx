@@ -55,9 +55,10 @@ const ODSInstanceManagementTableRowItem = ({ tableMode, selectedInstance, instan
     //   onSelectInstance(instance)
     // }
   }, [])
+
   return (
     <>{/* Using React.Fragment with no whitespace between elements */}
-      {tableMode != 'Display' && <Table.Cell w='80px' bg='white'>
+      {tableMode != 'Display' && <Table.Cell bg='white' w='80px'>
         <RadioGroup.Root
           value={selectedInstance?.id ?? ''}
           onChange={() => onSelectInstance(instance)}
@@ -69,9 +70,11 @@ const ODSInstanceManagementTableRowItem = ({ tableMode, selectedInstance, instan
           />
         </RadioGroup.Root>
       </Table.Cell>}
-      <Table.Cell maxW="250px" overflow="hidden" px={4} py={2} bg='white'>
+
+      <Table.Cell bg='white' maxW="250px" overflow="hidden" px={4} py={2}>
         <Flex direction="column" overflow="hidden" w="100%">
           <Link
+            asChild
             color="blue.600"
             display="block"
             fontFamily="Poppins"
@@ -82,7 +85,6 @@ const ODSInstanceManagementTableRowItem = ({ tableMode, selectedInstance, instan
             textOverflow="ellipsis"
             title={instance.name}
             whiteSpace="nowrap"
-            asChild
           >
             <RouterLink to={`${getOdsInstanceLink(instance)}`}>
               {instance.name}
@@ -90,18 +92,23 @@ const ODSInstanceManagementTableRowItem = ({ tableMode, selectedInstance, instan
           </Link>
         </Flex>
       </Table.Cell>
+
       <Table.Cell>
         {metaDataLoading ? <Spinner /> : <ODSInstanceEdFiVersion version={edfiMetadata?.version} />}
       </Table.Cell>
+
       <Table.Cell>
         {metaDataLoading ? <Spinner /> : <ODSInstanceDataModelsLabel dataModels={edfiMetadata?.dataModels} />}
       </Table.Cell>
+
       <Table.Cell>
         {metaDataLoading ? <Spinner /> : <ODSInstanceEdFiStatus status={edFiStatus ?? ''} />}
       </Table.Cell>
+
       <Table.Cell>
         {metaDataLoading ? <Spinner /> : <ODSInstanceWorkerStatus status={instance.status ?? 'Error'} />}
       </Table.Cell>
+
       {tableMode == 'Display' && (
         <Table.Cell>
           {showSetupBtn() ?
@@ -111,7 +118,7 @@ const ODSInstanceManagementTableRowItem = ({ tableMode, selectedInstance, instan
               onOpenSetUpModal={onOpenSetUpModal}
             /> :
             <ManageInstanceBtn instance={instance} />}
-        </Table.Cell>      )}
+        </Table.Cell>)}
     </>
   )
 }

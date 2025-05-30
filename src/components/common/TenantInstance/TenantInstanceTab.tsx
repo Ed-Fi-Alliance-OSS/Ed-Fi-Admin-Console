@@ -52,14 +52,15 @@ export function TenantInstanceForm() {
           htmlFor='name'
           text='Tenant Name'
         />
+
         <Flex width="400px">  
-        <CustomInput
-          readOnly
-          error={errors && errors['name'] && errors['name'].message}
-          id='name'
-          value={tenantInstanceData?.document.name || ''}
-          onChange={() => { }}
-        />
+          <CustomInput
+            readOnly
+            error={errors && errors['name'] && errors['name'].message}
+            id='name'
+            value={tenantInstanceData?.document.name || ''}
+            onChange={() => { }}
+          />
         </Flex>
 
         <Flex
@@ -70,14 +71,15 @@ export function TenantInstanceForm() {
             htmlFor='edfiApiDiscoveryUrl'
             text='Ed-Fi Base URL'
           />
+
           <Flex width="400px">
-          <CustomInput
-            readOnly
-            error={errors && errors['edfiApiDiscoveryUrl'] && errors['edfiApiDiscoveryUrl'].message}
-            id='edfiApiDiscoveryUrl'
-            value={tenantInstanceData?.document.edfiApiDiscoveryUrl || ''}
-            onChange={() => { }}
-          />
+            <CustomInput
+              readOnly
+              error={errors && errors['edfiApiDiscoveryUrl'] && errors['edfiApiDiscoveryUrl'].message}
+              id='edfiApiDiscoveryUrl'
+              value={tenantInstanceData?.document.edfiApiDiscoveryUrl || ''}
+              onChange={() => { }}
+            />
           </Flex>
         </Flex>
       </Field.Root>

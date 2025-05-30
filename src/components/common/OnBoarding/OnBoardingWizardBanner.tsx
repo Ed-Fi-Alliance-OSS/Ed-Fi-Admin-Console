@@ -78,12 +78,11 @@ const OnBoardingWizardBanner = ({ currentStepStatus, currentStepName, currentSte
             {currentStepName}
           </Text>
         </Flex>}
-      </Flex>
-
-      <Button 
+      </Flex>      <Button 
         alignItems='center'
         as={RouterLink}
         bg='white'
+        color='primaryWhite'
         data-testid="start-ob-btn"
         display='flex'
         fontSize='lg'
@@ -91,12 +90,11 @@ const OnBoardingWizardBanner = ({ currentStepStatus, currentStepName, currentSte
         ml='87px'
         padding='0'
         textDecor='none'
+        textDecoration='none'
+        //to={routes.onBoardingWizard.url}
         variant='solid'
         w='198px'
         zIndex={2} 
-        textDecoration='none'
-        //to={routes.onBoardingWizard.url}
-        color='primaryWhite'
       >
         {currentStepNumber === 1? 'Start Setup' : 'Continue'}
       </Button>

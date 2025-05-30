@@ -20,10 +20,10 @@ const ControlTableHeader = ({ headerData, justifyContent }: ControlTableHeaderPr
   return (
     <Flex
       alignItems='center'
-      justifyContent={justifyContent ?? 'flex-start'}
-      w='full'
-      p='2'
       borderRadius='md'
+      justifyContent={justifyContent ?? 'flex-start'}
+      p='2'
+      w='full'
     >
       <Text
         color='black'
@@ -37,27 +37,27 @@ const ControlTableHeader = ({ headerData, justifyContent }: ControlTableHeaderPr
       </Text>
 
       {!(headerData.text === '') && headerData.showSorting && <Flex 
+        alignItems='center' 
         color='gray.600' 
-        flexDir='column' 
+        flexDir='column'
         fontSize='12px'
         ml='3px'
-        alignItems='center'
       >
         <Flex
+          alignItems='center'
           flexDir='column'
           justifyContent='center'
-          alignItems='center'
           w='20px'
         >
           <Button 
+            _hover={{ color: 'black' }}
             aria-labelledby={`sort-asc-${headerData.fieldName}`}
+            bg='transparent'
             color={headerData.sortedByField === headerData.fieldName && headerData.sortingType === 'asc'? 'black' : 'gray.500'}
             data-testid={`sort-asc-${headerData.fieldName}`}
             h='14px'
             minW='20px'
             p='0'
-            bg='transparent'
-            _hover={{ color: 'black' }}
             onClick={() => headerData.onSortAsc({ field: headerData.fieldName })}
           >
             <span
@@ -74,14 +74,14 @@ const ControlTableHeader = ({ headerData, justifyContent }: ControlTableHeaderPr
           </Button>
 
           <Button 
+            _hover={{ color: 'black' }}
             aria-labelledby={`sort-desc-${headerData.fieldName}`}
+            bg='transparent'
             color={headerData.sortedByField === headerData.fieldName && headerData.sortingType === 'desc' ? 'black' : 'gray.500'}
             data-testid={`sort-desc-${headerData.fieldName}`}
             h='14px'
             minW='20px'
             p='0'
-            bg='transparent'
-            _hover={{ color: 'black' }}
             onClick={() => headerData.onSortDesc({ field: headerData.fieldName })}
           >
             <span

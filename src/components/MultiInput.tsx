@@ -73,7 +73,10 @@ function MultiInput<T extends string | number>({ filterInput, fieldName, label, 
   }, [ values ])
 
   function addVal(data: string) {
-    if (disabled) return; // Don't add values if disabled
+    if (disabled) {
+      return 
+    } // Don't add values if disabled
+
     dispatch({
       type: 'add',
       data
@@ -81,7 +84,10 @@ function MultiInput<T extends string | number>({ filterInput, fieldName, label, 
   }
 
   function rmVal(data: string) {
-    if (disabled) return; // Don't remove values if disabled
+    if (disabled) {
+      return 
+    } // Don't remove values if disabled
+
     dispatch({
       type: 'rm',
       data
@@ -100,6 +106,7 @@ function MultiInput<T extends string | number>({ filterInput, fieldName, label, 
     if (initialVals.length === 0) {
       return
     }
+
     dispatch({
       type: 'set',
       data: initialVals as string[]
@@ -131,10 +138,10 @@ function MultiInput<T extends string | number>({ filterInput, fieldName, label, 
         </Field.Label>
         
         <Flex 
-          position="relative" 
+          opacity={disabled ? 0.6 : 1} 
+          pointerEvents={disabled ? 'none' : 'auto'}
+          position="relative"
           w="full"
-          opacity={disabled ? 0.6 : 1}
-          pointerEvents={disabled ? "none" : "auto"}
         >
           <AutoComplete
             closeOnSelect

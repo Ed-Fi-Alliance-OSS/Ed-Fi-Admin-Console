@@ -72,6 +72,7 @@ const ApplicationForm = ({ instance, mode, editApplicationData, onFinishSave }: 
   }
 
   const showApplicationAPIData = () => applicationAuthData.key && applicationAuthData.secret
+
   useEffect(() => {
     if(applicationData.educationOrganizationIds && applicationData.educationOrganizationIds.length > 0){
       // Initialize edOrgs with values from applicationData
@@ -118,12 +119,12 @@ const ApplicationForm = ({ instance, mode, editApplicationData, onFinishSave }: 
             w='full'
           >
             <MultiInput
+              disabled={mode === 'edit'}
               filterInput={isNumberKey}
               label='EdOrgs'
               transformText={transformText}
               values={edOrgs}
               onChange={setEdorgs}
-              disabled={mode === 'edit'}
             />
           </Flex>
 

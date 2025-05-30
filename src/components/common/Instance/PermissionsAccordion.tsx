@@ -49,6 +49,7 @@ const PermissionsAccordion = () => {
                   w='full'
                 >
                   <Accordion.ItemIndicator />
+
                   <Flex aria-hidden="true">
                     <Text
                       color='blue.600'

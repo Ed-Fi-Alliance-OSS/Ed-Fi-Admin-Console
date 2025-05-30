@@ -6,6 +6,7 @@
 import {
   Flex, Link, Text
 } from '@chakra-ui/react'
+import { Link as RouterLink } from 'react-router-dom'
 import OnBoardingTabContentWrapper from '../OnBoardingTabContentWrapper'
 import TrainingModuleList from './TrainingModuleList'
 
@@ -23,14 +24,14 @@ const TrainingTabContent = ({ onCompleteStep }: TrainingTabContentProps) => {
       >
         The following training modules must be completed to continue. This video will give you an introduction to the Ed-Fi ODS and insight into its functionality. Supplementary documents related to this section can be found within the 
         <Link 
-          color="blue.500"
-          fontWeight='bold'
-          mx='3px' 
-          referrerPolicy="no-referrer"
           asChild
+          color="blue.500"
+          fontWeight='bold' 
+          mx='3px'
+          referrerPolicy="no-referrer"
         >
-          <RouterLink to="https://txedexchange.atlassian.net/servicedesk/customer/portal/3/article/7962650" target="_blank">
-          general onboarding resources
+          <RouterLink target="_blank" to="https://txedexchange.atlassian.net/servicedesk/customer/portal/3/article/7962650">
+            general onboarding resources
           </RouterLink>
         </Link> 
         in Confluence.

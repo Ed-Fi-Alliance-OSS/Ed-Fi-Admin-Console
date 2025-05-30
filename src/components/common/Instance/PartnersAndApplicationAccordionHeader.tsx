@@ -22,13 +22,18 @@ const PartnersAndApplicationAccordionHeader = ({ sortByPartnerDesc, sortByPartne
   return (
     <Flex padding='16px 32px'>
       <Flex
-        flexDir='column'
-        justifyContent='center'
         alignItems='center'
-        w='32px'
+        flexDir='column'
         gap='2px'
+        justifyContent='center'
+        w='32px'
       >
         <Button 
+          _hover={{
+            background: 'gray.50',
+            color: sortingType === 'asc' ? 'blue.600' : 'gray.600'
+          }}
+          _focus={{ boxShadow: '0 0 0 2px var(--chakra-colors-blue-500)' }}
           aria-label="Sort ascending by vendor"
           background='transparent'
           color={sortingType === 'asc' ? 'blue.500' : 'gray.400'}
@@ -37,13 +42,6 @@ const PartnersAndApplicationAccordionHeader = ({ sortByPartnerDesc, sortByPartne
           minW='16px'
           p='0'
           onClick={() => sortByPartnerAsc({ field: 'company' })}
-          _hover={{
-            background: 'gray.50',
-            color: sortingType === 'asc' ? 'blue.600' : 'gray.600'
-          }}
-          _focus={{
-            boxShadow: '0 0 0 2px var(--chakra-colors-blue-500)'
-          }}
         >
           <TriangleUpIcon 
             aria-hidden="true"
@@ -52,6 +50,11 @@ const PartnersAndApplicationAccordionHeader = ({ sortByPartnerDesc, sortByPartne
         </Button>
 
         <Button 
+          _hover={{
+            background: 'gray.50',
+            color: sortingType === 'desc' ? 'blue.600' : 'gray.600'
+          }}
+          _focus={{ boxShadow: '0 0 0 2px var(--chakra-colors-blue-500)' }}
           aria-label="Sort descending by vendor"
           background='transparent'
           color={sortingType === 'desc' ? 'blue.500' : 'gray.400'}
@@ -60,13 +63,6 @@ const PartnersAndApplicationAccordionHeader = ({ sortByPartnerDesc, sortByPartne
           minW='16px'
           p='0'
           onClick={() => sortByPartnerDesc({ field: 'company' })}
-          _hover={{
-            background: 'gray.50',
-            color: sortingType === 'desc' ? 'blue.600' : 'gray.600'
-          }}
-          _focus={{
-            boxShadow: '0 0 0 2px var(--chakra-colors-blue-500)'
-          }}
         >
           <TriangleDownIcon 
             aria-hidden="true"

@@ -41,6 +41,7 @@ const InstancePageContent = ({ instanceId }: InstancePageContentProps) => {
       w='full'
     >
       <InstancePageHeader />
+
       {instanceNotFound ? (
         <Flex
           alignItems='center'

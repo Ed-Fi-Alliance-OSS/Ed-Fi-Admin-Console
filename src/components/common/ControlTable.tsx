@@ -32,9 +32,9 @@ const ControlTable = ({ headers, rows, thPadding, itemsCount, loading, paginatio
       border='1px' 
       borderColor='gray.300'
       borderRadius='4px'
-      w='full'
       boxShadow="sm"
       overflow="hidden"
+      w='full'
     >
       <Table.Root variant='outline' width="100%">
         <Table.Header
@@ -47,14 +47,14 @@ const ControlTable = ({ headers, rows, thPadding, itemsCount, loading, paginatio
             {headers.map((header, index) => 
               <Table.ColumnHeader 
                 key={index}
+                _last={{ borderRight: 'none' }}
+                bg='gray.50'
                 borderBottom='2px'
                 borderBottomColor='gray.300'
                 borderRight="1px"
                 borderRightColor="gray.200"
-                _last={{ borderRight: 'none' }}
-                padding={thPadding}
-                bg='gray.50'
                 fontWeight="700"
+                padding={thPadding}
               >
                 {header}
               </Table.ColumnHeader>)}
@@ -84,24 +84,24 @@ const ControlTable = ({ headers, rows, thPadding, itemsCount, loading, paginatio
       </Flex>}
 
       {itemsCount === 0 && !loading && <Flex
+        bg="white"
         flexDir='column'
         padding='16px'
         w='full'
-        bg="white"
       >
         <Flex
           alignItems='center'
+          bg="gray.50"
+          borderRadius="md"
           h='35px'
           justifyContent='center'
           w='full'
-          borderRadius="md"
-          bg="gray.50"
         >
           <Text 
+            color="gray.600"
             fontFamily='Poppins'
             fontSize='16px'
             fontWeight='700'
-            color="gray.600"
           >
             There are 0 items to show
           </Text>

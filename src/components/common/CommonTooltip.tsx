@@ -27,6 +27,7 @@ const CommonTooltip = ({ bg, iconColor, label, size }: CommonTooltipProps) => {
         css={{ '&:hover + div': { display: 'block', } }}
         tabIndex={0}
       />
+
       <Box
         css={{
           position: 'absolute',

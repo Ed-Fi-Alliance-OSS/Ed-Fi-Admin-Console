@@ -34,6 +34,7 @@ const InstanceDataPreviewField = ({ text, value }: InstanceDataPreviewFieldProps
       >
         {text}
       </Text>
+
       <Text
         color={selectValueColor()}
         fontFamily='Poppins'

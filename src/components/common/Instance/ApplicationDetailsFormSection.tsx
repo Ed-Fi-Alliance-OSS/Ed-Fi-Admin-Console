@@ -73,10 +73,10 @@ const ApplicationDetailsFormSection = ({ applicationData, mode, errors, operatio
           />
 
           <Flex 
-            position="relative" 
+            opacity={mode === 'edit' ? 0.6 : 1} 
+            pointerEvents={mode === 'edit' ? 'none' : 'auto'}
+            position="relative"
             w="full"
-            opacity={mode === 'edit' ? 0.6 : 1}
-            pointerEvents={mode === 'edit' ? "none" : "auto"}
           >
             <CustomSelect 
               options={vendorOptions.map(option => ({
@@ -98,10 +98,10 @@ const ApplicationDetailsFormSection = ({ applicationData, mode, errors, operatio
           />
 
           <Flex 
-            position="relative" 
+            opacity={mode === 'edit' ? 0.6 : 1} 
+            pointerEvents={mode === 'edit' ? 'none' : 'auto'}
+            position="relative"
             w="full"
-            opacity={mode === 'edit' ? 0.6 : 1}
-            pointerEvents={mode === 'edit' ? "none" : "auto"}
           >
             <CustomSelect 
               options={claimSetOptions.map(option => ({

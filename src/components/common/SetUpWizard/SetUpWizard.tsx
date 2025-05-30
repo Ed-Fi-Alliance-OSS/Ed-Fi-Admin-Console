@@ -132,11 +132,11 @@ const SetUpWizard = ({ instance, setupWizardData, completedSteps, lastInProgress
             }}
             borderRadius='0'
             color='white'
+            disabled={isDisabledTab(index)}
             fontFamily='Poppins'
             fontSize='14px'
             fontWeight='700'
             h='54px'
-            disabled={isDisabledTab(index)}
             lineHeight='28px'
             padding='8px 8px' 
             w='auto'
@@ -156,10 +156,9 @@ const SetUpWizard = ({ instance, setupWizardData, completedSteps, lastInProgress
                   padding='2px' 
                   w='14px'
                 />
-              </Flex>
-              : step.tabName}
+              </Flex>              : step.tabName}
           </Tabs.Content>)}
-      </Tab.List>
+      </Tabs.List>
 
       <Tabs.Content padding='0'>
         <OnBoardingConnectSISContextProvider
