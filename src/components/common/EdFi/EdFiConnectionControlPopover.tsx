@@ -3,16 +3,14 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import { ChevronDownIcon } from '@chakra-ui/icons'
+import { MdKeyboardArrowDown } from 'react-icons/md'
 import {
+  Box,
   Button,
   Flex,
-  Popover,
-  PopoverBody,
-  PopoverContent,
-  PopoverTrigger
 } from '@chakra-ui/react'
 import { DeletingState } from '../../../core/deletingState.types'
+import { useState } from 'react'
 
 interface EdFiConnectionControlPopoverProps {
     connectionId: string 
@@ -22,66 +20,108 @@ interface EdFiConnectionControlPopoverProps {
 }
 
 const EdFiConnectionControlPopover = ({ connectionId, isDeleting, isDisabled, onDelete }: EdFiConnectionControlPopoverProps) => {
+  const [ isOpen, setIsOpen ] = useState(false)
+
   return (
-    <Popover>
-      <PopoverTrigger>
-        <Button 
-          aria-labelledby={`show-options-${connectionId}`}
-          borderRadius='0px 4px 4px 0px'
-          isDisabled={isDisabled}
-          maxW='24px'
-          minW='24px'
-          ml='1px'
-          size='xs'
-          variant='primaryBlue600'
-          onClick={() => console.log('Ed-Fi connection control popover')}
-        >
-          <span
-            hidden
-            id={`show-options-${connectionId}`}
-          >Show Options
-          </span>
-
-          <ChevronDownIcon 
-            aria-hidden="true"    
-            focusable="false" 
-            fontSize='18px'
-          />
-        </Button>
-      </PopoverTrigger>
-
-      <PopoverContent 
-        padding='0'
-        top='0px'
-        w='100px'
+    <Box position="relative">
+      <Button 
+        css={{
+          borderRadius: '0px 4px 4px 0px',
+          maxWidth: '24px',
+          minWidth: '24px',
+          marginLeft: '1px',
+          fontSize: 'xs',
+          background: '#0066cc',
+          color: 'white',
+          padding: '0',
+          '&:hover:not(:disabled)': { background: '#0055aa' },
+          '&:disabled': {
+            opacity: 0.6,
+            cursor: 'not-allowed'
+          },
+          '&:focus': { boxShadow: 'none' }
+        }}
+        aria-expanded={isOpen}
+        aria-labelledby={`show-options-${connectionId}`}
+        disabled={isDisabled}
+        onClick={() => {
+          console.log('Ed-Fi connection control popover')
+          setIsOpen(!isOpen)
+        }}
       >
-        <PopoverBody padding='0'>
+        <span
+          hidden
+          id={`show-options-${connectionId}`}
+        >Show Options
+        </span>
+
+        <Box 
+          aria-hidden="true"
+          as={MdKeyboardArrowDown}    
+          css={{ fontSize: '18px' }}
+        />
+      </Button>
+
+      {isOpen && (
+        <Box
+          css={{
+            position: 'absolute',
+            top: '100%',
+            right: 0,
+            zIndex: 1000,
+            width: '100px',
+            padding: 0
+          }}
+          onClick={(e) => e.stopPropagation()}
+        >
           <Flex 
-            bg='white'
-            border='1px'
-            borderColor='gray.400'
-            borderRadius='4px'
-            flexDir='column'
-            w='100px'
+            css={{
+              background: 'white',
+              border: '1px solid',
+              borderColor: 'gray.400',
+              borderRadius: '4px',
+              flexDirection: 'column',
+              width: '100px',
+              padding: 0
+            }}
           >
             <Button
-              _hover={{ background: 'white' }}
-              bg='white'
-              borderRadius='4px'
-              color='red.600'
-              display='flex'
-              fontFamily='Poppins'
-              isLoading={isDeleting.deleting && isDeleting.id === connectionId}
-              minW='80px'
-              size='xs'
+              css={{
+                background: 'white',
+                borderRadius: '4px',
+                color: '#e53e3e', // red.600
+                display: 'flex',
+                fontFamily: 'Poppins',
+                minWidth: '80px',
+                fontSize: 'xs',
+                padding: '8px',
+                '&:hover': { background: 'white' },
+                position: 'relative',
+                '&::before': isDeleting.deleting && isDeleting.id === connectionId ? {
+                  content: '""',
+                  position: 'absolute',
+                  top: '50%',
+                  left: '10px',
+                  width: '12px',
+                  height: '12px',
+                  marginTop: '-6px',
+                  border: '2px solid #e53e3e',
+                  borderTopColor: 'transparent',
+                  borderRadius: '50%',
+                  animation: 'spin 1s linear infinite'
+                } : {}
+              }}
               onClick={onDelete}
             >
-              Delete
+              {isDeleting.deleting && isDeleting.id === connectionId ? 
+                <Box as="span" css={{ marginLeft: '20px' }}>Deleting...</Box> : 
+                'Delete'
+              }
             </Button>
           </Flex>
-        </PopoverBody>
-      </PopoverContent>
-    </Popover>
+        </Box>
+      )}
+    </Box>
   )
 }
 

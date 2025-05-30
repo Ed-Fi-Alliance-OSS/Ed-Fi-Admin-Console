@@ -3,20 +3,18 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import { SearchIcon } from '@chakra-ui/icons'
 import {
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-  PopoverBody,
   Button,
-  FormControl,
   Flex,
+  Box,
+  Portal,
 } from '@chakra-ui/react'
 import { ChangeEvent } from 'react'
 import {
   CustomFormLabel, CustomSelect, CustomInput 
 } from '@edfi/admin-console-shared-sdk'
+import { LuSearch } from 'react-icons/lu'
+import { Popover } from '@chakra-ui/react'
 
 interface ODSInstanceManagementTableFilterPopoverProps {
     textFilter: string
@@ -30,44 +28,53 @@ interface ODSInstanceManagementTableFilterPopoverProps {
 
 const ODSInstanceManagementTableFilterPopover = ({ textFilter, selectedOption, options, onChangeFilterOption, onChangeText, onFilter, onResetFilter }: ODSInstanceManagementTableFilterPopoverProps) => {
   return (
-    <Popover>
-      <PopoverTrigger>
-        <Button
-          aria-aria-labelledby="search-btn"
-          minWidth='auto'
-        >
-          <span
-            hidden
-            id="search-btn"
-          >Search
-          </span>
+    <Popover.Root>      <Popover.Trigger>
+      <Box
+        alignItems="center"
+        aria-labelledby="search-btn"
+        as="div"
+        borderRadius="4px"
+        cursor="pointer"
+        display="inline-flex"
+        justifyContent="center"
+        minWidth="auto"
+        padding="8px"
+        role="button"
+        onClick={() => {}}
+      >
+        <span
+          hidden
+          id="search-btn"
+        >Search
+        </span>
 
-          <SearchIcon 
-            aria-hidden="true"
-            color='gray.700'
-            focusable="false"
-            fontSize='18px'
-          />
-        </Button>
-      </PopoverTrigger>
+        <LuSearch 
+          aria-hidden={true}
+          color="gray.700"
+          focusable={false}
+          fontSize="18px"
+        />
+      </Box>
+    </Popover.Trigger>
 
-      <PopoverContent w='200px'>
-        <PopoverBody padding='16px'>
-          <FormControl>
+    <Portal>
+        <Popover.Content css={{ maxWidth: '200px' }}>
+        <Popover.Body padding="16px">
+            <Box as="form">
             <CustomFormLabel
-              htmlFor="filter"
-              text="Filter for"
-            />
+                htmlFor="filter"
+                text="Filter for"
+              />
 
             <CustomInput
-              id="filter"
-              placeholder='Type your search here'
-              value={textFilter}
-              onChange={onChangeText}
-            />
+                id="filter"
+                placeholder="Type your search here"
+                value={textFilter}
+                onChange={onChangeText}
+              />
 
-            <Flex mt='10px'>
-              <CustomSelect 
+            <Flex mt="10px">
+                <CustomSelect 
                 options={options.map(option => ({
                   value: option,
                   text: option 
@@ -75,31 +82,34 @@ const ODSInstanceManagementTableFilterPopover = ({ textFilter, selectedOption, o
                 value={selectedOption}
                 onChange={onChangeFilterOption}
               />
-            </Flex>
-          </FormControl>
+              </Flex>
+          </Box>
 
-          <Button
-            mt='10px'
-            size='sm'
-            variant='primaryBlue600'
-            w='full'
+            <Button
+            colorPalette="blue"
+            mt="10px"
+            size="sm"
+            variant="solid"
+            width="full"
             onClick={onFilter}
           >
             Filter 
           </Button>
 
-          <Button
-            mt='10px'
-            size='sm'
-            variant='secondaryBlue600'
-            w='full'
+            <Button
+            colorPalette="blue"
+            mt="10px"
+            size="sm"
+            variant="outline"
+            width="full"
             onClick={onResetFilter}
           >
             Reset Filters
           </Button>
-        </PopoverBody>
-      </PopoverContent>
-    </Popover>
+          </Popover.Body>
+      </Popover.Content>
+      </Portal>
+    </Popover.Root>
   )
 }
 

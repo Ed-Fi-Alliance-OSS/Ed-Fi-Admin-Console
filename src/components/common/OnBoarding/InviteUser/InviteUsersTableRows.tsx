@@ -4,7 +4,7 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import {
-  Td, Text
+  Table, Text
 } from '@chakra-ui/react'
 import { Invitation } from '../../../../core/invitations/Invitation.types'
 import ControlTableRow from '../../ControlTableRow'
@@ -19,53 +19,53 @@ const InviteUsersTableRows = ({ invitationsList }: InviteUsersTableRowsProps) =>
     <>
       {invitationsList.map((invitation, index) => 
         <ControlTableRow key={index}>
-          <Td w='30%'>
+          <Table.Cell w='30%'>
             <Text
               color='gray.700'
               fontFamily='Poppins'
+              fontSize='sm'
               fontWeight='400'
-              size='sm'
             >
               {invitation.email}
             </Text>
-          </Td>
+          </Table.Cell>
 
-          <Td w='20%'>
+          <Table.Cell w='20%'>
             <Text
               color='gray.700'
               fontFamily='Poppins'
+              fontSize='sm'
               fontWeight='400'
-              size='sm'
             >
               {invitation.firstName}
             </Text>
-          </Td>
+          </Table.Cell>
 
-          <Td w='20%'>
+          <Table.Cell w='20%'>
             <Text
               color='gray.700'
               fontFamily='Poppins'
+              fontSize='sm'
               fontWeight='400'
-              size='sm'
             >
               {invitation.lastName}
             </Text>
-          </Td>
+          </Table.Cell>
 
-          <Td w='20%'>
+          <Table.Cell w='20%'>
             <Text
               color='gray.700'
               fontFamily='Poppins'
+              fontSize='sm'
               fontWeight='400'
-              size='sm'
             >
               {invitation.role === 'Tenant.Admin'? 'District Admin' : 'District User'}
             </Text>
-          </Td>
+          </Table.Cell>
 
-          <Td w='200px'>
+          <Table.Cell w='200px'>
             <InvitationStatus status={invitation.invitationStatus} />
-          </Td>
+          </Table.Cell>
         </ControlTableRow>)}
     </>
   )

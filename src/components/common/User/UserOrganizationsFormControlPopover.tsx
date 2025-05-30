@@ -3,7 +3,7 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import { ChevronDownIcon } from '@chakra-ui/icons'
+import { MdKeyboardArrowDown } from 'react-icons/md'
 import {
   Button,
   Flex,
@@ -30,12 +30,13 @@ const UserOrganizationsFormControlPopover = ({ educationOrganizationId, staffCla
         <Button 
           aria-labelledby={`show-options-${educationOrganizationId}`}
           borderRadius='0px 4px 4px 0px'
-          isDisabled={isDisabled}
+          color='primaryBlue600'
+          disabled={isDisabled}
+          fontSize='xs'
           maxW='24px'
           minW='24px'
           ml='1px'
-          size='xs'
-          variant='primaryBlue600'
+          variant='solid'
           onClick={() => console.log('User education organizations control popover')}
         >
           <span
@@ -44,7 +45,7 @@ const UserOrganizationsFormControlPopover = ({ educationOrganizationId, staffCla
           >Show Options
           </span>
 
-          <ChevronDownIcon 
+          <MdKeyboardArrowDown 
             aria-hidden="true"    
             focusable="false" 
             fontSize='18px'
@@ -73,9 +74,9 @@ const UserOrganizationsFormControlPopover = ({ educationOrganizationId, staffCla
               color='red.600'
               display='flex'
               fontFamily='Poppins'
-              isLoading={isDeleting.deleting && isDeleting.id === educationOrganizationId}
+              fontSize='xs'
+              loading={isDeleting.deleting && isDeleting.id === educationOrganizationId}
               minW='80px'
-              size='xs'
               onClick={() => onDelete(educationOrganizationId, staffClassification)}
             >
               Delete

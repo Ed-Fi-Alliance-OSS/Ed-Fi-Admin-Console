@@ -6,6 +6,7 @@
 import {
   Flex, Link, Text
 } from '@chakra-ui/react'
+import { Link as RouterLink } from 'react-router-dom'
 
 const FinalizeTabBlurb = () => {
   return (
@@ -31,13 +32,15 @@ const FinalizeTabBlurb = () => {
       >
         If all the information above looks correct, click “Finalize” below to complete the Onboarding Wizard. Note: by clicking “Finalize”, you are granting The Texas Education Exchange (Acme Service Center) permission to access data related to users, roles, and campuses. Read our 
         <Link 
+          asChild
           color='blue.500'
           fontWeight='700'
-          href="https://txedexchange.net/terms-privacy"
           mx='5px'
           target="_blank"
         >
-          Terms and Data Privacy Policy
+          <RouterLink to="https://txedexchange.net/terms-privacy">
+            Terms and Data Privacy Policy
+          </RouterLink>
         </Link>
         to learn more. 
       </Text>

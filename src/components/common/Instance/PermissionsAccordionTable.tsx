@@ -4,12 +4,9 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import {
+  Box,
   Flex,
-  Table, TableContainer,
-  Tbody,
-  Td,
-  Th,
-  Thead, Tr
+  Table
 } from '@chakra-ui/react'
 import PermissionsAccordionResourceInfo from './PermissionsAccordionResourceInfo'
 
@@ -33,55 +30,55 @@ interface PermissionsAccordionTableProps {
 
 const PermissionsAccordionTable = ({ resourceInfo }: PermissionsAccordionTableProps) => {
   return (
-    <TableContainer
+    <Box
       border='1px'
       borderColor='gray.300'
       borderRadius='4px'
     >
-      <Table   
+      <Table.Root  
         border='1px'
         borderColor='gray.300' 
         overflow='hidden'
-        variant='simple'
       >
-        <Thead bg='gray.100'>
-          <Tr p='0'>
-            <Th w='full'></Th>
+        <Table.Header bg='gray.100'>
+          <Table.Row p='0'>
+            <Table.ColumnHeader bg='gray.100' w='full'></Table.ColumnHeader>
 
-            <Th
+            <Table.ColumnHeader
+              bg='gray.100'
               color='gray.700'
               fontFamily='Poppins'
               fontSize='14px'
               fontWeight='700'
               textTransform='none'
             >Read
-            </Th>
+            </Table.ColumnHeader>
 
-            <Th w='100px'>
+            <Table.ColumnHeader bg='gray.100' w='100px'>
               Create
-            </Th>
+            </Table.ColumnHeader>
 
-            <Th w='100px'>
+            <Table.ColumnHeader bg='gray.100' w='100px'>
               Update
-            </Th>
+            </Table.ColumnHeader>
 
-            <Th w='100px'>
+            <Table.ColumnHeader bg='gray.100' w='100px'>
               Delete
-            </Th>
-          </Tr>
-        </Thead>
+            </Table.ColumnHeader>
+          </Table.Row>
+        </Table.Header>
 
-        <Tbody>
-          <Tr
+        <Table.Body>
+          <Table.Row
             border='2px' 
             borderColor='gray.300'
             padding='0'
           >
-            <Td paddingY='0'>
+            <Table.Cell paddingY='0'>
               <PermissionsAccordionResourceInfo resourceInfoData={resourceInfo.types} />
-            </Td> 
+            </Table.Cell> 
 
-            <Td paddingY='0'>
+            <Table.Cell paddingY='0'>
               <Flex
                 bg='gray.100'
                 borderRadius='4px'
@@ -90,9 +87,9 @@ const PermissionsAccordionTable = ({ resourceInfo }: PermissionsAccordionTablePr
               >
                                         
               </Flex>
-            </Td> 
+            </Table.Cell> 
 
-            <Td paddingY='0'>
+            <Table.Cell paddingY='0'>
               <Flex
                 bg='gray.100'
                 borderRadius='4px'
@@ -101,9 +98,9 @@ const PermissionsAccordionTable = ({ resourceInfo }: PermissionsAccordionTablePr
               >
                                         
               </Flex>
-            </Td> 
+            </Table.Cell> 
 
-            <Td paddingY='0'>
+            <Table.Cell paddingY='0'>
               <Flex
                 bg='gray.100'
                 borderRadius='4px'
@@ -112,9 +109,9 @@ const PermissionsAccordionTable = ({ resourceInfo }: PermissionsAccordionTablePr
               >
                                         
               </Flex>
-            </Td> 
+            </Table.Cell> 
 
-            <Td paddingY='0'>
+            <Table.Cell paddingY='0'>
               <Flex
                 bg='gray.100'
                 borderRadius='4px'
@@ -123,19 +120,19 @@ const PermissionsAccordionTable = ({ resourceInfo }: PermissionsAccordionTablePr
               >
                                         
               </Flex>
-            </Td> 
-          </Tr>
+            </Table.Cell> 
+          </Table.Row>
 
-          <Tr
+          <Table.Row
             border='2px' 
             borderColor='gray.300'
             padding='0'
           >
-            <Td paddingY='0'>
+            <Table.Cell paddingY='0'>
               <PermissionsAccordionResourceInfo resourceInfoData={resourceInfo.systemDescriptors} />
-            </Td> 
+            </Table.Cell> 
 
-            <Td paddingY='0'>
+            <Table.Cell paddingY='0'>
               <Flex
                 bg='gray.100'
                 borderRadius='4px'
@@ -144,9 +141,9 @@ const PermissionsAccordionTable = ({ resourceInfo }: PermissionsAccordionTablePr
               >
                                         
               </Flex>
-            </Td> 
+            </Table.Cell> 
 
-            <Td paddingY='0'>
+            <Table.Cell paddingY='0'>
               <Flex
                 bg='gray.100'
                 borderRadius='4px'
@@ -155,9 +152,9 @@ const PermissionsAccordionTable = ({ resourceInfo }: PermissionsAccordionTablePr
               >
                                         
               </Flex>
-            </Td> 
+            </Table.Cell> 
 
-            <Td paddingY='0'>
+            <Table.Cell paddingY='0'>
               <Flex
                 bg='gray.100'
                 borderRadius='4px'
@@ -166,9 +163,9 @@ const PermissionsAccordionTable = ({ resourceInfo }: PermissionsAccordionTablePr
               >
                                         
               </Flex>
-            </Td> 
+            </Table.Cell> 
 
-            <Td paddingY='0'>
+            <Table.Cell paddingY='0'>
               <Flex
                 bg='gray.100'
                 borderRadius='4px'
@@ -177,19 +174,19 @@ const PermissionsAccordionTable = ({ resourceInfo }: PermissionsAccordionTablePr
               >
                                         
               </Flex>
-            </Td> 
-          </Tr>
+            </Table.Cell> 
+          </Table.Row>
 
-          <Tr
+          <Table.Row
             border='2px' 
             borderColor='gray.300'
             padding='0'
           >
-            <Td paddingY='0'>
+            <Table.Cell paddingY='0'>
               <PermissionsAccordionResourceInfo resourceInfoData={resourceInfo.educationOrganizations} />
-            </Td> 
+            </Table.Cell> 
 
-            <Td paddingY='0'>
+            <Table.Cell paddingY='0'>
               <Flex
                 bg='gray.100'
                 borderRadius='4px'
@@ -198,9 +195,9 @@ const PermissionsAccordionTable = ({ resourceInfo }: PermissionsAccordionTablePr
               >
                                         
               </Flex>
-            </Td> 
+            </Table.Cell> 
 
-            <Td paddingY='0'>
+            <Table.Cell paddingY='0'>
               <Flex
                 bg='gray.100'
                 borderRadius='4px'
@@ -209,9 +206,9 @@ const PermissionsAccordionTable = ({ resourceInfo }: PermissionsAccordionTablePr
               >
                                         
               </Flex>
-            </Td> 
+            </Table.Cell> 
 
-            <Td paddingY='0'>
+            <Table.Cell paddingY='0'>
               <Flex
                 bg='gray.100'
                 borderRadius='4px'
@@ -220,9 +217,9 @@ const PermissionsAccordionTable = ({ resourceInfo }: PermissionsAccordionTablePr
               >
                                         
               </Flex>
-            </Td> 
+            </Table.Cell> 
 
-            <Td paddingY='0'>
+            <Table.Cell paddingY='0'>
               <Flex
                 bg='gray.100'
                 borderRadius='4px'
@@ -231,11 +228,11 @@ const PermissionsAccordionTable = ({ resourceInfo }: PermissionsAccordionTablePr
               >
                                         
               </Flex>
-            </Td> 
-          </Tr>
-        </Tbody>
-      </Table>
-    </TableContainer>
+            </Table.Cell> 
+          </Table.Row>
+        </Table.Body>
+      </Table.Root>
+    </Box>
   )
 }
 

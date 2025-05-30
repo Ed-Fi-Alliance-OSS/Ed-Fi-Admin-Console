@@ -3,7 +3,7 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import { ChevronDownIcon } from '@chakra-ui/icons'
+import { MdExpandMore } from 'react-icons/md'
 import {
   Button, Flex 
 } from '@chakra-ui/react'
@@ -16,10 +16,20 @@ const PartnerAccordionControl = ({ onEditPartner }: PartnerAccordionControlProps
   return (
     <Flex w='80px'>
       <Button 
+        _hover={{
+          bg: 'blue.50',
+          borderColor: 'blue.600',
+          boxShadow: '0 0 0 3px rgba(59, 130, 246, 0.5)' 
+        }}
+        bg='primaryBlue600'
+        border='1px'
+        borderColor='secondaryBlue600'
         borderRadius='4px 0px 0px 4px'
+        boxShadow='0 0 0 3px rgba(59, 130, 246, 0.3)'
+        color='primaryBlue600'
         minW='39px'
         size='xs'
-        variant='primaryBlue600'
+        variant='outline'
         onClick={onEditPartner}
       >
         Edit
@@ -28,10 +38,11 @@ const PartnerAccordionControl = ({ onEditPartner }: PartnerAccordionControlProps
       <Button 
         aria-labelledby="show-options-btn"
         borderRadius='0px 4px 4px 0px'
+        color='primaryBlue600'
         minW='24px'
         ml='1px'
         size='xs'
-        variant='primaryBlue600'
+        variant='solid'
       >
         <span
           hidden
@@ -39,7 +50,7 @@ const PartnerAccordionControl = ({ onEditPartner }: PartnerAccordionControlProps
         >Show Options
         </span>
 
-        <ChevronDownIcon
+        <MdExpandMore
           aria-hidden="true"
           focusable="false"
           fontSize='18px'

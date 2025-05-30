@@ -18,7 +18,6 @@ const useCheckPermissions = () => {
 
   const onCheckPermissions = async () => {
     if (adminConfig) {
-      console.log('check permissions')
       const actionParams = adminConfig.actionParams
 
       await checkPermissions(actionParams)

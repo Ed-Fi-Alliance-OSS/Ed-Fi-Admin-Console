@@ -255,16 +255,11 @@ const useManageSubscribersForm = ({ selectedSubscription, onAfterSave }: UseMana
   }   
 
   useEffect(() => {
-    console.log('use effect', usersList, selectedSubscription)
     if (usersList.length > 0 && selectedSubscription) {
-      console.log('use effect inside if', usersList, selectedSubscription)
-
+      
       const userSubList = generateUsersSubscriptionList(usersList, selectedSubscription.subscriptionId)
       const initialSubList = userSubList.map(user => ({ ...user }))
       const roleOptions = generateSubscriptionRoleOptionsList(selectedSubscription)
-
-      console.log('users subscription list', userSubList)
-      console.log('subscription role list', roleOptions)
 
       setInitialUsersSubscriptionList(initialSubList)
       setUsersSubscriptionList(userSubList)

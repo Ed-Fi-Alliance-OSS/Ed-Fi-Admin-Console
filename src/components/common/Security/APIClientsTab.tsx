@@ -44,16 +44,16 @@ const APIClientsTab = () => {
           >
             <Text 
               fontFamily='Poppins'
+              fontSize='md'
               fontWeight='400'
-              size='md'
             >
               No results found - Try adding a new item or adjust your filter to find what you’re looking for.
             </Text> 
 
             <Text
               fontFamily='Poppins'
+              fontSize='md'
               fontWeight='400'
-              size='md'
             >
               Not sure where to start? Visit our documentation site to learn more.
             </Text>

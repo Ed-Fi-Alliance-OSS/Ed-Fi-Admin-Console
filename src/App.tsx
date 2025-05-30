@@ -3,12 +3,11 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import {
-  ChakraProvider, ColorModeScript
-} from '@chakra-ui/react'
+import { Provider } from './components/ui/provider'
 import {
   baseTheme, EdxConfigProvider, LoadingScreen, TEEAuthContextProvider, useSaveInitialRoute
 } from '@edfi/admin-console-shared-sdk'
+import './index.css'
 import { HelmetProvider } from 'react-helmet-async'
 import LayoutWrapper from './components/layout/LayoutWrapper'
 import AdminConsoleConfigProvider from './context/adminConsoleContext'
@@ -26,7 +25,7 @@ interface AppProps {
 }
 
 function App({ appConfig }: AppProps) {
-  console.log('Tech Console started', 'UI package 2.0.99', 'June 2024')
+  console.log('Admin Console started', 'UI package 0.0.2', 'June 2025')
 
   useSaveInitialRoute({
     homeUrl: routes.home.url,
@@ -34,15 +33,9 @@ function App({ appConfig }: AppProps) {
   })
 
   // APP PAGE
-
   return (
     <div className="App">
-      
-      <ColorModeScript initialColorMode={baseTheme.config.initialColorMode} />
-
-      <ChakraProvider theme={baseTheme}>
-
-
+      <Provider>
         <LoadingScreen
           delay={0.5}
           loading={!appConfig ? true : false}
@@ -51,31 +44,31 @@ function App({ appConfig }: AppProps) {
 
         <HelmetProvider>
           {appConfig &&
-            <EdxConfigProvider config={appConfig}>
-              <MockDataProvider>
-                <PluginProvider>
-                  <PluginLoader
-                    enabled={appConfig.plugins || []}
-                    plugins={loadPlugins()}
-                  />
+          <EdxConfigProvider config={appConfig}>
+            <MockDataProvider>
+              <PluginProvider>
+                <PluginLoader
+                  enabled={appConfig.plugins || []}
+                  plugins={loadPlugins()}
+                />
 
 
-                  <TEEAuthContextProvider edxAppConfig={appConfig}>
-                    <OnBoardingWizardProvider>
-                      <AdminConsoleConfigProvider config={appConfig}>
-                        <HttpServiceContextProvider redirectOnError={true}>
-                          <TenantsContextProvider>
-                            <LayoutWrapper />
-                          </TenantsContextProvider>
-                        </HttpServiceContextProvider>
-                      </AdminConsoleConfigProvider>
-                    </OnBoardingWizardProvider>
-                  </TEEAuthContextProvider>
-                </PluginProvider>
-              </MockDataProvider>
-            </EdxConfigProvider>}
+                <TEEAuthContextProvider edxAppConfig={appConfig}>
+                  <OnBoardingWizardProvider>
+                    <AdminConsoleConfigProvider config={appConfig}>
+                      <HttpServiceContextProvider redirectOnError={true}>
+                        <TenantsContextProvider>
+                          <LayoutWrapper />
+                        </TenantsContextProvider>
+                      </HttpServiceContextProvider>
+                    </AdminConsoleConfigProvider>
+                  </OnBoardingWizardProvider>
+                </TEEAuthContextProvider>
+              </PluginProvider>
+            </MockDataProvider>
+          </EdxConfigProvider>}          
         </HelmetProvider>
-      </ChakraProvider>
+      </Provider>
     </div>
   )
 }

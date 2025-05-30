@@ -20,21 +20,49 @@ const PartnersAndApplicationControls = ({ onAddPartner, onRefresh }: PartnersAnd
         mt='5px'
       >
         <Button
+          _hover={{
+            bg: 'blue.50',
+            borderColor: 'blue.600',
+            boxShadow: '0 0 0 3px rgba(59, 130, 246, 0.5)' 
+          }}
+          bg='white'
+          border='1px'
+          borderColor='secondaryBlue600'
+          boxShadow='0 0 0 2px rgba(59, 130, 246, 0.3)'
+          color='secondaryBlue600'
+          fontFamily='Poppins'
+          fontSize='14px'
+          fontWeight='600'
+          lineHeight='1.2'
           minW='5px'
           p='0 25px'
-          size='xs'
-          variant='secondaryBlue600'
+          size='sm'
+          variant="outline"
           onClick={onRefresh}
         >
           Refresh List
         </Button>
 
         <Button
-          minW='5px'
-          ml='8px'
-          p='0 25px'
-          size='xs'
-          variant='primaryBlue600'
+          _hover={{
+            bg: 'blue.700',
+            borderColor: 'blue.700',
+            boxShadow: '0 0 0 3px rgba(59, 130, 246, 0.5)' 
+          }}
+          bg='blue.600'
+          border='1px'
+          borderColor='blue.600'
+          boxShadow='0 0 0 1px rgba(59, 130, 246, 0.3)'
+          color='white'
+          fontFamily='Poppins'
+          fontSize='14px'
+          fontWeight='600'
+          lineHeight='1.2'
+          ml='16px'
+          padding='10px'
+          size='sm'
+
+          type="button"
           onClick={onAddPartner}
         >
           Add Vendor

@@ -97,26 +97,41 @@ const ODSInstanceTableWrapper = ({ tenants, tableMode, pickedInstance, onSelectI
             alignItems='flex-end'
             justifyContent='end'
             width='full'
+          >            <Button
+            _hover={{
+                bg: 'blue.50',
+                borderColor: 'blue.600',
+                boxShadow: '0 0 0 3px rgba(59, 130, 246, 0.5)' 
+              }}
+            bg='white'
+            border='1px'
+            borderColor={isFetchingData ? 'gray.400' : 'secondaryBlue600'}
+            boxShadow='0 0 0 3px rgba(59, 130, 246, 0.3)'
+            color={isFetchingData ? 'gray.600' : 'secondaryBlue600'}
+            ml='16px'
+            padding='10px'
+            size='sm'
+            type="button"
+            variant='outline'
+            onClick={onRefreshBtnClick}
           >
-            <Button
+            { isFetchingData ? 'Loading...' : 'Refresh' }
+          </Button>            <Button
+              _hover={{
+                bg: 'blue.50',
+                borderColor: 'blue.600',
+                boxShadow: '0 0 0 3px rgba(59, 130, 246, 0.5)' 
+              }}
+              bg='white'
               border='1px'
-              borderColor={isFetchingData ? 'gray.400' : 'blue.400'}
-              color={isFetchingData ? 'gray.600' : 'blue.600'}
+              borderColor='primaryBlue400'
+              boxShadow='0 0 0 3px rgba(59, 130, 246, 0.3)'
+              color='primaryBlue600'
               ml='16px'
               padding='10px'
               size='sm'
-              onClick={onRefreshBtnClick}
-            >
-              { isFetchingData ? 'Loading...' : 'Refresh' }
-            </Button>
-
-            <Button
-              border='1px'
-              borderColor='blue.400'
-              color='blue.600'
-              ml='16px'
-              padding='10px'
-              size='sm'
+              type="button"
+              variant='outline'
               onClick={onAddBtnClick}
             >
               Add Instance
@@ -124,25 +139,25 @@ const ODSInstanceTableWrapper = ({ tenants, tableMode, pickedInstance, onSelectI
           </Flex>
 
         </Flex>
-      </Flex>}
-
-      <Flex
+      </Flex>}      <Flex
+        borderRadius="md"
+        boxShadow="md"
         mt='16px'
+        overflow="hidden"
         w='full'
-      >
-        <ODSInstanceManagementTable
+      >        <ODSInstanceManagementTable
           tableHeaders={[
-            <ControlTableHeader headerData={{
+          <ControlTableHeader headerData={{
               text: '',
               fieldName: '',
               sortedByField: orderBy.field,
-              showSorting: false,
+              showSorting: true,
               sortingType: orderBy.order,
-              onSortAsc: () => onOrderBy('Year', 'asc'),
-              onSortDesc: () => onOrderBy('Year', 'desc')
+              onSortAsc: () => {}, // No sorting for empty column
+              onSortDesc: () => {}
             }}
             />,
-            <ControlTableHeader headerData={{
+          <ControlTableHeader headerData={{
               text: 'Instance Name',
               fieldName: 'InstanceName',
               sortedByField: orderBy.field,
@@ -152,7 +167,7 @@ const ODSInstanceTableWrapper = ({ tenants, tableMode, pickedInstance, onSelectI
               onSortDesc: () => onOrderBy('InstanceName', 'desc')
             }}
             />,
-            <ControlTableHeader headerData={{
+          <ControlTableHeader headerData={{
               text: 'Ed-Fi Version',
               fieldName: 'EdFiVersion',
               sortedByField: orderBy.field,
@@ -162,7 +177,7 @@ const ODSInstanceTableWrapper = ({ tenants, tableMode, pickedInstance, onSelectI
               onSortDesc: () => onOrderBy('EdFiVersion', 'desc')
             }}
             />,
-            <ControlTableHeader headerData={{
+          <ControlTableHeader headerData={{
               text: 'Ed-Fi Data Models',
               fieldName: 'EdFiDataModels',
               sortedByField: orderBy.field,
@@ -172,7 +187,7 @@ const ODSInstanceTableWrapper = ({ tenants, tableMode, pickedInstance, onSelectI
               onSortDesc: () => onOrderBy('EdFiDataModels', 'desc')
             }}
             />,
-            <ControlTableHeader headerData={{
+          <ControlTableHeader headerData={{
               text: 'Ed-Fi Status',
               fieldName: 'Status',
               sortedByField: orderBy.field,
@@ -182,7 +197,7 @@ const ODSInstanceTableWrapper = ({ tenants, tableMode, pickedInstance, onSelectI
               onSortDesc: () => onOrderBy('Status', 'desc')
             }}
             />,
-            <ControlTableHeader headerData={{
+          <ControlTableHeader headerData={{
               text: 'Worker Status',
               fieldName: 'WorkerStatus',
               sortedByField: orderBy.field,
@@ -192,14 +207,14 @@ const ODSInstanceTableWrapper = ({ tenants, tableMode, pickedInstance, onSelectI
               onSortDesc: () => onOrderBy('WorkerStatus', 'desc')
             }}
             />,
-            <ControlTableHeader headerData={{
+          <ControlTableHeader headerData={{
               text: '',
               fieldName: '',
               sortedByField: orderBy.field,
-              showSorting: true,
+              showSorting: false,
               sortingType: orderBy.order,
-              onSortAsc: () => onOrderBy('Year', 'asc'),
-              onSortDesc: () => onOrderBy('Year', 'desc')
+              onSortAsc: () => {}, // No sorting for action column
+              onSortDesc: () => {}
             }}
             />
           ]}

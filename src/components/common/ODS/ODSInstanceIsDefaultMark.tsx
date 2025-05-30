@@ -3,7 +3,7 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import { CheckCircleIcon } from '@chakra-ui/icons'
+import { MdCheckCircle } from 'react-icons/md'
 import { Flex } from '@chakra-ui/react'
 
 interface ODSInstanceIsDefaultMarkProps {
@@ -17,7 +17,7 @@ const ODSInstanceIsDefaultMark = ({ isDefault, w }: ODSInstanceIsDefaultMarkProp
       justifyContent='center'
       w={w? w : 'full'}
     >
-      { isDefault && <CheckCircleIcon 
+      { isDefault && <MdCheckCircle 
         color='blue.600'
         fontSize='20px'
       /> }

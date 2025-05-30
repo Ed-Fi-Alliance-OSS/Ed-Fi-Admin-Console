@@ -4,12 +4,12 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import {
-  Button, Flex, FormControl, Text
+  Button, Flex, Field, Text
 } from '@chakra-ui/react'
 import { ODSInstance } from '../../../core/ODSInstance.types'
 import useDeleteInstanceModal from '../../../hooks/odsInstances/useDeleteInstanceModal'
 import useOdsInstanceTable from '../../../hooks/odsInstances/useOdsInstanceTable'
-import EDXCustomModal from '../EDXCustomModal'
+import EDXCustomModal, { NoButton } from '../EDXCustomModal'
 import useEDXToast from '../../../hooks/common/useEDXToast'
 import { CustomInput } from '@edfi/admin-console-shared-sdk'
 import { useNavigate } from 'react-router-dom'
@@ -34,7 +34,8 @@ const DeleteInstanceModal = ({ instance, show, onCloseModal }: DeleteInstanceMod
     paginatedData
   } = useOdsInstanceTable()
 
-  const { successToast, errorToast } = useEDXToast(5000)  const navigate = useNavigate()
+  const { successToast, errorToast } = useEDXToast(5000)
+  const navigate = useNavigate()
 
   const onConfirm = async () => {
     var success = await onConfirmDeleteInstanceModal()
@@ -59,32 +60,29 @@ const DeleteInstanceModal = ({ instance, show, onCloseModal }: DeleteInstanceMod
         flexDir='column'
         mt='12px'
       >
-        <FormControl mt='16px'>
+        <Field.Root mt='16px'>
           <Text>
             To confirm deletion, type the name of the instance.
           </Text>
+
           <CustomInput
             error={showValidationErrorDeleteInstanceModal ? 'Error: The Instance name doesn\'t match' : ''}
             id='isntanceName'
             value={instanceNameToDelete}
             onChange={onChangeInstanceName}
           />
-        </FormControl>
+        </Field.Root>
       </Flex>}
       footer={<Flex
         alignItems='flex-start'
         w='full'
       >
-        <Button
-          border='1px'
-          borderColor='gray.400'
+        <NoButton
           color='red.600'
-          padding='10px'
-          size='sm'
           onClick={onClose}
         >
           No
-        </Button>
+        </NoButton>
 
         <Button
           _hover={{ _disabled: { bg: '#DC3625' } }}

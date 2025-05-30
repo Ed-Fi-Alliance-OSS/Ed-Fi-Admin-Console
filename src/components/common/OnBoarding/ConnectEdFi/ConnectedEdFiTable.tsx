@@ -4,7 +4,7 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import {
-  Td, Text
+  Table, Text
 } from '@chakra-ui/react'
 import {
   EdFiConnectionFormData, EdFiConnectionVerificationStatus
@@ -28,20 +28,20 @@ const ConnectedEdFiTable = ({ connectedODS, verificationStatus }: ConnectedEdFiT
     <ControlTable
       rows={
         <ControlTableRow>
-          <Td w='15%'>
+          <Table.Cell w='15%'>
             <Text
               color='blue.600'
               fontFamily='Poppins'
+              fontSize='md'
               fontWeight='700'
-              size='md'
             >
               {connectedODS.baseUrl}
             </Text>
-          </Td>
+          </Table.Cell>
 
-          <Td w='5%'> 
+          <Table.Cell w='5%'> 
             <EdFiConnectionStatus status={verificationStatus} />
-          </Td>
+          </Table.Cell>
         </ControlTableRow>}
       headers={headers}
       itemsCount={1}

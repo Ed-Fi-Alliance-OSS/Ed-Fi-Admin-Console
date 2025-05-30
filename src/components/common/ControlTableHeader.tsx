@@ -4,8 +4,8 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import {
-  TriangleDownIcon, TriangleUpIcon
-} from '@chakra-ui/icons'
+  MdArrowDropUp, MdArrowDropDown
+} from 'react-icons/md'
 import {
   Button, Flex, Text
 } from '@chakra-ui/react'
@@ -20,7 +20,9 @@ const ControlTableHeader = ({ headerData, justifyContent }: ControlTableHeaderPr
   return (
     <Flex
       alignItems='center'
+      borderRadius='md'
       justifyContent={justifyContent ?? 'flex-start'}
+      p='2'
       w='full'
     >
       <Text
@@ -35,23 +37,27 @@ const ControlTableHeader = ({ headerData, justifyContent }: ControlTableHeaderPr
       </Text>
 
       {!(headerData.text === '') && headerData.showSorting && <Flex 
+        alignItems='center' 
         color='gray.600' 
-        flexDir='column' 
+        flexDir='column'
         fontSize='12px'
-        ml='2px'
-        w='5px'
+        ml='3px'
       >
         <Flex
+          alignItems='center'
           flexDir='column'
           justifyContent='center'
           w='20px'
         >
           <Button 
+            _hover={{ color: 'black' }}
             aria-labelledby={`sort-asc-${headerData.fieldName}`}
-            color={headerData.sortedByField === headerData.fieldName && headerData.sortingType === 'asc'? 'gray.700' : 'gray.500'}
+            bg='transparent'
+            color={headerData.sortedByField === headerData.fieldName && headerData.sortingType === 'asc'? 'black' : 'gray.500'}
             data-testid={`sort-asc-${headerData.fieldName}`}
-            h='3px'
-            minW='5px'
+            h='14px'
+            minW='20px'
+            p='0'
             onClick={() => headerData.onSortAsc({ field: headerData.fieldName })}
           >
             <span
@@ -60,20 +66,22 @@ const ControlTableHeader = ({ headerData, justifyContent }: ControlTableHeaderPr
             >Sort ascending
             </span>
 
-            <TriangleUpIcon 
+            <MdArrowDropUp 
               aria-label="Sort field ascending"
               focusable="true"
-              fontSize='10px'
+              fontSize='16px'
             />
           </Button>
 
           <Button 
+            _hover={{ color: 'black' }}
             aria-labelledby={`sort-desc-${headerData.fieldName}`}
-            color={headerData.sortedByField === headerData.fieldName && headerData.sortingType === 'desc' ? 'gray.700' : 'gray.500'}
+            bg='transparent'
+            color={headerData.sortedByField === headerData.fieldName && headerData.sortingType === 'desc' ? 'black' : 'gray.500'}
             data-testid={`sort-desc-${headerData.fieldName}`}
-            h='3px'
-            minW='5px'
-            mt='5px'
+            h='14px'
+            minW='20px'
+            p='0'
             onClick={() => headerData.onSortDesc({ field: headerData.fieldName })}
           >
             <span
@@ -82,10 +90,10 @@ const ControlTableHeader = ({ headerData, justifyContent }: ControlTableHeaderPr
             >Sort descending
             </span>
 
-            <TriangleDownIcon 
+            <MdArrowDropDown 
               aria-label="Sort field descending" 
               focusable="true"
-              fontSize='10px'
+              fontSize='16px'
             />
           </Button>
         </Flex>

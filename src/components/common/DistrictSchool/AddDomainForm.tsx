@@ -3,10 +3,10 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import { CloseIcon } from '@chakra-ui/icons'
+import { MdClose } from 'react-icons/md'
 import {
   Button, Flex,
-  FormControl,
+  Field,
   Text
 } from '@chakra-ui/react'
 import {
@@ -45,7 +45,7 @@ const AddDomainForm = ({ districtData, onAfterSave }: AddDomainFormProps) => {
           flexDir='column'
           padding='0 16px'
         >
-          <FormControl mt='16px'>
+          <Field.Root mt='16px'>
             <CustomFormLabel
               htmlFor="domainName" 
               text="Domain"
@@ -57,7 +57,7 @@ const AddDomainForm = ({ districtData, onAfterSave }: AddDomainFormProps) => {
               value={domainName} 
               onChange={onInputChange}
             />
-          </FormControl>
+          </Field.Root>
         </Flex>
 
         <Flex
@@ -70,8 +70,8 @@ const AddDomainForm = ({ districtData, onAfterSave }: AddDomainFormProps) => {
           <Flex mt='16px'>
             <Text
               fontFamily='Poppins'
+              fontSize='md'
               fontWeight='400'
-              size='md'
             >
               Your ESC Admin will need the information below  to add a DNS record with your domain provider to serve as proof of ownership. Once the record has been added, check the domain verification status on the “District/Charter School Settings Page”. This process can take up to 24 hours after the DNS record has been added. 
             </Text>
@@ -87,9 +87,10 @@ const AddDomainForm = ({ districtData, onAfterSave }: AddDomainFormProps) => {
           w='full'
         >
           <Button
-            isLoading={isSavingChanges}
+            color='primaryBlue600'
+            loading={isSavingChanges}
             size='lg'
-            variant='primaryBlue600'
+            variant='solid'
             w='210px'
             onClick={onSave}
           >
@@ -111,7 +112,7 @@ const AddDomainForm = ({ districtData, onAfterSave }: AddDomainFormProps) => {
           >Close
           </span>
 
-          <CloseIcon
+          <MdClose
             aria-hidden="true"
             focusable="false"
           />

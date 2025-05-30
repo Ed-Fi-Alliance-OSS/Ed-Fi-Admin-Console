@@ -5,7 +5,7 @@
 
 import {
   Flex,
-  FormControl,
+  Field,
   Text
 } from '@chakra-ui/react'
 import {
@@ -51,7 +51,7 @@ const ApplicationDetailsFormSection = ({ applicationData, mode, errors, operatio
       <Text fontWeight='700'>Application Details</Text>
 
       <Flex flexDir='column'>
-        <FormControl mt='16px'>
+        <Field.Root mt='16px'>
           <CustomFormLabel
             htmlFor="applicationName" 
             text="Application Name"
@@ -64,45 +64,57 @@ const ApplicationDetailsFormSection = ({ applicationData, mode, errors, operatio
             value={applicationData.applicationName} 
             onChange={onInputChange}
           />
-        </FormControl>
+        </Field.Root>
 
-        <FormControl mt='16px'>
+        <Field.Root mt='16px'>
           <CustomFormLabel
             htmlFor="vendor" 
             text="Vendor"
           />
 
-          <CustomSelect 
-            options={vendorOptions.map(option => ({
-              text: option.company ?? '',
-              value: option.id ?? 0 
-            }))}
-            disabled={mode == 'edit'? true : false}
-            error={errors && errors['vendor'] && errors['vendor'].message}
-            id="vendor"
-            value={applicationData.vendorId} 
-            onChange={(e) => onSelectVendor(parseInt(e.target.value))}
-          />
-        </FormControl>
+          <Flex 
+            opacity={mode === 'edit' ? 0.6 : 1} 
+            pointerEvents={mode === 'edit' ? 'none' : 'auto'}
+            position="relative"
+            w="full"
+          >
+            <CustomSelect 
+              options={vendorOptions.map(option => ({
+                text: option.company ?? '',
+                value: option.id ?? 0 
+              }))}
+              error={errors && errors['vendor'] && errors['vendor'].message}
+              id="vendor"
+              value={applicationData.vendorId} 
+              onChange={(e) => onSelectVendor(parseInt(e.target.value))}
+            />
+          </Flex>
+        </Field.Root>
 
-        <FormControl mt='16px'>
+        <Field.Root mt='16px'>
           <CustomFormLabel
             htmlFor="claimset" 
             text="Claim Sets"
           />
 
-          <CustomSelect 
-            options={claimSetOptions.map(option => ({
-              text: option.name,
-              value: option.name 
-            }))}
-            disabled={mode == 'edit'? true : false}
-            error={errors && errors['claimset'] && errors['claimset'].message}
-            id="claimset"
-            value={applicationData.claimSetName}
-            onChange={(e) => onSelectClaimSet(e.target.value)}
-          />
-        </FormControl>
+          <Flex 
+            opacity={mode === 'edit' ? 0.6 : 1} 
+            pointerEvents={mode === 'edit' ? 'none' : 'auto'}
+            position="relative"
+            w="full"
+          >
+            <CustomSelect 
+              options={claimSetOptions.map(option => ({
+                text: option.name,
+                value: option.name 
+              }))}
+              error={errors && errors['claimset'] && errors['claimset'].message}
+              id="claimset"
+              value={applicationData.claimSetName}
+              onChange={(e) => onSelectClaimSet(e.target.value)}
+            />
+          </Flex>
+        </Field.Root>
       </Flex>
     </Flex>
   )

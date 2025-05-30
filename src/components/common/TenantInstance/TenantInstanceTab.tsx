@@ -4,7 +4,7 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import {
-  Flex, FormControl,
+  Flex, Field,
   Spinner
 } from '@chakra-ui/react'
 import {
@@ -47,21 +47,21 @@ export function TenantInstanceForm() {
       flexDir="column"
       w="full"
     >
-      {loading && <Spinner />}
-
-      <FormControl>
+      {loading && <Spinner />}      <Field.Root>
         <CustomFormLabel
           htmlFor='name'
           text='Tenant Name'
         />
 
-        <CustomInput
-          readOnly
-          error={errors && errors['name'] && errors['name'].message}
-          id='name'
-          value={tenantInstanceData?.document.name}
-          onChange={() => { }}
-        />
+        <Flex width="400px">  
+          <CustomInput
+            readOnly
+            error={errors && errors['name'] && errors['name'].message}
+            id='name'
+            value={tenantInstanceData?.document.name || ''}
+            onChange={() => { }}
+          />
+        </Flex>
 
         <Flex
           flexDir='column'
@@ -72,15 +72,17 @@ export function TenantInstanceForm() {
             text='Ed-Fi Base URL'
           />
 
-          <CustomInput
-            readOnly
-            error={errors && errors['edfiApiDiscoveryUrl'] && errors['edfiApiDiscoveryUrl'].message}
-            id='edfiApiDiscoveryUrl'
-            value={tenantInstanceData?.document.edfiApiDiscoveryUrl}
-            onChange={() => { }}
-          />
+          <Flex width="400px">
+            <CustomInput
+              readOnly
+              error={errors && errors['edfiApiDiscoveryUrl'] && errors['edfiApiDiscoveryUrl'].message}
+              id='edfiApiDiscoveryUrl'
+              value={tenantInstanceData?.document.edfiApiDiscoveryUrl || ''}
+              onChange={() => { }}
+            />
+          </Flex>
         </Flex>
-      </FormControl>
+      </Field.Root>
     </Flex>
   )
 }

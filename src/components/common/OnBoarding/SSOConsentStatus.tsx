@@ -75,8 +75,8 @@ const SSOConsentStatus = ({ status }: SSOConsentStatusProps) => {
       <Text
         color={selectTextColor(status)}
         fontFamily='Archivo Narrow'
+        fontSize='md'
         fontWeight='400'
-        size='md'
       >
         {status}
       </Text>

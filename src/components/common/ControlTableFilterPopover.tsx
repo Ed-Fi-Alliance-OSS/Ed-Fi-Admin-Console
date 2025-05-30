@@ -3,14 +3,11 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import { SearchIcon } from '@chakra-ui/icons'
+import { MdSearch } from 'react-icons/md'
 import {
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-  PopoverBody,
+  Box,
   Button,
-  FormControl,
+  Field,
   Flex,
 } from '@chakra-ui/react'
 import { ChangeEvent } from 'react'
@@ -32,7 +29,6 @@ interface ControlTableFilterPopoverProps {
 
 const ControlTableFilterPopover = ({ textFilter, selectedOption, options, selectUITextOption, isUserControl, onChangeFilterOption, onChangeText, onFilter, onResetFilter }: ControlTableFilterPopoverProps) => {
   const disableFilterBtn = () => {
-
     if (!isUserControl) {
       return false
     }
@@ -40,8 +36,8 @@ const ControlTableFilterPopover = ({ textFilter, selectedOption, options, select
     if (selectedOption) {
       if (selectedOption.toLocaleLowerCase().includes('selected')) {
         return true
-      } 
-
+      }
+ 
       return false
     }
 
@@ -49,85 +45,128 @@ const ControlTableFilterPopover = ({ textFilter, selectedOption, options, select
   }
 
   return (
-    <Popover aria-label="Filter Popover">
-      <PopoverTrigger>
-        <Button
-          aria-labelledby="search-btn"
-          minWidth='auto'
-        >
-          <span
-            hidden
-            id="search-btn"
-          >Search
-          </span>
-
-          <SearchIcon 
-            aria-hidden="true"
-            color='gray.700'
-            focusable="false" 
-            fontSize='18px'
-          />
-        </Button>
-      </PopoverTrigger>
-
-      <PopoverContent
-        aria-label="Filter dialog"
-        w='200px'
+    <Box 
+      css={{
+        position: 'relative',
+        display: 'inline-block'
+      }}
+      aria-label="Filter Popover"
+    >
+      {/* Trigger Button */}
+      <Button
+        css={{
+          minWidth: 'auto',
+          background: 'transparent',
+          padding: '8px',
+          '&:hover': { background: 'rgba(0, 0, 0, 0.05)' },
+          '&:focus': { boxShadow: 'none' },
+          '&[aria-expanded="true"] + div': { display: 'block' }
+        }}
+        aria-labelledby="search-btn"
+        data-state="closed"
+        onClick={(e) => {
+          const btn = e.currentTarget
+          const expanded = btn.getAttribute('aria-expanded') === 'true'
+          btn.setAttribute('aria-expanded', expanded ? 'false' : 'true')
+          btn.setAttribute('data-state', expanded ? 'closed' : 'open')
+        }}
       >
-        <PopoverBody padding='16px'>
-          <FormControl>
-            <CustomFormLabel
-              htmlFor="filter"
-              text="Filter for"
-            />
+        <span
+          hidden
+          id="search-btn"
+        >
+          Search
+        </span>
 
-            <CustomInput
-              id="filter"
-              placeholder='Type your search here'
-              value={textFilter}
-              onChange={onChangeText}
-            />
+        <Box 
+          aria-hidden="true"
+          as={MdSearch}
+          color="gray.700"
+          css={{ fontSize: '18px' }}
+        />
+      </Button>
 
-            <Flex
-              aria-label="Select Field to Filter"
-              id="selectFilterField"
-              mt='10px'
-            >
-              <CustomSelect 
-                options={options.map(option => ({
-                  value: option,
-                  text: selectUITextOption? selectUITextOption(option) : option 
-                }))}
-                aria-labelledby="selectFilterField"
-                value={selectedOption}
-                onChange={onChangeFilterOption}
-              />
-            </Flex>
-          </FormControl>
+      {/* Popover Content */}
+      <Box
+        css={{
+          position: 'absolute',
+          top: 'calc(100% + 5px)',
+          right: 0,
+          zIndex: 1000,
+          width: '200px',
+          display: 'none',
+          background: 'white',
+          boxShadow: '0 4px 10px rgba(0, 0, 0, 0.1)',
+          borderRadius: '4px',
+          padding: '16px'
+        }}
+        aria-label="Filter dialog"
+      >
+        <Field.Root>
+          <CustomFormLabel
+            htmlFor="filter"
+            text="Filter for"
+          />
 
-          <Button
-            isDisabled={disableFilterBtn()}
-            mt='10px'
-            size='sm'
-            variant='primaryBlue600'
-            w='full'
-            onClick={onFilter}
+          <CustomInput
+            id="filter"
+            placeholder='Type your search here'
+            value={textFilter}
+            onChange={onChangeText}
+          />
+
+          <Flex
+            aria-label="Select Field to Filter"
+            css={{ marginTop: '10px' }}
+            id="selectFilterField"
           >
-            Filter
-          </Button>
+            <CustomSelect 
+              options={options.map(option => ({
+                value: option,
+                text: selectUITextOption? selectUITextOption(option) : option 
+              }))}
+              aria-labelledby="selectFilterField"
+              value={selectedOption}
+              onChange={onChangeFilterOption}
+            />
+          </Flex>
+        </Field.Root>
 
-          <Button
-            mt='10px'
-            size='sm'
-            variant='secondaryBlue600'
-            w='full'
-            onClick={onResetFilter}
-          >
-            Reset Filters
-          </Button>
-        </PopoverBody>
-      </PopoverContent>
-    </Popover>
+        <Button
+          css={{
+            marginTop: '10px',
+            width: '100%',
+            size: 'sm',
+            background: '#0066cc',
+            color: 'white',
+            '&:hover:not(:disabled)': { background: '#0055aa' },
+            '&:disabled': {
+              opacity: 0.6,
+              cursor: 'not-allowed'
+            }
+          }}
+          disabled={disableFilterBtn()}
+          onClick={onFilter}
+        >
+          Filter
+        </Button>
+
+        <Button
+          css={{
+            marginTop: '10px',
+            width: '100%',
+            size: 'sm',
+            border: '1px solid #0066cc',
+            color: '#0066cc',
+            background: 'transparent',
+            '&:hover': { background: 'rgba(0, 102, 204, 0.1)' }
+          }}
+          onClick={onResetFilter}
+        >
+          Reset Filters
+        </Button>
+      </Box>
+    </Box>
   )
 }
 

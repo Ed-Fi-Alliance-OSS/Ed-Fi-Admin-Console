@@ -4,13 +4,14 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import {
-  CloseIcon, InfoIcon
-} from '@chakra-ui/icons'
+  MdClose, MdInfo 
+} from 'react-icons/md'
 import {
   Button, Flex, Link, Text
 } from '@chakra-ui/react'
 import { useState } from 'react'
 import useHelpLinks from '../../../hooks/useHelpLinks'
+import { Link as RouterLink } from 'react-router-dom'
 
 const EdFiSettingsWarningBanner = () => {
   const [ show, setShow ] = useState(true)
@@ -31,7 +32,7 @@ const EdFiSettingsWarningBanner = () => {
           w='full'
         >
           <Flex alignItems='center'>
-            <InfoIcon color='orange.500' />
+            <MdInfo color='orange.500' />
 
             <Text
               color='gray.800' 
@@ -46,7 +47,7 @@ const EdFiSettingsWarningBanner = () => {
 
           <Flex ml='auto'>
             <Button minW='auto'>
-              <CloseIcon 
+              <MdClose 
                 fontSize='12px'
                 onClick={() => setShow(false)}
               />
@@ -70,25 +71,30 @@ const EdFiSettingsWarningBanner = () => {
             To enable functionality and/or learn more, 
             visit our 
             <Link 
+              asChild
               fontWeight='700'
-              href={getAdminActionHelpLinks().knowledgeBaseUrl}
-              ml='2px'
-              mr='2px'  
-              referrerPolicy="no-referrer" 
+              ml='2px'  
+              mr='2px' 
+              referrerPolicy="no-referrer"
               target='_blank'
             >
-              Knowledge Base 
+              <RouterLink to={getAdminActionHelpLinks().knowledgeBaseUrl}>
+                Knowledge Base 
+              </RouterLink>
             </Link>
             or 
 
             <Link 
+              asChild
               fontWeight='700'
               href={getAdminActionHelpLinks().supportTicketUrl}
-              ml='2px'
-              referrerPolicy="no-referrer" 
+              ml='2px' 
+              referrerPolicy="no-referrer"
               target='_blank'
             >
-              submit a support ticket
+              <RouterLink to={getAdminActionHelpLinks().knowledgeBaseUrl}>
+                submit a support ticket
+              </RouterLink>
             </Link>.
           </Text>
         </Flex>

@@ -46,9 +46,10 @@ const OnBoardingWizardStart = ({ currentStepIndex, lastInProgress, completedStep
         mt='auto'
       >
         <Button
+          color='primaryBlue600'
           minW='138px'
           size='lg'
-          variant='primaryBlue600'
+          variant='solid'
           onClick={() => onGoToStep(completedSteps === 0? 0 : completedSteps)}
         >
           { completedSteps > 0? 'Continue' : 'Start' }

@@ -4,7 +4,7 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import {
-  Td, Text
+  Table, Text
 } from '@chakra-ui/react'
 import { SISProviderInfo } from '../../../core/sisProviders/SISProviders.types'
 import ControlTableRow from '../ControlTableRow'
@@ -19,27 +19,27 @@ const ConnectedSISProvidersTableRows = ({ connectedSISProvidersList }: Connected
     <>
       {connectedSISProvidersList.map((provider, index) => 
         <ControlTableRow key={index}>
-          <Td w='15%'>
+          <Table.Cell w='15%'>
             <Text
               color='blue.600'
               fontFamily='Poppins'
+              fontSize='md'
               fontWeight='700'
-              size='md'
             >
               {provider.name}
             </Text>
-          </Td>
+          </Table.Cell>
 
-          <Td
+          <Table.Cell
             alignItems='flex-end'
             w='15%'
           >
             <Text>{provider.source}</Text>
-          </Td>
+          </Table.Cell>
 
-          <Td w='5%'> 
+          <Table.Cell w='5%'> 
             <SISProviderConnectionTag status={provider.status} />
-          </Td>
+          </Table.Cell>
         </ControlTableRow>)}
     </>
   )

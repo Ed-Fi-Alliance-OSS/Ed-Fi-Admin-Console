@@ -4,7 +4,7 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import {
-  Flex, Td, Text
+  Flex, Table, Text
 } from '@chakra-ui/react'
 import { CustomCheckbox } from '@edfi/admin-console-shared-sdk'
 import { ChangeEvent } from 'react'
@@ -23,7 +23,7 @@ const SelectInstancesTableRows = ({ instancesList, showChecked, onSelectInstance
     <>
       {instancesList.map((instance, index) => 
         <ControlTableRow key={index}>
-          <Td w={showChecked? 'auto' : '30%'}>
+          <Table.Cell w={showChecked? 'auto' : '30%'}>
             <Flex>
               {showChecked && <CustomCheckbox
                 id={instance.district}
@@ -35,40 +35,40 @@ const SelectInstancesTableRows = ({ instancesList, showChecked, onSelectInstance
               <Text
                 color='gray.700'
                 fontFamily='Poppins'
+                fontSize='md'
                 fontWeight='400'
                 ml={showChecked? '10px' : '0px'}
-                size='md'
               >
                 {instance.district}
               </Text>
             </Flex>
-          </Td>
+          </Table.Cell>
 
-          <Td w={showChecked? 'auto' : '30%'}>
+          <Table.Cell w={showChecked? 'auto' : '30%'}>
             <Text
               color='blue.600'
               fontFamily='Poppins'
+              fontSize='md'
               fontWeight='700'
-              size='md'
             >
               {instance.instanceYear}
             </Text>
-          </Td>
+          </Table.Cell>
 
-          <Td w={showChecked? 'auto' : '30%'}>
+          <Table.Cell w={showChecked? 'auto' : '30%'}>
             <Text
               color='gray.700'
               fontFamily='Poppins'
+              fontSize='md'
               fontWeight='400'
-              size='md'
             >
               {instance.edfiVersion}
             </Text>
-          </Td>
+          </Table.Cell>
 
-          <Td>
+          <Table.Cell>
             <ODSInstanceEdFiStatus status={instance.edfiStatus} />
-          </Td>
+          </Table.Cell>
         </ControlTableRow>)}
     </>
   )

@@ -49,8 +49,8 @@ const AppUserStatus = ({ status }: AppUserStatusProps) => {
       <Text
         color={selectTextColor(status)}
         fontFamily='Archivo Narrow'
+        fontSize='md'
         fontWeight='400'
-        size='md'
       >
         { selectTextStatus() }
       </Text>

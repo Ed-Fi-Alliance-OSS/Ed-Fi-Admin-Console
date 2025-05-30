@@ -9,6 +9,7 @@ import {
 import {
   EdFiConnectionFormMode, EdFiConnectionVerificationStatus as VerificationStatus
 } from '../../../hooks/edfi/useEdFiConnectionForm.types'
+import { Link as RouterLink } from 'react-router-dom'
 import EdFiConnectionVerificationError from './EdFiConnectionVerificationError'
 import EdFiConnectionVerificationStatus from './EdFiConnectionVerificationStatus'
 
@@ -37,12 +38,15 @@ const EdFiConnectionVerification = ({ mode, inOnboarding, status }: EdFiConnecti
           If you’ve submitted the credentials above and the status shows an error, 
           use the error message to troubleshoot or 
           <Link 
+            asChild
             color='blue.500'
             fontFamily='Poppins'
-            href="https://txedexchange.atlassian.net/servicedesk/customer/portals" 
             ml='4px'
             target="_blank"
-          >contact support.
+          >
+            <RouterLink to="http://servidesk">
+              contact support.
+            </RouterLink>
           </Link>
         </Text> }
 
@@ -52,10 +56,11 @@ const EdFiConnectionVerification = ({ mode, inOnboarding, status }: EdFiConnecti
           <Link 
             color='blue.500'
             fontFamily='Poppins'
-            href="https://txedexchange.atlassian.net/servicedesk/customer/portals"
             mx='4px'
             target="_blank"
-          >contact support.
+          ><RouterLink to="http://servidesk">
+            contact support.
+          </RouterLink>
           </Link>
           Once connection is successful, click “Save” to return. 
         </Text> }

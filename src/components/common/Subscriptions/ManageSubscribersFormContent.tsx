@@ -4,7 +4,7 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import {
-  Flex, FormControl, Text
+  Flex, Field, Text
 } from '@chakra-ui/react'
 import {
   CustomFormLabel,
@@ -35,13 +35,13 @@ const ManageSubscribersFormContent = ({ selectedSubscription, subscriptionRoleOp
     >
       <Text
         fontFamily='Poppins'
+        fontSize='lg'
         fontWeight='700'
-        size='lg'
       >
         {selectedSubscription? selectedSubscription.applicationName : ''}
       </Text>
 
-      <FormControl mt='16px'>
+      <Field.Root mt='16px'>
         <CustomFormLabel
           htmlFor="userName"
           text="Search for User"
@@ -52,7 +52,7 @@ const ManageSubscribersFormContent = ({ selectedSubscription, subscriptionRoleOp
           value={searchText}
           onChange={onSearchUser}
         />
-      </FormControl>
+      </Field.Root>
 
       <Flex 
         bg='gray.300'
@@ -69,7 +69,7 @@ const ManageSubscribersFormContent = ({ selectedSubscription, subscriptionRoleOp
       >
         {usersList.filter(user => user.name.toLocaleLowerCase().includes(searchText.toLocaleLowerCase())).map((user, index) => 
           <Flex
-            key={index}
+            key={user.userId || `user-${index}`}
             _notFirst={{ mt: '16px' }}
             alignItems='center'
             border='1px'
@@ -93,16 +93,16 @@ const ManageSubscribersFormContent = ({ selectedSubscription, subscriptionRoleOp
               <Text
                 color='blue.600'
                 fontFamily='Poppins'
+                fontSize='md'
                 fontWeight='700'
-                size='md'
               >{user.name}
               </Text>
 
               <Text
                 color='gray.700'
                 fontFamily='Poppins'
+                fontSize='sm'
                 fontWeight='400'
-                size='sm'
               >{user.email}
               </Text>
             </Flex>

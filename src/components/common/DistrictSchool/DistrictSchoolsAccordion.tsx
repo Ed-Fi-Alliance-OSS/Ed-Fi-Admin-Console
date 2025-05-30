@@ -4,7 +4,7 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import {
-  Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel,
+  Accordion,
   Flex,
   Text
 } from '@chakra-ui/react'
@@ -61,26 +61,27 @@ const getBorderColor = (status: DomainStatus) => {
 
 const DistrictSchoolsAccordion = ({ district, isRemovingDomain, onRemoveDomain, onShowAddDomainForm }: DistrictSchoolsAccordionProps) => {
   return (
-    <Accordion   
+    <Accordion.Root   
       p='0' 
       w='full'
     >
-      <AccordionItem>
+      <Accordion.Item>
         <Flex
           alignItems='center'
           w='full'
         >
-          <AccordionButton
-            border='none'
-            display='flex'
-            justifyContent='space-between'
-            w='full'
-          >
-            <Flex w='191px'>
-              <AccordionIcon
+          <Accordion.ItemTrigger>
+            <Flex
+              border='none'
+              display='flex'
+              justifyContent='space-between'
+              w='191px'
+            >
+              <Accordion.ItemIndicator
                 aria-hidden="true"
-                focusable='false'
               />
+
+              <Flex>  </Flex>
 
               <Text 
                 color='blue.600'
@@ -127,10 +128,10 @@ const DistrictSchoolsAccordion = ({ district, isRemovingDomain, onRemoveDomain, 
                 org length
               </Text>
             </Flex>
-          </AccordionButton>
+          </Accordion.ItemTrigger>
         </Flex>
 
-        <AccordionPanel
+        <Accordion.ItemBody
           mt='24px'
           w='full'
         >
@@ -141,9 +142,9 @@ const DistrictSchoolsAccordion = ({ district, isRemovingDomain, onRemoveDomain, 
           >
             {/* <DistrictSchoolsDataTable schools={district.organizations} /> */}
           </Flex>
-        </AccordionPanel>
-      </AccordionItem>
-    </Accordion>
+        </Accordion.ItemBody>
+      </Accordion.Item>
+    </Accordion.Root>
   )
 }
 

@@ -73,10 +73,11 @@ const AddInstanceForm = ({ name, type, connectionString, onSaveChanges: onSaveCh
               />
 
               <Button
+                color='primaryBlue600'
                 mt='32px'
                 size='lg'
                 type='submit'
-                variant='primaryBlue600'
+                variant="solid"
                 w='250px'
               >
                 Create Instance

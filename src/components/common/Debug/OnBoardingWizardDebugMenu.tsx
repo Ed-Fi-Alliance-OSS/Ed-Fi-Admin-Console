@@ -4,7 +4,7 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import {
-  Button, Flex, FormControl, Text 
+  Button, Flex, Field, Text 
 } from '@chakra-ui/react'
 import {
   CustomFormLabel, CustomSelect 
@@ -63,7 +63,7 @@ const OnBoardingWizardDebugMenu = ({ currentResetStep, currentUpdateStep, showTe
       flexDir='column'
       w='full'
     >
-      <FormControl zIndex={100}>
+      <Field.Root zIndex={100}>
         <Flex flexDir='column'>
           <CustomFormLabel
             htmlFor="selectStep"
@@ -94,7 +94,7 @@ const OnBoardingWizardDebugMenu = ({ currentResetStep, currentUpdateStep, showTe
             onChange={onChangeSelect}
           />
         </Flex>
-      </FormControl>
+      </Field.Root>
 
       <Flex
         alignItems='center'
@@ -102,11 +102,12 @@ const OnBoardingWizardDebugMenu = ({ currentResetStep, currentUpdateStep, showTe
         w='670'
       >
         <Button
-          isLoading={updatingStep}
+          color='primaryBlue600'
+          loading={updatingStep}
           mb='10px'
           mt='16px'
           size='sm'
-          variant='primaryBlue600'
+          variant='solid'
           w='300px'
           zIndex='100'
           onClick={onUpdateOBStep}
@@ -125,9 +126,10 @@ const OnBoardingWizardDebugMenu = ({ currentResetStep, currentUpdateStep, showTe
         w='650'
       >
         <Button
-          isLoading={resetingAllSteps}
+          color='primaryBlue600'
+          loading={resetingAllSteps}
           size='sm'
-          variant='primaryBlue600'
+          variant='solid'
           w='220px'
           zIndex='100'
           onClick={onResetAllOBSteps}

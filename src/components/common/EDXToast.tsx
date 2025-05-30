@@ -4,7 +4,7 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import {
-  Flex, Text 
+  Box, Flex, Text 
 } from '@chakra-ui/react'
 import {
   EDXToastContent, EDXToastType 
@@ -27,7 +27,7 @@ const EDXToast = ({ content, type }: EDXToastProps) => {
       right='16px' 
       top='60px'
     >
-      <Flex
+      <Box
         bg={type === 'Success'? 'green.500' : 'red.500'}
         h='full'
         w='5px'
@@ -40,14 +40,16 @@ const EDXToast = ({ content, type }: EDXToastProps) => {
       >    
         <Text 
           fontFamily='Poppins'
+          fontSize='md'
           fontWeight='600'
           lineHeight='20px'
-          size='md'
         >
           {type === 'Success'? 'Success' : 'Error'}
         </Text>
 
-        {content}
+        <Box>
+          {content}
+        </Box>
       </Flex>
     </Flex>
   )

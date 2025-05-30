@@ -7,6 +7,7 @@ import {
   Flex, Link, Text
 } from '@chakra-ui/react'
 import { useContext } from 'react'
+import { Link as RouterLink } from 'react-router-dom'
 import { adminConsoleContext } from '../../../context/adminConsoleContext'
 import { Invitation } from '../../../core/invitations/Invitation.types'
 import { ExtendedODSInstance } from '../../../core/ODSInstance.types'
@@ -52,13 +53,16 @@ const FinalizeTabContent = ({ connectedSISProvidersList, verifiedDomainList, con
       >
         You’re almost ready to complete the onboarding process! Review the information below and make sure everything is correct. If not, go back and edit or
         <Link
+          asChild
           aria-label="contact support"
           color='blue.500'
-          href="https://txedexchange.atlassian.net/servicedesk/customer/portals"
           ml='2px'
           referrerPolicy='no-referrer'
           target='_blank'
-        >contact support
+        >
+          <RouterLink href="https://txedexchange.atlassian.net/servicedesk/customer/portals">
+            contact support
+          </RouterLink>
         </Link>. Once everything is looking good, click the “Finalize” button and your Tech Console will be ready to use!
       </Text>
 

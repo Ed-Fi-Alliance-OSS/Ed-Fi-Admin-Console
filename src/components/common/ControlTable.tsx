@@ -5,9 +5,8 @@
 
 import {
   Flex, Skeleton,
-  Table, TableContainer, Tbody,
+  Table, Box,
   Text,
-  Th, Thead, Tr
 } from '@chakra-ui/react'
 import { ControlTableRowList } from '../../core/controlTable'
 
@@ -28,33 +27,47 @@ const generateSkeletonArray = () => {
 
 const ControlTable = ({ headers, rows, thPadding, itemsCount, loading, pagination }: ControlTableProps) => {
   return (
-    <TableContainer 
+    <Box 
       bg='white'
       border='1px' 
       borderColor='gray.300'
       borderRadius='4px'
+      boxShadow="sm"
+      overflow="hidden"
       w='full'
     >
-      <Table variant='simple'>
-        <Thead>
-          <Tr>
+      <Table.Root variant='outline' width="100%">
+        <Table.Header
+          bg="gray.50"
+          boxShadow="0 2px 4px rgba(0, 0, 0, 0.1)"
+          position="relative"
+          zIndex="1"
+        >
+          <Table.Row>
             {headers.map((header, index) => 
-              <Th 
+              <Table.ColumnHeader 
                 key={index}
-                aria-hidden={header !== null}
-                borderBottom='1px'
+                _last={{ borderRight: 'none' }}
+                bg='gray.50'
+                borderBottom='2px'
                 borderBottomColor='gray.300'
+                borderRight="1px"
+                borderRightColor="gray.200"
+                fontWeight="700"
                 padding={thPadding}
               >
                 {header}
-              </Th>)}
-          </Tr>
-        </Thead>
+              </Table.ColumnHeader>)}
+          </Table.Row>
+        </Table.Header>
 
-        <Tbody>
+        <Table.Body
+          borderTop="2px"
+          borderTopColor="gray.300"
+        >
           {rows}
-        </Tbody>
-      </Table>
+        </Table.Body>
+      </Table.Root>
 
       {itemsCount === 0 && loading && <Flex
         flexDir='column'
@@ -71,17 +84,21 @@ const ControlTable = ({ headers, rows, thPadding, itemsCount, loading, paginatio
       </Flex>}
 
       {itemsCount === 0 && !loading && <Flex
+        bg="white"
         flexDir='column'
         padding='16px'
         w='full'
       >
         <Flex
           alignItems='center'
+          bg="gray.50"
+          borderRadius="md"
           h='35px'
           justifyContent='center'
           w='full'
         >
           <Text 
+            color="gray.600"
             fontFamily='Poppins'
             fontSize='16px'
             fontWeight='700'
@@ -107,7 +124,7 @@ const ControlTable = ({ headers, rows, thPadding, itemsCount, loading, paginatio
           {pagination}
         </Flex>
       </Flex>}
-    </TableContainer>
+    </Box>
   )
 }
 

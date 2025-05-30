@@ -7,6 +7,7 @@ import {
   Flex, Link, Text
 } from '@chakra-ui/react'
 import { MdHelpOutline } from 'react-icons/md'
+import { Link as RouterLink } from 'react-router-dom'
 
 interface NeedHelpsLinksProps {
     knowledgeBaseUrl: string 
@@ -33,29 +34,31 @@ const NeedHelpLinks = ({ knowledgeBaseUrl, supportUrl }: NeedHelpsLinksProps) =>
         color='gray.800'
         ml='5px'
       >
-        Need help? Visit our 
-        <Link 
-          color='blue.500'
-          fontWeight='700'
-          href={knowledgeBaseUrl}
+        Need help? Visit our        <Link 
+          asChild
+          color='blue.500' 
+          fontWeight='700' 
           ml='2px' 
-          mr='2px' 
-          referrerPolicy="no-referrer" 
+          mr='2px'
+          referrerPolicy="no-referrer"
           target='_blank'
         >
-          Knowledge Base 
+          <RouterLink to={knowledgeBaseUrl}>
+            Knowledge Base 
+          </RouterLink>
         </Link>
-        or 
 
-        <Link 
+        or        <Link 
+          asChild
           color='blue.500'
           fontWeight='700'
-          href={supportUrl}
           ml='2px' 
-          referrerPolicy="no-referrer" 
+          referrerPolicy="no-referrer"
           target='_blank'
         >
-          submit a support ticket.
+          <RouterLink to={supportUrl}>
+            submit a support ticket.
+          </RouterLink>
         </Link>
       </Text>
     </Flex>

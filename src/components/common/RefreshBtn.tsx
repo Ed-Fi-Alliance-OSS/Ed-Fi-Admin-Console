@@ -3,11 +3,12 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import { RepeatIcon } from '@chakra-ui/icons'
+import { MdRefresh } from 'react-icons/md'
 import {
-  Button, Flex, keyframes, Tooltip 
+  Box, Button,
 } from '@chakra-ui/react'
 import { useState } from 'react'
+import { system } from '../../theme'
 
 interface RefreshBtnProps {
     id: string
@@ -23,11 +24,16 @@ const refreshedMessage = 'Refreshed!'
 
 const RefreshBtn = ({ id, fontSize, asFlex, isRefreshing, iconColor, onAction }: RefreshBtnProps) => {
   const [ tooltipMessage, setTooltipMessage ] = useState(refreshMessage)
+  const [ isOpen, setIsOpen ] = useState(false)
 
   const onExecuteAction = async () => {
     await onAction()
-
     setTooltipMessage(refreshedMessage)
+    setIsOpen(true)
+    // Hide tooltip after 2 seconds
+    setTimeout(() => {
+      setIsOpen(false)
+    }, 2000)
   }
 
   const onClose = () => {
@@ -36,32 +42,22 @@ const RefreshBtn = ({ id, fontSize, asFlex, isRefreshing, iconColor, onAction }:
     }
   }
 
-  const spin = keyframes`  
-        from {transform: rotate(0deg);}   
-        to {transform: rotate(360deg)} 
-    `
-
-  const spinAnimation = `${spin} infinite 2s linear`   
-
   if (asFlex) {
     return (
-      <Tooltip 
-        hasArrow
-        bg={tooltipMessage === refreshMessage? 'blue.600' : 'green.700'}
-        borderRadius='4px'
-        closeOnClick={false} 
-        display='flex' 
-        justifyContent='center' 
-        label={tooltipMessage} 
-        placement='top' 
-        w='140px'
-        onClose={onClose}
-      >
+      <Box display="inline-block" position="relative">
         <Button 
+          css={{
+            minWidth: 'auto',
+            marginLeft: '10px',
+            background: 'transparent',
+            padding: '8px',
+            '&:hover': { background: 'rgba(0, 0, 0, 0.05)' },
+            '&:focus': { boxShadow: 'none' }
+          }}
           aria-labelledby={`refresh-btn-${id}`}
-          minW='auto'
-          ml='10px'
           onClick={onExecuteAction}
+          onMouseEnter={() => setIsOpen(true)}
+          onMouseLeave={() => setIsOpen(false)}
         >
           <span
             hidden
@@ -69,36 +65,63 @@ const RefreshBtn = ({ id, fontSize, asFlex, isRefreshing, iconColor, onAction }:
           >Refresh
           </span>
 
-          <RepeatIcon 
-            aria-hidden="true" 
+          <Box
+            aria-hidden="true"
+            as={MdRefresh}
             color={iconColor ?? 'blue.600'}
-            focusable='false'
-            fontSize={fontSize ?? '20px'}
+            css={{ fontSize: fontSize ?? '20px' }}
           />
-        </Button>     
-      </Tooltip>
+        </Button>
+        
+        {/* Custom tooltip */}
+        {isOpen && (
+          <Box
+            css={{
+              position: 'absolute',
+              bottom: 'calc(100% + 8px)',
+              left: '50%',
+              transform: 'translateX(-50%)',
+              background: tooltipMessage === refreshMessage ? 'blue.600' : 'green.700',
+              color: 'white',
+              padding: '4px 8px',
+              borderRadius: '4px',
+              width: '140px',
+              textAlign: 'center',
+              fontSize: '14px',
+              zIndex: 1000,
+              '&:after': {
+                content: '""',
+                position: 'absolute',
+                top: '100%',
+                left: '50%',
+                transform: 'translateX(-50%)',
+                border: '5px solid transparent',
+                borderTopColor: tooltipMessage === refreshMessage ? 'blue.600' : 'green.700'
+              }
+            }}
+          >
+            {tooltipMessage}
+          </Box>
+        )}
+      </Box>
     )
   }
 
   return (
-    <Tooltip 
-      hasArrow
-      bg={tooltipMessage === refreshMessage? 'blue.600' : 'green.700'}
-      borderRadius='4px'
-      closeOnClick={false} 
-      display='flex' 
-      justifyContent='center' 
-      label={tooltipMessage} 
-      placement='top' 
-      w='140px'
-      onClose={onClose}
-    >
+    <Box display="inline-block" position="relative">
       <Button 
+        css={{
+          minWidth: 'auto',
+          marginLeft: '10px',
+          background: 'transparent',
+          padding: '8px',
+          '&:hover': { background: 'rgba(0, 0, 0, 0.05)' },
+          '&:focus': { boxShadow: 'none' }
+        }}
         aria-labelledby={`refresh-btn-${id}`}
-        minW='auto'
-        ml='10px'
-        variant='simple'
         onClick={onExecuteAction}
+        onMouseEnter={() => setIsOpen(true)}
+        onMouseLeave={() => setIsOpen(false)}
       >
         <span
           hidden
@@ -106,15 +129,48 @@ const RefreshBtn = ({ id, fontSize, asFlex, isRefreshing, iconColor, onAction }:
         >Refresh
         </span>
 
-        <RepeatIcon 
-          animation={isRefreshing? spinAnimation : 'none'}
-          aria-label="refresh"
+        <Box
+          css={{
+            fontSize: fontSize ?? '20px',
+            animation: isRefreshing ? 'spin 1s linear infinite' : 'none'
+          }}
+          aria-hidden="true"
+          as={MdRefresh}
           color={iconColor ?? 'blue.600'}
-          focusable='true'
-          fontSize={fontSize ?? '20px'}
         />
       </Button>
-    </Tooltip>
+      
+      {/* Custom tooltip */}
+      {isOpen && (
+        <Box
+          css={{
+            position: 'absolute',
+            bottom: 'calc(100% + 8px)',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            background: tooltipMessage === refreshMessage ? 'blue.600' : 'green.700',
+            color: 'white',
+            padding: '4px 8px',
+            borderRadius: '4px',
+            width: '140px',
+            textAlign: 'center',
+            fontSize: '14px',
+            zIndex: 1000,
+            '&:after': {
+              content: '""',
+              position: 'absolute',
+              top: '100%',
+              left: '50%',
+              transform: 'translateX(-50%)',
+              border: '5px solid transparent',
+              borderTopColor: tooltipMessage === refreshMessage ? 'blue.600' : 'green.700'
+            }
+          }}
+        >
+          {tooltipMessage}
+        </Box>
+      )}
+    </Box>
   )
 }
 

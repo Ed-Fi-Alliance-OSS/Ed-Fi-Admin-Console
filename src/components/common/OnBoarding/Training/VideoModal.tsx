@@ -3,9 +3,7 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import {
-  Modal, ModalBody, ModalCloseButton, ModalContent, ModalOverlay 
-} from '@chakra-ui/react'
+import { Dialog } from '@chakra-ui/react'
 
 interface VideoModalProps {
     show: boolean 
@@ -15,34 +13,34 @@ interface VideoModalProps {
 
 const VideoModal = ({ show, content, onClose }: VideoModalProps) => {
   return (
-    <Modal 
+    <Dialog.Root 
       isOpen={show} 
       motionPreset='slideInRight'
       onClose={onClose}
     >
-      <ModalOverlay />
+      <Dialog.Backdrop />
 
-      <ModalContent 
+      <Dialog.Content 
         alignItems='center'
         justifyContent='center'
         maxW='629px'
         my='auto'
       >
-        <ModalCloseButton
+        <Dialog.Close
           right='-15px'
           top='15px'
         />
 
-        <ModalBody 
+        <Dialog.Description 
           bg='#eff4f6'
           borderRadius='4px'
           justifyContent='center'
           padding='64px 32px 32px 32px'
         >
           {content}
-        </ModalBody>
-      </ModalContent>
-    </Modal>
+        </Dialog.Description>
+      </Dialog.Content>
+    </Dialog.Root>
   )
 }
 

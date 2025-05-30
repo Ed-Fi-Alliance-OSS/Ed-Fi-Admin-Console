@@ -43,11 +43,13 @@ const ManageUserControls = ({ userId, user, status, isDeleting, isDeletingInvita
       w='full'
     >
       <Button 
+        bg='primaryBlue600'
         borderRadius='4px 0px 0px 4px'
-        isLoading={false}
+        color='white'
+        fontSize='xs'
+        loading={false}
         minW='39px'
-        size='xs'
-        variant='primaryBlue600'
+        variant='solid'
         onClick={handleSendInvitation}
       >
         'Edit'

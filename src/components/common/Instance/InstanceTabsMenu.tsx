@@ -83,8 +83,6 @@ const InstanceTabsMenu = ({ instance, showConfirmSetDefaultModal, showSetUpWizar
   const showPartnersTab = (): boolean => {
     const odsInstanceEdFiStatus = getOdsInstanceEdFiStatus()
 
-    console.log('show partners tab', odsInstanceEdFiStatus)
-
     if (odsInstanceEdFiStatus.operationStatus == 'Offline') {
       return false
     }

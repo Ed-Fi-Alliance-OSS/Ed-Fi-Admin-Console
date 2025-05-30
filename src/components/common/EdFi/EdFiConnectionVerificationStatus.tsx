@@ -66,9 +66,9 @@ const EdFiConnectionVerificationStatus = ({ status }: EdFiConnectionStatusProps)
       <Text
         color={selectTextColor(status)}
         fontFamily='Archivo Narrow'
+        fontSize='md'
         fontWeight='400'
         padding='10px'
-        size='md'
       >
         {status}
       </Text>

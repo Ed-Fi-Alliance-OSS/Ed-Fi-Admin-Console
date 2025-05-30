@@ -4,7 +4,8 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import {
-  Modal, ModalBody, ModalCloseButton, ModalContent, ModalOverlay 
+  Dialog,
+  Box
 } from '@chakra-ui/react'
 
 interface AddAppUserModalProps {
@@ -15,36 +16,43 @@ interface AddAppUserModalProps {
 
 const ConsoleModal = ({ content, show, onClose }: AddAppUserModalProps) => {
   return (
-    <Modal 
-      isOpen={show} 
-      motionPreset='slideInRight'
-      onClose={onClose}
+    <Dialog.Root 
+      open={show} 
+      onOpenChange={(details) => {
+        if (!details.open) {
+          onClose() 
+        } 
+      }}
     >
-      <ModalOverlay />
+      <Dialog.Backdrop />
 
-      <ModalContent 
-        aria-label="Form Modal"
-        borderRadius='0'
-        h='100vh' 
-        marginLeft='auto'
-        maxW='629px'
-        mt='0'
-        top='0rem' 
-        w='629px'
-      >
-        <ModalCloseButton />
-
-        <ModalBody 
-          bg='#eff4f6'
-          left='0'
+      <Dialog.Content>
+        <Box
+          borderRadius='0'
+          h='100vh'
+          marginLeft='auto'
           maxW='629px'
-          padding='111px 67px 463px 42px' 
+          mt='0'
+          position='fixed'
+          right='0'
+          top='0'
           w='629px'
         >
-          {content}
-        </ModalBody>
-      </ModalContent>
-    </Modal>
+          <Dialog.CloseTrigger />
+
+          <Dialog.Description>
+            <Box
+              bg='#eff4f6'
+              h='full'
+              padding='111px 67px 463px 42px'
+              w='full'
+            >
+              {content}
+            </Box>
+          </Dialog.Description>
+        </Box>
+      </Dialog.Content>
+    </Dialog.Root>
   )
 }
 

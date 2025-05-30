@@ -8,7 +8,7 @@ import {
   Link,
   RadioGroup,
   Spinner,
-  Td
+  Table
 } from '@chakra-ui/react'
 import {
   CustomRadio, Tenant
@@ -16,7 +16,9 @@ import {
 import { useEffect } from 'react'
 import { Link as RouterLink } from 'react-router-dom'
 import { useTenantContext } from '../../../context/tenantContext'
-import { ODSInstance } from '../../../core/ODSInstance.types'
+import {
+  InstanceOperationStatus, ODSInstance
+} from '../../../core/ODSInstance.types'
 import useOdsInstanceLink from '../../../hooks/odsInstances/useOdsInstanceLink'
 import { UpdatingIsDefaultStatus } from '../../../hooks/odsInstances/useOdsInstanceTable.types'
 import ManageInstanceBtn from './ManageInstanceBtn'
@@ -52,14 +54,12 @@ const ODSInstanceManagementTableRowItem = ({ tableMode, selectedInstance, instan
     // if (instance.isDefault) {
     //   onSelectInstance(instance)
     // }
-
-    console.log('instance', instance)
   }, [])
 
   return (
-    <>
-      {tableMode != 'Display' && <Td w='80px'>
-        <RadioGroup
+    <>{/* Using React.Fragment with no whitespace between elements */}
+      {tableMode != 'Display' && <Table.Cell bg='white' w='80px'>
+        <RadioGroup.Root
           value={selectedInstance?.id ?? ''}
           onChange={() => onSelectInstance(instance)}
         >
@@ -68,13 +68,13 @@ const ODSInstanceManagementTableRowItem = ({ tableMode, selectedInstance, instan
             text=""
             value={instance.id}
           />
-        </RadioGroup>
-      </Td>}
+        </RadioGroup.Root>
+      </Table.Cell>}
 
-      <Td maxW="250px" overflow="hidden" px={4} py={2}>
+      <Table.Cell bg='white' maxW="250px" overflow="hidden" px={4} py={2}>
         <Flex direction="column" overflow="hidden" w="100%">
           <Link
-            as={RouterLink}
+            asChild
             color="blue.600"
             display="block"
             fontFamily="Poppins"
@@ -82,37 +82,35 @@ const ODSInstanceManagementTableRowItem = ({ tableMode, selectedInstance, instan
             fontWeight="700"
             lineHeight="22px"
             overflow="hidden"
-            state={{ instanceId: instance.id }}
             textOverflow="ellipsis"
             title={instance.name}
-            to={getOdsInstanceLink(instance)}
             whiteSpace="nowrap"
           >
-            {instance.name}
+            <RouterLink to={`${getOdsInstanceLink(instance)}`}>
+              {instance.name}
+            </RouterLink>
           </Link>
         </Flex>
-      </Td>
+      </Table.Cell>
 
-      <Td>
+      <Table.Cell>
         {metaDataLoading ? <Spinner /> : <ODSInstanceEdFiVersion version={edfiMetadata?.version} />}
-      </Td>
+      </Table.Cell>
 
-      <Td>
+      <Table.Cell>
         {metaDataLoading ? <Spinner /> : <ODSInstanceDataModelsLabel dataModels={edfiMetadata?.dataModels} />}
-      </Td>
+      </Table.Cell>
 
-      <Td>
+      <Table.Cell>
         {metaDataLoading ? <Spinner /> : <ODSInstanceEdFiStatus status={edFiStatus ?? ''} />}
+      </Table.Cell>
 
-      </Td>
-
-      <Td>
+      <Table.Cell>
         {metaDataLoading ? <Spinner /> : <ODSInstanceWorkerStatus status={instance.status ?? 'Error'} />}
+      </Table.Cell>
 
-      </Td>
-
-      {tableMode == 'Display' && <>
-        <Td>
+      {tableMode == 'Display' && (
+        <Table.Cell>
           {showSetupBtn() ?
             <SetUpInstanceBtn
               instance={instance}
@@ -120,8 +118,7 @@ const ODSInstanceManagementTableRowItem = ({ tableMode, selectedInstance, instan
               onOpenSetUpModal={onOpenSetUpModal}
             /> :
             <ManageInstanceBtn instance={instance} />}
-        </Td>
-      </>}
+        </Table.Cell>)}
     </>
   )
 }

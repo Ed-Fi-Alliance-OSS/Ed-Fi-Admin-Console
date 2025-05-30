@@ -67,8 +67,8 @@ const ManageUsersTableRows = ({ usersList, isDeleting, isDeletingInvitation, isR
             <Flex>
               <Text
                 fontFamily='Poppins'
+                fontSize='md'
                 fontWeight='400'
-                size='md'
                 w='auto'
                 whiteSpace='initial'
               >
@@ -81,8 +81,8 @@ const ManageUsersTableRows = ({ usersList, isDeleting, isDeletingInvitation, isR
             <Text 
               color='gray.500'
               fontFamily='Poppins'
+              fontSize='md'
               fontWeight='400'
-              size='md'
               whiteSpace='initial'
             >
               {user.updated}

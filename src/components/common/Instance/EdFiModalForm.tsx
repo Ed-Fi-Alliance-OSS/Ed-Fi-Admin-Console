@@ -30,6 +30,7 @@ const EdFiModalForm  = ({ actionText, headerText, content, isSaving, onSave, onC
       />}
       content={content}
       height='auto'
+      maxHeight="85vh"
       width="512px"
     />
   )

@@ -3,7 +3,7 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import { AddIcon } from '@chakra-ui/icons'
+import { MdAdd } from 'react-icons/md'
 import {
   Button, Flex, Text
 } from '@chakra-ui/react'
@@ -30,16 +30,16 @@ const DistrictSchoolSettingsForm = ({ districtSchoolName, districtSchoolId, tsds
       <Text
         color='gray.700'
         fontFamily='Poppins'
+        fontSize='md'
         fontWeight='400'
-        size='md'
       >
         District/Charter School Name (Read-Only)
       </Text>
 
       <Text
         fontFamily='Poppins'
+        fontSize='md'
         fontWeight='700'
-        size='md'
       >
         {districtSchoolName}
       </Text>
@@ -51,16 +51,16 @@ const DistrictSchoolSettingsForm = ({ districtSchoolName, districtSchoolId, tsds
         <Text
           color='gray.700'
           fontFamily='Poppins'
+          fontSize='md'
           fontWeight='400'
-          size='md'
         >
           District/Charter School ID (Read-Only)
         </Text>
 
         <Text
           fontFamily='Poppins'
+          fontSize='md'
           fontWeight='700'
-          size='md'
         >
           {districtSchoolId}
         </Text>
@@ -73,16 +73,16 @@ const DistrictSchoolSettingsForm = ({ districtSchoolName, districtSchoolId, tsds
         <Text
           color='gray.700'
           fontFamily='Poppins'
+          fontSize='md'
           fontWeight='400'
-          size='md'
         >
           TSDS ID (Read-Only)
         </Text>
 
         <Text
           fontFamily='Poppins'
+          fontSize='md'
           fontWeight='700'
-          size='md'
         >
           {tsdsId}
         </Text>
@@ -94,8 +94,8 @@ const DistrictSchoolSettingsForm = ({ districtSchoolName, districtSchoolId, tsds
       >
         <Text
           fontFamily='Poppins'
+          fontSize='md'
           fontWeight='700'
-          size='md'
         >
           Your Domain(s)
         </Text>
@@ -125,10 +125,11 @@ const DistrictSchoolSettingsForm = ({ districtSchoolName, districtSchoolId, tsds
 
           <Button
             aria-labelledby="add-btn"
+            color='secondaryBlue600'
             maxW='30px'
             minWidth='30px'
             mt='5px'
-            variant='secondaryBlue600'
+            variant="solid"
             w='auto'
           >
             <span
@@ -137,7 +138,7 @@ const DistrictSchoolSettingsForm = ({ districtSchoolName, districtSchoolId, tsds
             >Add
             </span>
 
-            <AddIcon
+            <MdAdd
               aria-hidden="true"
               focusable="false" 
               fontSize='10px'
@@ -147,11 +148,12 @@ const DistrictSchoolSettingsForm = ({ districtSchoolName, districtSchoolId, tsds
       </Flex>
 
       <Button
+        color='primaryBlue600'
         maxW='200px'
         minW='150px'
         mt='32px'
         size='lg'
-        variant='primaryBlue600'
+        value="solid"
       >
         Save Edits
       </Button>

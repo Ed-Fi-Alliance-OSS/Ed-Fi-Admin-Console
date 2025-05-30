@@ -55,7 +55,7 @@ const DataManagementTrainingBanner = ({ text, onSkipTraining, onLearnMode }: Dat
           color='blue.900'
           ml='10px'
           size='md'
-          variant='secondaryWhite'
+          variant='solid'
           w='170px'
           onClick={onLearnMode}
         >

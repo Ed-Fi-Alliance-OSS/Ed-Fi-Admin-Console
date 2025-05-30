@@ -4,7 +4,7 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import {
-  Td, Text
+  Table, Text
 } from '@chakra-ui/react'
 import { EducationOrganization } from '../../../services/AdminActions/Ods/ODSService.results'
 import ControlTableRow from '../ControlTableRow'
@@ -30,60 +30,60 @@ const EducationOrganizationsTableRows = ({ organizationsList }: EducationOrganiz
     <>
       {organizationsList.map((organization, index) => 
         <ControlTableRow key={index}>
-          <Td>
+          <Table.Cell>
             <Text
               color='gray.700'
               fontFamily='Poppins'
+              fontSize='md'
               fontWeight='400'
-              size='md'
             >
               {organization.id}
             </Text>
-          </Td>
+          </Table.Cell>
 
-          <Td>
+          <Table.Cell>
             <Text
               color='blue.600'
               fontFamily='Poppins'
+              fontSize='md'
               fontWeight='700'
-              size='md'
             >
               {organization.nameOfInstitution}
             </Text>
-          </Td>
+          </Table.Cell>
 
-          <Td>
+          <Table.Cell>
             <Text
               color='gray.700'
               fontFamily='Poppins'
+              fontSize='md'
               fontWeight='400'
-              size='md'
             >
               {organization.shortNameOfInstitution}
             </Text>
-          </Td>
+          </Table.Cell>
 
-          <Td>
+          <Table.Cell>
             <Text
               color='gray.700'
               fontFamily='Poppins'
+              fontSize='md'
               fontWeight='400'
-              size='md'
             >
               {extractCategory(organization.categories[0].educationOrganizationCategoryDescriptor)}
             </Text>
-          </Td>
+          </Table.Cell>
 
-          <Td>
+          <Table.Cell>
             <Text
               color='gray.700'
               fontFamily='Poppins'
+              fontSize='md'
               fontWeight='400'
-              size='md'
             >
               {extractLea(organization.localEducationAgencyCategoryDescriptor)}
             </Text>
-          </Td>
+          </Table.Cell>
         </ControlTableRow>)}
     </>
   )

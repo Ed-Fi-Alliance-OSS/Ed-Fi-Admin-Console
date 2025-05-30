@@ -35,21 +35,54 @@ const ModalFormHeader = ({ actionText, headerText, headerWidth, alignCenter, isD
 
       <Flex alignItems='flex-end'>
         <Button
+          _hover={{
+            bg: 'red.500',
+            borderColor: 'blue.500',
+            boxShadow: '0 0 0 3px rgba(248, 76, 76, 0.3)' 
+          }}
+          bg='red.600'
+          border='1px'
+          borderColor='blue.600'
+          borderRadius='4px 0px 0px 4px'
+          boxShadow='0 0 0 1px rgba(248, 76, 76, 0.3)'
+          color='white'
+          fontFamily='Poppins'
+          fontSize='11px'
+          fontWeight='600'
+          lineHeight='1.2'
+          ml='16px'
           padding='0 25px'
           size='xs'
-          variant='secondaryBlue600'
+          type="button"
+          variant='solid'
           onClick={onClose}
         >Cancel
         </Button>
 
         <Button
+          _hover={{
+            bg: 'blue.700',
+            borderColor: 'blue.700',
+            boxShadow: '0 0 0 3px rgba(59, 130, 246, 0.5)' 
+          }}
+          bg='blue.600'
+          border='1px'
+          borderColor='blue.600'
+          borderRadius='4px 0px 0px 4px'
+          boxShadow='0 0 0 1px rgba(59, 130, 246, 0.3)'
+          color='white'
           data-testid="add-user-btn"
-          isDisabled={isSaving || isDisabled}
-          isLoading={isSaving}
+          disabled={isSaving || isDisabled}
+          fontFamily='Poppins'
+          fontSize='11px'
+          fontWeight='600'
+          lineHeight='1.2'
+          loading={isSaving}
           ml='10px'
           padding='0 25px'
           size='xs'
-          variant='primaryBlue600'
+          type="button"
+          variant='solid'
           onClick={onAction}
         >{actionText}
         </Button>

@@ -3,7 +3,7 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import { InfoIcon } from '@chakra-ui/icons'
+import { MdInfoOutline } from 'react-icons/md'
 import {
   Flex, Text
 } from '@chakra-ui/react'
@@ -29,7 +29,7 @@ const InviteUserFormContent = ({ userData, hasTriedSubmit, errors, onInputChange
         padding='16px 12px'
         w='full'
       >
-        <InfoIcon
+        <MdInfoOutline
           aria-hidden="true"    
           color='orange.500' 
           focusable="false"

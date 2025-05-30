@@ -472,8 +472,9 @@ const ManageUsersTabContent = () => {
               w='full'
             >
               { false && <Button
+                color='primaryBlue600'
                 size='xs'
-                variant='primaryBlue600'
+                variant='solid'
                 onClick={handleShowBulkEditRoleModal}
               >Bulk Edit Role
               </Button> }

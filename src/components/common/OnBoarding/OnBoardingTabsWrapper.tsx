@@ -4,21 +4,22 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import {
-  Button, Flex, Link, Text, Tooltip
+  Button, Flex, Link, Text, Tooltip, Box
 } from '@chakra-ui/react'
 import { MdHelpOutline } from 'react-icons/md'
+import { Link as RouterLink } from 'react-router-dom'
 import useHelpLinks from '../../../hooks/useHelpLinks'
 import WizardContentWrapper from '../Wizard/WizardContentWrapper'
 
 interface OnBoardingTabsWrapperProps {
-    children: JSX.Element
-    stepName: string 
-    currentStep: number
-    lastStep: number
-    canPrev: boolean 
-    canNext: boolean
-    onPrev: () => void
-    onNext: () => void
+  children: JSX.Element
+  stepName: string
+  currentStep: number
+  lastStep: number
+  canPrev: boolean
+  canNext: boolean
+  onPrev: () => void
+  onNext: () => void
 }
 
 const OnBoardingTabsWrapper = ({ children, stepName, currentStep, lastStep, canNext, canPrev, onNext, onPrev }: OnBoardingTabsWrapperProps) => {
@@ -29,7 +30,7 @@ const OnBoardingTabsWrapper = ({ children, stepName, currentStep, lastStep, canN
 
     // console.log('links', links, links[currentStep -1].knowledgeBaseUrl)
 
-    return links[currentStep -1].knowledgeBaseUrl
+    return links[currentStep - 1].knowledgeBaseUrl
   }
 
   return (
@@ -38,11 +39,11 @@ const OnBoardingTabsWrapper = ({ children, stepName, currentStep, lastStep, canN
         flexDir='column'
         w='full'
       >
-        <Text   
+        <Text
           color='gray.500'
           fontFamily='Poppins'
+          fontSize='sm'
           fontWeight='400'
-          size='sm'
         >
           Step {currentStep} of {lastStep}
         </Text>
@@ -56,35 +57,47 @@ const OnBoardingTabsWrapper = ({ children, stepName, currentStep, lastStep, canN
             fontWeight='700'
             position='relative'
           >
-            {currentStep === lastStep? 'Review and Finalize' : stepName}
+            {currentStep === lastStep ? 'Review and Finalize' : stepName}
           </Text>
 
-          <Tooltip
-            hasArrow
-            bg='blue.700'
-            borderRadius='4px'
-            label='Get Help Here'
-            ml='5px'
-            placement="top"
-          >
-            <span style={{ marginLeft: '5px' }}>
-              <Link
-                aria-label="help link"
-                href={getCurrentStepHelpLink()}
-                id="help link"
-                referrerPolicy="no-referrer"
-                target='_blank'
-              >
-                <MdHelpOutline 
+          <Tooltip.Root closeDelay={0} openDelay={0} positioning={{ placement: 'top' }}>
+            <Tooltip.Trigger>
+              <span style={{ marginLeft: '5px' }}>
+                <Link
+                  asChild
                   aria-label="help link"
-                  focusable="true"
-                  fontSize='25px'
-                  height='15px'
-                  width='15px'
-                />
-              </Link>
-            </span>
-          </Tooltip>
+                  id="help link"
+                  referrerPolicy="no-referrer"
+                  target='_blank'
+                >
+                  <RouterLink to={getCurrentStepHelpLink()}>
+                    <MdHelpOutline
+                      aria-label="help link"
+                      focusable="true"
+                      fontSize='25px'
+                      height='15px'
+                      width='15px'
+                    />
+                  </RouterLink>
+                </Link>
+              </span>
+            </Tooltip.Trigger>
+
+            <Tooltip.Positioner>
+              <Tooltip.Content>
+                <Flex style={{
+                  background: 'var(--chakra-colors-blue-700)',
+                  borderRadius: '4px' 
+                }}
+                >
+                  <Tooltip.Arrow>
+                    <Tooltip.ArrowTip />
+                  </Tooltip.Arrow>
+                  Get Help Here
+                </Flex>
+              </Tooltip.Content>
+            </Tooltip.Positioner>
+          </Tooltip.Root>
         </Flex>
       </Flex>
 
@@ -106,28 +119,30 @@ const OnBoardingTabsWrapper = ({ children, stepName, currentStep, lastStep, canN
         >
           <Button
             border='1px'
-            isDisabled={!canPrev}
+            color='secondaryBlue600'
+            disabled={!canPrev}
+            fontSize='lg'
             minW='175PX'
-            size='lg'
-            variant='secondaryBlue600'
+            variant='solid'
             onClick={onPrev}
           >
             Previous
           </Button>
 
           <Button
-            _hover={{ backgroundColor: currentStep === lastStep? 'green.600' : (canNext? 'blue.900' : 'blue.600') }}
-            bg={currentStep === lastStep? 'green.600' : 'blue.600'}
-            isDisabled={!canNext}
+            _hover={{ backgroundColor: currentStep === lastStep ? 'green.600' : (canNext ? 'blue.900' : 'blue.600') }}
+            bg={currentStep === lastStep ? 'green.600' : 'blue.600'}
+            color={currentStep === lastStep ? 'primaryGreen500' : 'primaryBlue600'}
+            disabled={!canNext}
+            fontSize='lg'
             minW='138px'
-            size='lg'
-            variant={currentStep === lastStep? 'primaryGreen500' : 'primaryBlue600'}
+            variant='solid'
             onClick={onNext}
           >
-            {currentStep === lastStep? 'Finalize' : 'Next'}
+            {currentStep === lastStep ? 'Finalize' : 'Next'}
           </Button>
         </Flex>
-      </Flex> 
+      </Flex>
     </WizardContentWrapper>
   )
 }

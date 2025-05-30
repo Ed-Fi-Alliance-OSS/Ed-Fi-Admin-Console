@@ -4,9 +4,9 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import {
-  Flex, FormControl,
-  FormLabel,
-  Tag
+  Flex, 
+  Field,
+  Badge
 } from '@chakra-ui/react'
 import {
   AutoComplete,
@@ -32,9 +32,10 @@ interface MultiInputProps<T> {
   filterInput?: KeyboardEventHandler<HTMLInputElement>
   label?: string
   fieldName?: string
+  disabled?: boolean
 }
 
-function MultiInput<T extends string | number>({ filterInput, fieldName, label, values: initialVals, onChange, transformText }: MultiInputProps<T>) {
+function MultiInput<T extends string | number>({ filterInput, fieldName, label, values: initialVals, onChange, transformText, disabled }: MultiInputProps<T>) {
   const [ snapshot, setSnapshot ] = useReducer((state, action) => JSON.stringify(state) === JSON.stringify(action) ? state : action, {})
 
   const [ values, dispatch ] = useReducer((state, action: { type: 'set' | 'add' | 'rm', data: string | string[] }) => {
@@ -72,14 +73,21 @@ function MultiInput<T extends string | number>({ filterInput, fieldName, label, 
   }, [ values ])
 
   function addVal(data: string) {
+    if (disabled) {
+      return 
+    } // Don't add values if disabled
+
     dispatch({
       type: 'add',
       data
     })
-
   }
 
   function rmVal(data: string) {
+    if (disabled) {
+      return 
+    } // Don't remove values if disabled
+
     dispatch({
       type: 'rm',
       data
@@ -87,7 +95,6 @@ function MultiInput<T extends string | number>({ filterInput, fieldName, label, 
   }
 
   useEffect(() => {
-    console.log('🚘 BEFORE: setting initial vals', initialVals, snapshot)
     if (snapshot === JSON.stringify(initialVals)) {
       return
     }
@@ -99,9 +106,6 @@ function MultiInput<T extends string | number>({ filterInput, fieldName, label, 
     if (initialVals.length === 0) {
       return
     }
-
-    console.log('🚘 setting initial vals', initialVals)
-
 
     dispatch({
       type: 'set',
@@ -119,70 +123,78 @@ function MultiInput<T extends string | number>({ filterInput, fieldName, label, 
       justify="center"
       w="full"
     >
-      <FormControl
+      <Field.Root
         id={fieldName}
         w="full"
       >
-        <FormLabel
+        <Field.Label><Flex
           fontFamily='Poppins'
           fontSize='14px'
           fontWeight='700'
-          htmlFor={fieldName}
+          //htmlFor={fieldName}
           lineHeight='20px'
         >{label}
-        </FormLabel>
-
-        <AutoComplete
-          closeOnSelect
-          creatable
-          focusInputOnSelect
-          multiple
-          defaultValues={values}
-          id={fieldName}
-          openOnFocus={false}
-          suggestWhenEmpty={false}
-          onSelectOption={({ item }) => addVal(item.value)}
-          onTagRemoved={rmVal}
+        </Flex>
+        </Field.Label>
+        
+        <Flex 
+          opacity={disabled ? 0.6 : 1} 
+          pointerEvents={disabled ? 'none' : 'auto'}
+          position="relative"
+          w="full"
         >
-          <AutoCompleteInput
-            enterKeyHint='enter'
-            placeholder={label}
-            size='xs'
-            variant="filled"
-            wordBreak="break-all"
-            onKeyUp={filterInput}
+          <AutoComplete
+            closeOnSelect
+            creatable
+            focusInputOnSelect
+            multiple
+            defaultValues={values}
+            //id={fieldName}
+            openOnFocus={false}
+            suggestWhenEmpty={false}
+            onSelectOption={({ item }) => addVal(item.value)}
+            onTagRemoved={rmVal}
           >
-            {values.filter(tag => tag !== '').map((tag, tid) => (
-              <AutoCompleteTag
-                key={tid}
-                label={tag}
-                maxW="100%"
-                px={2}
-                py={1}
-                variant="solid"
-                whiteSpace="normal"
-                wordBreak="break-all"
-                onRemove={() => rmVal(tag)}
-              />
-            ))}
-          </AutoCompleteInput>
+            <AutoCompleteInput
+              enterKeyHint='enter'
+              placeholder={label}
+              size='xs'
+              variant="flushed"
+              wordBreak="break-all"
+              onKeyUp={filterInput}
+            >
+              {values.filter(tag => tag !== '').map((tag, tid) => (
+                <AutoCompleteTag
+                  key={tid}
+                  label={tag}
+                  maxW="100%"
+                  px={2}
+                  py={1}
+                  variant="solid"
+                  whiteSpace="normal"
+                  wordBreak="break-all"
+                  onRemove={() => rmVal(tag)}
+                />
+              ))}
+            </AutoCompleteInput>
 
 
-          <AutoCompleteList fontSize={10}>
-            <AutoCompleteCreatable>
-              {({ value }) => (<Flex gap={2}>Add <Tag
-                maxWidth="100%"
-                paddingX={2}
-                size="xs"
-                whiteSpace="normal"
-                wordBreak="break-all"
-              >{isFunction(transformText) ? transformText?.(value) : value}
-              </Tag> as option...
-              </Flex>)}
-            </AutoCompleteCreatable>
-          </AutoCompleteList>
-        </AutoComplete>
-      </FormControl>
+            <AutoCompleteList fontSize={10}>
+              <AutoCompleteCreatable>
+                {({ value }) => (<Flex gap={2}>Add <Badge
+                  maxWidth="100%"
+                  paddingX={2}
+                  size="xs"
+                  whiteSpace="normal"
+                  wordBreak="break-all"
+                >{isFunction(transformText) ? transformText?.(value) : value}
+                </Badge> as option...
+                </Flex>)}
+              </AutoCompleteCreatable>
+            </AutoCompleteList>
+          </AutoComplete>
+        </Flex>
+      </Field.Root>
     </Flex>
   )
 }

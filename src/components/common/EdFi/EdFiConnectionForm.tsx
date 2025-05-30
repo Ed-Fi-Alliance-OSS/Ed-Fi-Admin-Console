@@ -4,7 +4,7 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import {
-  Button, Flex, FormControl, Text
+  Button, Flex, Field, Text
 } from '@chakra-ui/react'
 import {
   CustomFormLabel, CustomInput, CustomSelect
@@ -54,7 +54,7 @@ const EdFiConnectionForm = ({ formData, errors, mode, inOnboarding, verification
         </Text> 
       </Flex>}
 
-      { !inOnboarding && mode === 'Edit' &&  <FormControl mt='16px'>
+      { !inOnboarding && mode === 'Edit' &&  <Field.Root mt='16px'>
         <CustomFormLabel 
           htmlFor='applicationName' 
           text='Application Name'
@@ -76,9 +76,9 @@ const EdFiConnectionForm = ({ formData, errors, mode, inOnboarding, verification
           value={formData.connectionName ?? ''}
           onChange={() => console.log('Change application')}
         />
-      </FormControl> }
+      </Field.Root> }
 
-      <FormControl mt='16px'>
+      <Field.Root mt='16px'>
         <CustomFormLabel 
           htmlFor='baseUrl' 
           text='Ed-Fi Base URL'
@@ -91,9 +91,9 @@ const EdFiConnectionForm = ({ formData, errors, mode, inOnboarding, verification
           value={formData.baseUrl}
           onChange={onInputChange}
         />
-      </FormControl>
+      </Field.Root>
 
-      <FormControl mt='16px'>
+      <Field.Root mt='16px'>
         <CustomFormLabel 
           htmlFor='key' 
           text='Key'
@@ -106,9 +106,9 @@ const EdFiConnectionForm = ({ formData, errors, mode, inOnboarding, verification
           value={formData.key}
           onChange={onInputChange}
         />
-      </FormControl>
+      </Field.Root>
 
-      <FormControl mt='16px'>
+      <Field.Root mt='16px'>
         <CustomFormLabel 
           htmlFor='secret' 
           text='Secret'
@@ -122,7 +122,7 @@ const EdFiConnectionForm = ({ formData, errors, mode, inOnboarding, verification
           value={formData.secret}
           onChange={onInputChange}
         />
-      </FormControl>
+      </Field.Root>
 
       <Flex
         mt='16px'
@@ -130,12 +130,13 @@ const EdFiConnectionForm = ({ formData, errors, mode, inOnboarding, verification
       >
         <Button
           alignSelf='flex-end'
-          isDisabled={disabledVerification}
-          isLoading={isSaving || isverifying}
+          color='primaryBlue500'
+          disabled={disabledVerification}
+          loading={isSaving || isverifying}
           minW='25px'
           paddingX='16px'
           size='xs'
-          variant='primaryBlue500'
+          variant="solid"
           w='auto'
           onClick={onVerifyConnection}
         >

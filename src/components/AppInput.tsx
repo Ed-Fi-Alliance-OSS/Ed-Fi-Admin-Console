@@ -4,12 +4,11 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import {
-  FormControl,
-  FormErrorMessage,
-  FormHelperText,
-  FormLabel, Input
+  Field,
+  Flex,
+  Input
 } from '@chakra-ui/react'
-import { Field } from 'formik'
+import { Field as FormikField } from 'formik'
 import { ChangeEvent } from 'react'
 
 interface AppInputProps {
@@ -23,21 +22,21 @@ interface AppInputProps {
 }
 
 export default function AppInput({ required, label, fieldName, description, placeholder, onChange }: AppInputProps) {
-  return <Field name={fieldName}>
+  return <FormikField name={fieldName}>
     {({ field, form }) => (
-      <FormControl
-        isInvalid={form.errors[fieldName] && form.touched[fieldName]}
+      <Field.Root
+        invalid={form.errors[fieldName] && form.touched[fieldName]}
         mb={4}
       >
-        <FormLabel
-          fontFamily='Poppins'
-          fontSize='14px'
-          fontWeight='700'
-          htmlFor={fieldName}
-          lineHeight='20px'
-        >
-          {label} {required && <span style={{ color: 'red' }}>*</span>}
-        </FormLabel>
+        <Field.Label >
+          <Flex
+            fontFamily='Poppins'
+            fontSize='14px'
+            fontWeight='700'
+          >
+            {label} {required && <span style={{ color: 'red' }}>*</span>}
+          </Flex>
+        </Field.Label>
 
         <Input
           {...field}
@@ -46,11 +45,11 @@ export default function AppInput({ required, label, fieldName, description, plac
           size='xs'
         />
 
-        {!form.errors[fieldName] && description && <FormHelperText >{description}
-        </FormHelperText>}
+        {!form.errors[fieldName] && description && <Field.HelperText >{description}
+        </Field.HelperText>}
 
-        <FormErrorMessage>{form.errors[fieldName]}</FormErrorMessage>
-      </FormControl>
+        <Field.ErrorText>{form.errors[fieldName]}</Field.ErrorText>
+      </Field.Root>
     )}
-  </Field>
+  </FormikField>
 }

@@ -4,7 +4,7 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import {
-  Button, Flex, Heading, Img, Text
+  Button, Flex, Heading, Image, Text
 } from '@chakra-ui/react'
 import { Link as RouterLink } from 'react-router-dom'
 import { OnBoardingStepStatus } from '../../../core/onBoardingWizard/onBoardingWizard.types'
@@ -63,8 +63,8 @@ const OnBoardingWizardBanner = ({ currentStepStatus, currentStepName, currentSte
           <Text
             color='white'
             fontFamily='Poppins'
+            fontSize='sm'
             fontWeight='400'
-            size='sm'
           >
             {`You're on Step ${currentStepNumber} of ${totalSteps}: `}
           </Text>
@@ -78,29 +78,28 @@ const OnBoardingWizardBanner = ({ currentStepStatus, currentStepName, currentSte
             {currentStepName}
           </Text>
         </Flex>}
-      </Flex>
-
-      <Button 
+      </Flex>      <Button 
         alignItems='center'
         as={RouterLink}
         bg='white'
+        color='primaryWhite'
         data-testid="start-ob-btn"
         display='flex'
+        fontSize='lg'
         justifyContent='center'
         ml='87px'
         padding='0'
-        size='lg'
         textDecor='none'
         textDecoration='none'
-        to={routes.onBoardingWizard.url}
-        variant='primaryWhite'
-        w='198px' 
-        zIndex={2}
+        //to={routes.onBoardingWizard.url}
+        variant='solid'
+        w='198px'
+        zIndex={2} 
       >
         {currentStepNumber === 1? 'Start Setup' : 'Continue'}
       </Button>
 
-      <Img 
+      <Image 
         alt="exchange-symbol"
         position='absolute'
         right='-60px'

@@ -3,7 +3,7 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import { ChevronDownIcon } from '@chakra-ui/icons'
+import { MdKeyboardArrowDown } from 'react-icons/md'
 import {
   Button, Flex, Popover, PopoverBody, PopoverContent, PopoverTrigger
 } from '@chakra-ui/react'
@@ -60,11 +60,12 @@ const ManageUserControlPopover = ({ userId, user, status, isDeleting, isDeleting
         <Button 
           aria-labelledby={`show-options-${userId}`}
           borderRadius={selectBorderRadius()}
+          color='primaryBlue600'
+          fontSize='xs'
           maxW='24px'
           minW='24px'
           ml='1px'
-          size='xs'
-          variant='primaryBlue600'
+          variant='solid'
           onClick={() => console.log('manage user control popover')}
         >
           <span
@@ -73,7 +74,7 @@ const ManageUserControlPopover = ({ userId, user, status, isDeleting, isDeleting
           >Show Options
           </span>
 
-          <ChevronDownIcon 
+          <MdKeyboardArrowDown 
             aria-hidden="true"    
             focusable="false" 
             fontSize='18px'
@@ -124,11 +125,11 @@ const ManageUserControlPopover = ({ userId, user, status, isDeleting, isDeleting
               color="gray.600"
               display='flex'
               fontFamily='Poppins'
+              fontSize='xs'
               fontWeight='400'
               justifyContent='start'
               minW='30px'
               padding='0'
-              size='xs'
               textAlign='start'
               w='auto'
               onClick={() => onEditInvitation(user)}
@@ -141,12 +142,12 @@ const ManageUserControlPopover = ({ userId, user, status, isDeleting, isDeleting
               color="red.600"
               display='flex'
               fontFamily='Poppins'
+              fontSize='xs'
               fontWeight='400'
-              isLoading={isDeleting}
               justifyContent='start'
+              loading={isDeleting}
               minW='30px'
               padding='0'
-              size='xs'
               textAlign='start'
               w='auto'
               onClick={() => onDelete(userId)}

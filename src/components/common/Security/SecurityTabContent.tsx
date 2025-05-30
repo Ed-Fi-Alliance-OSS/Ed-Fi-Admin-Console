@@ -4,7 +4,7 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import {
-  Flex, Tab, TabIndicator, TabList, TabPanel, TabPanels, Tabs
+  Flex, Tabs, Tab
 } from '@chakra-ui/react'
 import TabHeading from '../TabHeading'
 import APIClientsTab from './APIClientsTab'
@@ -25,20 +25,20 @@ const SecurityTabContent = () => {
     <Flex w='full'>
       <TabHeading text="Security" />
 
-      <Flex 
+      <Flex
         className="s-container"
-        ml='160px' 
-        mt='10px' 
+        ml='160px'
+        mt='10px'
         w='full'
       >
-        <Tabs
-          position="relative" 
-          variant="unstyled"
+        <Tabs.Root
+          position="relative"
+          variant="plain"
           w='full'
         >
-          <TabList>
-            {tabs.map((tab, index) => 
-              <Tab 
+          <Tab.List>
+            {tabs.map((tab, index) =>
+              <Tab
                 key={index}
                 _notFirst={{ ml: '32px' }}
                 _selected={{ color: 'blue.600' }}
@@ -47,27 +47,27 @@ const SecurityTabContent = () => {
                 padding='0'
               >{tab}
               </Tab>)}
-          </TabList>
+          </Tab.List>
 
-          <TabIndicator
+          <Tabs.Indicator
             bg="blue.600"
             borderRadius="1px"
             height="2px"
             mt="5px"
           />
 
-          <TabPanels>
-            {panels.map((panel, index) => 
-              <TabPanel 
-                key={index} 
+          <Tabs.Content>
+            {panels.map((panel, index) =>
+              <Tabs.Content
+                key={index}
                 mt='45px'
                 padding='0'
                 w='full'
               >
                 {panel}
-              </TabPanel>)}
-          </TabPanels>
-        </Tabs>
+              </Tabs.Content>)}
+          </Tabs.Content>
+        </Tabs.Root>
       </Flex>
     </Flex>
   )

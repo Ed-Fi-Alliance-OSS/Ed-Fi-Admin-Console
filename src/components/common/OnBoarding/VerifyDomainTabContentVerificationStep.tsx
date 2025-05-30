@@ -35,7 +35,6 @@ const VerifyDomainTabContentVerificationStep = ({ domainsList, isCheckingDomainS
           fontFamily='Poppins'
           fontSize='18px'
           fontWeight='700'
-          size='md'
         >
           Step 3: Come Back and Check for Verification  
         </Text>

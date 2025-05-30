@@ -3,9 +3,9 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import { CheckIcon } from '@chakra-ui/icons'
+import { MdCheck } from 'react-icons/md'
 import {
-  Flex, Tab, TabList, TabPanel, TabPanels, Tabs
+  Flex, Tabs
 } from '@chakra-ui/react'
 import {
   useContext, useEffect, useState
@@ -336,170 +336,169 @@ const OnBoardingWizard = ({ completedSteps, lastInProgress, currentStepIndex, la
     return 'loading...'
   }
 
-  return (<>
-    <Tabs
-      isLazy
-      index={currentStepIndex}
-      variant='enclosed'
-      w='full'
-      onChange={(index) => onTabChange(index)}
-    >
-      <TabList justifyContent='start'>
-        {onboardingStepsData.tabsData.map((step, index) => 
-          <Tab 
-            key={index}
-            _selected={{
-              color: 'blue.600',
-              bg: 'white' 
-            }}
-            borderRadius='0'
-            color='white'
-            flexGrow={1}
-            fontFamily='Poppins'
-            fontSize='14px'
-            fontWeight='700'
-            h='54px'
-            isDisabled={isDisabledTab(index)}
-            lineHeight='28px' 
-            padding='8px 8px'
-          >
-            {onBoardingWizardData && onBoardingWizardData.steps && onBoardingWizardData.steps[index] &&  onBoardingWizardData.steps[index].status === 'Completed' ?
-              <Flex alignItems='center'>
-                {step.tabName}
+  return (
+    <>
+      <Tabs.Root
+        lazyMount
+        defaultIndex={0}
+        index={currentStepIndex}
+        variant='enclosed'
+        w='full'
+        onChange={(index) => onTabChange(index)}
+      >
+        <Tabs.List justifyContent='start'>
+          {onboardingStepsData.tabsData.map((step, index) => (
+            <Tabs.Tab
+              key={index}
+              _selected={{
+                color: 'blue.600',
+                bg: 'white' 
+              }}
+              borderRadius='0'
+              color='white'
+              disabled={isDisabledTab(index)}
+              flexGrow={1}
+              fontFamily='Poppins'
+              fontSize='14px'
+              fontWeight='700'
+              h='54px'
+              lineHeight='28px' 
+              padding='8px 8px'
+            >
+              {onBoardingWizardData && onBoardingWizardData.steps && onBoardingWizardData.steps[index] &&  onBoardingWizardData.steps[index].status === 'Completed' ?
+                <Flex alignItems='center'>
+                  {step.tabName}
 
-                <CheckIcon 
-                  aria-hidden="true" 
-                  bg='blue.100'
-                  borderRadius='full'
-                  color='blue.500'
-                  focusable="false"
-                  h='14px'
-                  ml='10px'
-                  padding='2px' 
-                  w='14px'
-                />
-              </Flex>
-              : step.tabName}
-          </Tab>)}
-      </TabList>
+                  <MdCheck 
+                    aria-hidden='true' 
+                    bg='blue.100'
+                    borderRadius='full'
+                    color='blue.500'
+                    focusable='false'
+                    h='14px'
+                    ml='10px'
+                    padding='2px' 
+                    w='14px'
+                  />
+                </Flex>
+                : step.tabName}
+            </Tabs.Tab>
+          ))}
+        </Tabs.List>
 
-      
-
-      <TabPanels padding='0'>
-        <TabPanel padding='0'>
-          <OnBoardingTabsWrapper
-            canNext={canNext}
-            canPrev={canPrev}
-            currentStep={1}
-            lastStep={lastStep}
-            stepName={onboardingStepsData.tabsData[0].contentName}
-            onNext={onNext}
-            onPrev={onPrev}
-          >
-            <InviteUsersTabContent onCompleteStep={onCompletedStep} />
-          </OnBoardingTabsWrapper>
-        </TabPanel>
-
-        <TabPanel padding='0'>
-          <OnBoardingTabsWrapper
-            canNext={canNext}
-            canPrev={canPrev}
-            currentStep={2}
-            lastStep={lastStep}
-            stepName={onboardingStepsData.tabsData[1].contentName}
-            onNext={onVariableStepNext}
-            onPrev={onPrev}
-          >
-            <SelectInstancesTabContent 
-              selectedInstance={selectedInstance} 
-              settingAsDefault={settingAsDefault}
-              showConfirmInstanceModal={showConfirmInstanceModal}
-              tableMode="Select" 
-              onCloseModal={onClose}
-              onContinue={onNextFromModal}
-              onSelectInstance={onSelectInstance}
-              onUpdateInstancesCount={onUpdateInstancesCount}
-            />
-          </OnBoardingTabsWrapper>
-        </TabPanel>
-
-        <OnBoardingConnectSISContextProvider
-          schoolYear={defaultInstance? getInstanceYear(defaultInstance) : 0}
-          onSelectSISProvider={onSelectSISProvider}
-          onUnselectSISProvider={onUnselectSISProvider}
-        >
-          <TabPanel padding='0'>
+        <Tabs.TabPanels>
+          <Tabs.TabPanel padding='0'>
             <OnBoardingTabsWrapper
               canNext={canNext}
               canPrev={canPrev}
-              currentStep={3}
+              currentStep={1}
               lastStep={lastStep}
-              stepName={onboardingStepsData.tabsData[2].contentName}
+              stepName={onboardingStepsData.tabsData[0].contentName}
               onNext={onNext}
               onPrev={onPrev}
             >
-              <ConnectSISTabContent
-                odsAuthenticationUrl={defaultInstance? defaultInstance.authenticationUrl : ''}
-                odsResourcesUrl={defaultInstance? defaultInstance.resourcesUrl : ''}
+              <InviteUsersTabContent onCompleteStep={onCompletedStep} />
+            </OnBoardingTabsWrapper>
+          </Tabs.TabPanel>
+
+          <Tabs.TabPanel padding='0'>
+            <OnBoardingTabsWrapper
+              canNext={canNext}
+              canPrev={canPrev}
+              currentStep={2}
+              lastStep={lastStep}
+              stepName={onboardingStepsData.tabsData[1].contentName}
+              onNext={onVariableStepNext}
+              onPrev={onPrev}
+            >
+              <SelectInstancesTabContent 
+                selectedInstance={selectedInstance} 
+                settingAsDefault={settingAsDefault}
+                showConfirmInstanceModal={showConfirmInstanceModal}
+                tableMode='Select' 
+                onCloseModal={onClose}
+                onContinue={onNextFromModal}
+                onSelectInstance={onSelectInstance}
+                onUpdateInstancesCount={onUpdateInstancesCount}
               />
             </OnBoardingTabsWrapper>
-          </TabPanel>
-        </OnBoardingConnectSISContextProvider> 
+          </Tabs.TabPanel>
 
-        <TabPanel padding='0'>
-          <OnBoardingTabsWrapper
-            canNext={canNext}
-            canPrev={canPrev}
-            currentStep={4}
-            lastStep={lastStep}
-            stepName={onboardingStepsData.tabsData[3].contentName}
-            onNext={onNext}
-            onPrev={onPrev}
+          <OnBoardingConnectSISContextProvider
+            schoolYear={defaultInstance? getInstanceYear(defaultInstance) : 0}
+            onSelectSISProvider={onSelectSISProvider}
+            onUnselectSISProvider={onUnselectSISProvider}
           >
-            <SelectSSOMethodTabContent />
-          </OnBoardingTabsWrapper>
-        </TabPanel>
+            <Tabs.TabPanel padding='0'>
+              <OnBoardingTabsWrapper
+                canNext={canNext}
+                canPrev={canPrev}
+                currentStep={3}
+                lastStep={lastStep}
+                stepName={onboardingStepsData.tabsData[2].contentName}
+                onNext={onNext}
+                onPrev={onPrev}
+              >
+                <ConnectSISTabContent
+                  odsAuthenticationUrl={defaultInstance? defaultInstance.authenticationUrl : ''}
+                  odsResourcesUrl={defaultInstance? defaultInstance.resourcesUrl : ''}
+                />
+              </OnBoardingTabsWrapper>
+            </Tabs.TabPanel>
+          </OnBoardingConnectSISContextProvider> 
 
-        {/* <TabPanel padding='0'>
-          <OnBoardingTabsWrapper
-            canNext={canNext}
-            canPrev={canPrev}
-            currentStep={externalODS.isExternalODS? 5 : 6}
-            lastStep={lastStep}
-            stepName={externalODS.isExternalODS? onboardingStepsData.tabsData[4].contentName : onboardingStepsData.tabsData[5].contentName}
-            onNext={onNext}
-            onPrev={onPrev}
-          >
-            <ReviewDataTabContent />
-          </OnBoardingTabsWrapper>
-        </TabPanel> */}
+          <Tabs.TabPanel padding='0'>
+            <OnBoardingTabsWrapper
+              canNext={canNext}
+              canPrev={canPrev}
+              currentStep={4}
+              lastStep={lastStep}
+              stepName={onboardingStepsData.tabsData[3].contentName}
+              onNext={onNext}
+              onPrev={onPrev}
+            >
+              <SelectSSOMethodTabContent />
+            </OnBoardingTabsWrapper>
+          </Tabs.TabPanel>
 
-        
+          {/* <Tabs.TabPanel padding='0'>
+            <OnBoardingTabsWrapper
+              canNext={canNext}
+              canPrev={canPrev}
+              currentStep={externalODS.isExternalODS? 5 : 6}
+              lastStep={lastStep}
+              stepName={externalODS.isExternalODS? onboardingStepsData.tabsData[4].contentName : onboardingStepsData.tabsData[5].contentName}
+              onNext={onNext}
+              onPrev={onPrev}
+            >
+              <ReviewDataTabContent />
+            </OnBoardingTabsWrapper>
+          </Tabs.TabPanel> */}
 
-        <TabPanel padding='0'>
-          <OnBoardingTabsWrapper
-            canNext={canNext}
-            canPrev={canPrev}
-            currentStep={5}
-            lastStep={lastStep}
-            stepName={onboardingStepsData.tabsData[4].contentName}
-            onNext={onFinalize}
-            onPrev={onPrev}
-          >
-            <FinalizeTabContent
-              connectedODS={formData} 
-              connectedSISProvidersList={connectedSISProvidersList}
-              invitationsList={invitationsList}
-              selectedInstance={defaultInstance as any}
-              verificationStatus={verificationStatus}
-              verifiedDomainList={verifiedDomainList}
-              onSelectInstance={onSelectInstance}
-            />
-          </OnBoardingTabsWrapper>
-        </TabPanel>
-      </TabPanels>
-    </Tabs>
-  </>
+          <Tabs.TabPanel padding='0'>
+            <OnBoardingTabsWrapper
+              canNext={canNext}
+              canPrev={canPrev}
+              currentStep={5}
+              lastStep={lastStep}
+              stepName={onboardingStepsData.tabsData[4].contentName}
+              onNext={onFinalize}
+              onPrev={onPrev}
+            >
+              <FinalizeTabContent
+                connectedODS={formData} 
+                connectedSISProvidersList={connectedSISProvidersList}
+                invitationsList={invitationsList}
+                selectedInstance={defaultInstance as any}
+                verificationStatus={verificationStatus}
+                verifiedDomainList={verifiedDomainList}
+                onSelectInstance={onSelectInstance}
+              />
+            </OnBoardingTabsWrapper>
+          </Tabs.TabPanel>
+        </Tabs.TabPanels>
+      </Tabs.Root>
+    </>
   )
 }
 

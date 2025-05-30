@@ -21,9 +21,24 @@ const ManageInstanceBtn = ({ instance }: ManageInstanceBtnProps) => {
   return (
     <Flex w='80px'>
       <Button 
-        minW='67px'
+        _hover={{
+          bg: 'blue.700',
+          borderColor: 'blue.700',
+          boxShadow: '0 0 0 3px rgba(59, 130, 246, 0.5)' 
+        }}
+        bg='blue.600'
+        border='1px'
+        borderColor='blue.600'
+        boxShadow='0 0 0 1px rgba(59, 130, 246, 0.3)'
+        color='white'
+        fontFamily='Poppins'
+        fontSize='11px'
+        fontWeight='600'
+        lineHeight='1.2'
+        ml='16px'
+        padding='10px'
         size='xs'
-        variant='primaryBlue600'
+        type="button"
         onClick={() => navigate(getOdsInstanceLink(instance))}
       >
         Manage

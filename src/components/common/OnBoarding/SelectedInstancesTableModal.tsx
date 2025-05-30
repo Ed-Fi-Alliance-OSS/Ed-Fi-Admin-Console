@@ -6,7 +6,7 @@
 import {
   Flex, Text, Button 
 } from '@chakra-ui/react'
-import EDXCustomModal from '../EDXCustomModal'
+import EDXCustomModal, { NoButton } from '../EDXCustomModal'
 import useOdsInstanceDisplayYear from '../../../hooks/odsInstances/useOdsInstanceYearName'
 import { ExtendedODSInstance } from '../../../core/ODSInstance.types'
 
@@ -41,22 +41,18 @@ const SelectedInstancesTableModal = ({ selectedInstance, settingAsDefault, showC
         </Text>
       </Flex>}
       footer={<Flex w='full'>
-        <Button 
-          border='1px' 
-          borderColor='gray.300'
-          color='gray.800' 
-          isDisabled={settingAsDefault} 
-          size='sm'
+        <NoButton 
+          disabled={settingAsDefault}
           onClick={onClose}
         >
           No, Go Back
-        </Button>
+        </NoButton>
 
         <Button 
           _hover={{ _loading: { bg: 'gray.800' } }} 
           bg='gray.800'
           color='white' 
-          isLoading={settingAsDefault} 
+          loading={settingAsDefault} 
           ml='10px'
           size='sm'
           onClick={onContinue}

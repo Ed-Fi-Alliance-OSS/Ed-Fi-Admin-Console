@@ -4,7 +4,7 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import {
-  Box, Flex, FormControl,
+  Box, Flex, Field,
   Spinner
 } from '@chakra-ui/react'
 import {
@@ -60,7 +60,7 @@ const PartnerForm = ({ initialData, schoolYear, mode, onFinishSave }: PartnerFor
           flexDir='column'
           w='full'
         >
-          <FormControl>
+          <Field.Root>
             <CustomFormLabel
               htmlFor="partnerName"
               text="Vendor Name"
@@ -72,35 +72,37 @@ const PartnerForm = ({ initialData, schoolYear, mode, onFinishSave }: PartnerFor
               value={partnerData.contactName}
               onChange={onChangePartnerData}
             />
-          </FormControl>
+          </Field.Root>
 
-          <FormControl mt="24px">
+          <Field.Root mt="24px">
             <CustomFormLabel
               htmlFor="company"
               text="Company"
             />
+
             <CustomInput
               error={errors && errors['company'] && errors['company'].message}
               id="company"
               value={partnerData.company}
               onChange={onChangePartnerData}
             />
-          </FormControl>
+          </Field.Root>
 
-          <FormControl mt="24px">
+          <Field.Root mt="24px">
             <CustomFormLabel
               htmlFor="contactEmail"
               text="Contact Email"
             />
+
             <CustomInput
               error={errors && errors['contactEmailAddress'] && errors['contactEmailAddress'].message}
               id="contactEmailAddress"
               value={partnerData.contactEmailAddress}
               onChange={onChangePartnerData}
             />
-          </FormControl>
+          </Field.Root>
 
-          <FormControl mt="24px">
+          <Field.Root mt="24px">
             <Flex
               direction="column"
               maxW="100%"
@@ -133,7 +135,7 @@ const PartnerForm = ({ initialData, schoolYear, mode, onFinishSave }: PartnerFor
                 onChange={onChangePartnerData}
               />
             </Flex> */}
-          </FormControl>
+          </Field.Root>
         </Flex>
       </Flex>
     </Flex>}

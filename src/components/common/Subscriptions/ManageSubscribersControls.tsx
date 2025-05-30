@@ -3,7 +3,7 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import { ChevronDownIcon } from '@chakra-ui/icons'
+import { MdKeyboardArrowDown } from 'react-icons/md'
 import {
   Button, Flex 
 } from '@chakra-ui/react'
@@ -23,10 +23,11 @@ const ManageSubscribersControls = ({ applicationName, subscriptionId, onManageSu
     >
       <Button 
         borderRadius='4px'
+        color='primaryBlue600'
         data-testid={`manage-${applicationName}-btn`}
         minW='39px'
         size='xs'
-        variant='primaryBlue600'
+        variant='solid'
         onClick={() => onManageSubscribers(subscriptionId)}
       >
         Manage Licenses
@@ -35,11 +36,12 @@ const ManageSubscribersControls = ({ applicationName, subscriptionId, onManageSu
       {false && <Button 
         aria-labelledby={`show-options-${subscriptionId}`}
         borderRadius='0px 4px 4px 0px'
+        color='primaryBlue600'
         maxW='24px'
         minW='24px'
         ml='1px'
         size='xs'
-        variant='primaryBlue600'
+        variant='solid'
         onClick={() => onManageSubscribers(subscriptionId)}
       >
         <span
@@ -48,7 +50,7 @@ const ManageSubscribersControls = ({ applicationName, subscriptionId, onManageSu
         >{`Show ${applicationName} options`}
         </span>
 
-        <ChevronDownIcon 
+        <MdKeyboardArrowDown 
           aria-hidden="true"
           focusable="false" 
           fontSize='18px'

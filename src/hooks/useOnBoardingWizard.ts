@@ -78,10 +78,6 @@ const useOnBoardingWizard = () => {
   const { externalODS } = useExternalODSData()
   const [ lastStep, setLastStep ] = useState(selectLastStepValue(externalODS.isExternalODS))
   const mock = useMockData()
-    
-  console.log('has connected sis', allStepsProgressData.hasConnectedSIS)
-  console.log('Onboarding wizard data', onBoardingWizardData)
-  console.log('progress data', allStepsProgressData)
 
   const getCompletedSteps = () : number => {
     if (onBoardingWizardData) {
@@ -403,8 +399,7 @@ const useOnBoardingWizard = () => {
 
   const updateStepsValidation = () => {
     if (onBoardingWizardData) {
-      console.log('Update steps validation')
-
+      
       if (onBoardingWizardData.status !== 'Completed' && onBoardingWizardData.totalSteps === 8) {
         const nallStepsProgressData = { ...allStepsProgressData }
 

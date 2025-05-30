@@ -4,8 +4,9 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import {
-  TriangleDownIcon, TriangleUpIcon
-} from '@chakra-ui/icons'
+  MdArrowDropDown as TriangleDownIcon,
+  MdArrowDropUp as TriangleUpIcon
+} from 'react-icons/md'
 import {
   Button, Flex, Text
 } from '@chakra-ui/react'
@@ -21,50 +22,51 @@ const PartnersAndApplicationAccordionHeader = ({ sortByPartnerDesc, sortByPartne
   return (
     <Flex padding='16px 32px'>
       <Flex
+        alignItems='center'
         flexDir='column'
+        gap='2px'
         justifyContent='center'
-        w='20px'
+        w='32px'
       >
         <Button 
-          aria-labelledby="sort-asc-company"
-          color={sortingType === 'asc'? 'gray.700' : 'gray.500'}
+          _hover={{
+            background: 'gray.50',
+            color: sortingType === 'asc' ? 'blue.600' : 'gray.600'
+          }}
+          _focus={{ boxShadow: '0 0 0 2px var(--chakra-colors-blue-500)' }}
+          aria-label="Sort ascending by vendor"
+          background='transparent'
+          color={sortingType === 'asc' ? 'blue.500' : 'gray.400'}
           data-testid="sort-asc-company"
-          h='3px'
-          minW='5px'
+          h='16px'
+          minW='16px'
+          p='0'
           onClick={() => sortByPartnerAsc({ field: 'company' })}
         >
-          <span
-            hidden
-            id="sort-asc-company"
-          >Sort ascending
-          </span>
-
           <TriangleUpIcon 
-            aria-label="Sort field ascending"
-            focusable="true"
-            fontSize='10px'
+            aria-hidden="true"
+            size={14}
           />
         </Button>
 
         <Button 
-          aria-labelledby="sort-desc-company"
-          color={sortingType === 'desc' ? 'gray.700' : 'gray.500'}
+          _hover={{
+            background: 'gray.50',
+            color: sortingType === 'desc' ? 'blue.600' : 'gray.600'
+          }}
+          _focus={{ boxShadow: '0 0 0 2px var(--chakra-colors-blue-500)' }}
+          aria-label="Sort descending by vendor"
+          background='transparent'
+          color={sortingType === 'desc' ? 'blue.500' : 'gray.400'}
           data-testid="sort-desc-company"
-          h='3px'
-          minW='5px'
-          mt='5px'
+          h='16px'
+          minW='16px'
+          p='0'
           onClick={() => sortByPartnerDesc({ field: 'company' })}
         >
-          <span
-            hidden
-            id="sort-desc-company"
-          >Sort descending
-          </span>
-
           <TriangleDownIcon 
-            aria-label="Sort field descending" 
-            focusable="true"
-            fontSize='10px'
+            aria-hidden="true"
+            size={14}
           />
         </Button>
       </Flex>

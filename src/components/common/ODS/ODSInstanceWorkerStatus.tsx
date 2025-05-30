@@ -7,7 +7,7 @@ import {
   Flex, Spinner, Text
 } from '@chakra-ui/react'
 import {
-  InstanceOperationStatus, InstanceWorkerStatus 
+  InstanceOperationStatus, InstanceWorkerStatus
 } from '../../../core/ODSInstance.types'
 
 interface ODSInstanceWorkerStatusProps {
@@ -32,8 +32,8 @@ const ODSInstanceWorkerStatus = ({ status }: ODSInstanceWorkerStatusProps) => {
       >
         <Text
           color='gray.400'
+          fontSize='md'
           fontWeight='400'
-          size='md'
         >
           {getStatus(status)}
         </Text>

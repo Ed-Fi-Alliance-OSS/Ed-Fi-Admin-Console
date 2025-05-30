@@ -18,7 +18,7 @@ const DocumentationRender = ({ documentationUrl, selectedDocumentation }: Docume
     <>
       {selectedDocumentation !== 'Select Source' && documentationUrl && 
       <Flex 
-        __css={{
+        css={{
           '&': {
             ml: '0px',
             width: 'full' 

@@ -19,8 +19,8 @@ const CompleteOnBoardingWizardMessage = () => {
     >
       <Text 
         fontFamily='Poppins'
+        fontSize='md'
         fontWeight='400'
-        size='md'
       >
         Please complete the OnBoarding Wizard
       </Text> 

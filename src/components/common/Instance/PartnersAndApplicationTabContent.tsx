@@ -13,6 +13,7 @@ import { EdfiApplication } from '../../../core/Edfi/EdfiApplications'
 import { EdfiVendor } from '../../../core/Edfi/EdfiVendors'
 import { ODSInstance } from '../../../core/ODSInstance.types'
 import usePartnersAndApplicationsAccordion from '../../../hooks/adminActions/edfi/usePartnersAndApplicationsAccordion'
+import { EdfiVendorWithApplications } from '../../../hooks/adminActions/edfi/usePartnersAndApplicationsAccordion.types'
 import useEDXToast from '../../../hooks/common/useEDXToast'
 import useEdfiApplicationsService from '../../../services/AdminActions/Edfi/Applications/EdfiApplicationsService'
 import useEdfiVendorsService from '../../../services/AdminActions/Edfi/Vendors/EdfiVendorsService'
@@ -52,14 +53,22 @@ const PartnersAndApplicationTabContent = ({ instance, schoolYear }: PartnersAndA
     deleting: false,
     id: ''
   })
-
+  
   const { successToast, errorToast } = useEDXToast()
   const onAddVendor = () => setElementToShow('add vendor')
   const [ selectedVendor, setSelectedVendor ] = useState<EdfiVendor | undefined>()
 
-  const onEditVendor = (vendor: EdfiVendor) => {
-    console.log('edit vendor', vendor)
-    setSelectedVendor(vendor)
+  const onEditVendor = (vendor: EdfiVendorWithApplications) => {
+    // Convert EdfiVendorWithApplications to EdfiVendor as PartnerForm expects EdfiVendor
+    const vendorData: EdfiVendor = {
+      id: vendor.id,
+      company: vendor.company,
+      namespacePrefixes: vendor.namespacePrefixes,
+      contactName: vendor.contactName,
+      contactEmailAddress: vendor.contactEmailAddress
+    }
+
+    setSelectedVendor(vendorData)
     setElementToShow('edit vendor')
   }
 
@@ -72,8 +81,6 @@ const PartnersAndApplicationTabContent = ({ instance, schoolYear }: PartnersAndA
 
   const onDeleteVendor = async (vendorId: string) => {
     if (adminConfig) {
-      console.log('vendor id', vendorId)
-
       setIsDeletingVendor({
         deleting: true,
         id: vendorId
@@ -123,7 +130,6 @@ const PartnersAndApplicationTabContent = ({ instance, schoolYear }: PartnersAndA
   }
 
   const onReturnToAccordion = async () => {
-    console.log('return to accordion')
     setElementToShow('accordion')
     setSelectedVendor(undefined)
     setisLoading(true)

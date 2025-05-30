@@ -3,9 +3,9 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import { CheckIcon } from '@chakra-ui/icons'
+import { MdCheckCircle } from 'react-icons/md'
 import {
-  Flex, Tab, TabList, TabPanel, TabPanels, Tabs
+  Flex, Tabs
 } from '@chakra-ui/react'
 import { useState } from 'react'
 import OnBoardingConnectSISContextProvider from '../../../context/onBoardingConnectSISContext'
@@ -112,19 +112,19 @@ const SetUpWizard = ({ instance, setupWizardData, completedSteps, lastInProgress
   }
 
   return (
-    <Tabs
-      isLazy
+    <Tabs.Root
+      lazyMount
       index={currentStepIndex}
       variant='enclosed'
       w='full'
       onChange={(index) => onTabChange(index)}
     >
-      <TabList
+      <Tabs.List
         justifyContent='space-between'
         w='480px'
       >
         {setUpWizardStepsMetadata.tabsData.map((step, index) => 
-          <Tab 
+          <Tabs.Content
             key={index}
             _selected={{
               color: 'blue.600',
@@ -132,11 +132,11 @@ const SetUpWizard = ({ instance, setupWizardData, completedSteps, lastInProgress
             }}
             borderRadius='0'
             color='white'
+            disabled={isDisabledTab(index)}
             fontFamily='Poppins'
             fontSize='14px'
             fontWeight='700'
             h='54px'
-            isDisabled={isDisabledTab(index)}
             lineHeight='28px'
             padding='8px 8px' 
             w='auto'
@@ -145,7 +145,7 @@ const SetUpWizard = ({ instance, setupWizardData, completedSteps, lastInProgress
               <Flex alignItems='center'>
                 {step.tabName}
 
-                <CheckIcon 
+                <MdCheckCircle 
                   aria-hidden="true" 
                   bg='blue.100'
                   borderRadius='full'
@@ -156,18 +156,17 @@ const SetUpWizard = ({ instance, setupWizardData, completedSteps, lastInProgress
                   padding='2px' 
                   w='14px'
                 />
-              </Flex>
-              : step.tabName}
-          </Tab>)}
-      </TabList>
+              </Flex>              : step.tabName}
+          </Tabs.Content>)}
+      </Tabs.List>
 
-      <TabPanels padding='0'>
+      <Tabs.Content padding='0'>
         <OnBoardingConnectSISContextProvider
           schoolYear={getInstanceYear(instance) ?? 0}
           onSelectSISProvider={onSelectSISProvider}
           onUnselectSISProvider={onUnselectSISProvider}
         >
-          <TabPanel padding='0'>
+          <Tabs.Content padding='0'>
             <OnBoardingTabsWrapper
               canNext={canNext}
               canPrev={canPrev}
@@ -183,10 +182,10 @@ const SetUpWizard = ({ instance, setupWizardData, completedSteps, lastInProgress
                 setupWizard={true}
               />
             </OnBoardingTabsWrapper>
-          </TabPanel>
+          </Tabs.Content>
         </OnBoardingConnectSISContextProvider>
 
-        <TabPanel padding='0'>
+        <Tabs.Content padding='0'>
           <OnBoardingTabsWrapper
             canNext={canNext}
             canPrev={canPrev}
@@ -198,9 +197,9 @@ const SetUpWizard = ({ instance, setupWizardData, completedSteps, lastInProgress
           >
             <ReviewDataTabContent setupWizard={true} />
           </OnBoardingTabsWrapper>
-        </TabPanel>
+        </Tabs.Content>
 
-        <TabPanel padding='0'>
+        <Tabs.Content padding='0'>
           <OnBoardingTabsWrapper
             canNext={canNext}
             canPrev={canPrev}
@@ -215,9 +214,9 @@ const SetUpWizard = ({ instance, setupWizardData, completedSteps, lastInProgress
               instance={instance}
             />
           </OnBoardingTabsWrapper>
-        </TabPanel>
-      </TabPanels>
-    </Tabs>
+        </Tabs.Content>
+      </Tabs.Content>
+    </Tabs.Root>
   )
 }
 

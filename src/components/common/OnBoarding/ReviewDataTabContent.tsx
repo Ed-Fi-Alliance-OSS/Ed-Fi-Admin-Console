@@ -9,6 +9,7 @@ import {
   Text
 } from '@chakra-ui/react'
 import { useContext } from 'react'
+import { Link as RouterLink } from 'react-router-dom'
 import { adminConsoleContext } from '../../../context/adminConsoleContext'
 import DataHealthDetails from './DataHealthDetails'
 import OnBoardingTabContentWrapper from './OnBoardingTabContentWrapper'
@@ -49,18 +50,22 @@ const ReviewDataTabContent = ({ setupWizard }: ReviewDataTabContentProps) => {
         Coming Soon
       </Text>
       }
+
       <Flex
         justifyContent='space-between'
         mt='32px'
         w='full'
       >
         {false && <Link
+          asChild
           color='blue.500'
           fontFamily='Poppins'
+          fontSize='md'
           fontWeight='700'
-          size='md'
         >
-          Not seeing what you were expecting? Get help here.
+          <RouterLink to='#'>
+            Not seeing what you were expecting? Get help here.
+          </RouterLink>
         </Link>}
       </Flex>
     </OnBoardingTabContentWrapper>

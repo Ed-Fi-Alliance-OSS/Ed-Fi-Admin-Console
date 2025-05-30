@@ -3,9 +3,9 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import { AddIcon } from '@chakra-ui/icons'
+import { MdAdd } from 'react-icons/md'
 import {
-  Button, Flex, FormControl, Text
+  Button, Flex, Field, Text
 } from '@chakra-ui/react'
 import {
   CustomFormLabel, CustomSelect
@@ -87,15 +87,16 @@ const OptionalSISProviderForm = ({ authenticationUrl,
         </Text>
 
         <Button
+          color='primaryBlue600'
           maxW='80px'
           minW='80px'
           mt='12px'
           size='sm'
-          variant='primaryBlue600'
+          variant='solid'
           onClick={onShowOptionalForm}
         >
           <Flex>
-            <AddIcon />
+            <MdAdd />
           </Flex>
 
           <Text
@@ -126,7 +127,7 @@ const OptionalSISProviderForm = ({ authenticationUrl,
         </Flex> 
 
         <Flex mt={!hasSelectedProvider? '12px' : '0'}>
-          { !hasSelectedProvider && <FormControl w='300px'>
+          { !hasSelectedProvider && <Field.Root w='300px'>
             <CustomFormLabel 
               htmlFor="providerFunction"
               text="Source Provider Function"
@@ -138,7 +139,7 @@ const OptionalSISProviderForm = ({ authenticationUrl,
               value={source}
               onChange={onChangeOptionalSource}
             />
-          </FormControl> }
+          </Field.Root> }
         </Flex>
 
         <Flex
@@ -205,7 +206,7 @@ const OptionalSISProviderForm = ({ authenticationUrl,
           <Flex mt='16px'>
             <Text 
               fontFamily='Poppins'
-              size='sm'
+              fontSize='sm'
             >
               For help connecting, reach out to your source provider's support services or read through their provided documentation.
             </Text>

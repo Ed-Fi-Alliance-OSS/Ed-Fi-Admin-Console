@@ -46,9 +46,9 @@ const DataHealthDetails = ({ showReload, isReview }: DataHealthDetailsProps) => 
         >
           <Text 
             fontFamily='Poppins'
+            fontSize='md'
             fontWeight='700'
             mr='10px'
-            size='md'
           >
             Data Preview
           </Text>
@@ -73,10 +73,10 @@ const DataHealthDetails = ({ showReload, isReview }: DataHealthDetailsProps) => 
             <Text
               color='gray.500'
               fontFamily='Poppins'
+              fontSize='xs'
               fontStyle='italic'
               fontWeight='400'
               mt='5px'
-              size='xs'
             >{dataHealthDate}
             </Text>
 

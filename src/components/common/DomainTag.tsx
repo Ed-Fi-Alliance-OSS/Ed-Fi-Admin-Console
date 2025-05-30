@@ -19,10 +19,10 @@ const DomainTag = ({ domain }: DomainTagProps) => {
       color='gray.700'
       display='flex'
       fontFamily='Archivo Narrow'
+      fontSize='md'
       height='28px'
       justifyContent='center'
       padding='0 12px'
-      size='md'
       textAlign='center'
     >
       {domain}

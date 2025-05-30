@@ -5,13 +5,11 @@
 
 import {
   Accordion,
-  AccordionButton,
-  AccordionIcon,
-  AccordionItem,
-  AccordionPanel,
+  Box,
   Flex,
   Text,
 } from '@chakra-ui/react'
+import { useState } from 'react'
 import { InstanceEdfiStatus } from '../../../core/ODSInstance.types'
 import ODSInstanceEdFiStatus from '../ODS/ODSInstanceEdFiStatus'
 import InstanceServiceHealthBar from './InstanceServiceHealthBar'
@@ -34,52 +32,75 @@ interface StatusSummaryAccordionProps {
 }
 
 const StatusSummaryAccordion = ({ instanceList }: StatusSummaryAccordionProps) => {
+  // Track expanded items
+  const [ expandedItems, setExpandedItems ] = useState<Record<number, boolean>>({})
+  
+  const toggleAccordion = (index: number) => {
+    setExpandedItems(prev => ({
+      ...prev,
+      [index]: !prev[index]
+    }))
+  }
+
   return (
-    <Accordion w='full'>
-      {instanceList.map((instance, index) => 
-        <AccordionItem 
-          key={index} 
+    <Flex direction="column" width="full">
+      {instanceList.map((instance, index) => (
+        <Box 
+          key={index}
           _notFirst={{ mt: '24px' }} 
           bg='white'
           border='1px'
           borderColor='gray.300'
           borderRadius='4px'
+        >            <Flex 
+          alignItems="center"
+          cursor="pointer"
+          height="64px"
+          onClick={() => toggleAccordion(index)}
         >
-          <AccordionButton
-            alignItems='center'
-            display='flex'
-            h='64px'
-          >
-            <AccordionIcon
-              aria-hidden="true"
-              focusable="false"
-              ml='30px'
-            />
-
-            <Text 
+          <Flex _hover={{ bg: 'transparent' }} alignItems="center">
+              <Box ml="30px" mr="10px">
+              {/* Accordion icon */}
+              <Box 
+                  transform={`rotate(${expandedItems[index] ? '180deg' : '0deg'})`}
+                  transition="transform 0.2s"
+                >
+                  <svg fill="none" height="6" viewBox="0 0 10 6" width="10" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1 1L5 5L9 1" stroke="#2E72D2" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" />
+                </svg>
+                </Box>
+            </Box>
+              
+              <Text 
               color='blue.600'
               fontFamily='Poppins'
+              fontSize='16px'
               fontWeight='700'
-              ml='10px'
-              size='16px'
             >
               {instance.name}
             </Text>
-
-            <Flex ml='50px'>
-              <ODSInstanceEdFiStatus status={instance.status} />
+              
+              <Flex ml='50px'>
+              <ODSInstanceEdFiStatus status={instance.status.operationStatus} />
             </Flex>
-          </AccordionButton>
-
-          <AccordionPanel padding='45px 30px'>
-            {instance.healthList.map((service, sindex) => 
+            </Flex>
+        </Flex>
+          
+          <Box 
+            display={expandedItems[index] ? 'block' : 'none'} 
+            padding='45px 30px'
+            transition="all 0.2s"
+          >
+            {instance.healthList.map((service, sindex) => (
               <InstanceServiceHealthBar
                 key={sindex}
                 serviceHealth={service}
-              />)}
-          </AccordionPanel>
-        </AccordionItem>)}
-    </Accordion>
+              />
+            ))}
+          </Box>
+        </Box>
+      ))}
+    </Flex>
   )
 }
 

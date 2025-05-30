@@ -8,13 +8,9 @@ import {
   Flex,
   Link,
   Table,
-  TableContainer,
-  Tbody,
-  Td,
-  Th,
-  Thead,
-  Tr,
+  Box
 } from '@chakra-ui/react'
+import { Link as RouterLink } from 'react-router-dom'
 import { DeletingState } from '../../../core/deletingState.types'
 import { EdfiApplication } from '../../../core/Edfi/EdfiApplications'
 
@@ -27,92 +23,119 @@ interface ApplicationDetailsTableProps {
 
 const ApplicationDetailsTable = ({ applicationsList, isDeleting, onEditApplication, onDeleteApplication }: ApplicationDetailsTableProps) => {
   return (
-    <TableContainer
+    <Box
       border='1px'
       borderColor='gray.300'
       borderRadius='4px'
     >
-      <Table variant='simple'>
-        <Thead bg='gray.100'>
-          <Tr>
-            <Th
+      <Table.Root>
+        <Table.Header bg='gray.100'>
+          <Table.Row>
+            <Table.ColumnHeader
+              bg='gray.100'
               color='gray.700'
               fontFamily='Poppins'
               fontSize='14px'
               fontWeight='700'
               textTransform='none'
-            >Application
-            </Th>
+            >
+              Application
+            </Table.ColumnHeader>
 
-            <Th
+            <Table.ColumnHeader
+              bg='gray.100'
               color='gray.700'
               fontFamily='Poppins'
               fontSize='14px'
               fontWeight='700'
               textTransform='none'
-            >Education Organizations
-            </Th>
+            >
+              Education Organizations
+            </Table.ColumnHeader>
 
-            <Th
+            <Table.ColumnHeader
+              bg='gray.100'
               color='gray.700'
               fontFamily='Poppins'
               fontSize='14px'
               fontWeight='700'
               textTransform='none'
-            >Permissions
-            </Th>
+            >
+              Permissions
+            </Table.ColumnHeader>
 
-            <Th></Th>
-          </Tr>
-        </Thead>
+            <Table.ColumnHeader bg='gray.100'></Table.ColumnHeader>
+          </Table.Row>
+        </Table.Header>
 
-        <Tbody>
-          {applicationsList.map((application, index) => 
-            <Tr
+        <Table.Body>
+          {applicationsList.map((application, index) => (
+            <Table.Row
               key={index} 
               border='2px' 
               borderColor='gray.300'
             >
-              <Td
+              <Table.Cell
                 fontFamily='Poppins'
                 fontSize='14px'
                 fontWeight='400'
-              >{application.applicationName}
-              </Td>
+              >
+                {application.applicationName}
+              </Table.Cell>
 
-              <Td
+              <Table.Cell
                 fontFamily='Poppins'
                 fontSize='14px'
                 fontWeight='400'
                 textAlign='center'
-              >{application.educationOrganizationIds ? application.educationOrganizationIds.length : 0}
-              </Td>
+              >
+                {application.educationOrganizationIds ? application.educationOrganizationIds.length : 0}
+              </Table.Cell>
 
-              <Td>
+              <Table.Cell>
                 <Flex flexDir='column'>
                   <Link
-                    color='blue.600' 
+                    asChild 
+                    color='blue.600'
                     fontFamily='Poppins'
                     fontSize='14px'
                     fontWeight='400'
-                    href='#'
                     textDecoration='underline'
                   >
-                    {application.claimSetName}
+                    <RouterLink to='#'>
+                      {application.claimSetName}
+                    </RouterLink>
                   </Link>
                 </Flex>
-              </Td>
+              </Table.Cell>
 
-              <Td>
+              <Table.Cell>
                 <Flex
                   justifyContent='flex-end'
                   w='full'
                 >
                   <Button 
-                    // borderRadius='4px 0px 0px 4px'
+                    _hover={{
+                      bg: 'blue.700',
+                      borderColor: 'blue.700',
+                      boxShadow: '0 0 0 3px rgba(59, 130, 246, 0.5)' 
+                    }}
+                    bg='blue.600'
+                    border='1px'
+                    borderColor='blue.600'
+                    borderRadius='4px 0px 0px 4px'
+                    boxShadow='0 0 0 1px rgba(59, 130, 246, 0.3)'
+                    color='white'
+                    fontFamily='Poppins'
+                    fontSize='11px'
+                    fontWeight='600'
+                    lineHeight='1.2'
                     minW='39px'
+                    ml='16px'
+                    padding='10px'
                     size='xs'
-                    variant='primaryBlue600'
+                    type="button"
+                    variant='solid'
                     onClick={() => onEditApplication(application)}
                   >
                     Edit
@@ -124,11 +147,12 @@ const ApplicationDetailsTable = ({ applicationsList, isDeleting, onEditApplicati
                     onDelete={onDeleteApplication}
                   /> */}
                 </Flex>
-              </Td>
-            </Tr>)}
-        </Tbody>
-      </Table>
-    </TableContainer>
+              </Table.Cell>
+            </Table.Row>
+          ))}
+        </Table.Body>
+      </Table.Root>
+    </Box>
   )
 }
 

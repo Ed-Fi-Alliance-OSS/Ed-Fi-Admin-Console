@@ -40,9 +40,9 @@ const GoToInstanceStatusDetails = ({ status }: GoToInstanceStatusDetailsProps) =
         borderRadius='4px'
         color={selectTextColor(status)}
         fontFamily='Archivo Narrow'
+        fontSize='sm'
         fontWeight='400'
         padding='5px 0'
-        size='sm'
         textAlign='center'
         w='93px'
       >

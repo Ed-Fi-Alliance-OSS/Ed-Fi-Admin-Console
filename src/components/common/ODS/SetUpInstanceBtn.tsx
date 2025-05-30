@@ -24,10 +24,11 @@ const SetUpInstanceBtn = ({ instance, updatingIsDefault, onOpenSetUpModal }: Set
     <Flex w='80px'>
       <Button 
         borderRadius='4px 0px 0px 4px'
-        isDisabled={updatingIsDefault.loading}
+        color='primaryBlue500'
+        disabled={updatingIsDefault.loading}
         minW='67px'
         size='xs'
-        variant='primaryBlue500'
+        variant='solid'
         onClick={() => onRedirectToSetupWizard(instance)}
       >
         Set Up

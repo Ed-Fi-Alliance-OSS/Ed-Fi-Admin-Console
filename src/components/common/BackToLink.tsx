@@ -3,7 +3,7 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import { ArrowBackIcon } from '@chakra-ui/icons'
+import { MdArrowBack } from 'react-icons/md'
 import {
   Link, Text
 } from '@chakra-ui/react'
@@ -17,28 +17,29 @@ interface BackToLinkProps {
 const BackToLink = ({ url, text }: BackToLinkProps) => {
   return (
     <Link 
-      alignItems='center' 
-      as={RouterLink}
-      display='flex' 
-      to={url}
+      asChild 
+      alignItems='center'
+      display='flex'
       w='230px'
     >
-      <ArrowBackIcon 
-        aria-describedby={`${text}`} 
-        aria-hidden="true" 
-        color='gray.700' 
-        focusable="true"
-        role="img"
-      />
+      <RouterLink to={url}>
+        <MdArrowBack 
+          aria-describedby={`${text}`} 
+          aria-hidden="true" 
+          color='gray.700' 
+          focusable="true"
+          role="img"
+        />
 
-      <Text
-        color='gray.700'
-        fontFamily='Poppins'
-        fontWeight='400'
-        ml='10px'
-        size='sm'
-      >{text}
-      </Text>
+        <Text
+          color='gray.700'
+          fontFamily='Poppins'
+          fontSize='sm'
+          fontWeight='400'
+          ml='10px'
+        >{text}
+        </Text>
+      </RouterLink>
     </Link>
   )
 }

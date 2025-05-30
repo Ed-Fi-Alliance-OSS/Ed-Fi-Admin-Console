@@ -7,6 +7,8 @@ import pluginJs from '@eslint/js'
 import pluginReact from 'eslint-plugin-react'
 import globals from 'globals'
 import tseslint from 'typescript-eslint'
+import pluginPrettier from 'eslint-plugin-prettier'
+import prettierConfig from 'eslint-config-prettier'
 
 
 /** @type {import('eslint').Linter.Config[]} */
@@ -23,8 +25,7 @@ export default [
   {
     languageOptions: { globals: globals.browser },
     settings: { react: { version: 'detect' } }
-  },
-  pluginJs.configs.recommended,
+  },  pluginJs.configs.recommended,
   tseslint.configs.base,
   pluginReact.configs.flat.recommended,
   {
@@ -45,11 +46,10 @@ export default [
       'react/jsx-closing-tag-location': [ 'error', 'line-aligned' ],
       'react/jsx-curly-brace-presence': [ 'error', 'never' ],
       'no-unused-vars': 'off',
-      'react/jsx-newline': 'warn',
-      'react/jsx-curly-spacing': 'error',
-      'react/jsx-max-props-per-line': [
-        'error', {
-          maximum: 1,
+      'react/jsx-newline': 'off',
+      'react/jsx-curly-spacing': 'error',      'react/jsx-max-props-per-line': [
+        'warn', {
+          maximum: 3,
           when: 'multiline' 
         }
       ],
@@ -144,28 +144,34 @@ export default [
         { allowSingleLine: false },
       ],
       'function-paren-newline': [ 'error', 'multiline' ],
-      'array-element-newline': [ 'error', 'consistent' ],
-      'array-bracket-newline': [
-        'error',
+      'array-element-newline': [ 'error', 'consistent' ],      'array-bracket-newline': [
+        'warn',
         {
           multiline: true,
           minItems: 3,
         },
-      ],
-      'object-property-newline': [ 'error', { 'allowAllPropertiesOnSameLine': false } ],
+      ],'object-property-newline': [ 'warn', { 'allowAllPropertiesOnSameLine': true } ],
       'object-curly-spacing': [ 'error', 'always' ],
       'object-curly-newline': [
-        'error', {
+        'warn', {
           ImportDeclaration: {
             multiline: true,
-            minProperties: 2,
+            minProperties: 3,
           },
           ObjectExpression: {
             multiline: true,
-            minProperties: 2,
+            minProperties: 3,
           },
-        },
-      ],
+        },      ],
     }
-  }
+  },
+  {
+    plugins: {
+      prettier: pluginPrettier
+    },
+    rules: {
+      'prettier/prettier': 'warn'
+    }
+  },
+  prettierConfig
 ]

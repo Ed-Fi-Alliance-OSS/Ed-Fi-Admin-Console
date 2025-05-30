@@ -7,6 +7,7 @@ import {
   Flex, Link, Text
 } from '@chakra-ui/react'
 import { useContext } from 'react'
+import { Link as RouterLink } from 'react-router-dom'
 import { adminConsoleContext } from '../../../context/adminConsoleContext'
 import { ODSInstance } from '../../../core/ODSInstance.types'
 import { SISProviderInfo } from '../../../core/sisProviders/SISProviders.types'
@@ -37,11 +38,9 @@ const SetUpWizardFinalizeTabContent = ({ connectedSISProvidersList, instance }: 
         <Link 
           aria-label="contact support" 
           color='blue.500' 
-          href="https://txedexchange.atlassian.net/servicedesk/customer/portals" 
           ml='2px' 
           referrerPolicy='no-referrer'
-          target='_blank'
-        >contact support
+        ><RouterLink target='_blank' to="https://txedexchange.atlassian.net/servicedesk/customer/portals">contact support</RouterLink>
         </Link>. Once all the information appears correct, click the “Finalize” button and your Tech Console will be ready to use!
       </Text>
 

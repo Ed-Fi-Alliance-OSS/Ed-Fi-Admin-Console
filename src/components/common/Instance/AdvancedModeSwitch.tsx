@@ -26,9 +26,9 @@ const AdvancedModeSwitch = ({ checked }: AdvancedModeSwitchProps) => {
 
       <Text 
         fontFamily='Poppins'
+        fontSize='2m'
         fontWeight='700'
         ml='15px'
-        size='2m'
       >
         Advanced Mode
       </Text>

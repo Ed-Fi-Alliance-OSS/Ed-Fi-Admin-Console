@@ -13,8 +13,8 @@ const ODSInstanceSecurityDBStatus = ({ status }: ODSInstanceSecurityDBStatusProp
   return (
     <Text
       fontFamily='Poppins'
+      fontSize='md'
       fontWeight='400'
-      size='md'
     >
       {status}
     </Text>

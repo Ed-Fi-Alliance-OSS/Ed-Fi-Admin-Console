@@ -7,7 +7,7 @@ import {
   Button, Flex, Text 
 } from '@chakra-ui/react'
 import { ODSInstance } from '../../../core/ODSInstance.types'
-import EDXCustomModal from '../EDXCustomModal'
+import EDXCustomModal, { NoButton } from '../EDXCustomModal'
 
 interface ConfirmSetDefaultInstanceModalProps {
     instance: ODSInstance
@@ -33,17 +33,12 @@ const ConfirmSetDefaultInstanceModal = ({ instance, show, updatingInstance, onSe
         alignItems='flex-start'
         w='full'
       >
-        <Button
-          border='1px'
-          borderColor='gray.400'
-          color='red.600'
-          isDisabled={updatingInstance}
-          padding='10px'
-          size='sm'
+        <NoButton
+          disabled={updatingInstance}
           onClick={onClose}
         >
           No, Cancel
-        </Button>
+        </NoButton>
 
         <Button
           _hover={{ _disabled: { bg: '#DC3625' } }}
@@ -51,11 +46,11 @@ const ConfirmSetDefaultInstanceModal = ({ instance, show, updatingInstance, onSe
           border='1px'
           borderColor='#DC3625'
           color='white'
-          isLoading={updatingInstance}
+          loading={updatingInstance}
           ml='10px'
           padding='10px'
           size='sm'
-          onClick={() => onSetIsDefault(instance.instanceId, true, true)}
+          onClick={() => onSetIsDefault(instance.id.toString(), true, true)}
         >
           Yes, Set as Default
         </Button>

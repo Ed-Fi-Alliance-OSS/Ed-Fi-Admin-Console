@@ -50,7 +50,7 @@ const AppUserSubscriptionsForm = ({ subscriptionsList, isImplicit, isFetchingPro
       >
         <Spinner
           color='blue.600'
-          size='xl'
+          fontSize='xl'
         /> 
       </Flex>}
 
@@ -91,9 +91,9 @@ const AppUserSubscriptionsForm = ({ subscriptionsList, isImplicit, isFetchingPro
                 <Text
                   color='blue.600'
                   fontFamily='Poppins'
+                  fontSize='sm'
                   fontWeight='700'
                   lineHeight='22px'
-                  size='sm'
                 >{subscription.applicationName}
                 </Text>
 
@@ -115,9 +115,9 @@ const AppUserSubscriptionsForm = ({ subscriptionsList, isImplicit, isFetchingPro
               <Text
                 color='gray.700'
                 fontFamily='Poppins'
+                fontSize='xs'
                 fontWeight='400'
                 lineHeight='16px'
-                size='xs'
               >{`${subscription.assignedLicenses} out of ${subscription.numberOfLicenses === -1? 'Unlimited' : subscription.numberOfLicenses} assigned`}
               </Text>
             </Flex>

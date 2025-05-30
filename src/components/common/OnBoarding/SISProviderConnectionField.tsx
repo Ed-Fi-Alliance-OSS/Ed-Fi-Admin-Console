@@ -3,9 +3,9 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import { CloseIcon } from '@chakra-ui/icons'
+import { MdClose } from 'react-icons/md'
 import {
-  Button, Flex, FormControl, Text
+  Button, Flex, Field, Text
 } from '@chakra-ui/react'
 import { CustomSelect } from '@edfi/admin-console-shared-sdk'
 import { ChangeEvent } from 'react'
@@ -33,7 +33,7 @@ interface SISProviderConnectionFieldProps {
 const SISProviderConnectionField = ({ id, providerFunction, sisProviderOptions, selectedProvider, hasSelectedProvider, connectionState, onChangeSISProvider, onRemoveProvider }: SISProviderConnectionFieldProps) => {
   if (!hasSelectedProvider) {
     return (
-      <FormControl
+      <Field.Root
         fontFamily='Poppins'
         w='300px'
       >
@@ -43,7 +43,7 @@ const SISProviderConnectionField = ({ id, providerFunction, sisProviderOptions, 
           value={selectedProvider}
           onChange={onChangeSISProvider}
         />
-      </FormControl> 
+      </Field.Root> 
     )
   }
 
@@ -54,16 +54,16 @@ const SISProviderConnectionField = ({ id, providerFunction, sisProviderOptions, 
         borderRadius='4px'
         color='gray.700'
         fontFamily='Archivo Narrow'
+        fontSize='sm'
         fontWeight='400'
         padding='5px 10px'
-        size='sm'
       >
         {`${sisProviderOptions.find(option => option.value === selectedProvider)?.text} ${providerFunction? `(${providerFunction})` : '' }`}
 
         <Button
           aria-labelledby='close-btn'
           minW='auto'
-          variant='simple'
+          variant='solid'
           onClick={onRemoveProvider}
         >
           <span
@@ -72,12 +72,13 @@ const SISProviderConnectionField = ({ id, providerFunction, sisProviderOptions, 
           >Close
           </span>
 
-          <CloseIcon 
-            aria-hidden="true" 
-            focusable="false"
-            fontSize='10px' 
-            ml='10px'
-          />
+          <span style={{ marginLeft: '10px' }}>
+            <MdClose 
+              aria-hidden="true" 
+              focusable="false"
+              fontSize='10px' 
+            />
+          </span>
         </Button>
       </Text>
 

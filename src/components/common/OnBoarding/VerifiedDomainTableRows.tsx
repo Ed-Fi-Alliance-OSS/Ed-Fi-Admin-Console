@@ -4,7 +4,7 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import {
-  Td, Text
+  Table, Text
 } from '@chakra-ui/react'
 import { VerifiedDomainInfo } from '../../../core/verifyDomain/VerifyDomain.types'
 import ControlTableRow from '../ControlTableRow'
@@ -19,31 +19,31 @@ const VerifiedDomainTableRows = ({ verifiedDomains }: VerifiedDomainTableRowsPro
     <>
       {verifiedDomains.map((verifiedDomainInfo, index) => 
         <ControlTableRow key={index}>
-          <Td w='50%'>
+          <Table.Cell w='50%'>
             <Text
               color='blue.600'
               fontFamily='Poppins'
+              fontSize='md'
               fontWeight='700'
-              size='md'
             >
               {verifiedDomainInfo.lea}
             </Text>
-          </Td>
+          </Table.Cell>
 
-          <Td w='50%'>
+          <Table.Cell w='50%'>
             <Text
               color='blue.600'
               fontFamily='Poppins'
+              fontSize='md'
               fontWeight='700'
-              size='md'
             >
               {verifiedDomainInfo.domain}
             </Text>
-          </Td>
+          </Table.Cell>
 
-          <Td>
+          <Table.Cell>
             <DomainVerificationStatus status={verifiedDomainInfo.status} />
-          </Td>
+          </Table.Cell>
         </ControlTableRow>)}
     </>
   )

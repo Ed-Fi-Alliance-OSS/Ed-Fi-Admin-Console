@@ -4,7 +4,7 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import {
-  Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel, Flex, Text
+  Accordion, Flex, Text
 } from '@chakra-ui/react'
 import usePermissionsAccordion from '../../../hooks/adminActions/ods/usePermissionsAccordion'
 import AccordionItemSkeleton from '../AccordionItemSkeleton'
@@ -22,79 +22,76 @@ const PermissionsAccordion = () => {
         border='1px'
         borderColor='gray.300'
         fontFamily='Poppins'
+        fontSize='sm'
         fontWeight='700'
         padding='10px 50px'
-        size='sm'
       >
         Claim Set
       </Text>
 
-      <Accordion   
+      <Accordion.Root
         border='1px'
         borderColor='gray.300'
         p='0'
         w='full'
       >
-        {permissions.map((permissionInfo, index) => 
-          <AccordionItem   
-            key={index}
-            border='1px' 
-            borderColor='gray.300'
-          >
+        {permissions.map((permissionInfo, index) =>
+          <Accordion.Item>
             <Flex
               alignItems='center'
+              border='1px'
+              borderColor='gray.300'
               w='full'
             >
-              <AccordionButton
-                border='none'
-                w='full'
-              >
-                <AccordionIcon
-                  aria-hidden="true"
-                  focusable="false"
-                />
-
-                <Text 
-                  color='blue.600'
-                  fontFamily='Poppins'
-                  fontWeight='700'
-                  ml='10px'
+              <Accordion.ItemTrigger>
+                <Flex
+                  border='none'
+                  w='full'
                 >
-                  {permissionInfo.name}
-                </Text>
-              </AccordionButton>
+                  <Accordion.ItemIndicator />
+
+                  <Flex aria-hidden="true">
+                    <Text
+                      color='blue.600'
+                      fontFamily='Poppins'
+                      fontWeight='700'
+                      ml='10px'
+                    >
+                      {permissionInfo.name}
+                    </Text>
+                  </Flex>
+                </Flex>
+              </Accordion.ItemTrigger>
             </Flex>
 
-            <AccordionPanel
-              px='50px'
-              w='full'
-            >
+            <Accordion.ItemIndicator>
               <Flex
                 flexDir='column'
+                px='50px'
                 w='full'
               >
                 <Text
                   color='blue.600'
                   fontFamily='Poppins'
+                  fontSize='lg'
                   fontWeight='700'
                   mb='16px'
-                  size='lg'
                 >
                   Resources
                 </Text>
 
-                <PermissionsAccordionTable resourceInfo={{ 
-                  systemDescriptors: { name: permissionInfo.name  }, 
+                <PermissionsAccordionTable resourceInfo={{
+                  systemDescriptors: { name: permissionInfo.name },
                   types: { name: 'Types' },
                   educationOrganizations: { name: 'Education Organizations' }
                 }}
                 />
               </Flex>
-            </AccordionPanel>
-          </AccordionItem>)}
+            </Accordion.ItemIndicator>
+          </Accordion.Item>)}
 
         <AccordionItemSkeleton itemsCount={permissions.length} />
-      </Accordion>
+      </Accordion.Root>
     </Flex>
   )
 }

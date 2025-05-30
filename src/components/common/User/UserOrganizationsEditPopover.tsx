@@ -3,7 +3,7 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import { ChevronDownIcon } from '@chakra-ui/icons'
+import { MdKeyboardArrowDown } from 'react-icons/md'
 import {
   Button,
   Flex,
@@ -24,10 +24,10 @@ const UserOrganizationsEditPopover = ({ onCancelEdit }: UserOrganizationsFormSav
         <Button 
           aria-labelledby="show-edit-option}"
           borderRadius='0px 4px 4px 0px'
+          fontSize='xs'
           maxW='24px'
           minW='24px'
           ml='1px'
-          size='xs'
           variant='primaryBlue600'
           onClick={() => console.log('User education organizations control popover')}
         >
@@ -37,7 +37,7 @@ const UserOrganizationsEditPopover = ({ onCancelEdit }: UserOrganizationsFormSav
           >Show Options
           </span>
 
-          <ChevronDownIcon 
+          <MdKeyboardArrowDown 
             aria-hidden="true"    
             focusable="false" 
             fontSize='18px'
@@ -65,9 +65,9 @@ const UserOrganizationsEditPopover = ({ onCancelEdit }: UserOrganizationsFormSav
               color='black'
               display='flex'
               fontFamily='Poppins'
+              fontSize='xs'
               isLoading={false}
               minW='80px'
-              size='xs'
               onClick={onCancelEdit}
             >
               Cancel

@@ -140,3 +140,15 @@ export interface InstanceDescription {
   studentsCount: number
   coursesCount: number
 }
+
+export interface ExtendedODSInstance {
+  name?: string
+  instanceName?: string
+  odsInstanceId?: string | number
+  instanceType?: string
+  edFiVersion?: string
+  tsdsVersion?: string
+  edFiStatus?: InstanceEdfiStatus
+  workerStatus?: string
+  edFiDataModels?: string[]
+}

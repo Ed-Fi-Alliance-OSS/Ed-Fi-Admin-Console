@@ -4,7 +4,7 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import {
-  Button, Flex, FormControl, Select 
+  Box, Button, Flex, Field, NativeSelect 
 } from '@chakra-ui/react'
 import {
   CustomErrorField, CustomFormLabel 
@@ -44,62 +44,89 @@ const UserOrganizationsEditFormItem = ({ organizationsList, staffClassifications
       bg='#eff4f6'
       justifyContent="space-between"
       padding='16px'
-    >
-      <Flex 
+    >      <Flex 
         flexDir='column'
         w='320px'
       >
-        <FormControl w='full'>
-          <CustomFormLabel
+        <Field.Root w='full'>
+        <CustomFormLabel
             htmlFor="educationOrganizationName"
+            id="educationOrganizationName-label"
             text="Organization Name"
           />
 
-          <Select
+        <Box aria-label="Organization Name Select">
+            <NativeSelect.Root
             bg='white'
             borderRadius='4px'
-            isDisabled={true}
-            size='xs'
-            value={educationOrganizationName}
-            onChange={onSelectEducationOrganizationName}
+            disabled={true}
+            fontSize='xs'
           >
-            {organizationsList.map((org, index) => 
-              <option
-                key={index}
-                value={org.identifierValue}
+            <NativeSelect.Field 
+                aria-label="Organization Name"
+                id="educationOrganizationName"
+                name="educationOrganizationName"
+                title="Organization Name"
+                value={educationOrganizationName}
+                onChange={onSelectEducationOrganizationName}
               >
-                {org.nameOfInstitution}
-              </option>)}
-          </Select> 
-        </FormControl>
+                {organizationsList.map((org, index) => 
+                <option
+                    key={org.identifierValue || `org-${index}`}
+                    title={org.nameOfInstitution}
+                    value={org.identifierValue}
+                  >
+                    {org.nameOfInstitution}
+                  </option>)}
+              </NativeSelect.Field>
 
-        <FormControl
-          mt='16px'
-          w='full'
-        >
-          <CustomFormLabel
+            <NativeSelect.Indicator />
+          </NativeSelect.Root>
+          </Box>
+      </Field.Root>
+
+        <Field.Root
+        mt='16px'
+        w='full'
+      >
+        <CustomFormLabel
             htmlFor="staffClassificationDescriptor"
+            id="staffClassificationDescriptor-label"
             text="Role"
           />
 
-          <Select
+        <NativeSelect.Root
+            aria-describedby="staffClassificationDescriptor-label"
+            aria-labelledby="staffClassificationDescriptor-label"
             bg='white'
             borderRadius='4px'
             color='black'
-            isDisabled={isUpdatingEducationOrganization}
-            size='xs'
+            disabled={isUpdatingEducationOrganization}
+            fontSize='xs'
+          >
+            <NativeSelect.Field 
+            aria-describedby="staffClassificationDescriptor-label"
+            aria-label="Staff Classification Role"
+            aria-labelledby="staffClassificationDescriptor-label"
+            id="staffClassificationDescriptor"
+            name="staffClassificationDescriptor"
+            title="Staff Classification Role"
             value={staffClassificationDescriptor}
             onChange={onSelectStaffClassificationDescriptor}
           >
             {staffClassificationsList.map((staffClassification, index) => 
-              <option
-                key={index}
+                <option
+                key={`${staffClassification.varNamespace}-${staffClassification.codeValue}` || `staff-${index}`}
+                title={staffClassification.shortDescription}
                 value={`${staffClassification.varNamespace}#${staffClassification.codeValue}`}
               >
                 {staffClassification.shortDescription}
               </option>)}
-          </Select>
-        </FormControl>
+          </NativeSelect.Field>
+
+            <NativeSelect.Indicator />
+          </NativeSelect.Root>
+      </Field.Root>
 
         {!isValidData() && !isCurrentSelection() && <CustomErrorField errorMessage="One organization with this id and role already exists" />}
       </Flex>
@@ -111,11 +138,12 @@ const UserOrganizationsEditFormItem = ({ organizationsList, staffClassifications
       >
         <Button 
           borderRadius='4px 0px 0px 4px'
-          isDisabled={!isValidData()}
-          isLoading={isUpdatingEducationOrganization}
+          colorPalette='blue'
+          disabled={!isValidData()}
+          fontSize='xs'
+          loading={isUpdatingEducationOrganization}
           minW='39px'
-          size='xs'
-          variant='primaryBlue600'
+          variant='solid'
           onClick={() => onUpdate(edOrgToEdit.educationOrganizationId as any, edOrgToEdit.staffClassification)}
         >
           Save

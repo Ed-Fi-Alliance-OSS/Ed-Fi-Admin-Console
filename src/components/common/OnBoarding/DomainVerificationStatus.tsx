@@ -63,8 +63,8 @@ const DomainVerificationStatus = ({ domainName, status, showDeleteOption, isRemo
       <Text
         color={selectTextColor(status)}
         fontFamily='Archivo Narrow'
+        fontSize='sm'
         fontWeight='400'
-        size='sm'
       >
         {status}
       </Text>
