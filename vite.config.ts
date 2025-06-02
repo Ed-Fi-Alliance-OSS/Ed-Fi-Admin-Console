@@ -24,7 +24,7 @@ export default defineConfig(({ mode }) => {
       //   cert: fs.readFileSync('./eng/docker-compose/ssl/server.crt')
       // },
       host: true,
-      port: 8598,
+      port: +(process.env.PORT || 8598),
       watch: {
         ignored: [
           '!**/dist/**',
