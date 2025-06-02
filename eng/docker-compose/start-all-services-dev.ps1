@@ -15,8 +15,8 @@ $composeOds = Join-Path $PSScriptRoot compose-ods-multi-tenant-dev.yml
 $composeLocalAdminApi = Join-Path $PSScriptRoot compose-adminapi-dev.yml
 $composeLocalAdminConsole = Join-Path $PSScriptRoot compose-adminconsole-local-dev.yml
 
-$composeHealthCheckWorker = Join-Path $PSScriptRoot compose-Health-Check-Worker-Process.yml
-$composeInstanceManagementWorker = Join-Path $PSScriptRoot compose-Instance-Management-Worker-Process.yml
+$composeHealthCheckWorker = Join-Path $PSScriptRoot compose-healthcheck.yml
+$composeInstanceManagementWorker = Join-Path $PSScriptRoot compose-instance-management.yml
 
 $envFilePath = Join-Path $PSScriptRoot .env
 

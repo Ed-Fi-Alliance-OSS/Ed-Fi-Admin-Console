@@ -14,19 +14,22 @@ start up different configurations:
 3. `compose-adminconsole-published.yml` runs the latest Admin Console `pre` tag as published to Docker Hub.
 4. `compose-keycloak-dev.yml` runs KeyCloak (identity provider). It uses 28080 tcp port by default.
 5. `compose-ods-multi-tenant-dev.yml` covers ODS/API multitenant with databases using pgbouncer. It uses 8181 tcp port by default.
-6. `compose-Health-Check-Worker-Process.yml` runs [Ed-Fi-Admin-Console-Health-Check-Worker-Process](https://github.com/Ed-Fi-Alliance-OSS/Ed-Fi-Admin-Console-Health-Check-Worker-Process).
-7. `compose-Instance-Management-Worker-Process.yml` runs [Ed-Fi-Admin-Console-Instance-Management-Worker-Process](https://github.com/Ed-Fi-Alliance-OSS/Ed-Fi-Admin-Console-Instance-Management-Worker-Process).
+6. `compose-healthcheck.yml` runs [Ed-Fi-Admin-Console-Health-Check-Worker-Process](https://github.com/Ed-Fi-Alliance-OSS/Ed-Fi-Admin-Console-Health-Check-Worker-Process).
+7. `compose-instance-management.yml` runs [Ed-Fi-Admin-Console-Instance-Management-Worker-Process](https://github.com/Ed-Fi-Alliance-OSS/Ed-Fi-Admin-Console-Instance-Management-Worker-Process).
 
 Convenience PowerShell scripts have been included in the directory, which
 startup the appropriate services.  
 
 ### Run containers
 
+> [!NOTE]
+> .env.example and .env.otp.example files contain a flag ODS_POPULATED. If set to true, the new ODS Instances will be populated with sample data.
+
 Before running these, create a `.env` file. The `.env.example` is a good
 starting point. Also you can use `.env.otp.example` for a Keycloak with an OTP Configuration.
 
 * `start-all-services-dev.ps1` launches `compose-adminapi-dev.yml`, `compose-keycloak-dev.yml`, `compose-adminconsole-local-dev.yml`,
-  `compose-Health-Check-Worker-Process.yml`, `compose-Instance-Management-Worker-Process.yml`  and `compose-ods-multi-tenant-dev.yml`,
+  `compose-healthcheck.yml`, `compose-instance-management.yml`  and `compose-ods-multi-tenant-dev.yml`,
   ready to check adminconsole website
 
 ```pwsh
@@ -46,8 +49,28 @@ You will see the docker's log while running the script.
 > Ctrl+C while running the script may stop the containers.
 
 First time running the script we have to wait until see this in your terminal (also can be checked it in the container's log). 
-![ready](<images/ready_to_use.png>)
+- Verify if the `ed-fi-idp-keycloak` log has
+```
+2025-05-27 18:21:32 UPDATE SUMMARY
+2025-05-27 18:21:32 Run:                        148
+2025-05-27 18:21:32 Previously run:               0
+2025-05-27 18:21:32 Filtered out:                 0
+2025-05-27 18:21:32 -------------------------------
+2025-05-27 18:21:32 Total change sets:          148
+```
 This is an important process because we have to make sure keycloak has created the configurations and default users correctly in the database.
+
+- Also, verify if the `ed-fi-adminapi` log has
+```
+2025-05-27 18:19:50 info: Microsoft.Hosting.Lifetime[14]
+2025-05-27 18:19:50       Now listening on: http://[::]:80
+2025-05-27 18:19:50 info: Microsoft.Hosting.Lifetime[0]
+2025-05-27 18:19:50       Application started. Press Ctrl+C to shut down.
+2025-05-27 18:19:50 info: Microsoft.Hosting.Lifetime[0]
+2025-05-27 18:19:50       Hosting environment: multitenantdocker
+2025-05-27 18:19:50 info: Microsoft.Hosting.Lifetime[0]
+2025-05-27 18:19:50       Content root path: /app
+```
 
 #### Links
 
@@ -61,12 +84,10 @@ are console applications they are not exposed on any ports.
 
 > [!IMPORTANT]
 > **Default users/passwords**
-> * Admin Console user
->   * _Username:_ **adminconsole-user**
->   * _Password:_ **123456**
-> * Keycloak administrator
->   * _Username:_ **admin**
->   * _Password:_ **admin**
+> | Application | Username | Password |
+> | -------- | ------- | ------- |
+> | Admin Console | adminconsole-user | 123456 |
+> | Keycloak | admin | admin |
 
 #### OTP with Keycloak
 
@@ -98,7 +119,7 @@ To delete volumes, also append `-v`. Examples:
 
 ### Containers and their ports
 
-| Contaner | Name | Port |
+| Container | Name | Port |
 | -------- | ------- | ------- |
 | Ods Api | ed-fi-ods-api | [8181](http://localhost:8181/) |
 | Ods Api database tenant 1 | ed-fi-db-ods-tenant1 | `none` |
@@ -113,8 +134,8 @@ To delete volumes, also append `-v`. Examples:
 | Keycloak | ed-fi-idp-keycloak | [28080](http://localhost:28080/) |
 | Keycloak database pgbouncer | ed-fi-pb-idp-keycloak | `none` |
 | Keycloak database | ed-fi-db-idp-keycloak | `none` |
-| Instance-Management-Worker-Process | adminconsole-local-dev-instance-management-service-1 | `none` |
-| Health-Check-Worker-Process | adminconsole-local-dev-healthcheck-service-1 |  |
+| Instance-Management-Worker-Process | ed-fi-instance-management-service | `none` |
+| Health-Check-Worker-Process | ed-fi-healthcheck-service | `none` |
 | Adminconsole application | ed-fi-adminconsole | [8598](http://localhost:8598/) |
 
 ### Troubleshooting
