@@ -29,7 +29,7 @@ Before running these, create a `.env` file. The `.env.example` is a good
 starting point. Also you can use `.env.otp.example` for a Keycloak with an OTP Configuration.
 
 * `start-all-services-dev.ps1` launches `compose-adminapi-dev.yml`, `compose-keycloak-dev.yml`, `compose-adminconsole-local-dev.yml`,
-  `compose-healthcheck.yml`, `ompose-instance-management.yml`  and `compose-ods-multi-tenant-dev.yml`,
+  `compose-healthcheck.yml`, `compose-instance-management.yml`  and `compose-ods-multi-tenant-dev.yml`,
   ready to check adminconsole website
 
 ```pwsh
