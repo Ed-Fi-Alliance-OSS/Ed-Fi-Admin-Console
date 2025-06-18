@@ -17,6 +17,7 @@ export default defineConfig(({ mode }) => {
   return {
     base: (isProd && envConfig.app.basePath) ? `${envConfig.app.basePath}/` : '/',
     css: { preprocessorOptions: { scss: { api: 'modern' } } },
+    build: { sourcemap: true },
     server: {
       // https: {
       //   key: fs.readFileSync('./eng/docker-compose/ssl/server.key'),

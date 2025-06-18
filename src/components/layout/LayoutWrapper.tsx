@@ -31,8 +31,7 @@ const LayoutWrapper = () => {
   useAuthAutoRefresh()
   const { auth, edxAppConfig } = useContext(TEEAuthDataContext)
   const { handleLogOut } = useAuthActions()
-  const { loadingState, stateMessage } = useLoadingState()
-  const { showInactiveModal, onCloseInactiveModal } = useIdleSession({ timeout: 10000 * 60 })
+  const { loadingState, stateMessage } = useLoadingState()  
   const [ isClosingSession, setIsClosingSession ] = useState(false)
   const { onBoardingWizardData } = useOnBoardingWizard()
   const { finishedCheckedPermissions } = useCheckPermissions()
@@ -87,12 +86,6 @@ const LayoutWrapper = () => {
         <title>Acme Service Center | {stateMessage}</title>
       </Helmet>
 
-      <SessionInactiveModal
-        isClosingSession={isClosingSession}
-        show={showInactiveModal}
-        onClose={onCloseInactiveModal}
-        onLogout={onLogout}
-      />
 
       {onBoardingWizardData && <Layout 
         auth={auth as AuthContextProps}
