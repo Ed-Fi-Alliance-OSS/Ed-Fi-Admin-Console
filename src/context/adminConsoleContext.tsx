@@ -67,12 +67,12 @@ const AdminConsoleConfigProvider = ({ children, config }: AdminConsoleConfigProv
         tenantId: 'tenant1',
         token: resolvedUser.access_token, // Use the resolved user object
         config: edxAppConfig,
-        edxApiUrl: config.api.edxApiUri,
+        edxApiUrl: config.api.edxApiUri
       }
     }
 
     return null
-  };
+  }
 
   const getEdfiActionParams = (): EdfiActionParams | null => {
     if (resolvedUser && userProfile && edxAppConfig) {

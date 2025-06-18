@@ -28,13 +28,13 @@ interface OnBoardingWizardProviderProps {
 }
 
 const OnBoardingWizardProvider = ({ children }: OnBoardingWizardProviderProps) => {
-  const { userProfile } = useContext(UserProfileContext);
-  const { auth, edxAppConfig } = useContext(TEEAuthDataContext);
-  const [ isFetchingOnBoardingWizard, setIsFetchingOnBoardingWizard] = useState(true);
-  const [ onBoardingWizardData, setOnBoardingWizardData] = useState<OnBoardingWizardData | null>(null);
-  const { onboardingStepsData } = useOnboardingWizardStepsData();
-  const { config } = useConfig();
-  const tenantMockUrl = `${config?.app.basePath}/mockdata/data-tenant.json`;
+  const { userProfile } = useContext(UserProfileContext)
+  const { auth, edxAppConfig } = useContext(TEEAuthDataContext)
+  const [ isFetchingOnBoardingWizard, setIsFetchingOnBoardingWizard ] = useState(true)
+  const [ onBoardingWizardData, setOnBoardingWizardData ] = useState<OnBoardingWizardData | null>(null)
+  const { onboardingStepsData } = useOnboardingWizardStepsData()
+  const { config } = useConfig()
+  const tenantMockUrl = `${config?.app.basePath}/mockdata/data-tenant.json`
 
   const fetchOnBoardingDetails = async () => {
     if (auth && userProfile && edxAppConfig) {
@@ -54,7 +54,7 @@ const OnBoardingWizardProvider = ({ children }: OnBoardingWizardProviderProps) =
 
         if (data) {
           if (!hasStartedOB(data) && data.steps.length < 8) {
-            console.log('tenant has not started OB. Loading steps...');
+            console.log('tenant has not started OB. Loading steps...')
             await setupInitialOnBoardingState()
 
             const initialOBData = await fetchOnBoardingWizardData({
@@ -120,10 +120,10 @@ const OnBoardingWizardProvider = ({ children }: OnBoardingWizardProviderProps) =
           })
         }
       } catch (error) {
-        console.error('Error setting up initial onboarding state:', error);
+        console.error('Error setting up initial onboarding state:', error)
       }
     }
-  };
+  }
 
   useEffect(() => {
     if (userProfile) {

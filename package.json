@@ -1,7 +1,7 @@
 {
   "name": "@edfi/admin-console-web",
   "private": false,
-  "version": "1.0.0",
+  "version": "releaseVersion",
   "type": "module",
   "homepage": "http://localhost:8598",
   "publishConfig": {
@@ -22,7 +22,7 @@
     "@chakra-ui/icons": "2.2.4",
     "@chakra-ui/react": "2.8.2",
     "@choc-ui/chakra-autocomplete": "^5.8.0",
-    "@edfi/admin-console-shared-sdk": "file:../Ed-Fi-Admin-Console-Shared-SDK",
+    "@edfi/admin-console-shared-sdk": "2.2.12-pre",
     "@emotion/react": "11.14.0",
     "@emotion/styled": "11.11.0",
     "@fontsource/archivo-narrow": "4.5.12",
@@ -40,6 +40,7 @@
     "joi": "17.13.3",
     "json-server": "^0.17.4",
     "lodash-es": "^4.17.21",
+
     "motion": "^12.10.5",
     "prismjs": "^1.30.0",
     "react": "18.3.1",
